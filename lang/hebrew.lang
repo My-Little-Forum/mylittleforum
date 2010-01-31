@@ -1,0 +1,1090 @@
+﻿################################################################################
+# Hebrew language file for my little forum 2.1                                 #
+# by David Rennert - http://davidrennert.com/                                  #
+# Notice: in addition to this language file you need a special theme in order  #
+# to display properly the right-to-left text direction:                        #
+# http://mylittleforum.net/documentation/localization                          # 
+################################################################################
+
+language =                  he
+charset =                   utf-8
+locale =                    en_US.utf8
+locale =                    he_IS
+locale =                    he
+locale =                    heb
+locale_charset =            utf-8
+dir =                       ltr
+time_format =               %Y-%m-%d, %H:%M
+time_format_full =          %A, %B %d, %Y, %H:%M
+forum_time =                זמן הפורום: [time]
+unknown_user =              לא ידוע
+db_error =                  שגיאת בסיס נתונים!
+mail_error =                שרת דואר לא זמין - אנא נסה שוב מאוחר יותר!
+
+[general]
+subject =                   נושא
+author =                    כותב
+date =                      תאריך
+replies =                   תגובות
+views =                     צפיות
+category =                  קטגוריה
+submit_button_ok =          &nbsp;שלח&nbsp;
+yes =                       כן
+no =                        לא
+go =                        המשך
+edit =                      ערוך
+delete =                    מחק
+next_page_link =            הדף הבא &raquo;
+previous_page_link =        &laquo; הדף הקודם
+next_page_link_title =      הדף הבא
+previous_page_link_title =  הדף הקוסם
+posted_by =                 ע"י <strong>[name]</strong>[email_hp], [time]
+posted_by_location =        ע"י <strong>[name]</strong>[email_hp], [location], [time]
+original_posting_linktitle = לחץ לחזור לפוסט המקורי [name]
+error_headline =            שגיאה!
+no_authorisation =          אין הרשאת גישה!
+page_doesnt_exist =         העמוד אינו קיים!
+error_form_uncomplete =     לא מילית את כל השאות
+caution =                   זהירות!
+spam =                      ספאם
+forum_index_link =          דף הבית של הפורום
+forum_index_link_title =    דף הבית של הפורום
+log_in_link =               כניסה למערכת
+log_in_link_title =         כניסה למערכת
+log_out_link =              יציאה מהמערכת
+log_out_link_title =        יציאה מהמערכת
+register_link =             הירשם
+register_link_title =       הירשם כמשתמש חדש
+profile_link_title =        ערוך פרופיל
+user_area_link =            משתמש
+user_area_link_title =      איזור משתמש
+admin_area_link =           מנהל
+admin_area_link_title =     איזור ניהול
+search_marking =            חיפוש:
+search_default_value =      חיפוש...
+search_title =              חיפוש הודעות
+new_topic_link =            נושא חדש
+new_topic_link_title =      כתיבת נושא חדש
+order_link =                סדר
+order_link_title_1 =        סדר לפי תאריך תגובה אחרונה
+order_link_title_2 =        סדר לפי תאריך הודעות (ברירת מחדש)
+fold_threads =              קפל אשכולות
+fold_threads_linktitle =    קפל אשכולות
+expand_threads =            פתח אשכולות
+expand_threads_linktitle =  פתח אשכולות
+table_view =                תצוגת טבלה
+table_view_linktitle =      הצג הודעות בצורת טבלה
+thread_view =               תצוגה מדורגת
+thread_view_linktitle =     הצג הודעות בצורה מדורגת
+refresh_link =              רענן
+refresh_linktitle =         בטל סימון הודעות חדשות
+thread_hierarchical =       היררכי
+thread_hierarchical_linktitle = הצג אשכול בצורה היררכית (ברירת מחדל)
+open_in_thread_link =       פתח בהודעה
+open_in_thread_linktitle =  הצג את ההודעה בתוך האשכול המלא
+thread_linear =             לינארי
+thread_linear_linktitle =   הצג אשכול בצורה לינארית
+hide_all_messages =         כווץ את הכל
+hide_all_messages_title =   כווץ את כל ההודעות
+show_all_messages =         פתח את כל ההודעות
+show_all_messages_title =   פתח את כל ההודעות
+expand_fold_thread_linktitle = פתח / כווץ אשכול
+category_title =            קטגוריה
+all_categories =            כל הקטגוריות
+my_category_selection =     הבחירה שלי
+browse_page_title =         דף
+thread_entry_back_link =    חזרה לדף ראשי
+thread_entry_back_title =   דף ראשי של הפורום
+reply_link =                פרסם תגובה
+reply_link_title =          פרסם תגובה להודעה זאת
+back_to_index_link =        חזרה לדף הראשי של הפורום
+back_to_index_link_title =  דף פורום ראשי
+back_to_entry_link =        חזרה להודעה לפי [name]
+back_to_entry_link_title =  חזרה להודעה לפי [name]
+subnav_login =              כניסה למערכת
+subnav_pw_forgotten =       שכחתי סיסמה
+subnav_admin_area =         איזור ניהול
+subnav_settings =           הגדרות פורום
+subnav_advanced_settings =  הגדרות מתקדמות
+subnav_categories =         קטגוריות
+subnav_edit_category =      ערוך קטגוריה
+subnav_delete_category =    מחוק קטגוריה
+subnav_user =               ניהול משתמשים
+subnav_smilies =            סמייליס
+subnav_pages =              דפים
+subnav_delete_page =        מחק דף
+subnav_edit_page =          ערוך דף
+subnav_add_page =           הוסף דף
+subnav_create_page =        צור דף
+subnav_edit_smiley =        ערוך סמיילי
+subnav_edit_user =          ערוך משתמש
+subnav_delete_users =       מחק משתמשים
+subnav_register_user =      רשום משתמש
+subnav_spam_protection =    הגנת ספאם
+subnav_email_list =         שלח באימייל רשימת משתמשים
+subnav_clear_userdata =     נקה פרטי משתמש
+subnav_search =             חפש
+subnav_register =           הירשם
+subnav_reset_uninstall =    אפס / הסר פורום
+subnav_userarea =           איזור משתמש
+subnav_contact =            איש קשר
+subnav_userarea_show_user = [var]
+subnav_userarea_show_posts = הודעות של [var]
+subnav_userarea_edit_user = עורך פרופיל
+subnav_userarea_edit_pw =   שנה סיסמה
+subnav_userarea_edit_mail = שנה כתובת אימייל
+subnav_backup =             גיבוי
+subnav_update =             עדכון
+subnav_update_run =         הרץ עדכון
+subnav_delete_backup_file = מחוק קובץ גיבוי
+subnav_restore =            שחזר
+subnav_locked =             חשבון נעול
+subnav_delete_cookie =      מחוק עוגיה
+subnav_disabled =           פורום לא מאופשר
+subnav_page_error =         שגיאה
+subnav_page =               [var]
+counter =                   [total_postings] הודעות ב [total_threads] אשכולות, [registered_users] משתמשים רשומים
+counter_users_online =      [total_postings] הודעות ב [total_threads] אשכולות, [registered_users] משתמשים רשומים, [total_users_online] משתמשים אונליין ([registered_users_online] רשומים, [unregistered_users_online] אורחים)
+contact_link =              איש קשר
+contact_linktitle =         שלח אימייל למנהל הפורום
+rss_feed_postings =         הודעות RSS
+rss_feed_postings_title =   RSS פיד לכל ההודעות
+rss_feed_new_threads =      RSS אשכולות
+rss_feed_new_threads_title = RSS פיד של הודעות ראשונות באשכולות
+rss_feed_thread =           RSS פיד של האשכול
+rss_feed_thread_title =     RSS של אשכול זה
+no_messages =               אין הודעות בינתיים.
+no_messages_in_category =   אין הודעות עדיין בקטגוריה זאת.
+error_invalid_category =    קטגוריה לא קיימת
+error_word_too_long =       המילה "[word]" ארוכה מדי
+error_name_too_long =       השם ארוך מדי
+error_email_too_long =      כתובת האימייל ארוכה מדי
+error_hp_too_long =         ההודעה ארוכה מדי
+error_location_too_long =   המיקום ארוך מדי
+error_profile_too_long =    הפרופיל ארוך מדי ([profile_length] תווים בלבד [profile_maxlength] תווים מותרים)
+error_signature_too_long =  החתימה ארוכה מדי ([signature_length] תווים בלבד [signature_maxlength] תווים מותרים)
+error_invalid_date_format = פורמט תאריך שגוי (YYYY-MM-DD)
+error_invalid_date =        תאריך לידה לא נכון
+error_email_wrong =         כתובת אימייל לא נכונה
+error_hp_wrong =            כתובת דף הבית לא נכונה
+error_pw_conf_wrong =       שדה אימות הסיסמה לא תואם את שדה הסיסמה הראשון
+error_akismet_connection =  טיימאוט של השרת. אנא נסה שוב!
+error_akismet_connection_admin = שגיאה בהתחברות לשרת אקיסמט בווידוא מפתח !
+error_akismet_api_key =     מפתח WP API לא וולידי
+error_spam_suspicion =      חשד לספאם! אנא שנה את ההודעה (הסר לינקים)
+user_name_already_exists =  משתמש זה כבר קיים
+ajax_preview_title =        תצוגה מקדימה
+open_whole_thread =         פתח את כל האשכול
+change_category_link =      הצג הודעות בקטגוריית "[category]"
+mark_linktitle =            סמן הודעה
+unmark_linktitle =          בטל סימון הודעה
+delete_marked_link =        מחק הודעות מסומנות
+manage_postings_link =      נהל הודעות
+show_spam_link =            הצג ספאם ([number])
+hide_spam_link =            החבא ספאם
+delete_spam_link =          מחוק ספאם
+no_replies =                אין תגובות
+one_reply =                 תגובה אחת
+several_replies =           [replies] תגובות
+more_smilies_link =         עוד...
+more_smilies_title =        עוד סמייליס
+close =                     סגור
+no_postings_user =          אין הודעות.
+search_submit_button =      חפש
+search_fulltext =           טקסט מלא
+search_tags =               טאגים
+no_postings_found =         לא נמצאו הודעות.
+one_posting_found =         נמצאה הודעה אחת:
+several_postings_found =    [number] הודעות נמצאו:
+no_postings_by_user =       אין הודעות.
+one_posting_by_user =       הודעה אחת:
+several_postings_by_user =  [number] הודעות:
+rss_posting_by =            תגובע של [name], [time]:
+rss_reply_by =              תגובה של [name], [time]:
+rss_reply_marking =         (תגובה)
+move_drag_and_drop =        משוך ושחרר כדי לנוע למעלה ולמטה
+move_up =                   הזז למעלה
+move_down =                 הזז למטה
+delete_posting_title =      מחק הודעה
+delete_posting_confirm =    למחוק את ההודעה?
+delete_posting_confirm_admin = למחוק את ההודעה ואת כל התגובות שלה?
+latest_postings_hl =        הודעות אחרונות
+toggle_latest_postings =    הצג \ החבא הודעות אחרונות
+posting_minutes_ago =       לפני [minutes] דקות
+posting_hours_ago =         לפני [hours] שעות, [minutes] דקות
+posting_one_day_ago =       לפני יום אחד, [hours] שעות, [minutes] דקות
+posting_several_days_ago =  לפני [days] ימים
+tag_cloud_hl =              טאגים אחרונים
+sidebar =                   בר ניווט צידי
+toggle_sidebar =            הצג \ הסתר בר ניווט צידי
+options =                   אפשרויות
+administrator_title =       מנהל
+moderator_title =           מודרטור
+avatar_img_alt =            אווטר
+search_user =               חפש משתמש:
+no_users =                  לא נמצאו משתמשים.
+no_text_title =             הודעה ריקה \ אין טקטס
+no_text_alt =               אין טקסט
+no_text =                   - אין טקסט -
+error_invalid_form =        הסשן נגמר! אנא העקת את הטקסט והיכנס למערכת \ שלח את ההודעה כאורח. 
+error_form_sent_too_fast =  ההודעה נשלחה מהר מדי. אנא המתן מספר שניות ונסה שוב (הגנת שליחת טפסים אוטומטית)
+error_form_sent_too_slow =  הטופס כבר לא ולידי. אנא העתק את הטקסט וטען מחדש את הדף
+terms_of_use_agreement =    אני מסכים ל [[terms of use]]
+terms_of_use_agree_error_register = אתה חייב להסכים לתנאים על מנת להשלים את הרישום
+terms_of_use_agree_error_posting =  אתה חייב להסכים לתנאים על מנת לפרסם את ההודעה
+error_not_accepted_word =   מילה לא חוקית: [not_accepted_word]
+error_not_accepted_words =  מלים לא חוקיות: [not_accepted_words]
+error_username_invalid_chars = <!-- TODO -->The user name contains special characters
+
+[entry]
+edited_by =                 נערך על ידי [name], [time]
+tags_marking =              טאגים:
+one_view =                  צפיה אחת
+several_views =             [views] צפיות
+complete_thread_marking =   אשכול מלא:
+branch_marking =            ענף נוכחי באשכול:
+direct_replies_marking =    תגובות ישירות להודעה זאת:
+edit_message_linkname =     ערוך
+edit_message_linktitle =    ערוך הודעה
+delete_message_linkname =   מחק
+delete_message_linktitle =  מחק הודעה
+move_posting_linkname =     הזז
+move_posting_linktitle =    הזז הודעה
+report_spam_linkname =      ספאם
+report_spam_linktitle =     דווח ספאם
+flag_ham_linkname =         לא ספאם
+flag_ham_linktitle =        סמן \ דווח כלא ספאם
+lock_linkname =             נעל
+lock_linktitle =            נעל הודעה
+unlock_linkname =           בטל נעילה
+unlock_linktitle =          בטל נעילת הודעה
+lock_thread_linkname =      נעל אשכול
+lock_thread_linktitle =     נעל אשכול שלם
+unlock_thread_linkname =    בטל נעילת אשכול
+unlock_thread_linktitle =   בטל נעילת אשכול שלם
+posting_locked =            נעול
+email =                     אימייל
+homepage =                  דף הבית
+show_hide_posting_title =   כווץ / פתח הודעה
+spam_note =                 הודעה זאת לא עברה את פילטר הספאם ולא תוצג בדף הבית עד שתאושר ידנית ע"י מנהל \ מודרטור.
+
+[posting]
+no_authorization_edit =     לא ניתן לערוך את ההודעה. ייתכן שפג הזמן בו ניתן לערוך את ההודעה, או שההודעה נעולה או שיש כבר תגובות להודעה
+posting_locked_no_reply =   לא ניתן להגיב להודעה כי היא נעולה.
+no_auth_post_reg_users =    רק משתמשים רשומים יכולים לפרסם הודעות!
+no_auth_session_expired =   הסשן נגמר. העתק את ההודעה והיכנס שוב למערכת!
+no_auth_readonly =          כעת ניתן רק לצפות בפורום!
+new_topic_hl =              נושא חדש
+reply_hl =                  פרסם תגובה
+edit_hl =                   ערוך הודעה
+name_marking =              שם:
+email_marking =             אימייל:
+hp_marking =                דף הבית:
+location_marking =          מיקום:
+optional =                  (אופציונלי)
+optional_email =            (אופציונלי, לא יוצג בצורה ישירה)
+remember_userdata_marking = זכור אותי (עוגיה)
+delete_cookie_linkname =    מחק עוגיה
+deleting_cookie =           מוחק עוגיה...
+category_marking =          קטגוריה:
+subject_marking =           נושא:
+message_marking =           הודעה:
+tags_marking =              טאגים:
+tags_note =                 (אופציונלי, מופרד ע"י פסיקים)
+bbcode_bold_marking =       בולד
+bbcode_bold_title =         טקסט בולד: [b]Text[/b]
+bbcode_italic_marking =     איטליק
+bbcode_italic_title =       טקטס איטליק: [i]Text[/i]
+bbcode_link_marking =       לינק
+bbcode_link_title =         הכנס לינק: [link=http://www.domain.tld/]טקסט של הלינק[/link] או [link]http://www.domain.tld/[/link]
+bbcode_color =              צבע
+bbcode_color_title =        צבע טקסט: [color=color]text[/color]
+bbcode_font_size =          גודל
+bbcode_font_size_title =    גודל פונט: [size=small]small text[/size] / [size=large]large text[/size]
+bbcode_font_size_small =    קטן
+bbcode_font_size_large =    גדול
+bbcode_link_linktext =      שם הלינק (אופציונלי):
+bbcode_link_url =           כתובות (URL):
+bbcode_image_marking =      תמונה
+bbcode_image_title =        הכנס תמונה: [img]http://example.com/image.jpg[/img]
+bbcode_image_url =          כתובת התמונה (URL):
+bbcode_list_marking =       רשימה
+bbcode_list_title =         הכנס רשימה: [list][*]list item[/list]
+upload_image_marking =      העלה
+upload_image_title =        העלה תמונה
+bbcode_flash_marking =      פלאש
+bbcode_flash_title =        הכנס פלאש: [flash]http://example.com/flash.swf[/flash]
+bbcode_code_marking =       קוד
+bbcode_code_title =         הכנס קוד: [code]code[/code]
+bbcode_code_inline =        קוד בתוך השורה
+bbcode_code_block =         בלוק קוד
+bbcode_code_block_lang =    בלוק קוד [שפה]
+smiley_title =              הכנס סמיילי
+email_notific_reply_thread = שלח אימייל כשנשלחת תגובה להודעה
+email_notific_reply_post =   שלח אימייל כשנשלחת תגובה להודעה
+show_signature_marking =    צרף חתימה
+sticky_thread =             דביק
+message_submit_button =     אוקיי - שלח
+message_submit_title =      שמור הודעה
+message_preview_button =    צפיה מוקדמת
+message_preview_title =     פצה בהודעה לפני הפרסום
+quote_message =             צטט הודעה
+reply_to_posting_marking =  השב להודעה של <strong>[name]</strong>
+minutes_left_to_edit =      נותרו לך [minutes] דקות לערוך את ההודעה
+minutes_left_to_edit_reply = נותרו לך [minutes] לערוך את ההודעה אם לא תישלח תגובה קודם לכן
+preview_headline =          תצוגה מקדימה:
+error_repeated_posting =    פרסום הודעות חוזרות ב [minutes] דקות. אנא המתן רגע ושלח שוב. 
+error_no_name =             לא הוזן שם
+error_name_like_subject =   השם זהה לנושא
+error_name_reserved =       שם זה שמור כבר ע"י משתמש רשום
+error_username_too_long =   שם משתמש ארוך מדי
+error_name_too_long =       השם ארוך מדי
+error_no_email_to_notify =  אין כתובת אימייל להודעות
+error_no_subject =          לא הוזן נושא
+error_no_text =             לא הוזן טקטס להודעה
+error_subject_too_long =    הנושא ארוך מדי
+error_text_too_long =       ההודעה ארוכה מדי ([text_length] תווים בלבד [text_maxlength] תווים מותרים)
+error_tags_too_long =       טאגים ארוכים מדי
+error_posting_unavailable = הודעה לא קיימת
+
+[delete_posting]
+delete_postings_hl =        מחק הודעה
+delete_marked_hl =          מחק הודעות מסומנות
+delete_marked_confirm =     האם למחוק את כל ההודעות המסומנות והתגובות?
+delete_spam_hl =            מחק ספאם
+delete_spam_confirm =       האם למחוק את כל ההודעות שמסומנות כספאם?
+delete_posting_submit =     בסדר - מחק
+report_spam_hl =            דווח ספא
+posting_already_spam =      הודעה זאת כבר מסומנת כספאם
+spamcheck_posting_not_checked = הודעה זאת כבר מסומנת כספאם או שלא נבדקה ע"י אקיסמט בגלל שאקסימט לא היה אקטיבי או שההודעה שייכת למשתמש רשום.
+spamcheck_posting_passed =  הודעה זאת עברה את הפילטר של אקיסמט. דווח כספאם רק אם אתה בטוח!
+spamcheck_akismet_api_error = הודעה זאת עברה את הפילטר של אקיסמט בלל שארעה שגיאה במהלך הבדיקה. ייתכן שהסיבה היא מפתח API לא ולידי!  
+spamcheck_akismet_timeout_error = הודעה זאת עברה את הפילטר של אקיסמט בגלל סשן טיימאוט של שרת אקיסמט
+report_spam_delete_submit = דווח כספאם ומחוק
+report_spam_submit =        דווח כספאם בלבד
+delete_only_submit =        מחק בלבד
+postings_doesnt_exist =     הודעה זאת לא קיימת!
+posting_not_flagged_as_spam = הודעה זאת לא מסומות כספאם.
+flag_ham_hl =               סמן כספאם
+flag_ham_note =             הודעה זאת סומנה כספאם ע"י אקיסמט. דווח כלא ספאם רק אם אתה בטוח!
+report_flag_ham_submit =    דווח וסמן כספאם
+flag_ham_submit =           סמן כספאם בלבד
+no_authorisation_delete =   לא ניתן למחוק הודעה זאת. ייתכן שפרק הזמן בו ניתן למחוק הודעות עבר, או שהאשכול נעול, או שיש כבר תגובות להודעה
+
+[captcha]
+captcha_marking =           בדיקהת ספאם:
+captcha_expl_math =         אנא סכום את המספרים:
+captcha_expl_image =        אנא הזן את האותיות \ מספרים של התמונה:
+captcha_image_alt =         אם אינך יכול לראות את התמונה עליך להירשם על מנת לפרסם את ההודעה
+captcha_image_alt_reg =     אם אינך רואה את ההודעה פנה למנהל האתר
+captcha_check_failed =      הבדיקה נכשלה. אנא נסה שוב!
+
+[upload_image]
+image_upload_not_enabled =  לא ניתן להעלות תמונות.
+upload_image_hl =           העלה תמונה
+upload_image_button =       העלה
+upload_error =              שגיאה בהעלאת התמונה
+upload_error_2 =            לא ציינת תמונה או שגודל התמונה דגול מהמקסימום הפאשרי ([server_max_filesize]).
+invalid_file_format =       קובץ לא ולידי
+file_too_large =            קובץ גדול מדי ([width]*[height], [filesize] KB, המקסימום הוא [max_width]*[max_height], [max_filesize] KB)
+upload_successful =         התמונה הועלתה בהצלחה
+image_downsized =           <strong>שים לב:</strong> גודל התמונה שונה. הגודל כעת: [width] x [height] פיקסלים, [filesize] KB.
+insert_image =              הכנס תמונה
+insert_image_exp =          אנא הקלק על התמונה כדי להכניס אותה להודעה.
+insert_image_exp_no_js =    השתמש בקוד הבא על מנת להכניס את התמונה להודעה:
+browse_uploaded_images =    עיין בתמונות שהועלו...
+back =                      &laquo; חזור
+no_images =                 אין תמונות.
+delete_image_confirm =      למחוק את התמונה?
+delete_image_button =       בסדר - מחוק
+
+[insert_flash]
+insert_flash_hl =           הכנס פלאש וידאו
+insert_flash_code =         קוד לוידאו (<code>&lt;object&gt;...&lt;/object&gt;</code>)
+flash_code =                קוד:
+select_flash_or =           ... או ...
+insert_flash_custom =       סרט פלאש מקוסטם
+flash_url =                 URL:
+flash_size =                גודל:
+insert_flash_button =       הכנס סרט פלאש
+
+[avatar]
+avatar_hl =                 אווטר
+delete_avatar =             מחוק אווטר
+upload_avatar_hl =          העלה אווטר
+upload_avatar_notes =       גודל אווטר מקסימלי: [width]*[height] פיקסלים, [filesize] KB
+upload_image_button =       העלה
+upload_error =              שגיאה בהעלאת תמונה
+upload_error_2 =            לא בחרת תמונה, או שהגודל של התמונה גדול ממה שהשרת מאפשר ([server_max_filesize]).
+invalid_file_format =       פורמט קובץ לא ולידי
+file_too_large =            קובץ גדול מדי ([width]*[height], [filesize] KB, המקסימום הוא [max_width]*[max_height], [max_filesize] KB)
+upload_successful =         אווטר הועלה בהצלחה
+close_window =              סגור חלון
+image_downsized =           <strong>שים לב:</strong> גודל האווטר שונה. הגודל החדש הוא [width] x [height] פיקסלים, [filesize] KB.
+avatars_disabled =          אווטרס לא מאופשרים
+
+[move_posting]
+move_posting_hl =           הזז הודעה
+move_posting_new_thread =   הפוך לאשכול מוכל בעצמו מהודעה זאת והתגובות שלה
+move_posting =              הזז את ההודעה והתגובות שלה להודעה # [number]
+move_posting_submit =       בסדר - הזז הודעה
+invalid_posting_to_move =   מספר הודעה לא ולידי
+
+[manage_postings]
+manage_postings_hl =        נהל הודעות
+mark_postings =             סמן
+mark_all_postings =         סמן את כל ההודעות
+unmark_all_postings =       בטל סימון כל ההודעות
+mark_old_threads =          סמן אשכולות עם הודעות אחרונות ישנות מ [days] ימים
+lock_postings =             נעל
+lock_all_postings =         נעל את כל ההודעות
+unlock_all_postings =       בטל נעילה של כל ההודעות
+lock_old_threads =          נעל אשכולות עם תגובות אחרונות ישנות מ [days] ימים
+
+[login]
+login_ip_temp_blocked =     לאור נסיונות כושלים חוזרים אתה נעול. נסה שוב בעוד מספר דקות. 
+login_username =            שם משתמש:
+login_password =            סיסמה:
+login_auto =                הכנס אותי אוטומטית ממחשב זה
+login_submit =              היכנס
+login_advice =              על מנת להיכנס עליך לאפשר עוגיות!
+pw_forgotten_link =         שכחתי את הסיסמה שלי
+pwf_failed =                לא נמצא משתמש עם כתובת האימייל שציינת
+login_failed =              משתמש לא ידוע או סיסמה שגויה!
+registered_users_only =     רק משתמשים רשומים יכולים לפרסם הודעות!
+account_not_activated =     החשבון שלך עדיין לא הופעל!
+account_activated =         החשבון שלך הופעל בהצלחה.
+account_activated_but_locked = החשבון שלך הופעל בעצלחה אבל המנהל צריך לשרחחר אותו כדי שתוכל להיכנס
+mail_sent =                 האימייל נשלח.
+pw_sent =                   הסיסמה החדשה נשלחה.
+code_invalid =              קוד לא ולידי.
+
+[pw_forgotten]
+new_pw_ok =                 סיסמה חדשה יוצרה ונשלחה.
+new_pw_failed =             לינק הוידוא לא ולידי. סיסמה חדשה לא יוצרה.
+pw_forgotten_exp =          הסיסמה מוצפנת לכן אין אפשרות לבדוק מהי. אתה יכול לקבל סיסמה חדשה. אימייל יישלח אליך שם תתבקש לאשר את הבקשה. לאחר מכן סיסמה חדשה תיוצר עבורך ותישלח אליך.
+pwf_username =              שם משתמש:
+pwf_email =                 אימייל:
+
+[user]
+user_name =                 שם משתמש
+user_type =                 סוג
+admin =                     מנהל
+mod =                       מודרטור
+user =                      משתמש
+user_email =                אימייל
+user_hp =                   דף הבית
+mailto_user =               שלח אימייל ל [user]
+email =                     אימייל
+homepage =                  דף הבית
+user_postings =             הודעות
+user_online =               אונליין
+user_blockage =             נעל
+online =                    אונליין
+locked =                    נעול
+lock_title =                נעל משתמש
+unlocked =                  מבוטל
+unlock_title =              בטל נעילת משתמש
+currently_online =          כרגע אונליין   
+
+[user_show]
+user_name =                 משתמש:
+user_avatar =               אווטר:
+user_type =                 סוג:
+admin =                     מנהל
+mod =                       מודרטור
+user =                      משתמש
+user_real_name =            שם:
+gender =                    מין:
+male =                      זכר
+female =                    נקבה
+age_birthday =              גיל / יום הולדת:
+mailto_user =               שלח אימייל ל [user]
+email =                     אימייל
+homepage =                  דף הבית
+user_hp_email =             דף הבית / אימייל:
+user_location =             מיקום:
+user_registered =           רשום:
+user_last_login =           כניסה אחרונה:
+user_logins =               כניסות:
+user_postings =             הודעות:
+show_postings_link =        הצג הודעות
+last_posting =              הודעה אחרונה:
+logins_per_day =            כניסות ליום:
+postings_per_day =          הודעות ליום:
+user_profile =              פרופיל:
+user_account_doesnt_exist = חשבון משתמש זה לא קיים.
+
+[user_edit]
+edit_user_name =            שם משתמש:
+edit_avatar =               אווטר:
+add_avatar_link =           הוסף אווטר
+edit_avatar_link_title =    ערוך אווטר
+edit_user_type =            סוג:
+edit_user_email =           אימייל:
+edit_email =                שנה אימייל
+edit_user_pw =              סיסמה:
+pw_not_displayed =          לא מוצג
+edit_pw =                   שנה סיסמה
+edit_user_email_contact =   אפשר ליצור קשר באימייל
+edit_user_real_name =       שם:
+edit_user_gender =          מין:
+male =                      זכר
+female =                    נקבה
+edit_user_birthday =        יום הולדת:
+birthday_format =           YYYY-MM-DD
+edit_user_hp =              דף הבית:
+edit_user_location =        מיקום:
+edit_user_profile =         פרופיל:
+edit_user_signature =       חתימה:
+edit_user_cat_selection =   בחירת הקטגוריה שלי:
+edit_user_time_diff =       הפרש זמנים:
+time_diff_format =          הפרש שעות, e.g. +3 or -5:30 
+default_forum_time =        זמן פורום ברירת מחדל: [time]
+edit_user_auto_login =      כניסה אוטומטית
+enable_auto_login =         אפשר כניסה אוטומטית
+edit_user_notification =    הודעות באימייל:
+admin_mod_notif_posting =   ברגע שהודעה פורסמה
+admin_mod_notif_register =  ברגע שמשתמש נרשם
+userdata_submit_button =    בסדר - שמור
+profile_saved =             פרופיל נשמר
+pw_changed =                סיסמה שונתה
+
+[edit_pw]
+edit_pw_old =               סיסמה ישנה:
+edit_pw_new =               סיסמה חדשה:
+edit_pw_conf =              חזור על סיסמה:
+error_old_pw_wrong =        סיסמה ישנה לא נכונה
+error_pw_conf_wrong =       הסיסמה החדשה שונה מזו שהוזנה בשדה החזרה על הסיסמה
+error_new_pw_too_short =    הסיסמה החדשה צריכה להכיל לפחות [characters] תווים
+
+[edit_email]
+edit_email_exp =            לאחר שתשנה את האימייל המערכת תוציא אותך החוצה, והחשבון יהיה צריך להיות מופעל שוב. מפתח הפעלה יישלח לכתובת האימייל החדשה. וודא שכתובת זאת נכונה! עליך להפעיל את החשבון תוך יום אחד.
+edit_email_new =            אימייל חדש:
+edit_email_new_confirm =    וודא אימייל חדש:
+edit_email_pw =             סיסמה:
+error_form_uncompl =        לא הזנת את כל השדות
+error_email_confirmation =  האימייל החדש וזה שהוזן בשדה האימות לא זהים
+error_email_too_long =      כתובת האימייל ארוכה מדי
+error_identic_email =       האימייל החדש זהה לישן
+error_email_invalid =       כתובת האימייל לא ולידית
+pw_wrong =                  סיסמה שגויה
+
+[register]
+register_exp =              אנא רשום את שם שמשתמש הרצוי, סיסמה ואימייל ולידי. מפתח הפעלה יישלח לכתובת זאת. עליך להפעיל את החשבון תוך יום.
+register_username =         שם משתמש:
+register_user_email =       אימייל:
+register_pw =               סיסמה:
+register_pw_conf =          סיסמה בשנית:
+register_only_by_admin =    רק מנהל הפורום יכול לרשום משתמשים.
+
+registered =                החשבון נרשם ומפתח ההפעלה נשלח ל <strong>[var]</strong>. עליך להפעיל את החשבון תוך יום אחד.
+registered_send_error =     החשבון נרשם אבל מפחת ההפעלה לאיכול היה להישלח (שרת הדואר לא זמין). אנא צורך קשר עם מנהל הפורום ובקש ממנו להפעיל את החשבון ידנית
+activation_failed =         ההפעלה של החשבון נכשלה.
+error_password_too_short =  הסיסמה חייבת להכיל לפחות [characters] תווים
+error_email_alr_exists =    קיים כבר משתמש עם כתובת אימייל זהה
+error_reg_not_accepted_word = הגנת ספאם: אימייל או שם מכילים מילה אסורה או דומיין אסור
+
+
+[contact]
+contact_hl =                שלח אימייל למנהל הפורום
+contact_user_hl =           אימייל ל [recipient_name]
+impossible_to_contact =     לא ניתן תיצור קשר עם משתמש זה!
+contact_doesnt_exist =      איש קשר זה לא קיים!
+sender_address_caption =    אימייל של השולח:
+subject_caption =           נושא:
+message_caption =           הודעה:
+message_submit_caption =    בסדר - שלח הודעה
+email_sent =                ההודעה נשלחה בהצלחה.
+error_no_text =             לא הוכנסה הודעה
+error_no_email =            לא צויין האימייל של השולח
+error_no_subject =          לא הוזן נושא
+error_email_invalid =       מייל לא תקין
+error_email_subject_too_long = הנושא ארוך מדי
+error_email_text_too_long = ההודעה ארוכה מדי ([text_length] תווים בלבד [text_maxlength] תווים מותרים)
+error_spam_suspicion =      חדש לספאם! אנא שנה את ההודעה (לדוגמה הסר לינקים)
+
+[info]
+user_locked =               החשבון שלך נעול.
+forum_disabled =            הפורום לא זמין כעת.
+
+[delete_cookie]
+delete_cookie =             העוגיה נמחקה.
+
+[admin]
+enabled =                   מאופשר
+disabled =                  לא מאופשר
+folder_alt =                תיקיה
+file_alt =                  קובץ
+admin_confirm_password =    סיסמת מנהל:
+error_password_wrong =      סיסמה שגויה
+
+# admin menu
+forum_settings_link =       הגדרות פורום
+category_administr_link =   ניהול קטגוריות
+user_administr_link =       ניהול משתמשים
+smilies_administr_link =    סמייליס
+pages_administr_link =      דפים
+spam_protection_link =      הגנת ספאם
+backup_restore_link =       גיבוי
+update_link =               עדכון
+reset_uninstall_link =      אפס או הסר פורום
+
+# forum settings:
+clear_chache =              נקה את זיכרון המטמון כדי ליישם את השינויים להודעות קיימות
+settings_submit_button =    בסדר - שמור שינויים
+settings_saved =            ההגדרות נשמרו
+advanced_settings_link =    הגדרות מתקדמות
+forum_name =                שם הפורום
+forum_name_desc =           יוצג (יחד עם אחרים) בחלק העליון
+forum_description =         תיאור הפורום
+forum_description_desc =    A short description of the forum
+forum_address =             Forum address
+forum_address_desc =        URL of the forum (use this format: http://www.domain.tld/forum/)
+forum_email =               Forum e-mail address
+forum_email_desc =          will be used as contact address and sender e-mail address for all e-mails sent by the forum
+home_link =                 Home link
+home_link_desc =            Link to your homepage, e.g. http://www.domain.tld/ or ../index.html (אופציונלי)
+home_link_name =            Home link name
+home_link_name_desc =       Name of the home link, e.g. &quot;Back to homepage&quot;
+template =                  Theme
+template_desc =             Theme for the page layout
+language_file =             Language
+language_file_desc =        Language of the Forum
+threads_per_page =          Threads per page
+threads_per_page_desc =     How many threads should be displayed per page?
+auto_lock_old_threads =     Auto lock old threads
+auto_lock_old_threads_desc = Automaticlly lock threads with last replies older than how many days? (0=disabled)
+time_difference =           Time difference:
+time_difference_desc =      Time difference between server and forum time in minutes
+accession =                 Access permission
+accession_desc =            Who has access to the forum?
+post_permission =           Post permission
+post_permission_desc =      Who is allowed to post messages?
+only_registered_users =     only registered users
+all_users =                 all
+register_permission =       User registration
+register_permission_desc =  Can users register themselves?
+register_self =             self
+register_self_locked =      self but new accounts have to be unlocked by an admin or a moderator
+register_only_admin =       only by admin
+user_area =                 User area
+user_area_desc =            Is the user area (user list, profiles) accessible public?
+public_accessible =         public accessible
+accessible_reg_users_only = accessible by registered users only
+latest_postings =           Latest postings
+latest_postings_desc =      How many latest postings should be displayed in a list on the index page (0=disabled)? 
+tag_cloud =                 Tag cloud
+tag_cloud_desc =            Should a tag cloud of the recent tags be displayed on the index page? 
+enable_tag_cloud =          Tag cloud enabled
+terms_of_use_agreement =    Terms of use agreement
+terms_of_use_agreement_desc = Obligation for unregistered users to agree to terms of use when posting messages and registering
+terms_of_use_agreement_enabled = Terms of use agreement enabled
+terms_of_use_url =          Terms of use URL:
+edit_postings =             Editing postings
+edit_postings_desc =        Editing postings behavior
+edit_own_postings =         Editing own postings:
+edit_own_postings_all =     all users can edit their own postings
+edit_own_postings_users =   only registered users can edit their own postings
+edit_own_postings_disabled = disabled (only admins and mods can edit postings)
+user_edit_if_no_replies =   if a posting gets replies it can be edited only within [minutes] minutes (0 = can't be edited if got replies)  
+edit_max_time_period =      Maximum period of time own postings can be edited: [minutes] minutes (0 = unlimited)
+show_if_edited =            show if a posting was edited when it was edited later than [minutes] minutes after posted
+dont_show_edit_by_admin =   don't show if a posting was edited by an admin
+dont_show_edit_by_mod =     don't show if a posting was edited by a moderator 
+bbcode =                    BB code
+bbcode_desc =               Enabel BB Codes to format messages?
+bbcodes_enabled =           BB Codes enabled
+bbcodes_img_enabled =       allow BB Code to insert images
+bbcodes_flash_enabled =     allow BB Code to insert flash videos
+smilies =                   Smilies
+smilies_desc =              Should smilies like ":-)" be replaced by images? (Smilies can be definded in the smilies administraton panel)
+smilies_enabled =           Smilies enabled
+enamble_avatars =           Avatars
+enamble_avatars_desc =      Should it be possible for registered users to upload avatar images? Therefor the folder images/avatars/ has to be writable (CHMOD 777).
+avatars_profiles_postings = display avatars in profiles and postings
+avatars_profiles =          display avatars in profiles only
+max_avatar_size =           Maximum avatar size:<br /> [width] x [height], [filesize] KB 
+upload_images =             Upload images
+upload_images_desc =        Should it be possible to upload Images? Therefor the folder images/uploaded/ has to be writable (CHMOD 777).
+upload_enabled_admins_mods = mods and admins only 
+upload_enabled_users =      enabled for registered users
+upload_enabled_all =        enabled for all
+max_upload_size =           Maximum image size:<br /> [width] x [height], [filesize] KB
+autolink =                  Auto link
+autolink_desc =             Should URLs be automatically recognised and made clickable?
+autolink_enabled =          Auto link enabled
+count_views =               Views counter
+count_views_desc =          Should views of messages be counted?
+views_counter_enabled =     Views counter enabled
+count_users_online =        Users online counter
+count_users_online_desc =   Count the users that are online within how many minutes (0=disabled)?
+rss_feed =                  RSS Feeds
+rss_feed_desc =             Enable RSS Feeds (only if access permission has been set to "Everyone")?
+rss_feed_enabled =          RSS Feed enabled
+forum_enabled_marking =     Forum enabled
+forum_enabled_desc =        Uncheck this if the forum should be unavailable. The disabled forum is still available if logged in as admin. 
+forum_enabled =             forum enabled
+forum_disabled_message =    Message displayed if not enabled: 
+category_name =             Category
+category_accession =        Accessible by
+cat_accessible_admin_mod =  admins and mods
+cat_accessible_reg_users =  registered users
+cat_accessible_all =        all
+category_topics =           Threads
+category_entries =          Entries
+no_categories =             No categories specified.
+new_category =              New category:
+edit_category =             Category:
+category_accessible_by =    Accessible by:
+entries_in_not_ex_cat =     <strong>Note:</strong> There are entries which can't be displayed because they are in a not existing category. What do you want to do with these entries?
+entries_in_not_ex_cat_del = delete them
+entries_in_not_ex_cat_mov = move them into this category:
+category_already_exists =   This category already exists
+delete_category_hl =        Delete category "[category]"
+delete_category_compl =     Delete category and all its entries
+del_cat_keep_entries =      Delete category but keep its entries
+del_cat_move_entries =      Delete category but keep its entries and move them into this category:
+delete_category_submit =    OK - Delete category
+
+# Smilies:
+edit_smilies_smiley =       Smiley:
+edit_smilies_codes =        Codes:
+edit_smilies_title =        Title:
+smiley_file_doesnt_exist =  Smiley file doesn't exist
+smiley_code_empty =         No smiley code specified
+no_other_smilies_in_folder = There are no other smilies in the smiley folder. To add smilies, load up smiley files into the folder 'images/smilies'.
+smiley_image =              Smiley
+smiley_codes =              Codes(s)
+smiley_title =              Title
+disable_smilies =           Disable smilies
+enable_smilies =            Enable smilies
+add_smiley =                Add smiley:
+add_smiley_code =           Code:
+smilies_disabled =          Smilies are disabled.
+
+# pages:
+page_title =                Title
+page_content =              Content
+page_content_desc =         You can use HTML to format the page 
+page_menu_linkname =        Menu link name
+page_menu_linkname_desc =   only if the page should be displayed in the menu
+page_access =               Access
+page_access_reg_users =     only registered users
+page_access_public =        public
+no_pages =                  No pages available
+add_page_link =             Add page
+edit_page_submit =          OK - Save page
+page_doesnt_exist =         This page doesn't exist.
+delete_page_confirm =       Do you really want to delete this page?
+delete_page_submit =        OK - Delete page
+error_no_page_title =       No title
+
+# user administration:
+user_name_empty =           No user name entered
+num_registerd_users =       [number] registered users
+user_id =                   ID
+user_name =                 User name
+user_email =                E-mail
+user_type =                 Type
+user_registered =           Registered
+user_logins =               Logins
+last_login =                Last login
+lock =                      Lock
+admin =                     Admin
+mod =                       Moderator
+user =                      User
+locked =                    locked
+unlocked =                  off
+lock_title =                lock user
+unlock_title                unlock user
+user_inactive =             User is inactive
+activate_note =             The user account is not yet activated or the user is changing his e-mail address. Only activate it if the user had problems activating it by himself.
+activate_link =             Activate account
+delete_selected_users =     Delete selected
+add_user =                  Add user
+email_list =                E-mail list of registered users
+clear_userdata =            Clear userdata
+edit_user_name =            User name:
+edit_user_avatar =          Avatar:
+delete_avatar =             Delete avatar
+edit_user_type =            Type:
+edit_user_email =           E-mail:
+edit_user_email_contact =   E-mail address contactable
+edit_user_real_name =       Name:
+edit_user_hp =              Homepage:
+edit_user_location =        Location:
+edit_user_profile =         Profile:
+edit_user_signature =       Signature:
+edit_user_time_diff =       Time difference:
+edit_user_time_diff_format = difference in hours, e.g. +3 or -5:30 
+edit_user_gender =          Gender:
+male =                      male
+female =                    female
+edit_user_birthday =        Birthday:
+birthday_format =           YYYY-MM-DD
+edit_user_notification =    E-mail notification:
+admin_mod_notif_posting =   once a new message has been posted
+admin_mod_notif_register =  once a new user has signed up
+userdata_submit_button =    OK - Save userdata
+delete_user_confirmation =  Are you sure you want to delete this user?
+delete_users_confirmation = Are you sure you want to delete the following users?
+delete_users_submit =       OK - Delete
+register_exp =              You can leave blank the fields for the password if a random password should be generated. In this case the userdata has to be sent to the specified e-mail adress.
+register_username =         User name:
+register_email =            E-mail:
+register_pw =               Password:
+register_pw_conf =          Confirm password:
+register_send_userdata =    Send userdata to the above specified e-mail address
+error_send_userdata =       If you leave blank the password, the userdata has to be sent to the specified e-mail adress
+error_email_wrong =         The e-mail address is incorrect
+new_user_registered =       The user "[name]" has been registered.
+new_user_reg_send_error =   The user "[name]" has been registered but the userdata could not be sent.
+clear_userdata_condition =  Delete users that logged in maximum [logins] times and the last time more than [days] days ago. 
+clear_userdata_note =       Admins and Moderators will not be affected. Before deleting you get a list of the selected users.
+no_users_in_selection =     No users in selection
+
+# spam protection:
+captcha =                   CAPTCHA
+captcha_desc =              Which forms should be protected by what type of CAPTCHA (only for not registered users)?
+captcha_graphical_desc =    The graphical CAPTCHA requires the GD Lib and it's recommended to use at least one TTF font. Put the font files (*.ttf) into the folder modules/captcha/fonts/. You can get fonts e.g. on www.dafont.com.
+captcha_posting =           Posting form:
+captcha_email =             E-mail form:
+captcha_register =          Register form:
+captcha_disabled =          disabled
+captcha_mathematical =      mathematical
+captcha_graphical =         graphical
+gr_captcha_not_available =  Graphical CAPTCHA not available (GD Lib not available)
+gr_captcha_no_font =        No font available, CAPTCHA image cannot be displayed correctly
+bad_behavior =              Bad Behavior
+bad_behavior_desc =         <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a> spam protection.
+bad_behavior_enable =       enable Bad Behavior
+akismet =                   Akismet
+akismet_desc =              <a href="http://akismet.com/">Akismet</a> spam protection service. To use it you need a <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> (won't work without or with invalid API Key!).   
+akismet_key =               Wordpress API Key:
+akismet_save_spam =         Save spam (flagged as spam and not displayed)?
+akismet_auto_delete_spam =  Delete spam automatically after how many hours (0=don't delete)?
+akismet_entry =             check posting form
+akismet_mail =              check e-mail form
+banned_ips =                Banned IPs
+banned_ips_desc =           IP adresses which should not have access. IP ranges (e.g. 10.10.1.*) and CIDR notation (e.g. 10.10.1.32/27) possible. One IP per line.
+banned_user_agents =        Banned user agents
+banned_user_agents_desc =   Strings in user agents, which should not have access. One string per line.
+not_accepted_words =        Not accepted words
+not_accepted_words_desc =   Words or domains that should not be accepted in entries and e-mails. One word per line.
+spam_protection_submit =    OK - Save
+error_own_ip_banned =       You banned your own IP!
+error_own_user_agent_banned = You banned your own user agent!
+spam_protection_saved =     Saved
+
+# Reset / Uninstall:
+reset_forum =               Reset forum
+delete_postings =           delete all postings
+delete_userdata =           delete all userdata (except your admin account)
+reset_forum_submit =        OK - Reset forum
+uninstall_forum =           Uninstall forum
+uninstall_forum_exp =       This will delete all forum tables. After this the forum won't work anymore! 
+uninstall_forum_submit =    OK - Uninstall forum
+error_no_selection_made =   No selection made
+
+# Backup:
+backup_note =               To use the backup function the directory <i>backup</i> must be writable. Also make sure that this directory is not accessible via the web!
+backup_file =               File
+backup_date =               Date
+backup_size =               Size
+create_backup_complete =    Create complete backup
+only_create_backup_of =     Only create backup of:
+backup_entries =            entries
+backup_userdata =           userdata
+backup_settings =           settings
+backup_categories =         categories
+backup_pages =              pages
+backup_smilies =            smilies
+backup_banlists =           banlists
+download_backup_file =      Download backup file
+delete_selected =           Delete selected
+check_all =                 check all
+uncheck_all =               uncheck all
+restore =                   Restore
+delete_backup_file =        Delete backup file
+delete_backup_file_confirm = Are you sure you want to delete this backup file?
+delete_selected_confirm =   Are you sure you want to delete all selected backup files?
+delete_backup_submit =      OK - Delete
+restore_confirm =           Are you sure you want to restore the database with this backup file?<br /><strong>All	affected backuped tables will be overwritten!</strong> 
+restore_safe_mode_warning = Safe Mode Warning!
+restore_safe_mode_note =    As Safe Mode is activated on this server the script running time cannot be extended! To avoid uncompleted backups you should split long backup files into several smaller ones and execute one after another!    
+restore_submit =            OK - Restore
+restore_backup_ok =         The backup has been restored.
+backup_file_created =       The backup file has been created.
+error_file_doesnt_exist =   File doesn't exist!
+error_delete_backup_file =  Backup file could not be deleted
+error_create_backup_file =  File could not be craeted - make sure you properly set the write permission for the folder "backup"
+error_restore_mysql =       MySQL error: [mysql_error] 
+
+# Update:
+update_current_version =    Current version: <strong>[version]</strong>
+update_instructions_hl =    How to update
+update_instructions =       It's recommended to disable the forum while updating (uncheck "forum enabled" in the <a href="index.php?mode=admin&action=settings">forum settings</a>) 
+update_instructions =       Download the latest version from <a href="http://mylittleforum.net/">mylittleforum.net</a>
+update_instructions =       Unpack the script package, look for the according update file in the subfolder "update" and upload this file into the folder "update" on your server    
+update_instructions =       Reload this page and the update file should appear below
+update_instructions =       Click on the file and follow the further instructions
+update_instructions =       After running the update you get a list of files and folders which have to be added or replaced, you should also clar the folder <em>templates_c</em>
+update_available_files =    Available update file(s)
+update_no_files_available = No update files available.
+update_file_title =         Run this update file
+update_confirm =            Do you really want to run the following update file?
+update_submit =             OK - Run update
+update_successful =         The database has been updated successfully.
+update_items_note =         Please upload now the following files/folders of the new forum package (version [version]) to your server:
+update_download =           If you do not have these files yet you can download them [[here]].  
+
+[emails]
+email_subject =             Reply on "[original_subject]"
+email_text =                """Hi [recipient],
+[name] has posted a reply on "[original_subject]":
+
+Subject: [subject]
+[text]
+
+URL of this posting: [posting_address]
+
+--- Your original posting ---
+
+[original_text]"""
+
+email_text_delayed_addition = """---
+This notification is delayed because the posting was activated manually"""
+
+admin_email_subject =       New entry in the forum: [subject]
+admin_email_text =          """New Entry by [name]
+Subject: [subject]
+
+[text]
+
+URL of the posting: [posting_address]"""
+admin_email_text_reply =    """Reply by [name]
+Subject: [subject]
+
+[text]
+
+URL of the posting: [posting_address]"""
+admin_reg_user_email_subj = Forum registration
+admin_reg_user_email_text = """Hi [name],
+welcome to the forum!
+
+Here is the access data to log in:
+
+User name: [name]
+Password: [password]
+
+Link to log in directly:
+[login_link]
+
+The password can be changed after logging in."""
+
+new_user_email_sj =         Forum registration
+new_user_email_txt =        """Hi [name],
+welcome to the forum!
+
+to activate your account please follow this link:
+[activate_link]"""
+new_user_notif_sj =         New user subscription
+new_user_notif_txt =        """Hi [recipient],
+a new user has subscribed to the forum.
+User name: [name]
+E-mail: [email]
+
+[user_link]"""
+new_user_notif_txt_locked = """Hi [recipient],
+a new user has subscribed to the forum.
+User name: [name]
+E-mail: [email]
+
+IMPORTANT: This user has to be unlocked in order that he can log in!"""
+edit_address_email_sj =     Account activation after changing e-mail address
+edit_address_email_txt =    """Hi [name],
+the e-mail address has been changed. You now have to activate your account again using the following link:
+[activate_link]"""
+pwf_activating_email_sj =   Request for a new password
+pwf_activating_email_txt =  """Hi [name],
+this e-mail has been sent from the forum ([forum_address]) because a new password has been requested. Please click the link below to confirm your request. By following the link a new password will be generated and sent to you. If this e-mail has been sent in error (either by you or someone else) please ignore this e-mail.
+
+[activating_link]"""
+new_pw_email_sj =             "New user data for the forum"
+new_pw_email_txt =            """Hi [name],
+here is your new user data:
+
+User name: [name]
+Password: [password]
+
+Click here to log in directly:
+[login_link]
+
+The password can be changed after logging in."""
+contact_email_txt =           """[message]
+
+---
+This e-mail has been sent via the forum on [forum_address]."""
+contact_email_txt_user =       """[message]
+
+---
+This e-mail has been sent by [user] via forum on [forum_address]."""
+contact_notification_sj =     Copy of sent e-mail: [subject]
+contact_notification_txt =    """This e-mail has been sent with your e-mail address to [recipient]:
+
+Subject: [subject]
+[message]
+
+---
+This e-mail has been sent via forum on [forum_address]."""
+
+[install]
+installation_title =             Installation
+label_choose_language =          Please select a language:
+installation_instructions =      To install the forum please fill out and submit the following form. 
+installation_instructions =      During the installation process the file <strong>config/db_settings.php</strong> has to be overwritten. Therefor you might have to change the write permission of this file. You can first try it without changing the write permission. If you get an error message try CHMOD 666. If you have to change it you should set it to 644 again after the installation.
+installation_instructions =      The directory <strong>templates_c</strong> has to be writable by the template engine. Therefor you might have to change the write permission of this directory. So if you get an error message try CHMOD 770 or 775.  
+installation_instructions =      Write permissions (CHMOD) of files and directories can normally be changed with the FTP program (right click on file/directory --> CHMOD or similar).   
+installation_instructions =      The directory <strong>install</strong> can be deleted after the installation.   
+inst_basic_settings =            Basic settings
+inst_main_settings_desc =        Some basic settings
+inst_admin_settings =            Administrator
+inst_admin_settings_desc =       Data of the forum administrator
+inst_db_settings =               Database
+inst_db_settings_desc =          Access data of the MySQL database
+inst_admin_name =                Admin name
+inst_admin_name_desc =           Name of the forum administrator
+inst_admin_email =               Admin e-mail
+inst_admin_email_desc =          E-mail address of the forum administrator
+inst_admin_pw =                  Admin password
+inst_admin_pw_desc =             Password to log in as forum administrator
+inst_admin_pw_conf =             Password confirmation
+inst_admin_pw_conf_desc =        Repeat the password
+inst_db_host =                   Database host
+inst_db_host_desc =              host name, mostly "localhost"
+inst_db_user =                   Database user
+inst_db_user_desc =              Username to access the database
+inst_db_pw =                     Database password
+inst_db_pw_desc =                Password to access the database
+inst_db_name =                   Database name
+inst_db_name_desc =              Name of the database
+inst_table_prefix =              Table prefix
+inst_table_prefix_desc =         Prefix for tables in database
+inst_advanced_options =          Advanced options
+inst_advanced_options_desc =     For experts - normally you don't need to change anything here
+inst_advanced_database =         Create database
+inst_advanced_database_desc =    Check this only if the specified database doesn't exist yet and you have permissions to create a database
+inst_advanced_conf_file =        No overwriting of the database configuration file 
+inst_advanced_conf_file_desc =   Check this only if you already edited the database configuration file
+create_database =                create specified database
+dont_overwrite_settings =        don't overwrite database configuration file
+create_db_error =                The database couldn't be created
+error_create_admin =             The admin account could not be created             
+error_db_connection =            Database connection error - please check host, user and password
+error_db_inexistent =            Specified database doesn't exist - please check database name
+error_sql_file_doesnt_exist =    Installation SQL file (install.sql) doesn't exist 
+error_overwrite_config_file =    No permission to overwrite the file <strong>config/db_settings.php</strong> (set CHMOD 666, current is [CHMOD])
+error_sql =                      SQL error
+forum_install_ok =               OK - Install forum
+error_conf_pw =                  The admin passwords did not match

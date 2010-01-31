@@ -1,0 +1,1076 @@
+################################################################################
+# Chinese language file for my little forum 2.2                                #
+# More information here: http://mylittleforum.net/forum/index.php?id=4136      #
+################################################################################
+
+# Update 2010-01-24 (Alex): added not yet translated strings marked with <!-- TODO -->
+# Please send updates of this file to <alex at mylittleforum dot net>
+
+language =                  zh_CN
+charset =                   utf-8
+locale =                    zh_CN.utf8
+locale =                    zh_CN
+locale =                    zh
+locale =                    zh
+locale_charset =            utf-8
+dir =                       ltr
+time_format =               %Y-%m-%d, %H:%M
+time_format_full =          %A, %B %d, %Y, %H:%M
+forum_time =                论坛时间: [time]
+unknown_user =              游客
+db_error =                  数据库错误！
+mail_error =                邮件服务器暂时不可用，请稍后再试！
+
+[general]
+subject =                   标题
+author =                    作者
+date =                      日期
+replies =                   回复
+views =                     阅读
+category =                  分类
+submit_button_ok =          &nbsp;确定&nbsp;
+yes =                       是
+no =                        否
+go =                        走你
+edit =                      编辑
+delete =                    删除
+next_page_link =            &raquo;
+previous_page_link =        &laquo;
+next_page_link_title =      下一页
+previous_page_link_title =  前一页
+posted_by =                 作者: <strong>[name]</strong>[email_hp], 发表于: [time]
+posted_by_location =        作者: <strong>[name]</strong>[email_hp], 来自: [location], 发表于: [time]
+original_posting_linktitle = 点此查看[name]发表的主贴
+error_headline =            错误!
+no_authorisation =          没有权限!
+page_doesnt_exist =         该页面不存在!
+error_form_uncomplete =     表单填写不完整
+caution =                   注意!
+spam =                      垃圾
+forum_index_link =          论坛主页
+forum_index_link_title =    论坛主页
+log_in_link =               登陆
+log_in_link_title =         登陆论坛
+log_out_link =              退出
+log_out_link_title =        退出论坛
+register_link =             注册
+register_link_title =       注册新用户
+profile_link_title =        编辑个人信息
+user_area_link =            用户列表
+user_area_link_title =      用户列表
+admin_area_link =           管理区
+admin_area_link_title =     管理区
+search_marking =            搜索:
+search_default_value =      搜索...
+search_title =              输入搜索关键词
+new_topic_link =            发表新主题
+new_topic_link_title =      发表新主题
+order_link =                排序
+order_link_title_1 =        按最后回复时间排序
+order_link_title_2 =        按帖子发表时间排序 (默认)
+fold_threads =              折叠帖子
+fold_threads_linktitle =    折叠帖子
+expand_threads =            展开帖子
+expand_threads_linktitle =  展开帖子
+table_view =                表格视图
+table_view_linktitle =      以表格视图显示
+thread_view =               树形视图
+thread_view_linktitle =     以树形视图显示
+refresh_link =              刷新
+refresh_linktitle =         取消新帖标记
+thread_hierarchical =       分层显示
+thread_hierarchical_linktitle = 分层显示帖子 (默认)
+open_in_thread_link =       显示完整帖子
+open_in_thread_linktitle =  显示此主题所有帖子
+thread_linear =             直排显示
+thread_linear_linktitle =   直排显示帖子
+hide_all_messages =         全部折叠
+hide_all_messages_title =   折叠所有帖子
+show_all_messages =         全部展开
+show_all_messages_title =   展开所有帖子
+expand_fold_thread_linktitle = 展开/折叠帖子
+category_title =            分类
+all_categories =            全部分类
+my_category_selection =     我的选择
+browse_page_title =         页
+thread_entry_back_link =    论坛主页
+thread_entry_back_title =   回到论坛主页
+reply_link =                发表回复
+reply_link_title =          回复本帖
+back_to_index_link =        论坛主页
+back_to_index_link_title =  回到论坛主页
+back_to_entry_link =        回到[name]发表的帖子
+back_to_entry_link_title =  回到[name]发表的帖子
+subnav_login =              登陆
+subnav_pw_forgotten =       忘记密码
+subnav_admin_area =         管理区
+subnav_settings =           论坛设定
+subnav_advanced_settings =  高级设定
+subnav_categories =         分类
+subnav_edit_category =      编辑分类
+subnav_delete_category =    删除分类
+subnav_user =               用户管理
+subnav_smilies =            表情
+subnav_pages =              页面
+subnav_delete_page =        删除页面
+subnav_edit_page =          编辑页面
+subnav_add_page =           添加页面
+subnav_create_page =        新建页面
+subnav_edit_smiley =        编辑表情
+subnav_edit_user =          编辑用户
+subnav_delete_users =       删除用户
+subnav_register_user =      注册用户
+subnav_spam_protection =    防垃圾保护
+subnav_email_list =         注册用户E-mail列表
+subnav_clear_userdata =     整理用户信息
+subnav_search =             搜索
+subnav_register =           注册
+subnav_reset_uninstall =    重设/卸载论坛
+subnav_userarea =           用户列表
+subnav_contact =            联络
+subnav_userarea_show_user = [var]
+subnav_userarea_show_posts = 作者: [var]
+subnav_userarea_edit_user = 编辑用户信息
+subnav_userarea_edit_pw =   更改密码
+subnav_userarea_edit_mail = 更改E-mail地址
+subnav_backup =             备份
+subnav_update =             升级
+subnav_update_run =         运行升级
+subnav_delete_backup_file = 删除备份文件
+subnav_restore =            导入
+subnav_locked =             帐户已锁定
+subnav_delete_cookie =      删除cookie
+subnav_disabled =           论坛已关闭
+subnav_page_error =         错误
+subnav_page =               [var]
+counter =                   帖子总数: [total_postings]; 主题总数: [total_threads]; 注册用户: [registered_users]
+counter_users_online =      帖子总数: [total_postings]; 主题总数: [total_threads]; 注册用户: [registered_users]; 当前在线: [total_users_online] ([registered_users_online]注册用户; [unregistered_users_online]游客)
+contact_link =              联络
+contact_linktitle =         给论坛管理员发E-mail
+rss_feed_postings =         所有帖子RSS
+rss_feed_postings_title =   所有新帖RSS
+rss_feed_new_threads =      新主题RSS
+rss_feed_new_threads_title = 新主题RSS
+rss_feed_thread =           主题RSS Feed
+rss_feed_thread_title =     主题RSS Feed
+no_messages =               没有帖子
+no_messages_in_category =   本分类没有贴子
+error_invalid_category =    非法分类
+error_word_too_long =       "[word]"字串过长
+error_name_too_long =       名字过长
+error_email_too_long =      E-mail地址过长
+error_hp_too_long =         主页地址过长
+error_location_too_long =   所在地地址过长
+error_profile_too_long =    个人信息过长 ([profile_length]字符; 不能超过[profile_maxlength]字符)
+error_signature_too_long =  签名过长 ([signature_length]字符; 不能超过[signature_maxlength]字符)
+error_invalid_date_format = 生日日期格式错误(DD.MM.YYYY)
+error_invalid_date =        生日日期错误
+error_email_wrong =         电子邮件地址错误
+error_hp_wrong =            主页地址错误
+error_pw_conf_wrong =       密码不一致
+error_akismet_connection =  服务器连接错误, 请稍后再试!
+error_akismet_connection_admin = 连接Akismet服务器错误, 无法验证API key!
+error_akismet_api_key =     Wordpress API Key错误
+error_spam_suspicion =      疑似垃圾帖! 请修改您的帖子, 如减少链接数量
+user_name_already_exists =  用户名已占用
+ajax_preview_title =        预览帖子
+open_whole_thread =         打开整个主题
+change_category_link =      显示分类: "[category]" 的所有帖子
+mark_linktitle =            加标记
+unmark_linktitle =          去除标记
+delete_marked_link =        删除已标记的帖子
+manage_postings_link =      管理帖子
+show_spam_link =            显示垃圾帖 ([number])
+hide_spam_link =            隐藏垃圾帖
+delete_spam_link =          删除垃圾帖
+no_replies =                没有回复
+one_reply =                 1篇回复
+several_replies =           [replies]篇回复
+more_smilies_link =         更多...
+more_smilies_title =        更多表情
+close =                     关闭
+no_postings_user =          没有帖子
+search_submit_button =      搜索
+search_fulltext =           全文
+search_tags =               标签
+no_postings_found =         没有找到帖子.
+one_posting_found =         找到1篇帖子:
+several_postings_found =    找到[number]篇帖子:
+no_postings_by_user =       没有帖子.
+one_posting_by_user =       1篇帖子:
+several_postings_by_user =  [number]篇帖子:
+rss_posting_by =            作者:[name],发表于: [time]:
+rss_reply_by =              回复:[name],发表于: [time]:
+rss_reply_marking =         (reply)
+move_drag_and_drop =        拖放以上下移动
+move_up =                   上移
+move_down =                 下移
+delete_posting_title =      删除帖子
+delete_posting_confirm =    确认删除帖子?
+delete_posting_confirm_admin = 确认删除此帖与所有回复?
+latest_postings_hl =        最新帖子
+toggle_latest_postings =    显示/隐藏最新帖子
+posting_minutes_ago =       [minutes]分钟前
+posting_hours_ago =         [hours]小时[minutes]分钟前
+posting_one_day_ago =       1天[hours]小时[minutes]分钟前
+posting_several_days_ago =  [days]天前
+tag_cloud_hl =              最新标签
+sidebar =                   侧栏
+toggle_sidebar =            显示/隐藏侧栏
+options =                   选项
+administrator_title =       管理员
+moderator_title =           版主
+avatar_img_alt =            头像
+search_user =               搜索用户:
+search_user_default_value = 搜索用户...
+no_users =                  没有找到用户.
+no_text_title =             空帖子 / 没有文字
+no_text_alt =               没有文字
+no_text =                   - 没有文字 -
+error_invalid_form =        Session失效! 请拷贝文本并登陆, 或以游客身份再次提交表单.
+error_form_sent_too_fast =  提交表单间隔太短. 请稍后再试.
+error_form_sent_too_slow =  表单已失效. 请拷贝文本后刷新本页面.
+terms_of_use_agreement =            我接受论坛规则 [[terms of use]]
+terms_of_use_agree_error_register = 您需接受论坛规则以完成注册
+terms_of_use_agree_error_posting =  您需接受论坛规则以发送本信息
+error_not_accepted_word =   敏感词: [not_accepted_word]
+error_not_accepted_words =  敏感词: [not_accepted_words]
+error_username_invalid_chars = The user name contains special characters
+
+[entry]
+edited_by =                 编辑: [name], 时间: [time]
+tags_marking =              标签:
+one_view =                  1次阅读
+several_views =             [views]次阅读
+complete_thread_marking =   完整帖子:
+branch_marking =            当前帖子:
+direct_replies_marking =    直接回复此帖:
+edit_message_linkname =     编辑
+edit_message_linktitle =    编辑帖子
+delete_message_linkname =   删除
+delete_message_linktitle =  删除帖子
+move_posting_linkname =     转移
+move_posting_linktitle =    转移帖子
+report_spam_linkname =      举报垃圾帖
+report_spam_linktitle =     举报垃圾帖
+flag_ham_linkname =         非垃圾帖
+flag_ham_linktitle =        标记/报告为非垃圾帖
+lock_linkname =             锁定
+lock_linktitle =            锁定帖子
+unlock_linkname =           解锁
+unlock_linktitle =          解锁帖子
+lock_thread_linkname =      锁定主题
+lock_thread_linktitle =     锁定整个主题
+unlock_thread_linkname =    解锁主题
+unlock_thread_linktitle =   解锁整个主题
+posting_locked =            锁定
+email =                     E-mail
+homepage =                  主页
+show_hide_posting_title =   折叠/展开消息
+spam_note =                 此帖疑似垃圾帖, 将由论坛管理员或版主审查后发表.
+
+[posting]
+no_authorization_edit =     不能编辑帖子! 原因为帖子可编辑时限已过、帖子被锁定或帖子已有回复.
+posting_locked_no_reply =   帖子已锁定, 不能回复.
+no_auth_post_reg_users =    只有注册用户可以发表文章!
+no_auth_session_expired =   Session失效, 请拷贝文本并重新登陆!
+no_auth_readonly =          论坛目前设置为只读模式!
+new_topic_hl =              发表新主题
+reply_hl =                  发表回复
+edit_hl =                   编辑帖子
+name_marking =              名字:
+email_marking =             E-mail:
+hp_marking =                主页:
+location_marking =          地理位置:
+optional =                  (选填)
+optional_email =            (选填, 不会直接显示!)
+remember_userdata_marking = 记住我(cookie)
+delete_cookie_linkname =    删除cookie
+deleting_cookie =           正在删除cookie...
+category_marking =          分类:
+subject_marking =           标题:
+message_marking =           内容:
+tags_marking =              标签:
+tags_note =                 (选填, 以逗号分隔)
+bbcode_bold_marking =       粗体
+bbcode_bold_title =         格式化为粗体: [b]Text[/b]
+bbcode_italic_marking =     斜体
+bbcode_italic_title =       格式化为斜体: [i]Text[/i]
+bbcode_link_marking =       链接
+bbcode_link_title =         插入链接: [link=http://www.domain.tld/]link text[/link] 或 [link]http://www.domain.tld/[/link]
+bbcode_color =              颜色
+bbcode_color_title =        文字颜色: [color=color]text[/color]
+bbcode_font_size =          大小
+bbcode_font_size_title =    字体大小: [size=small]small text[/size] / [size=large]large text[/size]
+bbcode_font_size_small =    小
+bbcode_font_size_large =    大
+bbcode_link_linktext =      链接文本(可选):
+bbcode_link_url =           链接地址(URL):
+bbcode_image_marking =      图片
+bbcode_image_title =        插入图片: [img]http://domain.tld/image.jpg[/img]
+bbcode_image_url =          图片地址(URL):
+bbcode_list_marking =       列表
+bbcode_list_title =         插入列表: [list][*]list item[/list]
+upload_image_marking =      上传
+upload_image_title =        上传图片
+bbcode_flash_marking =      flash
+bbcode_flash_title =        插入 flash: [flash]http://example.com/flash.swf[/flash]
+bbcode_code_marking =       <!-- TODO -->code
+bbcode_code_title =         <!-- TODO -->Insert code: [code]code[/code]
+bbcode_code_inline =        <!-- TODO -->Inline code
+bbcode_code_block =         <!-- TODO -->Code block
+bbcode_code_block_lang =    <!-- TODO -->Code block [language]
+smiley_title =              插入表情
+email_notific_reply_thread = 此主题有回复时发送E-mail通知
+email_notific_reply_post =   此帖有回复时发送E-mail通知
+show_signature_marking =    附签名
+sticky_thread =             置顶
+message_submit_button =     OK - 提交
+message_submit_title =      保存
+message_preview_button =    预览
+message_preview_title =     保存前预览帖子
+quote_message =             引用内容
+reply_to_posting_marking =  回复 <strong>[name]</strong> 发表的帖子
+minutes_left_to_edit =      还有[minutes]分钟可编辑此帖
+minutes_left_to_edit_reply = 如果没有回复, 还有 [minutes] 分钟可编辑此帖
+preview_headline =          预览:
+error_repeated_posting =    于 [minutes] 分钟内重复发帖. 请稍后再提交.
+error_no_name =             未填写名字
+error_name_like_subject =   名字与标题重复
+error_name_reserved =       该名字已被注册用户占用
+error_username_too_long =   用户名过长
+error_name_too_long =       名字过长
+error_no_email_to_notify =  未提供发送通知的e-mail地址
+error_no_subject =          未填写标题
+error_no_text =             未填写内容
+error_subject_too_long =    标题过长
+error_text_too_long =       内容过长 ([text_length]字符, 限[text_maxlength]字符)
+error_tags_too_long =       标签过长
+error_posting_unavailable = 帖子不存在
+
+[delete_posting]
+delete_postings_hl =        删除帖子
+delete_marked_hl =          删除已标记的帖子
+delete_marked_confirm =     确认删除所有已标记的帖子与回复?
+delete_spam_hl =            删除垃圾帖
+delete_spam_confirm =       确认删除所有垃圾帖?
+delete_posting_submit =     OK - 删除
+report_spam_hl =            举报垃圾帖
+posting_already_spam =      此帖已标记为垃圾帖
+spamcheck_posting_not_checked = 此帖已标记为垃圾帖, 或未由Akismet检验, 或由注册用户发布.
+spamcheck_posting_passed =  此帖已通过Akismet检验. 如果您确实认为是垃圾帖您可举报!
+spamcheck_akismet_api_error = 此帖未通过Akismet检验, 原因是检验过程发生错误. 可能由于非法API Key引起!
+spamcheck_akismet_timeout_error = 此帖未通过Akismet检验, 原因是Akismet服务器超时错误.
+report_spam_delete_submit = 举报为垃圾贴并删除
+report_spam_submit =        举报为垃圾贴
+delete_only_submit =        只删除
+postings_doesnt_exist =     此帖不存在!
+posting_not_flagged_as_spam = 此帖没有标记为垃圾贴
+flag_ham_hl =               标记为垃圾贴
+flag_ham_note =             此帖被Akismet检验为垃圾帖. 如果您认为确实不是垃圾帖, 请举报为有害帖!
+report_flag_ham_submit =    举报并标记为有害帖
+flag_ham_submit =           标记为有害帖
+no_authorisation_delete =   帖子无法删除! 可能由于帖子可删除时限已过, 帖子被锁定或帖子已有回复.
+
+[captcha]
+captcha_marking =           防灌水验证:
+captcha_expl_math =         请将两个数字相加:
+captcha_expl_image =        请输入以上图片中的字符/数字:
+captcha_image_alt =         如果看不到图片, 您需成为注册用户并登陆后才能提交此表单
+captcha_image_alt_reg =     如果看不到图片请联络论坛管理员
+captcha_check_failed =      防灌水验证失败, 请重试!
+
+[upload_image]
+image_upload_not_enabled =  不允许图片上传
+upload_image_hl =           上传图片
+upload_image_button =       上传
+upload_error =              上传图片发生错误
+upload_error_2 =            没有指定图片或图片尺寸超过服务器限制([server_max_filesize]).
+invalid_file_format =       非法图片格式
+file_too_large =            文件过大 ([width]*[height], [filesize] KB, 最大为[max_width]*[max_height], [max_filesize] KB)
+upload_successful =         图片上传成功
+image_downsized =           <strong>注意:</strong> 图片已缩小, 新的尺寸为[width] x [height] px, [filesize] KB.
+insert_image =              插入图片
+insert_image_exp =          点击图片可插入帖子内容中
+insert_image_exp_no_js =    可使用以下代码将图片插入帖子内容中:
+browse_uploaded_images =    浏览已上传图片...
+back =                      &laquo; 返回
+no_images =                 没有图片可用
+delete_image_confirm =      确定删除图片?
+delete_image_button =       确定删除
+
+[insert_flash]
+insert_flash_hl =           插入flash视频
+insert_flash_code =         视频代码 (<code>&lt;object&gt;...&lt;/object&gt;</code>)
+flash_code =                代码:
+select_flash_or =           ... 或 ...
+insert_flash_custom =       Custom flash video
+flash_url =                 URL:
+flash_size =                尺寸:
+insert_flash_button =       插入flash视频
+
+[avatar]
+avatar_hl =                 头像
+delete_avatar =             删除头像
+upload_avatar_hl =          上传头像
+upload_avatar_notes =       头像最大尺寸: [width]*[height] px, [filesize] KB
+upload_image_button =       上传
+upload_error =              上传图片发生错误
+upload_error_2 =            没有选定图片或图片尺寸大于服务器限制([server_max_filesize]).
+invalid_file_format =       非法图片格式
+file_too_large =            文件过大 ([width]*[height], [filesize] KB, the maximum is [max_width]*[max_height], [max_filesize] KB)
+upload_successful =         头像上传成功
+close_window =              关闭窗口
+image_downsized =           <strong>注意:</strong> 头像将被缩小为 [width] x [height] px, [filesize] KB.
+avatars_disabled =          头像功能已关闭
+
+[move_posting]
+move_posting_hl =           转移帖子
+move_posting_new_thread =   将此帖与其所有回复新建成为主题
+move_posting =              将此帖与其所有回复转移至帖子 #[number](id)
+move_posting_submit =       OK - 转移帖子
+invalid_posting_to_move =   非法id
+
+[manage_postings]
+manage_postings_hl =        管理帖子
+mark_postings =             标记
+mark_all_postings =         标记所有主题
+unmark_all_postings =       取消所有标记
+mark_old_threads =          标记[days]天以上未曾回复的主题
+lock_postings =             锁定
+lock_all_postings =         锁定所有主题
+unlock_all_postings =       解锁所有主题
+lock_old_threads =          将最后回复时间早于 [days] 天的主题锁定
+
+[login]
+login_ip_temp_blocked =     重复登陆失败, 您暂时不能登陆, 请稍后再试.
+login_username =            用户名:
+login_password =            密码:
+login_auto =                在这台计算机上为我自动登陆
+login_submit =              登陆
+login_advice =              登陆需启用cookies!
+pw_forgotten_link =         忘记密码
+pwf_failed =                没有找到使用此e-mail的用户
+login_failed =              用户名或密码错误!
+registered_users_only =     只有注册用户可以发帖!
+account_not_activated =     您的帐户还未激活!
+account_activated =         您的帐户已成功激活.
+account_activated_but_locked = 您的帐户已成功激活, 但登陆论坛需要管理员或版主为您解锁!
+mail_sent =                 电子邮件已发送.
+pw_sent =                   新密码已发送.
+code_invalid =              激活码错误.
+
+[pw_forgotten]
+new_pw_ok =                 新密码已生成并发送.
+new_pw_failed =             确认链接不正确, 无法生成新密码.
+pw_forgotten_exp =          密码系统采用单向算法加密, 因而无法取回您的密码. 您只能生成一个新密码. 您将收到一封电子邮件并需要访问邮件中的链接以确认您的请求. 经确认后将生成新密码并发送给您.
+pwf_username =              用户名:
+pwf_email =                 E-mail:
+
+[user]
+user_name =                 用户名
+user_type =                 用户类型
+admin =                     管理员
+mod =                       版主
+user =                      用户
+user_email =                E-mail
+user_hp =                   主页
+mailto_user =               发送E-mail至[user]
+email =                     E-mail
+homepage =                  主页
+user_postings =             帖子
+user_online =               在线
+user_blockage =             锁定
+online =                    在线
+locked =                    已锁定
+lock_title =                锁定用户
+unlocked =                  关闭
+unlock_title =              解锁用户
+currently_online =          当前在线
+
+[user_show]
+user_name =                 用户名:
+user_avatar =               头像:
+user_type =                 用户类型:
+admin =                     管理员
+mod =                       版主
+user =                      用户
+user_real_name =            名字:
+gender =                    性别:
+male =                      男
+female =                    女
+age_birthday =              年龄/生日:
+mailto_user =               发送E-mail至[user]
+email =                     E-mail
+homepage =                  主页
+user_hp_email =             主页/E-mail:
+user_location =             地理位置:
+user_registered =           注册时间:
+user_last_login =           最后一次登陆:
+user_logins =               登陆次数:
+user_postings =             发帖总数:
+show_postings_link =        列出所有帖子
+last_posting =              最新帖子:
+logins_per_day =            每天登陆次数:
+postings_per_day =          每天帖子数:
+user_profile =              个人简介:
+user_account_doesnt_exist = 此用户帐户不存在.
+
+[user_edit]
+edit_user_name =            用户名:
+edit_avatar =               头像:
+add_avatar_link =           添加头像
+edit_avatar_link_title =    编辑头像
+edit_user_type =            类型:
+edit_user_email =           E-mail:
+edit_email =                更改E-mail地址
+edit_user_pw =              密码:
+pw_not_displayed =          不显示
+edit_pw =                   更改密码
+edit_user_email_contact =   允许通过E-mail联络我
+edit_user_real_name =       名字:
+edit_user_gender =          性别:
+male =                      男
+female =                    女
+edit_user_birthday =        生日:
+birthday_format =           YYYY-MM-DD
+edit_user_hp =              主页:
+edit_user_location =        地理位置:
+edit_user_profile =         个人简介:
+edit_user_signature =       签名:
+edit_user_cat_selection =   我选择的类别:
+edit_user_time_zone =       时区:
+edit_user_time_difference = <!-- TODO -->Additional time difference in hours (e.g. +3 or -5:30):
+edit_user_default_time_zone_server = <!-- TODO -->Default (Server time)
+edit_user_default_time_zone = <!-- TODO -->Default ([default_time_zone])
+edit_user_language =        <!-- TODO -->Language:
+edit_user_default_language = <!-- TODO -->Default ([default_language])
+edit_user_theme =           <!-- TODO -->Theme:
+edit_user_default_theme =   <!-- TODO -->Default ([default_theme])
+edit_user_auto_login =      自动登录
+enable_auto_login =         启用自动登录
+edit_user_notification =    E-mail 通知:
+admin_mod_notif_posting =   当有新帖时
+admin_mod_notif_register =  当新用户注册时
+userdata_submit_button =    OK - 保存
+profile_saved =             资料已保存
+pw_changed =                密码已更改
+
+[edit_pw]
+edit_pw_old =               旧密码:
+edit_pw_new =               新密码:
+edit_pw_conf =              重复新密码:
+error_old_pw_wrong =        旧密码错误
+error_pw_conf_wrong =       新密码输入不匹配
+error_new_pw_too_short =    新密码最少[characters]字符
+
+[edit_email]
+edit_email_exp =            更改密码时您的帐户需重新激活. 激活代码将发送至新的e-mail地址, 并需在一日内激活.
+edit_email_new =            新E-mail:
+edit_email_new_confirm =    再次输入新E-mail:
+edit_email_pw =             密码:
+error_form_uncompl =        项目填写不完整
+error_email_confirmation =  新E-mail输入不一致
+error_email_too_long =      E-mail地址过长
+error_identic_email =       新E-mail与原地址相同
+error_email_invalid =       E-mail地址非法
+pw_wrong =                  密码错误
+
+[register]
+register_exp =              请指定用户名, 密码以及合法E-mail地址. 帐户激活代码将发送至这个地址. 帐户需在一日内激活.
+register_username =         用户名:
+register_user_email =       E-mail:
+register_pw =               密码:
+register_pw_conf =          重复密码:
+register_only_by_admin =    暂不接受用户注册.
+registered =                帐户注册成功, 激活码已发送至<strong>[var]</strong>. 帐户需在一日内激活.
+registered_send_error =     帐户注册成功, 但激活码无法正确发送. 请联络论坛管理员.
+activation_failed =         激活帐户未成功.
+error_password_too_short =  密码至少包含[characters]个字符
+error_email_alr_exists =    已有用户使用这个E-mail地址
+error_reg_not_accepted_word = 防垃圾保护: E-mail或名字包含禁止字符或域名
+
+[contact]
+contact_hl =                给论坛管理员发送E-mail
+contact_user_hl =           E-mail至[recipient_name]
+impossible_to_contact =     无法联络此用户!
+contact_doesnt_exist =      联络方式不存在!
+sender_address_caption =    发件人E-mail:
+subject_caption =           标题:
+message_caption =           内容:
+message_submit_caption =    OK - 发送
+email_sent =                邮件发送成功.
+error_no_text =             未填写内容
+error_no_email =            未指定发件人E-mail地址
+error_no_subject =          未填写标题
+error_email_invalid =       非法E-mail地址
+error_email_subject_too_long = 标题过长
+error_email_text_too_long = 内容过长([text_length]字符, 限[text_maxlength]字符)
+error_spam_suspicion =      疑似垃圾信息! 请修改邮件内容(如去除链接)
+
+[info]
+user_locked =               您的帐户已锁定.
+forum_disabled =            论坛暂时关闭.
+
+[delete_cookie]
+delete_cookie =             Cookie已删除.
+
+[admin]
+enabled =                   启用
+disabled =                  禁用
+folder_alt =                目录
+file_alt =                  文件
+admin_confirm_password =    管理员密码:
+error_password_wrong =      密码错误
+
+# admin menu
+forum_settings_link =       论坛设定
+category_administr_link =   分类管理
+user_administr_link =       用户管理
+smilies_administr_link =    表情
+pages_administr_link =      页面
+spam_protection_link =      防垃圾保护
+backup_restore_link =       备份
+update_link =               升级
+reset_uninstall_link =      重设或卸载
+
+# forum settings:
+clear_chache =              清除缓存
+settings_submit_button =    OK - 保存设置
+settings_saved =            设置已保存
+advanced_settings_link =    高级设置
+forum_name =                论坛标题
+forum_name_desc =           将在论坛顶部显示
+forum_description =         论坛描述
+forum_description_desc =    论坛简要介绍
+forum_address =             论坛地址
+forum_address_desc =        论坛URL(格式: http://www.domain.tld/forum/)
+forum_email =               论坛E-mail
+forum_email_desc =          将作为联络地址以及论坛对外发送电子邮件的发件人地址
+home_link =                 主页链接
+home_link_desc =            链接至您的主页. 如: http://www.domain.tld/ 或 ../index.html (可选)
+home_link_name =            您的主页名称
+home_link_name_desc =       主页链接名称. 如: &quot;回到主页&quot;
+default_language =          语言
+default_language_desc =     论坛语言
+default_time_zone =         时区
+default_time_zone_desc =    默认时区
+default_time_difference =   <!-- TODO -->Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
+default_theme =             模板
+default_theme_desc =        模板
+threads_per_page =          每页主题数
+threads_per_page_desc =     每页显示的主题数?
+auto_lock_old_threads =     自动锁定过期主题
+auto_lock_old_threads_desc = 自动锁定多少天以上没有回复的主题? (0=不启用自动锁定)
+accession =                 访问权限
+accession_desc =            谁可以访问论坛?
+post_permission =           发贴权限
+post_permission_desc =      谁可以发贴?
+only_registered_users =     限注册用户
+all_users =                 所有
+register_permission =       用户注册
+register_permission_desc =  用户能否自行注册?
+register_self =             自行注册并激活
+register_self_locked =      可自行注册, 但需由管理员或版主激活
+register_only_admin =       仅限由管理员注册
+user_area =                 用户列表
+user_area_desc =            用户列表是否公开??
+public_accessible =         可公开访问
+accessible_reg_users_only = 仅限注册用户访问
+latest_postings =           最新帖子
+latest_postings_desc =      主页显示最新帖子数(0=关闭)?
+tag_cloud =                 标签云
+tag_cloud_desc =            主页是否显示最新标签的标签云?
+enable_tag_cloud =          启用标签云
+terms_of_use_agreement =    用户协议
+terms_of_use_agreement_desc = 用户注册与发贴需同意遵守的规则
+terms_of_use_agreement_enabled = 启用用户协议
+terms_of_use_url =          用户协议 URL:
+edit_postings =             编辑帖子
+edit_postings_desc =        编辑帖子
+edit_own_postings =         编辑自己的帖子:
+edit_own_postings_all =     所有用户都可编辑自己的帖子
+edit_own_postings_users =   限注册用户可编辑自己的帖子
+edit_own_postings_disabled = 关闭(限管理员与板主可编辑帖子)
+user_edit_if_no_replies =   如果已有回复, 帖子只在[minutes]分钟内可编辑(0=如果有回复则不可编辑)
+edit_max_time_period =      可编辑自己帖子的最长时限: [minutes]分钟 (0=无限制)
+show_if_edited =            发帖[minutes]分钟后当被编辑时显示帖子是否被编辑过
+dont_show_edit_by_admin =   如果帖子由管理员编辑则不显示
+dont_show_edit_by_mod =     如果帖子由板主编辑则不显示
+bbcode =                    BB code
+bbcode_desc =               是否允许BB Codes?
+bbcodes_enabled =           允许BB Codes
+bbcodes_img_enabled =       允许BB Code插入图片
+bbcodes_flash_enabled =     允许BB Code插入flash视频
+smilies =                   表情
+smilies_desc =              字符表情(如":-)")是否用图片替代? (表情可在管理面板定义)
+smilies_enabled =           启用表情
+enamble_avatars =           头像
+enamble_avatars_desc =      是否允许注册用户上传头像? 目录images/avatars/需设置为可写(CHMOD 777).
+avatars_profiles_postings = 在个人档案与帖子中显示头像
+avatars_profiles =          仅在个人档案中显示头像
+max_avatar_size =           头像最大尺寸:<br /> [width] x [height], [filesize] KB
+upload_images =             上传图片
+upload_images_desc =        是否允许上传图片? 目录images/uploaded/需设置为可写(CHMOD 777).
+upload_enabled_admins_mods = 限管理员与版主
+upload_enabled_users =      对注册用户启用
+upload_enabled_all =        对所有用户启用
+max_upload_size =           图片最大尺寸:<br /> [width] x [height], [filesize] KB
+autolink =                  自动链接
+autolink_desc =             是否为URLs自动加链接?
+autolink_enabled =          启用自动链接
+count_views =               阅读统计
+count_views_desc =          是否统计帖子阅读数?
+views_counter_enabled =     启用阅读统计
+count_users_online =        用户在线统计
+count_users_online_desc =   统计用户在多少分钟内在线数量(0=关闭)?
+rss_feed =                  RSS Feeds
+rss_feed_desc =             启用RSS Feeds (仅限访问权限设置为"所有")?
+rss_feed_enabled =          启用RSS Feed
+forum_enabled_marking =     启用论坛
+forum_enabled_desc =        如果不选此项则论坛不可用. 但可以管理员身份登陆.
+forum_enabled =             启用论坛
+forum_disabled_message =    如果关闭论坛显示的信息:
+category_name =             分类
+category_accession =        访问权限
+cat_accessible_admin_mod =  管理员与板主
+cat_accessible_reg_users =  注册用户
+cat_accessible_all =        所有
+category_topics =           主题
+category_entries =          帖子
+no_categories =             没有指定分类.
+new_category =              添加新分类:
+edit_category =             分类:
+category_accessible_by =    访问权限:
+entries_in_not_ex_cat =     <strong>注意:</strong> 可能有未显示的帖子, 如果帖子所属的分类不存在. 如何处理这些帖子?
+entries_in_not_ex_cat_del = 删除
+entries_in_not_ex_cat_mov = 转移至此分类:
+category_already_exists =   此分类已存在
+delete_category_hl =        删除分类 "[category]"
+delete_category_compl =     删除分类及所有帖子
+del_cat_keep_entries =      删除分类但保留帖子
+del_cat_move_entries =      删除分类但保留帖子并转移至此分类:
+delete_category_submit =    OK - 删除分类
+
+# Smilies:
+edit_smilies_smiley =       表情:
+edit_smilies_codes =        代码:
+edit_smilies_title =        名称:
+smiley_file_doesnt_exist =  表情文件不存在
+smiley_code_empty =         没有指定表情代码
+no_other_smilies_in_folder = 表情文件夹中没有其他表情可用. 可上传表情文件至目录'images/smilies'.
+smiley_image =              表情
+smiley_codes =              代码
+smiley_title =              名称
+disable_smilies =           禁止表情
+enable_smilies =            启用表情
+add_smiley =                添加表情:
+add_smiley_code =           代码:
+smilies_disabled =          表情已禁止.
+
+# pages:
+page_title =                标题
+page_content =              内容
+page_content_desc =         页面可使用HTML
+page_menu_linkname =        菜单链接文字
+page_menu_linkname_desc =   将在菜单栏显示
+page_access =               访问权限
+page_access_reg_users =     仅限注册用户
+page_access_public =        公开
+no_pages =                  没有页面
+add_page_link =             添加页面
+edit_page_submit =          OK - 保存页面
+page_doesnt_exist =         页面不存在.
+delete_page_confirm =       确认删除此页面?
+delete_page_submit =        OK - 删除页面
+error_no_page_title =       没有标题
+
+# user administration:
+user_name_empty =           未填写用户名
+num_registerd_users =       [number] 注册用户
+user_id =                   ID
+user_name =                 用户名
+user_email =                E-mail
+user_type =                 类型
+user_registered =           注册时间
+user_logins =               登陆次数
+last_login =                最后登陆
+lock =                      锁定
+admin =                     管理员
+mod =                       板主
+user =                      用户
+locked =                    已锁定
+unlocked =                  未锁定
+lock_title =                锁定用户
+unlock_title                解锁用户
+user_inactive =             用户未激活
+activate_note =             用户帐户未激活或用户正在更改e-mail地址. 如果用户无法自行激活帐户则使用此功能.
+activate_link =             激活帐户
+delete_selected_users =     删除所选
+add_user =                  添加用户
+email_list =                注册用户E-mail列表
+clear_userdata =            整理用户信息
+edit_user_name =            用户名:
+edit_user_avatar =          头像:
+delete_avatar =             删除头像
+delete_user_confirmation =  确认删除此用户?
+delete_users_confirmation = 确认删除下列用户?
+delete_users_submit =       OK - 删除
+register_exp =              您可不设定密码, 系统将为您生成密码. 用户信息将发送至指定的e-mail地址.
+register_username =         用户名:
+register_email =            E-mail:
+register_pw =               密码:
+register_pw_conf =          再次输入密码:
+register_send_userdata =    发送用户信息至以上e-mail地址
+error_send_userdata =       如果您不设定密码, 用户信息将发送至指定的e-mail地址
+error_email_wrong =         E-mail地址错误
+new_user_registered =       用户"[name]"已注册.
+new_user_reg_send_error =   用户"[name]"已被注册但用户信息无法发送.
+clear_userdata_condition =  删除登陆次数不超过 [logins] 次并且最后一次登陆超过 [days] 天前的用户.
+clear_userdata_note =       管理员与板主不受影响. 删除前您将看到选中的用户列表.
+no_users_in_selection =     未选择用户
+
+# spam protection:
+captcha =                   CAPTCHA
+captcha_desc =              选择保护表单与保护类型 (仅对非注册用户)
+captcha_graphical_desc =    图形CAPTCHA需要GD Lib, 并建议使用至少一种TTF字体. 将字体文件(*.ttf)上传至目录: modules/captcha/fonts/. 字体来源如: www.dafont.com.
+captcha_posting =           发帖表单:
+captcha_email =             E-mail表单:
+captcha_register =          注册表单:
+captcha_disabled =          禁用
+captcha_mathematical =      数学题
+captcha_graphical =         图形
+gr_captcha_not_available =  图形CAPTCHA不可用 (GD Lib不可用)
+gr_captcha_no_font =        未找到字体, 无法显示CAPTCHA码
+bad_behavior =              Bad Behavior
+bad_behavior_desc =         <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a>防垃圾保护.
+bad_behavior_enable =       启用Bad Behavior
+akismet =                   Akismet
+akismet_desc =              <a href="http://akismet.com/">Akismet</a>服务. 该功能需要<a href="http://wordpress.com/api-keys/">Wordpress API Key</a>.
+akismet_key =               Wordpress API Key:
+akismet_save_spam =         保存灌水行为 (标记为垃圾帖，但不显示)
+akismet_auto_delete_spam =  多少小时后自动删除垃圾帖 (0=不删除)?
+akismet_entry =             检查发帖表单
+akismet_mail =              检查e-mail表单
+banned_ips =                禁止IP
+banned_ips_desc =           被禁IP将不允许访问. 多个IP以逗号分隔.
+banned_user_agents =        禁止user agents
+banned_user_agents_desc =   被禁user agents将不允许访问. 字串以逗号分隔.
+not_accepted_words =        敏感词
+not_accepted_words_desc =   帖子与e-mail内容中不允许的词与域名. 词间以逗号分隔.
+spam_protection_submit =    OK - 保存
+error_own_ip_banned =       你办了你自己的ip!
+error_own_user_agent_banned = 你办了自己了!
+spam_protection_saved =     已保存
+
+# Reset / Uninstall:
+reset_forum =               重设论坛
+delete_postings =           删除所有帖子
+delete_userdata =           删除所有用户信息(除管理员帐户)
+reset_forum_submit =        OK - 重设论坛
+uninstall_forum =           卸载论坛
+uninstall_forum_exp =       此操作将删除所有论坛表格, 论坛不复存在!
+uninstall_forum_submit =    OK - 卸载论坛
+error_no_selection_made =   未选择项目No selection made
+
+# Backup:
+backup_note =               使用备份功能时目录"<i>backup</i>"应设置为可写, 并请确保该目录不能通过Web访问!
+backup_file =               文件
+backup_date =               日期
+backup_size =               大小
+create_backup_complete =    完全备份
+only_create_backup_of =     仅备份:
+backup_entries =            帖子
+backup_userdata =           用户信息
+backup_settings =           论坛设定
+backup_categories =         分类
+backup_pages =              页面
+backup_smilies =            表情
+backup_banlists =           禁止名单
+download_backup_file =      下载备份文件
+delete_selected =           删除所选
+check_all =                 全选
+uncheck_all =               全部不选
+restore =                   导入
+delete_backup_file =        删除备份文件
+delete_backup_file_confirm =  确认删除备份文件?
+delete_selected_confirm =   确认删除所有选中的备份文件?
+delete_backup_submit =      OK - 删除
+restore_confirm =           确认将备份文件导入数据库?<br /><strong>将覆盖所有表格!</strong>
+restore_safe_mode_warning = 安全模式警告!
+restore_safe_mode_note =    由于此服务器启用安全模式, 无法延长代码执行时限! 为避免备份过程中断, 请将大的备份文件分割为小文件并逐个执行!
+restore_submit =            OK - 导入
+restore_backup_ok =         备份文件已导入.
+backup_file_created =       备份文件已生成.
+error_file_doesnt_exist =   文件不存在!
+error_delete_backup_file =  备份文件无法删除
+error_create_backup_file =  文件无法生成. 请确认目录"backup"正确设置了可写权限.
+error_restore_mysql =       MySQL错误: [mysql_error]
+
+# Update:
+update_current_version =    当前版本: <strong>[version]</strong>
+update_instructions_hl =    如何升级
+update_instructions =       建议升级之前暂时关闭论坛! (在<a href="index.php?mode=admin&action=settings">论坛设定</a>菜单中去除"启用论坛"项)
+update_instructions =       访问主页(<a href="http://mylittleforum.net/">mylittleforum.net</a>)下载最新版本
+update_instructions =       解压缩包, 在子目录"update"中找到升级文件并上传至服务器目录"update"
+update_instructions =       刷新本页面, 升级文件将出现在页面下方
+update_instructions =       点击升级文件并按提示操作
+update_instructions =       运行升级文件后您将得到需要添加和修改的文件与目录清单
+update_available_files =    升级文件
+update_no_files_available = 没有升级文件
+update_file_title =         运行升级文件
+update_confirm =            确认运行以下升级文件?
+update_submit =             OK - 执行升级
+update_successful =         数据库已成功升级
+update_items_note =         请上传下列文件/目录(版本[version]):
+update_download =           如果没有下列文件, 您可在此下载[[here]]
+
+[emails]
+email_subject =             回复 "[original_subject]"
+email_text =                """您好 [recipient],
+[name]对"[original_subject]"发表了回复:
+
+标题: [subject]
+[text]
+
+本帖URL: [posting_address]
+
+--- 原帖内容 ---
+
+[original_text]"""
+
+email_text_delayed_addition = """---
+This notification is delayed because the posting was activated manually"""
+
+admin_email_subject =       论坛新帖: [subject]
+admin_email_text =          """[name]发表的新贴
+标题: [subject]
+
+[text]
+
+帖子URL: [posting_address]"""
+admin_email_text_reply =    """由[name]回复
+标题: [subject]
+
+[text]
+
+帖子URL: [posting_address]"""
+admin_reg_user_email_subj = 论坛注册
+admin_reg_user_email_text = """您好 [name],
+欢迎来到论坛!
+
+使用下列信息登陆:
+
+用户名: [name]
+密码: [password]
+
+点击以下链接可直接登陆:
+[login_link]
+
+登陆后可更改密码."""
+
+new_user_email_sj =         论坛注册
+new_user_email_txt =        """您好 [name],
+欢迎加入论坛!
+
+请点击以下链接激活您的帐户:
+[activate_link]"""
+new_user_notif_sj =         新用户订阅
+new_user_notif_txt =        """您好 [recipient],
+一位新用户已订阅本论坛.
+用户名: [name]
+E-mail: [email]
+
+[user_link]"""
+new_user_notif_txt_locked = """您好 [recipient],
+一位新用户已订阅本论坛.
+用户名: [name]
+E-mail: [email]
+
+重要提示: 此用户已被解锁, 可登陆论坛!"""
+edit_address_email_sj =     更改e-mail地址后帐户激活
+edit_address_email_txt =    """您好 [name],
+E-mail地址已更改. 您需点击以下链接再次激活帐户:
+[activate_link]"""
+pwf_activating_email_sj =   索取新密码
+pwf_activating_email_txt =  """您好 [name],
+此电子邮件发送自论坛([forum_address]), 原因是接收到申请新密码的请求. 请点击以下链接确认您的请求. 系统将生成新密码并发送给您. 如果此电子邮件为误发送(无论是因为您还是其他人), 请忽略此邮件.
+
+[activating_link]"""
+new_pw_email_sj =             "New user data for the forum"
+new_pw_email_txt =            """您好 [name],
+新的用户信息:
+
+用户名: [name]
+密码: [password]
+
+点此直接登陆:
+[login_link]
+
+密码可在登陆后更改."""
+contact_email_txt =           """[message]
+
+---
+This e-mail has been sent via the forum on [forum_address]."""
+contact_email_txt_user =       """[message]
+
+---
+This e-mail has been sent by [user] via forum on [forum_address]."""
+contact_notification_sj =     Copy of sent e-mail: [subject]
+contact_notification_txt =    """This e-mail has been sent with your e-mail address to [recipient]:
+
+Subject: [subject]
+[message]
+
+---
+This e-mail has been sent via forum on [forum_address]."""
+
+[install]
+installation_title =             安装
+label_choose_language =          请选择语言:
+installation_instructions =      安装论坛请完成并提交下列表单.
+installation_instructions =      文件<strong>config/db_settings.php</strong>需设置为可写. 如果出现错误提示请尝试: CHMOD 666. 安装后请设置为644.
+installation_instructions =      目录<strong>templates_c</strong>需设置为可写. 如果出现错误提示请尝试: CHMOD 770 或 775.
+installation_instructions =      文件与目录的可写权限(CHMOD)可使用FTP软件进行更改.
+installation_instructions =      目录<strong>install</strong>在安装完成后可删除.
+inst_basic_settings =            基本设置
+inst_main_settings_desc =        基本设置
+inst_admin_settings =            管理员
+inst_admin_settings_desc =       论坛管理员信息
+inst_db_settings =               数据库
+inst_db_settings_desc =          访问MySQL数据库信息
+inst_admin_name =                管理员帐户
+inst_admin_name_desc =           论坛管理员帐户名
+inst_admin_email =               管理员e-mail
+inst_admin_email_desc =          论坛管理员e-mail
+inst_admin_pw =                  管理员密码
+inst_admin_pw_desc =             论坛管理员密码
+inst_admin_pw_conf =             重复输入密码
+inst_admin_pw_conf_desc =        重复输入密码
+inst_db_host =                   数据库服务器
+inst_db_host_desc =              服务器名称, 通常为 "localhost"
+inst_db_user =                   数据库用户
+inst_db_user_desc =              数据库用户
+inst_db_pw =                     数据库密码
+inst_db_pw_desc =                数据库访问密码
+inst_db_name =                   数据库名
+inst_db_name_desc =              数据库名
+inst_table_prefix =              表格前缀
+inst_table_prefix_desc =         数据库表格前缀
+inst_advanced_options =          高级设置
+inst_advanced_options_desc =     专业用户使用, 通常不必更改
+inst_advanced_database =         新建数据库
+inst_advanced_database_desc =    选中此项, 如果指定的数据库不存在且您有权限新建数据库
+inst_advanced_conf_file =        不覆盖数据库配置文件
+inst_advanced_conf_file_desc =   如果已完成数据库配置文件请选中此项
+create_database =                建立指定的数据库
+dont_overwrite_settings =        不覆盖数据库配置文件
+create_db_error =                无法建立数据库
+error_create_admin =             无法建立管理员帐户
+error_db_connection =            数据库连接错误, 请检查主机, 用户与密码
+error_db_inexistent =            指定的数据库不存在, 请检查数据库名
+error_sql_file_doesnt_exist =    SQL安装文件(install.sql)不存在
+error_overwrite_config_file =    没有权限覆盖文件<strong>config/db_settings.php</strong>(请设置: CHMOD 666, 当前为[CHMOD])
+error_sql =                      SQL错误
+forum_install_ok =               OK - 安装论坛
+error_conf_pw =                  管理员密码不匹配

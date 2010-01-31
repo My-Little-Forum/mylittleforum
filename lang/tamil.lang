@@ -1,0 +1,1081 @@
+################################################################################
+# Tamil language file for my little forum 2.2                                  #
+#------------------------------------------------------------------------------#
+# - don't modyfy or translate the section names like "[general]" or "[entry]"! #
+# - placeholders in square brackets (e.g. "[name]") will be replaced by values #
+#   automatically - don't modify or translate them!                            #
+# - words in double square brackets (e.g. "click [[here]]") are transformed    #
+#   into hyperlinks - should be translated (e.g. "haga click [[aquí]]")        #
+# - strings that span more than one line (E-Mail texts) are enclosed in triple #
+#   quotes (e.g. """Hi,                                                        #
+#   how are you?""")                                                           #
+################################################################################
+
+language =                  ta
+charset =                   utf-8
+locale =                    ta_IN.utf8
+locale =                    ta_IN
+locale =                    ta
+locale =                    ta
+locale_charset =            utf-8
+dir =                       ltr
+time_format =               %Y-%m-%d, %H:%M
+time_format_full =          %A, %B %d, %Y, %H:%M
+forum_time =                கருத்தரங்கின்  நேரம்: [time]
+unknown_user =              தெரியாதவர்
+db_error =                  டேடாபேஸின் தவரு!
+mail_error =                மின் அஞ்சல் சேவை காணவில்லை - தயவு செய்து மீண்டும் முயற்சிக்கவும்!
+
+[general]
+subject =                   பாடம்
+author =                    ஆசிரியர்
+date =                      நாள்
+replies =                   பதில்
+views =                     காட்ச்சிகள்
+category =                  வகை
+submit_button_ok =          &nbsp;சரி அநுப்பலாம்&nbsp;
+yes =                       ஆம்
+no =                        இல்லை
+go =                        பொ
+edit =                      தொகுக்க
+delete =                    அழி
+next_page_link =            &raquo;
+previous_page_link =        &laquo;
+next_page_link_title =      அடுத்த பக்கம்
+previous_page_link_title =  முந்தய பக்கம்
+posted_by =                 இப்படிக்கு <strong>[name]</strong>[email_hp], [time]
+posted_by_location =        இப்படிக்கு <strong>[name]</strong>[email_hp], [location], [time]
+original_posting_linktitle = [name]னுடைய அசல் தகவலுக்கு செல்ல
+error_headline =            தவரு!
+no_authorisation =          அங்கிகாரம் இல்லை!
+page_doesnt_exist =         இந்த பக்கம் கிடைக்கவில்லை!
+error_form_uncomplete =     அனைத்து பாகங்களும் நிரப்பப்படவில்லை
+caution =                   எச்சரிக்கை!
+spam =                      நம்பத்தகாத
+forum_index_link =          கருத்தரங்கின் முதல் பக்கம்
+forum_index_link_title =    கருத்தரங்கின் முதல் பக்கம்
+log_in_link =               நுழை
+log_in_link_title =         நுழை
+log_out_link =              வெளியேறு
+log_out_link_title =        வெளியேறு
+register_link =             விண்ணப்ப படிவம்
+register_link_title =       புதிதாக பயன்படுத்துபவர் விண்ணப்பி
+profile_link_title =        விபரத்தை மாற்றி அமை
+user_area_link =            பயன் படுத்துபவர்
+user_area_link_title =      பயன் படுத்துபவர் பாகுதி
+admin_area_link =           நிர்வாகி
+admin_area_link_title =     நிர்வாகி பாகுதி
+search_marking =            தேடு:
+search_default_value =      தேடு...
+search_title =              தேடுதல் தகவல்
+new_topic_link =            புதிய தலைப்பு
+new_topic_link_title =      புதிய தலைப்பை அநுப்பு
+order_link =                வரிசை
+order_link_title_1 =        கடைசி பதிலை தேதியை வைத்து வரிசைப்படுத்து
+order_link_title_2 =        தேதியை வைத்து திரட்டை வரிசைப்படுத்து(கட்டாயம்)
+fold_threads =              திரட்டை மடி
+fold_threads_linktitle =    திரட்டை மடி
+expand_threads =            திரட்டை விரிவாக்கு
+expand_threads_linktitle =  திரட்டை விரிவாக்கு
+table_view =                அட்டவனை வடிவில்
+table_view_linktitle =      தகவலை அட்டவனை வடிவில் காட்சிக்கு வை
+thread_view =               திரட் வடிவம்
+thread_view_linktitle =     தகவலை திரட்டை மரம் வடிவில் காட்சிக்கு வை
+refresh_link =              புதுப்பிக்க
+refresh_linktitle =         புதிய தலைப்பு குரிகாதே
+thread_hierarchical =       படி நிலை
+thread_hierarchical_linktitle = திரட்டை படி நிலை வரிசையில் காட்சிக்கு வை(கட்டாயம்)
+open_in_thread_link =       திரட்டை திற
+open_in_thread_linktitle =  இந்த பொஸ்டை முழுமையான திரட் வடிவில் காண்பி
+thread_linear =             நேரியல்
+thread_linear_linktitle =   திரட்டை நேரியல் வடிவில் காட்சிக்கு வை
+hide_all_messages =         அனைத்தையும் மூடு
+hide_all_messages_title =   அனைத்து தகவலையும் மூடு
+show_all_messages =         அனைத்தையும் விரிவாக்கு
+show_all_messages_title =   அனைத்து தகவலையும் விரிவாக்கு
+expand_fold_thread_linktitle = விரிவாக்கு / திரட்டை மடி
+category_title =            பிரிவு
+all_categories =            அனைத்து பிரிவு
+my_category_selection =     என்நுடைய தேர்வு
+browse_page_title =         பக்கம்
+thread_entry_back_link =    மருபடியும் பொது மன்ற முதல் பக்கம் செல்க
+thread_entry_back_title =   பொது மன்ற முதல் பக்கம்
+reply_link =                தகவலுக்கு பதிலளிக்க
+reply_link_title =          தகவலுக்கு பதிலளிக்க
+back_to_index_link =        மருபடியும் பொது மன்ற முதல் பக்கம் செல்க
+back_to_index_link_title =  விண்ணப்ப படிவ முதல் பக்கம்
+back_to_entry_link =        மருபடியும் வந்த வழிக்கே [name]
+back_to_entry_link_title =  மருபடியும் வந்த வழிக்கே [name]
+subnav_login =              நுழை
+subnav_pw_forgotten =       மறைவு சொல் மறந்துவிட்டேன்
+subnav_admin_area =         நிர்வாகி பாகுதி
+subnav_settings =           பொது மன்ற அமைப்பு
+subnav_advanced_settings =  முற்போக்கு அமைப்பு
+subnav_categories =         பிரிவுகள்
+subnav_edit_category =      பிரிவு விபறத்தை புதுப்பி
+subnav_delete_category =    பிரிவை அழி
+subnav_user =               பயன் படுத்துவொவோர் நிர்வாகம்
+subnav_smilies =            சிரிப்பு முகங்கள்
+subnav_pages =              பக்கங்கள்
+subnav_delete_page =        பக்கத்தை அழி
+subnav_edit_page =          பக்கத்தை சீரமை
+subnav_add_page =           பக்கத்தை சேர்
+subnav_create_page =        பக்கத்தை உருவாக்கு
+subnav_edit_smiley =        சிரிப்பு முகங்களை சீரமை
+subnav_edit_user =          பயன் படுத்துபவர் விபறத்தை புதுப்பி
+subnav_delete_users =       பயன் படுத்துபவறை அழி
+subnav_register_user =      பதிவு செய்தவர்
+subnav_spam_protection =    நம்பத்தகாதவரிடமிருந்து காப்பு
+subnav_email_list =         பதிவு செய்தவர்களின் மின்-அசல் பட்டியல்
+subnav_clear_userdata =     பயன் படுத்துபவர் விபறத்தை நீக்குக
+subnav_search =             தேடுதல்
+subnav_register =           பதிவு செய்
+subnav_reset_uninstall =    நிலையை மீட்டு / பொது மன்றத்தை நீக்குக
+subnav_userarea =           பயன் படுத்துபவர் விபறம்
+subnav_contact =            தொடர்பு
+subnav_userarea_show_user = [var]
+subnav_userarea_show_posts = [var] ருடைய போஸ்டிங்
+subnav_userarea_edit_user = படுத்துபவர் விபறத்தை புதுப்பி
+subnav_userarea_edit_pw =   மறைவு சொலை மாற்று
+subnav_userarea_edit_mail = மின்-அசல் விலாசத்தை மாற்று
+subnav_backup =             காப்பீடு செய்
+subnav_update =             புதுப்பிக்கவும்
+subnav_update_run =         புதுப்பிக்க செயல்படுத்து
+subnav_delete_backup_file = காப்பீடு செய்த கோப்பை அழி
+subnav_restore =            திரும்பப்பெரு
+subnav_locked =             கணக்கு முடப்பட்டுவிட்டது
+subnav_delete_cookie =      குக்கிகளை அழிக்க
+subnav_disabled =           பொது மன்றம் முடக்கப்பட்டிருக்கிறது
+subnav_page_error =         தவரு
+subnav_page =               [var]
+counter =                   [total_postings] போஸ்டிங்  [total_threads] திரட்ஸ், [registered_users] பதிவு செய்தவர்கள்
+counter_users_online =      [total_postings] போஸ்டிங்  [total_threads] திரட்ஸ், [registered_users] பதிவு செய்தவர்கள், [total_users_online] ஆன்லைன் பயன் படுத்துபவர்  ([registered_users_online] பதிந்தவர், [unregistered_users_online] விருந்திநர்கள்)
+contact_link =              அநுகவும்
+contact_linktitle =         பொது மன்ற நிர்வாகியின் மின்-அசல்
+rss_feed_postings =         RSS போஸ்டிங்
+rss_feed_postings_title =   RSS அனைத்து பொதிய போஸ்டிங்ஸையும் புகடுக
+rss_feed_new_threads =      RSS திரட்ஸ்
+rss_feed_new_threads_title = RSS தொடக்க போஸ்டிங்ஸை மட்டும் புகடுக
+rss_feed_thread =           RSS திரட்ஸ் புகடு
+rss_feed_thread_title =     RSS இந்த திரட்டை புகடு
+no_messages =               இதுவரை எநத செய்தியும் அநுப்பப்படவில்லை.
+no_messages_in_category =   இதுவரை எநத செய்தியும் இந்த துரையில் அநுப்பப்படவில்லை.
+error_invalid_category =    பிரிவு சரியானது அல்ல
+error_word_too_long =       இந்த வார்தை "[word]" மிக நீளமானது
+error_name_too_long =       இந்த பெயர் மிக நீளமானது
+error_email_too_long =      மின்-அசல் விலாசம் மிக நீளமானது
+error_hp_too_long =         முதல் பக்கம் மிக நீளமானது
+error_location_too_long =   இடப் பெயர்  மிக நீளமானது
+error_profile_too_long =    இந்த விபரம் மிக நீளமானது ([profile_length] எழுத்துக்கள் - மட்டும் [profile_maxlength] எழுத்துக்கள் அநுமதிக்கப்படுகிறது)
+error_signature_too_long =  கையொப்பம் மிக நீளமானது ([signature_length] எழுத்துக்கள் - மட்டும் [signature_maxlength] எழுத்துக்கள் அநுமதிக்கப்படுகிறது)
+error_invalid_date_format = பிறந்த தேதியின் வடிவம் சரியானது அல்ல(YYYY-MM-DD)
+error_invalid_date =        பிறந்த தேதி சரியானது அல்ல
+error_email_wrong =         மின்-அசல் விலாசம் சரியானது அல்ல
+error_hp_wrong =            முதல் பக்கம் விலாசம் சரியானது அல்ல
+error_pw_conf_wrong =       மறைவு சொல்லும் சரிபார்பதற்கான மறைவு சொல்லும் பொறுந்தவில்லை
+error_akismet_connection =  சர்வர் நேரம் முடிந்துவிட்டது, தயவு செய்து மீண்டும் முயற்சிக்கவும்!
+error_akismet_connection_admin = API சாவியை சரிபார்க்க Akismet சர்வருடன் இணைக்கமுடியாவில்லை!
+error_akismet_api_key =     Wordpress API சரியானது அல்ல
+error_spam_suspicion =      ஸ்பெம் என சந்தேகமாக உள்ளது! தயவு செய்து உங்கள் போஸ்டிங்கை மாற்றி அமைக்கவும்
+user_name_already_exists =  பயன் படுத்துபவர் ஏற்கநவே உள்ளது
+ajax_preview_title =        மாதிரியை காண்பி
+open_whole_thread =         அனைத்து திரட்டையும் திர
+change_category_link =      "[category]"  பிரிவில் உள்ள போஸ்டிங்கை காண்பி
+mark_linktitle =            குறியிடபட்ட போஸ்டிங்ஸ்
+unmark_linktitle =          குறியிடபடாத போஸ்டிங்ஸ்
+delete_marked_link =        குறியிடபட்ட போஸ்டிங்ஸ் அழிக்க
+manage_postings_link =      போஸ்டிங்கை மேற்பார்வையிடு
+show_spam_link =            நம்பத்தகாதவரை காண்பி ([number])
+hide_spam_link =            நம்பத்தகாததை மரை
+delete_spam_link =          நம்பத்தகாததை அழி
+no_replies =                பதில் இல்லை
+one_reply =                 1 பதில்
+several_replies =           [replies] பதில்கள்
+more_smilies_link =         மேலும்...
+more_smilies_title =        மேலும் சிரிப்பு முகங்கள்
+close =                     மூடு
+no_postings_user =          போஸ்டிங்ஸ் இல்லை.
+search_submit_button =      தேடு
+search_fulltext =           முழு உரை
+search_tags =               அடையாள முத்திரை
+no_postings_found =         போஸ்டிங்ஸ் ஏதும் காணப்படவில்லை.
+one_posting_found =         1 போஸ்டிங்ஸ் காணப்பட்டது:
+several_postings_found =    [number] போஸ்டிங்ஸ் காணப்பட்டது:
+no_postings_by_user =       போஸ்டிங்ஸ் இல்லை.
+one_posting_by_user =       1 போஸ்டிங்ஸ்:
+several_postings_by_user =  [number] போஸ்டிங்ஸ்:
+rss_posting_by =            [name] ருடைய போஸ்டிங்ஸ், [time]:
+rss_reply_by =              [name] ருடைய பதில், [time]:
+rss_reply_marking =         (பதில்)
+move_drag_and_drop =        மேலும் கீழும் நகர இழுத்து விடவும்
+move_up =                   மேலே செல்
+move_down =                 கீழே செல்
+delete_posting_title =      போஸ்டிங்கை அழி
+delete_posting_confirm =    போஸ்டிங்கை அழிக்க வேண்டுமா?
+delete_posting_confirm_admin = போஸ்டிங்கையும் அதன் பதில்களையும் அழிக்க வேண்டுமா?
+latest_postings_hl =        கடைசி போஸ்டிங்
+toggle_latest_postings =    கடைசி போஸ்டிங்கை காண்பி / மரை
+posting_minutes_ago =       <!-- TODO -->[minutes] நிமிடங்கள் முன்னால்
+posting_hours_ago =         <!-- TODO -->[hours] மணி, [minutes] நிமிடங்கள் முன்னால்
+posting_one_day_ago =       <!-- TODO -->1 day, [hours] மணி, [minutes] நிமிடங்கள் முன்னால்
+posting_several_days_ago =  <!-- TODO -->[days] நாள் முன்னால்
+tag_cloud_hl =              தற்போதய அடையாள முத்திரை
+sidebar =                   பக்கசட்டம்
+toggle_sidebar =            பக்கசட்டத்தை காண்பி / மரை
+options =                   விருப்பங்கள்
+administrator_title =       நிர்வாகி
+moderator_title =           துணை நிர்வாகி
+avatar_img_alt =            உருவ படம்
+search_user =               பயன் படுத்துபவறை தேடு:
+search_user_default_value = பயன் படுத்துபவறை தேடு...
+no_users =                  பயன் படுத்துபவர் காணவில்லை.
+no_text_title =             போஸ்டிங்ஸ் காலியாக உள்ளது / உரை இல்லை
+no_text_alt =               உரை இல்லை
+no_text =                   - உரை இல்லை -
+error_invalid_form =        செஷன் காலாவதியாகிவிட்டது! தயவு செய்து உங்கள் உரையை நகல் எடுத்துக்கொண்டு மருபடியும் பொது மன்றத்தில் நுழைக அல்லது தகவலை விருந்திநராக போஸ்ட் செய்யவும்.
+error_form_sent_too_fast =  The படிவம் மிக விரைவாக சமர்ப்பிக்கப்பட்டிருக்கிறது - தயவு செய்து சிறிது நேரம் காத்திருந்து, மீண்டும் முயற்சிக்கவும் (இது ஒரு த்னியங்கி படிவம் சமர்ப்பிபக்கும் நடவடிக்கை ஆகும்)
+error_form_sent_too_slow =  இந்த படிவத்திற்கு இதற்குமேல் மதிப்பு இல்லை - தயவு செய்து உங்கள் உரையை நகல் எடுத்துக்கொண்டு மருபடியும் பக்கத்தை திற
+terms_of_use_agreement =    என் சம்மதம்  [[terms of use]]
+terms_of_use_agree_error_register =பதிவு படிவத்தை பூ்ற்த்தி செய்ய, எங்கள் நிபந்தனைக்கு உங்கள் சம்மதம் தேவை
+terms_of_use_agree_error_posting = தகவலை அநுப்ப , எங்கள் நிபந்தனைக்கு உங்கள் சம்மதம் தேவை
+error_not_accepted_word =   எற்றுக்கொள்ளக்கூடிய வாறத்தை அல்ல: [not_accepted_word]
+error_not_accepted_words =  எற்றுக்கொள்ளக்கூடிய வாறத்தைகள் அல்ல: [not_accepted_words]
+error_username_invalid_chars = <!-- TODO -->The user name contains special characters
+
+[entry]
+edited_by =                 புதுப்பித்தவர் [name], [time]
+tags_marking =              அடையாள முத்திரை:
+one_view =                  1 காட்ச்சி
+several_views =             [views] காட்ச்சிகள்
+complete_thread_marking =   முழுமையான திரட்:
+branch_marking =            நிகழும் திரட்டின் கிளை:
+direct_replies_marking =    போஸ்டின் நேரடி பதில்:
+edit_message_linkname =     புதுபிக்கவும்
+edit_message_linktitle =    போஸ்டிங்கை புதுபிக்கவும்
+delete_message_linkname =   அழிக்க
+delete_message_linktitle =  போஸ்டிங்கை அழிக்கவும்
+move_posting_linkname =     நகர்த்து
+move_posting_linktitle =    போஸ்டிங்கை நகர்த்து
+report_spam_linkname =      நம்பத்தகாதது
+report_spam_linktitle =     நம்பத்தகாதவரெனில் முரையி்டவும்
+flag_ham_linkname =         நம்பக்கூடிய
+flag_ham_linktitle =        ஸ்பெம் என கொடி அசை / அறிவிக்க
+lock_linkname =             பூட்டு
+lock_linktitle =            போஸ்டிங்கை பூட்டு
+unlock_linkname =           திற
+unlock_linktitle =          போஸ்டிங்கை திற
+lock_thread_linkname =      திரட்டை பூட்டு
+lock_thread_linktitle =     அனைத்து திரட்டை பூட்டு
+unlock_thread_linkname =    திரட்டை திற
+unlock_thread_linktitle =   அனைத்து திரட்டையும் திற
+posting_locked =            பூட்டப்பட்டிருக்கிறது
+email =                     மின்-அசல்
+homepage =                  முதல் பக்கம்
+show_hide_posting_title =   தகவல் குருக்கு / நீட்டு
+spam_note =                 இந்த போஸ்டிங் ஸ்பேம் வடிகட்டியை தாண்டவில்லை ஆகையால் பொது மன்ற துணை நிர்வாகி அல்லது நிர்வாகி்யோ சரி என்று சொல்லத வரை இந்த போஸ்டிங் முதலச பக்கத்திற்கு வறாது.
+
+[posting]
+no_authorization_edit =     இந்த போஸ்டிங்கை மாற்ற இயலாது! காரணம், போஸ்டிங்கை மாற்றக்கூடிய காலம் முடிந்துவிட்டது, திரட் பூட்டப்பட்டிருக்கிறது அல்லது  எற்கனவே பதில் வந்துவிட்டது.
+posting_locked_no_reply =   பூட்டப்பட்ட போஸ்டிங்க்கு பதிலளிக்க முதியாது.
+no_auth_post_reg_users =    பதிவு செய்தவர்களால் மட்டும் தகவல் அநுப்ப முடியும்!
+no_auth_session_expired =   செஷன் காலாவதியாகிவிட்டது, தயவு செய்து உங்கள் உரையை நகல் எடுத்துக்கொண்டு மருபடியும் பொது மன்றத்தில் நுழைக!
+no_auth_readonly =          பொது மன்றம் இப்பேது வாசிக்க மட்டுமே முடியும்!
+new_topic_hl =              புதிய தலைப்பு
+reply_hl =                  போஸ்டிங் பதில்
+edit_hl =                   மாற்றி அமைக்க
+name_marking =              பெயர்:
+email_marking =             மின்-அசல்:
+hp_marking =                முதல் பக்கம்:
+location_marking =          முகவரி:
+optional =                  (விரும்பினால்)
+optional_email =            (விரும்பினால், நேரடியாக காண்பிக்கப்படமாட்டாது)
+remember_userdata_marking = எண்ணை நினைவில் வை(குக்கிகள் மூலம்)
+delete_cookie_linkname =    குக்கிகளை அழிக்க
+deleting_cookie =           குக்கிகளை அழிந்துகோண்டிருக்கிறது...
+category_marking =          பிரிவுகள்:
+subject_marking =           பாடம்:
+message_marking =           தகவல்:
+tags_marking =              அடையாள முத்திரை:
+tags_note =                 (விரும்பினால், "," வைத்து பிரிக்கவும்)
+bbcode_bold_marking =       தடிப்பமாக
+bbcode_bold_title =         தடிப்பமான உரை நடை: [b]உரை[/b]
+bbcode_italic_marking =     சாய்ந்த
+bbcode_italic_title =       சாய்ந்த உரை நடை: [i]உரை[/i]
+bbcode_link_marking =       இணைப்பு
+bbcode_link_title =         மீ-இணைப்பை செருகு: [link=http://www.domain.tld/]இணைப்பு உரை[/link] அல்லது [link]http://www.domain.tld/[/link]
+bbcode_color =              கலர்
+bbcode_color_title =        உரையிந் கலர்: [color=color]உரை[/color]
+bbcode_font_size =          அளவு
+bbcode_font_size_title =    சொல் அளவு: [size=small]சிரிய உரை[/size] / [size=large]பெரிய உரை[/size]
+bbcode_font_size_small =    சிரிய
+bbcode_font_size_large =    பெரிய
+bbcode_link_linktext =      இணைப்பு உரை (விரும்பினால்):
+bbcode_link_url =           இணைப்பு விலாசம் (URL):
+bbcode_image_marking =      படம்
+bbcode_image_title =        படத்தை செருகு: [img]http://example.com/image.jpg[/img]
+bbcode_image_url =          விலாசத்தை செருகுக (URL):
+bbcode_list_marking =       பட்டியல்
+bbcode_list_title =         பட்டியலை செருகுக: [list][*]பட்டியல் விபரம்[/list]
+upload_image_marking =      மேலேற்றுக
+upload_image_title =        படத்தை மேலேற்றுக
+bbcode_flash_marking =      பிளாஷ்
+bbcode_flash_title =        பிளாஷ் செருகு: [flash]http://example.com/flash.swf[/flash]
+bbcode_code_marking =       <!-- TODO -->code
+bbcode_code_title =         <!-- TODO -->Insert code: [code]code[/code]
+bbcode_code_inline =        <!-- TODO -->Inline code
+bbcode_code_block =         <!-- TODO -->Code block
+bbcode_code_block_lang =    <!-- TODO -->Code block [language]
+smiley_title =              சிரிப்பு முகங்களை செருகுக
+email_notific_reply_thread = இந்த திரட்டின் பதில்களை மின்-அசலின் மூலம் தெரியப்படுத்தவும்
+email_notific_reply_post =   இந்த போஸ்டின் பதில்களை மின்-அசலின் மூலம் தெரியப்படுத்தவும்
+show_signature_marking =    கைய்யொப்பத்தை சேர்க்க
+sticky_thread =             ஸ்டிகி
+message_submit_button =     சரி அநுப்பலாம்
+message_submit_title =      பதிவை சேமிக்க
+message_preview_button =    மாதிரி
+message_preview_title =     மாதிரியை பார்த்தபின் போஸ்டை சேமிக்கவும்
+quote_message =             மேற்கோள்ளிட்ட தகவல்
+reply_to_posting_marking =  <strong>[name]</strong> னுடைய தகவலுக்கு  பதில்
+minutes_left_to_edit =      உங்களுக்கு போஸ்டிங்கை மாற்ற [minutes] நிமிடங்கள் மீதம் உள்ளது
+minutes_left_to_edit_reply = பதிலேதும் இல்லாதபட்ச்சத்தில், உங்களுக்கு போஸ்டிங்கை மாற்ற [minutes] நிமிடங்கள் மீதம் உள்ளது
+preview_headline =          மாதிரி:
+error_repeated_posting =    நீங்கள் [minutes] நிமிடங்களுக்குள் மறுபடியும் போஸ்ட்செய்திருக்கிரீர்காள். தயவு செய்து சிரிது நேரம் காத்திருந்து போஸ்ட்செய்யவும்.
+error_no_name =             பெயர் நுழைக்கபடவில்லை
+error_name_like_subject =   பெயரும், பாடமும் ஒன்றாக உள்ளது
+error_name_reserved =       இந்த பெயர் பதிவு செய்தவரால் முன்பதிவு செய்யாப்பட்டிருக்கிறது
+error_username_too_long =   பயன் படுத்துபவர் பெயர் மிக நீளமானது
+error_name_too_long =       இந்த பெயர் மிக நீளமானது
+error_no_email_to_notify =  மின்-அசல் விலாசம் இல்லை
+error_no_subject =          பாடம் நுழைக்கபடவில்லை
+error_no_text =             தகவல் உரை நுழைக்கபடவில்லை
+error_subject_too_long =    பாடம் மிக நீளமானது
+error_text_too_long =       தகவல் மிக நீளமானது ([text_length] எழுத்துக்கள் - மட்டும் [text_maxlength] எழுத்துக்கள் அநுமதிக்கப்படுகிறது)
+error_tags_too_long =       அடையாள முத்திரை மிக நீளமானது
+error_posting_unavailable = போஸ்டிங்கை காணவில்லை
+
+[delete_posting]
+delete_postings_hl =        போஸ்டிங்கை அழிக்க
+delete_marked_hl =          குறியிட்ட போஸ்டிங்கை அழிக்க
+delete_marked_confirm =     குறியிட்ட போஸ்டிங்கையும் அதன் பதிலையும் அழிக்க வேண்டும்?
+delete_spam_hl =            ஸபேமை அழிக்க
+delete_spam_confirm =       ஸபேம் என வரையறுக்கப்பட்ட அனைத்து போஸ்டிங்கை  அழிக்க வேண்டும்?
+delete_posting_submit =     சரி அழி
+report_spam_hl =            ஸபேம் என  புகார் செய்
+posting_already_spam =      இந்த போஸ்டிங் ஏற்கனவே ஸபேம் என சொல்லப்பட்திருக்கிறது.
+spamcheck_posting_not_checked = இந்த போஸ்டிங் ஏற்கனவே ஹெம் என சொல்லப்பட்திருக்கிறது. அல்லது Akismet மூலம் சரிபார்க்கவில்லை ஏனென்றால் Akismet உபயோகத்தில் இல்லை அல்லது இது பதிவு செய்தவரின் போஸ்டிங்.
+spamcheck_posting_passed =  இந்த  போஸ்டிங்கை Akismet ஸபேம் வடிகட்டியை தாண்டி விட்டது. நீங்கள் உறுதியாக ஸபேம் என நம்பினால் புகார் செய்க!
+spamcheck_akismet_api_error = சோதணையின் போது தவறு ஏற்பட்டதால், இந்த  போஸ்டிங்கை Akismet ஸபேம் வடிகட்டியை தாண்டி விட்டது. காரணம் API சரியானது அல்லாமலிருக்கலாம்!
+spamcheck_akismet_timeout_error = சோதணையின் நேரம் கடந்துவிட்டதால், இந்த  போஸ்டிங்கை Akismet ஸபேம் வடிகட்டியை தாண்டி விட்டது.
+report_spam_delete_submit = நம்பத்தகாதவரெனில் முரையி்டவும் மற்றும் அழிக்க
+report_spam_submit =        நம்பத்தகாதவரெனில் முரையி்டவும்
+delete_only_submit =        அழிக்க மட்டும் செய்க
+postings_doesnt_exist =     இந்த போஸ்டிங்கை இல்லை!
+posting_not_flagged_as_spam = இந்த போஸ்டிங்கை ஸபேம்  இல்லை.
+flag_ham_hl =               ஹெம் என கொடி அசை
+flag_ham_note =             இந்த  போஸ்டிங்கை Akismet ஸபேம் வடிகட்டியால் ஸபேம் என வகைப்படுத்தப்பட். நீங்கள் உறுதியாக ஹெம் என நம்பினால், புகார் செய்க!
+report_flag_ham_submit =    ஹெம் என கொடி அசை மற்றும் புகார் செய்
+flag_ham_submit =           ஹெம் மட்டுமே என கொடி அசை
+no_authorisation_delete =   போஸ்டிங்கை அழிக்கமுடியவில்லை!  காரணம், போஸ்டிங்கை அழிக்க காலம் முடிந்துவிட்டது, திரட் பூட்டப்பட்டிருக்கிறது அல்லது  எற்கனவே பதில் வந்துவிட்டது.
+
+[captcha]
+captcha_marking =           ஸ்பெம் காப்பு:
+captcha_expl_math =         தயவு செய்து இரணடு எண்களை கூட்டுக:
+captcha_expl_image =        தயவு செய்து படத்திலுள்ள வார்த்தையை / எண்ணை நுழைக்கவும்:
+captcha_image_alt =         படத்தை பார்க்க முடியாவிட்டால் பயன் படுத்துபவர் கணக்கை உருவாக்கி அதன் பின் பட்டியலை சமார்ப்பிக்கவும்
+captcha_image_alt_reg =     படத்தை பார்க்க முடியாவிட்டால் பொது மன்ற நிர்வாகியை அநுகவும்
+captcha_check_failed =      ஸ்பெம் காப்பை தாண்டவில்லை - தயவு செய்து மீண்டும் முயற்சிக்கவும்!
+
+[upload_image]
+image_upload_not_enabled =  படத்தை மேலேற்ற ஆணையில்லை.
+upload_image_hl =           படத்தை மேலேற்றுக
+upload_image_button =       மேலேற்றுக
+upload_error =              படத்தை மேலேற்றும் போது தவறு நேர்ந்துவிட்டது
+upload_error_2 =            ஒரு படமும் இல்லை. அல்லது படத்தின் அளவு அநுமதிக்கப்பட்ட அளவைவிட பொரியதாக உள்ளது ([server_max_filesize]).
+invalid_file_format =       கோப்பின் வடிவம் சரியானது அல்ல
+file_too_large =            கோப்பின் அளவு பொரியதாக உள்ளது([width]*[height], [filesize] KB, அதிகபட்ச்சம் [max_width]*[max_height], [max_filesize] KB)
+upload_successful =         படம் வெற்ரறிகறமாக் மேலேற்றப்பட்டுவிட்டது
+image_downsized =           <strong>குரிப்பு:</strong> படத்தின் அளவை சிரிதாக்குக, புதிய அளவு [width] x [height] px, [filesize] KB.
+insert_image =              படத்தை செருகுக
+insert_image_exp =          செய்தியை செருகுக, தயவு செய்து படத்தின் மேல் கிளிக் செய்க.
+insert_image_exp_no_js =    படத்தை உங்களுடைய செய்தியில் சேர்க்க, கீழ்கண்ட குறியீட்டு முறையை பயன்படுத்துக:
+browse_uploaded_images =    மேலேற்றப்பட்ட படத்தை மேலோட்டமாக தேடு...
+back =                      &laquo; பின்நோக்கி செல்
+no_images =                 ஒரு படமும் இல்லை.
+delete_image_confirm =      இந்த உருவத்தைஅழிக்க?
+delete_image_button =       சரி - அழிக்க
+
+[insert_flash]
+insert_flash_hl =           பிளாஷ் விடியோவை செருகுக
+insert_flash_code =         விடியோ நிரல் (<code>&lt;object&gt;...&lt;/object&gt;</code>)
+flash_code =                நிரல்:
+select_flash_or =           ... அல்லது ...
+insert_flash_custom =       தனிப்பட்ட பிளாஷ் விடியோ
+flash_url =                 URL:
+flash_size =                அளவு:
+insert_flash_button =       பிளாஷ் விடியோவை செருகுக
+
+[avatar]
+avatar_hl =                 உருவ படம்
+delete_avatar =             உருவ படத்தை அழிக்கவும்
+upload_avatar_hl =          உருவ படத்தை மேலேற்று
+upload_avatar_notes =       அதிகபட்ச்ச உருவ படம் அளவு : [width]*[height] px, [filesize] KB
+upload_image_button =       மேலேற்று
+upload_error =              படத்தை மேலேற்றும் போது தவறு நேர்ந்துவிட்டது
+upload_error_2 =            ஒரு படமும் இல்லை. அல்லது படத்தின் அளவு அநுமதிக்கப்பட்ட அளவைவிட பொரியதாக உள்ளது  ([server_max_filesize]).
+invalid_file_format =       கோப்பின் வடிவம் சரியானது அல்ல
+file_too_large =            கோப்பின் அளவு பொரியதாக உள்ளது([width]*[height], [filesize] KB, அதிகபட்ச்சம் [max_width]*[max_height], [max_filesize] KB)
+upload_successful =         உருவ படம் வெற்ரறிகறமாக் மேலேற்றப்பட்டுவிட்டது
+close_window =              விண்டொவை மூடுக
+image_downsized =           <strong>குரிப்பு:</strong> உருவ படத்தின் அளவை சிரிதாக்குக, புதிய அளவு  [width] x [height] px, [filesize] KB.
+avatars_disabled =          உருவ படம் முடக்கப்பட்டிருக்கிறது
+
+[move_posting]
+move_posting_hl =           போஸ்டிங்கை நகர்த்துக
+move_posting_new_thread =   இந்த போஸ்டிங்கையும் அதன் பதில்களையும் தன்நிறைவு பெற்றதாக மாற்றுக
+move_posting =              இந்த போஸ்டிங்கையும் அதன் பதில்களையும் நகர்த்துக # [number]
+move_posting_submit =       சரி - போஸ்டிங்கை நகர்த்துக
+invalid_posting_to_move =   போஸ்டிங் எண் சரியானது அல்ல
+
+[manage_postings]
+manage_postings_hl =        போஸ்டிங்கை மேற்பார்வையிடு
+mark_postings =             குரிக்க
+mark_all_postings =         அனைத்து போஸ்டிங்கையும் குரிக்க
+unmark_all_postings =       அனைத்து போஸ்டிங் குரியையும் நீக்குக
+mark_old_threads =          [days] நாளுகாகு முந்தைய திரட்டுடன் சேர்த்த பதில்களை குரிக்க
+lock_postings =             பூட்டு
+lock_all_postings =         அனைத்து போஸ்டிங்கையும்  பூட்டுக
+unlock_all_postings =       அனைத்து போஸ்டிங்கையும் திர
+lock_old_threads =          [days] நாளுகாகு முந்தைய திரட்டுடன் சேர்த்த பதில்களை பூட்டுக
+
+[login]
+login_ip_temp_blocked =     பலமுறை உங்களுடைய பொது மன்றத்தில் நுழையும் முயற்சி பலனளிக்காததால்,உங்களை தற்காலிகமாக நுழைவு மறுக்கப்படுகிறது. தயவு செய்து சில நிமிடங்களுக்கு பிறகு மீண்டும் முயற்சிக்கவும்!.
+login_username =            பயன் படுத்துபவர் பெயர்:
+login_password =            மறைவு சொல்:
+login_auto =                இந்த கணிநியில் தானாகவே நுழைக
+login_submit =              நுழை
+login_advice =              நுழைய, குக்கிகள் செயலில் இருக்கவேண்டும்!
+pw_forgotten_link =         மறைவு சொல் மறந்துவிட்டேன்
+pwf_failed =                மின்-அசல் விலாசத்தில் யாறும் இல்லை
+login_failed =              பயன் படுத்துபவர் யார் என்று தெரியவில்லை அல்லது  மறைவு சொல் தவறு!
+registered_users_only =     பதிவு செய்தவர்கள் மட்டுமே தகவல் அநுப்பமுடியும்!
+account_not_activated =     உங்கள் கணக்கு செயல்பாட்டிற்கு வரவில்லை!
+account_activated =         உங்கள் கணக்கு வெற்றிகரம்க செயல்பாட்டிற்கு வந்துவிட்து
+account_activated_but_locked = உங்கள் கணக்கு வெற்றிகரம்க செயல்பாட்டிற்கு வந்துவிட்து ஆனால் நிர்வாகி அல்லது துணை நிர்வாகியால் திறக்கப்படவேண்டும்!
+mail_sent =                 மின்-அசல் அநுப்பப்பட்டுவிட்டது.
+pw_sent =                   புதிய மறைவு சொல் அநுப்பப்பட்டுவிட்டது
+code_invalid =              குறியீட்டு முறை சரியானது அல்ல.
+
+[pw_forgotten]
+new_pw_ok =                 மறைவு சொல் உறுவாக்கி அநுப்பப்பட்டுவிட்டது.
+new_pw_failed =             உருதி செய்யும் இணைப்பு சரியானது அல்ல.புதிய மறைவு சொல் உறுவாக்கமுடியவில்லை.
+pw_forgotten_exp =          மறைவு சொல் ஒருவழி மரைப்பு நெறிமுறையால் உருவாக்கப்பட்டது.அதனால் மறைவு சொலை திரும்பப்பெற இயலாது. புதிய மறைவு சொல் மட்டுமே பெற முடியும். தவறான உபயோகத்தை தவிர்க்க, உங்களுக்கு மின் - அஞ்சல் அநுப்பப்படும். மின்-அஞ்சலில் உள்ள இணைப்பை பின்பற்றினால் உங்கள் தேவை பூர்த்திசெய்யப்படும்.
+pwf_username =              பயன் படுத்துபவர் பெயர்:
+pwf_email =                 மின்-அசல்:
+
+[user]
+user_name =                 பயன் படுத்துபவர் பெயர்
+user_type =                 வகை
+admin =                     நிர்வாகி
+mod =                       துணை நிர்வாகி
+user =                      பயன் படுத்துபவர்
+user_email =                மின்-அசல்
+user_hp =                   முதல் பக்கம்
+mailto_user =               [user] மின்-அசல்
+email =                     மின்-அசல்
+homepage =                  முதல் பக்கம்
+user_postings =             போஸ்டிங்
+user_online =               அன்லைன்
+user_blockage =             பூட்டு
+online =                    அன்லைன்
+locked =                    பூட்டப்பட்டிருக்கிறது
+lock_title =                பயன் படுத்துபவரை பூட்டு
+unlocked =                  முடித்தல்
+unlock_title =              படுத்துபவரை திர
+currently_online =          தற்போது அன்லைன்
+
+[user_show]
+user_name =                 பயன் படுத்துபவர் பெயர்:
+user_avatar =               உருவ படம்:
+user_type =                 வகை:
+admin =                     நிர்வாகி
+mod =                       துணை நிர்வாகி
+user =                      பயன் படுத்துபவர்
+user_real_name =            பெயர்:
+gender =                    பால்:
+male =                      ஆண்
+female =                    பெண்
+age_birthday =              வாயது / பிறந்த தேதி:
+mailto_user =               [user] மின்-அசல்
+email =                     மின்-அசல்
+homepage =                  முதல் பக்கம்
+user_hp_email =             முதல் பக்கம் / மின்-அசல்:
+user_location =             இடம்:
+user_registered =           பதிவு செய்தவர்:
+user_last_login =           கடைசியாக நுழைந்தது:
+user_logins =               நுழை:
+user_postings =             போஸ்டிங்:
+show_postings_link =        போஸ்டிங்கை காண்பி
+last_posting =              கடைசி போஸ்டிங்:
+logins_per_day =            நுழைவு / நாள்:
+postings_per_day =          போஸ்டிங்ஸ் / நாள்:
+user_profile =              விபரம்
+user_account_doesnt_exist = பயன் படுத்துபவர் கணக்கு பயன்பாட்டில் இல்லை.
+
+[user_edit]
+edit_user_name =            பயன் படுத்துபவர் பெயர்:
+edit_avatar =               உருவ படம்:
+add_avatar_link =           உருவ படத்தை சேர்
+edit_avatar_link_title =    உருவ படத்தை மாற்று
+edit_user_type =            வகை:
+edit_user_email =           மின்-அசல்:
+edit_email =                மின்-அசல் விலாசத்தை மாற்று
+edit_user_pw =              மறைவு சொல்:
+pw_not_displayed =          காட்ச்சிக்கில்லாத
+edit_pw =                   மாற்று மறைவு சொல்
+edit_user_email_contact =   அநுக்த்கூடிய மின்-அசல் விலாசம்
+edit_user_real_name =       பெயர்:
+edit_user_gender =          பால்:
+male =                      ஆண்
+female =                    பெண்
+edit_user_birthday =        பிறந்த தேதி:
+birthday_format =           YYYY-MM-DD
+edit_user_hp =              முதல் பக்கம்:
+edit_user_location =        இடம்:
+edit_user_profile =         விபரம்:
+edit_user_signature =       கையொப்பம்:
+edit_user_cat_selection =   நான் தேர்ந்தெடுத்த பிரிவு :
+edit_user_time_zone =       நேர வலயம்:
+edit_user_time_difference = <!-- TODO -->Additional time difference in hours (e.g. +3 or -5:30):
+edit_user_default_time_zone_server = <!-- TODO -->Default (server time)
+edit_user_default_time_zone = <!-- TODO -->Default ([default_time_zone])
+edit_user_language =        மொழி:
+edit_user_default_language = <!-- TODO -->Default ([default_language])
+edit_user_theme =           மைய்ய கருத்து:
+edit_user_default_theme =   <!-- TODO -->Default ([default_theme])
+edit_user_auto_login =      தானாகவே பொது மன்றத்திநுள் நுழை
+enable_auto_login =         தானாகவே பொது மன்றத்திநுள் நுழையுமாறு செய்
+edit_user_notification =    மின்-அசல் அநுப்பப்பட்டிருக்கிறது:
+admin_mod_notif_posting =   புதிய செய்தி அநுப்பிய உடன்
+admin_mod_notif_register =  புதிதாக பயன் படுத்துபவர் சேர்ந்தவுடன்
+userdata_submit_button =    சரி - சேமிக்க
+profile_saved =             விபரம் சேமிக்கபட்டுவிட்டது
+pw_changed =                மறைவு சொல் மாற்றப்பட்டுவிட்டது
+
+[edit_pw]
+edit_pw_old =               பழைய மறைவு சொல்:
+edit_pw_new =               புதிய மறைவு சொல்:
+edit_pw_conf =              மறுபடியும் புதிய மறைவு சொலை :
+error_old_pw_wrong =        பழைய மறைவு சொல் தவரு
+error_pw_conf_wrong =       புதிய மறைவு சொலும் இரண்டாவது மறைவு சொலும் ஒன்றாக இல்லை
+error_new_pw_too_short =    புதிய மறைவு சொல்லில்  [characters] சொல்லாவது இருகாகவேணடும்
+
+[edit_email]
+edit_email_exp =            மின்-அசல் விலாசம் மாற்றும்போது, உங்கள் பொது மன்ற கணக்கு மீண்டும் செயல்பாட்டிற்கு கொண்டுவரப்படவேண்டும். அதற்கான செயல்படுத்தும் சாவி இணைப்பை உங்களின் புதிய மின் - அஞ்சலுக்கு அநுப்பப்படும். ஆதலால் உங்கள்  புதிய  மின்-அஞ்சலில் விலாசம் சரியானதாக இருக்குமாறு பார்த்துக்கொள்ள வேண்டும்.மேலும் உங்கள் பொது மன்ற கணக்கு ஒரு நாளுக்குள் செயல்பாட்டிற்கு கொண்டுவரப்படவேண்டும்.
+edit_email_new =            புதிய மின்-அசல்:
+edit_email_new_confirm =    புதிய மின்-அசலை உருதிசெய்:
+edit_email_pw =             மறைவு சொல்:
+error_form_uncompl =        அனைத்து பாகங்களும் நிரப்பப்படவில்லை
+error_email_confirmation =  புதிய மின்-அசல் மற்றும் அதனை உறுதிப்படுத்தும் மின்-அசல் விலாசமும் பொருந்தவில்லை
+error_email_too_long =      மின்-அசல் விலாசம் மிக நீளமானது
+error_identic_email =       புதிய மின்-அசலும், பழைய மின்-அசலும் ஒனறாக உள்ளது
+error_email_invalid =       மின்-அசல் விலாசம் சரியானது அல்ல
+pw_wrong =                  மறைவு சொல் தவரு
+
+[register]
+register_exp =              தயவு செய்து உங்களுக்கு விருப்பமான பயன் படுத்துபவர் பெயர், மறைவு சொல் மற்றும் சரியான மின்-அஞ்சலில் விலாசத்தை  தெரிவிக்கவும். செயல்படுத்தும் சாவி இணைப்பை உங்களின் மின் - அஞ்சலுக்கு அநுப்பப்படும். ஆதலால் உங்கள்  புதிய  மின்-அஞ்சலில் விலாசம் சரியானதாக இருக்குமாறு பார்த்துக்கொள்ள வேண்டும்.மேலும் உங்கள் பொது மன்ற கணக்கு ஒரு நாளுக்குள் செயல்பாட்டிற்கு கொண்டுவரப்படவேண்டும்.
+register_username =         பயன் படுத்துபவர் பெயர்:
+register_user_email =       மின்-அசல்:
+register_pw =               மறைவு சொல்:
+register_pw_conf =          மறுபடியும் மறைவு சொல்:
+register_only_by_admin =    பொது மன்ற நிர்வாகியின் மூலமே பயன் படுத்துபவர் சேர முடியும்.
+registered =                உங்கள் கணக்கு உருவாக்கப்பட்டுவிட்டது மறறும் அதற்கான செயல்படுத்தும் சாவி இணைப்பை உங்கள் <strong>[var]</strong> அநுப்பப்பட்டுவிட்டது. மேலும் உங்கள் பொது மன்ற கணக்கு ஒரு நாளுக்குள் செயல்பாட்டிற்கு கொண்டுவரப்படவேண்டும்.
+registered_send_error =     உங்கள் கணக்கு உருவாக்கப்பட்டுவிட்டது மறறும் அதற்கான செயல்படுத்தும் சாவி இணைப்பை உங்களுக்கு அநுப்பப்பமுடியவில்லை (அஞ்சல் சேவை மைய்யம் இயங்கவில்லை). கணக்கை செயல்பாட்டிற்கு கொண்டுவரப்படவேண்டுமானால் தயவு செய்து பொது மன்ற நிர்வாகியை அநுகவும்.
+activation_failed =         கணக்கை செயல்பாட்டிற்கு கொண்டுவர முடியவில்லை.
+error_password_too_short =  புதிய மறைவு சொல்லில் [characters] சொல்லாவது இருகாகவேணடும்
+error_email_alr_exists =    இந்த மின்-அசல் விலாசம் ஏற்கனவே ஒருவறால் உபயோகப்படுத்தப்பட்டு வருகிற்து
+error_reg_not_accepted_word = ஸ்பேம் காப்பு: ஏற்றுக்கொள்ள மயடியாத வார்த்தைகள் இந்த மின்-அசல் விலாசம் அல்லது பெயரில் இடம்பெற்றுள்ளது
+
+[contact]
+contact_hl =                பொது மன்ற நிர்வாகியின் மின்-அசல்
+contact_user_hl =           [recipient_name] உடையா மின்-அசல்
+impossible_to_contact =     தொடர்பு கொள்ள முடியாதவர்!
+contact_doesnt_exist =      விலாசம் சரியானது அல்ல
+sender_address_caption =    அநுப்புவோர் மின்-அசல்:
+subject_caption =           பாடம்:
+message_caption =           செய்தி:
+message_submit_caption =    சரி - செய்தியை அநுப்பலாம்
+email_sent =                செய்தி வெற்ரறிகறமாக் அநுப்பப்பட்டுவிட்டது.
+error_no_text =             செய்தியை நுழைக்கவில்லை
+error_no_email =            அநுப்புனர் மின்-அசல் விலாசம் குறிப்பிடப்படவில்லை
+error_no_subject =          பாடம் இல்லை
+error_email_invalid =       மின்-அசல் விலாசம் சரியானது அல்ல
+error_email_subject_too_long = பாடம் மிக நீளமானது
+error_email_text_too_long = செய்தி மிக நீளமானது ([text_length] எழுத்துக்கள் - மட்டும் [text_maxlength] எழுத்துக்கள் அநுமதிக்கப்படுகிறது)
+error_spam_suspicion =      ஸ்பேம் என எதிர்பார்க்கப்படுகிறது! தயவு செய்து செய்தியை  மாற்றுக(மாதிரிக்கு: இணைப்புக்களை அழிக்கவும்)
+
+[info]
+user_locked =               உங்கள் கணக்கு தற்போது முடப்பட்டுவிட்டது.
+forum_disabled =            பொது மன்றம் தற்போது முடப்பட்டுவிட்டது.
+
+[delete_cookie]
+delete_cookie =             குக்கிகளை அழிக்கப்படவேண்டும்.
+
+[admin]
+enabled =                   செயல்பட வை
+disabled =                  முடக்கப்பட்டிருக்கிறது
+folder_alt =                உறை
+file_alt =                  கோப்பு
+admin_confirm_password =    நிர்வாகி மறைவு சொல்:
+error_password_wrong =      மறைவு சொல் தவரு
+
+# admin menu
+forum_settings_link =       பொது மன்ற அமைப்புகள்
+category_administr_link =   பிரிவுகள் நிர்வாகம்
+user_administr_link =       பயன் படுத்துபவர் நிர்வாகம்
+smilies_administr_link =    சிரிப்பு முகங்கள்
+pages_administr_link =      பக்கங்கள்
+spam_protection_link =      ஸ்பேம் காப்பு
+backup_restore_link =       காப்பீடு செய்
+update_link =               புதுப்பிக்க
+reset_uninstall_link =      நிலையை மீட்டு அல்லது பொது மன்றத்தை நீக்குக
+
+# forum settings:
+clear_chache =              பழையதை நீக்குக
+settings_submit_button =    சரி - அமைப்பை சேமிக்க
+settings_saved =            அமைப்பு சேமிக்கபட்டுவிட்டது
+advanced_settings_link =    முற்போக்கு அமைப்பு
+forum_name =                பொது மன்ற  பெயர்
+forum_name_desc =           தலைப்பில் காண்பிக்கப்படும்(மற்றவற்றுள்)
+forum_description =         பொது மன்ற குறிப்பு
+forum_description_desc =    பொது மன்றத்தை பற்றிய செறு குறிப்பு
+forum_address =             பொது மன்ற விலாசம்
+forum_address_desc =        பொது மன்றத்தின் URL (http://www.domain.tld/forum/) இம் மாதிரியாக இருக்கவேண்டும்
+forum_email =               பொது மன்ற மின்-அசல் விலாசம்
+forum_email_desc =          பொது மன்றத்திலிருந்து செல்லும் அனைத்து மின்-அசலுக்கும் அநுப்புனர் விலாசமாகவும் மற்றும் அநுகுதலுக்கான விலாசமாகவும் பயன்படுத்தப்படும்
+home_link =                 முதல் பக்க இணைப்பு
+home_link_desc =            உங்கள் முதல் பக்க இணைப்பு, மாதிறி. http://www.domain.tld/ or ../index.html (விரும்பினால்)
+home_link_name =            முதல் பக்க இணைப்பு பெயர்
+home_link_name_desc =       முதல் பக்க இணைப்பு பெயர், மாதிறி. &quot;மருபடியும் முதல் பக்கத்திற்கு&quot;
+default_language =          மொழி
+default_language_desc =     <!-- TODO -->Default language of the forum
+default_time_zone =         நேர வலயம்
+default_time_zone_desc =    <!-- TODO -->Default time zone
+default_time_difference =   <!-- TODO -->Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
+default_theme =             மைய்ய கருத்து
+default_theme_desc =        <!-- TODO -->Default forum layout theme
+threads_per_page =          திரட் / பக்கம்
+threads_per_page_desc =     ஒரு பக்கத்திற்கு எத்தனை திரட்டை காட்ச்சிக்கு வைக்கவேண்டும்?
+auto_lock_old_threads =     தானாக்வே பழைய திரட்டை பூட்டுக
+auto_lock_old_threads_desc = கடைசி பதில் எத்தனை நாளுக்கு முன்னதாக இருந்தால் திரட்டை தானாக்வே பூட்ட வேண்டும்? (0=முடக்கப்பட்டிருக்கிறது)
+accession =                 அநுகுவதறகான உரிமையுடைய
+accession_desc =            பொது மன்றத்தை அநுகுவதறகான உரிமையுடையவர் யார்?
+post_permission =           போஸட் உரிமையுடைய
+post_permission_desc =      செய்தியை யார் போஸட் செய்ய அநுமதிக்கப்படுவர்?
+only_registered_users =     பதிவு செய்தவர்கள் மட்டும்
+all_users =                 அனைத்து
+register_permission =       பயன் படுத்துபவரை பதிவு செய்
+register_permission_desc =  பயன் படுத்துபவர் அவர்களாகவே பதிவு செய்துகொள்ல முடியுமா?
+register_self =             தானே
+register_self_locked =      தானே அனால் புதிய கணக்கை நிர்வாகி or a துணை நிர்வாகி திறந்து விடவேண்டும்
+register_only_admin =       நிர்வாகியால் மட்டும்
+user_area =                 பயன் படுத்துபவர் பகுதி
+user_area_desc =            பயன் படுத்துபவர் பகுதியில்(பயன் படுத்துபவர் பட்டியல், விபரங்கள்) அநைவரும் அநுகலாம்?
+public_accessible =         அநைவரும் அநுகலாம்
+accessible_reg_users_only = பதிவு செய்தவர்கள் மட்டும் அநுகுக
+latest_postings =           சமீபத்திய போஸ்டிங்
+latest_postings_desc =      எத்தனை சமீபத்திய போஸ்டிங் முதல் பக்க பட்டியலில் காட்ச்சிக்கு வைக்கவேண்டும்(0=முடக்கப்பட்டிருக்கிறது)?
+tag_cloud =                 அடையாள மேகம்
+tag_cloud_desc =            சமீபத்திய அடையாள மேகத்தை முதல் பக்கத்தில் காட்ச்சிக்கு வைக்கவேண்டும்?
+enable_tag_cloud =          அடையாள மேகத்தை செயல்பட வை
+terms_of_use_agreement =    உபயொக விதிமுரைக்கான உடன்பாடு
+terms_of_use_agreement_desc =வேண்டுகோள்!  பதிவு செய்யாதற்கும், செய்தி அநுப்புவதற்கும். பதிவு செய்யாதவர்களுக்கான உபயொக விதிமுரை உடன்பாடு.
+terms_of_use_agreement_enabled = உபயொக விதிமுரைக்கான உடன்பாட்டை செயல்பட வை
+terms_of_use_url =          உபயொக விதிமுரைக்கான URL:
+edit_postings =             போஸ்டிங்கை  மாற்றுக
+edit_postings_desc =        போஸ்டிங் நடத்தையை மாற்றுக
+edit_own_postings =         சொந்த போஸ்டிங்கை  மாற்றுக
+edit_own_postings_all =     அனைத்து பயன் படுத்துபவரும் சொந்த போஸ்டிங்கை  மாற்றலாம்
+edit_own_postings_users =   பதிவு செய்தவர்கள் மட்டும் சொந்த போஸ்டிங்கை  மாற்றலாம்
+edit_own_postings_disabled = முடக்கப்பட்டிருக்கிறது(நிர்வாகி மற்றும் துணை நிர்வாகி மட்டும்  போஸ்டிங்கை  மாற்றலாம்)
+user_edit_if_no_replies =   போஸ்டிங்கின் பதிலை [minutes] நிமிடங்களுக்குள் மட்டும்தான் மாற்றலாம் (0 = பதிலை வந்துவிட்டால் மாற்ற இயலாது )
+edit_max_time_period =      சொந்த போஸ்டிங்கை அதிகபட்ச்சம் [minutes] நிமிடங்களுக்குள் மட்டும்தான் மாற்றலாம்:  (0 = எல்லையில்லா)
+show_if_edited =            போஸ்ட் செய்த பின், [minutes] நிமிடங்களுக்கு பிறகு மாற்றப்பட்ட போஸ்டிங்கை காண்பிக்க
+dont_show_edit_by_admin =   நிர்வாகியால் மாற்றப்பட்ட போஸ்டிங்கை காண்பிக்கவேண்டாம்
+dont_show_edit_by_mod =     துணை நிர்வாகியால் மாற்றப்பட்ட போஸ்டிங்கை காண்பிக்கவேண்டாம்
+bbcode =                    BB குறியீடு
+bbcode_desc =               செய்தியை முரைப்படுத்த BB குறியீடு செயல்படுத்தவும்?
+bbcodes_enabled =           BB குறியீடு செயல்பட வை
+bbcodes_img_enabled =       BB குறியீடு மூலம் படத்தை செருகுக அனுமதிக்கவும்
+bbcodes_flash_enabled =     BB குறியீடு மூலம் பிளாஷ் வீடியோவை  செருகுக அனுமதிக்கவும்
+smilies =                   சிரிப்பு முகங்கள்
+smilies_desc =              ":-)" இது போன்ற சிரிப்பு முகங்களை படமாக மாற்ற வேண்டுமா? (சிரிப்பு முகங்களை சிரிப்பு முகங்களுக்கான நிர்வாக பக்கத்தின் மூலம் உருவாக்குக)
+smilies_enabled =           சிரிப்பு முகங்களை செயல்பட வை
+enamble_avatars =           உருவ படங்கள்
+enamble_avatars_desc =      பதிவு செய்தவர்கள் மட்டும் உருவ படம் மேலேற்ற முடிய வேண்டும்? அதனால் images/avatars/ என்ற உறை எழுதப்படக்கூடியதாக இருகாக வேண்டும் (CHMOD 777).
+avatars_profiles_postings = உருவ படங்களை பயன் படுத்துபவர் விபரத்திலும்  போஸ்டிங்கிலும காட்ச்சிக்கு வை
+avatars_profiles =          உருவ படங்களை பயன் படுத்துபவர் விபரத்தில் மட்டும் காட்ச்சிக்கு வை
+max_avatar_size =           அதிகபட்ச்சம் உருவ படம் அளவு:<br /> [width] x [height], [filesize] KB
+upload_images =             படங்களை மேலேற்ற
+upload_images_desc =        படங்களை மேலேற்ற முடிய வேண்டும்? அதனால் images/uploaded/ என்ற உறை எழுதப்படக்கூடியதாக இருகாக வேண்டும் (CHMOD 777).
+upload_enabled_admins_mods = துணை நிர்வாகி மற்றும் நிர்வாகி மட்டும்
+upload_enabled_users =      பதிவு செய்தவர்களுக்கு செயல்பட வை
+upload_enabled_all =        அனைவருக்கும் செயல்பட வை
+max_upload_size =           அதிகபட்ச்சம் உருவ படம் அளவு:<br /> [width] x [height], [filesize] KB
+autolink =                  தாநியங்கி இணைப்பு
+autolink_desc =             URLகளை தானாகவெ அரிந்துகொண்டு கிளிக் செய்யக்கூடியவாறு மாற்றுக?
+autolink_enabled =          தாநியங்கி இணைப்பை இயக்கு
+count_views =               காட்ச்சிகள் எண்ணிக்கை
+count_views_desc =          செய்திக் காட்ச்சிகள் எண்ணப்பட வேண்டுமா?
+views_counter_enabled =     காட்ச்சிகள் எண்ணிக்கை இயக்கு
+count_users_online =        ஆன்லைன் பயன் படுத்துபவர் எண்ணுக
+count_users_online_desc =   எத்தனை நிமிடங்களுக்கள் உள்ள ஆன்லைன் பயன் படுத்துபவரை எண்ண  வேண்டும்(0=முடக்கப்பட்டிருக்கிறது)?
+rss_feed =                  RSS புகடுகள்
+rss_feed_desc =             RSS புகடை செயல்பட வை("அனைவருக்கும்" என்ற அநுகுதல் அநுமதி இருந்தால் மட்டும்)?
+rss_feed_enabled =          RSS புகடை செயல்பட வை
+forum_enabled_marking =     பொது மன்றத்தை செயல்பட வை
+forum_enabled_desc =        பொது மன்றம் முடக்கப்பட்டிருக்கும்போது தடையை எடு. பொது மன்றம் முடக்கப்பட்டிருக்கும்போது நிர்வாகிக்கு மன்றம் திறந்திருக்கும்.
+forum_enabled =             பொது மன்றம் செயல்பட வை
+forum_disabled_message =    முடக்கப்பட்டிருக்கும்போது இந்த செய்தியை காண்பி:
+category_name =             பிரிவுகள்
+category_accession =        அநுமதி
+யுடையவர்
+cat_accessible_admin_mod =  நிர்வாகி மற்றும் துணை நிர்வாகி
+cat_accessible_reg_users =  பதிவு செய்தவர்கள்
+cat_accessible_all =        அநைத்தும்
+category_topics =           திரட்ஸ்
+category_entries =          பதிவுகள்
+no_categories =             பிரிவுகள் குறிப்பிடப்படவில்லை.
+new_category =              புதிய பிரிவு:
+edit_category =             பிரிவு:
+category_accessible_by =    அநுமதியுடையவர்:
+entries_in_not_ex_cat =     <strong>குரிப்பு:</strong> பிரிவுகள் சில தற்போது இல்லாததனால் அதன் பதிவுகளை காண்பிக்க முடியாது. இந்த பதிவுகளை என்ன செய்யவேண்டும்?
+entries_in_not_ex_cat_del = அழிக்கவும்
+entries_in_not_ex_cat_mov = பிரிவுக்கு நகற்றவும்:
+category_already_exists =   எற்கனவே உள்ள பிரிவுகள்
+delete_category_hl =        "[category]" பிரிவை அழிக்கவும்
+delete_category_compl =     பிரிவையும் அதன் பதிவுகளையும் அழிக்கவும்
+del_cat_keep_entries =      பிரிவையும் அழிக்கவும் அதன் பதிவுகளையும் வைத்துக்கொள்ளவும்
+del_cat_move_entries =      பிரிவையும் அழிக்கவும் அதன் பதிவுகளையும் வைத்துக்கொள்ளவும் மற்றும் இந்த பிரிவுக்கு மாற்றவும்:
+delete_category_submit =    சரி - பிரிவை அழி
+
+# Smilies:
+edit_smilies_smiley =       சிரிப்பு முகங்கள்:
+edit_smilies_codes =        குறியீடுகள்:
+edit_smilies_title =        தலைப்பு:
+smiley_file_doesnt_exist =  சிரிப்பு முகங்கள் கோப்பு காணவிள்லை
+smiley_code_empty =         சிரிப்பு முகங்கள் குறியீடப்படவில்லை
+no_other_smilies_in_folder =சிரிப்பு முகங்கள் உறையில் வேறு சிரிப்பு முகங்கள் இல்லை . சிரிப்பு முகங்களை சேர்க்க, சிரிப்பு முகங்கள் கோப்பை 'images/smilies' இந்த உறையினுள் வைக்க.
+smiley_image =              சிரிப்பு முகங்கள்
+smiley_codes =              குறியீடுகள்
+smiley_title =              தலைப்பு
+disable_smilies =           சிரிப்பு முகங்கள் செயலிழக்கச்செய்
+enable_smilies =            சிரிப்பு முகங்கள் செயல்பாட்டுக்கு கொண்டுவா
+add_smiley =                சிரிப்பு முகங்களை சேர்க்க:
+add_smiley_code =           குறியீடு:
+smilies_disabled =          சிரிப்பு முகங்கள் முடக்கப்பட்டிருக்கிறது.
+
+# pages:
+page_title =                தலைப்பு
+page_content =              பொருள்
+page_content_desc =         HTML பயன்படுத்தி பக்கங்கள் முறைப்படுத்து
+page_menu_linkname =        பட்டியல் இணைப்பு பெயர்
+page_menu_linkname_desc =   பட்டியல் இணைப்பு பெயர்
+page_access =               அநுமதி
+page_access_reg_users =     பதிவு செய்தவர்கள் மட்டும்
+page_access_public =        பொதுமக்கள்
+no_pages =                  பக்கம் கிடைக்கவில்லை
+add_page_link =             பக்கங்களை சேர் சேர்க்க
+edit_page_submit =          சரி - பக்கத்தை சேமிக்கவும்
+page_doesnt_exist =         பக்கங்கள் இல்லை.
+delete_page_confirm =       பக்கத்தை அழிக்கவேண்டுமா?
+delete_page_submit =        சரி - பக்கத்தை அழிக்கவும்
+error_no_page_title =       தலைப்பு இல்லை
+
+# பயன் படுத்துபவர் நிர்வாகம்:
+user_name_empty =           பயன் படுத்துபவர் பெயர் நுழைக்கவில்லை
+num_registerd_users =       [number] பதிவு செய்தவர்
+user_id =                   ID
+user_name =                 பயன் படுத்துபவர் பெயர்
+user_email =                மின்-அசல்
+user_type =                 வகை
+user_registered =           பதிவு செய்தவர்
+user_logins =               நுழைவாயில்
+last_login =                கடைசியாக நுழைந்து
+lock =                      பூட்டு
+admin =                     நிர்வாகி
+mod =                       துணை நிர்வாகி
+user =                      பயன் படுத்துபவர்
+locked =                    பூட்டப்பட்டிருக்கிறது
+unlocked =                  நிறுத்து
+lock_title =                பயன் படுத்துபவரை பூட்டு
+unlock_title                பயன் படுத்துபவரை திர
+user_inactive =             பயன் படுத்துபவர் செயல்பாட்டிலில்லை
+activate_note =             பயன் படுத்துபவர் கணக்கு இன்னும் செயல்படுத்தப்படவில்லை அல்லது பயன் படுத்துபவர் மின-அஞ்சலை மாற்றுகிறார். தானாக செயல்படுத்த முடியாதவர்களுக்கு மட்டும் செயல்படுத்தவும்.
+activate_link =             கணக்கை செயல்படுத்தவும்
+delete_selected_users =     தேர்வுசெய்தை அழிக்கவும்
+add_user =                  பயன் படுத்துபவரை சேர்
+email_list =                பதிவு செய்தவர்களின் மின்-அசல் பட்டியல்
+clear_userdata =            பயன் படுத்துபவேரின் தகவலை நீக்கவும்
+delete_avatar =             உருவ படம் அழிக்கவும்
+delete_user_confirmation =  பயன் படுத்துபவரை அழிக்க வேண்டும்?
+delete_users_confirmation = பின் வரும் பயன் படுத்துபவரை அழிக்க வேண்டும்?
+delete_users_submit =       சரி - அழிக்க
+register_exp =              மறைவு சொல்லுக்கான இடத்தை நிரப்பாமல் விட்டால், தானாக ஒரு மறைவு சொல்லை உருவாக்கப்பட்டு  பயன் படுத்துபவேரின் மின் அஞ்சலுக்கு அநுப்பப்படும்.
+register_username =         பயன் படுத்துபவர் பெயர்:
+register_email =            மின்-அசல்:
+register_pw =               மறைவு சொல்:
+register_pw_conf =          மறைவு சொல்லை உருதிசெய்:
+register_send_userdata =    பயன் படுத்துபவேரின் தகவலை மெற்கூரிய மின்-அசல் விலாசத்திற்கு அநுப்பவும்
+error_send_userdata =       மறைவு சொல்லுக்கான இடத்தை நிரப்பாமல் விட்டால், பயன் படுத்துபவேரின் தகவல் மின் அஞ்சலுக்கு அநுப்பப்படும்.
+error_email_wrong =         மின்-அசல் சரியானது அல்ல
+new_user_registered =       பயன் படுத்துபவர் "[name]" பதிவுசெய்யப்பட்டுவிட்டது.
+new_user_reg_send_error =   பயன் படுத்துபவர் "[name]" பதிவுசெய்யப்பட்டுவிட்டது அனால்பயன் படுத்துபவேரின் தகவலை அநுப்பப்பமுடியவில்லை.
+clear_userdata_condition =  அதிகபட்ச்சம் [logins] நேரம் பொது மன்றத்தில் நுழைந்திருப்பவரையும், போன முரை [days] நாளுக்கு மேல் நுழைந்திருப்பவரையும் அழிக்கவும்.
+clear_userdata_note =       நிர்வாகி மற்றும் துணை நிர்வாகி தாக்கப்படமாட்டார்கள். அழிக்கும் முன் தெரிவு செய்யப்பட்ட பயன் படுத்துபவர் பட்டியலை பெருக.
+no_users_in_selection =     தெரிவு செய்யப்பட்ட பட்டியலில் யாரும் இல்லை
+
+# spam protection:
+captcha =                   CAPTCHA
+captcha_desc =              எந்த படிவம் எந்த வகை CAPTCHA வால் பாதுகாக்கப்படவேண்டும் (பதிவு செய்யாதவர்களுக்கு மட்டும்)?
+captcha_graphical_desc =    படத்துடன் கூடிய CAPTCHA உருவாக்க GD Lib தேவைப்படுகிறது மேலும் TTF வார்த்தை வடிவம் பயன்படுத்துமாறு  சிபாரிசுசெய்யப்படுகிறது. வார்த்தை வடிவ கோப்பை (*.ttf) modules/captcha/fonts/ என்ற உறையில் வைக்கவும்.
+captcha_posting =           படிவம் அஞ்சல் செய்யப்படுகிறது:
+captcha_email =             மின்-அசல் படிவம்:
+captcha_register =          பதிவு விண்ணப்ப படிவம்:
+captcha_disabled =          முடக்கப்பட்டிருக்கிறது
+captcha_mathematical =      கணிதம்
+captcha_graphical =         படத்துடன் கூடிய
+gr_captcha_not_available =  படத்துடன் கூடிய CAPTCHA பெற முடியாது(GD Lib இல்லை)
+gr_captcha_no_font =        வார்த்தை வடிவம் இல்லை, CAPTCHA குறியீடு காட்சிக்கு கொண்டுவரமுடியாது
+bad_behavior =              தவறான நடத்தை
+bad_behavior_desc =         <a href="http://www.bad-behavior.ioerror.us/">தவறான நடத்தை</a> நம்பத்தகாதவரிடமிருந்து பாதுகாப்பு.
+bad_behavior_enable =       தவறான நடத்தையை காண்பிக்கச் செய்
+akismet =                   Akismet
+akismet_desc =              <a href="http://akismet.com/">Akismet</a> நம்பத்தகாதவரிடமிருந்து பாதுகாப்தற்கான சேவை. இந்த சேவையை பயனபடுத்த, உங்களுக்கு <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> தேவைப்படுகிறது (API சாவி இல்லாமலோ அல்லது செல்லாததோ ஆனால் இது வேலை செய்யாது!).
+akismet_key =               Wordpress API சாவி:
+akismet_save_spam =         நம்பத்தகாதது சேமிக்கவும் (நம்பத்தகாதது என கொடி அசை மேலும் காட்சிக்கு வைக்கவில்லை)?
+akismet_auto_delete_spam =  நம்பத்தகாததை எத்தனை மணி நேரத்திற்கு பிறகு தானாகவே அழிக்கவேண்டும்(0=அழிக்கவேண்டாம்)?
+akismet_entry =             அஞ்சல் படிவத்தை சரிபார்க்க
+akismet_mail =              மின்-அஞ்சல் படிவத்தை சரிபார்க்க
+banned_ips =                தடைவிதிக்கப்பட்ட IP கள்
+banned_ips_desc =           அநுமதிக்க்த்கூடாத IP விலாசங்கள். IP எல்லைகள் (e.g. 10.10.1.*) மேலும் CIDR குறியீடு (e.g. 10.10.1.32/27) முடியும். ஒரு கோட்டில் ஒரு IP.
+banned_user_agents =        தடைவிதிக்கப்பட்ட பயன்படுத்துபவர் பிரதிநிதி
+banned_user_agents_desc =   அநுமதிக்க்த்கூடாத பயன்படுத்துபவர் பிரதிநிதிகளில் உள்ள எழுத்துக்களின் கோர்வை, ஒரு கோட்டிற்கு   ஒரு எழுத்துக் கோர்வை.
+not_accepted_words =        எற்க முடியாத வார்த்தைகள்
+not_accepted_words_desc =   பதிவுகள் மற்றும் மின் அஞ்சலிலும் எற்க முடியாத வார்த்தைகள் அல்லது களம்கள்(domains). ஒரு கோட்டிற்கு ஒரு எழுத்து.
+spam_protection_submit =    சரி - சேமிக்கவும்
+error_own_ip_banned =       நீங்கள் உங்களுடைய சொந்த IP யை தடைசெய்துள்ளீர்கள்!
+error_own_user_agent_banned = நீங்கள் உங்களுடைய சொந்த பயன்படுத்துபவர் பிரதிநிதியையே தடைசெய்துள்ளீர்கள்!
+spam_protection_saved =     சேமிக்கபட்டுவிட்டது
+
+# நிலையை மீட்டு / நீக்குக:
+reset_forum =               பொது மன்றத்தை நிலையை மீட்டு
+delete_postings =           அனைத்து அஞ்சல்களையும் அழிக்க
+delete_userdata =           அனைத்து  பயன் படுத்துபவேரின் தகவலையும் அழிக்க (உங்களுடைய நிர்வாக கணக்கை தவிற)
+reset_forum_submit =        சரி - பொது மன்றத்தை நிலையை மீட்டு
+uninstall_forum =           பொது மன்றத்தை நீக்குக
+uninstall_forum_exp =       இது அனைத்து பொது மன்ற அட்டவனைகளையும் அழித்துவிடும். இதன் பிறகு பொது மன்றம் வேலைசெய்யாது!
+uninstall_forum_submit =    சரி - பொது மன்றத்தை நீக்குக
+error_no_selection_made =   தேர்வு செய்யும் முறை அல்ல
+
+# காத்து வை:
+backup_note =               காத்து வைக்க செய்தல் வேலையை செய்வதற்கு <i>backup</i> என்ற உறை எழுதக்கூடியதாக இறுக்கவேண்டும். மேலும் இந்த உறையை இணையதளதாதின் வழியாக பெற இயலாமல் செய்யவும்!
+backup_file =               கோப்பு
+backup_date =               நாள்
+backup_size =               அளவு
+create_backup_complete =    முழுமையாக காத்து வைக்கவும்
+only_create_backup_of =     காத்து வை :
+backup_entries =            பதிவுகள்
+backup_userdata =           பயன் படுத்துபவேரின் தகவல்
+backup_settings =           அமைப்புகள்
+backup_categories =         பிரிவுகள்
+backup_pages =              பக்கங்கள்
+backup_smilies =            சிரிப்பு முகங்கள்
+backup_banlists =           தடைவிதிக்கப்பட்ட பட்டியல்
+download_backup_file =      முழுமையாக காத்து வைத்த கோப்பை இங்கு கொண்டுவருக
+delete_selected =           தேர்வு செய்தவற்றை அழிக்க
+check_all =                 அனைத்தையும் குறிக்க
+uncheck_all =               அனைத்தையும் குறிகளையும் நீக்கு
+restore =                   திரும்பப்பெரு
+delete_backup_file =        காத்து வைத்த கோப்பை அழி
+delete_backup_file_confirm = காத்து வைத்த கோப்பை அழிக்க வேண்டுமா?
+delete_selected_confirm =   தேர்வு செய்த காத்து வைத்த கோப்பை அழிக்க வேண்டுமா?
+delete_backup_submit =      சரி  - அழி
+restore_confirm =           நிச்சயமாக உங்களுக்கு இந்த காத்து வைக்கப்பட்ட கோப்பிலிருந்து டேடாபேஸை பழய நிலைக்கு கொண்டுவரவேண்டுமா?<br/><strong>அனைத்து பாதிக்கப்பட்ட  அட்டவனைகளும் மீண்டும் எழுதப்படும் !</strong>
+restore_safe_mode_warning = பாதுகாப்பு வித எச்சரிக்கை!
+restore_safe_mode_note =    இந்த சேவை மைய்யத்தின் பாதுகாப்பு முறை தூண்டப்பட்டிறுப்பதால் ஸ்கிரிப்ட் ஓடும் நேரத்தை நீட்டிக்க இயலாது! காத்து வைக்கும் முயற்சி முடிவடையாமல் போவதை தடுக்க, நீங்கள் நீண்ட கோப்புகளை பல சிரிய கோப்புகளாக பிரித்து ஒன்றன் பின் ஒன்றாக செயல்பட செய்யவேண்டும்!
+restore_submit =            சரி - திரும்பப்பெரு
+restore_backup_ok =         காப்பீடு திரும்பப்பெரப்பட்டது.
+backup_file_created =       காத்து வைப்பு கோப்பு உருவாக்கப்பட்டுவிட்டது .
+error_file_doesnt_exist =   கோப்பு இல்லை!
+error_delete_backup_file =  காப்பீடு செய்த கோப்பை அழிக்க முடியவில்லை
+error_create_backup_file =  கோப்பை உருவாக்க முடியவில்லை - நீங்கள் சரியான எழுதும் அநுமதியை "backup" என்ற உறைக்கு அமைத்திருக்கிறீர்களா என உறுதி செய்துகொள்ளுங்கள்
+error_restore_mysql =       MySQL தவரு: [mysql_error]
+
+# Update:
+update_current_version =    தற்போதைய பதிப்பு: <strong>[version]</strong>
+update_instructions_hl =    எப்படி புதுப்பிப்பது
+update_instructions =       பொது மன்றத்தினை புதுப்பிக்கவேண்டுமானால், பொது மன்றத்தினை செயலிழக்கச்செய்யுமாறு அறிவுறுத்தப்படுகிறது(பொது மன்றத்தினை செயல்பட வை எனற குறிகளை நீக்கு <a href="index.php?mode=admin&action=settings">forum settings</a>)
+update_instructions =       தற்போதைய பதிப்பை பெற <a href="http://mylittleforum.net/">mylittleforum.net</a>
+update_instructions =       ஸ்கிரிப்ட் பையை அவிழ்த்து,புதுப்பிப்பதற்கான கோப்பை "update" என்ற துணை உறையில் பார்க்கவும் மேலும் இந்த கோப்பை உங்கள் சேவை மைய்யத்தின் "update" உறைக்கு  நகற்த்துக.
+update_instructions =       இந்த  பக்கங்களை மீண்டும் கொண்டுவந்தால் புதுப்பிப்பதற்கான கோப்பை கீழே பார்க்கலாம்
+update_instructions =       கோப்பின்மீது அழுத்தவும் மேலும் வரக்கூடிய உத்தறவுகளை பின்பற்றவும்
+update_instructions =       புதுப்பிப்பத பிறகு, உங்களுக்கு எந்த்  உறை அல்லது  கோப்பினை சேர்க்கவோ அல்லது நீக்கவோ வேண்டும் எனற பட்டியல் கிடைக்கும்,<em>templates_c</em> ல் உள்ள கோப்புகளை  நீக்க வேண்டும்
+update_available_files =    காணப்படும் புதுப்பிப்பதற்கான கோப்புக்ள்
+update_no_files_available = புதுப்பிப்பதற்கான கோப்புக்ள் காணவில்லை.
+update_file_title =         இந்த புதுப்பிப்பதற்கான கோப்பை ஓட்டு
+update_confirm =            இந்த புதுப்பிப்பதற்கான கோப்பை ஓட்ட வேண்டும்?
+update_submit =             சரி - புதுப்பிக்கவும்
+update_successful =         டேடாபேஸ் புதுப்பிக்கமுடியவில்லை.
+update_items_note =         தயவு செய்து இந்த புதிய பொது மன்றத்தின் (பதிப்பு [version]) உறை / கோப்பை உங்கள் சேவை மைய்யத்திற்கு  நகற்த்துக :
+update_download =           நீங்கள் இன்னும் இந்த கோப்புகளை பொறவில்லையேல் அநுகவும் [[here]] .
+
+[emails]
+email_subject =             பதில் "[original_subject]"
+email_text =                """வணக்கம் [recipient],
+ "[original_subject]" க்கான பதில் அஞ்சலை [name] அநுப்பியுள்ளார் :
+
+Subject: [subject]
+[text]
+
+அஞ்சலுக்கான URL: [posting_address]
+
+--- உங்களுடைய முதல்  அஞ்சல் ---
+
+[original_text]"""
+
+email_text_delayed_addition = """---
+அஞ்சலை மேநுவலாக தூண்டப்பட்டிறுப்பதால் இந்த குரிப்பு காண்பிக்கப்படுகிறது """
+
+admin_email_subject =       பொது மன்றத்தின் புதிய பதிவு: [subject]
+admin_email_text =          """புதிய பதிவை செய்தவர் [name]
+பாடம்: [subject]
+
+[text]
+
+அஞ்சலுக்கான URL: [posting_address]"""
+admin_email_text_reply =    """பதிலளித்தவர் [name]
+பாடம்: [subject]
+
+[text]
+
+அஞ்சலுக்கான URL: [posting_address]"""
+admin_reg_user_email_subj = பொது மன்றத்தின் விண்ணப்ப படிவம்
+admin_reg_user_email_text = """வணக்கம் [name],
+பொது மன்றத்திற்கு வருக!
+
+பொது மன்றத்தினுள் நுழைவதற்கான விஷயங்கள்:
+
+பயன்படுத்துபவர் பெயர்: [name]
+மறைவு சொல்: [password]
+
+நேரடியாக நுழைவதற்கான இணைப்பு:
+[login_link]
+
+
+மறைவு சொல்லை பொது மன்றத்தினுள் செந்றபின் மாற்றிக்கொள்ளலாம்."""
+
+new_user_email_sj =         பொது மன்றத்தின் விண்ணப்ப படிவம்
+new_user_email_txt =        """வணக்கம் [name],
+welcome to the forum!
+
+உங்களுடைய கணக்கை தூண்ட இந்த இணைப்பை பின்பற்றவும்:
+[activate_link]"""
+new_user_notif_sj =         புதிய சந்தாதாரர்
+new_user_notif_txt =        """வணக்கம் [recipient],
+புதிய சந்தாதாரர் பொது மன்றத்தில் சேர்ந்திருக்கிறார்.
+பயன்படுத்துபவர் பெயர்: [name]
+மின் அஞ்சல் : [email]
+
+[user_link]"""
+new_user_notif_txt_locked = """வணக்கம் [recipient],
+புதிய சந்தாதாரர் பொது மன்றத்தில் சேர்ந்திருக்கிறார்.
+பயன்படுத்துபவர் பெயர்: [name]
+மின் அஞ்சல்: [email]
+
+முக்குய அரிவிப்பு: இந்த பயன் படுத்துபவரை பொது மன்றத்தில் நுழைவதற்காக அநுமதிக்கவேண்டும்!"""
+edit_address_email_sj = மின் அஞ்சல் விலாசம்  மாற்றப்பட்டவுடன் கணக்கு பயன்பாட்டுக்கு வறும்
+edit_address_email_txt =    """வணக்கம் [name],
+மின் அஞ்சல விலாசம்  மாற்றப்படவேண்டும். மேலும் நீங்கள் இந்த [activate_link] இணைப்பை பயன்படுத்தி உங்கள் கணக்கை மீண்டும் புதுப்பிக்கவும்:
+"""
+pwf_activating_email_sj =   புதிய மறைவு சொல்லுக்கான வேண்டுகோள்
+pwf_activating_email_txt =  """வணக்கம் [name],
+புதிய மறைவு சொல்லுக்கான வேண்டுகோளினால், இந்த மின் அஞ்சல் பொது மன்றத்திலிருந்து அநுப்பப்பட்டது ([forum_address]).தயவு செய்து கீழுள்ள இணைப்பை அழுத்தி உங்களின் வேண்டுகோளை உறுதிசெய்க. இந்த இணைப்பை பின்தொடர்ந்தால்,உங்களுக்கான புதிய மறைவு சொல் உருவாக்கப்பட்டு அநுப்பப்படும். தவறுதலாக இந்த மின் அஞ்சல் அநுப்பப்பட்டிறுக்குமேயானால் தயவு செய்து புறக்கணிக்கவும்.
+
+[activating_link]"""
+new_pw_email_sj =             "பொது மன்றத்திற்கான புதிய சந்தாதாரின் விபரம்"
+new_pw_email_txt =            """வணக்கம் [name],
+புதிய சந்தாதாரின் விபரம்:
+
+பயன்படுத்துபவர் பெயர்: [name]
+மறைவு சொல்: [password]
+
+நேரடியாக நுழைவதற்கான இணைப்பு:
+[login_link]
+
+மறைவு சொல்லை பொது மன்றத்தினுள் செந்றபின் மாற்றிக்கொள்ளலாம்."""
+contact_email_txt =           """[message]
+
+---
+இந்த மின் அஞ்சல் பொது மன்றத்திலிருந்து அநுப்பப்பட்டது [forum_address]."""
+contact_email_txt_user =       """[message]
+
+---
+இந்த மின் அஞ்சல் [user] என்பவரால்  [forum_address] என்ற பொது மன்றத்திலிருந்து அநுப்பப்பட்டது  அநுப்பப்பட்டது."""
+contact_notification_sj =   அநுப்பப்பட்ட மின் அஞ்சலின் நகல்: [subject]
+contact_notification_txt =    """இந்த மின் அஞ்சல் உங்கள் மின் அஞ்சல்மூலம் இவருக்கு [recipient]அநுப்பப்பட்டது:
+
+பாடம்: [subject]
+[message]
+
+---
+இந்த மின் அஞ்சல் [forum_address] என்ற  பொது மன்றத்திலிருந்து அநுப்பப்பட்டது ."""
+
+[install]
+installation_title =             நிறுவுதல்
+label_choose_language =          தயவு செய்து மொழியை தேர்வு செய்:
+installation_instructions =      பொது மன்றத்தை நிறுவ தயவு செய்து இந்த படிவம்களை நிறப்பி அநுப்பவும்.
+installation_instructions =      பொது மன்றத்தை நிறுவும்போது, <strong>config/db_settings.php</strong> என்ற கோப்பை திருத்தி எழுதவும்.  திருத்தி எழுதும் அங்கிகாரம் இல்லை எனறால் CHMOD 666 ஐ முயற்சிக்கவும். அங்கிகாரத்தை 666 க்கு மாற்றியிறுக்கும் பட்ச்சத்தில் நீங்கள் பொது மன்றத்தை நிறுவிய பின், அங்கிகாரத்தை 644 க்கு மாற்ற வேண்டும்.
+installation_instructions =      <strong>templates_c</strong> படிம அச்சால் இயந்திரத்தால் எழுதப்படக்கூடியதாக இருக்க வேண்டும். நீங்கள் CHMOD 770 or 775 முயற்சிக்கவும்.
+installation_instructions =      கோப்பின் எழுதும் அங்கிகாரத்தை (CHMOD) FTP மூலம் மாற்றலாம் (file/directory --> CHMOD அல்லது அதுபோல).
+installation_instructions =      பொது மன்றத்தை நிறுவிய பின் <strong>install</strong> என்ற அடைவை அழிக்கவேண்டும்.
+inst_basic_settings =            அடிப்படை அமைப்புகள்
+inst_main_settings_desc =        சில அடிப்படை அமைப்பு
+inst_admin_settings =            நிர்வாகி
+inst_admin_settings_desc =       பொது மன்றத்தில் நிர்வாகியின் தகவல்
+inst_db_settings =               டேடாபேஸ்
+inst_db_settings_desc =          MySQL டேடாபேஸ் அநுக
+inst_admin_name =                நிர்வாகியின் பெயர்
+inst_admin_name_desc =           பொது மன்றத்தில் நிர்வாகியின் பெயர்
+inst_admin_email =               நிர்வாகியின் மின்-அசல்
+inst_admin_email_desc =          பொது மன்றத்தில் நிர்வாகியின் மின்-அசல் விலாசம்
+inst_admin_pw =                  நிர்வாகியின் மறைவு சொல்
+inst_admin_pw_desc =             பொது மன்றத்தில் நிர்வாகியாக நுழைய நிர்வாகியின் மறைவு சொல்
+inst_admin_pw_conf =             மறைவு சொல்லை உருதிசெய்
+inst_admin_pw_conf_desc =        மறைவு சொல்லை மறுபடியும் எழுத்து
+inst_db_host =                   முதன்மை டேடாபேஸ்
+inst_db_host_desc =              முதன்மை பெயர், "localhost"
+inst_db_user =                   டேடாபேஸ் பயன் படுத்துபவர்
+inst_db_user_desc =              டேடாபேஸ் அநுகுவதறகான உரிமையுடைய பயன் படுத்துபவர் பெயர்
+inst_db_pw =                     டேடாபேஸ் மறைவு சொல்
+inst_db_pw_desc =                டேடாபேஸ் அநுகுவதறகான உரிமையுடைய மறைவு சொல்
+inst_db_name =                   டேடாபேஸ் பெயர்
+inst_db_name_desc =              டேடாபேஸின் பெயர்
+inst_table_prefix =              அட்டவனெயின் முன் எழுத்து
+inst_table_prefix_desc =         டேடாபேஸ் அட்டவனெயின் முன் எழுத்து
+inst_advanced_options =          முற்போக்கு விருப்பங்கள்
+inst_advanced_options_desc =     வல்லுநர்களுக்கு - நீங்கள் எதையும் மாற்ற தேவையிருக்காது
+inst_advanced_database =         டேடாபேஸ் உருவாக்கு
+inst_advanced_database_desc =    கு்றிப்பிட்ட டேடாபேஸ் இன்னும் காணவில்லை எநில் மற்றும்  டேடாபேஸ் உறுவாக்க உங்களுக்கு அதிகாரம் இரு்க்குமானால் இதை டிக் செய்
+inst_advanced_conf_file =        டேடாபேஸ் உறுவமைப்பு கோப்பை மறுபடியும் எழுதாதே
+inst_advanced_conf_file_desc =   டேடாபேஸ் உறுவமைப்பு கோப்பை ஏற்கநவே மாற்றியிறுந்தால் மட்டும் இதை பாற்க்கவும்
+create_database =                கு்றிப்பிட்ட டேடாபேஸ் உறுவாக்கு
+dont_overwrite_settings =        டேடாபேஸ் உறுவமைப்பு கோப்பை மறுபடியும் எழுதாதே
+create_db_error =                டேடாபேஸ் உறுவாக்கமுடியவில்லை
+error_create_admin =             நிர்வாகி கணக்கு உறுவாக்கமுடியவில்லை
+error_db_connection =            டேடாபேஸ் இணைக்கமுடியாவில்லை - முதன்மை , பயன் படுத்துபவர் மற்றும் மறைவு சொல் தயவு செய்து
+error_db_inexistent =            கு்றிப்பிட்ட டேடாபேஸ் காணவில்லை - தயவு செய்து டேடாபேஸ் பெயரை சரிபார்க்கவும்
+error_sql_file_doesnt_exist =    நிறுவுதலுக்கு தேவையான SQL கோப்பு (install.sql) காணவில்லை
+error_overwrite_config_file =    கோப்பின் மறுபடியும் எழுத அநுமதி இல்லை  <strong>config/db_settings.php</strong> (set CHMOD 666, current is [CHMOD])
+error_sql =                      SQL தவறு
+forum_install_ok =               ஆம் - பொது மன்றத்தை நிறுவுக
+error_conf_pw =                  நிர்வாகியின் மறைவு சொல்ல் பொறுந்தவில்லை

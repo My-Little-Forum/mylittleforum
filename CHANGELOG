@@ -1,0 +1,246 @@
+my little forum changelog
+-------------------------
+
+2.2 (2010-02-??)
+----------------
+Changes:
+ - New user settings: language, time zone and theme
+ - Server-side storage of read postings for registered users implemented
+ - Some minor code improvements concerning the complete thread view
+ - Template/CSS improvements:
+   - menus as unordered lists (user menu, subnavigation, bottom menu)
+   - CSS Sprites for background images to reduce the amount of HTTP requests
+   - indenting if line breaks in threads
+   - merged regular and IE stylesheet (new <div id="ie"> for IE)
+   - preloading ajax preview images (throbber and background image) in the
+     styleshet (so far: JS preloading)
+
+Edited files:
+ - index.php
+ - includes/posting.inc.php
+ - includes/main.inc.php
+ - js/main.js
+ - templates/default/images/
+ - templates/default/main.tpl
+ - templates/default/style.css
+ - templates/default/subtemplates/
+
+Database changes:
+ - new colums in userdata table, new rows in settings table;
+   see update/update.sql
+
+
+2.1.3 (2010-01-25)
+------------------
+Changes:
+ - Fixed bug where an error occurred if a thread starting posting was moved to a
+   reply in the same thread (http://mylittleforum.net/bugtracker/view.php?id=8)
+
+Edited files:
+ - includes/posting.inc.php
+
+Database changes:
+ - no database changes
+
+Manual update:
+ - replace the file includes/posting.inc.php
+ - set "version" to "2.1.3" in Admin --> Forum settings --> Advanced settings
+
+
+2.1.2 (2010-01-02)
+------------------
+- language files added: Chinese, Italian, Norwegian, Tamil
+- improved paragraph handling for flash BBCode
+- check for special characters in usernames in order to prevent identical
+  looking usernames (however, this is still limited as unicode usernames are
+  possible) (new function contains_special_characters() in
+  includes/function.inc.php)
+- JavaScript function insert_link() improved (Milo)
+  (http://mylittleforum.net/forum/index.php?id=4482)
+- e-mail messages are quoted-printable encoded now
+- fixed this bug: http://mylittleforum.net/bugtracker/view.php?id=7
+- thread connection lines implemented (only non IE browsers)
+- some CSS clean up
+
+
+2.1.1 (2009-07-09)
+------------------
+
+- button to insert BBCode "[code]" implemented
+- Russian language file added
+- counting of postings in user list disabled as it caused too much server load
+- updated Smarty to version 2.6.26
+
+
+2.1 (2009-06-19)
+----------------
+- new BBCode to insert flash videos
+- personal category selection for registered users
+- improved automatic login (without redirection and on various computers
+  possible now)
+- latest posting box and tag cloud show postings/tags of current category now
+- mark old/all/none added to "Manage postings"
+- Ajax preview bubble can be closed by clicking somewhere outside of it now
+- implemented <wfw:commentRss> in rss feed of thread starts (thus some feed
+  readers display the belonging replies)
+- improved backup function in order to prevend timeout and memory size overload
+- improved handling of banned IPs (IP ranges and CIDR notation possible now)
+- implemented auto lock old threads feature
+- updated GeSHi syntax highlighter to version 1.0.8.3
+- corrected time format of <pubDate> in RSS Feeds according to RFC 2822
+- time zone can be specified now (advanced settings-->timezone; for possible
+  values see here: http://php.net/manual/en/timezones.php; optional, requires
+  requires PHP > 5.2)
+- implemented display of current forum time
+- improved image uploader: images can now be deleted by admins and mods
+- added (incomplete) Spanish language file
+- profile is checked for not accepted words now when editing it
+- changed magic_quotes_gpc behavior (slashes are removed now from GPCs if
+  magic_quotes_gpc is enabled)
+- updated Smarty (version 2.6.25)
+
+2.0.1 (2009-01-16)
+------------------
+- fixed bug with username maximum length
+  (http://mylittleforum.net/forum/index.php?id=3547)
+- implemented search for users by username and e-mail
+  (http://mylittleforum.net/forum/index.php?id=3547)
+
+2.0 (2008-12-27)
+----------------
+- updated Smarty (version 2.6.22)
+- Turkish language file added
+
+2.0 RC 8 (2008-11-23)
+---------------------
+- updated Smarty (version 2.6.20)
+- Norwegian language file added
+
+2.0 RC 7 (2008-10-19)
+---------------------
+- fixed bug in includes/register.inc.php
+  (http://mylittleforum.net/forum/index.php?id=3343)
+- added category element in rss feed
+- minor structural changes in includes/posting.inc.php and
+  templates/default/subtemplates/posting.tpl.inc
+
+2.0 RC 6 (2008-09-21)
+---------------------
+- fixed bug in lock thread feature
+  (http://mylittleforum.net/forum/index.php?id=3307)
+- fixed bug where, when accessing an entry as not logged in user and the forum
+  is accessible by registered users only, the redirect to the login form and
+  back to the entry didn't work
+  (http://mylittleforum.net/forum/index.php?id=3323)
+- language file corrections
+- Chinese language file added
+
+2.0 RC 5 (2008-09-04)
+---------------------
+- fixed bug where, when editing a reply the category was deleted
+  (http://mylittleforum.net/forum/index.php?id=3202)
+- changed ajax preview in order that the preview bubble does not remain in the
+  DOM when not needed
+- renamed file js/javascripts.js into js/main.js
+- added setting "forum_readonly"
+- added setting "tags"
+- added Danish language file
+
+2.0 RC 4 (2008-08-09)
+---------------------
+- All e-mails are sent now by one central function ("my_mail")
+- Subject and text length limitation for e-mails implemented
+- Added "accept-charset" to all forms
+- added prompt to enter a URL on the [img] bbcode button if no text was selected
+  (http://mylittleforum.net/forum/index.php?id=3071)
+- If the session expires while writing a message the text is displayed now after
+  submitting the form so that you're able to "rescue" it.
+- updated the PHP Akismet Class (0.3.4)
+- removed the	variable "p_user_id" from includes/posting.inc.php and
+  templates/default/subtemplates/posting.tpl.inc
+- fixed bug where, in the list of registered users the status "online" was not
+  displayed
+- fixed CSS bug where, in IE6 the avatars were not displayed in opened
+  complete threads (http://mylittleforum.net/forum/index.php?id=3091)
+- locking of individual postings implemented
+  (http://mylittleforum.net/forum/index.php?id=2897)
+- minor code and template changes
+
+2.0 RC 3 (2008-07-20)
+---------------------
+- changed naming of uploaded images
+  (http://mylittleforum.net/forum/index.php?id=2994)
+- changed setting "user_online_counter" (carries length of time period now)
+- fixed utf-8 issues with e-mail headers
+- fixed bug where, when editing a posting as unregistered user (if enabled) the
+  terms of use agreement checkbox was not displayed (if enabled)
+- added German language file
+
+2.0 RC 2 (2008-07-08)
+---------------------
+- added "Open in thread" link (http://mylittleforum.net/forum/index.php?id=2804)
+- implemented time-frame (request of form until form submit) to complicate
+  automated form submissions
+- fixed some utf-8 issues (missing charset in e-mails, using multibyte string
+  functions)
+- minor template improvements
+- updated Bad Behavior (2.0.16)
+- updated GeSHi (1.0.7.22)
+- updated BBCode Parser Class (0.3.3)
+
+2.0 RC 1 (2008-05-31)
+---------------------
+- New BB Codes [pre][/pre] (http://mylittleforum.net/forum/index.php?id=2725)
+  and [monospace][/monospace] (http://mylittleforum.net/forum/index.php?id=2737)
+- Keeping position within main page when going back in Firefox
+  (http://mylittleforum.net/forum/index.php?id=2747)
+- Some of the corrections posted here
+  http://mylittleforum.net/forum/index.php?id=2796
+
+2.0 beta 26 (2008-04-06)
+------------------------
+- fixed bug concerning email contact
+  (http://mylittleforum.net/forum/index.php?id=2516)
+- changed behavior in email contact (no more confirmation to sender)
+  (http://mylittleforum.net/forum/index.php?id=2485)
+- structural change in templates: subtemplates stored in subfolder
+  "subtemplates" now
+
+2.0 beta 25 (2008-02-27)
+------------------------
+- The minimum password length can be defined now (Advanced settings:
+  min_pw_length).
+- Passwords are saved as salted SHA1 hashes now (to ensure downward
+  compatibility the old MD5 hashes are still valid).
+- updated Smarty (version 2.6.19)
+
+2.0 beta 24 (2008-02-11)
+------------------------
+- The new e-mail address has to be confirmed now when changing the e-mail
+  adrress.
+- Fixed bug concerning incorrect thread tree times in opened posting
+  (http://mylittleforum.net/forum/index.php?id=2361)
+- implemented current version of the strinparser bb code class (0.3.2b)
+  (http://mylittleforum.net/forum/index.php?id=2362)
+
+2.0 beta 23 (2008-01-25)
+------------------------
+- new function to move postings / split threads
+
+2.0 beta 22 (2008-01-22)
+------------------------
+- fixed bug in includes/index.inc.php (empty user names of registered users
+  in latest postings)
+- fixed bug in includes/posting.inc.php (empty user names of registered users
+  in subnavigation)
+- fixed bug in includes/functions.inc.php (empty user names of registered users
+  in notification e-mails)
+- corrected language varable name (bbcode_link_url_marking --> bbcode_link_url)
+
+2.0 beta 21 (2008-01-19)
+------------------------
+- fixed bug in RSS feed (user names of registered users were not displayed
+  since version 2.0 beta 20)
+- new user search in user area
+- by default, the e-mail address of new users is not contactable; the default
+  value can be set in the advanced settings (default_email_contact)

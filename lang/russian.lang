@@ -1,0 +1,1086 @@
+################################################################################
+# Russian language file for my little forum 2.2                                #
+# Translated from English by Victor Urusov aka Urfin® (urfin77@yandex.ru)      #
+#------------------------------------------------------------------------------#
+# Русский языковой файл для my little forum_2.2                                #
+# Перевод c английского сделал Виктор Урусов aka Urfin® (urfin77@yandex.ru)    #
+#------------------------------------------------------------------------------#
+# - не меняйте и не переводите названия разделов типа "[general]" и "[entry]"! #
+# - метки-заполнители в квадратных скобках (типа "[name]") будут заменены на   #
+#   соответствующие значения автоматически - не меняйте и не переводите их!    #
+# - слова в двойных квадратных скобках (типа "[[here]]") будут превращены в    #
+#   гиперссылки - вы можете менять и переводить их (например, "[[здесь]]")     #
+# - тексты, состоящие из нескольких строк (сообщения E-Mail) заключены в       #
+#   тройные кавычки (например, """Превед,                                      #
+#   кагдила?77""")                                                             #
+################################################################################
+
+# Update 2010-01-24 (Alex): added not yet translated strings marked with <!-- TODO -->
+# Please send updates of this file to <alex at mylittleforum dot net>
+
+language =                  ru
+charset =                   utf-8
+locale =                    ru
+locale =                    ru_RU
+locale =                    rus
+locale_charset =            utf-8
+dir =                       ltr
+time_format =               %Y-%m-%d, %H:%M
+time_format_full =          %Y-%m-%d, %H:%M
+date_format =               %d.%m.%Y
+rss_time_format =           %Y-%m-%d, %H:%M:%S +0000
+forum_time =                Время форума: [time]
+unknown_user =              неизвестный
+db_error =                  Ошибка базы данных!
+mail_error =                Почтовый сервер недоступен - пожалуйста, попробуйте позже!
+
+[general]
+subject =                   Тема
+author =                    Автор
+date =                      Дата
+replies =                   Комментарии
+views =                     Просмотры
+category =                  Категория
+submit_button_ok =          &nbsp;OK&nbsp;
+yes =                       да
+no =                        нет
+go =                        Поехали
+edit =                      править
+delete =                    удалить
+next_page_link =            &raquo;
+previous_page_link =        &laquo;
+next_page_link_title =      следующая страница
+previous_page_link_title =  предыдущая страница
+posted_by =                 написал <strong>[name]</strong>[email_hp], [time]
+posted_by_location =        написал <strong>[name]</strong>[email_hp], [location], [time]
+original_posting_linktitle = кликните, чтобы перейти к посту, который написал [name]
+error_headline =            Ошибочка!
+no_authorisation =          Не автоирзован!
+page_doesnt_exist =         Страница не существует!
+error_form_uncomplete =     Не все поля были заполнены
+caution =                   Осторожно!
+spam =                      Спам
+forum_index_link =          Главная страница форума
+forum_index_link_title =    Главная страница форума
+log_in_link =               Войти
+log_in_link_title =         Войти
+log_out_link =              Выйти
+log_out_link_title =        Выйти
+register_link =             Зарегистрироваться
+register_link_title =       Регистрация нового пользователя
+profile_link_title =        Редактировать профиль
+user_area_link =            Пользователи
+user_area_link_title =      Пользовательский раздел
+admin_area_link =           Администратор
+admin_area_link_title =     Административный раздел
+search_marking =            Поиск:
+search_default_value =      искать...
+search_title =              Поиск сообщений
+new_topic_link =            Новая тема
+new_topic_link_title =      Создать новую тему
+order_link =                Сортировка
+order_link_title_1 =        Сортировать по дате последнего комментария
+order_link_title_2 =        Сортировать по дате содания тем (по-умолчанию)
+fold_threads =              Свернуть темы
+fold_threads_linktitle =    Свернуть темы
+expand_threads =            Развернуть темы
+expand_threads_linktitle =  Развернуть темы
+table_view =                В виде таблицы
+table_view_linktitle =      Сообщения в виде таблицы
+thread_view =               В виде дерева
+thread_view_linktitle =     Сообщения в виде дерева
+refresh_link =              Обновить
+refresh_linktitle =         снять метки новых сообщений
+thread_hierarchical =       Иерархическое отображение
+thread_hierarchical_linktitle = Темы отображаются в иерархическом порядке (по-умолчанию)
+open_in_thread_link =       Открыть всю тему
+open_in_thread_linktitle =  Показать этот комментарий во всей теме
+thread_linear =             Линейное отображение
+thread_linear_linktitle =   Темы отображаются в линейном порядке
+hide_all_messages =         Свернуть все
+hide_all_messages_title =   свернуть все сообщения
+show_all_messages =         Развернуть все
+show_all_messages_title =   Развернуть все сообщения
+expand_fold_thread_linktitle = Развернуть / свернуть тему
+category_title =            Категоря
+all_categories =            Все категории
+my_category_selection =     Мой выбор
+browse_page_title =         Страница
+thread_entry_back_link =    На главную страницу форума
+thread_entry_back_title =   Главная страница форума
+reply_link =                Написать комментарий
+reply_link_title =          Ответить на это сообщение
+back_to_index_link =        На главную страницу форума
+back_to_index_link_title =  Главная страница форума
+back_to_entry_link =        Вернуться в сообщение от [name]
+back_to_entry_link_title =  Вернуться в сообщение от [name]
+subnav_login =              Логин
+subnav_pw_forgotten =       Забыл пароль
+subnav_admin_area =         Административный раздел
+subnav_settings =           Настройки форума
+subnav_advanced_settings =  Расширенные настройки
+subnav_categories =         Категории
+subnav_edit_category =      Редактировать категорию
+subnav_delete_category =    Удалить категорию
+subnav_user =               Управление пользователями
+subnav_smilies =            Смайлики
+subnav_pages =              Страницы
+subnav_delete_page =        Удалить страницу
+subnav_edit_page =          Редактировать страницу
+subnav_add_page =           Добавить страницу
+subnav_create_page =        Создать страницу
+subnav_edit_smiley =        Редактирвать смайлик
+subnav_edit_user =          Редактировать пользователя
+subnav_delete_users =       Удалить пользователей
+subnav_register_user =      Регистрация пользователя
+subnav_spam_protection =    Защита от спама
+subnav_email_list =         Перечень E-mail зарегистрированных пользователей
+subnav_clear_userdata =     Очистить данные пользователя
+subnav_search =             Поиск
+subnav_register =           Регистрация
+subnav_reset_uninstall =    Очистить / удалить форум
+subnav_userarea =           Пользовательский раздел
+subnav_contact =            Контакт
+subnav_userarea_show_user = [var]
+subnav_userarea_show_posts = Все посты от [var]
+subnav_userarea_edit_user = Редактировать профайл
+subnav_userarea_edit_pw =   Смена Пароля
+subnav_userarea_edit_mail = Смена адреса E-mail
+subnav_backup =             Резервное копирование
+subnav_update =             Обновление
+subnav_update_run =         Запустить обновление
+subnav_delete_backup_file = Удалить резервную копию
+subnav_restore =            Восстановление
+subnav_locked =             Блокировка учетной записи
+subnav_delete_cookie =      Удалить куки
+subnav_disabled =           Форум отключен
+subnav_page_error =         Ошибочка
+subnav_page =               [var]
+counter =                   [total_postings] сообщений в [total_threads] темах, [registered_users] зарегистрированных пользователей
+counter_users_online =      [total_postings] сообщений в [total_threads] темах, [registered_users] зарегистрированных пользователей, [total_users_online] пользователей на сайте ([registered_users_online] зарегистрированных, [unregistered_users_online] гостей)
+contact_link =              Контакт
+contact_linktitle =         Написать Администратору форума
+rss_feed_postings =         RSS Сообщения
+rss_feed_postings_title =   RSS Лента всех новых сообщений
+rss_feed_new_threads =      RSS Темы
+rss_feed_new_threads_title = RSS Лента заглавных сообщений в темах
+rss_feed_thread =           RSS Лента темы
+rss_feed_thread_title =     RSS Лента данной темы
+no_messages =               Не было новых сообщений.
+no_messages_in_category =   Не было новых сообщений в данной категории.
+error_invalid_category =    Неправильная категория
+error_word_too_long =       Слово "[word]" слишком длинное
+error_name_too_long =       Имя слишком длинное
+error_email_too_long =      Адрес e-mail слишком динный
+error_hp_too_long =         Адрес домашней страницы слишком длинный
+error_location_too_long =   Местоположение слишком длинное
+error_profile_too_long =    Слишком многабукав! ;) (аж [profile_length] символов, а разрешено только [profile_maxlength])
+error_signature_too_long =  Подпись слишком длинная ([signature_length] символов, а разрешено только [signature_maxlength])
+error_invalid_date_format = Неправильный формат даты рождения (ГГГГ-ММ-ДД)
+error_invalid_date =        Неправильно указана дата рождения
+error_email_wrong =         Неправильный адрес e-mail
+error_hp_wrong =            Неправильный адрес домашней страницы
+error_pw_conf_wrong =       Пароль не совпадает с введенным повторно
+error_akismet_connection =  Сервер тормозит, попробуйте ещё раз!
+error_akismet_connection_admin = НЕльзя подключиться к серверу Akismet для проверки ключа API!
+error_akismet_api_key =     Неправильный ключ Wordpress API
+error_spam_suspicion =      Подозрение на спам! Пожалуйста, измените своё сообщение (например, уберите ссылки)
+user_name_already_exists =  Пользователь с таким именем уже зарегистрирован
+ajax_preview_title =        Предварительный просмотр
+open_whole_thread =         Открыть всю тему
+change_category_link =      Показать сообщения в категории "[category]"
+mark_linktitle =            Отметить сообщение
+unmark_linktitle =          Снять отметку
+delete_marked_link =        Удалить отмеченные
+manage_postings_link =      Управление сообщениями
+show_spam_link =            Показать спам ([number])
+hide_spam_link =            Скрыть спам
+delete_spam_link =          Удалить спам
+no_replies =                Нет ответов
+one_reply =                 1 ответ
+several_replies =           [replies] ответы
+more_smilies_link =         ещё...
+more_smilies_title =        ещё смайлики
+close =                     закрыть
+no_postings_user =          Нет сообщений.
+search_submit_button =      Поиск
+search_fulltext =           весь текст
+search_fulltext_or =        весь текст (или)
+search_tags =               тэги
+no_postings_found =         Сообщений не найдено.
+one_posting_found =         найдено 1 сообщение:
+several_postings_found =    найдено [number] сообщений:
+no_postings_by_user =       Нет сообщений.
+one_posting_by_user =       1 сообщение:
+several_postings_by_user =  [number] сообщений:
+rss_posting_by =            Сообщения по [name], [time]:
+rss_reply_by =              Ответы по [name], [time]:
+move_drag_and_drop =        перетащите мышкой чтобы переместиться вверх или вниз
+move_up =                   вверх
+move_down =                 вниз
+delete_posting_title =      Удалить сообщение
+delete_posting_confirm =    Вы действительно хотите удалить это сообщение?
+delete_posting_confirm_admin = Вы действительно хотите удалить это сообщение и все ответы на него?
+latest_postings_hl =        Последние сообщения
+toggle_latest_postings =    Показать / спрятать последние сообщения
+posting_minutes_ago =       [minutes] минут назад
+posting_hours_ago =         [hours] часов [minutes] минут назад
+posting_one_day_ago =       1 день, [hours] часов, [minutes] минут назад
+posting_several_days_ago =  [days] дней назад
+tag_cloud_hl =              Недавние тэги
+sidebar =                   Боковая панель
+toggle_sidebar =            Показать / спрятать боковую панель
+options =                   Опции
+administrator_title =       Администратор
+moderator_title =           Модератор
+avatar_img_alt =            Аватар
+search_user =               Искать пользователя:
+search_user_default_value = Искать пользователя...
+no_users =                  Пользователей не найдено.
+no_text_title =             Пустое сообщение / отсутствует текст
+no_text =                   - Тут ничего нет! -
+no_text_alt =               Пустое сообщение
+error_invalid_form =        Сессия просрочена! Пожалуйста, скопируйте текст и залогиньтесь снова, или отправьте содержимое формы повторно как гость.
+error_form_sent_too_fast =  Форма была отправлена слишком быстро - пожалуйста, подождите несколько секунд и повторите отправку (работает защита от автоматического заполнения форм)
+error_form_sent_too_slow =  Форма уже не актуальна - пожалуйста, скопируйте текст и обновите страницу
+terms_of_use_agreement =    Я согласен с [[Правилами пользования]]
+terms_of_use_agree_error_register = Для завершения регистрации требуется ваше согласие с правилами пользования
+terms_of_use_agree_error_posting =  Для отправки данного сообщения требуется ваше согласие с правилами пользования
+error_not_accepted_word =   Неприемлемое слово: [not_accepted_word]
+error_not_accepted_words =  <!-- TODO -->Not accepted words: [not_accepted_words]
+error_username_invalid_chars = <!-- TODO -->The user name contains special characters
+
+[entry]
+edited_by =                 исправил [name], в [time]
+tags_marking =              Тэги:
+one_view =                  1 просмотр
+several_views =             [views] просмотров
+complete_thread_marking =   Тема полностью:
+branch_marking =            Данная ветка темы:
+direct_replies_marking =    Прямые ответы на данное сообщение:
+edit_message_linkname =     править
+edit_message_linktitle =    править сообщение
+delete_message_linkname =   удалить
+delete_message_linktitle =  удалить сообщение
+move_posting_linkname =     переместить
+move_posting_linktitle =    переместить сообщение
+report_spam_linkname =      спам
+report_spam_linktitle =     сообщить о спаме
+flag_ham_linkname =         не спам
+flag_ham_linktitle =        пометить/сообщить что это не спам
+lock_linkname =             заблокировать
+lock_linktitle =            заблокировать сообщение
+unlock_linkname =           разблокировать
+unlock_linktitle =          разблокировать сообщение
+lock_thread_linkname =      заблокировать тему
+lock_thread_linktitle =     заблокировать тему полностью
+unlock_thread_linkname =    разблокировать тему
+unlock_thread_linktitle =   разблокировать тему полностью
+posting_locked =            заблокировано
+email =                     E-mail
+homepage =                  Домашняя страница
+show_hide_posting_title =   Свернуть / развернуть сообщение
+spam_note =                 Это сообщение не было пропущено спам-фильтром и не будет показано на главной странице до тех пор, пока его не активирует вручную Модератор или Администратор форума.
+
+[posting]
+no_authorization_edit =     Сообщение нельзя исправить! Возможно, истек интервал времени для правки сообщения, тема была заблокирована или на данное сообщение уже есть ответы.
+posting_locked_no_reply =   Вы не можете ответить на данное сообщение, т.к. оно заблокировано.
+no_auth_post_reg_users =    Только зарегистрированные пользователи могут публиковать сообщения!
+no_auth_session_expired =   Сессия просрочена, скопируйте ваше сообщение и залогиньтесь снова!
+no_auth_readonly =          Форум работает в режиме 'только чтение'!
+new_topic_hl =              Новая тема
+reply_hl =                  Ответить
+edit_hl =                   Редактировать содержимое
+name_marking =              Имя:
+email_marking =             E-mail:
+hp_marking =                Домашняя страница:
+location_marking =          Местоположение:
+optional =                  (не обязательно)
+optional_email =            (не обязательно, не будет отображаться в явном виде)
+remember_userdata_marking = Запомнить меня (куки)
+delete_cookie_linkname =    удалить куки
+deleting_cookie =           удаление куки...
+category_marking =          Категория:
+subject_marking =           Тема:
+message_marking =           Сообщение:
+tags_marking =              Тэги:
+tags_note =                 (не обязательно, разделяются запятыми)
+bbcode_bold_marking =       жирный
+bbcode_bold_title =         Выделить текст жирным: [b]Text[/b]
+bbcode_italic_marking =     курсив
+bbcode_italic_title =       Выделить текст курсивом: [i]Text[/i]
+bbcode_link_marking =       ссылка
+bbcode_link_title =         Вставить гиперссылку: [link=http://www.domain.tld/]текст ссылки[/link] или [link]http://www.domain.tld/[/link]
+bbcode_color =              цвет
+bbcode_color_title =        Цвет текста: [color=color]text[/color]
+bbcode_font_size =          размер
+bbcode_font_size_title =    Размер шрифта: [size=small]мелкие буквы[/size] / [size=large]крупные буквы[/size]
+bbcode_font_size_small =    мелкий
+bbcode_font_size_large =    крупный
+bbcode_link_linktext =      Текст ссылки (не обязательно):
+bbcode_link_url =           Адрес ссылки (URL):
+bbcode_image_marking =      картинка
+bbcode_image_title =        Вставить картинку: [img]http://example.com/image.jpg[/img]
+bbcode_image_url =          Адрес картинки (URL):
+bbcode_list_marking =       список
+bbcode_list_title =         Вставить список: [list][*]list item[/list]
+upload_image_marking =      загрузить
+upload_image_title =        Загрузить картинку
+bbcode_flash_marking =      флэш
+bbcode_flash_title =        Вставить флэшку: [flash]http://example.com/flash.swf[/flash]
+bbcode_code_marking =       коды
+bbcode_code_title =         Вставить код: [code]code[/code]
+bbcode_code_inline =        Код в виде строки в тексте
+bbcode_code_block =         Код в виде текстового блока
+bbcode_code_block_lang =    Код в виде текстового блока [language]
+smiley_title =              Вставить смайлик
+email_notific_reply_thread = Получать уведомления о сообщениях в этой теме по E-mail
+email_notific_reply_post =   Получать уведомления об ответах на это сообщение по E-mail
+show_signature_marking =    Добавить подпись
+sticky_thread =             Прилепить
+message_submit_button =     Да, отправить
+message_submit_title =      Сохранить сообщение
+message_preview_button =    Предпросмотр
+message_preview_title =     Предварительный просмотр сообщения перед сохранением
+quote_message =             цитировать сообщение
+clear_textarea =            очистить текстовое поле
+reply_to_posting_marking =  Ответить на сообщение от <strong>[name]</strong>
+minutes_left_to_edit =      У вас осталось [minutes] минут на редактирование этого сообщения
+minutes_left_to_edit_reply = У вас осталось [minutes] минут на редактирование данного сообщения, если до истечения этого срока на него не будет опубликован ответ
+preview_headline =          Предпросмотр:
+error_repeated_posting =    Повторное сообщение в течение [minutes] минут. Пожалуйста, подождите немного и отправьте его снова.
+error_no_name =             Имя не было указано
+error_name_like_subject =   Имя совпадает с заголовком
+error_name_reserved =       Это имя принадлежит уже зарегистрироваанному пользователю
+error_username_too_long =   Это имя слишком длинное
+error_name_too_long =       Имя слишком длинное
+error_no_email_to_notify =  Не указан адрес e-mail для уведомления
+error_no_subject =          Не указан заголовок темы
+error_no_text =             Отсутствует текст сообщения
+error_subject_too_long =    Заголовок темы слишком длинный
+error_text_too_long =       Сообщение слишком длинное (введено [text_length] символов - разрешено только [text_maxlength])
+error_tags_too_long =       Тэг слишком длинный
+error_posting_unavailable = Сообщение не существует
+
+[delete_posting]
+delete_postings_hl =        Удалить сообщение
+delete_marked_hl =          Удалить отмеченные
+delete_marked_confirm =     Вы действительно хотите удалить отмеченные сообщения и ответы на них?
+delete_spam_hl =            Удалить спам
+delete_spam_confirm =       Вы действительно хотите удалить все сообщения, помеченные как спам?
+delete_posting_submit =     Да, удалить
+report_spam_hl =            Сообщить о спаме
+posting_already_spam =      Это сообщение уже отмечено как спам.
+spamcheck_posting_not_checked = Это сообщение уже помечено как разрешённое, или не было проверено фильтром Akismet, т.к. фильтр Akismet не включен, либо это сообщение от зарегистрированного пользователя.
+spamcheck_posting_passed =  Это сообщение прошло проверку фильтром спама Akismet. Сообщите, что это спам, только если точно в этом уверены!
+spamcheck_akismet_api_error = Это сообщение прошло проверку фильтром спама Akismet, потому что при его проверке возникла ошибка. Возможно, это произошло из-за неправильного ключа API!
+spamcheck_akismet_timeout_error = Это сообщение прошло проверку фильтром спама из-за таймаута при доступе к серверу Akismet.
+report_spam_delete_submit = Сообщить о спаме и удалить
+report_spam_submit =        Только сообщить о спаме
+delete_only_submit =        Только удалить
+postings_doesnt_exist =     Это сообщение не существует!
+posting_not_flagged_as_spam = Это сообщение не помечено как спам.
+flag_ham_hl =               Пометить как разрешённое
+flag_ham_note =             Это сообщение было помечено фильтром Akismet как спам. Сообщите, что это не спам, только если точно в этом уверены!
+report_flag_ham_submit =    Сообщить и пометить как разрешённое
+flag_ham_submit =           Только пометить как разрешённое
+no_authorisation_delete =   Сообщение не может быть удалено! Возможно, истёк период времени для удаления сообщения, тема заблокирована или уже имеются ответы на данное сообщение.
+
+[captcha]
+captcha_marking =           Защита от спама:
+captcha_expl_math =         Пожалуйста, сложите два числа:
+captcha_expl_image =        Пожалуйста, введите буквы и цифры, изображенные на картинке выше:
+captcha_image_alt =         Если вы не не видите картинку, чтобы отправить сообщение вам необходимо зарегистрироваться и войти в форум.
+captcha_image_alt_reg =     Если вы не не видите картинку, сообщите Администратору форума
+captcha_check_failed =      Проверка провалена - попробуйте ещё раз!
+
+[upload_image]
+image_upload_not_enabled =  Загрузка картинок не разрешена.
+upload_image_hl =           Загрузить картинку
+upload_image_button =       Загрузить
+upload_error =              Произошла ошибка при загрузке картинки
+upload_error_2 =            Картинка не выбрана или размер картинки больше максимально допустимого ([server_max_filesize]).
+invalid_file_format =       неправильный формат файла
+file_too_large =            файл слишком большой ([width]*[height] пикселов, [filesize] КБ, максимально допустимый размер [max_width]*[max_height] пикселов, [max_filesize] КБ)
+upload_successful =         Картинка успешно загружена
+image_downsized =           <strong>Внимание:</strong> Картинка была уменьшена в размерах, новые размеры [width] x [height] пикселов, [filesize] КБ.
+insert_image =              Вставить картинку
+insert_image_exp =          Кликните на картинку, чтобы вставить её в ваше сообщение.
+insert_image_exp_no_js =    Для вставки картинки в ваше сообщение можно использовать следующий код:
+browse_uploaded_images =    Просмотр загруженных картинок...
+upload_image =              &laquo; загрузить картинку
+no_images =                 Нет доступных картинок.
+
+[insert_flash]
+insert_flash_hl =           Вставить флэш-видео
+insert_flash_code =         Вставить флэш-код (<code>&lt;object&gt;...&lt;/object&gt;</code>)
+flash_code =                Код:
+select_flash_or =           ... или ...
+insert_flash_custom =       Пользовательское флэш-видео
+flash_url =                 URL:
+flash_size =                Размер:
+insert_flash_button =       Вставить флэш-видео
+
+[avatar]
+avatar_hl =                 Аватар
+delete_avatar =             Удалить аватар
+upload_avatar_hl =          Загрузить аватар
+upload_avatar_notes =       Максимальный размер аватара: [width]*[height] пикселов, [filesize] КБ
+upload_image_button =       Загрузить
+upload_error =              Произошла ошибка при загрузке картинки
+upload_error_2 =            Картинка не выбрана или размер картинки больше максимально допустимого ([server_max_filesize]).
+invalid_file_format =       неправильный формат файла
+file_too_large =            файл слишком большой ([width]*[height] пикселов, [filesize] КБ, максимально допустимый размер [max_width]*[max_height] пикселов, [max_filesize] КБ)
+upload_successful =         Аватар успешно загружен
+close_window =              Закрыть окно
+image_downsized =           <strong>Внимание:</strong> Аватар был уменьшен в размерах, новые размеры [width] x [height] пикселов, [filesize] КБ.
+avatars_disabled =          Аватары отключены
+
+[move_posting]
+move_posting_hl =           Переместить сообщение
+move_posting_new_thread =   Сделать самостоятельную тему из данного сообщения и ответов на него
+move_posting =              Переместить данное сообщение и ответы на него в сообщение номер # [number]
+move_posting_submit =       Да, переместить
+invalid_posting_to_move =   Неправильный номер сообщения
+
+[manage_postings]
+manage_postings_hl =        Управление сообщениями
+mark_postings =             Пометить
+mark_all_postings =         Пометить все сообщения
+unmark_all_postings =       Снять пометки со всех сообщений
+mark_old_threads =          Отметить темы с последними ответами старше [days] дней
+lock_postings =             Заблокировать
+lock_all_postings =         Заблокировать все сообщения
+unlock_all_postings =       Разблокировать все сообщения
+lock_old_threads =          Заблокировать темы с последними ответами старше [days] дней
+
+[login]
+login_ip_temp_blocked =     Вам временно закрыт доступ из-за повторяющихся неудачных попыток входа. Вы можете попробовать войти снова через несколько минут.
+login_username =            Пользователь:
+login_password =            Пароль:
+login_auto =                Запомнить меня на этом компьютере
+login_submit =              Войти
+login_advice =              Для входа должны быть включены куки!
+pw_forgotten_link =         Я забыл свой пароль
+pwf_failed =                Пользователь с таким адресом e-mail не найден
+login_failed =              Пользователь неизвестен или указан неправильный пароль!
+registered_users_only =     Только зарегистрированные пользователи могут создавать сообщения!
+account_not_activated =     Ваша учётная запись ещё не активирована!
+account_activated =         Ваша учётная запись успешно активирована.
+account_activated_but_locked = Ваша учётная запись успешно активирована, но её должен ещё разблокировать Администратор или Модератор!
+mail_sent =                 Письмо было отправлено.
+pw_sent =                   Новый пароль был отправлен.
+code_invalid =              Код неправильный.
+
+[pw_forgotten]
+new_pw_ok =                 Был сгенерирован и отправлен новый пароль.
+new_pw_failed =             Ссылка для подтверждения  неправильная. Новый пароль не может быть сгенерирован.
+pw_forgotten_exp =          Пароли хранятся в зашифрованном виде, и алгоритм шифрования не предусматривает возможности их восстановления. Вы можете только получить новый пароль. Чтобы избежать ошибки, вам будет отправлено письмо, в котором вам будет предложено пройти по ссылке для подтверждения заявки на смену пароля. После получения такого подтверждения для вас будет сгенерирован и выслан новый пароль.
+pwf_username =              Пользователь:
+pwf_email =                 Адрес e-mail:
+
+[user]
+user_name =                 Пользователь
+user_type =                 Тип
+admin =                     Администратор
+mod =                       Модератор
+user =                      Обычный пользователь
+user_email =                E-mail
+user_hp =                   Домашняя страница
+mailto_user =               Письмо пользователю [user]
+email =                     E-mail
+homepage =                  Домашняя страница
+user_postings =             Сообщений
+user_online =               На сайте?
+user_blockage =             Блокировки
+online =                    на сайте
+locked =                    заблокирован
+lock_title =                блокировать пользователя
+unlocked =                  разблокирован
+unlock_title                разблокировать пользователя
+
+[user_show]
+user_name =                 Пользователь:
+user_avatar =               Аватар:
+user_type =                 Тип:
+admin =                     Администратор
+mod =                       Модератор
+user =                      Обычный пользователь
+user_real_name =            Имя:
+gender =                    Пол:
+male =                      мужчниа
+female =                    женщина
+age_birthday =              Возраст / дата рождения:
+mailto_user =               Письмо пользователю [user]
+email =                     E-mail
+homepage =                  Домашняя страница
+user_hp_email =             Домашняя страница / E-mail:
+user_location =             Местоположение:
+user_registered =           Зарегистрирован:
+user_last_login =           Последнее посещение:
+user_logins =               Посещений:
+user_postings =             Сообщений:
+show_postings_link =        показать сообщения
+last_posting =              Последнее сообщение:
+logins_per_day =            Посещений в день:
+postings_per_day =          Сообщений за день:
+user_profile =              Профиль:
+user_account_doesnt_exist = Учётная запись пользователя не существует.
+
+[user_edit]
+edit_user_name =            Пользователь:
+edit_avatar =               Аватар:
+add_avatar_link =           добавить аватар
+edit_avatar_link_title =    редактировать аватар
+edit_user_type =            Тип:
+edit_user_email =           E-mail:
+edit_email =                изменить адрес e-mail
+edit_user_pw =              Пароль:
+pw_not_displayed =          не отображается
+edit_pw =                   сменить пароль
+edit_user_email_contact =   Контактный адрес E-mail
+edit_user_real_name =       Имя:
+edit_user_gender =          Пол:
+male =                      мужчина
+female =                    женщина
+edit_user_birthday =        Дата рождения:
+birthday_format =           ГГГГ-ММ-ДД
+edit_user_hp =              Домашняя страница:
+edit_user_location =        Местоположение:
+edit_user_profile =         Профиль:
+edit_user_signature =       Подпись:
+edit_user_cat_selection =   Мои избранные категории:
+edit_user_cat_sel_note =    Можно выбрать несколько категорий, удерживая нажатой клавишу [Ctrl]
+edit_user_time_zone =       Часовой пояс:
+edit_user_time_difference = <!-- TODO -->Additional time difference in hours (e.g. +3 or -5:30):
+edit_user_default_time_zone_server = <!-- TODO -->Default (server time)
+edit_user_default_time_zone = <!-- TODO -->Default ([default_time_zone])
+edit_user_language =        Язык:
+edit_user_default_language = <!-- TODO -->Default ([default_language])
+edit_user_theme =           Шаблон:
+edit_user_default_theme =   <!-- TODO -->Default ([default_theme])
+edit_user_auto_login =      <!-- TODO -->Auto login:
+enable_auto_login =         <!-- TODO -->enable automatic login
+edit_user_notification =    Уведомление по e-mail:
+admin_mod_notif_posting =   каждый раз при публикации нового сообщения
+admin_mod_notif_register =  каждый раз при регистрации нового пользователя
+userdata_submit_button =    Да, сохранить
+profile_saved =             Ваш профиль был сохранён.
+pw_changed =                Пароль был изменён.
+
+[edit_pw]
+edit_pw_old =               Старый пароль:
+edit_pw_new =               Новый пароль:
+edit_pw_conf =              Повторите новый пароль:
+error_old_pw_wrong =        Старый пароль указан неверно
+error_pw_conf_wrong =       Новый пароль не совпадеат с введенным повторно
+error_new_pw_too_short =    Новый пароль должен содержать как минимум [characters] символов
+
+[edit_email]
+edit_email_exp =            При смене адреса e-mail произойдет выход из форума и потребуется повторная активация учетной записи. Ключ активации будет выслан на новый адрес e-mail, будьте уверены, что он указан правильно! Учётная запись должна быть активирована в течение суток.
+edit_email_new =            Новый адрес e-mail:
+edit_email_new_confirm =    Повторите адрес e-mail:
+edit_email_pw =             Пароль:
+error_form_uncompl =        Были заполнены не все поля формы
+error_email_confirmation =  Новый адрес e-mail и его подтверждение не совпадают
+error_email_too_long =      Адрес e-mail слишком длинный
+error_identic_email =       Новый адрес e-mail совпадает со старым
+error_email_invalid =       Неправильный адрес e-mail
+pw_wrong =                  Пароль указан неверно
+error_meilserver =          Невозможно подключиться к почтовому серверу - повторите попытку позже
+
+[register]
+register_exp =              Выберите желаемое имя пользователя, задайте пароль и укажите действующий адрес e-mail. На указанный адрес будет отправлен ключ активации. Учётная запись должна быть активирована в течение суток.
+register_username =         Пользователь:
+register_user_email =       E-mail:
+register_pw =               Пароль:
+register_pw_conf =          Повторите пароль:
+register_only_by_admin =    Пользователь может быть зарегистрирован только Администратором форума.
+registered =                Учётная запись была зарегистрирована и ключ активации выслан на <strong>[var]</strong>. Учётная запись должна быть активирована в течение суток.
+registered_send_error =     Учётная запись была зарегистрирована, но ключ активации не может быть выслан (почтовый сервер недоступен). Пожалуйста, свяжитесь с Администратором форума и попросите его вручную активировать вашу учётную запись.
+activation_failed =         Не получилось активировать учётную запись.
+error_password_too_short =  Пароль должен состоять как минимум из [characters] символов
+error_email_alr_exists =    Пользователь с таким адресом e-mail уже зарегистрирован
+error_reg_not_accepted_word = Защита от спама: Адрес е-mail или имя содержат неприемлемое слово или домен
+
+[contact]
+contact_hl =                Отправить e-mail Администратору форума
+contact_user_hl =           Ортправить e-mail пользователю [recipient_name]
+impossible_to_contact =     Невозможно связаться с этим пользователем!
+contact_doesnt_exist =      Этот контакт не существует!
+sender_address_caption =    Адрес e-mail отправителя:
+subject_caption =           Заголовок:
+message_caption =           Сообщение:
+message_submit_caption =    Да, отправить
+email_sent =                Письмо успешно отправлено.
+error_no_text =             Текст сообщения отсутствует
+error_no_email =            Не указан адрес e-mail отправителя
+error_no_subject =          Не указан заголовок
+error_email_invalid =       Адрес e-mail неправильный
+error_not_accepted_word =   Письмо содержит как минимум одно неприемлемое слово
+error_email_subject_too_long = Заголовок письма слишком длинный
+error_email_text_too_long = Текст письма слишком длинный ([text_length] символов - разрешено только [text_maxlength] символов)
+error_spam_suspicion =      Подозрение на спам! Пожалуйста, измените текст письма (например, удалите ссылки)
+error_mailserver =          Попытка отправить письмо не удалась!
+
+[info]
+user_locked =               Ваша учётная запись заблокирована.
+forum_disabled =            Форум временно недоступен.
+
+[delete_cookie]
+delete_cookie =             Куки удалены.
+
+[admin]
+enabled =                   включен
+disabled =                  отключен
+folder_alt =                папка
+file_alt =                  файл
+admin_confirm_password =    Административный пароль:
+error_password_wrong =      Пароль неправильный
+
+# меню администратора:
+forum_settings_link =       Настройки форума
+category_administr_link =   Управление категориями
+user_administr_link =       Управление пользователями
+smilies_administr_link =    Смайлики
+pages_administr_link =      Страницы
+spam_protection_link =      Защита от спама
+backup_restore_link =       Резервное копирование
+update_link =               Обновление
+reset_uninstall_link =      Очистка или удаление форума
+
+# настройки форума:
+clear_chache =              Очистка кэша для внесения изменений в уже существующие записи
+settings_submit_button =    Да, сохранить
+settings_saved =            <!-- TODO -->Settings saved
+advanced_settings_link =    Дополнительные настройки
+forum_name =                Название форума
+forum_name_desc =           будет (среди прочих) отображаться в заголовке
+forum_description =         Описание форума
+forum_description_desc =    Краткое описание данного форума
+forum_address =             Адрес форума
+forum_address_desc =        URL форума (используйте такой формат: http://www.domain.tld/forum/)
+forum_email =               Адрес e-mail форума
+forum_email_desc =          будет использоваться в качестве контактного адреса и адреса отправителя для всех писем, отправленных с форума
+home_link =                 Ссылка на стартовую страницу
+home_link_desc =            Ссылка на вашу стартовую страницу, например, http://www.domain.tld/ или ../index.html (опционально)
+home_link_name =            Название ссылки на стартовую страницу
+home_link_name_desc =       Название ссылки на стартовую страницу, например, &quot;На главную&quot;
+default_language =          Язык
+default_language_desc =     <!-- TODO -->Default language of the forum
+default_time_zone =         Часовой пояс
+default_time_zone_desc =    <!-- TODO -->Default time zone
+default_time_difference =   <!-- TODO -->Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
+default_theme =             Шаблон
+default_theme_desc =        <!-- TODO -->Default forum layout theme
+threads_per_page =          Тем на страницу
+threads_per_page_desc =     Сколько заголовков тем должно быть показано на странице?
+auto_lock_old_threads =     Автоматическая блокировка старых тем
+auto_lock_old_threads_desc = Автоматическая блокировка тем, самые последние сообщения в которых старше указанного количества дней (0=отключена)
+accession =                 Права доступа
+accession_desc =            Кому разрешен доступ к форуму?
+post_permission =           Права публикации
+post_permission_desc =      Кому разрешено публиковать сообщения?
+only_registered_users =     только зарегистрированным пользователя
+all_users =                 всем
+register_permission =       Регистрация пользователей
+register_permission_desc =  Могут ли пользователи регистрироваться самостоятельно?
+register_self =             самостоятельно
+register_self_locked =      самостоятельно, но новая учётная запись должна быть разблокирована Администратором или Модератором
+register_only_admin =       только Администратором
+user_area =                 Пользовательский раздел
+user_area_desc =            Для кого доступен пользовательский раздел (список пользователей, их профили)?
+public_accessible =         общедоступен
+accessible_reg_users_only = только для зарегистрированных пользователей
+latest_postings =           Последние сообщения
+latest_postings_desc =      Количество последних сообщений, отображаемых в списке на индексной странице форума (0 = отключено)
+tag_cloud =                 Панель тэгов
+tag_cloud_desc =            Должна ли панель тэгов отображаться на индексной странице форума?
+enable_tag_cloud =          Панель тэгов включена
+terms_of_use_agreement =    Пользовательское соглашение
+terms_of_use_agreement_desc = Обязательные условия, которые должны принять незарегистрированные пользователи перед получением права на публикацию сообщений и регистрацию
+terms_of_use_agreement_enabled = Пользовательское соглашение включено
+terms_of_use_url =          URL Пользовательского соглашения:
+edit_postings =             Редактирование сообщений
+edit_postings_desc =        Правила редактирования сообщений
+edit_own_postings =         Редактирование своих сообщений:
+edit_own_postings_all =     все пользователи могут редактировать свои сообщения
+edit_own_postings_users =   только зарегистрированные пользователи могут редактировать свои сообщения
+edit_own_postings_disabled = запрещено (только Администраторы и Модераторы могут редактировать сообщения)
+user_edit_if_no_replies =   если на сообщение есть ответы, его можно редактировать только в течение [minutes] минут (0 = нельзя редактировать, если есть ответы)
+edit_max_time_period =      Максимальный период времени, в течение которого можно редактировать свои сообщения: [minutes] минут (0 = нет ограничений)
+show_if_edited =            показывать, что сообщение было отредактировано, если оно было отредактировано позже, чем через [minutes] минут после публикации
+dont_show_edit_by_admin =   не показвать, если сообщение было отредактировано Администратором
+dont_show_edit_by_mod =     не показывать, если сообщение было отредактировано Модератором
+bbcode =                    BB-коды
+bbcode_desc =               Включить использование BB-кодов для форматирования сообщений?
+bbcodes_enabled =           BB-коды включены
+bbcodes_img_enabled =       разрешить BB-коды для вставки картинок
+bbcodes_flash_enabled =     разрешить BB-коды для вставки флэш-видео
+smilies =                   Смайлики
+smilies_desc =              Заменять смайлики типа ":-)" на картинки? (Смайлики можно выбрать в панели управления смайликами)
+smilies_enabled =           Смайлики включены
+enamble_avatars =           Аватары
+enamble_avatars_desc =      Разрешить зарегистрированным пользователям загружать свои аватары? Для этого папка images/avatars/ должна быть доступна для записи (CHMOD 777).
+avatars_profiles_postings = показывать аватары в профилях и сообщениях
+avatars_profiles =          показвать аватары только в профилях
+max_avatar_size =           Максимальный размер аватара:<br /> [width] x [height] пикселов, [filesize] КБ
+upload_images =             Загрузка картинок
+upload_images_desc =        Разрешить загрузку картинок? Для этого папка images/uploaded/ должна быть доступна для записи (CHMOD 777).
+upload_enabled_admins_mods = разрешить только Модераторам и Администраторам
+upload_enabled_users =      разрешить зарегистрированным пользователям
+upload_enabled_all =        разрешить всем
+max_upload_size =           Максимальный размер картинки:<br /> [width] x [height] пикселов, [filesize] КБ
+autolink =                  Автоссылки
+autolink_desc =             Включить автоматическое распознавание ссылок?
+autolink_enabled =          Автоссылки включены
+count_views =               Счетчик просмотров
+count_views_desc =          Включить счётчик просмотров сообщений?
+views_counter_enabled =     Счётчик просмотров включен
+count_users_online =        Счетчик пользователей на форуме
+count_users_online_desc =   Включение подсчёта пользователей и времени их присутствия на форуме (0 = отключено)
+rss_feed =                  RSS-потоки
+rss_feed_desc =             Включить RSS-потоки (только если права доступа разрешены для всех)?
+rss_feed_enabled =          RSS-потоки включены
+forum_enabled_marking =     Форум включен
+forum_enabled_desc =        Снимите отметку, если нужно отключить форум. Отключенный форум остаётся доступен пользователю с правами Администратора.
+forum_enabled =             форум включен
+forum_disabled_message =    Сообщения, которое отображается, если форум отключен:
+category_name =             Категория
+category_accession =        Кому доступна
+cat_accessible_admin_mod =  Администраторам и Модераторам
+cat_accessible_reg_users =  зарегистрированным пользователям
+cat_accessible_all =        всем
+category_topics =           Заголовки
+category_entries =          Данные
+no_categories =             Не указаны категории.
+new_category =              Новая категория:
+edit_category =             Категория:
+category_accessible_by =    Кому доступна:
+entries_in_not_ex_cat =     <strong>Внимание:</strong> Имеются данные, которые не могут быть показаны из-за того, что они не относятся ни к одной из имеющихся категорий. Что вы хотите сделать с этими данными?
+entries_in_not_ex_cat_del = удалить их
+entries_in_not_ex_cat_mov = переместить в следующую категорию:
+category_already_exists =   Такая категория уже существует
+delete_category_hl =        Удалить категорию "[category]"
+delete_category_compl =     Удалить категорию и все относящиеся к ней записи
+del_cat_keep_entries =      Удалить категорию, но сохранить относящиеся к ней записи
+del_cat_move_entries =      Удалить категорию, но сохранить относящиеся к ней записи и переместить их в следующую категорию:
+delete_category_submit =    Да, удалить категорию
+
+# смайлики:
+edit_smilies_smiley =       Смайлик:
+edit_smilies_codes =        Коды:
+edit_smilies_title =        Заголовок:
+smiley_file_doesnt_exist =  Отсутствует файл смайлика
+smiley_code_empty =         Не указан код смайлика
+no_other_smilies_in_folder = В папке смайликов отсутствуют другие смайлики. Чтобы их добавить, загрузите файлы смайликов в папку 'images/smilies'.
+smiley_image =              Смайлик
+smiley_codes =              Код(ы)
+smiley_title =              Заголовок
+disable_smilies =           Отключить смайлики
+enable_smilies =            Включить смайлики
+add_smiley =                Добавить смайлик:
+add_smiley_code =           Код:
+smilies_disabled =          Смайлики отключены.
+
+# страницы:
+page_title =                Заголовок
+page_content =              Содержание
+page_content_desc =         Для форматирования страницы можно использовать HTML
+page_menu_linkname =        Название ссылки меню
+page_menu_linkname_desc =   только если страница должна отображаться в меню
+page_access =               Доступ
+page_access_reg_users =     только для зарегистрированных пользователей
+page_access_public =        для всех
+no_pages =                  Нет доступных страниц
+add_page_link =             Добавить страницу
+edit_page_submit =          Да, сохранить
+page_doesnt_exist =         Эта страница не существует.
+delete_page_confirm =       Вы действительно хотите удалить эту страницу?
+delete_page_submit =        Да, удалить
+error_no_page_title =       Отсутствует заголовок
+
+# управление пользователями:
+user_name_empty =           Не указано имя пользователя
+num_registerd_users =       [number] зарегистрированных пользователей
+user_id =                   ID
+user_name =                 Имя пользователя
+user_email =                E-mail
+user_type =                 Тип
+user_registered =           Зарегистрирован
+user_logins =               Заходы
+last_login =                Последний заход
+lock =                      Блокировка
+admin =                     Администратор
+mod =                       Модератор
+user =                      Пользователь
+locked =                    блокирован
+unlocked =                  разблокирован
+lock_title =                блокировать пользователя
+unlock_title                разблокировать пользователя
+user_inactive =             Пользователь неактивирован
+activate_note =             Учётная запись пользователя ещё не активирована или пользователь сменил свой адрес e-mail. Следует активировать пользователя только в том случае, если у него возникли проблемы с самостоятельной активацией.
+activate_link =             Активировать учётную запись
+delete_selected_users =     Удалить выбранных пользователей
+add_user =                  Добавить пользователя
+email_list =                Список адресов e-mail зарегистрированных пользователей
+clear_userdata =            Очистить пользовательские данные
+delete_avatar =             Удалить аватар
+delete_user_confirmation =  Вы уверены, что хотите удалить этого пользователя?
+delete_users_confirmation = Вы уверены, что хотите удалить следующих пользователей?
+register_exp =              You can leave blank the fields for the password if a random password should be generated. In this case the userdata has to be sent to the specified e-mail adress.
+delete_users_submit =       Да, удалить
+register_username =         Имя пользователя:
+register_email =            E-mail:
+register_pw =               Пароль:
+register_pw_conf =          Потверждение пароля:
+register_send_userdata =    Отправить данные пользователя на указанный адрес e-mail
+error_send_userdata =       Если вы оставите пустым поле для пароля, данные пользователя будут отправлены на указанный адрес e-mail
+error_email_wrong =         Адрес e-mail неправильный
+new_user_registered =       Пользователь "[name]" был зарегистрирован.
+new_user_reg_send_error =   Пользователь "[name]" был зарегистрирован, но данные пользователя не могут быть отправлены.
+clear_userdata_condition =  Удалить пользователей, которые заходили максимум [logins] раз и последний раз более чем [days] дней назад.
+clear_userdata_note =       Администраторы и Модераторы не будут уведомлены. Перед удалением вы получите список выбранных пользователей.
+no_users_in_selection =     Пользователи не выбраны
+
+# защита от спама:
+captcha =                   КАПЧА
+captcha_desc =              Какие формы должны быть защищены и каким типом капчи (только для незарегистрированных пользователей)?
+captcha_graphical_desc =    Графическая капча требует наличия установленной библиотеки GD Lib, также рекомендуется использовать хотя бы один TTF-шрифт. Поместите файлы шрифтов (*.ttf) в папку modules/captcha/fonts/. Файлы шрифтов можно скачать, например, с www.dafont.com.
+captcha_posting =           Форма публикации:
+captcha_email =             Форма e-mail:
+captcha_register =          Форма регистраци:
+captcha_disabled =          отключена
+captcha_mathematical =      математическая
+captcha_graphical =         графическая
+gr_captcha_not_available =  Графическая капча недоступна (недоступна библиотека GD Lib)
+gr_captcha_no_font =        Нет доступного шрифта, код капчи может отображаться неидеально
+bad_behavior =              Bad Behavior
+bad_behavior_desc =         Защита от спама <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a>.
+bad_behavior_enable =       включить Bad Behavior
+akismet =                   Akismet
+akismet_desc =              Служба защиты от спама <a href="http://akismet.com/">Akismet</a>. Для её использование вам потребуется <a href="http://wordpress.com/api-keys/">ключ Wordpress API Key</a> (не будет работать без ключа или с неправильным ключом API Key!).
+akismet_key =               Wordpress API Key:
+akismet_save_spam =         Сохранить спам (помеченный как спам и неотображаемый)?
+akismet_auto_delete_spam =  Через сколько часов удалять спам автоматически (0 = не удалять)?
+akismet_entry =             отметить форму публикации
+akismet_mail =              отметить форму e-mail
+banned_ips =                Забаненные IP-адреса
+banned_ips_desc =           IP-адреса, которым запрещен доступ. Чтобы указать несколько IP-адресов, разделите их запятыми.
+banned_user_agents =        Заблокированные user-агенты
+banned_user_agents_desc =   Строки в user-агентах, которым запрещен доступ. Чтобы указать несколько строк, разделите их запятыми.
+not_accepted_words =        Неприемлемые слова
+not_accepted_words_desc =   Имена или домены, которые недопустимо использовать в вводимых данных и адресах e-mail. Чтобы указать несколько слов, разделите их запятыми.
+spam_protection_submit =    Да, сохранить
+
+# Сброс / Удаление:
+reset_forum =               Сбросить форум
+delete_postings =           удалить все сообщения
+delete_userdata =           удалить данные всех пользователей (кроме вашего административного аккаунат)
+reset_forum_submit =        Да, сбросить форум
+uninstall_forum =           Удалить форум
+uninstall_forum_exp =       Это удалит все таблицы форума. После этого форум больше не сможет работаь!
+uninstall_forum_submit =    Да, удалить форум
+error_no_selection_made =   Выбор не сделан
+
+# Резервное копирование:
+backup_note =               Для использования функции резервного копирования должна быть разрешена запись в папку <i>backup</i>. Также будьте уверены в том, что эта папка недоступна через веб!
+backup_file =               Файл
+backup_date =               Дата
+backup_size =               Размер
+create_backup_complete =    Создать полную резервную копию
+only_create_backup_of =     Создать резервную копию только для:
+backup_entries =            данных
+backup_userdata =           аккаунтов
+backup_settings =           настроек
+backup_categories =         категорий
+backup_pages =              страниц
+backup_smilies =            смайликов
+backup_banlists =           забаненных
+download_backup_file =      Скачать файл резервной копии
+delete_selected =           Удалить выбранные
+check_all =                 выбрать все
+uncheck_all =               отменить выбор
+restore =                   Восстановление
+delete_backup_file =        Удалить файл резервной копии
+delete_backup_file_confirm =  Вы уверены, что хотите удалить файл с резервной копией?
+delete_selected_confirm =   Вы уверены, что хотите удалить все файлы резервных копий?
+delete_backup_submit =      Да, удалить
+restore_confirm =           Вы уверены, что хотите восстановить базу из выбранного файла резервной копии?<br /><strong>Все связанные таблицы будут перезаписаны!</strong>
+restore_safe_mode_warning = Предостережение Безопасного Режима!
+restore_safe_mode_note =    Поскольку на данном сервере включен Безопасный Режим, время выполнения скрипта ограничено! Во избежание неполного восстановления, следует разделять длинные файлы резервных копий на несколько небольших и выполнять восстановление, последовательно используя каждый из них!
+restore_submit =            Да, восстановить
+restore_backup_ok =         Резервная копия была восстановлена.
+backup_file_created =       Файл резервной копии был создан.
+error_file_doesnt_exist =   Файл не существует!
+error_delete_backup_file =  Файл резервной копии не может быть удален
+error_create_backup_file =  Файл не может быть создан - убедитесь, что разрешено право записи в папку "backup"
+error_restore_mysql =       Ошибка MySQL: [mysql_error]
+
+# Update:
+update_current_version =    Текущая версия: <strong>[version]</strong>
+update_instructions_hl =    Как сделать обновление
+update_instructions =       На время обновления рекомендуется отключить форум (снять галочку "форум включен" в <a href="index.php?mode=admin&action=settings">настройках форума</a>)
+update_instructions =       Загрузите последнюю версию с <a href="http://mylittleforum.net/">mylittleforum.net</a>
+update_instructions =       Распакуйте архив со скриптом, найдите в папке "update" соответствующий файл обновления и загрузите его в аналогичную папку "update" на вашем сервере
+update_instructions =       Перегрузите эту страницу, и ниже появится файл обновления
+update_instructions =       Кликните по этому файлу и следуйте дальнейшим инструкциям
+update_instructions =       После запуска обновления вы получите список файлов и папок, которые будут добавлены или заменены
+update_available_files =    Доступные файлы обновлений
+update_no_files_available = Нет доступных файлов обновлений.
+update_file_title =         Запустите этот файл обновления
+update_confirm =            Вы уверены, что хотите запустить этот файл обновления?
+update_submit =             Да, запустить
+update_successful =         База данных была успешно обновлена.
+update_items_note =         Теперь загрузите на ваш сервер следующие файлы и папки из нового пакета обновления форума (версии [version]):
+update_download =           Если у вас ещё нет этих файлов, вы можете загрузить [[отсюда]].
+
+[emails]
+email_subject =             Ответ на "[original_subject]"
+email_text =                """Здравствуйте, [recipient],
+[name] ответил на сообщение "[original_subject]":
+
+Тема: [subject]
+[text]
+
+URL этого сообщения: [posting_address]
+
+--- Ваше сообщение ---
+
+[original_text]"""
+
+email_text_delayed_addition = """---
+Это уведомление отправлено с задержкой, так как сообщение было активировано вручную"""
+
+admin_email_subject =       Новое сообщение на форуме: [subject]
+admin_email_text =          """Новое сообщение от [name]
+Тема: [subject]
+
+[text]
+
+URL этого сообщения: [posting_address]"""
+admin_email_text_reply =    """Ответ от [name]
+Тема: [subject]
+
+[text]
+
+URL этого сообщения: [posting_address]"""
+admin_reg_user_email_subj = Регистрация на форуме
+admin_reg_user_email_text = """Здравствуйте, [name]!
+Добро пожаловать на форум!
+
+Регистрационные данные для доступа:
+
+Имя пользователя: [name]
+Пароль: [password]
+
+Прямая ссылка для входа:
+[login_link]
+
+После входа пароль можно будет изменить."""
+
+new_user_email_sj =         Регистрация на форуме
+new_user_email_txt =        """Здравствуйте, [name]!
+Добро пожаловать на форум!
+
+Для активации вашей учётной записи проследуйте по ссылке:
+[activate_link]"""
+new_user_notif_sj =         Регистрация нового пользователя
+new_user_notif_txt =        """Здравствуйте, [recipient]!
+На форуме зарегистрировался новый пользователь:
+Имя пользователя: [name]
+Адрес электронной почты: [email]
+
+[user_link]"""
+new_user_notif_txt_locked = """Здравствуйте, [recipient]!
+На форуме зарегистрировался новый пользователь:
+Имя пользователя: [name]
+Адрес e-mail: [email]
+
+ВНИМАНИЕ! Для того, чтобы этот пользователь мог войти на форум, его необходимо разблокировать!"""
+edit_address_email_sj =     Активация учётной записи после смены адреса e-mail
+edit_address_email_txt =    """Здравствуйте, [name]!
+Адрес e-mail был изменён. Сейчас вам необходимо снова активировать вашу учётную запись, перейдя по ссылке:
+[activate_link]"""
+pwf_activating_email_sj =   Запрос нового пароля
+pwf_activating_email_txt =  """Здравствуйте, [name]!
+Это письмо было отправлено вам с форума ([forum_address]), так как был запрошен новый пароль. Для подтверждения запроса перейдите по нижеприведенной ссылке, для вас будет сгенерирован и выслан новый пароль. Если данное письмо было получено вами по ошибке (вашей, или чьей-то ещё), просто проигнорируйте его.
+
+[activating_link]"""
+new_pw_email_sj =             "Новые пользовательские данные для форума"
+new_pw_email_txt =            """Здравствуйте, [name]!
+Ваши новые данные:
+
+Имя пользователя: [name]
+Пароль: [password]
+
+Прямая ссылка для входа на форум:
+[login_link]
+
+После входа пароль можно будет изменить."""
+contact_email_txt =           """[message]
+
+---
+Это письмо было отправлено вам с форума [forum_address]."""
+contact_email_txt_user =       """[message]
+
+---
+Это письмо было отправлено вам пользователем [user] с форума [forum_address]."""
+contact_notification_sj =     Копия отправленного письма: [subject]
+contact_notification_txt =    """Это письмо с вашим адресом e-mail было отправлено пользователю [recipient]:
+
+Subject: [subject]
+[message]
+
+---
+Это письмо было отправлено вам с форума [forum_address]."""
+
+[install]
+installation_title =             Установка
+label_choose_language =          Выберите язык:
+installation_instructions =      Для установки форума заполните и отправьте следующую форму.
+installation_instructions =      В ходе процесса установки файл <strong>config/db_settings.php</strong> будет перезаписан. Для этого может понадобиться изменение прав на запись для этого файла. Сначала попробуйте обойтись без изменения прав, но если вы получите сообщение об ошибке, установите CHMOD 666. Если вам придётся это сделать, то после установки вам необходимо будет снова установить для этого файла CHMOD 644.
+installation_instructions =      Для работы шаблонов должна быть разрешена запись в каталог <strong>templates_c</strong>. Для этого вам может понадобится изменить прав на запись в указанный каталог. Поэтому если вы получите сообщение об ошибке, попробуйте установить CHMOD 770 или 775.
+installation_instructions =      Права на запись (CHMOD) для файлов и каталогов обычно можно изменить с помощью FTP-программ (правый клик на файле/папке --> CHMOD или подобное).
+installation_instructions =      После установки каталог <strong>install</strong> можно удалить.
+inst_basic_settings =            Основные настройки
+inst_main_settings_desc =        Некоторые основные настройки
+inst_admin_settings =            Администратор
+inst_admin_settings_desc =       Данные Администратора форума
+inst_db_settings =               База данных
+inst_db_settings_desc =          Сведения для доступа к базе MySQL
+inst_admin_name =                Имя Администратора
+inst_admin_name_desc =           Имя Администратора форума
+inst_admin_email =               Адрес e-mail Администратора
+inst_admin_email_desc =          Адрес e-mail Администратора форума
+inst_admin_pw =                  Пароль Администратора
+inst_admin_pw_desc =             Пароль для входа в качестве Администратора форума
+inst_admin_pw_conf =             Подтверждение пароля
+inst_admin_pw_conf_desc =        Повторите ввод пароля
+inst_db_host =                   Сервер базы данных
+inst_db_host_desc =              Имя хоста, чаще всего "localhost"
+inst_db_user =                   Пользователь базы данных
+inst_db_user_desc =              Имя пользователя для доступа к базе данных
+inst_db_pw =                     Пароль базы данных
+inst_db_pw_desc =                Пароль для доступа к базе данных
+inst_db_name =                   Название базы
+inst_db_name_desc =              Название базы данных
+inst_table_prefix =              Префикс таблиц
+inst_table_prefix_desc =         Префикс таблиц в базе данных
+inst_advanced_options =          Дополнительные настройки
+inst_advanced_options_desc =     Для экспертов - обычно нет необходимости что-либо здесь менять
+inst_advanced_database =         Создать базу данных
+inst_advanced_database_desc =    Выберите эту опцию только в том случае, если указанная база данных не существует и у вас есть права для создания новой базы
+inst_advanced_conf_file =        Не перезаписывать файл конфигурации базы
+inst_advanced_conf_file_desc =   Выберите эту опцию если вы уже отредактировали файл конфигурации базы данных
+create_database =                создать указанную базу
+dont_overwrite_settings =        не перезаписывать файл конфигурации базы
+create_db_error =                База данных не может быть создана
+error_create_admin =             Учётная запись Администратора не может быть создана
+error_db_connection =            Ошибка подключения к базе данных - проверьте, правильно ли указаны хост, пользователь и пароль
+error_db_inexistent =            Указанная база данных не существует - проверьте, правильно ли указано название базы
+error_sql_file_doesnt_exist =    Установочный файл SQL (install.sql) не существует
+error_overwrite_config_file =    Отсутствуют права для перезаписи файла <strong>config/db_settings.php</strong> (установлены CHMOD [CHMOD], измените их на CHMOD 666)
+error_sql =                      Ошибка SQL
+forum_install_ok =               Да, установить
+error_conf_pw =                  Пароль Администратора неправильный
