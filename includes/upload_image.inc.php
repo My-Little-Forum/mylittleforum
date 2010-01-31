@@ -83,7 +83,7 @@ if(($settings['upload_images']==1 && isset($_SESSION[$settings['session_prefix']
 
     if(empty($errors))
      {
-      $filename = date("YmdHis").uniqid('');
+      $filename = gmdate("YmdHis").uniqid('');
       switch($image_info[2])
        {
         case 1:
