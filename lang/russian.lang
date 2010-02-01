@@ -15,9 +15,6 @@
 #   кагдила?77""")                                                             #
 ################################################################################
 
-# Update 2010-01-24 (Alex): added not yet translated strings marked with <!-- TODO -->
-# Please send updates of this file to <alex at mylittleforum dot net>
-
 language =                  ru
 charset =                   utf-8
 locale =                    ru
@@ -247,8 +244,8 @@ terms_of_use_agreement =    Я согласен с [[Правилами поль
 terms_of_use_agree_error_register = Для завершения регистрации требуется ваше согласие с правилами пользования
 terms_of_use_agree_error_posting =  Для отправки данного сообщения требуется ваше согласие с правилами пользования
 error_not_accepted_word =   Неприемлемое слово: [not_accepted_word]
-error_not_accepted_words =  <!-- TODO -->Not accepted words: [not_accepted_words]
-error_username_invalid_chars = <!-- TODO -->The user name contains special characters
+error_not_accepted_words =  Неприемлемые слова: [not_accepted_words]
+error_username_invalid_chars = Имя пользователя содержит специальные символы
 
 [entry]
 edited_by =                 исправил [name], в [time]
@@ -552,15 +549,15 @@ edit_user_signature =       Подпись:
 edit_user_cat_selection =   Мои избранные категории:
 edit_user_cat_sel_note =    Можно выбрать несколько категорий, удерживая нажатой клавишу [Ctrl]
 edit_user_time_zone =       Часовой пояс:
-edit_user_time_difference = <!-- TODO -->Additional time difference in hours (e.g. +3 or -5:30):
-edit_user_default_time_zone_server = <!-- TODO -->Default (server time)
-edit_user_default_time_zone = <!-- TODO -->Default ([default_time_zone])
+edit_user_time_difference = Дополнительная разница во времени в часах (например, +3 или -5:30):
+edit_user_default_time_zone_server = По умолчанию (время сервера)
+edit_user_default_time_zone = По умолчанию ([default_time_zone])
 edit_user_language =        Язык:
-edit_user_default_language = <!-- TODO -->Default ([default_language])
+edit_user_default_language = По умолчанию ([default_language])
 edit_user_theme =           Шаблон:
-edit_user_default_theme =   <!-- TODO -->Default ([default_theme])
-edit_user_auto_login =      <!-- TODO -->Auto login:
-enable_auto_login =         <!-- TODO -->enable automatic login
+edit_user_default_theme =   По умолчанию ([default_theme])
+edit_user_auto_login =      Входить автоматически как:
+enable_auto_login =         разрешить автоматический вход
 edit_user_notification =    Уведомление по e-mail:
 admin_mod_notif_posting =   каждый раз при публикации нового сообщения
 admin_mod_notif_register =  каждый раз при регистрации нового пользователя
@@ -652,7 +649,7 @@ reset_uninstall_link =      Очистка или удаление форума
 # настройки форума:
 clear_chache =              Очистка кэша для внесения изменений в уже существующие записи
 settings_submit_button =    Да, сохранить
-settings_saved =            <!-- TODO -->Settings saved
+settings_saved =            Настройки сохранены
 advanced_settings_link =    Дополнительные настройки
 forum_name =                Название форума
 forum_name_desc =           будет (среди прочих) отображаться в заголовке
@@ -667,12 +664,12 @@ home_link_desc =            Ссылка на вашу стартовую стр
 home_link_name =            Название ссылки на стартовую страницу
 home_link_name_desc =       Название ссылки на стартовую страницу, например, &quot;На главную&quot;
 default_language =          Язык
-default_language_desc =     <!-- TODO -->Default language of the forum
+default_language_desc =     Язык форума по умолчанию
 default_time_zone =         Часовой пояс
-default_time_zone_desc =    <!-- TODO -->Default time zone
-default_time_difference =   <!-- TODO -->Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
-default_theme =             Шаблон
-default_theme_desc =        <!-- TODO -->Default forum layout theme
+default_time_zone_desc =    Часовой пояс по умолчанию
+default_time_difference =   Настройки часового пояса не доступны. Вместо этого можно указать разницу во времени между сервером и форумом (в минутах, например, 240 или -360):
+default_theme =             Шаблон по умолчанию
+default_theme_desc =        Шаблон отображения форума по умолчанию
 threads_per_page =          Тем на страницу
 threads_per_page_desc =     Сколько заголовков тем должно быть показано на странице?
 auto_lock_old_threads =     Автоматическая блокировка старых тем
