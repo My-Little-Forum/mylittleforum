@@ -114,7 +114,7 @@ switch($action)
      if(empty($errors))
       {
        $pw_hash = generate_pw_hash($reg_pw);
-       $activate_code = random_string(50);
+       $activate_code = random_string(20);
        $activate_code_hash = generate_pw_hash($activate_code);
        if($settings['register_mode']==1) $user_lock = 1;
        else $user_lock = 0;
