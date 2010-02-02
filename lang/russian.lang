@@ -140,7 +140,7 @@ subnav_userarea =           Пользовательский раздел
 subnav_contact =            Контакт
 subnav_userarea_show_user = [var]
 subnav_userarea_show_posts = Все посты от [var]
-subnav_userarea_edit_user = Редактировать профайл
+subnav_userarea_edit_user = Редактирование профиля
 subnav_userarea_edit_pw =   Смена Пароля
 subnav_userarea_edit_mail = Смена адреса E-mail
 subnav_backup =             Резервное копирование
@@ -556,7 +556,7 @@ edit_user_language =        Язык:
 edit_user_default_language = По умолчанию ([default_language])
 edit_user_theme =           Шаблон:
 edit_user_default_theme =   По умолчанию ([default_theme])
-edit_user_auto_login =      Входить автоматически как:
+edit_user_auto_login =      Автозаход:
 enable_auto_login =         разрешить автоматический вход
 edit_user_notification =    Уведомление по e-mail:
 admin_mod_notif_posting =   каждый раз при публикации нового сообщения
@@ -570,7 +570,7 @@ edit_pw_old =               Старый пароль:
 edit_pw_new =               Новый пароль:
 edit_pw_conf =              Повторите новый пароль:
 error_old_pw_wrong =        Старый пароль указан неверно
-error_pw_conf_wrong =       Новый пароль не совпадеат с введенным повторно
+error_pw_conf_wrong =       Новый пароль не совпадает с введенным повторно
 error_new_pw_too_short =    Новый пароль должен содержать как минимум [characters] символов
 
 [edit_email]
