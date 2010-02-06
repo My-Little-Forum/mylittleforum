@@ -977,7 +977,7 @@ new_user_email_sj =         Forum registration
 new_user_email_txt =        """Hi [name],
 welcome to the forum!
 
-to activate your account please follow this link:
+To activate your account please follow this link:
 [activate_link]"""
 new_user_notif_sj =         New user subscription
 new_user_notif_txt =        """Hi [recipient],
@@ -1014,11 +1014,11 @@ Click here to log in directly:
 The password can be changed after logging in."""
 contact_email_txt =           """[message]
 
---
+-- 
 This e-mail has been sent via the forum on [forum_address]."""
 contact_email_txt_user =       """[message]
 
---
+-- 
 This e-mail has been sent by [user] via forum on [forum_address]."""
 contact_notification_sj =     Copy of sent e-mail: [subject]
 contact_notification_txt =    """This e-mail has been sent with your e-mail address to [recipient]:
@@ -1026,7 +1026,7 @@ contact_notification_txt =    """This e-mail has been sent with your e-mail addr
 Subject: [subject]
 [message]
 
---
+-- 
 This e-mail has been sent via forum on [forum_address]."""
 
 [install]

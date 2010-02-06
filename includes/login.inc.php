@@ -236,7 +236,7 @@ switch ($action)
     }
    if(empty($error))
     {
-     $pwf_code = random_string(50);
+     $pwf_code = random_string(20);
      $pwf_code_hash = generate_pw_hash($pwf_code);
      $update_result = mysql_query("UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, pwf_code='".mysql_real_escape_string($pwf_code_hash)."' WHERE user_id = ".intval($field['user_id'])." LIMIT 1", $connid);
      // send mail with activating link:

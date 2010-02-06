@@ -251,7 +251,7 @@ fieldset.inactive        { border:none; margin:0; padding:0; }
 fieldset.inactive label,
 fieldset.inactive input  { color:#808080; }
 .checkboxlist            { list-style-type:none; margin:0; padding:0; font-size:1em !important; }
-.login                   { width:15em; }
+.login                   { width:17em; }
 
 ul.filelist              { list-style-type:none; padding-left:0px; margin-left:0px; font-size:0.82em; line-height:1.7em !important; }
 ul.filelist img          { margin:0px 5px -3px 0px; padding:0px; }
@@ -409,8 +409,11 @@ a.replynew:active        { color:#ff0000; }
 .read                    { color:#800080 !important; }
 a.read:active            { color:#ff0000 !important; }
 
-.actthread               { padding-left:18px; color:#ff0000; font-weight:bold; background:url(images/thread_bg.png) no-repeat 0 2px; }
-.actreply                { padding-left:16px; color:#ff0000; font-weight:bold; background:url(images/thread_bg.png) no-repeat 0 -198px; }
+.currentthread           { padding-left:18px; color:#ff0000; font-weight:bold; background:url(images/thread_bg.png) no-repeat 0 2px; }
+.currentthreadnew        { padding-left:18px; color:#ff0000; font-weight:bold; background:url(images/thread_bg.png) no-repeat 0 -48px; }
+.currentreply            { padding-left:16px; color:#ff0000; font-weight:bold; background:url(images/thread_bg.png) no-repeat 0 -198px; }
+.currentreplynew         { padding-left:16px; color:#ff0000; font-weight:bold; background:url(images/thread_bg.png) no-repeat 0 -248px; }
+
 
 /* thread tree: */
 ul.thread                { margin:0 0 20px 0; padding:0; list-style-type:none; max-width:100% !important; }
@@ -418,13 +421,16 @@ ul.thread li             { text-indent:-18px; margin-left:18px; }
 ul.thread li span        { white-space:nowrap; }
 ul.thread li .replies,
 ul.thread li .category   { font-size:0.82em; }
-ul.reply                 { margin:0 0 0 -16px; padding:0 0 0 25px; list-style-type:none; max-width:100% !important; }
-ul.reply li              { text-indent:-16px; margin-left:18px; }
-td ul.reply              { padding-left:20px; }
-ul.deep-reply            { margin:0; padding:0 0 0 5px; list-style-type:none; }
-ul.very-deep-reply       { margin:0; padding:0; list-style-type:none; }
+ul.reply,
+ul.deep-reply,
+ul.very-deep-reply       { margin:0 0 0 -16px; padding:0 0 0 16px; list-style-type:none; max-width:100% !important; }
+ul.reply li              { text-indent:-16px; margin-left:24px; } /* thread view */
+td ul.reply li           { text-indent:-16px; margin-left:20px; } /* table view */
+ul.deep-reply li         { text-indent:-16px; margin-left:10px; }
+td ul.deep-reply li      { text-indent:-16px; margin-left:5px; }
+ul.very-deep-reply li    { text-indent:-16px; margin-left:0px; }
+td ul.very-deep-reply li { text-indent:-16px; margin-left:0px; }
 ul.complete-thread       { margin:0 0 20px 0; padding:0; list-style-type:none; clear:both; max-width:100% !important; }
-ul.complete-thread li    { text-indent:-18px; margin-left:18px; }
 ul.reply ul              { background:url(images/thread_connecting_line.png) repeat-y left center; }
 ul.reply li:last-child>ul
                          { background:none; }

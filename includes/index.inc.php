@@ -91,14 +91,14 @@ if($result_count > 0)
     while($data = mysql_fetch_array($thread_result))
      {
       // how many replies:
-      $replies=0;
-      if($data['pid']==0)
+      if($data['pid']==0 && ($fold_threads==1||$user_view==1))
        {
+        $replies=0;
         $count_replies_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE id!= ".intval($data['id'])." AND tid = ".intval($data['tid']), $connid);
         list($replies) = mysql_fetch_row($count_replies_result);
         mysql_free_result($count_replies_result);
+        $data['replies'] = $replies;
        }
-      $data['replies'] = $replies;
 
       if($settings['count_views'] != 0)
        {
@@ -118,6 +118,17 @@ if($result_count > 0)
 
       // convert formated time to a utf-8:
       $data['formated_time'] = format_time($lang['time_format'],$data['timestamp']);
+
+      if($data['pid']==0)
+       {
+        if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['last_reply'] || $last_visit && $data['last_reply'] > $last_visit) $data['new'] = true;
+        else $data['new'] = false;
+       }
+      else
+       { 
+        if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['time'] || $last_visit && $data['time'] > $last_visit) $data['new'] = true;
+        else $data['new'] = false;
+       }
 
       if($data['pid']==0) $threads[] = $data['id'];
       $data_array[$data['id']] = $data;

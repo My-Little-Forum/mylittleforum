@@ -588,34 +588,34 @@ function insert_quote()
 
 function is_postingform_complete(name_error,subject_error,text_error,terms_of_use_error)
  {
-	terms_of_use_error = typeof(terms_of_use_error) != 'undefined' ? terms_of_use_error : '';
+  terms_of_use_error = typeof(terms_of_use_error) != 'undefined' ? terms_of_use_error : '';
   error_message='';
-	if(document.forms['postingform'].elements['name'] && document.forms['postingform'].elements['name'].value=='')
-	 {
-		error_message += "- "+decodeURIComponent(name_error)+"\n";
-	 }
-	if(document.forms['postingform'].elements['subject'].value=='')
-	 {
-		error_message += "- "+decodeURIComponent(subject_error)+"\n";
-	 }
-	if(text_error!='' && document.forms['postingform'].elements['text'].value=='')
-	 {
-		error_message += "- "+decodeURIComponent(text_error)+"\n";
-	 }
-	if(terms_of_use_error!='' && document.forms['postingform'].elements['terms_of_use_agree'].checked==false)
-	 {
-		error_message += "- "+decodeURIComponent(terms_of_use_error)+"\n";
-	 }
+  if(document.forms['postingform'].elements['name'] && document.forms['postingform'].elements['name'].value=='')
+   {
+    error_message += "- "+decodeURIComponent(name_error)+"\n";
+   }
+  if(document.forms['postingform'].elements['subject'].value=='')
+   {
+    error_message += "- "+decodeURIComponent(subject_error)+"\n";
+   }
+  if(text_error!='' && document.forms['postingform'].elements['text'].value=='')
+   {
+    error_message += "- "+decodeURIComponent(text_error)+"\n";
+   }
+  if(terms_of_use_error!='' && document.forms['postingform'].elements['terms_of_use_agree'].checked==false)
+   {
+    error_message += "- "+decodeURIComponent(terms_of_use_error)+"\n";
+   }
   if(error_message)
-	 {
-		alert(error_message);
-		return false;
-	 }
-	else
-	 {
-		document.getElementById('throbber-submit').style.visibility = 'visible';
+   {
+    alert(error_message);
+    return false;
+   }
+  else
+   {
+    document.getElementById('throbber-submit').style.visibility = 'visible';
     return true;
-	 }
+   }
  }
 
 function insert_avatar(avatar)

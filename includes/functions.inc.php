@@ -2042,29 +2042,6 @@ function my_strpos($haystack, $needle, $offset=0, $encoding='utf-8')
  }
 
 /**
- * encodes a given string by the MIME header encoding scheme using
- * mb_encode_mimeheader if available or base64_encode if not
- *
- * @param string $string
- * @param string $encoding
- * @param string $transfer_encoding
- * @return string
- */
-function my_mb_encode_mimeheader($string, $charset, $transfer_encoding, $linefeed="\r\n")
- {
-  if(function_exists('mb_internal_encoding') && function_exists('mb_encode_mimeheader'))
-   {
-    mb_internal_encoding($charset);
-    $string = mb_encode_mimeheader($string, $charset, $transfer_encoding, $linefeed);
-    return $string;
-   }
-  else
-   {
-    return '=?'.$charset.'?B?'.base64_encode($string).'?=';
-   }
- }
-
-/**
  * encodes sender or recipient name
  *
  * @param string $name
@@ -2095,60 +2072,85 @@ function encode_mail_name($name)
    }
 
 /**
- * replaement for quoted_printable_encode() which is not available until PHP 5.3.0
- * see http://php.net/manual/en/function.imap-8bit.php#61216
+ * encodes a given string by the MIME header encoding scheme using
+ * mb_encode_mimeheader if available or base64_encode if not
  *
- * @param string $input
+ * @param string $string
+ * @param string $encoding
+ * @param string $transfer_encoding
  * @return string
  */
-function my_quoted_printable_encode($sText, $bEmulate_imap_8bit=true)
+function my_mb_encode_mimeheader($string, $charset, $transfer_encoding, $linefeed="\r\n")
  {
-  // split text into lines
-  $aLines=explode(chr(13).chr(10),$sText);
-  for ($i=0;$i<count($aLines);$i++) {
-    $sLine =& $aLines[$i];
-    if (strlen($sLine)===0) continue; // do nothing, if empty
-    $sRegExp = '/[^\x09\x20\x21-\x3C\x3E-\x7E]/e';
-    // imap_8bit encodes x09 everywhere, not only at lineends,
-    // for EBCDIC safeness encode !"#$@[\]^`{|}~,
-    // for complete safeness encode every character :)
-    if ($bEmulate_imap_8bit)
-      $sRegExp = '/[^\x20\x21-\x3C\x3E-\x7E]/e';
-    $sReplmt = 'sprintf( "=%02X", ord ( "$0" ) ) ;';
-    $sLine = preg_replace( $sRegExp, $sReplmt, $sLine );
-    // encode x09,x20 at lineends
-    {
-      $iLength = strlen($sLine);
-      $iLastChar = ord($sLine{$iLength-1});
-      //              !!!!!!!!
-      // imap_8_bit does not encode x20 at the very end of a text,
-      // here is, where I don't agree with imap_8_bit,
-      // please correct me, if I'm wrong,
-      // or comment next line for RFC2045 conformance, if you like
-      if (!($bEmulate_imap_8bit && ($i==count($aLines)-1)))
-      if (($iLastChar==0x09)||($iLastChar==0x20)) {
-        $sLine{$iLength-1}='=';
-        $sLine .= ($iLastChar==0x09)?'09':'20';
-      }
-    }    // imap_8bit encodes x20 before chr(13), too
-    // although IMHO not requested by RFC2045, why not do it safer :)
-    // and why not encode any x20 around chr(10) or chr(13)
-    if ($bEmulate_imap_8bit) {
-      $sLine=str_replace(' =0D','=20=0D',$sLine);
-      //$sLine=str_replace(' =0A','=20=0A',$sLine);
-      //$sLine=str_replace('=0D ','=0D=20',$sLine);
-      //$sLine=str_replace('=0A ','=0A=20',$sLine);
-    }
-    // finally split into softlines no longer than 76 chars,
-    // for even more safeness one could encode x09,x20
-    // at the very first character of the line
-    // and after soft linebreaks, as well,
-    // but this wouldn't be caught by such an easy RegExp
-    preg_match_all( '/.{1,73}([^=]{0,2})?/', $sLine, $aMatch );
-    $sLine = implode( '=' . chr(13).chr(10), $aMatch[0] ); // add soft crlf's
-  }
-  // join lines into text
-  return implode(chr(13).chr(10),$aLines);
+  if(function_exists('mb_internal_encoding') && function_exists('mb_encode_mimeheader'))
+   {
+    mb_internal_encoding($charset);
+    $string = mb_encode_mimeheader($string, $charset, $transfer_encoding, $linefeed);
+    return $string;
+   }
+  else
+   {
+    return '=?'.$charset.'?B?'.base64_encode($string).'?=';
+   }
+ }
+
+/**
+ * Encode string to quoted-printable.
+ * Original written by Andy Prevost http://phpmailer.sourceforge.net
+ * and distributed under the Lesser General Public License (LGPL) http://www.gnu.org/copyleft/lesser.html
+ *
+ * @return string
+ */
+function my_quoted_printable_encode($input, $line_max=76, $space_conv = false )
+ {
+  $hex = array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
+  $lines = preg_split('/(?:\r\n|\r|\n)/', $input);
+  $eol = "\n";
+  $escape = '=';
+  $output = '';
+  while(list(, $line) = each($lines))
+   {
+    $linlen = strlen($line);
+    $newline = '';
+    for($i = 0; $i < $linlen; $i++)
+     {
+      $c = substr($line, $i, 1);
+      $dec = ord( $c );
+      if(($i == 0) && ($dec == 46)) // convert first point in the line into =2E
+       { 
+        $c = '=2E';
+       }
+      if($dec == 32)
+       {
+        if($i==($linlen-1)) // convert space at eol only
+         {
+          $c = '=20';
+         }
+        elseif($space_conv)
+         {
+          $c = '=20';
+         }
+        }
+       elseif(($dec == 61) || ($dec < 32) || ($dec > 126)) // always encode "\t", which is *not* required
+        { 
+         $h2 = floor($dec/16);
+         $h1 = floor($dec%16);
+         $c = $escape.$hex[$h2].$hex[$h1];
+        }
+       if((strlen($newline) + strlen($c)) >= $line_max) // CRLF is not counted
+        { 
+         $output .= $newline.$escape.$eol; //  soft line break; " =\r\n" is okay
+         $newline = '';
+         if($dec == 46) // check if newline first character will be point or not
+          {
+           $c = '=2E';
+          }
+        }
+       $newline .= $c;
+     } // end of for
+    $output .= $newline.$eol;
+   } // end of while
+  return $output;
  }
 
 /**
@@ -2167,8 +2169,9 @@ function my_mail($to, $subject, $message, $from='')
 
   $to = mail_header_filter($to);
   $subject = my_mb_encode_mimeheader(mail_header_filter($subject), CHARSET, "Q");
+  #$message = chunk_split(base64_encode($message));
   $message = my_quoted_printable_encode($message);
-
+  
   if($from == '')
    {
     $headers = "From: " . encode_mail_name($settings['forum_name'])." <".$settings['forum_email'].">". $mail_header_separator;
@@ -2176,15 +2179,11 @@ function my_mail($to, $subject, $message, $from='')
   else
    {
     $headers  = "From: " . mail_header_filter($from) . $mail_header_separator;
-    #$headers = "From: " . $settings['forum_email'] . $mail_header_separator;
-    #$headers .= "Reply-to: " . $from . $mail_header_separator;
    }
 
   $headers .= "MIME-Version: 1.0" . $mail_header_separator;
-  $headers .= "X-Sender-IP: ".$_SERVER['REMOTE_ADDR'] . $mail_header_separator;
-  #$headers .= "X-Mailer: " . $settings['forum_address'] . $mail_header_separator;
-  $headers .= "Content-Type: text/plain; charset=" . CHARSET . $mail_header_separator;
-  #$headers .= "Content-transfer-encoding: 8bit"; // . $mail_header_separator;
+  $headers .= "X-Sender-IP: ". $_SERVER['REMOTE_ADDR'] . $mail_header_separator;
+  $headers .= "Content-Type: text/plain; charset=" . strtoupper(CHARSET) . $mail_header_separator;
   $headers .= "Content-Transfer-Encoding: quoted-printable";
 
   if($settings['mail_parameter']!='')
@@ -2404,6 +2403,8 @@ function get_languages($titles=false)
        {
         $t_language_files[$i]['identifier'] = $file;
         $t_language_files[$i]['title'] = ucfirst(str_replace('.lang','',$file));
+        $title_parts = explode('.', $t_language_files[$i]['title']);
+        if(isset($title_parts[1])) $t_language_files[$i]['title'] = $title_parts[0].' ('.$title_parts[1].')';      
         ++$i;
        }
       return $t_language_files;

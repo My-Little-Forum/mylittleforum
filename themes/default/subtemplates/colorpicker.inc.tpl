@@ -15,7 +15,7 @@ var colors = new Array('#fff','#ccc','#c0c0c0','#999','#666','#333','#000',
 document.write('<table border="0" cellpadding="0" cellspacing="0"><tr>');
 for(var i = 0; i < colors.length; ++i)
  {
-  document.write('<td style="background:'+colors[i]+';"><a href="#" onclick="bbcode(\'text\',\'color\',\''+colors[i]+'\'); hide_element(\'colorpicker\'); return false"><img src="{$THEMES_DIR}/{/literal}{$theme}{literal}/images/plain.png" alt="'+colors[i]+'" title="" width="15" height="15" /></a></td>');
+  document.write('<td style="background:'+colors[i]+';"><a href="#" onclick="bbcode(\'text\',\'color\',\''+colors[i]+'\'); hide_element(\'colorpicker\'); return false"><img src="themes/{/literal}{$theme}{literal}/images/plain.png" alt="'+colors[i]+'" title="" width="15" height="15" /></a></td>');
   if((i+1)%7==0) document.write('</tr><tr>');
  }
 document.write('</tr></table>');

@@ -1031,11 +1031,11 @@ Cliquer ici pour se connecter directement:
 Le mot de passe peut être changé après s'être connecté."""
 contact_email_txt =           """[message]
 
----
+-- 
 Cet email a été envoyé via le forum à [forum_address]."""
 contact_email_txt_user =       """[message]
 
----
+-- 
 Cet email a été envoyé par [user] via le forum à [forum_address]."""
 contact_notification_sj =     Copie du message envoyé: [subject]
 contact_notification_txt =    """Cet email a été envoyé avec votre adresse email à [recipient]:
@@ -1043,7 +1043,7 @@ contact_notification_txt =    """Cet email a été envoyé avec votre adresse em
 Subject: [subject]
 [message]
 
----
+-- 
 Cet email a été envoyé via le forum à [forum_address]."""
 
 [install]

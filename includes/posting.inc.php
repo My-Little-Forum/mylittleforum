@@ -691,7 +691,7 @@ switch($action)
       }
 
      if(!isset($name) || $name == '') $errors[] = 'error_no_name';
-     if(contains_special_characters($name)) $errors[] = 'error_username_invalid_chars';
+     if(empty($_SESSION[$settings['session_prefix'].'user_id']) && contains_special_characters($name)) $errors[] = 'error_username_invalid_chars';
 
      // name reserved?
      $result = mysql_query("SELECT user_id, user_name FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysql_real_escape_string(my_strtolower($name, $lang['charset']))."'") or raise_error('database_error',mysql_error());
@@ -725,21 +725,25 @@ switch($action)
 
      if($settings['terms_of_use_agreement']==1 && empty($_SESSION[$settings['session_prefix'].'user_id']) && $terms_of_use_agree!=1) $errors[] = 'terms_of_use_agree_error_posting';
 
-     if(my_strlen($name,$lang['charset']) > $settings['username_maxlength']) $errors[] = 'error_name_too_long';
-     if(my_strlen($email,$lang['charset']) > $settings['email_maxlength']) $errors[] = 'error_email_too_long';
-     if(isset($hp) && my_strlen($hp,$lang['charset']) > $settings['hp_maxlength']) $errors[] = 'error_hp_too_long';
-     if(my_strlen($location,$lang['charset']) > $settings['location_maxlength']) $errors[] = 'error_location_too_long';
+     if(empty($_SESSION[$settings['session_prefix'].'user_id']))
+      {
+       if(my_strlen($name,$lang['charset']) > $settings['username_maxlength']) $errors[] = 'error_name_too_long';
+       if(my_strlen($email,$lang['charset']) > $settings['email_maxlength']) $errors[] = 'error_email_too_long';
+       if(isset($hp) && my_strlen($hp,$lang['charset']) > $settings['hp_maxlength']) $errors[] = 'error_hp_too_long';
+       if(my_strlen($location,$lang['charset']) > $settings['location_maxlength']) $errors[] = 'error_location_too_long';
+      }
+       
      if(my_strlen($subject,$lang['charset']) > $settings['subject_maxlength']) $errors[] = 'error_subject_too_long';
      if(my_strlen($text,$lang['charset']) > $settings['text_maxlength']) $errors[] = 'error_text_too_long';
      $smarty->assign('text_length',my_strlen($text,$lang['charset']));
 
      // check for too long words:
-     if(empty($too_long_word))
+     if(empty($too_long_word) && empty($_SESSION[$settings['session_prefix'].'user_id']))
       {
        $too_long_word = too_long_word($name,$settings['name_word_maxlength']);
        if($too_long_word) $errors[] = 'error_word_too_long';
       }
-     if(empty($too_long_word))
+     if(empty($too_long_word) && empty($_SESSION[$settings['session_prefix'].'user_id']))
       {
        $too_long_word = too_long_word($location,$settings['location_word_maxlength']);
        if($too_long_word) $errors[] = 'error_word_too_long';
@@ -1566,6 +1570,8 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha
     $captcha_tpl['number_1'] = $_SESSION['captcha_session'][0];
     $captcha_tpl['number_2'] = $_SESSION['captcha_session'][1];
    }
+  #$captcha_tpl['session_name'] = session_name();
+  #$captcha_tpl['session_id'] = session_id();
   $captcha_tpl['type'] = $settings['captcha_posting'];
   $smarty->assign('captcha',$captcha_tpl);
  }

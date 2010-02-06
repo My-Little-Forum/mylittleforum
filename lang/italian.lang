@@ -1018,11 +1018,11 @@ Clicca qui per accedere direttamente al forum:
 La password può essere cambiata dopo l'accesso."""
 contact_email_txt =           """[message]
 
----
+-- 
 Questa e-mail è stata spedita dal forum [forum_address]."""
 contact_email_txt_user =       """[message]
 
----
+-- 
 Questa e-mail è stata spedita dall'utente [user] tramite il forum [forum_address]."""
 contact_notification_sj =     Copia dell'e-mail spedita: [subject]
 contact_notification_txt =    """Questa e-mail è stata spedita col tuo indirizzo di posta a [recipient]:
@@ -1030,7 +1030,7 @@ contact_notification_txt =    """Questa e-mail è stata spedita col tuo indirizz
 Oggetto: [subject]
 [message]
 
----
+-- 
 Questa e-mail è stata spedita dal forum [forum_address]."""
 
 [install]

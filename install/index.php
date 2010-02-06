@@ -89,6 +89,8 @@ if(empty($language_file))
    {
     $language_files[$i]['file'] = $file;
     $language_files[$i]['language'] = ucfirst(str_replace(".lang","",$file));
+    $language_parts = explode('.', $language_files[$i]['language']);
+    if(isset($language_parts[1])) $language_files[$i]['language'] = $language_parts[0].' ('.$language_parts[1].')';
     $i++;
    }
 

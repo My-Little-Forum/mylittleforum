@@ -30,7 +30,7 @@
 {if $captcha}
 {if $captcha.type==2}
 <p><strong>{#captcha_marking#}</strong><br />
-<img class="captcha" src="modules/captcha/captcha_image.php?{$captcha.session_name}={$captcha.session_id}" alt="{#captcha_image_alt#}" width="180" height="40" /><br />
+<img class="captcha" src="modules/captcha/captcha_image.php?{$session.name}={$session.id}" alt="{#captcha_image_alt#}" width="180" height="40" /><br />
 <label for="captcha_code">{#captcha_expl_image#}</label> <input id="captcha_code" type="text" name="captcha_code" value="" size="10" /></p>
 {else}
 <p><strong>{#captcha_marking#}</strong><br />

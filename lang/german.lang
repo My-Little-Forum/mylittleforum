@@ -1022,7 +1022,7 @@ contact_notification_txt =    """Diese E-Mail wurde mit Ihrer E-Mail-Adresse an 
 Betreff: [subject]
 [message]
 
----
+-- 
 Diese E-Mail wurde über das Forum auf [forum_address] gesendet."""
 
 [install]

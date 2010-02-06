@@ -100,6 +100,10 @@ else $order = 'time';
        }
 
       $data['formated_time'] = format_time($lang['time_format_full'],$data['disp_time']);
+      
+      if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['time'] || $last_visit && $data['time'] > $last_visit) $data['new'] = true;
+      else $data['new'] = false;
+      
       $ago['days'] = floor((time() - $data['time'])/86400);
       $ago['hours'] = floor(((time() - $data['time'])/3600)-($ago['days']*24));
       $ago['minutes'] = floor(((time() - $data['time'])/60)-($ago['hours']*60+$ago['days']*1440));

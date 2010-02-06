@@ -49,7 +49,7 @@ return delete_posting_confirm(ths, '{if $admin||$mod}{$smarty.config.delete_post
 {assign var=posting_user_id value=$data.$element.user_id}
 {assign var=name value="<a href=\"index.php?mode=user&amp;show_user=$posting_user_id\">$name</a>"}
 {/if}
-<div class="ct-posting{if $last_visit&&$data.$element.time>$last_visit||$newtime&&$data.$element.time>$newtime} new{/if}" id="p{$data.$element.id}">
+<div class="ct-posting{if $data.$element.new} new{/if}" id="p{$data.$element.id}">
 <div class="ct-postinghead">
 {if $data.$element.avatar}<img id="avatar-{$data.$element.id}" class="avatar" src="{$data.$element.avatar.image}" alt="{#avatar_img_alt#}" width="{$data.$element.avatar.width}" height="{$data.$element.avatar.height}" />{/if}
 <h{if $data.$element.pid==0}1{else}2{/if} id="headline-{$data.$element.id}" onmouseover="this.style.color='#000080'" onmouseout="this.style.color='#000'" onclick="hp({$data.$element.id})">{$data.$element.subject}{if $data.$element.pid==0 && $category_name} <span class="category">({$category_name})</span>{/if}</h{if $data.$element.pid==0}1{else}2{/if}><script type="text/javascript">/* <![CDATA[ */ hpt({$data.$element.id}); /* ]]> */</script>

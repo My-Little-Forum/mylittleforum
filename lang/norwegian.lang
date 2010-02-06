@@ -1006,11 +1006,11 @@ Klikk her for å logge inn direkte:
 Passordet kan endres etter at du har logget inn."""
 contact_email_txt =           """[message]
 
----
+-- 
 Denne e-posten har blitt sendt via forumet [forum_address]."""
 contact_email_txt_user =       """[message]
 
----
+-- 
 Denne e-posten er sendt av [user] via forumet [forum_address]."""
 contact_notification_sj =     Kopi av sendt e-post: [subject]
 contact_notification_txt =    """Denne e-posten er sendt til deg fra din e-postadresse til [recipient]:
@@ -1018,7 +1018,7 @@ contact_notification_txt =    """Denne e-posten er sendt til deg fra din e-posta
 Emne: [subject]
 [message]
 
----
+-- 
 Denne e-posten er sendt til deg via [forum_address]."""
 
 [install]

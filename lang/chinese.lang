@@ -1010,11 +1010,11 @@ new_pw_email_txt =            """您好 [name],
 密码可在登陆后更改."""
 contact_email_txt =           """[message]
 
----
+-- 
 This e-mail has been sent via the forum on [forum_address]."""
 contact_email_txt_user =       """[message]
 
----
+-- 
 This e-mail has been sent by [user] via forum on [forum_address]."""
 contact_notification_sj =     Copy of sent e-mail: [subject]
 contact_notification_txt =    """This e-mail has been sent with your e-mail address to [recipient]:
@@ -1022,7 +1022,7 @@ contact_notification_txt =    """This e-mail has been sent with your e-mail addr
 Subject: [subject]
 [message]
 
----
+-- 
 This e-mail has been sent via forum on [forum_address]."""
 
 [install]
