@@ -101,7 +101,7 @@ if(isset($id) && $id > 0)
   {
    header('Content-Type: application/xml; charset=UTF-8');
    echo '<?xml version="1.0"?>';
-   ?><posting><content><![CDATA[<?php echo $ftext; ?>]]></content></posting><?php
+   ?><posting><content><![CDATA[<?php echo $ftext; ?>]]></content><locked><?php echo $entrydata['locked']; ?></locked></posting><?php
    exit;
   }
 
@@ -143,11 +143,27 @@ if(isset($id) && $id > 0)
    $data_array[$data['id']] = $data;
    $child_array[$data['pid']][] =  $data['id'];
    if($data['pid']==$id) $direct_replies[] = $data['id'];
+   $last = $data['id'];
+   if($data['pid']>$last) $last = $data['id'];
   }
  if(isset($child_array))
   {
    $smarty->assign('child_array',$child_array);
+   get_thread_items($child_array, $entrydata['tid'], $entrydata['id']);
+   $thread_items_count = count($thread_items);
+   if($thread_items_count>1)
+    {
+     foreach($thread_items as $key => $val)
+      {
+       if($val==$entrydata['id']) $current_key = $key;
+      }
+     if($entrydata['id']!=$thread_items[0]) $smarty->assign('link_rel_first', 'index.php?id='.$thread_items[0]);
+     if(isset($thread_items[$current_key-1])) $smarty->assign('link_rel_prev', 'index.php?id='.$thread_items[$current_key-1]);
+     if(isset($thread_items[$current_key+1])) $smarty->assign('link_rel_next', 'index.php?id='.$thread_items[$current_key+1]);
+     if($entrydata['id']!=$thread_items[$thread_items_count-1]) $smarty->assign('link_rel_last', 'index.php?id='.$thread_items[$thread_items_count-1]);
+    }
   }
+  
  mysql_free_result($result);
 
 // tags:
@@ -202,8 +218,8 @@ else $ago['days_rounded'] = $ago['days'];
 $smarty->assign('ago',$ago);
 
 $authorization = get_edit_authorization($id, $entrydata['user_id'], $entrydata['edit_key'], $entrydata['time'], $entrydata['locked']);
-if($authorization['edit']==true) $smarty->assign('edit_authorization',true);
-if($authorization['delete']==true) $smarty->assign('delete_authorization',true);
+if($authorization['edit']==true) $options['edit'] = true;
+if($authorization['delete']==true) $options['delete'] = true;
 
 if(isset($direct_replies)) $smarty->assign('direct_replies',$direct_replies);
 if($settings['count_views'] == 1)
@@ -284,9 +300,14 @@ $smarty->assign('subnav_link',$subnav_link);
 $smarty->assign('page',$page);
 $smarty->assign('order',$order);
 $smarty->assign('category',$category);
-if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0) $smarty->assign('move_posting_link',true);
-if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $settings['akismet_key']!='' && $settings['akismet_entry_check']==1 && $entrydata['spam']==0 && $entrydata['spam_check_status']>0) $smarty->assign('report_spam_link',true);
-if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $entrydata['spam']==1) $smarty->assign('flag_ham_link',true);
+if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0)
+ {
+  $options['move'] = true;
+  $options['lock'] = true;
+ }
+if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $settings['akismet_key']!='' && $settings['akismet_entry_check']==1 && $entrydata['spam']==0 && $entrydata['spam_check_status']>0) $options['report_spam'] = true;
+if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $entrydata['spam']==1) $options['flag_ham'] = true;
+if(isset($options)) $smarty->assign('options', $options);
 $smarty->assign('subtemplate','entry.inc.tpl');
 $template = 'main.tpl';
 ?>

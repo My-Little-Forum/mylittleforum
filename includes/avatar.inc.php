@@ -27,7 +27,7 @@ if($settings['avatars']>0 && isset($_SESSION[$settings['session_prefix'].'user_i
       @chmod($uploaded_images_path.$_SESSION[$settings['session_prefix'].'user_id'].'.gif', 0777);
       @unlink($uploaded_images_path.$_SESSION[$settings['session_prefix'].'user_id'].'.gif');
      }
-    header('Location: index.php?mode=avatar');
+    header('Location: index.php?mode=avatar&deleted=true');
     exit;
    }
 
@@ -127,7 +127,7 @@ if($settings['avatars']>0 && isset($_SESSION[$settings['session_prefix'].'user_i
     if(empty($errors))
      {
       @chmod($uploaded_images_path.$filename, 0644);
-      $smarty->assign('uploaded_file',$filename);
+      $smarty->assign('avatar_uploaded',true);
      }
     else
      {
@@ -149,8 +149,14 @@ if($settings['avatars']>0 && isset($_SESSION[$settings['session_prefix'].'user_i
     $avatar = $uploaded_images_path.$_SESSION[$settings['session_prefix'].'user_id'].'.gif';
    }
 
-  if(isset($avatar)) $smarty->assign('avatar', $avatar);
+  if(isset($avatar))
+   {
+    $avatar .= '?u='.uniqid();
+    $smarty->assign('avatar', $avatar);
+   }
   else $smarty->assign('upload', 'true');
+
+  if(isset($_GET['deleted'])) $smarty->assign('avatar_deleted', true);
 
 
   if(empty($errors) && isset($_FILES['probe']['error']))

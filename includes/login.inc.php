@@ -52,9 +52,6 @@ switch ($action)
   case "do_login":
    if(isset($request_username) && isset($request_userpw))
     {
-     // clear up expired auto_login_codes:
-     #if($settings['autologin']==1) @mysql_query("UPDATE ".$db_settings['userdata_table']." SET auto_login_code='' WHERE auto_login_code != '' AND last_login < (NOW() - INTERVAL ".$settings['cookie_validity_days']." DAY)", $connid);
-
      $result = mysql_query("SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, entries_read FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysql_real_escape_string(my_strtolower($request_username, $lang['charset']))."'", $connid) or raise_error('database_error',mysql_error());
      if (mysql_num_rows($result) == 1)
       {
@@ -156,11 +153,11 @@ switch ($action)
 
          if(isset($save_auto_login))
           {
-           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), registered=registered, auto_login_code='".mysql_real_escape_string($auto_login_code)."', pwf_code='', language='".mysql_real_escape_string($language_update)."', time_zone='".mysql_real_escape_string($time_zone_update)."', theme='".mysql_real_escape_string($theme_update)."', entries_read='".mysql_real_escape_string(implode(',',$read))."' WHERE user_id=".intval($user_id), $connid);
+           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', auto_login_code='".mysql_real_escape_string($auto_login_code)."', pwf_code='', language='".mysql_real_escape_string($language_update)."', time_zone='".mysql_real_escape_string($time_zone_update)."', theme='".mysql_real_escape_string($theme_update)."', entries_read='".mysql_real_escape_string(implode(',',$read))."' WHERE user_id=".intval($user_id), $connid);
           }
          else
           {
-           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), registered=registered, pwf_code='', language='".mysql_real_escape_string($language_update)."', time_zone='".mysql_real_escape_string($time_zone_update)."', theme='".mysql_real_escape_string($theme_update)."', entries_read='".mysql_real_escape_string(implode(',',$read))."' WHERE user_id=".intval($user_id), $connid);
+           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', pwf_code='', language='".mysql_real_escape_string($language_update)."', time_zone='".mysql_real_escape_string($time_zone_update)."', theme='".mysql_real_escape_string($theme_update)."', entries_read='".mysql_real_escape_string(implode(',',$read))."' WHERE user_id=".intval($user_id), $connid);
           }
 
          // auto delete spam:

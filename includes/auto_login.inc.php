@@ -89,7 +89,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
         #if(isset($read_before_logged_in)) $read = set_read($read_before_logged_in); // get read postings from cookie (read before logged in)
         save_read(false);
 
-        @mysql_query("UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), registered=registered, pwf_code='', language='".mysql_real_escape_string($language_update)."', time_zone='".mysql_real_escape_string($time_zone_update)."', theme='".mysql_real_escape_string($theme_update)."' WHERE user_id=".intval($user_id), $connid);
+        @mysql_query("UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', pwf_code='', language='".mysql_real_escape_string($language_update)."', time_zone='".mysql_real_escape_string($time_zone_update)."', theme='".mysql_real_escape_string($theme_update)."' WHERE user_id=".intval($user_id), $connid);
 
         // auto delete spam:
         if($user_type>0 && $settings['auto_delete_spam']>0) @mysql_query("DELETE FROM ".$db_settings['forum_table']." WHERE time < (NOW() - INTERVAL ".$settings['auto_delete_spam']." HOUR) AND spam=1", $connid);

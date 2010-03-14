@@ -1,34 +1,46 @@
 my little forum changelog
 -------------------------
 
-2.2 (2010-02-??)
+2.2 (2010-03-??)
 ----------------
 Changes:
  - New user settings: language, time zone and theme
  - Server-side storage of read postings for registered users implemented
+ - JavaScript code completely rewritten
  - Some minor code improvements concerning the complete thread view
  - Template/CSS improvements:
    - menus as unordered lists (user menu, subnavigation, bottom menu)
    - CSS Sprites for background images to reduce the amount of HTTP requests
    - indenting if line breaks in threads
    - merged regular and IE stylesheet (new <div id="ie"> for IE)
-   - preloading ajax preview images (throbber and background image) in the
-     styleshet (so far: JS preloading)
 
 Edited files:
- - index.php
- - includes/posting.inc.php
- - includes/main.inc.php
- - js/main.js
- - templates/default/images/
- - templates/default/main.tpl
- - templates/default/style.css
- - templates/default/subtemplates/
+ - all
 
 Database changes:
  - new colums in userdata table, new rows in settings table;
    see update/update.sql
 
+
+2.1.4 (2010-02-08)
+------------------
+- Modified quoted-printable encoding for e-mails
+- Skipped user data check of registered users when posting (is already done when 
+  registering or editing user data)
+- Bugfix: graphical CAPTCHA was not displayed if cookies were disabled
+
+Changed files:
+- includes/functions.inc.php
+- includes/posting.inc.php
+- templates/default/subtemplates/posting.tpl.inc
+- templates/default/subtemplates/contact.tpl.inc
+
+Database changes:
+- no database changes
+
+Manual update:
+- replace the changed files
+- set "version" to "2.1.4" in Admin --> Forum settings --> Advanced settings
 
 2.1.3 (2010-01-25)
 ------------------

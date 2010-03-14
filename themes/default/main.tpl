@@ -6,17 +6,36 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta name="description" content="{$settings.forum_description|escape:"html"}" />
 <meta name="keywords" content="{$keywords|default:""}" />
+{if $mode=='posting'}
+<meta name="robots" content="noindex" />
+{/if}
 <meta name="generator" content="my little forum {$settings.version}" />
 <link rel="stylesheet" type="text/css" href="{$THEMES_DIR}/{$theme}/style.css" media="all" />
 {if $settings.rss_feed==1}<link rel="alternate" type="application/rss+xml" title="RSS" href="index.php?mode=rss" />{/if}
+{if !$top}
 <link rel="top" href="./" />
+{/if}
+{if $link_rel_first}
+<link rel="first" href="{$link_rel_first}" />
+{/if}
+{if $link_rel_prev}
+<link rel="prev" href="{$link_rel_prev}" />
+{/if}
+{if $link_rel_next}
+<link rel="next" href="{$link_rel_next}" />
+{/if}
+{if $link_rel_last}
+<link rel="last" href="{$link_rel_last}" />
+{/if}
 <link rel="search" href="index.php?mode=search" />
 <link rel="shortcut icon" href="{$THEMES_DIR}/{$theme}/images/favicon.ico" />
-<script src="js/main.js" type="text/javascript"></script>
+<script src="index.php?mode=js_defaults&amp;t={$settings.last_changes}{if $user}&amp;user_type={$user_type}{/if}" type="text/javascript" charset="utf-8"></script>
+<script src="js/main.min.js" type="text/javascript" charset="utf-8"></script>
+{if $mode=='posting'}
+<script src="js/posting.min.js" type="text/javascript" charset="utf-8"></script>
+{/if}
 {if $mode=='admin'}
-<script src="js/admin.js" type="text/javascript"></script>
-<script src="js/prototype.js" type="text/javascript"></script>
-<script src="js/scriptaculous.js" type="text/javascript"></script>
+<script src="js/admin.js" type="text/javascript" charset="utf-8"></script>
 {/if}
 </head>
 
@@ -37,7 +56,7 @@
 {foreach name='menu' from=$menu item=menu}<li><a href="index.php?mode=page&amp;id={$menu.id}">{$menu.linkname}</a></li>{if !$smarty.foreach.menu.last}{/if}{/foreach}
 {/if}
 </ul>
-<form id="topsearch" action="index.php" method="get" title="{#search_title#}" accept-charset="{#charset#}"><div><input type="hidden" name="mode" value="search" /><label for="search-input">{#search_marking#}</label>&nbsp;<input id="search-input" type="text" name="search" value="{#search_default_value#}" onfocus="if(this.value=='{#search_default_value#}') this.value=''" onblur="if(this.value=='') this.value='{#search_default_value#}'" size="30" /><!--&nbsp;<input type="image" src="templates/{$settings.template}/images/submit.png" alt="[&raquo;]" />--></div></form></div>
+<form id="topsearch" action="index.php" method="get" title="{#search_title#}" accept-charset="{#charset#}"><div><input type="hidden" name="mode" value="search" /><label for="search-input">{#search_marking#}</label>&nbsp;<input id="search-input" type="text" name="search" value="{#search_default_value#}" /><!--&nbsp;<input type="image" src="templates/{$settings.template}/images/submit.png" alt="[&raquo;]" />--></div></form></div>
 </div>
 
 <div id="subnav">
@@ -55,7 +74,7 @@
 
 <div id="footer">
 <div id="footer-1">{if $total_users_online}{#counter_users_online#|replace:"[total_postings]":$total_postings|replace:"[total_threads]":$total_threads|replace:"[registered_users]":$registered_users|replace:"[total_users_online]":$total_users_online|replace:"[registered_users_online]":$registered_users_online|replace:"[unregistered_users_online]":$unregistered_users_online}{else}{#counter#|replace:"[total_postings]":$total_postings|replace:"[total_threads]":$total_threads|replace:"[registered_users]":$registered_users}{/if}<br />
-{#forum_time#|replace:'[time]':$forum_time}</div>
+{if $forum_time_zone}{#forum_time_with_time_zone#|replace:'[time]':$forum_time|replace:'[time_zone]':$forum_time_zone}{else}{#forum_time#|replace:'[time]':$forum_time}{/if}</div>
 <div id="footer-2">
 <ul id="footermenu">
 {if $settings.rss_feed==1}<li><a class="rss" href="index.php?mode=rss" title="{#rss_feed_postings_title#}">{#rss_feed_postings#}</a> &nbsp;<a class="rss" href="index.php?mode=rss&amp;items=thread_starts" title="{#rss_feed_new_threads_title#}">{#rss_feed_new_threads#}</a></li>{/if}<li><a href="index.php?mode=contact" title="{#contact_linktitle#}" rel="nofollow">{#contact_link#}</a></li>

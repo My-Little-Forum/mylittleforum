@@ -1,0 +1,1088 @@
+################################################################################
+# Croatian language file for my little forum 2.2                               #
+#------------------------------------------------------------------------------#
+# Translated by Riba                                                           #
+# 2010-02-10                                                                   #
+#------------------------------------------------------------------------------#
+# Update 2010-03-13 (Alex < alex at mylittleforum dot net >):                  #
+# added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
+################################################################################
+
+language =                        hr
+charset =                         utf-8
+locale =                          hr_HR.utf8
+locale =                          hr_HR
+locale =                          hr
+locale =                          hrv
+locale_charset =                  utf-8
+dir =                             ltr
+time_format =                     %d/%m/%Y, %H:%M
+time_format_full =                %A %d %B %Y, %H:%M
+forum_time =                      Vrijeme na forumu: [time]
+forum_time_with_time_zone =       Vrijeme na forumu: [time] ([time_zone])
+unknown_user =                    nepoznat
+db_error =                        Greška na bazi!
+mail_error =                      Mail server nije dostupan - pokušajte kasnije!
+
+[general]
+subject =                         Tema
+author =                          Autor
+date =                            Datum
+replies =                         Odgovora
+views =                           Otvaranja
+category =                        Kategorija
+submit_button_ok =                &nbsp;U redu&nbsp;
+yes =                             da
+no =                              ne
+go =                              Kreni
+edit =                            ispravi
+delete =                          obriši
+next_page_link =                  Sljedeća stranica &raquo;
+previous_page_link =              &laquo; Prethodna stranica
+next_page_link_title =            sljedeća stranica
+previous_page_link_title =        prethodna stranica
+posted_by =                       od <strong>[name]</strong>[email_hp], [time]
+posted_by_location =              od <strong>[name]</strong>[email_hp], [location], [time]
+original_posting_linktitle =      klikni za otvaranje početne poruke od [name]
+error_headline =                  Greška!
+no_authorisation =                Nemate dopuštenje!
+page_doesnt_exist =               Ova stranica ne postoji!
+error_form_uncomplete =           Sva polja moraju biti popunjena
+caution =                         Pozor!
+spam =                            Spam
+forum_index_link =                Početna stranica foruma
+forum_index_link_title =          Početna stranica foruma
+log_in_link =                     Prijava
+log_in_link_title =               Prijava
+log_out_link =                    Odjava
+log_out_link_title =              Odjava
+register_link =                   Registracija
+register_link_title =             Registriraj se kao novi korisnik
+profile_link_title =              Izmjena profila
+user_area_link =                  Za korisnike
+user_area_link_title =            Korisnički dio
+admin_area_link =                 Za administratora
+admin_area_link_title =           Administratorski dio
+search_marking =                  Pretraga:
+search_default_value =            Traži...
+search_title =                    Traži poruke
+new_topic_link =                  Pokreni novu temu
+new_topic_link_title =            Pokreni novu temu
+order_link =                      Sortiraj
+order_link_title_1 =              Sortiraj po najnovijim porukama
+order_link_title_2 =              Sortiraj po najnovijim temama (zadano)
+fold_threads =                    Skupi teme
+fold_threads_linktitle =          Skupi teme
+expand_threads =                  Otvori teme
+expand_threads_linktitle =        Otvori teme
+table_view =                      Tabelarni prikaz
+table_view_linktitle =            Prikaži poruke unutar tabele
+thread_view =                     Razgranati prikaz
+thread_view_linktitle =           Prikaži poruke razgranato
+refresh_link =                    Osvježi
+refresh_linktitle =               <!-- TODO -->Reset new and read postings
+thread_hierarchical =             Hijerarhijski
+thread_hierarchical_linktitle =   Prikaži teme hijerarhijski (zadano)
+open_in_thread_link =             Otvori unutar teme
+open_in_thread_linktitle =        Prikaži ovu poruku unutar čitave teme
+thread_linear =                   Linearno
+thread_linear_linktitle =         Prikaži teme linearno
+fold_posting_title =              Raširi / skupi poruku   
+fold_postings =                   Skupi sve / raširi sve
+fold_postings_title =             Skupi sve poruke / raširi sve poruke
+expand_fold_thread_linktitle =    Raširi / skupi temu
+category_title =                  Kateogrija
+all_categories =                  Sve kategorije
+my_category_selection =           Tvoj izbor
+page_title =                      Stranica
+thread_entry_back_link =          Početna stranica
+thread_entry_back_title =         Početna stranica foruma
+reply_link =                      Pošalji odgovor
+reply_link_title =                Odgovori na ovu poruku
+back_to_index_link =              Povratak na početnu stranicu
+back_to_index_link_title =        Početna stranica
+back_to_entry_link =              Natrag na poruku od [name]
+back_to_entry_link_title =        Natrag na poruku od [name]
+subnav_login =                    Prijava
+subnav_pw_forgotten =             Zaboravljena lozinka
+subnav_admin_area =               Administratorski dio
+subnav_settings =                 Postavke foruma
+subnav_advanced_settings =        Napredne postavke
+subnav_categories =               Kategorije
+subnav_edit_category =            Izmijeni kategoriju
+subnav_delete_category =          Obriši kategoriju
+subnav_user =                     Uređivanje korisnika
+subnav_smilies =                  Smajlići
+subnav_pages =                    Stranice
+subnav_delete_page =              Obriši stranicu
+subnav_edit_page =                Izmijeni stranicu
+subnav_add_page =                 Dodaj stranicu
+subnav_create_page =              Kreiraj stranicu
+subnav_edit_smiley =              Izmijeni smajlić
+subnav_edit_user =                Izmijeni korisnika
+subnav_delete_users =             Obriši korisnike
+subnav_register_user =            Registriraj korisnika
+subnav_spam_protection =          Zaštita od spama
+subnav_email_list =               Pošalji popis registriranih korisnika e-mailom
+subnav_clear_userdata =           Obriši korisničke podatke
+subnav_search =                   Traži
+subnav_register =                 Registriraj se
+subnav_reset_uninstall =          Isprazni / ukloni forum
+subnav_userarea =                 Korisnički dio
+subnav_contact =                  Kontakt
+subnav_userarea_show_user =       [var]
+subnav_userarea_show_posts =      Poruke od [var]
+subnav_userarea_edit_user =       Izmijeni profil
+subnav_userarea_edit_pw =         Izmijeni lozinku
+subnav_userarea_edit_mail =       Izmijeni e-mail adresu
+subnav_backup =                   Napravi sigurnosnu kopiju
+subnav_update =                   Unaprijedi verziju
+subnav_update_run =               Instaliraj novu verziju
+subnav_delete_backup_file =       Obriši sigurnosnu kopiju
+subnav_restore =                  Vati iz sigurnosne kopije
+subnav_locked =                   Korisnički račun je zaključan
+subnav_delete_cookie =            Obriši cookie
+subnav_disabled =                 Forum je zatvoren
+subnav_page_error =               Greška
+subnav_page =                     [var]
+counter =                         [total_postings] poruka u [total_threads] tema, [registered_users] registriranih korisnika
+counter_users_online =            [total_postings] poruka u [total_threads] tema, [registered_users] registriranih korisnika, korisnika prisutno: [total_users_online] ([registered_users_online] registriranih, [unregistered_users_online] gostiju)
+contact_link =                    Kontakt
+contact_linktitle =               Pošalji e-mail administratoru foruma
+rss_feed_postings =               RSS obavjesti o porukama
+rss_feed_postings_title =         RSS obavjest o novim porukama
+rss_feed_new_threads =            RSS obavjesti o novim temama
+rss_feed_new_threads_title =      RSS obavjest o novopokrenutim temamam
+rss_feed_thread =                 RSS obavjest o temi
+rss_feed_thread_title =           RSS obavjest o ovoj temi
+no_messages =                     Još nije ostavljena niti jedna poruka
+no_messages_in_category =         U ovoj kategoriji još nije ostavljena niti jedna poruka
+error_invalid_category =          Kategorija je neispravna
+error_word_too_long =             Riječ "[word]" je predugačka
+error_name_too_long =             Ime je predugačko
+error_email_too_long =            e-mail adresa je predugačka
+error_hp_too_long =               Web stranica je predugačka
+error_location_too_long =         Lokacija je predugačka
+error_profile_too_long =          Profil je predugačak ([profile_length] znakova - dozvoljeno je [profile_maxlength] znakova)
+error_signature_too_long =        Potpis je predugačak ([signature_length] znakova - dozvoljeno je [signature_maxlength] znakova)
+error_invalid_date_format =       Format datuma rođenja nije ispravan (YYYY-MM-DD)
+error_invalid_date =              Neispravan datum rođenja
+error_email_wrong =               Neispravna e-mail adresa
+error_hp_wrong =                  Neispravna adresa web stranice
+error_pw_conf_wrong =             Lozinke se razlikuju
+error_akismet_connection =        Problem sa posluživačem, pokušaj ponovo!
+error_akismet_connection_admin =  Ne mogu se povezati na Akismet posluživač u svrhu provjere API ključa!
+error_akismet_api_key =           Neispravan Wordpress API ključ
+error_spam_suspicion =            Sumnja na Spam! Izmjeni svoju poruku (npr. ukloni linkove)
+user_name_already_exists =        Ovo korisničko ime već postoji
+open_whole_thread =               Otvori čitavu temu
+change_category_link =            Prikaži poruke u kategoriji "[category]"
+mark_linktitle =                  Označi poruke
+unmark_linktitle =                Odznači poruke
+delete_marked_link =              Obriši označene poruke
+manage_postings_link =            Upravljanje porukama
+show_spam_link =                  Prikaži spam ([number])
+hide_spam_link =                  Sakrij spam
+delete_spam_link =                Obriši spam
+no_replies =                      Nema odgovora
+one_reply =                       1 odgovor
+several_replies =                 [replies] odgovora
+more_smilies_label =              više...
+more_smilies_title =              više smajlića
+close =                           zatvori
+no_postings_user =                Nema poruka.
+search_submit_button =            Traži
+search_fulltext =                 izraz
+search_tags =                     oznake
+no_postings_found =               Nema pronađenih poruka.
+one_posting_found =               1 je poruka pronađena:
+several_postings_found =          Pronađeno je [number] poruka:
+no_postings_by_user =             Nema poruka.
+one_posting_by_user =             1 poruka:
+several_postings_by_user =        [number] poruka:
+rss_posting_by =                  Poruka od [name], [time]:
+rss_reply_by =                    Odgvoor od [name], [time]:
+rss_reply_marking =               (odgovor)
+move_up =                         pomakni gore
+move_down =                       pomakni dole
+delete_posting_title =            Obriši poruku
+delete_posting_confirm =          Želiš li zaista obrisati ovu poruku?
+delete_posting_replies_confirm =  Želiš li zaista obrisati ovu poruku i sve odgovore na istu?
+latest_postings_hl =              Najnovije poruke
+toggle_latest_postings =          Prikaži / sakrij najnovije poruke
+posting_minutes_ago =             pred [minutes] minuta
+posting_hours_ago =               pred [hours] sati, [minutes] minuta
+posting_one_day_ago =             pred 1 dan, [hours] sati, [minutes] minuta
+posting_several_days_ago =        pred [days] dana
+tag_cloud_hl =                    Nedavne oznake
+sidebar =                         Stupac sa strane
+toggle_sidebar =                  Prikaži / sakrij stupac sa strane
+options =                         Postavke
+administrator_title =             Administrator
+moderator_title =                 Moderator
+avatar_img_alt =                  Avatar
+search_user =                     Traži korisnika:
+search_user_default_value =       Traži korisnika...
+no_users =                        Nema pronađenih korisnika.
+no_text_title =                   Tijelo poruke je prazno
+no_text_alt =                     Nema teksta
+no_text =                         - Nema teksta -
+error_invalid_form =              <!-- TODO -->Invalid request - please try again!
+error_form_sent_too_fast =        Obrazac je poslan pre brzo - počekajte par sekundi i pokušajte opet (prevencija automatskog popunjavanja obrasca)
+error_form_sent_too_slow =        Obrazac više ne vrijedi - kopirajte sadržaj i osvježite stranicu 
+terms_of_use_agreement =          Prihvaćam [[terms of use]]
+error_not_accepted_word =         Riječ nije prihvaćena: [not_accepted_word]
+error_not_accepted_words =        Riječi nisu prihvaćene: [not_accepted_words]
+error_username_invalid_chars =    Korisničko ime sadrži nedopuštene znakove
+user_locked =                     Vaš je korisnički račun trenutno zaključan.
+forum_disabled =                  Forum trenutno nije dostupan.
+cookie_deleted =                  Cookie je obrisan.
+ajax_preview_title =              Prikaži sadržaj
+bbcode_link_text =                Tekst linka (nije obavezno):
+bbcode_link_url =                 Adresa linka (URL):
+bbcode_image_url =                Adresa slike (URL):
+bbcode_tex_code =                 <!-- TODO -->TeX formula (e.g. \sqrt{x}):
+quote_label =                     citiraj poruku
+quote_title =                     citiraj poruku
+error_no_name =                   Ime nije uneseno
+error_no_subject =                Naziv teme nije unesen
+error_no_text =                   Tijelo poruke je prazno
+terms_of_use_error_register =     Morate prihvatiti uvjete korištenja u svrhu kompletiranja registracije
+terms_of_use_error_posting =      Za slanje poruke morate prihvatiti uvjete korištenja
+check_all =                       označi sve
+uncheck_all =                     odznači sve
+delete_backup_confirm =           Jeste li sigurni da želite obrisati datoteku sigurosne kopije?
+delete_sel_backup_confirm =       Jeste li sigurni da želite obrisati sve označene datoteke sigurosnih kopija?
+drag_and_drop_title =             Uhvati i povuci za pomicanje gore ili dole
+
+[entry]
+edited_by =                       Ispravio [name], [time]
+tags_marking =                    Oznake:
+one_view =                        1 otvaranje
+several_views =                   [views] otvaranja
+complete_thread_marking =         Čitava tema:
+branch_marking =                  Tekući ogranak teme:
+direct_replies_marking =          Izravni odgovori na ovu poruku:
+edit_message_linkname =           ispravi
+edit_message_linktitle =          ispravi poruku
+delete_message_linkname =         obriši
+delete_message_linktitle =        obriši poruku
+move_posting_linkname =           preseli
+move_posting_linktitle =          preseli poruku
+report_spam_linkname =            spam
+report_spam_linktitle =           prijavi kao spam
+flag_ham_linkname =               nije spam
+flag_ham_linktitle =              označi/prijavi da se ne radi o spamu
+lock_linkname =                   zaključaj
+lock_linktitle =                  zaključaj poruku
+unlock_linkname =                 otključaj
+unlock_linktitle =                otključaj poruku
+lock_thread_linkname =            zaključaj temu
+lock_thread_linktitle =           zaključaj čitavu temu
+unlock_thread_linkname =          otključaj temu
+unlock_thread_linktitle =         otključaj čitavu temu
+posting_locked =                  zaključano
+email =                           E-mail
+homepage =                        Web stranica
+spam_note =                       Poruka nije prošla spam provjeru i neće biti prikazana dok je ručno ne aktivira moderator ili administrator.
+
+[posting]
+no_authorization_edit =           Poruku nije moguće izmijeniti! Mogući razlozi su itek perioda za izmjenu poruke, tema je zaključana ili već postoje odgovori na poruku.
+posting_locked_no_reply =         Nije moguće odgovoriti na ovu poruku jer je zaključana.
+no_auth_post_reg_users =          Samo registrirani korisnici mogu ostavjati poruke!
+no_auth_session_expired =         Prijava je istekla, Iskopirajte svoju poruku i prijavite se opet!
+no_auth_readonly =                Forum trenutno dozvoljava samo čitanje!
+new_topic_hl =                    Nova tema
+reply_hl =                        Odgovori
+edit_hl =                         Ispravi unos
+name_marking =                    Ime:
+email_marking =                   E-mail:
+hp_marking =                      Web stranica:
+location_marking =                Lokacija:
+optional =                        (nije obavezno)
+optional_email =                  (nije obavezno, neće biti prikazano)
+remember_userdata_marking =       Upamti me
+delete_cookie_linkname =          obriši cookie
+category_marking =                Kategorija:
+subject_marking =                 Tema:
+message_marking =                 Poruka:
+tags_marking =                    Oznake:
+tags_note =                       (nije obavezno, razdvojeno zarezima)
+bbcode_bold_label =               podebljano
+bbcode_bold_title =               Formatiranje podebljanog teksta
+bbcode_bold_instruction =         [b]Tekst[/b]
+bbcode_italic_label =             kurziv
+bbcode_italic_title =             Formatiranje kurziva
+bbcode_italic_instruction =       [i]Tekst[/i]
+bbcode_color_label =              boja
+bbcode_color_title =              Tekst u boji
+bbcode_color_instruction =        [color=#rgb]Tekst[/color]
+bbcode_link_label =               link
+bbcode_link_title =               Ubaci link
+bbcode_link_instruction =         [link=http://example.com/]tekst linka[/link] / [link]http://example.com/[/link]
+bbcode_size_label =               veličina
+bbcode_size_title =               Veličina slova
+bbcode_size_label_small =         malo
+bbcode_size_label_large =         veliko
+bbcode_size_instruction_small =   [size=small]mala slova[/size]
+bbcode_size_instruction_large =   [size=large]veika slova[/size]
+bbcode_list_label =               popis
+bbcode_list_title =               Ubaci popis
+bbcode_list_instruction =         [list][*]redak popisa[/list]
+bbcode_image_label =              slika
+bbcode_image_title =              Ubaci sliku
+bbcode_image_instruction =        [img]http://example.com/image.jpg[/img]
+bbcode_upload_label =             upload
+bbcode_upload_title =             Upload slike
+bbcode_upload_instruction =       Upload slike ...
+bbcode_flash_label =              flash
+bbcode_flash_title =              Flash sadržaj
+bbcode_flash_instruction =        [flash]http://example.com/flash.swf[/flash]
+bbcode_tex_label =                TeX
+bbcode_tex_title =                <!-- TODO -->Insert TeX code
+bbcode_tex_instruction =          <!-- TODO -->[tex]TeX code[/tex]
+bbcode_code_label =               kod
+bbcode_code_title =               Programski kod
+bbcode_code_label_inline =        Inline kod
+bbcode_code_instruction_inline =  [inlinecode]kod[/inlinecode]
+bbcode_code_label_general =       Blok koda
+bbcode_code_instruction_general = [code]kod[/code]
+bbcode_code_label_specific =      Blok koda [language]
+bbcode_code_instruction_spec =    [code=[language]]code[/code]
+insert_smiley_title =             Ubaci smajlić
+email_notific_reply_thread =      E-mail obavijesti za odgovore na ovu temu
+email_notific_reply_post =        E-mail obavijesti za odgovore na ovu poruku
+show_signature_marking =          Dodaj potpis
+sticky_thread =                   Uvijek na vrhu
+message_submit_button =           Pošalji
+message_submit_title =            Spremi
+message_preview_button =          Provjera
+message_preview_title =           Provjeri svoju poruku prije slanja
+reply_to_posting_marking =        Odgovor na poruku od <strong>[name]</strong>
+minutes_left_to_edit =            Prestalo vam je [minutes] minuta za ispravak ove poruke
+minutes_left_to_edit_reply =      Preostalo vam je [minutes] minuta za ispravak ove poruke ako netko ne pošalje odgovor ranije
+preview_headline =                Provjera:
+error_repeated_posting =          Ponovno slanje poruke unutar [minutes] minuta. Počekajte trenutak i pokušajte ponovo. 
+error_name_like_subject =         Ime je isto kao i naziv teme
+error_name_reserved =             Ovo ime već koristi registrirani korisnik
+error_username_too_long =         Korisničko ime je predugačko
+error_name_too_long =             Ime je predugačko
+error_no_email_to_notify =        Nije upisana e-mail adresa za notifikaciju
+error_subject_too_long =          Naziv teme je predugačak
+error_text_too_long =             Poruka je predugačka ([text_length] znakova - dopušteno je [text_maxlength] znakova)
+error_tags_too_long =             Oznake su predugačke
+error_posting_unavailable =       Poruka ne postoji
+
+[delete_posting]
+delete_postings_hl =              Obriši poruku
+delete_marked_hl =                Obriši označene poruke
+delete_marked_confirm =           Želiš li zaista obrisati sve označene poruke i njihove odgovore?
+delete_spam_hl =                  Obriši spam
+delete_spam_confirm =             Želiš li zaista obrisati sve poruke označene kao spam?
+delete_posting_submit =           Obriši
+report_spam_hl =                  Prijavi spam
+posting_already_spam =            Ova je poruka već označena kao spam.
+spamcheck_posting_not_checked =   Ova poruka nije provjerena jer Akismet nije omogućen ili ju je poslao registrirani korisnik.
+spamcheck_posting_passed =        Ova je poruka prošla Akismet spam provjeru. Prijavi je jedino ako se zaista radi o spamu!
+spamcheck_akismet_api_error =     Ova je poruka prošla Akismet spam provjeru jer je došlo do greške pri provjeri. Mogući uzrok je neispravan API ključ!
+spamcheck_akismet_timeout_error = Ova je poruka prošla spam provjeru jer Akismet server nije uspješno kontaktiran.
+report_spam_delete_submit =       Prijavi kao spam i obriši
+report_spam_submit =              Prijavi kao spam
+delete_only_submit =              Obriši
+postings_doesnt_exist =           Ova poruka ne postoji!
+posting_not_flagged_as_spam =     Ova poruka nije označena kao spam.
+flag_ham_hl =                     Označi kao valjanu poruku
+flag_ham_note =                   Ovu je poruku Akismet spam provjera označila kao spam. Ukloni ovu oznaku smao ako si siguran da se ne radi o spamu!
+report_flag_ham_submit =          Prijavi i označi kao valjanu poruku
+flag_ham_submit =                 Označi kao vajanu poruku
+no_authorisation_delete =         Poruku nije moguće obrisati! Mogući uzroci su istek vremena unutar kojeg je dozvoljeno brisanje, tema je zaključana ili već postoje odgovori na ovu poruku.
+
+[captcha]
+captcha_marking =                 Provjera za zaštitu od spama:
+captcha_expl_math =               Upiši zbroj dva broja:
+captcha_expl_image =              Upiši slova i brojeve sa slike iznad:
+captcha_image_alt =               Ako ne možeš vidjeti sliku, moraš kreirati svoj korisnički račun i prijaviti se za popunjavanje ovog obrasca
+captcha_image_alt_reg =           Kontaktirajte administratora foruma ako ne možete vidjeti sliku.
+captcha_check_failed =            Niste prošli provjeru za zaštitu od spama - pokušajte ponovo!
+
+[upload_image]
+image_upload_not_enabled =        Slanje slika nije omogućeno.
+upload_image_hl =                 Pošalji sliku
+upload_image_button =             Pošalji
+upload_error =                    Došlo je do greške pri slanju slike
+upload_error_2 =                  Slika nije određena ili je veličina veća od maksimalne veličine koju server prihvaća ([server_max_filesize]).
+invalid_file_format =             neispravan format datoteke
+file_too_large =                  datoteka je prevelika ([width]*[height], [filesize] KB, maksimalno dopušteno je [max_width]*[max_height], [max_filesize] KB)
+upload_successful =               Slika je uspješno poslana.
+image_downsized =                 <strong>Napomena:</strong> Slika ja morala biti smanjena, nove dimenzije su [width] x [height] točaka, [filesize] KB.
+insert_image =                    Umetni sliku
+insert_image_exp =                Označite sliku koju želite umetnuti u svoju poruku.
+insert_image_exp_no_js =          Možete koristiti sljedeći kod za ubacivanje slike u poruku:
+browse_uploaded_images =          Pregledaj poslane slike...
+back =                            &laquo; natrag
+no_images =                       Nema raspoloživih slika.
+delete_image_confirm =            Želite li obrisati ovu sliku?
+delete_image_button =             Obriši
+
+[insert_flash]
+insert_flash_hl =                 Umetni flash video sadržaj
+insert_flash_code =               Video kod (<code>&lt;object&gt;...&lt;/object&gt;</code>)
+flash_code =                      Kod:
+select_flash_or =                 ... ili ...
+insert_flash_custom =             Poseban flash video sadržaj
+flash_url =                       URL:
+flash_size =                      Veličina:
+insert_flash_button =             Umetni flash video sadržaj
+
+[avatar]
+avatar_hl =                       Avatar
+delete_avatar =                   Obriši avatara
+upload_avatar_hl =                Pošalji avatara
+upload_avatar_notes =             Dopuštena veličina avatar sličice: [width]*[height] px, [filesize] KB
+upload_image_button =             Pošalji
+upload_error =                    Došlo je do greške pri slanju slike
+upload_error_2 =                  Slika nije određena ili je veličina veća od maksimalne veličine koju server prihvaća ([server_max_filesize]).
+invalid_file_format =             neispravan format datoteke
+file_too_large =                  datoteka je prevelika ([width]*[height], [filesize] KB, maksimalno dopušteno je [max_width]*[max_height], [max_filesize] KB)
+upload_successful =               Avatar sličica je uspješno poslana
+close_window =                    Zatvori prozor
+image_downsized =                 <strong>Napomena:</strong> Avatar sličica ja morala biti smanjena, nove dimenzije su [width] x [height] točaka, [filesize] KB.
+avatars_disabled =                Avatari su isključeni
+
+[move_posting]
+move_posting_hl =                 Preseli poruku
+move_posting_new_thread =         Napravi zasebnu temu od ove poruke i pripadajućih odgovora
+move_posting =                    Preseli ovu poruku i pripadajuće odgovore na poruku # [number]
+move_posting_submit =             Preseli poruku
+invalid_posting_to_move =         Neispravan broj poruke
+
+[manage_postings]
+manage_postings_hl =              Upravljanje porukama
+mark_postings =                   Označi
+mark_all_postings =               Označi sve poruke
+unmark_all_postings =             Odznači sve poruke
+mark_old_threads =                Označi teme gdje su najnoviji odgovori stariji od [days] dana
+lock_postings =                   Zaključaj
+lock_all_postings =               Zaključaj sve poruke
+unlock_all_postings =             Otključaj sve poruke
+lock_old_threads =                Zaključaj teme gdje su najnoviji odgovori stariji od [days] dana
+
+[login]
+login_ip_temp_blocked =           Zbog uzastopnih neuspješnih pokušaja prijave vaš je korisnički račun privremeno onemogućen. Moete pokušati ponovo za nekoliko minuta.
+login_username =                  Korisničko ime:
+login_password =                  Lozinka:
+login_auto =                      Automatski me prijavi na ovom računalu
+login_submit =                    Prijava
+login_advice =                    Cookie mora biti omogućen u svrhu prijave!!
+pw_forgotten_link =               Zaboravili ste lozinku?
+pwf_failed =                      Nije pronađen korisnik sa ovom e-mail adresom
+login_failed =                    Nepoznato korisničko ime ili pogrešna lozinka!!
+registered_users_only =           Samo registrirani korisnici mogu ostavljati poruke!
+account_not_activated =           Vaš korisnički račun još nije aktiviran!
+account_activated =               Vaš je korisnički račun uspješno aktiviran.
+account_activated_but_locked =    Vaš je korisnički račun uspješno aktiviran ali prije prijave mora ga otključati administrator ili moderator!
+mail_sent =                       E-mail je poslan.
+pw_sent =                         Nova lozinka je poslana.
+code_invalid =                    Neispravan kod.
+
+[pw_forgotten]
+new_pw_ok =                       Nova je lozinka kreirana i poslana.
+new_pw_failed =                   Nije moguće kreirati novu lozinku jer je link za potvrdu neispravan.
+pw_forgotten_exp =                Lozinke su jednosmjerno kodirane tako da ih nije moguće saznati. Jedina mogućnost je da dobijete novu lozinku. Kako bi spriječili zloupotrebu primit ćete e-mailom link na koji trebate kliknuti kako bi potvrdili vaš zahtjev. Nakon toga nova će vam lozinka biti poslana.
+pwf_username =                    Koriničko ime:
+pwf_email =                       E-mail:
+
+[user]
+user_name =                       Korisničko ime
+user_type =                       Vrsta
+admin =                           Administrator
+mod =                             Moderator
+user =                            Korisnik
+user_email =                      E-mail
+user_hp =                         Web stranica
+mailto_user =                     Pošalji e-mail korisniku [user]
+email =                           E-mail
+homepage =                        Web stranica
+user_postings =                   Poruka
+user_online =                     Online
+user_blockage =                   Zakljušan
+online =                          online
+locked =                          zaključan
+lock_title =                      zaključaj korisnika
+unlocked =                        otključan
+unlock_title =                    otključaj korisnika
+currently_online =                Trenutno je online   
+
+[user_show]
+user_name =                       Korisničko ime:
+user_avatar =                     Avatar:
+user_type =                       Vrsta:
+admin =                           Administrator
+mod =                             Moderator
+user =                            Korisnik
+user_real_name =                  Ime:
+gender =                          Spol:
+male =                            muški
+female =                          ženski
+age_birthday =                    Dob / rođendan:
+mailto_user =                     Pošalji e-mail korisniku [user]
+email =                           E-mail
+homepage =                        Web stranica
+user_hp_email =                   Web stranica / E-mail:
+user_location =                   Lokacija:
+user_registered =                 Registriran:
+user_last_login =                 Posljednja prijava:
+user_logins =                     Prijava:
+user_postings =                   Poruka:
+show_postings_link =              prikaži poruke
+last_posting =                    Posljednja poruka:
+logins_per_day =                  Prijava na dan:
+postings_per_day =                Poruka na dan:
+user_profile =                    Profil:
+user_account_doesnt_exist =       Ovaj korisnički račun ne postoji.
+
+[user_edit]
+edit_user_name =                  Korisničko ime:
+edit_avatar =                     Avatar:
+edit_avatar_link =                izmijeni avatar
+edit_user_type =                  Vrsta:
+edit_user_email =                 E-mail:
+edit_email =                      Izmijeni E-mail adresu
+edit_user_pw =                    Lozinka:
+pw_not_displayed =                nije prikazana
+edit_pw =                         izmijeni lozinku
+edit_user_email_contact =         E-mail adresa dostupna za kontakt
+edit_user_real_name =             Ime:
+edit_user_gender =                Spol:
+male =                            muški
+female =                          ženski
+edit_user_birthday =              Rođendan:
+birthday_format =                 GGGG-MM-DD
+edit_user_hp =                    Web stranica:
+edit_user_location =              Lokacija:
+edit_user_profile =               Profil:
+edit_user_signature =             potpis:
+edit_user_cat_selection =         Odabrane kategorije:
+edit_user_time_zone =             <!-- TODO -->Time zone:
+edit_user_time_difference =       <!-- TODO -->Additional time difference in hours (e.g. +3 or -5:30):
+edit_user_default_time_zone_svr = <!-- TODO -->Default (server time)
+edit_user_default_time_zone =     <!-- TODO -->Default ([default_time_zone])
+edit_user_language =              <!-- TODO -->Language:
+edit_user_default_language =      <!-- TODO -->Default ([default_language])
+edit_user_theme =                 <!-- TODO -->Theme:
+edit_user_default_theme =         <!-- TODO -->Default ([default_theme])
+edit_user_auto_login =            Automatska prijava:
+enable_auto_login =               uključite automatsku prijavu
+edit_user_notification =          E-mail obavijesti:
+admin_mod_notif_posting =         kod pristizanja nove poruke
+admin_mod_notif_register =        kod prijave novog korisnika
+userdata_submit_button =          Spremi
+profile_saved =                   Profil je spremljen
+pw_changed =                      Lozinka je izmjenjena
+
+[edit_pw]
+edit_pw_old =                     Stara lozinka:
+edit_pw_new =                     Nova lozinka:
+edit_pw_conf =                    Ponovite novu lozinku:
+error_old_pw_wrong =              Stara lozinka nije ispravna
+error_pw_conf_wrong =             Nova lozinka nije identična u oba polja
+error_new_pw_too_short =          Nova lozinka mora imati najmanje [characters] znakova
+
+[edit_email]
+edit_email_exp =                  Nakon promjene e-mail adrese biti ćete odjavljeni i vaš će korisnički račun morati nanovo biti aktiviran. Aktivacijski ključ će vam biti poslan na novu e-mail adresu. Pobrinite se da je nova e-mail adresa ispravna! Korisnički račun mora biti aktiviran unutar jednog dana.
+edit_email_new =                  Nova e-mail adresa:
+edit_email_new_confirm =          Potvrdite novu e-mail adresu:
+edit_email_pw =                   Lozinka:
+error_form_uncompl =              Sva potreba polja nisu ispunjena
+error_email_confirmation =        Nova e-mail adresa i njena potvrda nisu iste
+error_email_too_long =            E-mail adresa je predugačka
+error_identic_email =             Nova e-mail adresa je identična staroj
+error_email_invalid =             E-mail adresa je neispravna
+pw_wrong =                        Lozinka je neispravna
+
+[register]
+register_exp =                    Unesite željeno korisničko ime, lozinku i ispravnu e-mail adresu. Aktivacijski ključ će vam biti poslan na unesenu e-mail adresu. Korisnički račun morate aktivirati unutar jednog dana.
+register_username =               Korisničko ime:
+register_user_email =             E-mail:
+register_pw =                     Lozinka:
+register_pw_conf =                Ponovite lozinku:
+register_only_by_admin =          Samo administrator može registrirati nove korisnike.
+registered =                      Korisnički račun je registriran i aktivacijski ključ je poslan na <strong>[var]</strong>. Korsnički račun mora biti aktiviran unutar jednog dana.
+registered_send_error =           Korisnički račun je registriran ali aktivacijski ključ nije poslan zbog problema sa mail poslužiteljem. Kontaktirajte administratora i zatražite ručnu aktivaciju.
+activation_failed =               Aktivacija korisničkog računa nije uspjela.
+error_password_too_short =        Lozinka mora imati najmanje [characters] znakova
+error_email_alr_exists =          Već postoji korisnik sa ovom e-mail adresom
+error_reg_not_accepted_word =     Zaštita od spama: E-mail ili ime sadrže domenu ili riječ koju ne prihvaćamo.
+
+[contact]
+contact_hl =                      Pošalji e-mail administratoru foruma
+contact_user_hl =                 Pošalji e-mail korisniku [recipient_name]
+impossible_to_contact =           Ovog korisnika nije moguće kontaktirati!
+contact_doesnt_exist =            Ovaj kontakt ne postoji!
+sender_address_caption =          E-mail pošiljatelja:
+subject_caption =                 Tema:
+message_caption =                 Poruka:
+message_submit_caption =          Pošalji poruku
+email_sent =                      Poruka je uspješno poslana.
+error_no_text =                   Tijelo poruke je prazno
+error_no_email =                  Nije upisana e-mail adresa pošiljatelja
+error_no_subject =                Tema je prazna
+error_email_invalid =             E-mail adresa je neispravna
+error_email_subject_too_long =    Tema je predugačka
+error_email_text_too_long =       Poruka je predugačka ([text_length] znakova - dozvoljeno je [text_maxlength] znakova)
+error_spam_suspicion =            Sumnja na spam! Prilagodite sadržaj poruke (npr. uklonite linkove)
+
+[admin]
+enabled =                         uključeno
+disabled =                        isključeno
+folder_alt =                      mapa
+file_alt =                        datoteka
+admin_confirm_password =          Administracijska lozinka:
+error_password_wrong =            Lozinka je neispravna
+
+# admin menu
+forum_settings_link =             Postavke foruma
+category_administr_link =         Kategorije
+user_administr_link =             Korisnički računi
+smilies_administr_link =          Smajlići
+pages_administr_link =            Stranice
+spam_protection_link =            Zaštita od spama
+backup_restore_link =             Sigurnosna kopija
+update_link =                     Unaprijedi verziju
+reset_uninstall_link =            Isprazni ili ukloni forum
+
+# forum settings:
+clear_chache =                    Obriši pričuvnu memoriju kako bi tekuće postavke postale važeće za postojeći sadržaj
+settings_submit_button =          Spremi postavke
+settings_saved =                  Postavke su spremljene
+advanced_settings_link =          Napredne postavke
+forum_name =                      Naziv foruma
+forum_name_desc =                 biti će (između ostalog) prikazan u zaglavlju
+forum_description =               Opis foruma
+forum_description_desc =          Kratak opis foruma
+forum_address =                   Adresa foruma
+forum_address_desc =              URL foruma (u ovom formatu: http://www.domena.tld/forum/)
+forum_email =                     E-mail adresa foruma
+forum_email_desc =                biti će korištena kao kontakt adresa i adresa pošiljatelja za sve e-mailove poslane s foruma
+home_link =                       Link na naslovnicu
+home_link_desc =                  Link na naslovnicu, npr. http://www.domena.tld/ ili ../index.html (nije obavezno)
+home_link_name =                  Naziv linka
+home_link_name_desc =             Naziv linka prema naslovnici, npr. &quot;Natrag na naslovnicu&quot;
+default_language =                Jezik
+default_language_desc =           <!-- TODO -->Default language of the forum
+default_time_zone =               <!-- TODO -->Time zone
+default_time_zone_desc =          <!-- TODO -->Default time zone
+default_time_difference =         <!-- TODO -->Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
+default_theme =                   Predložak
+default_theme_desc =              <!-- TODO -->Default forum layout theme
+threads_per_page =                Tema po stranici
+threads_per_page_desc =           Koliko tema će biti prikazano po stranici
+auto_lock_old_threads =           Automatsko zaključavanje starih tema
+auto_lock_old_threads_desc =      Automatski zaključaj teme koje su starije od navedenog broja dana. (0=neograničeno)
+accession =                       Dozvola pristupa
+accession_desc =                  Tko ima pristup na ovaj forum?
+post_permission =                 Dozvola za pisanje poruka
+post_permission_desc =            Kome je dopušteno pisanje na forum?
+only_registered_users =           samo registrirani korisnici
+all_users =                       svi
+register_permission =             Registracija korisnika
+register_permission_desc =        Mogu li se korisnici sami registrirati?
+register_self =                   korisnici se sami registriraju
+register_self_locked =            sami se registriraju ali nove korisnike treba odobriti administrator ili moderator
+register_only_admin =             samo ih administrator može registrirati
+user_area =                       Korisnički dio
+user_area_desc =                  Je li korisnički dio (popis korisnika, profili) javno dostupan?
+public_accessible =               javno je dostupan
+accessible_reg_users_only =       dostupan je samo registriranim korisnicima
+latest_postings =                 Najnovije poruke
+latest_postings_desc =            Koliko najnovijih poruka će biti prikazano na popisu na naslovnici (0=isključeno)? 
+tag_cloud =                       Oznake
+tag_cloud_desc =                  Hoće li nedavne oznake poruka biti prikazane na naslovnoj straniciShould a tag cloud of the recent tags be displayed on the index page? 
+enable_tag_cloud =                Uključi prikaz
+terms_of_use_agreement =          Uvjeti korištenja
+terms_of_use_agreement_desc =     Zahtjevaj od neregistriranih korisnika da se slože sa uvjetima korištenja pri registraciji i upisu poruke
+terms_of_use_agreement_enabled =  Uvjeti korištenja uključeni
+terms_of_use_url =                URL uvjeta korištenja:
+edit_postings =                   Izmjena poruka
+edit_postings_desc =              Ponašanje pri izmjeni poruka
+edit_own_postings =               Ispravljanje vlastitih poruka:
+edit_own_postings_all =           svi korisnici mogu izmijeniti vlastite poruke
+edit_own_postings_users =         samo registrirani korisnici mogu izmijeniti svoje poruke
+edit_own_postings_disabled =      isključeno (samo administrator i moderator mogu izmijeniti poruke)
+user_edit_if_no_replies =         ako postoje odgovori na poruku ista se može izmijeniti unutar [minutes] minuta(0 =       izmjena nije moguća ako postoje odgovori)  
+edit_max_time_period =            Maksimalno vrijeme unutar kojeg je moguće izmijeniti vlastitu poruku: [minutes] minuta (0 =       neograničeno)
+show_if_edited =                  pokaži ako je poruka izmijenjena više od [minutes] minuta nakon upisivanja
+dont_show_edit_by_admin =         nemoj pokazati ako je poruku izmijenio administrator
+dont_show_edit_by_mod =           nemoj pokazati ako je poruku izmijenio moderator 
+bbcode =                          BB kod
+bbcode_desc =                     Uključi BB kodove za oblikovanje poruka?
+bbcodes_enabled =                 BB kodovi su uključeni
+bbcodes_img_enabled =             omogući BB kod za ubacivanje slika
+bbcodes_flash_enabled =           omogući BB kod za ubacivanje flash sadržaja
+smilies =                         Smajlići
+smilies_desc =                    Trebaju li smajlići poput ":-)" biti zamijenjeni sličicom? (Smajliće je moguće urediti u administracijskom panelu)
+smilies_enabled =                 Smajlići su uključeni
+enamble_avatars =                 Avatari
+enamble_avatars_desc =            Treba li dopustiti registriranim korisnicima slanje avatar sličica? U tom slučaju pisanje u direktorij images/avatars/ mora biti omogućeno (CHMOD 777).
+avatars_profiles_postings =       prikaži avatar sličicu u uz profil i poruke
+avatars_profiles =                prikaži avatar sličicu samo uz profil
+max_avatar_size =                 Dopuštena veličina avatar sličice:<br /> [width] x [height], [filesize] KB 
+upload_images =                   Slanje slika
+upload_images_desc =              Je li moguće slanje slika? U tom slučaju pisanje u direktorij images/uploaded/ mora biti omogućeno (CHMOD 777).
+upload_enabled_admins_mods =      samo za moderatore i administratore 
+upload_enabled_users =            za sve registrirane korisnike
+upload_enabled_all =              za svih
+max_upload_size =                 Dopuštena veličina slike:<br /> [width] x [height], [filesize] KB
+autolink =                        Automatsko formatiranje linkova
+autolink_desc =                   Trebaju li URLovi biti prepoznati i napravljeni aktivnima?
+autolink_enabled =                Automatsko formtiranje linkova je uključeno
+count_views =                     Brojač otvaranja poruka
+count_views_desc =                Treba li zabilježiti svako otvaranje pojedine poruke?
+views_counter_enabled =           Brojač otvaranja je uključen
+count_users_online =              Brojač prisutnih korisnika
+count_users_online_desc =         Prikaži broj korisnika koji su bili na stranici unutar koliko minuta (0=isključeno)?
+rss_feed =                        RSS novosti
+rss_feed_desc =                   Uključi RSS novosti (samo ako je dozvola pristupa omogućena slima)?
+rss_feed_enabled =                RSS novosti su uključene
+forum_enabled_marking =           Dostupnost foruma
+forum_enabled_desc =              Isključi ovu opciju ako želite onemogućiti pristup forumu. Takav će forum i dalje biti dostupan administratoru. 
+forum_enabled =                   forum je uključen
+forum_disabled_message =          Prikaži sljedeću poruku u slučaju da nije dostupan: 
+category_name =                   Kategorija
+category_accession =              Dostupna
+cat_accessible_admin_mod =        administratorima i moderatorima
+cat_accessible_reg_users =        registriranim korisnicima
+cat_accessible_all =              svima
+category_topics =                 Teme
+category_entries =                Upisa
+no_categories =                   Kategorija nije određena.
+new_category =                    Nova kategorija:
+edit_category =                   Kategorija:
+category_accessible_by =          Dostupna je:
+entries_in_not_ex_cat =           <strong>Napomena:</strong> Postoje poruke koje nije moguće prikazati jer se ne nalaze niti u jednoj postojećoj kategoriji. Što želite učiniti s tim porukama?
+entries_in_not_ex_cat_del =       obriši ih
+entries_in_not_ex_cat_mov =       preseli ih u sljedeću kategoriju:
+category_already_exists =         Ova kategorija već postoji
+delete_category_hl =              Obriši kategoriju "[category]"
+delete_category_compl =           Obriši sve kategorije i njihov sadržaj
+del_cat_keep_entries =            Obriši sve kategorije ali zadrži poruke
+del_cat_move_entries =            Obriši kategoriju ali zadrži poruke i preseli ih u sljedeću kategoriju:
+delete_category_submit =          Obriši kategoriju
+
+# Smilies:
+edit_smilies_smiley =             Smajlić:
+edit_smilies_codes =              Kodovi:
+edit_smilies_title =              Naziv:
+smiley_file_doesnt_exist =        Datoteka na postoji
+smiley_code_empty =               Kod nije određen
+no_other_smilies_in_folder =      Nema više smajlića u direktoriju. Dodatne smajliće stavite ih u direktorij 'images/smilies'.
+smiley_image =                    Smajlić
+smiley_codes =                    Kod(ovi)
+smiley_title =                    Naziv
+disable_smilies =                 Isključi smajliće
+enable_smilies =                  Uključi smajliće
+add_smiley =                      Dodaj smajlić:
+add_smiley_code =                 Kod:
+smilies_disabled =                Smajlići su isključeni.
+
+# pages:
+page_title =                      Naslov
+page_content =                    Sadržaj
+page_content_desc =               Moguće je koristiti HTML za oblikovanje stranice 
+page_menu_linkname =              Naziv linka u izborniku
+page_menu_linkname_desc =         samo u slučaju da stranica treba biti prikazana u izborniku
+page_access =                     Pristup
+page_access_reg_users =           samo registrirani korisnicima
+page_access_public =              svima
+no_pages =                        Nema stranica
+add_page_link =                   Dodaj stranicu
+edit_page_submit =                Spremi stranicu
+page_doesnt_exist =               Ova stranica ne postoji.
+delete_page_confirm =             Želite li zaista obrisati ovu stranicu?
+delete_page_submit =              Obriši stranicu
+error_no_page_title =             Bez naslova
+
+# user administration:
+user_name_empty =                 Korisničko ime nije upisano
+num_registerd_users =             [number] registriranih korisnika
+user_id =                         Br.
+user_name =                       Korisničko ime
+user_email =                      E-mail
+user_type =                       Vrsta
+user_registered =                 Registriran
+user_logins =                     Prijava
+last_login =                      Zadnja prijava
+lock =                            Zaključaj
+admin =                           Administrator
+mod =                             Moderator
+user =                            Korisnik
+locked =                          zaključan
+unlocked =                        otključan
+lock_title =                      Zaključaj korisnika
+unlock_title =                    otključaj korisnika
+user_inactive =                   Korisnik nije aktivan
+activate_note =                   Korisnički račun još nije aktiviran ili je korisnik u postupku prmjene svoje e-mail adrese. Aktivirajte ga samo u slučaju da korisnik ima problema sa aktivacijom.
+activate_link =                   Aktiviraj korisnički račun
+delete_selected_users =           Obriši označeno
+add_user =                        Dodaj korisnika
+email_list =                      Pošalji popis registriranih korisnika e-mailom
+clear_userdata =                  Obriši korisničke podatke
+delete_avatar =                   Obriči avatar sličicu
+delete_user_confirmation =        Jeste li sigurni da želite obrisati ovog korisnika?
+delete_users_confirmation =       Jeste li sigurni da želite obrisati sljedeće korisnike?
+delete_users_submit =             Obriši
+register_exp =                    Polje za lozinku može biti ostavljeno praznim u slučaju da želite generirati nasumičnu lozinku. U tom će slučaju korisnički detalji biti poslani na upisanu e-mail adresu.
+register_username =               Korisničko ime:
+register_email =                  E-mail:
+register_pw =                     Lozinka:
+register_pw_conf =                Potvrda lozinke:
+register_send_userdata =          Pošalji korisničke podatke na upisanu e-mail adresu
+error_send_userdata =             U slučaju praznog polja za lozinku, korisnički podaci moraju biti poslani na njihovu e-mail adresu
+error_email_wrong =               E-mail adresa nije ispravna
+new_user_registered =             Korisnik "[name]" je registriran.
+new_user_reg_send_error =         Korisnik "[name]" je registrirano ali korisničke detalje nije bilo moguće poslati.
+clear_userdata_condition =        Obriši korisnike koji su se prijavili najviše [logins] puta i posljednji put prije više od [days] dana. 
+clear_userdata_note =             Administratori i moderatori neće biti zahvaćeni. Prije brisanja biti će prikazan popis korisnika koji zadovoljavaju uvjete.
+no_users_in_selection =           Nema korisnika koji zadovoljavaju pstavljene uvjete.
+
+# spam protection:
+captcha =                         CAPTCHA
+captcha_desc =                    Koja polja će biti zaštićena kojom vrstom CAPTCHA zaštite (samo za neregistrirane korisnike)?
+captcha_graphical_desc =          Grafička CAPTCHA zaštita zahtjeva GD biblioteku i preporučuje se korištenje najmanje jednog TTF fonta. Smjestite font datoteke (*.ttf) u direktorij modules/captcha/fonts/. Fontove je moguće naći na npr. www.dafont.com.
+captcha_posting =                 Polje za sadržaj poruke:
+captcha_email =                   E-mail polje:
+captcha_register =                Polje za registraciju:
+captcha_disabled =                isključeno
+captcha_mathematical =            matematički
+captcha_graphical =               grafički
+gr_captcha_not_available =        Grafička CAPTCHA zaštita nije moguća (GD biblioteka nije dostupna)
+gr_captcha_no_font =              CAPTCHA sliku nije moguće prikazati jer ne postoji dostupan font
+bad_behavior =                    Bad Behavior
+bad_behavior_desc =               <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a> zaštita od spama.
+bad_behavior_enable =             uključi Bad Behavior zaštitu
+akismet =                         Akismet
+akismet_desc =                    <a href="http://akismet.com/">Akismet</a> je servis za zaštitu od spama. Za njegovo koriptenje trebate <a href="http://wordpress.com/api-keys/">Wordpress API ključ</a> (neće raditi bez ili sa neispravnim API ključem!).   
+akismet_key =                     Wordpress API ključ:
+akismet_save_spam =               Spremi spam (označeno kao spam i ne prikazuje se)?
+akismet_auto_delete_spam =        Automatsko brisanje spama nakon koliko sati (0=ne briši)?
+akismet_entry =                   provjeri obrazac za slanje poruke
+akismet_mail =                    provjeri obrazac za slanje e-maila
+banned_ips =                      Zabranjene IP adrese
+banned_ips_desc =                 IP adrese kojima je zabranjen pristup. Moguće je korisštenje IP raspona (npr. 10.10.1.*) i CIDR notacije (npr. 10.10.1.32/27). Jedna IP adresa po retku.
+banned_user_agents =              Zabranjeni user agenti
+banned_user_agents_desc =         Izrazi unutar user agenta po kojima će biti zabranjen pristup. Jedan izraz po retku.
+not_accepted_words =              Nedopuštene riječi
+not_accepted_words_desc =         Riječi ili domene koje nisu dopuštene u porukama i e-mailovima. Jedna riječ po retku.
+spam_protection_submit =          Spremi
+error_own_ip_banned =             Zabranili ste vlastitu IP adresu!
+error_own_user_agent_banned =     Zabranili ste vlastiti user agent!
+spam_protection_saved =           Postavke su spremljene
+
+# Reset / Uninstall:
+reset_forum =                     Isprazni forum
+delete_postings =                 obriši sve poruke
+delete_userdata =                 obriši sve korisnike (osim vlastitog administratorskog računa)
+reset_forum_submit =              Isprazni forum
+uninstall_forum =                 Ukloni forum
+uninstall_forum_exp =             Ova će radnja obrisati bazu foruma. Nakon toga forum više neće raditi! 
+uninstall_forum_submit =          Ukloni forum
+error_no_selection_made =         Nema odabira
+
+# Backup:
+backup_note =                     Za pohranu sigurnosne kopije pisanje u direktorij <i>backup</i> mora biti moguće. Također se pobrinite da pristup putem weba nije moguć na istu lokaciju!
+backup_file =                     Datoteka
+backup_date =                     Datum
+backup_size =                     Veličina
+create_backup_complete =          Napravi sigurnosnu kopiju svih podataka
+only_create_backup_of =           Napravi sigurnosnu kopiju samo:
+backup_entries =                  poruka
+backup_userdata =                 korisnika
+backup_settings =                 postavki
+backup_categories =               kategorija
+backup_pages =                    stranica
+backup_smilies =                  smajlića
+backup_banlists =                 popisa zabranjenih
+download_backup_file =            Preuzmi sigurnosnu kopiju
+delete_selected =                 Obriši označeno
+restore =                         Vrati sigurnosnu kopiju
+delete_backup_file =              Obriši datoteku sigurnosne kopije
+delete_backup_submit =            Obriši
+restore_confirm =                 Jeste li sugurni da želite vratiti podatke iz ove sigurnosne kopije?<br /><strong>Sve zahvaćene tabele u bazi će biti prepisane!</strong> 
+restore_safe_mode_warning =       Safe Mode upozorenje!
+restore_safe_mode_note =          Safe Mode je aktivan na ovom poslužitelju i vrijeme izvršavanja skripte nije moguće produžiti! Kako bi izbjegli nepotpune sigurnosne kopije razlomite ih u više manjih i izvršite ih jednu za drugom!
+restore_submit =                  Vrati podatke
+restore_backup_ok =               Podaci su vraćeni.
+backup_file_created =             Sigurnosna kopija je napravljena.
+error_file_doesnt_exist =         Datoteka ne postoji!
+error_delete_backup_file =        Nije moguće obrisati datoteku sigurnosne kopije
+error_create_backup_file =        Datoteku nije moguće kreirati - provjerite jesu li dopuštenja za pristup ispravno postavljena na direktorij "backup"
+error_restore_mysql =             MySQL greška: [mysql_error] 
+
+# Update:
+update_current_version =          Trenutna verzija: <strong>[version]</strong>
+update_instructions_hl =          Kako instalirati novu verziju
+update_instructions =             Preporučujemo da isključite pristup forumu za vrijeme instalacije nove verzije (maknite oznaku pored "forum je uključen" u <a href="index.php?mode=admin&action=settings">postavkama foruma</a>) 
+update_instructions =             Preuzmite najnoviju verziju sa <a href="http://mylittleforum.net/">mylittleforum.net</a>
+update_instructions =             Raspakirajte arhivu, potražite odgovarajuću datoteku u poddirektoriju "update" i smjestite je u direktorij "update" na vašem poslužitelju    
+update_instructions =             Datoteka za instalaciju nove verzije bi se nakon toga trebala pojaviti ispod nakon osvježavanja ove stranice
+update_instructions =             Kliknite na datoteku i pratite upute koje slijede
+update_instructions =             Nakon završetka dobit ćete popis svih datoteka i direktorija koji su dodani ili promijenjeni, i morat ćete obrisati sadržaj direktorija <em>templates_c</em>
+update_instructions =             <!-- TODO -->Clear the directory <strong>templates_c</strong> (delete all files in this dirctory) after you have added/replaced the files/folders
+update_available_files =          Dostupne instalacijke datoteke
+update_no_files_available =       Nema pronađenih instalacijskih datoteka.
+update_file_title =               Pokreni ovu instalacijsku datoteku
+update_confirm =                  Želite li zaista pokrenuti ovu instalacijsku datoteku?
+update_submit =                   Pokreni instalaciju
+update_successful =               Baza je uspješno ažurirana.
+update_items_note =               Molimo vas da sada pošaljete sljedeće datoteke/direktorije iz arhive foruma (verzija [version]) na vaš poslužitelj:
+update_download =                 Ako nemate potrebne datoteke možete ih naći ovdje: [[here]].  
+
+[emails]
+email_subject =                   Odgovor na "[original_subject]"
+email_text =                      """Pozdrav [recipient],
+[name] je ostavio poruku na temu "[original_subject]":
+
+Tema: [subject]
+[text]
+
+Link na ovu poruku: [posting_address]
+
+--- Vaša izvorna poruka ---
+
+[original_text]"""
+
+email_text_delayed_addition =     """---
+Ova obavjest kasni jer je poruka ručno aktivirana"""
+
+admin_email_subject =             Nova poruka u forumu: [subject]
+admin_email_text =                """Nova poruka od [name]
+Tema: [subject]
+
+[text]
+
+Link na poruku: [posting_address]"""
+admin_email_text_reply =          """Odgovor od [name]
+Tema: [subject]
+
+[text]
+
+Link na poruku: [posting_address]"""
+admin_reg_user_email_subj =       Forum registracija
+admin_reg_user_email_text =       """Pozdrav [name],
+dobrodošao na forum!
+
+Slijede podaci za prijavu:
+
+Korisničko ime: [name]
+Lozinka: [password]
+
+Link za prijavu:
+[login_link]
+
+Lozinku je moguće izmijeniti nakon prijave."""
+
+new_user_email_sj =               Registracija na forum
+new_user_email_txt =              """Pozdrav [name],
+dobrodošao na forum!
+
+za aktivaciju vašeg korisničkog računa koristite sljedeći link:
+[activate_link]"""
+new_user_notif_sj =               Nova pretplata
+new_user_notif_txt =              """Pozdrav [recipient],
+novi se korisnik pretplatio na forum.
+Korisničko ime: [name]
+E-mail: [email]
+
+[user_link]"""
+new_user_notif_txt_locked =       """Pozdrav [recipient],
+novi se korisnik pretplatio na forum.
+Korisničko ime: [name]
+E-mail: [email]
+
+VAŽNO: Ovaj korisnik mora biti otključan kako bi se mogao prijaviti!"""
+edit_address_email_sj =           Aktivacija nakon promjene e-mail adrese
+edit_address_email_txt =          """Pozdrav [name],
+vaša je e-mail adresa promijenjena. Morate nanovo aktivirati vaš korisnički račun pomoću sljedećeg linka:
+[activate_link]"""
+pwf_activating_email_sj =         Zahtjev za novom lozinkom
+pwf_activating_email_txt =        """Pozdrav [name],
+ovaj je e-mail poslan sa foruma ([forum_address]) zbog zahtjeva za novom lozinkom. Koristite donji link za potvrdu ovog zahtjeva. Nakon otvaranja link nova će lozinka biti generirana i poslana e-mailom.  Ignorirajte ovaj e-mail u slučaju da niste zatražili novu lozinku.
+
+[activating_link]"""
+new_pw_email_sj =                 "Novi korisnički podaci za forum"
+new_pw_email_txt =                """Pozdrav [name],
+slijede vaši korisnički podaci:
+
+Korisničko ime: [name]
+Lozinka: [password]
+
+Koristite sljedeći link za prijavu:
+[login_link]
+
+Lozinku možete izmijeniti nakon prijave."""
+contact_email_txt =               """[message]
+
+-- 
+Ovaj je e-mail poslan sa foruma na adresi [forum_address]."""
+contact_email_txt_user =          """[message]
+
+-- 
+Ovaj vam je e-mail poslao korisnik [user] sa foruma na adresi [forum_address]."""
+contact_notification_sj =         Kopija poslanog e-maila: [subject]
+contact_notification_txt =        """Ovaj je e-mail poslan sa vaše e-mail adrese primatelju [recipient]:
+
+Tema: [subject]
+[message]
+
+-- 
+Ovaj je e-mail poslan sa foruma na adresi [forum_address]."""
+
+[install]
+installation_title =              Instalacija
+label_choose_language =           Odaberite jezik:
+installation_instructions =       Za instalaciju foruma ispunite i pošaljite sljedeći obrazac. 
+installation_instructions =       Za vrijeme instalacije sadržaj datoteke <strong>config/db_settings.php</strong> će biti prepisan, stoga je moguće da ćete morati prilagoditi dopuštenje za pisanje u tu datoteku. Možete pokušati bez izmjena, u slučaju greške promijenite joj sigurnosne postavke (CHMOD 666). U slučaju da ste ih morali izmijeniti ne zaboravite ih vratiti na 644 nakon instalacije.
+installation_instructions =       Pisanje mora biti moguće u direktorij <strong>templates_c</strong>. Možda ćete morati izmijeniti dozvolu za pisanje u taj direktorij; u slučaju greške pokušajte sa CHMOD 770 or 775.  
+installation_instructions =       Dopuštenja za pisanje (CHMOD) datotekama i direktorijima obično možete izmijeniti sa FTP klijent prgramom (desni klik na datoteku/direktorij --> CHMOD ili slično).   
+installation_instructions =       Direktorij <strong>install</strong> možete obrisati nakon instalacije.   
+inst_basic_settings =             Osnovne postavke
+inst_main_settings_desc =         Neke osnovne postavke
+inst_admin_settings =             Administrator
+inst_admin_settings_desc =        Podaci o administratoru foruma
+inst_db_settings =                Baza podataka
+inst_db_settings_desc =           Podaci za pristup MySQL bazi
+inst_admin_name =                 Ime administratora
+inst_admin_name_desc =            Ime administratora foruma
+inst_admin_email =                E-mail administratora
+inst_admin_email_desc =           E-mail adresa administratora foruma
+inst_admin_pw =                   Lozinka administratora
+inst_admin_pw_desc =              Lozinka za prijavu kao administrator foruma
+inst_admin_pw_conf =              Potvrda lozinke
+inst_admin_pw_conf_desc =         Ponovite lozinku
+inst_db_host =                    Poslužitelj baze podataka
+inst_db_host_desc =               naziv poslužitelja, najčešće "localhost"
+inst_db_user =                    Korisnik baze
+inst_db_user_desc =               Korisničko ime za pristup bazi
+inst_db_pw =                      Lozinka baze
+inst_db_pw_desc =                 Lozinka za pristup bazi
+inst_db_name =                    Naziv baze
+inst_db_name_desc =               Naziv baze
+inst_table_prefix =               Prefiks tabela
+inst_table_prefix_desc =          Prefiks korišten za tabele baze
+inst_advanced_options =           Napredne opcije
+inst_advanced_options_desc =      Za eksperte - obično izmjene u ovom dijelu nisu potrebne
+inst_advanced_database =          Kreiraj bazu
+inst_advanced_database_desc =     Označite ovu opciju samo ako baza već ne postoji i imate dopuštenje za kreiranje nove baze
+inst_advanced_conf_file =         Nemoj prepisati konfiguracijsku datoteku baze 
+inst_advanced_conf_file_desc =    Označite ovu opciju samo ako ste već izmijenili sadržaj konfiguracijske datoteke
+create_database =                 kreiraj navedenu bazu
+dont_overwrite_settings =         nemoj prepisati konfiguracijsku datoteku baze
+create_db_error =                 Bazu nije moguće kreirati
+error_create_admin =              Nije moguće kreirati administratorov korisnički račun             
+error_db_connection =             Nije moguće povezati se na bazu - provjerite postavke poslužitelja, korisnika ili lozinke
+error_db_inexistent =             Navedena baza ne postoji - provjerite je li naziv baze ispravan
+error_sql_file_doesnt_exist =     Instalacijska SQL datoteka (install.sql) ne postoji 
+error_overwrite_config_file =     Nemam dopuštenje za prepisivanje sadržaja datoteke <strong>config/db_settings.php</strong> (postavite CHMOD 666, trenutno je [CHMOD])
+error_sql =                       SQL greška
+forum_install_ok =                Instaliraj forum
+error_conf_pw =                   Administratorske lozinke se ne podudaraju

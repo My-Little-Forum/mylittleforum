@@ -24,13 +24,14 @@
 <input id="reg_pw_conf" class="login" type="password" size="30" name="reg_pw_conf" maxlength="255" /></p>
 {if $terms_of_use_agreement}
 {assign var=terms_of_use_url value=$settings.terms_of_use_url}
-<p><input id="terms_of_use_agree" type="checkbox" name="terms_of_use_agree" value="1"{if $terms_of_use_agree && $terms_of_use_agree==1} checked="checked"{/if} />&nbsp;<label for="terms_of_use_agree">{if $terms_of_use_url}{#terms_of_use_agreement#|replace:"[[":"<a href=\"$terms_of_use_url\" onclick=\"popup('$terms_of_use_url',640,480); return false\">"|replace:"]]":"</a>"}{else}{#terms_of_use_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label></p>
+<p><input id="terms_of_use_agree" type="checkbox" name="terms_of_use_agree" value="1"{if $terms_of_use_agree && $terms_of_use_agree==1} checked="checked"{/if} />&nbsp;<label for="terms_of_use_agree">{if $terms_of_use_url}{#terms_of_use_agreement#|replace:"[[":"<a id=\"terms_of_use\" href=\"$terms_of_use_url\">"|replace:"]]":"</a>"}{else}{#terms_of_use_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label></p>
 {/if}
 {if $captcha}
 {if $captcha.type==2}
 <p><strong>{#captcha_marking#}</strong><br />
 <img class="captcha" src="modules/captcha/captcha_image.php?{$captcha.session_name}={$captcha.session_id}" alt="{#captcha_image_alt_reg#}" width="180" height="40" /><br />
-<label for="captcha_code">{#captcha_expl_image#}</label> <input id="captcha_code" type="text" name="captcha_code" value="" size="10" /></p>
+<label for="captcha_code">{#captcha_expl_image#}</label><br />
+<input id="captcha_code" type="text" name="captcha_code" value="" size="10" /></p>
 {else}
 <p><strong>{#captcha_marking#}</strong><br />
 <label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" /></p>

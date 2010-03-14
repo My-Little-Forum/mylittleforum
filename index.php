@@ -1,25 +1,26 @@
 <?php
-/*******************************************************************************
-* my little forum                                                              *
-* Version 2.2 (2010-02-??)                                                     *
-* Copyright (C) 2010 alex@mylittleforum.net                                    *
-* http://mylittleforum.net/                                                    *
-*******************************************************************************/
-
-/*******************************************************************************
-* This program is free software: you can redistribute it and/or modify         *
-* it under the terms of the GNU General Public License as published by         *
-* the Free Software Foundation, either version 3 of the License, or            *
-* (at your option) any later version.                                          *
-*                                                                              *
-* This program is distributed in the hope that it will be useful,              *
-* but WITHOUT ANY WARRANTY; without even the implied warranty of               *
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                *
-* GNU General Public License for more details.                                 *
-*                                                                              *
-* You should have received a copy of the GNU General Public License            *
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.        *
-*******************************************************************************/
+/**
+ * my little forum - a simple PHP and MySQL based web forum that displays the 
+ * messages in classical threaded view
+ *
+ * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
+ * @copyright 2006-2010 Mark Alexander Hoschek
+ * @version 2.2 beta 2 (2010-03-??)
+ * @link http://mylittleforum.net/
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 define('IN_INDEX', true);
 define('LANG_DIR', 'lang');
@@ -59,6 +60,7 @@ setlocale(LC_ALL, $lang['locale']);
 $smarty->assign('settings', $settings);
 
 $smarty->assign('forum_time', format_time($lang['time_format'],time()+intval($time_difference)*60));
+if(isset($forum_time_zone)) $smarty->assign('forum_time_zone', htmlspecialchars($forum_time_zone));
 
 if(isset($_SESSION[$settings['session_prefix'].'usersettings'])) $smarty->assign('usersettings', $_SESSION[$settings['session_prefix'].'usersettings']);
 #$smarty->assign('category', $category);
@@ -86,7 +88,8 @@ if(isset($total_users_online))
 if(isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_name']))
  {
   $smarty->assign('user_id', $_SESSION[$settings['session_prefix'].'user_id']);
-  $smarty->assign('user', htmlspecialchars(stripslashes($_SESSION[$settings['session_prefix'].'user_name'])));
+  $smarty->assign('user', htmlspecialchars($_SESSION[$settings['session_prefix'].'user_name']));
+  $smarty->assign('user_type', intval($_SESSION[$settings['session_prefix'].'user_type']));
  }
 if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==1) $smarty->assign('mod', true);
 if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==2) $smarty->assign('admin', true);
@@ -109,10 +112,11 @@ if(empty($mode) && isset($_REQUEST['id'])) $mode = 'entry';
 
 if(empty($mode))
  {
-  // set user settings to default values if index page is requestes
+  // set user settings to default values if index page is requested
   $_SESSION[$settings['session_prefix'].'usersettings']['page']=1;
   if(isset($_SESSION[$settings['session_prefix'].'usersettings']['category_selection'])) $_SESSION[$settings['session_prefix'].'usersettings']['category']=-1;
   else $_SESSION[$settings['session_prefix'].'usersettings']['category']=0;
+  $smarty->assign('top', true);
   $mode = 'index';
  }
 
@@ -156,6 +160,9 @@ switch($mode)
      break;
   case 'page':
      include('includes/page.inc.php');
+     break;
+  case 'js_defaults':
+     include('includes/js_defaults.inc.php');
      break;
   case 'upload_image':
      include('includes/upload_image.inc.php');

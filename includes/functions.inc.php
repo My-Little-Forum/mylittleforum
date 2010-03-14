@@ -83,7 +83,6 @@ function daily_actions($current_time=0)
  {
   global $settings, $db_settings, $connid;
   if($current_time==0) $current_time = time();
-
   if($current_time > $settings['next_daily_actions'])
    {
     // clear up expired auto_login_codes:
@@ -96,7 +95,13 @@ function daily_actions($current_time=0)
      {
       @mysql_query("UPDATE ".$db_settings['forum_table']." SET locked=1 WHERE locked=0 AND last_reply < (NOW() - INTERVAL ".intval($settings['auto_lock_old_threads'])." DAY)", $connid);
      }
-
+    // delete IPs in old entries and user accounts:
+    if($settings['delete_ips']>0)
+     {
+      @mysql_query("UPDATE ".$db_settings['forum_table']." SET ip='' WHERE ip!='' AND time < (NOW() - INTERVAL ".intval($settings['delete_ips'])." HOUR)", $connid);
+      @mysql_query("UPDATE ".$db_settings['userdata_table']." SET user_ip='' WHERE user_ip!='' AND last_login < (NOW() - INTERVAL ".intval($settings['delete_ips'])." HOUR)", $connid);
+     }    
+    
     // set time of next daily actions:
     if($today_beginning = mktime(0,0,0, date("n"), date("j"), date("Y")))
      {
@@ -252,6 +257,26 @@ function save_read($save_db=true)
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['read'] = $read;
     if($save_db) @mysql_query("UPDATE ".$db_settings['userdata_table']." SET entries_read = '".mysql_real_escape_string(implode(',',$read))."' WHERE user_id=".intval($_SESSION[$settings['session_prefix'].'user_id']), $connid);
+   }
+ }
+
+/**
+ * generates an array of thread items for the navigation within a thread
+ *
+ * @param array $child_array
+ * @param int $id
+ * @param int $current
+ */
+function get_thread_items($child_array, $id, $current)
+ {
+  global $thread_items;
+  $thread_items[] = $id;  
+  if(isset($child_array[$id]) && is_array($child_array[$id]))
+   {
+    foreach($child_array[$id] as $child)
+     {
+      get_thread_items($child_array, $child, $current);
+     }
    }
  }
 
@@ -470,17 +495,17 @@ function do_bbcode_msg($action, $attributes, $content, $params, &$node_object)
    }
   else
    {
-    if(!isset ($attributes['default'])) return '<a href="index.php?id='.intval($content).'">#'.intval($content).'</a>';
-    return '<a href="index.php?id='.intval($attributes['default']).'">'.$content.'</a>';
+    if(!isset ($attributes['default'])) return '<a href="index.php?id='.intval($content).'" class="internal">'.intval($content).'</a>';
+    return '<a href="index.php?id='.intval($attributes['default']).'" class="internal">'.$content.'</a>';
    }
  }
 
 /**
- * processes BBCode images
+ * processes BBCode img
  */
 function do_bbcode_img($action, $attributes, $content, $params, &$node_object)
  {
-  if ($action == 'validate')
+  if($action == 'validate')
    {
     if(!is_valid_url($content))
      {
@@ -491,19 +516,35 @@ function do_bbcode_img($action, $attributes, $content, $params, &$node_object)
       // [img]image[/img]
       if(!isset($attributes['default'])) return true;
       // [img=xxx]image[/img]
-      elseif(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right')) return true;
+      elseif(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right' || $attributes['default']=='thumbnail')) return true;
       else return false;
      }
    }
   else
    {
-    // [img]image[/img]
-    if(!isset ($attributes['default'])) return '<img src="'.htmlspecialchars($content).'" alt="[image]" />';
     // [img=xxx]image[/img]
-    if($attributes['default']=='left') $padding='0px 10px 10px 0px';
-    elseif($attributes['default']=='right') $padding='0px 0px 10px 10px';
-    else $padding='0px';
-    return '<img src="'.htmlspecialchars($content).'" style="float:'.htmlspecialchars($attributes['default']).';padding:'.$padding.';" alt="[image]" />';
+    if(isset($attributes['default']) && $attributes['default']=='left') return '<img src="'.htmlspecialchars($content).'" class="left" alt="[image]" />';
+    if(isset($attributes['default']) && $attributes['default']=='right') return '<img src="'.htmlspecialchars($content).'" class="right" alt="[image]" />';
+    if(isset($attributes['default']) && $attributes['default']=='thumbnail') return '<a rel="thumbnail" href="'.htmlspecialchars($content).'"><img src="'.htmlspecialchars($content).'" class="thumbnail" alt="[image]" /></a>';
+    // [img]image[/img]
+    return '<img src="'.htmlspecialchars($content).'" alt="[image]" />';
+   }
+ }
+
+/**
+ * processes BBCode tex
+ */
+function do_bbcode_tex($action, $attributes, $content, $params, &$node_object)
+ {
+  global $settings;
+  if ($action == 'validate')
+   {
+    #if(preg_match("/(\015\012|\015|\012)/", $content)) return false;
+    return true;
+   }
+  else
+   {
+    return '<img src="'.str_replace('&','&amp;',$settings['bbcode_tex']).urlencode($content).'" alt="'.htmlspecialchars($content).'" />';
    }
  }
 
@@ -654,7 +695,8 @@ function do_bbcode_url_email($action, $attributes, $content, $params, &$node_obj
 // processes BBCode msg code for e-mail notifications (plain text)
 function do_bbcode_msg_email($action, $attributes, $content, $params, &$node_object)
  {
-  if ($action == 'validate')
+  global $settings;
+  if($action == 'validate')
    {
     if(!isset($attributes['default']))
      {
@@ -664,18 +706,52 @@ function do_bbcode_msg_email($action, $attributes, $content, $params, &$node_obj
    }
   else
    {
-    if(!isset ($attributes['default'])) return '#'.$content;
-    return $content.' --> '.$attributes['default'];
+    if(!isset ($attributes['default'])) return $settings['forum_address'].'index.php?id='.$content;
+    return $content.' --> '.$settings['forum_address'].'index.php?id='.$attributes['default'];
    }
  }
 
 /**
- * processes BBCode images for e-mail notifications (plain text)
+ * processes BBCode img for e-mail notifications (plain text)
  */
 function do_bbcode_img_email ($action, $attributes, $content, $params, $node_object)
  {
-  if ($action == 'validate') return true;
-  return '['.$content.']';
+  if($action == 'validate')
+   {
+    if(!is_valid_url($content))
+     {
+      return false;
+     }
+    else
+     {
+      // [img]image[/img]
+      if(!isset($attributes['default'])) return true;
+      // [img=xxx]image[/img]
+      elseif(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right')) return true;
+      else return false;
+     }
+   }
+  else
+   {
+    return '['.$content.']';
+   }
+ }
+
+/**
+ * processes BBCode tex for e-mail notifications (plain text)
+ */
+function do_bbcode_tex_email($action, $attributes, $content, $params, &$node_object)
+ {
+  global $settings;
+  if ($action == 'validate')
+   {
+    #if(preg_match("/(\015\012|\015|\012)/", $content)) return false;
+    return true;
+   }
+  else
+   {
+    return '['.$settings['bbcode_tex'].urlencode($content).']';
+   }
  }
 
 /**
@@ -771,7 +847,8 @@ function do_bbcode_code_email($action, $attributes, $content, $params, &$node_ob
 function quote($string)
  {
   global $settings;
-  $string_array = explode("\n",$string);
+  $string = preg_replace ("/\015\012|\015|\012/", "\n", $string);
+  $string_array = explode("\n", $string);
 
   // check which lines begin with how many quote symbols:
   $line_nr=0;
@@ -779,15 +856,15 @@ function quote($string)
    {
     $q=0; // quote symbol counter
     // if line begins with a quote symbol...
-    if(my_substr($line, 0, 1, CHARSET)==$settings['quote_symbol'])
+    if(my_substr($line, 0, 1, CHARSET) == $settings['quote_symbol'])
      {
       $len=strlen($line);
       for($i=0;$i<$len;$i++)
        {
         // strip quote symbols and spaces and increment quote symbol counter
-        if(my_substr($line, 0, 1, CHARSET)==$settings['quote_symbol'] || my_substr($line, 0, 1, CHARSET)==' ')
+        if(my_substr($line, 0, 1, CHARSET) == $settings['quote_symbol'] || my_substr($line, 0, 1, CHARSET)==' ')
          {
-          if(my_substr($line, 0, 1, CHARSET)==$settings['quote_symbol']) $q++;
+          if(my_substr($line, 0, 1, CHARSET) == $settings['quote_symbol']) $q++;
           $line = my_substr($line, 1, my_strlen($line, CHARSET), CHARSET);
          }
         else break; // leave the loop if reached other character than quote symbol or space
@@ -912,6 +989,10 @@ function html_format($string)
       $bbcode->addCode ('flash', 'usecontent', 'do_bbcode_flash', array (), 'flash', array ('block', 'quote'), array ());
       #$bbcode->setCodeFlag ('flash', 'paragraph_type', BBCODE_PARAGRAPH_BLOCK_ELEMENT);
      }
+    if($settings['bbcode_tex'])
+     {
+      $bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+     }
    }
 
   $bbcode->setRootParagraphHandling(true);
@@ -978,7 +1059,10 @@ function email_format($string)
     $bbcode->addCode ('url', 'usecontent?', 'do_bbcode_url_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace'), array ('link'));
     $bbcode->addCode ('link', 'usecontent?', 'do_bbcode_url_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace'), array ('link'));
     $bbcode->addCode ('msg', 'usecontent?', 'do_bbcode_msg_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace'), array ('link'));
-    if($settings['bbcode_img'] == 1) $bbcode->addCode ('img', 'usecontent', 'do_bbcode_img_email', array (), 'image', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+    if($settings['bbcode_img'] == 1)
+     {
+      $bbcode->addCode ('img', 'usecontent', 'do_bbcode_img_email', array (), 'image', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+     }
     $bbcode->addCode ('color', 'callback_replace', 'do_bbcode_color_email', array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
     $bbcode->addCode ('size', 'callback_replace', 'do_bbcode_size_email', array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
     $bbcode->addCode ('list', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'list', array ('block', 'listitem'), array ());
@@ -996,6 +1080,10 @@ function email_format($string)
       $bbcode->addCode ('inlinecode', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
       $bbcode->addCode ('monospace', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
      }
+    if($settings['bbcode_tex'])
+     {
+      $bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex_email', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+     }
    }
   $string = $bbcode->parse($string);
   return $string;
@@ -1010,9 +1098,8 @@ function email_format($string)
 function quote_reply($string)
  {
   global $settings;
-  $string = preg_replace("/^/m", $settings['quote_symbol']." ", $string);
-  #$string = preg_replace("/^(".$settings['quote_symbol']." ){2,}/m", $settings['quote_symbol']." ", $string);
-  return $string;
+  if(!empty($string)) return preg_replace("/^/m", $settings['quote_symbol']." ", $string);
+  else return '';
  }
 
 /**
@@ -2047,16 +2134,16 @@ function my_strpos($haystack, $needle, $offset=0, $encoding='utf-8')
  * @param string $name
  * @return string
  */
-function encode_mail_name($name)
+function encode_mail_name($name, $charset=CHARSET)
  {
   $name = str_replace('"', '\\"', $name);
   if(preg_match("/(\.|\;|\")/", $name))
    {
-    return '"'.my_mb_encode_mimeheader($name, CHARSET, "Q").'"';
+    return '"'.my_mb_encode_mimeheader($name, $charset, "Q").'"';
    }
   else
    {
-    return my_mb_encode_mimeheader($name, CHARSET, "Q");
+    return my_mb_encode_mimeheader($name, $charset, "Q");
    }
  }
 
@@ -2153,6 +2240,20 @@ function my_quoted_printable_encode($input, $line_max=76, $space_conv = false )
   return $output;
  }
 
+
+/**
+ * tries to find a simpler character encoding to encode the e-mail
+ *
+ * @param string $string
+ * @return string
+ */
+function get_mail_encoding($string)
+ {
+  if(preg_match('%^(?:[\x09\x0A\x0D\x20-\x7E])*$%xs', $string)) return 'US-ASCII';
+  #elseif(preg_match('/^([\x09\x0A\x0D\x20-\x7E\xA0-\xFF])*$/', $string)) return 'ISO-8859-1';
+  else return strtoupper(CHARSET);
+ }
+
 /**
  * sends an email
  *
@@ -2167,14 +2268,16 @@ function my_mail($to, $subject, $message, $from='')
   global $settings;
   $mail_header_separator = "\r\n"; // try to use "\n" if messages are not sent (see http://php.net/manual/en/function.mail.php)
 
+  $mail_charset = get_mail_encoding($subject.$message.$from);
+
   $to = mail_header_filter($to);
-  $subject = my_mb_encode_mimeheader(mail_header_filter($subject), CHARSET, "Q");
+  $subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q");
   #$message = chunk_split(base64_encode($message));
   $message = my_quoted_printable_encode($message);
   
   if($from == '')
    {
-    $headers = "From: " . encode_mail_name($settings['forum_name'])." <".$settings['forum_email'].">". $mail_header_separator;
+    $headers = "From: " . encode_mail_name($settings['forum_name'], $mail_charset)." <".$settings['forum_email'].">". $mail_header_separator;
    }
   else
    {
@@ -2183,7 +2286,7 @@ function my_mail($to, $subject, $message, $from='')
 
   $headers .= "MIME-Version: 1.0" . $mail_header_separator;
   $headers .= "X-Sender-IP: ". $_SERVER['REMOTE_ADDR'] . $mail_header_separator;
-  $headers .= "Content-Type: text/plain; charset=" . strtoupper(CHARSET) . $mail_header_separator;
+  $headers .= "Content-Type: text/plain; charset=" . $mail_charset . $mail_header_separator;
   $headers .= "Content-Transfer-Encoding: quoted-printable";
 
   if($settings['mail_parameter']!='')

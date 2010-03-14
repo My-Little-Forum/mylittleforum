@@ -957,6 +957,7 @@ if(isset($_POST['settings_submit']))
   if(empty($_POST['forum_enabled'])) $_POST['forum_enabled'] = 0;
   if(empty($_POST['user_edit_if_no_replies'])) $_POST['user_edit_if_no_replies'] = 0;
   if(empty($_POST['time_zone'])) $_POST['time_zone'] = '';
+  $_POST['last_changes'] = time();
 
   while(list($key, $val) = each($settings))
    {
@@ -964,12 +965,12 @@ if(isset($_POST['settings_submit']))
    }
   if(isset($_POST['clear_cache']))
    {
-    @mysql_query("TRUNCATE TABLE ".$db_settings['entry_cache_table'], $connid);
-    @mysql_query("TRUNCATE TABLE ".$db_settings['userdata_cache_table'], $connid);
+    mysql_query("TRUNCATE TABLE ".$db_settings['entry_cache_table'], $connid);
+    mysql_query("TRUNCATE TABLE ".$db_settings['userdata_cache_table'], $connid);
    }
   if($settings['autologin']==1 && isset($_POST['autologin']) && $_POST['autologin']==0)
    {
-    @mysql_query("UPDATE ".$db_settings['userdata_table']." SET auto_login_code=''", $connid);
+    mysql_query("UPDATE ".$db_settings['userdata_table']." SET auto_login_code=''", $connid);
    }
 
   header("Location: index.php?mode=admin&action=settings&saved=true");
@@ -1928,14 +1929,31 @@ switch($action)
    exit;
   break;
   case 'reorder':
-   $ranking = 1;
-   foreach($_POST['items'] as $item_id)
+   if(isset($_REQUEST['pages']))
     {
-     if($_POST['data']=='pages') @mysql_query("UPDATE ".$db_settings['pages_table']." SET order_id = ".$ranking." WHERE id = ".intval($item_id), $connid);
-     elseif($_POST['data']=='smilies') @mysql_query("UPDATE ".$db_settings['smilies_table']." SET order_id = ".$ranking." WHERE id = ".intval($item_id), $connid);
-     elseif($_POST['data']=='categories') @mysql_query("UPDATE ".$db_settings['category_table']." SET order_id = ".$ranking." WHERE id = ".intval($item_id), $connid);
-     $ranking++;
+     $table = $db_settings['pages_table'];
+     $list = $_REQUEST['pages'];
     }
+   elseif(isset($_REQUEST['smilies']))
+    {
+     $table = $db_settings['smilies_table'];
+     $list = $_REQUEST['smilies'];
+    }
+   elseif(isset($_REQUEST['categories']))
+    {
+     $table = $db_settings['category_table'];
+     $list = $_REQUEST['categories'];
+    }
+   if(isset($list) && isset($table))
+    {
+     $list_items = explode(',', $list);
+     $order_id = 1;
+     foreach($list_items as $id)
+      {
+       mysql_query("UPDATE ".$table." SET order_id = ".$order_id." WHERE id = ".intval($id), $connid);
+       ++$order_id;
+      }
+    } 
    exit;
   break;
  }

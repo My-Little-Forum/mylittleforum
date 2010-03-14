@@ -19,7 +19,6 @@
 <p><input type="submit" value="{#login_submit#}" /></p>
 </div>
 </form>
-<script type="text/javascript">/* <![CDATA[ */ sf('login'); /* ]]> */</script>
 <p class="small">{#login_advice#}</p>
 <p class="small"><a href="index.php?mode=login&amp;action=pw_forgotten">{#pw_forgotten_link#}</a></p>
 {/if}

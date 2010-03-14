@@ -1,7 +1,7 @@
 {config_load file=$language_file section="admin"}
 {if $action=='settings'}
 {if $saved}<p class="ok">{#settings_saved#}</p>{/if}
-<form action="index.php" method="post" accept-charset="{#charset#}">
+<form id="settings" action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
@@ -73,30 +73,30 @@
 
 <tr>
 <td class="c"><strong>{#terms_of_use_agreement#}</strong><br /><span class="small">{#terms_of_use_agreement_desc#}</span></td>
-<td class="d"><p><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $settings.terms_of_use_agreement==1} checked="checked"{/if} onchange="change_label_classes(new Array('terms_of_use_agreement_label')); set_label_class('terms_of_use_url_label')" /><label id="terms_of_use_agreement_label" for="terms_of_use_agreement" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_agreement_enabled#}</label></p>
+<td class="d"><p><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $settings.terms_of_use_agreement==1} checked="checked"{/if} /><label id="terms_of_use_agreement_label" for="terms_of_use_agreement" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_agreement_enabled#}</label></p>
 <p><label id="terms_of_use_url_label" for="terms_of_use_url" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_url#}</label><br /><input id="terms_of_use_url" type="text" name="terms_of_use_url" value="{$settings.terms_of_use_url|escape}" size="40" /></p></td>
 </tr>
 
 <tr>
 <td class="c"><strong>{#accession#}</strong><br /><span class="small">{#accession_desc#}</span></td>
-<td class="d"><input id="access_for_all" type="radio" name="access_for_users_only" value="0"{if $settings.access_for_users_only==0} checked="checked"{/if} onchange="change_label_classes(new Array('access_for_all_label','access_for_users_only_label'))" /><label id="access_for_all_label" for="access_for_all" class="{if $settings.access_for_users_only==0}active{else}inactive{/if}">{#all_users#}</label><br />
-<input id="access_for_users_only" type="radio" name="access_for_users_only" value="1"{if $settings.access_for_users_only==1} checked="checked"{/if} onchange="change_label_classes(new Array('access_for_users_only_label','access_for_all_label'))" /><label id="access_for_users_only_label" for="access_for_users_only" class="{if $settings.access_for_users_only==1}active{else}inactive{/if}">{#only_registered_users#}</label></td>
+<td class="d"><input id="access_for_all" type="radio" name="access_for_users_only" value="0"{if $settings.access_for_users_only==0} checked="checked"{/if} /><label id="access_for_all_label" for="access_for_all" class="{if $settings.access_for_users_only==0}active{else}inactive{/if}">{#all_users#}</label><br />
+<input id="access_for_users_only" type="radio" name="access_for_users_only" value="1"{if $settings.access_for_users_only==1} checked="checked"{/if} /><label id="access_for_users_only_label" for="access_for_users_only" class="{if $settings.access_for_users_only==1}active{else}inactive{/if}">{#only_registered_users#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#post_permission#}</strong><br /><span class="small">{#post_permission_desc#}</span></td>
-<td class="d"><input id="entries_by_all" type="radio" name="entries_by_users_only" value="0"{if $settings.entries_by_users_only==0} checked="checked"{/if} onchange="change_label_classes(new Array('entries_by_all_label','entries_by_users_label'))" /><label id="entries_by_all_label" for="entries_by_all" class="{if $settings.entries_by_users_only==0}active{else}inactive{/if}">{#all_users#}</label><br />
-<input id="entries_by_users" type="radio" name="entries_by_users_only" value="1"{if $settings.entries_by_users_only==1} checked="checked"{/if} onchange="change_label_classes(new Array('entries_by_users_label','entries_by_all_label'))" /><label id="entries_by_users_label" for="entries_by_users" class="{if $settings.entries_by_users_only==1}active{else}inactive{/if}">{#only_registered_users#}</label></td>
+<td class="d"><input id="entries_by_all" type="radio" name="entries_by_users_only" value="0"{if $settings.entries_by_users_only==0} checked="checked"{/if} /><label id="entries_by_all_label" for="entries_by_all" class="{if $settings.entries_by_users_only==0}active{else}inactive{/if}">{#all_users#}</label><br />
+<input id="entries_by_users" type="radio" name="entries_by_users_only" value="1"{if $settings.entries_by_users_only==1} checked="checked"{/if} /><label id="entries_by_users_label" for="entries_by_users" class="{if $settings.entries_by_users_only==1}active{else}inactive{/if}">{#only_registered_users#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#register_permission#}</strong><br /><span class="small">{#register_permission_desc#}</span></td>
-<td class="d"><input id="register_mode_0" type="radio" name="register_mode" value="0"{if $settings.register_mode==0} checked="checked"{/if} onchange="change_label_classes(new Array('register_mode_0_label','register_mode_1_label','register_mode_2_label'))" /><label id="register_mode_0_label" for="register_mode_0" class="{if $settings.register_mode==0}active{else}inactive{/if}">{#register_self#}</label><br />
-<input id="register_mode_1" type="radio" name="register_mode" value="1"{if $settings.register_mode==1} checked="checked"{/if} onchange="change_label_classes(new Array('register_mode_1_label','register_mode_0_label','register_mode_2_label'))" /><label id="register_mode_1_label" for="register_mode_1" class="{if $settings.register_mode==1}active{else}inactive{/if}">{#register_self_locked#}</label><br />
-<input id="register_mode_2" type="radio" name="register_mode" value="2"{if $settings.register_mode==2} checked="checked"{/if} onchange="change_label_classes(new Array('register_mode_2_label','register_mode_0_label','register_mode_1_label'))" /><label id="register_mode_2_label" for="register_mode_2" class="{if $settings.register_mode==2}active{else}inactive{/if}">{#register_only_admin#}</label></td>
+<td class="d"><input id="register_mode_0" type="radio" name="register_mode" value="0"{if $settings.register_mode==0} checked="checked"{/if} /><label id="register_mode_0_label" for="register_mode_0" class="{if $settings.register_mode==0}active{else}inactive{/if}">{#register_self#}</label><br />
+<input id="register_mode_1" type="radio" name="register_mode" value="1"{if $settings.register_mode==1} checked="checked"{/if} /><label id="register_mode_1_label" for="register_mode_1" class="{if $settings.register_mode==1}active{else}inactive{/if}">{#register_self_locked#}</label><br />
+<input id="register_mode_2" type="radio" name="register_mode" value="2"{if $settings.register_mode==2} checked="checked"{/if} /><label id="register_mode_2_label" for="register_mode_2" class="{if $settings.register_mode==2}active{else}inactive{/if}">{#register_only_admin#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#user_area#}</strong><br /><span class="small">{#user_area_desc#}</span></td>
-<td class="d"><input id="public" type="radio" name="user_area_public" value="1"{if $settings.user_area_public==1} checked="checked"{/if} onchange="change_label_classes(new Array('public_label','not_public_label'))" /><label id="public_label" for="public" class="{if $settings.user_area_public==1}active{else}inactive{/if}">{#public_accessible#}</label><br />
-<input id="not_public" type="radio" name="user_area_public" value="0"{if $settings.user_area_public==0} checked="checked"{/if} onchange="change_label_classes(new Array('not_public_label','public_label'))" /><label id="not_public_label" for="not_public" class="{if $settings.user_area_public==0}active{else}inactive{/if}">{#accessible_reg_users_only#}</label></td>
+<td class="d"><input id="public" type="radio" name="user_area_public" value="1"{if $settings.user_area_public==1} checked="checked"{/if} /><label id="public_label" for="public" class="{if $settings.user_area_public==1}active{else}inactive{/if}">{#public_accessible#}</label><br />
+<input id="not_public" type="radio" name="user_area_public" value="0"{if $settings.user_area_public==0} checked="checked"{/if} /><label id="not_public_label" for="not_public" class="{if $settings.user_area_public==0}active{else}inactive{/if}">{#accessible_reg_users_only#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#latest_postings#}</strong><br /><span class="small">{#latest_postings_desc#}</span></td>
@@ -104,7 +104,7 @@
 </tr>
 <tr>
 <td class="c"><strong>{#tag_cloud#}</strong><br /><span class="small">{#tag_cloud_desc#}</span></td>
-<td class="d"><input id="tag_cloud" type="checkbox" name="tag_cloud" value="1"{if $settings.tag_cloud==1} checked="checked"{/if} onchange="change_label_classes(new Array('tag_cloud_label'))" /><label id="tag_cloud_label" for="tag_cloud" class="{if $settings.tag_cloud==1}active{else}inactive{/if}">{#enable_tag_cloud#}</label></td>
+<td class="d"><input id="tag_cloud" type="checkbox" name="tag_cloud" value="1"{if $settings.tag_cloud==1} checked="checked"{/if} /><label id="tag_cloud_label" for="tag_cloud" class="{if $settings.tag_cloud==1}active{else}inactive{/if}">{#enable_tag_cloud#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#edit_postings#}</strong><br /><span class="small">{#edit_postings_desc#}</span></td>
@@ -112,14 +112,14 @@
 {assign var="settings_edit_delay" value=$settings.edit_delay}
 {assign var="input_edit_delay" value="<input type=\"text\" name=\"edit_delay\" value=\"$settings_edit_delay\" size=\"3\" />"}
 
-<p><input id="show_if_edited" type="checkbox" name="show_if_edited" value="1"{if $settings.show_if_edited==1} checked="checked"{/if} onchange="change_label_classes(new Array('show_if_edited_label'))" /><label id="show_if_edited_label" for="show_if_edited" class="{if $settings.show_if_edited==1}active{else}inactive{/if}">{#show_if_edited#|replace:"[minutes]":$input_edit_delay}</label><br />
-<input id="dont_reg_edit_by_admin" type="checkbox" name="dont_reg_edit_by_admin" value="1"{if $settings.dont_reg_edit_by_admin==1} checked="checked"{/if} onchange="change_label_classes(new Array('dont_reg_edit_by_admin_label'))" /><label id="dont_reg_edit_by_admin_label" for="dont_reg_edit_by_admin" class="{if $settings.dont_reg_edit_by_admin==1}active{else}inactive{/if}">{#dont_show_edit_by_admin#}</label><br />
-<input id="dont_reg_edit_by_mod" type="checkbox" name="dont_reg_edit_by_mod" value="1"{if $settings.dont_reg_edit_by_mod==1} checked="checked"{/if} onchange="change_label_classes(new Array('dont_reg_edit_by_mod_label'))" /><label id="dont_reg_edit_by_mod_label" for="dont_reg_edit_by_mod" class="{if $settings.dont_reg_edit_by_mod==1}active{else}inactive{/if}">{#dont_show_edit_by_mod#}</label></p>
+<p><input id="show_if_edited" type="checkbox" name="show_if_edited" value="1"{if $settings.show_if_edited==1} checked="checked"{/if} /><label id="show_if_edited_label" for="show_if_edited" class="{if $settings.show_if_edited==1}active{else}inactive{/if}">{#show_if_edited#|replace:"[minutes]":$input_edit_delay}</label><br />
+<input id="dont_reg_edit_by_admin" type="checkbox" name="dont_reg_edit_by_admin" value="1"{if $settings.dont_reg_edit_by_admin==1} checked="checked"{/if} /><label id="dont_reg_edit_by_admin_label" for="dont_reg_edit_by_admin" class="{if $settings.dont_reg_edit_by_admin==1}active{else}inactive{/if}">{#dont_show_edit_by_admin#}</label><br />
+<input id="dont_reg_edit_by_mod" type="checkbox" name="dont_reg_edit_by_mod" value="1"{if $settings.dont_reg_edit_by_mod==1} checked="checked"{/if} /><label id="dont_reg_edit_by_mod_label" for="dont_reg_edit_by_mod" class="{if $settings.dont_reg_edit_by_mod==1}active{else}inactive{/if}">{#dont_show_edit_by_mod#}</label></p>
 
 <p><em>{#edit_own_postings#}</em></p>
-<p><input id="edit_own_postings_all" type="radio" name="user_edit" value="2"{if $settings.user_edit==2} checked="checked"{/if} onchange="change_label_classes(new Array('edit_own_postings_all_label','edit_own_postings_users_label','edit_own_postings_disabled_label')); set_label_class('user_edit_details','active')" /><label id="edit_own_postings_all_label" for="edit_own_postings_all" class="{if $settings.user_edit==2}active{else}inactive{/if}">{#edit_own_postings_all#}</label><br />
-<input id="edit_own_postings_users" type="radio" name="user_edit" value="1"{if $settings.user_edit==1} checked="checked"{/if} onchange="change_label_classes(new Array('edit_own_postings_users_label','edit_own_postings_all_label','edit_own_postings_disabled_label')); set_label_class('user_edit_details','active')" /><label id="edit_own_postings_users_label" for="edit_own_postings_users" class="{if $settings.user_edit==1}active{else}inactive{/if}">{#edit_own_postings_users#}</label><br />
-<input id="edit_own_postings_disabled" type="radio" name="user_edit" value="0"{if $settings.user_edit==0} checked="checked"{/if} onchange="change_label_classes(new Array('edit_own_postings_disabled_label','edit_own_postings_all_label','edit_own_postings_users_label')); set_label_class('user_edit_details','inactive')" /><label id="edit_own_postings_disabled_label" for="edit_own_postings_disabled" class="{if $settings.user_edit==0}active{else}inactive{/if}">{#edit_own_postings_disabled#}</label></p>
+<p><input id="edit_own_postings_all" type="radio" name="user_edit" value="2"{if $settings.user_edit==2} checked="checked"{/if} /><label id="edit_own_postings_all_label" for="edit_own_postings_all" class="{if $settings.user_edit==2}active{else}inactive{/if}">{#edit_own_postings_all#}</label><br />
+<input id="edit_own_postings_users" type="radio" name="user_edit" value="1"{if $settings.user_edit==1} checked="checked"{/if} /><label id="edit_own_postings_users_label" for="edit_own_postings_users" class="{if $settings.user_edit==1}active{else}inactive{/if}">{#edit_own_postings_users#}</label><br />
+<input id="edit_own_postings_disabled" type="radio" name="user_edit" value="0"{if $settings.user_edit==0} checked="checked"{/if} /><label id="edit_own_postings_disabled_label" for="edit_own_postings_disabled" class="{if $settings.user_edit==0}active{else}inactive{/if}">{#edit_own_postings_disabled#}</label></p>
 
 <fieldset id="user_edit_details" class="{if $settings.user_edit==0}inactive{else}active{/if}">
 {assign var="settings_edit_max_time_period" value=$settings.edit_max_time_period}
@@ -127,26 +127,26 @@
 <p><label id="edit_max_time_period_label" for="edit_max_time_period">{#edit_max_time_period#|replace:"[minutes]":$input_edit_max_time_period}</label></p>
 {assign var="settings_edit_min_time_period" value=$settings.edit_min_time_period}
 {assign var="input_edit_min_time_period" value="<input type=\"text\" name=\"edit_min_time_period\" value=\"$settings_edit_min_time_period\" size=\"3\" />"}
-<p><input id="user_edit_if_no_replies" type="checkbox" name="user_edit_if_no_replies" value="1"{if $settings.user_edit_if_no_replies==1} checked="checked"{/if} onchange="change_label_classes(new Array('user_edit_if_no_replies_label'))" /><label id="user_edit_if_no_replies_label" for="user_edit_if_no_replies" class="{if $settings.user_edit_if_no_replies==1}active{else}inactive{/if}">{#user_edit_if_no_replies#|replace:"[minutes]":$input_edit_min_time_period}</label></p>
+<p><input id="user_edit_if_no_replies" type="checkbox" name="user_edit_if_no_replies" value="1"{if $settings.user_edit_if_no_replies==1} checked="checked"{/if} /><label id="user_edit_if_no_replies_label" for="user_edit_if_no_replies" class="{if $settings.user_edit_if_no_replies==1}active{else}inactive{/if}">{#user_edit_if_no_replies#|replace:"[minutes]":$input_edit_min_time_period}</label></p>
 </fieldset>
 
 </td>
 </tr>
 <tr>
 <td class="c"><strong>{#bbcode#}</strong><br /><span class="small">{#bbcode_desc#}</span></td>
-<td class="d"><input id="bbcode" type="checkbox" name="bbcode" value="1"{if $settings.bbcode==1} checked="checked"{/if} onchange="change_label_classes(new Array('bbcode_label'))" /><label id="bbcode_label" for="bbcode" class="{if $settings.bbcode==1}active{else}inactive{/if}">{#bbcodes_enabled#}</label><br />
-<input id="bbcode_img" type="checkbox" name="bbcode_img" value="1"{if $settings.bbcode_img==1} checked="checked"{/if} onchange="change_label_classes(new Array('bbcode_img_label'))" /><label id="bbcode_img_label" for="bbcode_img" class="{if $settings.bbcode_img==1}active{else}inactive{/if}">{#bbcodes_img_enabled#}</label><br />
-<input id="bbcode_flash" type="checkbox" name="bbcode_flash" value="1"{if $settings.bbcode_flash==1} checked="checked"{/if} onchange="change_label_classes(new Array('bbcode_flash_label'))" /><label id="bbcode_flash_label" for="bbcode_flash" class="{if $settings.bbcode_flash==1}active{else}inactive{/if}">{#bbcodes_flash_enabled#}</label></td>
+<td class="d"><input id="bbcode" type="checkbox" name="bbcode" value="1"{if $settings.bbcode==1} checked="checked"{/if} /><label id="bbcode_label" for="bbcode" class="{if $settings.bbcode==1}active{else}inactive{/if}">{#bbcodes_enabled#}</label><br />
+<input id="bbcode_img" type="checkbox" name="bbcode_img" value="1"{if $settings.bbcode_img==1} checked="checked"{/if} /><label id="bbcode_img_label" for="bbcode_img" class="{if $settings.bbcode_img==1}active{else}inactive{/if}">{#bbcodes_img_enabled#}</label><br />
+<input id="bbcode_flash" type="checkbox" name="bbcode_flash" value="1"{if $settings.bbcode_flash==1} checked="checked"{/if} /><label id="bbcode_flash_label" for="bbcode_flash" class="{if $settings.bbcode_flash==1}active{else}inactive{/if}">{#bbcodes_flash_enabled#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#smilies#}</strong><br /><span class="small">{#smilies_desc#}</span></td>
-<td class="d"><input id="smilies" type="checkbox" name="smilies" value="1"{if $settings.smilies==1} checked="checked"{/if} onchange="change_label_classes(new Array('smilies_label'))" /><label id="smilies_label" for="smilies" class="{if $settings.smilies==1}active{else}inactive{/if}">{#smilies_enabled#}</label></td>
+<td class="d"><input id="smilies" type="checkbox" name="smilies" value="1"{if $settings.smilies==1} checked="checked"{/if} /><label id="smilies_label" for="smilies" class="{if $settings.smilies==1}active{else}inactive{/if}">{#smilies_enabled#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#enamble_avatars#}</strong><br /><span class="small">{#enamble_avatars_desc#}</span></td>
-<td class="d"><p><input id="avatars_profiles_postings" type="radio" name="avatars" value="2"{if $settings.avatars==2} checked="checked"{/if} onchange="change_label_classes(new Array('avatars_profiles_postings_label','avatars_profiles_label','avatars_disabled_label')); set_label_class('max_avatar_size_label','active')" /><label id="avatars_profiles_postings_label" for="avatars_profiles_postings" class="{if $settings.avatars==2}active{else}inactive{/if}">{#avatars_profiles_postings#}</label><br />
-<input id="avatars_profiles" type="radio" name="avatars" value="1"{if $settings.avatars==1} checked="checked"{/if} onchange="change_label_classes(new Array('avatars_profiles_label','avatars_profiles_postings_label','avatars_disabled_label')); set_label_class('max_avatar_size_label','active')" /><label id="avatars_profiles_label" for="avatars_profiles" class="{if $settings.avatars==1}active{else}inactive{/if}">{#avatars_profiles#}</label><br />
-<input id="avatars_disabled" type="radio" name="avatars" value="0"{if $settings.avatars==0} checked="checked"{/if} onchange="change_label_classes(new Array('avatars_disabled_label','avatars_profiles_label','avatars_profiles_postings_label')); set_label_class('max_avatar_size_label','inactive')" /><label id="avatars_disabled_label" for="avatars_disabled" class="{if $settings.avatars==0}active{else}inactive{/if}">{#disabled#}</label></p>
+<td class="d"><p><input id="avatars_profiles_postings" type="radio" name="avatars" value="2"{if $settings.avatars==2} checked="checked"{/if} /><label id="avatars_profiles_postings_label" for="avatars_profiles_postings" class="{if $settings.avatars==2}active{else}inactive{/if}">{#avatars_profiles_postings#}</label><br />
+<input id="avatars_profiles" type="radio" name="avatars" value="1"{if $settings.avatars==1} checked="checked"{/if} /><label id="avatars_profiles_label" for="avatars_profiles" class="{if $settings.avatars==1}active{else}inactive{/if}">{#avatars_profiles#}</label><br />
+<input id="avatars_disabled" type="radio" name="avatars" value="0"{if $settings.avatars==0} checked="checked"{/if} /><label id="avatars_disabled_label" for="avatars_disabled" class="{if $settings.avatars==0}active{else}inactive{/if}">{#disabled#}</label></p>
 
 {assign var="settings_avatar_max_width" value=$settings.avatar_max_width}
 {assign var="input_avatar_max_width" value="<input id=\"avatar_max_width\" type=\"text\" name=\"avatar_max_width\" value=\"$settings_avatar_max_width\" size=\"3\" />"}
@@ -158,10 +158,10 @@
 </tr>
 <tr>
 <td class="c"><strong>{#upload_images#}</strong><br /><span class="small">{#upload_images_desc#}</span></td>
-<td class="d"><p><input id="upload_images_all" type="radio" name="upload_images" value="3"{if $settings.upload_images==3} checked="checked"{/if} onchange="change_label_classes(new Array('upload_images_all_label','upload_images_users_label','upload_images_admins_mods_label','upload_images_disabled_label')); set_label_class('max_upload_size_label','active')" /><label id="upload_images_all_label" for="upload_images_all" class="{if $settings.upload_images==3}active{else}inactive{/if}">{#upload_enabled_all#}</label><br />
-<input id="upload_images_users" type="radio" name="upload_images" value="2"{if $settings.upload_images==2} checked="checked"{/if} onchange="change_label_classes(new Array('upload_images_users_label','upload_images_all_label','upload_images_admins_mods_label','upload_images_disabled_label')); set_label_class('max_upload_size_label','active')" /><label id="upload_images_users_label" for="upload_images_users" class="{if $settings.upload_images==2}active{else}inactive{/if}">{#upload_enabled_users#}</label><br />
-<input id="upload_images_admins_mods" type="radio" name="upload_images" value="1"{if $settings.upload_images==1} checked="checked"{/if} onchange="change_label_classes(new Array('upload_images_admins_mods_label','upload_images_all_label','upload_images_users_label','upload_images_disabled_label')); set_label_class('max_upload_size_label','active')" /><label id="upload_images_admins_mods_label" for="upload_images_admins_mods" class="{if $settings.upload_images==1}active{else}inactive{/if}">{#upload_enabled_admins_mods#}</label><br />
-<input id="upload_images_disabled" type="radio" name="upload_images" value="0"{if $settings.upload_images==0} checked="checked"{/if} onchange="change_label_classes(new Array('upload_images_disabled_label','upload_images_all_label','upload_images_users_label','upload_images_admins_mods_label')); set_label_class('max_upload_size_label','inactive')" /><label id="upload_images_disabled_label" for="upload_images_disabled" class="{if $settings.upload_images==0}active{else}inactive{/if}">{#disabled#}</label></p>
+<td class="d"><p><input id="upload_images_all" type="radio" name="upload_images" value="3"{if $settings.upload_images==3} checked="checked"{/if} /><label id="upload_images_all_label" for="upload_images_all" class="{if $settings.upload_images==3}active{else}inactive{/if}">{#upload_enabled_all#}</label><br />
+<input id="upload_images_users" type="radio" name="upload_images" value="2"{if $settings.upload_images==2} checked="checked"{/if} /><label id="upload_images_users_label" for="upload_images_users" class="{if $settings.upload_images==2}active{else}inactive{/if}">{#upload_enabled_users#}</label><br />
+<input id="upload_images_admins_mods" type="radio" name="upload_images" value="1"{if $settings.upload_images==1} checked="checked"{/if} /><label id="upload_images_admins_mods_label" for="upload_images_admins_mods" class="{if $settings.upload_images==1}active{else}inactive{/if}">{#upload_enabled_admins_mods#}</label><br />
+<input id="upload_images_disabled" type="radio" name="upload_images" value="0"{if $settings.upload_images==0} checked="checked"{/if} /><label id="upload_images_disabled_label" for="upload_images_disabled" class="{if $settings.upload_images==0}active{else}inactive{/if}">{#disabled#}</label></p>
 {assign var="settings_upload_max_width" value=$settings.upload_max_img_width}
 {assign var="input_upload_max_width" value="<input id=\"upload_max_img_width\" type=\"text\" name=\"upload_max_img_width\" value=\"$settings_upload_max_width\" size=\"3\" />"}
 {assign var="settings_upload_max_height" value=$settings.upload_max_img_height}
@@ -172,15 +172,15 @@
 </tr>
 <tr>
 <td class="c"><strong>{#autolink#}</strong><br /><span class="small">{#autolink_desc#}</span></td>
-<td class="d"><input id="autolink" type="checkbox" name="autolink" value="1"{if $settings.autolink==1} checked="checked"{/if} onchange="change_label_classes(new Array('autolink_label'))" /><label id="autolink_label" for="autolink" class="{if $settings.autolink==1}active{else}inactive{/if}">{#autolink_enabled#}</label></td>
+<td class="d"><input id="autolink" type="checkbox" name="autolink" value="1"{if $settings.autolink==1} checked="checked"{/if} /><label id="autolink_label" for="autolink" class="{if $settings.autolink==1}active{else}inactive{/if}">{#autolink_enabled#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#count_views#}</strong><br /><span class="small">{#count_views_desc#}</span></td>
-<td class="d"><input id="count_views" type="checkbox" name="count_views" value="1"{if $settings.count_views==1} checked="checked"{/if} onchange="change_label_classes(new Array('count_views_label'))" /><label id="count_views_label" for="count_views" class="{if $settings.count_views==1}active{else}inactive{/if}">{#views_counter_enabled#}</label></td>
+<td class="d"><input id="count_views" type="checkbox" name="count_views" value="1"{if $settings.count_views==1} checked="checked"{/if} /><label id="count_views_label" for="count_views" class="{if $settings.count_views==1}active{else}inactive{/if}">{#views_counter_enabled#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#rss_feed#}</strong><br /><span class="small">{#rss_feed_desc#}</span></td>
-<td class="d"><input id="rss_feed" type="checkbox" name="rss_feed" value="1"{if $settings.rss_feed==1} checked="checked"{/if} onchange="change_label_classes(new Array('rss_feed_label'))" /><label id="rss_feed_label" for="rss_feed" class="{if $settings.rss_feed==1}active{else}inactive{/if}">{#rss_feed_enabled#}</label></td>
+<td class="d"><input id="rss_feed" type="checkbox" name="rss_feed" value="1"{if $settings.rss_feed==1} checked="checked"{/if} /><label id="rss_feed_label" for="rss_feed" class="{if $settings.rss_feed==1}active{else}inactive{/if}">{#rss_feed_enabled#}</label></td>
 </tr>
 
 <tr>
@@ -200,7 +200,7 @@
 
 <tr>
 <td class="c"><strong>{#forum_enabled_marking#}</strong><br /><span class="small">{#forum_enabled_desc#}</span></td>
-<td class="d"><p><input id="forum_enabled" type="checkbox" name="forum_enabled" value="1"{if $settings.forum_enabled==1} checked="checked"{/if} onchange="change_label_classes(new Array('forum_enabled_label')); set_label_class('forum_disabled_message_label')" /><label id="forum_enabled_label" for="forum_enabled" class="{if $settings.forum_enabled==1}active{else}inactive{/if}">{#forum_enabled#}</label></p>
+<td class="d"><p><input id="forum_enabled" type="checkbox" name="forum_enabled" value="1"{if $settings.forum_enabled==1} checked="checked"{/if} /><label id="forum_enabled_label" for="forum_enabled" class="{if $settings.forum_enabled==1}active{else}inactive{/if}">{#forum_enabled#}</label></p>
 <p><label id="forum_disabled_message_label" for="forum_disabled_message" class="{if $settings.forum_enabled==1}inactive{else}active{/if}">{#forum_disabled_message#}</label><br /><input id="forum_disabled_message" type="text" name="forum_disabled_message" value="{$settings.forum_disabled_message|escape}" size="40" /></p></td>
 </tr>
 <tr>
@@ -258,7 +258,7 @@
 </ul>
 {/if}
 {if $categories_count>0}
-<table class="normaltab" cellspacing="1" cellpadding="5">
+<table id="sortable" class="normaltab" cellspacing="1" cellpadding="5">
 <thead>
 <tr>
 <th>{#category_name#}</th>
@@ -276,12 +276,11 @@
 <td>{if $categories_list[row].accession==2}{#cat_accessible_admin_mod#}{elseif $categories_list[row].accession==1}{#cat_accessible_reg_users#}{else}{#cat_accessible_all#}{/if}</td>
 <td>{$categories_list[row].threads_in_category}</td>
 <td>{$categories_list[row].postings_in_category}</td>
-<td><a href="index.php?mode=admin&amp;edit_category={$categories_list[row].id}"><img src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a> &nbsp; <a href="index.php?mode=admin&amp;delete_category={$categories_list[row].id}"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_category={$categories_list[row].id}"><img src="{$THEMES_DIR}/{$theme}/images/arrow_up.png" alt="{#up#}" title="{#up#}" width="16" height="16" /></a>&nbsp;<a href="index.php?mode=admin&amp;move_down_category={$categories_list[row].id}"><img src="{$THEMES_DIR}/{$theme}/images/arrow_down.png" alt="{#down#}" title="{#down#}" width="16" height="16" /></a></td>
+<td><a href="index.php?mode=admin&amp;edit_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a> &nbsp; <a href="index.php?mode=admin&amp;delete_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_up.png" alt="{#up#}" title="{#up#}" width="16" height="16" /></a>&nbsp;<a href="index.php?mode=admin&amp;move_down_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_down.png" alt="{#down#}" title="{#down#}" width="16" height="16" /></a></td>
 </tr>
 {/section}
 </tbody>
 </table>
-<script type="text/javascript">Sortable.create('items', {literal}{ tag:'tr', onUpdate : updateCategoryOrder }{/literal}); addMoveTitle('{#move_drag_and_drop#}')</script>
 {else}
 <p>{#no_categories#}</p>
 {/if}
@@ -356,11 +355,11 @@
 
 <div id="usernav">
 <div id="usersearch">
-<label for="search_user">{#search_user#}</label><form action="index.php" method="get" accept-charset="{#charset#}">
+<label for="search-user">{#search_user#}</label><form action="index.php" method="get" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="action" value="user" />
-<input id="search_user" type="text" name="search_user" value="{if $search_user}{$search_user}{else}{#search_user_default_value#}{/if}" onfocus="if(this.value=='{#search_user_default_value#}') this.value=''" onblur="if(this.value=='') this.value='{#search_user_default_value#}'" size="30" />{*&nbsp;<input type="image" src="{$THEMES_DIR}/{$theme}/images/submit.png" alt="[&raquo;]" />*}
+<input id="search-user" type="text" name="search_user" value="{if $search_user}{$search_user}{else}{#search_user_default_value#}{/if}" size="30" />{*&nbsp;<input type="image" src="{$THEMES_DIR}/{$theme}/images/submit.png" alt="[&raquo;]" />*}
 </div>
 </form>
 </div>
@@ -629,7 +628,7 @@
 </ul>
 {/if}
 {if $settings.smilies==1}
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table id="sortable" class="normaltab" border="0" cellpadding="5" cellspacing="1">
 <thead>
 <tr>
 <th>{#smiley_image#}</th>
@@ -645,12 +644,16 @@
 <td><img src="images/smilies/{$smilies[row].file}" alt="{$smilies[row].code_1}" /></td>
 <td>{$smilies[row].codes}</td>
 <td>{$smilies[row].title}</td>
-<td><a href="index.php?mode=admin&amp;edit_smiley={$smilies[row].id}"><img src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a> &nbsp; <a href="index.php?mode=admin&amp;delete_smiley={$smilies[row].id}"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_smiley={$smilies[row].id}"><img src="{$THEMES_DIR}/{$theme}/images/arrow_up.png" alt="{#move_up#}" title="{#move_up#}" width="16" height="16" /></a><a href="index.php?mode=admin&amp;move_down_smiley={$smilies[row].id}"><img src="{$THEMES_DIR}/{$theme}/images/arrow_down.png" alt="{#move_down#}" title="{#move_down#}" width="16" height="16" /></a></td>
+<td>
+
+<a href="index.php?mode=admin&amp;edit_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a> &nbsp; <a href="index.php?mode=admin&amp;delete_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_up.png" alt="{#move_up#}" title="{#move_up#}" width="16" height="16" /></a><a href="index.php?mode=admin&amp;move_down_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_down.png" alt="{#move_down#}" title="{#move_down#}" width="16" height="16" /></a>
+
+</td>
+
 </tr>
 {/section}
 </tbody>
 </table>
-<script type="text/javascript">Sortable.create('items', {literal}{ tag:'tr', onUpdate : updateSmiliesOrder }{/literal}); addMoveTitle('{#move_drag_and_drop#}')</script>
 {if $smiley_files}
 <form action="index.php" method="post" class="normalform" accept-charset="{#charset#}">
 <div>
@@ -814,7 +817,7 @@
 </tr>
 {/foreach}
 </table>
-<div style="margin:5px 0px 0px 7px; padding:0px;"><img src="{$THEMES_DIR}/{$theme}/images/selected_arrow.png" alt="" width="35" height="20" /><input type="submit" name="delete_selected_backup_files" value="{#delete_selected#}" onclick="return delete_backup_selected_confirm('{$smarty.config.delete_selected_confirm|escape:"url"}')" /> &#160;<span class="small"><a href="#" onclick="checkall('selectform', 'delete_backup_files[]', true); return false">{#check_all#}</a> / <a href="#" onclick="checkall('selectform', 'delete_backup_files[]', false); return false">{#uncheck_all#}</a></span></div>
+<div id="selectioncontrols"><img id="arrow-selected" src="{$THEMES_DIR}/{$theme}/images/arrow_selected.png" alt="" width="24" height="14" /> <input type="submit" name="delete_selected_backup_files" value="{#delete_selected#}" /></div>
 </div>
 </form>
 {else}
@@ -977,7 +980,7 @@
 </form>
 {elseif $action=='pages'}
 {if $pages}
-<table class="normaltab" cellspacing="1" cellpadding="5">
+<table id="sortable" class="normaltab" cellspacing="1" cellpadding="5">
 <thead>
 <tr>
 <th>{#page_title#}</th>
@@ -990,15 +993,14 @@
 {section name=page loop=$pages}
 {cycle values="a,b" assign=c}
 <tr id="id_{$pages[page].id}" class="{$c}">
-<td><a href="index.php?mode=page&amp;id={$pages[page].id}" title="{$pages[page].title}"><strong>{$pages[page].title}</strong></a></td>
+<td><a href="index.php?mode=page&amp;id={$pages[page].id}" title="{$pages[page].title}"><strong class="control">{$pages[page].title}</strong></a></td>
 <td><span class="small">{if $pages[page].menu_linkname!=''}{$pages[page].menu_linkname}{else}&nbsp;{/if}</span></td>
 <td><span class="small">{if $pages[page].access==1}{#page_access_reg_users#}{elseif $pages[page].access==0}{#page_access_public#}{/if}</span></td>
-<td><a href="index.php?mode=admin&amp;edit_page={$pages[page].id}"><img src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a> &#160; <a href="index.php?mode=admin&amp;delete_page={$pages[page].id}"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_page={$pages[page].id}"><img src="{$THEMES_DIR}/{$theme}/images/arrow_up.png" alt="{#move_up#}" title="{#move_up#}" width="16" height="16" /></a>&nbsp;<a href="index.php?mode=admin&amp;move_down_page={$pages[page].id}"><img src="{$THEMES_DIR}/{$theme}/images/arrow_down.png" alt="{#move_down#}" title="{#move_down#}" width="16" height="16" /></a></td>
+<td><a href="index.php?mode=admin&amp;edit_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a> &#160; <a href="index.php?mode=admin&amp;delete_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_up.png" alt="{#move_up#}" title="{#move_up#}" width="16" height="16" /></a>&nbsp;<a href="index.php?mode=admin&amp;move_down_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_down.png" alt="{#move_down#}" title="{#move_down#}" width="16" height="16" /></a></td>
 </tr>
 {/section}
 </tbody>
 </table>
-<script type="text/javascript">Sortable.create('items', {literal}{ tag:'tr', onUpdate : updatePagesOrder }{/literal}); addMoveTitle('{#move_drag_and_drop#}')</script>
 {else}
 <p>{#no_pages#}</p>
 {/if}

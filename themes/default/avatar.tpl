@@ -3,14 +3,15 @@
 <head>
 <title>{$settings.forum_name}{if $page_title} - {$page_title}{elseif $subnav_location} - {$subnav_location}{/if}</title>
 <meta http-equiv="content-type" content="text/html; charset={#charset#}" />
+<meta http-equiv="cache-control" content="no-cache">
 {literal}
 <style type="text/css">
 <!--
 body          { color: #000000; background: #ffffff; margin: 20px; padding: 0px; font-family: verdana, arial, sans-serif; font-size: 13px; }
 h1            { font-family: verdana, arial, sans-serif; font-size: 18px; font-weight: bold; }
 p             { font-family: verdana, arial, sans-serif; font-size: 13px; line-height: 19px; }
-.caution      { padding: 0px 0px 0px 20px; color: red; font-weight: bold; background-image:url({$THEMES_DIR}/{/literal}{$settings.template}{literal}/images/caution.png); background-repeat:no-repeat; background-position: left; }
-.ok           { padding: 0px 0px 0px 20px; font-weight:bold; color:red; background-image:url({$THEMES_DIR}/{/literal}{$settings.template}{literal}/images/tick.png); background-repeat:no-repeat; background-position: left; }
+.caution      { padding: 0px 0px 0px 20px; color: red; font-weight: bold; background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png); background-repeat:no-repeat; background-position: left; }
+.ok           { padding: 0px 0px 0px 20px; font-weight:bold; color:red; background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png); background-repeat:no-repeat; background-position: left; }
 img.uploaded  { border: 1px solid #000; cursor:pointer; }
 .small        { font-size:11px; line-height:16px; }
 .delete a             { text-decoration:none !important; }
@@ -22,20 +23,44 @@ a:hover       { color: #0000ff; text-decoration: underline; }
 a:active      { color: #ff0000; text-decoration: none; }
 -->
 </style>
+
+<script type="text/javascript">/* <![CDATA[ */
+function setPictureToProfil(src) {
+ 	if (opener && opener.document.getElementById("avatar_wrapper")) {
+		var avatarWrapper = opener.document.getElementById("avatar_wrapper")
+		if (src) {
+			var img = new Image();
+			img.src = src;
+			avatarWrapper.innerHTML = '';
+			avatarWrapper.appendChild(img);
+		}
+		else {
+			avatarWrapper.innerHTML = '';
+		}
+	}
+};
+{/literal}
+{if $avatar_uploaded}
+setPictureToProfil('{$avatar}');
+{elseif $avatar_deleted}
+setPictureToProfil('');
+{/if}
+{literal}
+/* ]]> */</script>
 {/literal}
 </head>
-<body{if $uploaded_file} onunload="opener.insert_avatar('{$avatar}')"{/if}>
+<body>
 {if $avatar}
 <h1>{#avatar_hl#}</h1>
-{if $uploaded_file}
+{if $avatar_uploaded}
 <p class="ok">{#upload_successful#}</p>
 {/if}
 <p><img src="{$avatar}" alt="" /></p>
 {if $image_downsized}<p class="small">{$smarty.config.image_downsized|replace:"[width]":$new_width|replace:"[height]":$new_height|replace:"[filesize]":$new_filesize}</p>{/if}
-{if $uploaded_file}
+{if $avatar_uploaded}
 <script type="text/javascript">/* <![CDATA[ */ document.write('<p><button onclick=\"window.close()\">{#close_window#}</button><\/p>'); /* ]]> */</script>
 {else}
-<p class="delete"><a href="index.php?mode=avatar&amp;delete=true"><img src="{$THEMES_DIR}/{$settings.template}/images/delete.png" alt="" width="16" height="16" /><span>{#delete_avatar#}</span></a></p>
+<p class="delete"><a href="index.php?mode=avatar&amp;delete=true"><img src="{$THEMES_DIR}/{$settings.theme}/images/delete.png" alt="" width="16" height="16" /><span>{#delete_avatar#}</span></a></p>
 {/if}
 {elseif $upload}
 <h1>{#upload_avatar_hl#}</h1>

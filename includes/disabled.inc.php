@@ -14,7 +14,7 @@ else
   $smarty->assign('message','forum_disabled');
  }
 
-$smarty->assign('lang_section','info');
+#$smarty->assign('lang_section','info');
 $smarty->assign('subnav_location','subnav_disabled');
 $smarty->assign('subtemplate','info.inc.tpl');
 $template = 'main.tpl';

@@ -50,6 +50,7 @@ INSERT INTO mlf2_settings VALUES ('bbcode_img', '1');
 INSERT INTO mlf2_settings VALUES ('bbcode_color', '1');
 INSERT INTO mlf2_settings VALUES ('bbcode_size', '1');
 INSERT INTO mlf2_settings VALUES ('bbcode_code', '0');
+INSERT INTO mlf2_settings VALUES ('bbcode_tex', '0');
 INSERT INTO mlf2_settings VALUES ('bbcode_flash', '0');
 INSERT INTO mlf2_settings VALUES ('flash_default_width', '425');
 INSERT INTO mlf2_settings VALUES ('flash_default_height', '344');
@@ -126,6 +127,9 @@ INSERT INTO mlf2_settings VALUES ('daily_actions_time', '3:30');
 INSERT INTO mlf2_settings VALUES ('next_daily_actions', '0');
 INSERT INTO mlf2_settings VALUES ('auto_lock_old_threads', '0');
 INSERT INTO mlf2_settings VALUES ('max_read_items', '200');
+INSERT INTO mlf2_settings VALUES ('delete_ips', '0');
+INSERT INTO mlf2_settings VALUES ('last_changes', '0');
+INSERT INTO mlf2_settings VALUES ('ajax_preview', '1');
 INSERT INTO mlf2_settings VALUES ('version', '2.2');
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');

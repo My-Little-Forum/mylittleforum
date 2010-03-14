@@ -20,7 +20,10 @@
 {if $settings.avatars>0}
 <tr>
 <td class="c"><strong>{#edit_avatar#}</strong></td>
-<td class="d"><span id="avatar">{if $avatar}<a href="index.php?mode=avatar" title="{#edit_avatar_link_title#}" onclick="popup('index.php?mode=avatar'); return false"><img src="{$avatar.image}" alt="{#edit_avatar_link_title#}" width="{$avatar.width}" height="{$avatar.height}" /></a>{else}<span class="small">[ <a href="index.php?mode=avatar" onclick="popup('index.php?mode=avatar'); return false">{#add_avatar_link#}</a> ]</span>{/if}</span></td>
+<td class="d">
+<div id="avatar_wrapper">{if $avatar}<img src="{$avatar.image}" alt="{#edit_avatar_link_title#}" width="{$avatar.width}" height="{$avatar.height}" />{/if}</div>
+<span class="small">[ <a id="edit_avatar" href="index.php?mode=avatar">{#edit_avatar_link#}</a> ]</span>
+</td>
 </tr>
 {/if}
 <tr>
@@ -100,7 +103,7 @@
 {if $time_zones}
 <p>
 <select id="user_time_zone" name="user_time_zone" size="1">
-<option value=""{if $user_time_zone==''} selected="selected"{/if}>{if $default_time_zone}{#edit_user_default_time_zone#|replace:"[default_time_zone]":$default_time_zone}{else}{#edit_user_default_time_zone_server#}{/if}</option>
+<option value=""{if $user_time_zone==''} selected="selected"{/if}>{if $default_time_zone}{#edit_user_default_time_zone#|replace:"[default_time_zone]":$default_time_zone}{else}{#edit_user_default_time_zone_svr#}{/if}</option>
 {foreach from=$time_zones item=tz}
 <option value="{$tz}"{if $tz==$user_time_zone} selected="selected"{/if}>{$tz}</option>
 {/foreach}

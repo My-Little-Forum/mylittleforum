@@ -1,10 +1,10 @@
 {config_load file=$language_file section="user"}
 <div id="usernav">
 <div id="usersearch">
-<label for="search_user">{#search_user#}</label><form action="index.php" method="get" accept-charset="{#charset#}">
+<label for="search-user">{#search_user#}</label><form action="index.php" method="get" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="user" />
-<input id="search_user" type="text" name="search_user" value="{if $search_user}{$search_user}{else}{#search_user_default_value#}{/if}" onfocus="if(this.value=='{#search_user_default_value#}') this.value=''" onblur="if(this.value=='') this.value='{#search_user_default_value#}'" size="30" />{*&nbsp;<input type="image" src="{$THEMES_DIR}/{$theme}/images/submit.png" alt="[&raquo;]" />*}
+<input id="search-user" type="text" name="search_user" value="{if $search_user}{$search_user}{else}{#search_user_default_value#}{/if}" />{*&nbsp;<input type="image" src="{$THEMES_DIR}/{$theme}/images/submit.png" alt="[&raquo;]" />*}
 </div>
 </form>
 </div>

@@ -3,13 +3,12 @@
 {elseif $mode=='entry'}
 <ul id="subnavmenu"><li><a class="openthread" href="index.php?mode=thread&amp;id={$tid}#p{$id}" title="{#open_in_thread_linktitle#}">{#open_in_thread_link#}</a></li></ul>
 {elseif $mode=='thread'}
-<ul id="subnavmenu"><li>{if $usersettings.thread_display==0}<a class="linear" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=true" title="{#thread_linear_linktitle#}">{#thread_linear#}</a>{else}<a class="hierarchic" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=true" title="{#thread_hierarchical_linktitle#}">{#thread_hierarchical#}</a>{/if}<script type="text/javascript">/* <![CDATA[ */document.write('</li><li><a class="collapse" href="#" onclick="hide_all_postings(\'{$THEMES_DIR}/{$template}/images/show_posting.png\'); return false" onfocus="this.blur()" title="{#hide_all_messages_title#|escape:"quotes"}">{#hide_all_messages#|escape:"quotes"}</a></li><li><a class="expand" href="#" onclick="show_all_postings(\'{$THEMES_DIR}/{$template}/images/hide_posting.png\'); return false" onfocus="this.blur()" title="{#show_all_messages_title#|escape:"quotes"}">{#show_all_messages#|escape:"quotes"}</a>');/* ]]> */</script></li>
+<ul id="subnavmenu"><li>{if $usersettings.thread_display==0}<a class="linear" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=true" title="{#thread_linear_linktitle#}">{#thread_linear#}</a>{else}<a class="hierarchic" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=true" title="{#thread_hierarchical_linktitle#}">{#thread_hierarchical#}</a>{/if}</li>
 </ul>
 {/if}
 {if $categories && $mode=='index'}
 <form action="index.php" method="get" accept-charset="{#charset#}"><div>
 <input type="hidden" name="mode" value="{$mode}" />
-{if $category}<input type="hidden" name="category" value="{$category}" />{/if}
 &nbsp;<select class="small" size="1" name="category" onchange="this.form.submit();" title="{#category_title#}">
 <option value="0"{if $category==0} selected="selected"{/if}>{#all_categories#}</option>
 {if $category_selection}<option value="-1"{if $category==-1} selected="selected"{/if}>{#my_category_selection#}</option>{/if}

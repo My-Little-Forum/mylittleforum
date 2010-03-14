@@ -28,6 +28,9 @@ $connid = connect_db($db_settings['host'], $db_settings['user'], $db_settings['p
 // get settings:
 $settings = get_settings();
 
+// get read postings:
+$read = get_read();
+
 // auto login:
 if(!isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$settings['session_prefix'].'auto_login']) && isset($settings['autologin']) && $settings['autologin'] == 1)
  {
@@ -86,10 +89,26 @@ if(function_exists('date_default_timezone_set'))
   if(isset($_SESSION[$settings['session_prefix'].'usersettings']['time_zone']) && $_SESSION[$settings['session_prefix'].'usersettings']['time_zone']!='')
    {
     date_default_timezone_set($_SESSION[$settings['session_prefix'].'usersettings']['time_zone']);
+    $forum_time_zone = $_SESSION[$settings['session_prefix'].'usersettings']['time_zone'];
+    if(isset($_SESSION[$settings['session_prefix'].'usersettings']['time_difference']) && $_SESSION[$settings['session_prefix'].'usersettings']['time_difference']!=0)
+     {
+      if($_SESSION[$settings['session_prefix'].'usersettings']['time_difference']>0) $uds = '+'; else $uds = '-'; 
+      $udm = abs($_SESSION[$settings['session_prefix'].'usersettings']['time_difference']);
+      $udh = floor($udm / 60);
+      $udmr = $udm - $udh*60;
+      if($udmr<10) $udmr = '0'.$udmr;
+      $udf = $uds.$udh.':'.$udmr;
+      $forum_time_zone = $_SESSION[$settings['session_prefix'].'usersettings']['time_zone'].' '.$udf;
+     }
+    else
+     {
+      $forum_time_zone = $_SESSION[$settings['session_prefix'].'usersettings']['time_zone'];
+     }
    }
   elseif($settings['time_zone']!='')
    {
     date_default_timezone_set($settings['time_zone']);
+    $forum_time_zone = $settings['time_zone'];
    }
  }
 
@@ -103,9 +122,6 @@ if(isset($_COOKIE[$settings['session_prefix'].'usersettings']))
  {
   $usersettings_cookie = explode('.',$_COOKIE[$settings['session_prefix'].'usersettings']);
  }
-
-// get read postings:
-$read = get_read();
 
 if(empty($_SESSION[$settings['session_prefix'].'usersettings']))
  {
@@ -223,7 +239,7 @@ if(isset($_GET['fold_threads']))
     $_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] = 0;
     setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.0.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],time()+(3600*24*$settings['cookie_validity_days']));
    }
-  $clear_cache=true;
+  #$clear_cache=true;
   // update database for registered users:
   if(isset($_SESSION[$settings['session_prefix'].'user_id']))
    {
@@ -231,7 +247,8 @@ if(isset($_GET['fold_threads']))
    }
 
   if(isset($_GET['category']) && isset($_GET['page']) && isset($_GET['order'])) $q = '&page='.$_GET['page'].'&category='.$_GET['category'].'&order='.$_GET['order']; else $q = '';
-  header('location: index.php?mode=index'.$q);
+  if(isset($_GET['ajax'])) exit;
+  header('Location: index.php?mode=index'.$q);
   exit;
  }
 

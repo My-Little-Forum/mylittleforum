@@ -4,7 +4,7 @@
 {else}
 <h1>{#delete_postings_hl#}</h1>
 <p class="caution">{#caution#}</p>
-<p>{if $admin||$mod}{#delete_posting_confirm_admin#}{else}{#delete_posting_confirm#}{/if}</p>
+<p>{if $admin||$mod}{#delete_posting_replies_confirm#}{else}{#delete_posting_confirm#}{/if}</p>
 <p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$formated_time}</p>
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>

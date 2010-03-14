@@ -83,7 +83,7 @@ switch($action)
        // e-mail correct?
        if(!is_valid_email($new_user_email)) $errors[] = 'error_email_wrong';
 
-       if($settings['terms_of_use_agreement']==1 && $terms_of_use_agree!=1) $errors[] = 'terms_of_use_agree_error_register';
+       if($settings['terms_of_use_agreement']==1 && $terms_of_use_agree!=1) $errors[] = 'terms_of_use_error_register';
 
        if(contains_special_characters($new_user_name)) $errors[] = 'error_username_invalid_chars';
       }

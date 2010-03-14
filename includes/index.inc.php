@@ -32,9 +32,11 @@ if(isset($_GET['page']))
   $page = intval($_GET['page']);
   $_SESSION[$settings['session_prefix'].'usersettings']['page']=$page;
  }
+elseif(isset($_SESSION[$settings['session_prefix'].'usersettings']['page']))
+ {
+  $page = intval($_SESSION[$settings['session_prefix'].'usersettings']['page']);
+ }
 if(empty($page)) $page = 1;
-
-if(isset($_SESSION[$settings['session_prefix'].'usersettings']['page'])) $page = intval($_SESSION[$settings['session_prefix'].'usersettings']['page']);
 
 if($thread_order==0) $db_thread_order = 'time';
 else $db_thread_order = 'last_reply';
@@ -90,16 +92,10 @@ if($result_count > 0)
     // put result into arrays:
     while($data = mysql_fetch_array($thread_result))
      {
-      // how many replies:
-      if($data['pid']==0 && ($fold_threads==1||$user_view==1))
-       {
-        $replies=0;
-        $count_replies_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE id!= ".intval($data['id'])." AND tid = ".intval($data['tid']), $connid);
-        list($replies) = mysql_fetch_row($count_replies_result);
-        mysql_free_result($count_replies_result);
-        $data['replies'] = $replies;
-       }
-
+      // count replies:
+      if(!isset($replies[$data['tid']])) $replies[$data['tid']] = 0;
+      else ++$replies[$data['tid']];
+      
       if($settings['count_views'] != 0)
        {
         $data['views'] = $data['views']-1; // this subtracts the first view by the author after posting
@@ -134,7 +130,6 @@ if($result_count > 0)
       $data_array[$data['id']] = $data;
       $child_array[$data['pid']][] =  $data['id'];
      }
-    #$tree[$zeile['id']] = tree($zeile['id'], $child_array);
     mysql_free_result($thread_result);
    }
   @mysql_free_result($result);
@@ -200,13 +195,6 @@ if($settings['latest_postings']>0)
       if($ago['hours']>12) $ago['days_rounded'] = $ago['days'] + 1;
       else $ago['days_rounded'] = $ago['days'];
       $latest_postings[$i]['ago'] = $ago;
-
-      #$days_ago = floor((time() - $latest_postings_data['time'])/86400);
-      #$hours_ago = floor(((time() - $latest_postings_data['time'])/3600)-($days_ago*24));
-      #$minutes_ago = floor(((time() - $latest_postings_data['time'])/60)-($hours_ago*60+$days_ago*1440));
-      #$latest_postings[$i]['days_ago'] = $days_ago;
-      #$latest_postings[$i]['hours_ago'] = $hours_ago;
-      #$latest_postings[$i]['minutes_ago'] = $minutes_ago;
       $i++;
      }
     $smarty->assign('latest_postings',$latest_postings);
@@ -221,9 +209,13 @@ $page_count = ceil($total_threads / $settings['threads_per_page']);
 
 $subnav_link = array('mode'=>'posting', 'title'=>'new_topic_link_title', 'name'=>'new_topic_link');
 
-if(isset($data_array)) $smarty->assign("data",$data_array);
+if(isset($data_array)) $smarty->assign('data',$data_array);
 #if(isset($tree)) $smarty->assign("tree",$tree);
-if(isset($threads)) $smarty->assign("threads",$threads);
+if(isset($threads))
+ {
+  $smarty->assign("threads",$threads);
+  $smarty->assign('replies',$replies);
+ }
 if(isset($child_array)) $smarty->assign("child_array",$child_array);
 
 $smarty->assign("page",$page);
@@ -236,6 +228,19 @@ $smarty->assign("items_per_page",$settings['threads_per_page']);
 $smarty->assign("thread_order",$thread_order);
 $smarty->assign("descasc",$descasc);
 $smarty->assign('fold_threads',$fold_threads);
+
+if($category!=0) $cqsa = '&amp;category='.$category;
+else $cqsa = '';
+if($page>1)
+ {
+  $smarty->assign('link_rel_first', 'index.php?mode=index&amp;page=1'.$cqsa);
+  $smarty->assign('link_rel_prev', 'index.php?mode=index&amp;page='.($page-1).$cqsa);
+ }
+if($page<$page_count)
+ {
+  $smarty->assign('link_rel_next', 'index.php?mode=index&amp;page='.($page+1).$cqsa);
+  $smarty->assign('link_rel_last', 'index.php?mode=index&amp;page='.$page_count.$cqsa); 
+ }
 
 if($total_spam>0 && isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam']))
  {

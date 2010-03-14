@@ -4,7 +4,7 @@
 <table class="normaltab wide" border="0" cellpadding="5" cellspacing="1">
 <tr>
 <td class="c"><p class="userdata"><strong>{#user_name#}</strong></p></td>
-<td class="d"><p class="userdata"><strong>{$user_name}</strong>{if $gender==1} <img src="{$THEMES_DIR}/{$theme}/images/male.png" alt="{#male#}" width="16" height="16" />{elseif $gender==2} <img src="{$THEMES_DIR}/{$theme}/images/female.png" alt="{#female#}" width="16" height="16" />{/if} <span class="xsmall">{if $user_type==2}({#admin#}){elseif $user_type==1}({#mod#}){else}<!--({#user#})-->{/if}</span></p></td>
+<td class="d"><p class="userdata"><strong>{$user_name}</strong>{if $gender==1} <img src="{$THEMES_DIR}/{$theme}/images/male.png" alt="{#male#}" width="16" height="16" />{elseif $gender==2} <img src="{$THEMES_DIR}/{$theme}/images/female.png" alt="{#female#}" width="16" height="16" />{/if} <span class="xsmall">{if $p_user_type==2}({#admin#}){elseif $p_user_type==1}({#mod#}){else}<!--({#user#})-->{/if}</span></p></td>
 </tr>
 {if $avatar}
 <tr>
@@ -65,7 +65,7 @@
 {if $last_posting_subject}
 <tr>
 <td class="c"><p class="userdata"><strong>{#last_posting#}</strong></p></td>
-<td class="d"><p class="userdata">{if $last_posting_subject}{$last_posting_time|date_format:#time_format#}: <a href="index.php?mode=entry&amp;id={$last_posting_id}">{$last_posting_subject}</a><script type="text/javascript">/* <![CDATA[ */document.write(' <a href="#" onclick="ajax_preview({$last_posting_id}); return false" title="{#ajax_preview_title#|escape:"quotes"}"><img class="ap" src="{$THEMES_DIR}/{$theme}/images/ajax_preview.png" alt="{#ajax_preview_title#|escape:"quotes"}" width="11" height="11" /><\/a>')/* ]]> */</script>{else}-{/if}</p></td>
+<td class="d"><p class="userdata">{if $last_posting_subject}{$last_posting_time|date_format:#time_format#}: <a id="user-last-posting" href="index.php?mode=entry&amp;id={$last_posting_id}">{$last_posting_subject}</a>{else}-{/if}</p></td>
 </tr>
 {/if}
 {if $profile}

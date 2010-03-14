@@ -84,8 +84,6 @@ if(isset($_GET['report_spam'])) $action = 'report_spam';
 if(isset($_GET['flag_ham'])) $action = 'flag_ham';
 if(isset($_GET['delete_marked'])) $action = 'delete_marked';
 if(isset($_GET['manage_postings'])) $action = 'manage_postings';
-#if(isset($_POST['lock_submit'])) $action = 'lock_submit';
-#if(isset($_POST['lock_all_threads_submit']) || isset($_POST['unlock_all_threads_submit'])) $action = 'lock_all_threads_submit';
 if(isset($_GET['delete_spam'])) $action = 'delete_spam';
 if(isset($_POST['report_spam_submit']) || isset($_POST['report_spam_delete_submit'])) $action = 'report_spam_submit';
 if(isset($_POST['report_flag_ham_submit']) || isset($_POST['flag_ham_submit'])) $action = 'flag_ham_submit';
@@ -212,6 +210,7 @@ if(isset($_POST['move_posting_submit']) && isset($_POST['move_posting']) && isse
          $smilies[$i]['id'] = $row['id'];
          $smilies[$i]['file'] = $row['file'];
          $smilies[$i]['code'] = $row['code_1'];
+         //$smilies[$i]['code_encoded'] = 'smiley-' . str_replace('%',':',rawurlencode($row['code_1']));
          $smilies[$i]['title'] = $row['title'];
          $i++;
         }
@@ -372,7 +371,7 @@ switch($action)
            $text = $field['text'];
            $text = quote_reply($text);
            $smarty->assign('text',htmlspecialchars($text));
-           $smarty->assign('hide_quote',true);
+           $smarty->assign('quote', true);
           }
 
          $link_name = 'back_to_entry_link';
@@ -404,7 +403,7 @@ switch($action)
         }
       }
 
-     if(isset($_COOKIE[$settings['session_prefix'].'userdata']))
+     if($settings['remember_userdata'] && isset($_COOKIE[$settings['session_prefix'].'userdata']))
       {
        $cookie_parts = explode("|", $_COOKIE[$settings['session_prefix'].'userdata']);
        $smarty->assign('name',htmlspecialchars(urldecode($cookie_parts[0])));
@@ -425,12 +424,12 @@ switch($action)
         }
       }
 
-     $smarty->assign("uniqid",uniqid(""));
-     $smarty->assign('posting_mode',0);
-     $smarty->assign('id',$id);
-     $smarty->assign('back',$back);
-     $smarty->assign('action',$action);
-     if($settings['terms_of_use_agreement']==1 && empty($_SESSION[$settings['session_prefix'].'user_id'])) $smarty->assign("terms_of_use_agreement",true);
+     $smarty->assign("uniqid", uniqid(''));
+     $smarty->assign('posting_mode', 0);
+     $smarty->assign('id', intval($id));
+     $smarty->assign('back', htmlspecialchars($back));
+     $smarty->assign('action', htmlspecialchars($action));
+     if($settings['terms_of_use_agreement']==1 && empty($_SESSION[$settings['session_prefix'].'user_id'])) $smarty->assign('terms_of_use_agreement', true);
 
      if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['email_notification_unregistered']==1) $smarty->assign('provide_email_notification',true);
      if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && (empty($id) || $posting_mode==1 && $pid==0)) $smarty->assign('provide_sticky',true);
@@ -476,21 +475,25 @@ switch($action)
     }
 
    // import, trim and complete data:
-   if(isset($_POST['uniqid'])) $uniqid = trim($_POST['uniqid']);
-   if(isset($_POST['pid'])) $pid = intval($_POST['pid']); else $pid=0;
-   if(empty($name) && isset($_POST['name'])) $name = trim($_POST['name']);
-   if(empty($user_id)) $user_id = 0;
-   if(isset($_POST['email'])) $email = trim($_POST['email']); else $email = '';
-   if(isset($_POST['hp'])) $hp = trim($_POST['hp']); else $hp = '';
-   if(isset($_POST['location'])) $location = trim($_POST['location']); else $location = '';
-   if(isset($_POST['show_signature'])) $show_signature = intval($_POST['show_signature']); else $show_signature=0;
-   if(isset($_POST['email_notification'])) $email_notification = intval($_POST['email_notification']); else $email_notification=0;;
-   if(isset($_POST['subject'])) $subject = trim($_POST['subject']);
+   $uniqid = isset($_POST['uniqid']) ? trim($_POST['uniqid']) : '';
+   $pid = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
+   $subject = isset($_POST['subject']) ? trim($_POST['subject']) : '';
    $text = isset($_POST['text']) ? trim($_POST['text']) : '';
-   if(isset($_POST['setcookie'])) $setcookie = trim($_POST['setcookie']); else $setcookie=0;
-   if(isset($_POST['sticky']) && $_POST['sticky']==1 && isset($_SESSION[$settings['session_prefix'].'user_type']) && ($_SESSION[$settings['session_prefix'].'user_type']>0)) $sticky=1; else $sticky=0;
-   if(isset($_POST['terms_of_use_agree']) && $_POST['terms_of_use_agree']==1) $terms_of_use_agree=1; else $terms_of_use_agree=0;
-
+   $email_notification = isset($_POST['email_notification']) && intval($_POST['email_notification']==1) ? 1 : 0;
+   $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+   $hp = isset($_POST['hp']) ? trim($_POST['hp']) : '';
+   $location = isset($_POST['location']) ? trim($_POST['location']) : '';
+   $name = isset($_POST['name']) ? trim($_POST['name']) : '';
+   if(empty($_SESSION[$settings['session_prefix'].'user_id']))
+    {  
+     $setcookie = isset($_POST['setcookie']) && intval($_POST['setcookie']==1) ? 1 : 0;
+     $terms_of_use_agree = isset($_POST['terms_of_use_agree']) && intval($_POST['terms_of_use_agree']==1) ? 1 : 0;
+    }
+   else
+    {
+     $show_signature = isset($_POST['show_signature']) && intval($_POST['show_signature']==1) ? 1 : 0;
+    }
+   $sticky = isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && isset($_POST['sticky']) && intval($_POST['sticky']==1) ? 1 : 0;
    if($id!=0 && $posting_mode==0 || $posting_mode==1 && $pid>0)
     {
      // get category of parent posting:
@@ -503,45 +506,63 @@ switch($action)
 
    if($posting_mode==0) // new message
     {
-     // double entry?
-     list($double_entry_count) = @mysql_fetch_row(@mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE uniqid = '".mysql_real_escape_string($uniqid)."' AND time > (NOW()-INTERVAL 1 HOUR)", $connid));
-     if($double_entry_count > 0)
+     if(empty($uniqid))
       {
-       header("Location: index.php?mode=index");
-       exit;
+       $errors[] = 'error_invalid_form';
       }
-
-     // check form session and time used to complete the form:
-     if(empty($_SESSION[$settings['session_prefix'].'user_id']))
+     else
       {
-       if(empty($_SESSION[$settings['session_prefix'].'formtime'])) $errors[] = 'error_invalid_form';
-       else
+       // double entry?
+       list($double_entry_count) = @mysql_fetch_row(@mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE uniqid = '".mysql_real_escape_string($uniqid)."' AND time > (NOW()-INTERVAL 1 HOUR)", $connid));
+       if($double_entry_count > 0)
         {
-         $time_need = $current_time - intval($_SESSION[$settings['session_prefix'].'formtime']);
-         if($time_need<10) $errors[] = 'error_form_sent_too_fast';
-         elseif($time_need>10800) $errors[] = 'error_form_sent_too_slow';
-         unset($_SESSION[$settings['session_prefix'].'formtime']);
+         header("Location: index.php?mode=index");
+         exit;
         }
       }
 
-     // flood prevention:
-     if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['save_entry']))
+     if(empty($errors))
       {
-       list($flood_count) = @mysql_fetch_row(@mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = 0 AND ip = '".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' AND time > (NOW()-INTERVAL ".$settings['flood_prevention_minutes']." MINUTE)", $connid));
-       if($flood_count > 0)
+       // check form session and time used to complete the form:
+       if(empty($_SESSION[$settings['session_prefix'].'user_id']))
         {
-         $smarty->assign('minutes',$settings['flood_prevention_minutes']);
-         $errors[] = 'error_repeated_posting';
+         if(empty($_SESSION[$settings['session_prefix'].'formtime'])) $errors[] = 'error_invalid_form';
+         else
+          {
+           $time_need = $current_time - intval($_SESSION[$settings['session_prefix'].'formtime']);
+           if($time_need<10) $errors[] = 'error_form_sent_too_fast';
+           elseif($time_need>10800) $errors[] = 'error_form_sent_too_slow';
+           unset($_SESSION[$settings['session_prefix'].'formtime']);
+          }
         }
       }
 
+     if(empty($errors))
+      {
+       // flood prevention:
+       if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['save_entry']))
+        {
+         list($flood_count) = @mysql_fetch_row(@mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = 0 AND ip = '".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' AND time > (NOW()-INTERVAL ".$settings['flood_prevention_minutes']." MINUTE)", $connid));
+         if($flood_count > 0)
+          {
+           $smarty->assign('minutes',$settings['flood_prevention_minutes']);
+           $errors[] = 'error_repeated_posting';
+          }
+        }
+      }
+      
      // is it a registered user?
      if(isset($_SESSION[$settings['session_prefix'].'user_id']))
       {
        $user_id = $_SESSION[$settings['session_prefix'].'user_id'];
        $name = $_SESSION[$settings['session_prefix'].'user_name'];
       }
-
+     else
+      {
+       $user_id = 0;
+       $show_signature = 0;
+      }
+      
       // get thread ID if reply:
       if($id!=0)
        {
@@ -560,14 +581,12 @@ switch($action)
           if($field['locked']!=0) $errors[] = 'posting_locked_no_reply';
           if($field['category']!=0 && !in_array($field['category'], $category_ids)) $errors[] = 'error_invalid_category';
           $thread = $field['tid'];
-
           if($field['user_id']>0)
            {
             if(!$field['user_name']) $smarty->assign('name_repl_subnav',$lang['unknown_user']);
             else $smarty->assign('name_repl_subnav',htmlspecialchars($field['user_name']));
            }
           else $smarty->assign('name_repl_subnav',htmlspecialchars($field['name']));
-
           $link_name = 'back_to_entry_link';
           $link_title = 'back_to_entry_link_title';
          }
@@ -578,6 +597,7 @@ switch($action)
         $link_name = 'back_to_index_link';
         $link_title = 'back_to_index_link_title';
        }
+     
      if(isset($link_title))
       {
        if($back=='entry') $subnav_link = array('id' => $id, 'title'=>$link_title, 'name'=>$link_name);
@@ -587,7 +607,7 @@ switch($action)
       {
        $subnav_link = array('mode'=>'index', 'name'=>'forum_index_link', 'title'=>'forum_index_link_title');
       }
-     $smarty->assign("subnav_link",$subnav_link);
+     $smarty->assign('subnav_link', $subnav_link);
     }
 
    elseif($posting_mode==1) // edit message
@@ -613,7 +633,6 @@ switch($action)
        if($settings['edit_max_time_period']>0 && (empty($_SESSION[$settings['session_prefix'].'user_type']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==0))
         {
          $minutes_left_to_edit = round((($field['time']+$settings['edit_max_time_period']*60)-$current_time)/60);
-         #if($minutes_left_to_edit==0) $minutes_left_to_edit = '< 1';
          if($minutes_left_to_edit>=0) $smarty->assign('minutes_left_to_edit',$minutes_left_to_edit);
         }
       }
@@ -666,12 +685,31 @@ switch($action)
      // e-mail available for notification?
      if(isset($_SESSION[$settings['session_prefix'].'user_id']))
       {
-       if($field['user_id']==0 && $field['email']=='' && isset($email_notification) && $email_notification==1) $errors[] = 'error_no_email_to_notify';
+       if($field['user_id']==0 && empty($email) && isset($email_notification) && $email_notification==1) $errors[] = 'error_no_email_to_notify';
       }
     }
 
    if(empty($errors))
     {
+     // category check:
+     if($id==0 && $categories!=false && empty($categories[$p_category])) $errors[] = 'error_invalid_category';
+      
+     // name reserved?
+     $result = mysql_query("SELECT user_id, user_name FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysql_real_escape_string(my_strtolower($name, $lang['charset']))."'") or raise_error('database_error',mysql_error());
+     if(mysql_num_rows($result)>0)
+      {
+       if(empty($_SESSION[$settings['session_prefix'].'user_id']))
+        {
+         $errors[] = 'error_name_reserved';
+        }
+       elseif(isset($_SESSION[$settings['session_prefix'].'user_id']))
+        {
+         $data = mysql_fetch_array($result);
+         if(isset($posting_user_id) && $data['user_id'] != $posting_user_id) $errors[] = 'error_name_reserved';
+        }
+      }
+     mysql_free_result($result);
+
      // check for not accepted words:
      $joined_message = my_strtolower($name.' '.$email.' '.$hp.' '.$location.' '.$subject.' '.$text, $lang['charset']);
      $not_accepted_words = get_not_accepted_words($joined_message);
@@ -690,49 +728,22 @@ switch($action)
         }
       }
 
-     if(!isset($name) || $name == '') $errors[] = 'error_no_name';
-     if(empty($_SESSION[$settings['session_prefix'].'user_id']) && contains_special_characters($name)) $errors[] = 'error_username_invalid_chars';
-
-     // name reserved?
-     $result = mysql_query("SELECT user_id, user_name FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysql_real_escape_string(my_strtolower($name, $lang['charset']))."'") or raise_error('database_error',mysql_error());
-     if(mysql_num_rows($result)>0)
+     if(empty($_SESSION[$settings['session_prefix'].'user_id']) || ($posting_mode==1 && $field['user_id']==0))
       {
-       if(empty($_SESSION[$settings['session_prefix'].'user_id']))
-        {
-         $errors[] = 'error_name_reserved';
-        }
-       elseif(isset($_SESSION[$settings['session_prefix'].'user_id']))
-        {
-         $data = mysql_fetch_array($result);
-         #if($data['user_id'] != $_SESSION[$settings['session_prefix'].'user_id']) $errors[] = 'error_name_reserved';
-         if(isset($posting_user_id) && $data['user_id'] != $posting_user_id) $errors[] = 'error_name_reserved';
-        }
-      }
-     mysql_free_result($result);
-
-     // name = subject?
-     if(empty($_SESSION[$settings['session_prefix'].'user_id']) && my_strtolower($name, $lang['charset']) == my_strtolower($subject, $lang['charset'])) $errors[] = 'error_name_like_subject';
-
-     if(isset($email) && $email != '' && !is_valid_email($email)) $errors[] = 'error_email_wrong';
-     if(isset($hp) && $hp != '' && !is_valid_url($hp)) $errors[] = 'error_hp_wrong';
-     if($email == '' && isset($email_notification) && $email_notification == 1 && !isset($_SESSION[$settings['session_prefix'].'user_id'])) $errors[] = 'error_no_email_to_notify';
-     if (empty($subject) || $subject == "") $errors[] = 'error_no_subject';
-     if(empty($settings['empty_postings_possible']) || isset($settings['empty_postings_possible']) && $settings['empty_postings_possible'] != 1)
-      {
-       if (empty($text) || $text == "")
-       $errors[] = 'error_no_text';
-      }
-
-     if($settings['terms_of_use_agreement']==1 && empty($_SESSION[$settings['session_prefix'].'user_id']) && $terms_of_use_agree!=1) $errors[] = 'terms_of_use_agree_error_posting';
-
-     if(empty($_SESSION[$settings['session_prefix'].'user_id']))
-      {
+       if(empty($name)) $errors[] = 'error_no_name';
+       if(contains_special_characters($name)) $errors[] = 'error_username_invalid_chars';
+       if(!empty($name) && !empty($subject) && my_strtolower($name, $lang['charset']) == my_strtolower($subject, $lang['charset'])) $errors[] = 'error_name_like_subject';
        if(my_strlen($name,$lang['charset']) > $settings['username_maxlength']) $errors[] = 'error_name_too_long';
        if(my_strlen($email,$lang['charset']) > $settings['email_maxlength']) $errors[] = 'error_email_too_long';
        if(isset($hp) && my_strlen($hp,$lang['charset']) > $settings['hp_maxlength']) $errors[] = 'error_hp_too_long';
        if(my_strlen($location,$lang['charset']) > $settings['location_maxlength']) $errors[] = 'error_location_too_long';
       }
-       
+
+     if(isset($email) && $email != '' && !is_valid_email($email)) $errors[] = 'error_email_wrong';
+     if(isset($hp) && $hp != '' && !is_valid_url($hp)) $errors[] = 'error_hp_wrong';
+     if(empty($email) && isset($email_notification) && $email_notification == 1 && !isset($_SESSION[$settings['session_prefix'].'user_id'])) $errors[] = 'error_no_email_to_notify';
+     if(empty($subject)) $errors[] = 'error_no_subject';
+     if(empty($text) && $settings['empty_postings_possible']==0) $errors[] = 'error_no_text';
      if(my_strlen($subject,$lang['charset']) > $settings['subject_maxlength']) $errors[] = 'error_subject_too_long';
      if(my_strlen($text,$lang['charset']) > $settings['text_maxlength']) $errors[] = 'error_text_too_long';
      $smarty->assign('text_length',my_strlen($text,$lang['charset']));
@@ -765,11 +776,12 @@ switch($action)
        $too_long_word = too_long_word($check_text,$settings['text_word_maxlength']);
        if($too_long_word) $errors[] = 'error_word_too_long';
       }
+     if(empty($_SESSION[$settings['session_prefix'].'user_id']))
+      {
+       if($settings['terms_of_use_agreement']==1 && $terms_of_use_agree!=1) $errors[] = 'terms_of_use_error_posting';      
+      }
     }
-
-   // category check:
-   if($id==0 && $categories!=false && empty($categories[$p_category])) $errors[] = 'error_invalid_category';
-
+    
    // CAPTCHA check:
    if(empty($errors) && isset($_POST['save_entry']) && empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha_posting']>0)
     {
@@ -796,9 +808,6 @@ switch($action)
      if($email!='') $check_posting['email'] = $email;
      if($hp!='') $check_posting['website'] = $hp;
      $check_posting['body'] = $text;
-     #$check_posting['permalink']
-     #$check_posting['user_ip']
-     #$check_posting['user_agent']
 
      $akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
 
@@ -903,13 +912,10 @@ switch($action)
        if($spam==0) emailNotification2ModsAndAdmins($new_data['id']);
 
        // set userdata cookie:
-       if($settings['remember_userdata'] == 1)
+       if($settings['remember_userdata'] && isset($setcookie) && $setcookie==1)
         {
-         if($setcookie==1)
-          {
-           $cookie_data = urlencode($name).'|'.urlencode($email).'|'.urlencode($hp).'|'.urlencode($location);
-           setcookie($settings['session_prefix'].'userdata',$cookie_data,$current_time+(3600*24*$settings['cookie_validity_days']));
-          }
+         $cookie_data = urlencode($name).'|'.urlencode($email).'|'.urlencode($hp).'|'.urlencode($location);
+         setcookie($settings['session_prefix'].'userdata',$cookie_data,$current_time+(3600*24*$settings['cookie_validity_days']));
         }
        if(isset($back) && $back=='thread') header('Location: index.php?mode=thread&id='.$new_data['id'].'#p'.$new_data['id']);
        else header('Location: index.php?id='.$new_data['id']);
@@ -1001,33 +1007,31 @@ switch($action)
          if($settings['email_notification_unregistered']) $smarty->assign('provide_email_notification',true);
         }
        if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && (empty($id) || $posting_mode==1 && $pid==0)) $smarty->assign('provide_sticky',true);
-       // actual time:
+       // current time:
        list($preview_time) = mysql_fetch_row(mysql_query("SELECT UNIX_TIMESTAMP(NOW() + INTERVAL ".$time_difference." MINUTE)"));
        $smarty->assign('preview_timestamp',$preview_time);
        $preview_formated_time = format_time($lang['time_format_full'],$preview_time);
-       $smarty->assign('preview_formated_time',$preview_formated_time);
-       $smarty->assign('uniqid',$uniqid);
-       $smarty->assign('posting_mode',$posting_mode);
-       $smarty->assign('id',$id);
-       $smarty->assign('pid',$pid);
-       $smarty->assign('back',$back);
+       $smarty->assign('preview_formated_time', $preview_formated_time);
+       $smarty->assign('uniqid', htmlspecialchars($uniqid));
+       $smarty->assign('posting_mode', intval($posting_mode));
+       $smarty->assign('id', intval($id));
+       $smarty->assign('pid', intval($pid));
+       $smarty->assign('back', htmlspecialchars($back));
        $smarty->assign('name',htmlspecialchars($name));
        $smarty->assign('subject',htmlspecialchars($subject));
        $smarty->assign('text',htmlspecialchars($text));
-       if(isset($tags)) $smarty->assign('tags',htmlspecialchars($tags));
-       if(isset($p_category)) $smarty->assign('p_category',$p_category);
-       $smarty->assign('setcookie',$setcookie);
-       $smarty->assign('email_notification',$email_notification);
-       $smarty->assign('sticky',$sticky);
-       $smarty->assign('preview_name',htmlspecialchars($name));
+       if(isset($tags)) $smarty->assign('tags', htmlspecialchars($tags));
+       if(isset($p_category)) $smarty->assign('p_category', intval($p_category));
+       if(isset($setcookie)) $smarty->assign('setcookie', intval($setcookie));
+       $smarty->assign('email_notification', intval($email_notification));
+       $smarty->assign('sticky', intval($sticky));
+       $smarty->assign('preview_name', htmlspecialchars($name));
        $preview_text = html_format($text);
        if($settings['terms_of_use_agreement']==1 && empty($_SESSION[$settings['session_prefix'].'user_id'])) $smarty->assign("terms_of_use_agreement",true);
-       $smarty->assign('terms_of_use_agree',$terms_of_use_agree);
-       $smarty->assign('preview_text',$preview_text);
-       $smarty->assign('preview_subject',htmlspecialchars($subject));
-
+       if(isset($terms_of_use_agree)) $smarty->assign('terms_of_use_agree', intval($terms_of_use_agree));
+       $smarty->assign('preview_text', $preview_text);
+       $smarty->assign('preview_subject', htmlspecialchars($subject));
        $_SESSION[$settings['session_prefix'].'formtime'] = $current_time - 7; // 7 seconds credit for preview
-
        $smarty->assign('subtemplate','posting.inc.tpl');
      }
 
@@ -1043,33 +1047,29 @@ switch($action)
           $smarty->assign('show_signature',$show_signature);
          }
        }
-      $smarty->assign('id',$id);
-      $smarty->assign('pid',$pid);
-      $smarty->assign('errors',$errors);
-      if(isset($too_long_word)) $smarty->assign('word',$too_long_word);
-      $smarty->assign("uniqid",$uniqid);
-      $smarty->assign('back',$back);
-      $smarty->assign('posting_mode',$posting_mode);
-      if(isset($name)) $smarty->assign('name',htmlspecialchars($name));
+      $smarty->assign('id', intval($id));
+      $smarty->assign('pid', intval($pid));
+      $smarty->assign('errors', $errors);
+      if(isset($too_long_word)) $smarty->assign('word', $too_long_word);
+      $smarty->assign('uniqid', htmlspecialchars($uniqid));
+      $smarty->assign('back', htmlspecialchars($back));
+      $smarty->assign('posting_mode', intval($posting_mode));
+      if(isset($name)) $smarty->assign('name', htmlspecialchars($name));
       $smarty->assign('email',htmlspecialchars($email));
       $smarty->assign('hp',htmlspecialchars($hp));
       $smarty->assign('location',htmlspecialchars($location));
       $smarty->assign('subject',htmlspecialchars($subject));
       $smarty->assign('text',htmlspecialchars($text));
-      if(isset($tags)) $smarty->assign('tags',htmlspecialchars($tags));
-      if(isset($p_category)) $smarty->assign('p_category',$p_category);
-      $smarty->assign('setcookie',$setcookie);
-      $smarty->assign('email_notification',$email_notification);
-      $smarty->assign('sticky',$sticky);
-
+      if(isset($tags)) $smarty->assign('tags', htmlspecialchars($tags));
+      if(isset($p_category)) $smarty->assign('p_category', intval($p_category));
+      if(isset($setcookie)) $smarty->assign('setcookie', intval($setcookie));
+      $smarty->assign('email_notification', intval($email_notification));
+      $smarty->assign('sticky', intval($sticky));
       if((isset($posting_user_id) && intval($posting_user_id)>0) || $settings['email_notification_unregistered']==1) $smarty->assign('provide_email_notification',true);
       if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && (empty($id) || $posting_mode==1 && $pid==0)) $smarty->assign('provide_sticky',true);
-
       if($settings['terms_of_use_agreement']==1 && empty($_SESSION[$settings['session_prefix'].'user_id'])) $smarty->assign("terms_of_use_agreement",true);
-      $smarty->assign('terms_of_use_agree',$terms_of_use_agree);
-
+      if(isset($terms_of_use_agree)) $smarty->assign('terms_of_use_agree', intval($terms_of_use_agree));
       $_SESSION[$settings['session_prefix'].'formtime'] = $current_time - 7; // 7 seconds credit (form already sent)
-
       $smarty->assign('subtemplate','posting.inc.tpl');
      }
    }

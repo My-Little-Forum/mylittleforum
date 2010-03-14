@@ -1,15 +1,9 @@
 {if $user_postings_data}
 {include file="$theme/subtemplates/ajax_preview.inc.tpl"}
-<script type="text/javascript">/* <![CDATA[ */
-function ap(id)
-{literal}{{/literal}
-document.write(' <a href="#" onclick="ajax_preview('+id+'); return false" title="{#ajax_preview_title#|escape:"quotes"}" onfocus="this.blur()"><img class="ap" src="{$THEMES_DIR}/{$theme}/images/ajax_preview.png" title="{#ajax_preview_title#|escape:"quotes"}" alt="[…]" width="11" height="11" /><\/a>');
-{literal}}{/literal}
-/* ]]> */</script>
 <p>{if $user_postings_count>1}{$smarty.config.several_postings_by_user|replace:"[number]":$user_postings_count}{else}{#one_posting_by_user#}{/if}</p>
 <ul class="searchresults">
 {section name=ix loop=$user_postings_data}
-<li><a class="{if $user_postings_data[ix].pid==0}thread-search{else}reply-search{/if} {if $visited && in_array($user_postings_data[ix].id,$visited)} visited{/if}" href="index.php?mode=entry&amp;id={$user_postings_data[ix].id}">{$user_postings_data[ix].subject}</a> - <strong>{$user_postings_data[ix].name}</strong>, {$user_postings_data[ix].disp_time|date_format:#time_format#}<script type="text/javascript">/* <![CDATA[ */ ap({$user_postings_data[ix].id}); /* ]]> */</script> <a href="index.php?mode=thread&amp;id={$user_postings_data[ix].id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" alt="{#open_whole_thread#}" width="11" height="11" /></a> {if $user_postings_data[ix].category}<a href="index.php?mode=index&amp;category={$user_postings_data[ix].category}"><span class="category">({$user_postings_data[ix].category_name})</span></a>{/if}</li>
+<li><a class="{if $user_postings_data[ix].pid==0}thread-search{else}reply-search{/if} {if $visited && in_array($user_postings_data[ix].id,$visited)} visited{/if}" href="index.php?mode=entry&amp;id={$user_postings_data[ix].id}">{$user_postings_data[ix].subject}</a> - <strong>{$user_postings_data[ix].name}</strong>, <span id="p{$user_postings_data[ix].id}" class="tail">{$user_postings_data[ix].disp_time|date_format:#time_format#} <a href="index.php?mode=thread&amp;id={$user_postings_data[ix].id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" alt="{#open_whole_thread#}" width="11" height="11" /></a> {if $user_postings_data[ix].category}<a href="index.php?mode=index&amp;category={$user_postings_data[ix].category}"><span class="category">({$user_postings_data[ix].category_name})</span></a>{/if}</span></li>
 {/section}
 </ul>
 

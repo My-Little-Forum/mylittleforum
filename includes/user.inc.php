@@ -217,7 +217,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
 
        $smarty->assign('p_user_id', $row['user_id']);
        $smarty->assign('user_name', $user_name);
-       $smarty->assign('user_type', $row['user_type']);
+       $smarty->assign('p_user_type', $row['user_type']);
        $smarty->assign('user_real_name', htmlspecialchars($row['user_real_name']));
        $smarty->assign('gender', $row['gender']);
        if($day!=0&&$month!=0&&$year!=0)
@@ -506,12 +506,12 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
         }
 
        // time difference:
-       $time_difference = isset($_POST['user_time_difference']) ? trim($_POST['user_time_difference']) : '';
-       if(isset($time_difference[0]) && $time_difference[0]=='-') $negative = true;
-       $time_difference_array = explode(':',$_POST['user_time_difference']);
-       $hours_difference = abs(intval($time_difference_array[0]));
+       $user_time_difference = isset($_POST['user_time_difference']) ? trim($_POST['user_time_difference']) : '';
+       if(isset($user_time_difference[0]) && $user_time_difference[0]=='-') $negative = true;
+       $user_time_difference_array = explode(':',$_POST['user_time_difference']);
+       $hours_difference = abs(intval($user_time_difference_array[0]));
        if($hours_difference<-24 || $hours_difference>24) $hours_difference = 0;
-       if(isset($time_difference_array[1])) $minutes_difference = intval($time_difference_array[1]);
+       if(isset($user_time_difference_array[1])) $minutes_difference = intval($user_time_difference_array[1]);
        if(isset($minutes_difference))
         {
          if($minutes_difference<0 || $minutes_difference>59) $minutes_difference = 0;
@@ -522,9 +522,9 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
         }
        if(isset($negative))
         {
-         $time_difference = 0 - ($hours_difference*60 + $minutes_difference);
+         $user_time_difference = 0 - ($hours_difference*60 + $minutes_difference);
         }
-       else $time_difference = $hours_difference*60 + $minutes_difference;
+       else $user_time_difference = $hours_difference*60 + $minutes_difference;
 
        // language:
        $user_language = '';
@@ -683,7 +683,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
            $smarty->assign('user_theme', htmlspecialchars($user_theme));
           }
          if(isset($too_long_word)) $smarty->assign('word',$too_long_word);
-          $smarty->assign('user_name', htmlspecialchars($row['user_name']));
+         $smarty->assign('user_name', htmlspecialchars($row['user_name']));
          $smarty->assign('user_email', htmlspecialchars($row['user_email']));
          $smarty->assign('email_contact', $email_contact);
          $smarty->assign('user_hp', htmlspecialchars($user_hp));
@@ -699,7 +699,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
          $smarty->assign('new_posting_notification', $new_posting_notification);
          $smarty->assign('new_user_notification', $new_user_notification);
          if(isset($_POST['category_selection']) && is_array($_POST['category_selection'])) $smarty->assign('category_selection', $_POST['category_selection']);
-         $smarty->assign('time_difference_array',$time_difference_array);
+         $smarty->assign('time_difference_array',$user_time_difference_array);
          $breadcrumbs[0]['link'] = 'index.php?mode=user';
          $breadcrumbs[0]['linkname'] = 'subnav_userarea';
          $smarty->assign('breadcrumbs',$breadcrumbs);
@@ -711,12 +711,12 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
         {
          if(isset($category_selection_db))
           {
-           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET email_contact=".intval($email_contact).", user_hp='".mysql_real_escape_string($user_hp)."', user_real_name='".mysql_real_escape_string($user_real_name)."', gender=".intval($gender).", birthday='".mysql_real_escape_string($birthday)."', user_location='".mysql_real_escape_string($user_location)."', profile='".mysql_real_escape_string($profile)."', signature='".mysql_real_escape_string($signature)."', user_view=".intval($user_view).", new_posting_notification=".intval($new_posting_notification).", new_user_notification=".intval($new_user_notification).", category_selection='".mysql_real_escape_string($category_selection_db)."', language='".mysql_real_escape_string($user_language)."', time_zone='".mysql_real_escape_string($user_time_zone)."', time_difference=".intval($time_difference).", theme='".mysql_real_escape_string($user_theme)."', last_login=last_login,last_logout=last_logout,registered=registered WHERE user_id=".intval($id), $connid);
+           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET email_contact=".intval($email_contact).", user_hp='".mysql_real_escape_string($user_hp)."', user_real_name='".mysql_real_escape_string($user_real_name)."', gender=".intval($gender).", birthday='".mysql_real_escape_string($birthday)."', user_location='".mysql_real_escape_string($user_location)."', profile='".mysql_real_escape_string($profile)."', signature='".mysql_real_escape_string($signature)."', user_view=".intval($user_view).", new_posting_notification=".intval($new_posting_notification).", new_user_notification=".intval($new_user_notification).", category_selection='".mysql_real_escape_string($category_selection_db)."', language='".mysql_real_escape_string($user_language)."', time_zone='".mysql_real_escape_string($user_time_zone)."', time_difference=".intval($user_time_difference).", theme='".mysql_real_escape_string($user_theme)."', last_login=last_login,last_logout=last_logout,registered=registered WHERE user_id=".intval($id), $connid);
            $_SESSION[$settings['session_prefix'].'usersettings']['category_selection'] = $filtered_category_selection;
           }
          else
           {
-           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET email_contact=".intval($email_contact).", user_hp='".mysql_real_escape_string($user_hp)."', user_real_name='".mysql_real_escape_string($user_real_name)."', gender=".intval($gender).", birthday='".mysql_real_escape_string($birthday)."', user_location='".mysql_real_escape_string($user_location)."', profile='".mysql_real_escape_string($profile)."', signature='".mysql_real_escape_string($signature)."', user_view=".intval($user_view).", new_posting_notification=".intval($new_posting_notification).", new_user_notification=".intval($new_user_notification).", category_selection=NULL, language='".mysql_real_escape_string($user_language)."', time_zone='".mysql_real_escape_string($user_time_zone)."', time_difference=".intval($time_difference).", theme='".mysql_real_escape_string($user_theme)."', last_login=last_login,last_logout=last_logout,registered=registered WHERE user_id=".intval($id), $connid);
+           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET email_contact=".intval($email_contact).", user_hp='".mysql_real_escape_string($user_hp)."', user_real_name='".mysql_real_escape_string($user_real_name)."', gender=".intval($gender).", birthday='".mysql_real_escape_string($birthday)."', user_location='".mysql_real_escape_string($user_location)."', profile='".mysql_real_escape_string($profile)."', signature='".mysql_real_escape_string($signature)."', user_view=".intval($user_view).", new_posting_notification=".intval($new_posting_notification).", new_user_notification=".intval($new_user_notification).", category_selection=NULL, language='".mysql_real_escape_string($user_language)."', time_zone='".mysql_real_escape_string($user_time_zone)."', time_difference=".intval($user_time_difference).", theme='".mysql_real_escape_string($user_theme)."', last_login=last_login,last_logout=last_logout,registered=registered WHERE user_id=".intval($id), $connid);
            unset($_SESSION[$settings['session_prefix'].'usersettings']['category_selection']);
           }
          // auto login:
@@ -748,7 +748,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
          else unset($_SESSION[$settings['session_prefix'].'usersettings']['language']);
          if(!empty($user_time_zone)) $_SESSION[$settings['session_prefix'].'usersettings']['time_zone'] = $user_time_zone;
          else unset($_SESSION[$settings['session_prefix'].'usersettings']['time_zone']);
-         if(!empty($user_time_difference)) $_SESSION[$settings['session_prefix'].'usersettings']['time_difference'] = intval($time_difference);
+         if(!empty($user_time_difference)) $_SESSION[$settings['session_prefix'].'usersettings']['time_difference'] = intval($user_time_difference);
          else unset($_SESSION[$settings['session_prefix'].'usersettings']['time_difference']);
          if(!empty($user_theme)) $_SESSION[$settings['session_prefix'].'usersettings']['theme'] = $user_theme;
          else unset($_SESSION[$settings['session_prefix'].'usersettings']['theme']);

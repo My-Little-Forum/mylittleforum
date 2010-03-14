@@ -122,8 +122,8 @@ else $order = 'time';
       $data['subject'] = htmlspecialchars($data['subject']);
 
       $authorization = get_edit_authorization($data['id'], $data['user_id'], $data['edit_key'], $data['time'], $data['locked']);
-      if($authorization['edit']==true) $data['edit_authorization']=true;
-      if($authorization['delete']==true) $data['delete_authorization']=true;
+      if($authorization['edit']==true) $data['options']['edit']=true;
+      if($authorization['delete']==true) $data['options']['delete']=true;
 
       if($data['user_id'] > 0)
        {
@@ -230,9 +230,13 @@ else $order = 'time';
       if($data['email']!='' && $data['email_contact']==1) $data['email']=true;
       else $data['email']=false;
       if($data['location'] != '') $data['location']=htmlspecialchars($data['location']);
-      if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0) $data['move_posting_link']=true;
-      if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $settings['akismet_key']!='' && $settings['akismet_entry_check']==1 && $data['spam']==0 && $data['spam_check_status']>0) $data['report_spam_link']=true;
-      if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $data['spam']==1) $data['flag_ham_link']=true;
+      if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0)
+       {
+        $data['options']['move']=true;
+        $data['options']['lock'] = true;
+       }
+      if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $settings['akismet_key']!='' && $settings['akismet_entry_check']==1 && $data['spam']==0 && $data['spam_check_status']>0) $data['options']['report_spam']=true;
+      if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $data['spam']==1) $data['options']['flag_ham']=true;
 
       if($settings['count_views'] == 1)
        {

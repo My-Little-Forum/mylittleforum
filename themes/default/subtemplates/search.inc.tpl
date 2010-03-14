@@ -1,11 +1,3 @@
-{include file="$theme/subtemplates/ajax_preview.inc.tpl"}
-<script type="text/javascript">/* <![CDATA[ */
-function ap(id)
-{literal}{{/literal}
-document.write(' <a href="#" onclick="ajax_preview('+id+'); return false" title="{#ajax_preview_title#|escape:"quotes"}" onfocus="this.blur()"><img class="ap" src="{$THEMES_DIR}/{$theme}/images/ajax_preview.png" title="{#ajax_preview_title#|escape:"quotes"}" alt="[…]" width="11" height="11" /><\/a>');
-{literal}}{/literal}
-/* ]]> */</script>
-
 <form action="index.php" method="get" accept-charset="{#charset#}">
 <div style="margin-bottom:20px;">
 <input type="hidden" name="mode" value="search" />
@@ -26,7 +18,7 @@ document.write(' <a href="#" onclick="ajax_preview('+id+'); return false" title=
 <p>{if $search_results_count>1}{$smarty.config.several_postings_found|replace:"[number]":$search_results_count}{else}{#one_posting_found#}{/if}</p>
 <ul class="searchresults">
 {section name=result loop=$search_results}
-<li><a class="{if $search_results[result].pid==0}thread-search{else}reply-search{/if}{if $read && in_array($search_results[result].id,$read)} read{/if}" href="index.php?id={$search_results[result].id}">{$search_results[result].subject}</a>{if $search_results[result].no_text} <img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="{#no_text_alt#}" width="11" height="9" />{/if} - <strong>{$search_results[result].name}</strong>, {$search_results[result].formated_time}<script type="text/javascript">/* <![CDATA[ */ ap({$search_results[result].id}); /* ]]> */</script> <a href="index.php?mode=thread&amp;id={$search_results[result].id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" alt="{#open_whole_thread#}" width="11" height="11" /></a> {if $search_results[result].category}<a href="index.php?mode=index&amp;category={$search_results[result].category}"><span class="category">({$search_results[result].category_name})</span></a>{/if}</li>
+<li><a class="{if $search_results[result].pid==0}thread-search{else}reply-search{/if}{if $read && in_array($search_results[result].id,$read)} read{/if}" href="index.php?id={$search_results[result].id}">{$search_results[result].subject}</a>{if $search_results[result].no_text} <img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="{#no_text_alt#}" width="11" height="9" />{/if} - <strong>{$search_results[result].name}</strong>, <span id="p{$search_results[result].id}" class="tail">{$search_results[result].formated_time} <a href="index.php?mode=thread&amp;id={$search_results[result].id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" alt="{#open_whole_thread#}" width="11" height="11" /></a> {if $search_results[result].category}<a href="index.php?mode=index&amp;category={$search_results[result].category}"><span class="category">({$search_results[result].category_name})</span></a>{/if}</span></li>
 {/section}
 </ul>
 {if $page_browse && $page_browse.total_items > $page_browse.items_per_page}
