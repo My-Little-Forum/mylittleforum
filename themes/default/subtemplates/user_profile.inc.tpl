@@ -1,5 +1,4 @@
 {config_load file=$language_file section="user_show"}
-{include file="$theme/subtemplates/ajax_preview.inc.tpl"}
 {if $user_name}
 <table class="normaltab wide" border="0" cellpadding="5" cellspacing="1">
 <tr>
