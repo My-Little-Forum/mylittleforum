@@ -1,3 +1,0 @@
-<script type="text/javascript">/* <![CDATA[ */
-var ajax_preview_structure = '<div id="ajax-preview-top" onclick="ajax_preview_close()">&nbsp;<\/div><a id="ajax-preview-close" href="#" onclick="ajax_preview_close(); return false"><img src="{$THEMES_DIR}/{$theme}/images/close.png" alt="[x]" title="{#close#|escape:"quotes"}" width="14" height="14" /><\/a><div id="ajax-preview-body"><div id="ajax-preview-throbber"><img src="{$THEMES_DIR}/{$theme}/images/throbber.gif" alt="" width="16" height="16" /><\/div><div id="ajax-preview-content"><\/div>{if $mode=='index'}<div id="ajax-preview-replylink">[ <a id="replylink" href="">{#reply_link#|escape:"quotes"}<\/a> ]<\/div>\{/if}<\/div>';
-/* ]]> */</script>
