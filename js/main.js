@@ -26,8 +26,8 @@
 * this script is used by default (main.min.js). Changes in this file   *
 * do not have any effect unless it is loaded by the template           *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
-* The minimized version was created with JSMin                         *
-* <http://www.crockford.com/javascript/jsmin.html>                     *
+* The minimized version was created with the YUI Compressor            *
+* <http://developer.yahoo.com/yui/compressor/>.                        *
 ***********************************************************************/
 
 /**
@@ -208,6 +208,7 @@ document.getKeyCode = function(ev) {
  * Liefert die Position und Groesse eines Elements im Dokument
  * @param el
  * @return elPositionAndSize
+ * @see http://www.quirksmode.org/js/findpos.html
  */
 document.getElementPoSi = function(el){
     var r = { top:0, left:0, width:0, height:0 };
@@ -265,6 +266,7 @@ document.getFirstChildByElement = function(par, tagName, cssClasses) {
  * des letzten Maus-Klicks
  * @param e
  * @return pos
+ * @see http://forum.de.selfhtml.org/archiv/2006/1/t121722/#m782727
  */
 document.getMousePos = function(e) {
 	if(!e) e = window.event;
@@ -317,11 +319,10 @@ String.prototype.stripslashes = function() {
  * Version: 1.1
  *
  * URL:
- * [url]http://www.easy-coding.de[/url]
- * [url]http://jquery.com/dev/svn/trunk/jquery/MIT-LICENSE.txt[/url]
- * [url]http://jquery.com/dev/svn/trunk/jquery/GPL-LICENSE.txt[/url]
+ * @see http://www.easy-coding.de
+ * @see http://jquery.com/dev/svn/trunk/jquery/MIT-LICENSE.txt
+ * @see http://jquery.com/dev/svn/trunk/jquery/GPL-LICENSE.txt
  *
- * Full Description:
  * A page has loaded after all external resources like images have been loaded.
  * Should all scripts wait for that? a better bevaviour is to wait for the dom content being ready.
  *
@@ -640,8 +641,7 @@ var ready = new (function () {
 		var foldExpandWrapper = document.createElementWithAttributes("span", [["className", "fold-expand"]], null);
 		
 		if (lis.length == 1) {
-			//var inactiveFoldExpandImg = document.createElementWithAttributes("img", [["src", templatePath + settings["expand_thread_inactive_image"]], ["alt", ""], ["onerror", function(e) { this.alt = "[]"; }]], foldExpandWrapper)
-			var inactiveFoldExpandImg = document.createElementWithAttributes("img", [["src", templatePath + settings["expand_thread_inactive_image"]], ["className", "expand-thread-inactive"], ["alt", ""]], foldExpandWrapper)
+			var inactiveFoldExpandImg = document.createElementWithAttributes("img", [["src", templatePath + settings["expand_thread_inactive_image"]], ["alt", ""], ["onerror", function(e) { this.alt = "[]"; }]], foldExpandWrapper)
 			setIcon(foldExpandWrapper);  
 		}
 		else {
@@ -697,6 +697,7 @@ var ready = new (function () {
 		var templatePath = templatePath?templatePath:"";
 		var hideURI = false;
 		var win = document.getElementById('ajax-preview');
+		var self = this;
 		if (!win) {
 			win = document.createElementWithAttributes("div", [["id", "ajax-preview"]], null);	
 			win.style.display = "none";
@@ -730,8 +731,6 @@ var ready = new (function () {
 			if (typeof oldOnKeyPressFunc == "function")
 				oldOnKeyPressFunc(e);
 		}	
-		
-		var self = this;
 		closeEl.onclick = function() { self.setVisible(false); return false; };
 		var throbberIcon = document.createElementWithAttributes("img", [["id", "ajax-preview-throbber"], ["src", templatePath + settings["ajax_preview_throbber_image"]], ["alt", "[*]"]], contentEl);
 		var replylinkWrapper = document.createElementWithAttributes("p", [["id", "ajax-preview-replylink-wrapper"]], contentEl);
@@ -739,7 +738,6 @@ var ready = new (function () {
 		replylinkLink.appendChild( document.createTextNode( lang["reply_link"] ));
 		replylinkWrapper.style.display = "none";
 		this.closeByOutSideClick = function(e) {
-			//if (!e) e = window.event;
 			if (self.isVisible()) {
 				var obj = document.getTarget(e);
 				if (obj && obj != self.getOpener().firstChild) {
@@ -810,7 +808,7 @@ var ready = new (function () {
 
 		this.setVisible = function(visible) {
 			if (visible) {
-				win.style.display = "";
+				win.style.display = "block";
 			}
 			else {
 				win.style.display = "none";
@@ -904,7 +902,7 @@ var ready = new (function () {
 		 * @param el
 		 */
 		var setPreviewBoxToProfil = function(el) {
-			if (!el)
+			if (!el || !ajaxPreviewWindow)
 				return;		
 			var pid = getPostingId(el);
 			if (pid && el.parentNode) {
@@ -919,7 +917,7 @@ var ready = new (function () {
 		 * @param el
 		 */
 		var setPreviewBoxToReplyPage = function(el) {
-			if (!el)
+			if (!el || !ajaxPreviewWindow)
 				return;
 			ajaxPreviewWindow.hideURI( true );
 			var f = document.getElementById("postingform");
@@ -988,12 +986,8 @@ var ready = new (function () {
 					new Query("fold_threads", expand),
 					new Query("ajax", "true")
 			];
-			try {
-				new Request(strURL, "GET", querys);
-			}
-			catch(e) {
-				window.alert("FEHLER IN expandAllThreads " + e);
-			}
+
+			new Request(strURL, "GET", querys);
 		};
 		
 		var initThreadFoldingInSubMenu = function() {
@@ -1047,7 +1041,7 @@ var ready = new (function () {
 				var links = el.getElementsByTagName("a");
 				if (links.length >= 2) {
 					for (var j=0; j<links.length; j++) {
-						if (links[j].href.search("mark") != -1) {
+						if (links[j].href.search(/mark/) != -1) {
 							links[j].pid = pid;
 							links[j].onclick = function(e) {
 								self.selectPosting( this.pid );
@@ -1055,7 +1049,7 @@ var ready = new (function () {
 								return false;
 							};							
 						}
-						else if (links[j].href.search("delete_posting") != -1) {
+						else if (links[j].href.search(/delete_posting/) != -1) {
 							links[j].onclick = function(e) {
 								var confirmed = window.confirm( lang["delete_posting_confirm"] );
 								if (confirmed) 
@@ -1066,7 +1060,7 @@ var ready = new (function () {
 						}				
 					}			
 				}
-				if (pLink) {
+				if (pLink && ajaxPreviewWindow) {
 					if (links.length >= 1) {
 						var link = links[0];
 						el.insertBefore(createAjaxPreviewLink(pid), link);
@@ -1077,7 +1071,7 @@ var ready = new (function () {
 						el.appendChild(createAjaxPreviewLink(pid));
 					}
 				}
-				// thread, folded oder expanded - Reicht eiigentlich die Suche nach thread?
+				// thread, folded oder expanded - Reicht eigentlich die Suche nach thread?
 				if (li.parentNode.className.search(/thread/) != -1 && li.parentNode.className.search(/[folded|expanded]/) != -1) {
 					threads.push( new Thread( li.parentNode, templatePath) );
 				}
@@ -1089,7 +1083,7 @@ var ready = new (function () {
 					var links = editAreas[i].getElementsByTagName("a");
 					if (links.length > 0) {
 						for (var j=0; j<links.length; j++) {
-							if (links[j].href.search("delete_posting") != -1) {
+							if (links[j].href.search(/delete_posting/) != -1) {
 								links[j].onclick = function(e) {
 									var confirmed = window.confirm( lang["delete_posting_confirm"] );
 									if (confirmed) 
@@ -1177,14 +1171,6 @@ var ready = new (function () {
 				//var isExpand = this.className.search(/expand/)!=-1;
 				this.isExpand = !this.isExpand;
 				expandAllPostings(this.isExpand);  
-				/*
-				if (isExpand) 
-					this.className = this.className.replace("expand", "collapse");
-				else 
-					this.className = this.className.replace("collapse", "expand");
-				this.firstChild.replaceData(0, this.firstChild.nodeValue.length, (isExpand?"alle einklappen":"alle ausklappen") );
-				this.title = isExpand?"alle Einträge einklappen":"alle Einträge ausklappen";
-				*/
 				this.blur();
 				return false;
 			}
@@ -1220,7 +1206,7 @@ var ready = new (function () {
 		 * @param xml
 		 */
 		this.updateAjaxPreviewWindow = function(xml) {
-			if (xml === false)
+			if (xml === false || !ajaxPreviewWindow)
 				return;
 			var content = xml.getElementsByTagName('content');
 			var isLocked = xml.getElementsByTagName('locked');
@@ -1247,6 +1233,8 @@ var ready = new (function () {
 		 * @param obj
 		 */
 		this.showAjaxPreviewWindow = function(obj) {
+			if (!obj || !ajaxPreviewWindow)
+				return;
 			if (obj == ajaxPreviewWindow.getOpener() && ajaxPreviewWindow.isVisible()) {
 				ajaxPreviewWindow.setVisible(false);
 				ajaxPreviewWindow.setOpener(null);
@@ -1280,11 +1268,13 @@ var ready = new (function () {
 		 * @param ajaxPreviewStructure
 		 */
 		this.init = function( ajaxPreviewStructure ) {
+			ajaxPreviewStructure = ajaxPreviewStructure || false;
 			setFocusToContentForm();
 			setDefaultInputValue("search-input");
 			setDefaultInputValue("search-user");
 			templatePath = this.getTemplatePath();
-			ajaxPreviewWindow = new AjaxPreviewWindow( ajaxPreviewStructure, templatePath );
+			if (ajaxPreviewStructure)
+				ajaxPreviewWindow = new AjaxPreviewWindow( ajaxPreviewStructure, templatePath );
 			setPreviewBoxToProfil( document.getElementById("user-last-posting") );
 			setPreviewBoxToReplyPage( document.getElementById("reply-to") );
 			setPreviewBoxToMainPage( document.getElementsByClassName("tail") );
@@ -1298,8 +1288,9 @@ var ready = new (function () {
 	var mlf = null;
 	window.ready.push(function() {
 		mlf = new MyLittleJavaScript();
-		if (mlf && typeof settings["ajaxPreviewStructure"] == "string" && typeof lang == "object") {
-			mlf.init(settings["ajaxPreviewStructure"]);
+		var ajaxPreviewStructure = typeof settings["ajaxPreviewStructure"] == "string"?settings["ajaxPreviewStructure"]:false;
+		if (mlf && typeof lang == "object") {
+			mlf.init(ajaxPreviewStructure);
 			new Sidebar(mlf.getTemplatePath());
 		}
 	});

@@ -21,6 +21,15 @@
 * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.            *
 ***********************************************************************/
 
+/***********************************************************************
+* NOTICE: In order to reduce bandwidth usage, a minimized version of   *
+* this script is used by default (admin.min.js). Changes in this file  *
+* do not have any effect unless it is loaded by the template           *
+* (themes/[THEME FOLDER]/main.tpl).                                    *
+* The minimized version was created with the YUI Compressor            *
+* <http://developer.yahoo.com/yui/compressor/>.                        *
+***********************************************************************/
+
 /**
  * Kleiner Feature im Adminbereich werden
  * von diesem Objekt realisiert.

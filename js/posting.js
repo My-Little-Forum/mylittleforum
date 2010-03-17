@@ -27,8 +27,8 @@
 * this script is used by default (posting.min.js). Changes in this     *
 * file do not have any effect unless it is loaded by the template      *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
-* The minimized version was created with JSMin                         *
-* <http://www.crockford.com/javascript/jsmin.html>                     *
+* The minimized version was created with the YUI Compressor            *
+* <http://developer.yahoo.com/yui/compressor/>.                        *
 ***********************************************************************/
 
 /**
@@ -442,7 +442,7 @@ function ButtonGroup(f) {
 				}
 				else if (obj && el.nodeName && el.nodeName.toLowerCase() == "dd") {
 					obj.label = el.firstChild;
-					if (obj.classes.search("default") != -1)
+					if (obj.classes.search(/default/) != -1)
 						createSingleButton(obj, buttonBar);
 					else
 						list.push(obj);
@@ -745,7 +745,7 @@ function ButtonGroup(f) {
 			var labels = document.getElementById("message").getElementsByTagName("label");
 			var label = null;
 			for (var i=0; i<labels.length; i++) { 
-				if (labels[i].className.search("textarea") != -1) {
+				if (labels[i].className.search(/textarea/) != -1) {
 					label = labels[i];
 					break;
 				}
@@ -842,8 +842,8 @@ function ButtonGroup(f) {
 	}());
 }
 
-
-	
-window.ready.push(function() {
-	new ButtonGroup( document.getElementById("postingform") );
+var mlf = null;
+	window.ready.push(function() {
+		if (typeof settings == "object" && typeof lang == "object") 
+			new ButtonGroup( document.getElementById("postingform") );
 });

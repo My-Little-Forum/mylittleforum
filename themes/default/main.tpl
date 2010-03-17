@@ -35,7 +35,7 @@
 <script src="js/posting.min.js" type="text/javascript" charset="utf-8"></script>
 {/if}
 {if $mode=='admin'}
-<script src="js/admin.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/admin.min.js" type="text/javascript" charset="utf-8"></script>
 {/if}
 </head>
 
@@ -88,5 +88,6 @@ https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1922497
 <div id="pbmlf"><a href="http://mylittleforum.net/">powered by my little forum</a></div>
 
 <!--[if IE]></div><![endif]-->
+
 </body>
 </html>

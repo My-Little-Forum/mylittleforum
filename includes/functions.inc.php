@@ -796,6 +796,8 @@ function do_bbcode_code($action, $attributes, $content, $params, &$node_object)
       include_once('modules/geshi/geshi.php');
       $geshi = new GeSHi($content, $attributes['default']);
       #$geshi->set_header_type(GESHI_HEADER_NONE);
+      #$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, 1);
+      #$geshi->set_line_style('background:#f5f5f5;', 'background:#f9f9f9;');
       $geshi->enable_keyword_links(false);
       $geshi->set_overall_class(false);
       return $geshi->parse_code();
