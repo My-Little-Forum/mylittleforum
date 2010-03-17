@@ -92,7 +92,7 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #pbmlf                   { clear:both; margin:0px; padding:0px 20px 11px 20px; text-align:center; font-size:0.69em; color:#808080; }
 #pbmlf a                 { color:#808080; text-decoration:none; }
 
-#sidebar                 { position:relative; float:right; margin:0; padding:0; display:none;}
+#sidebar                 { position:relative; float:right; margin:0; padding:0; }
 #sidebar div             { position:relative; z-index:2; }
 #sidebar h3.sidebar      { position:absolute; top:0; right:0; font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 17px 0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px; border:1px solid #bacbdf; z-index:1; }
 #sidebar h3.sidebar a    { color:#000; text-decoration:none; z-index:2; }
