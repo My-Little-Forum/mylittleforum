@@ -43,7 +43,7 @@ document.getStyle = function(el,styleProp) {
 	else if (window.getComputedStyle)
 		return document.defaultView.getComputedStyle(el,null).getPropertyValue(styleProp);
 	return false;
-}
+};
 
 /**
  * Liefert eine Liste mit Elementen, die die
@@ -72,6 +72,25 @@ if(typeof document.getElementsByClassName != 'function') {
 		return ret_obj;
 	};
 }
+
+/**
+ * Funktion zum Vorladen von Bildern
+ * Sollte am Ende eines ONLOAD aufgerufen werden,
+ * sodass das Bildladen das Script nicht blockiert
+ *
+ * @param images
+ * @param path
+ */
+document.preloadImages = function(images, path) {
+	if (typeof images != "object")
+		images = [images];
+	path = path || "";
+	var img = [];
+	for(var i = 0; i<images.length; i++) {
+		img[i] = new Image();
+		img[i].src = path + images[i];
+	}
+};
 
 /**
  * Liefert das Element, auf dem das Event ausgeloest wurde
@@ -129,11 +148,11 @@ document.createInputElementWithAttributes = function(tagName, att, par) {
 	
 	if (type) {
 		try {
-			var el = document.createElement(tagName);
+			el = document.createElement(tagName);
 			el.type = type;
 		}
 		catch(err) {
-			var el = document.createElement('<'+tagName+' type="'+type+'">');
+			el = document.createElement('<'+tagName+' type="'+type+'">');
 		}
 	}
 	el = el || document.createElement(tagName);
@@ -202,7 +221,7 @@ document.getKeyCode = function(ev) {
 		return ev.keyCode;
 	else	
 		return ev.which;
-}
+};
 
 /**
  * Liefert die Position und Groesse eines Elements im Dokument
@@ -269,14 +288,14 @@ document.getFirstChildByElement = function(par, tagName, cssClasses) {
  * @see http://forum.de.selfhtml.org/archiv/2006/1/t121722/#m782727
  */
 document.getMousePos = function(e) {
-	if(!e) e = window.event;
+	e =  e || window.event;
 	var body = (window.document.compatMode && window.document.compatMode == "CSS1Compat") ? 
 	window.document.documentElement : window.document.body;
 	return {
 		top: e.pageY ? e.pageY : e.clientY + body.scrollTop - body.clientTop,
 		left: e.pageX ? e.pageX : e.clientX + body.scrollLeft  - body.clientLeft
 	};
-} 
+};
 
 /**
  * Entfernt White-Spaces am Anfang und Ende eines Strings
@@ -440,7 +459,7 @@ var ready = new (function () {
 		
 		this.toString = function(){
 			return key + "=" + value + "&";
-		}
+		};
 	}	
 
 	/**
@@ -472,7 +491,7 @@ var ready = new (function () {
 				} catch (e) {
 					try {
 						httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-					} catch (e) {
+					} catch (er) {
 						httpRequest = false;
 					}
 				}
@@ -541,7 +560,7 @@ var ready = new (function () {
 		
 		this.isVisible = function() {
 			return content.style.display != "none";
-		}
+		};
 		
 		var links = main.getElementsByTagName("a");
 		for (var i=0; i<links.length; i++) {
@@ -563,6 +582,7 @@ var ready = new (function () {
 	 * @param templatePath
 	 */
 	function Thread(ul, templatePath) {
+		var tid = false;
 		if (!isNaN( parseInt(ul) )) {
 			tid = ul;
 			ul = document.getElementById("thread-"+tid);
@@ -572,7 +592,7 @@ var ready = new (function () {
 			var q = tidRegExp.exec(ul.id);
 			if (!q)
 				return;
-			var tid = q&&q.length>1?q[1]:0;
+			tid = q&&q.length>1?q[1]:0;
 		}
 		var lis = ul.getElementsByTagName("li");
 		var uls = ul.getElementsByTagName("ul");
@@ -593,7 +613,7 @@ var ready = new (function () {
 		
 		this.isFold = function() {
 			return uls.length>0&&uls[0].style.display=="none";
-		}
+		};
 		
 		this.setFold = function(fold, changeCSS) {
 			changeCSS = changeCSS || false;
@@ -670,18 +690,18 @@ var ready = new (function () {
 		pHeadline.title = lang["fold_posting_title"];
 		pHeadline.onclick = function(e) {
 			self.setFold(!self.isFold());
-		}
+		};
 		
 		this.isFold = function() {
 			return pContent.style.display == "none";
-		}
+		};
 		
 		this.setFold = function(fold) {
 			var cssValue = fold?"none":"";
 			pContent.style.display = cssValue;
 			pAvatar.style.display  = cssValue;
 			//pHeadline.title = fold?"Posting ausklappen":"Posting einklappen";
-		}
+		};
 		
 		this.setFold(this.isFold());
 	}
@@ -720,7 +740,7 @@ var ready = new (function () {
 			self.closeByOutSideClick(e);	
 			if (typeof oldOnMouseDownFunc == "function")
 				oldOnMouseDownFunc(e);
-		}
+		};
 
 		var oldOnKeyPressFunc = window.document.onmousedown;
 		window.document.onkeypress = function(e) { 
@@ -730,7 +750,7 @@ var ready = new (function () {
 				
 			if (typeof oldOnKeyPressFunc == "function")
 				oldOnKeyPressFunc(e);
-		}	
+		};
 		closeEl.onclick = function() { self.setVisible(false); return false; };
 		var throbberIcon = document.createElementWithAttributes("img", [["id", "ajax-preview-throbber"], ["src", templatePath + settings["ajax_preview_throbber_image"]], ["alt", "[*]"]], contentEl);
 		var replylinkWrapper = document.createElementWithAttributes("p", [["id", "ajax-preview-replylink-wrapper"]], contentEl);
@@ -757,7 +777,7 @@ var ready = new (function () {
 		
 		this.hideURI = function(hide) {
 			hideURI = hide;
-		}
+		};
 		
 		this.setPosition = function(x, y) {
 			win.style.left = x + "px";
@@ -770,27 +790,27 @@ var ready = new (function () {
 			else {
 				this.moveHorizontal( 0 );	
 			}
-		}
+		};
 		
 		this.getWidth = function() {
 			return mainEl.offsetWidth;
-		}
+		};
 		
 		this.getHeight = function() {
 			return win.offsetHeight + mainEl.offsetHeight;
-		}
+		};
 		
 		this.setOpener = function(op) {
 			opEl = op;
-		}
+		};
 		
 		this.getOpener = function() {
 			return opEl;
-		}
+		};
 		
 		this.isVisible = function() {
 			return win.style.display != "none";
-		}
+		};
 		
 		this.getDocumentPosition = function() {
 			var left = win.offsetLeft;
@@ -799,12 +819,12 @@ var ready = new (function () {
 				top: top,
 				left: left + xShift
 			};
-		}
+		};
 		
 		this.moveHorizontal = function(val) {
 			xShift = val;
 			mainEl.style.left = val + "px";
-		}
+		};
 
 		this.setVisible = function(visible) {
 			if (visible) {
@@ -813,7 +833,7 @@ var ready = new (function () {
 			else {
 				win.style.display = "none";
 			}
-		}
+		};
 		
 		this.setText = function(str) {
 			contentEl.innerHTML = str;
@@ -828,7 +848,7 @@ var ready = new (function () {
 			else {
 				contentEl.appendChild( throbberIcon );
 			}
-		}
+		};
 		
 		this.setURI = function(uri) {
 			if (!uri) {
@@ -839,7 +859,7 @@ var ready = new (function () {
 				replylinkWrapper.style.display = "block";
 				replylinkLink.href = uri;
 			}
-		}
+		};
 	}	
 	
 	/**
@@ -848,6 +868,7 @@ var ready = new (function () {
 	function MyLittleJavaScript() {
 		var templatePath      = null;
 		var ajaxPreviewWindow = null;
+		var sidebar           = null;
 		var strURL = 'index.php';
 		var threads = [];
 		var postings = [];
@@ -1195,7 +1216,7 @@ var ready = new (function () {
 					els[i][0].onclick = function(e) {
 						window.open(this.href,"MyLittleForum","width="+w+",height="+h+",left="+l+",top="+t+",scrollbars,resizable");
 						return false;
-					}
+					};
 				}
 			}
 		
@@ -1281,6 +1302,10 @@ var ready = new (function () {
 			
 			initPostingFolding( document.getElementsByClassName("thread-posting") );
 			initPopUpLinks();
+			sidebar = new Sidebar(templatePath);
+			
+			if (typeof preload == "object") 
+				document.preloadImages(preload, templatePath);
 		};
 		
 	}
@@ -1289,8 +1314,6 @@ var ready = new (function () {
 	window.ready.push(function() {
 		mlf = new MyLittleJavaScript();
 		var ajaxPreviewStructure = typeof settings["ajaxPreviewStructure"] == "string"?settings["ajaxPreviewStructure"]:false;
-		if (mlf && typeof lang == "object") {
+		if (mlf && typeof lang == "object") 
 			mlf.init(ajaxPreviewStructure);
-			new Sidebar(mlf.getTemplatePath());
-		}
 	});

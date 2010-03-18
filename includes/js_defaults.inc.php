@@ -115,4 +115,12 @@ settings["mark_process_image"] =           "<?php echo $theme_config['mark_proce
 settings["marked_image"] =                 "<?php echo $theme_config['marked_image']; ?>";
 settings["unmarked_image"] =               "<?php echo $theme_config['unmarked_image']; ?>";
 <?php endif; ?>
+
+<?php if(isset($theme_config['preload'])): ?>
+var preload = new Array();
+<?php foreach($theme_config['preload'] as $key => $val): ?>
+preload[<?php echo $key; ?>] =                               "<?php echo $val; ?>";
+<?php endforeach; ?>
+<?php endif; ?>
+
 <?php exit; ?>
