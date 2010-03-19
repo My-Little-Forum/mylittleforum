@@ -750,7 +750,8 @@ function do_bbcode_tex_email($action, $attributes, $content, $params, &$node_obj
    }
   else
    {
-    return '['.$settings['bbcode_tex'].urlencode($content).']';
+    #return '['.$settings['bbcode_tex'].urlencode($content).']';
+    return $content;
    }
  }
 
