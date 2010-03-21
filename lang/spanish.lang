@@ -337,7 +337,18 @@ bbcode_list_title =               Insertar lista
 bbcode_list_instruction =         [list][*]elemento de la lista[/list]
 bbcode_image_label =              imagen
 bbcode_image_title =              Insertar imagen
-bbcode_image_instruction =        [img]http://example.com/image.jpg[/img]
+bbcode_image_label_default =      <!-- TODO -->default
+bbcode_image_instr_default =      <!-- TODO -->[img]http://example.com/image.jpg[/img]
+bbcode_image_label_left =         <!-- TODO -->left       
+bbcode_image_instr_left =         <!-- TODO -->left: [img=left]http://example.com/image.jpg[/img]
+bbcode_image_label_right =        <!-- TODO -->right       
+bbcode_image_instr_right =        <!-- TODO -->right: [img=right]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb =        <!-- TODO -->thumbnail       
+bbcode_image_instr_thumb =        <!-- TODO -->thumbnail: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_left =   <!-- TODO -->thumbnail left       
+bbcode_image_instr_thumb_left =   <!-- TODO -->thumbnail left: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_right =  <!-- TODO -->thumbnail right       
+bbcode_image_instr_thumb_right =  <!-- TODO -->thumbnail right: [img=thumbnail]http://example.com/image.jpg[/img]
 bbcode_upload_label =             subir
 bbcode_upload_title =             Subir imagen
 bbcode_upload_instruction =       Subir imagen ...

@@ -335,7 +335,18 @@ bbcode_list_title =               insert list
 bbcode_list_instruction =         [list][*]list item[/list]
 bbcode_image_label =              image
 bbcode_image_title =              insert image
-bbcode_image_instruction =        [img]http://example.com/image.jpg[/img]
+bbcode_image_label_default =      default
+bbcode_image_instr_default =      [img]http://example.com/image.jpg[/img]
+bbcode_image_label_left =         left       
+bbcode_image_instr_left =         left: [img=left]http://example.com/image.jpg[/img]
+bbcode_image_label_right =        right       
+bbcode_image_instr_right =        right: [img=right]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb =        thumbnail       
+bbcode_image_instr_thumb =        thumbnail: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_left =   thumbnail left       
+bbcode_image_instr_thumb_left =   thumbnail left: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_right =  thumbnail right       
+bbcode_image_instr_thumb_right =  thumbnail right: [img=thumbnail]http://example.com/image.jpg[/img]
 bbcode_upload_label =             upload
 bbcode_upload_title =             upload image
 bbcode_upload_instruction =       upload image ...

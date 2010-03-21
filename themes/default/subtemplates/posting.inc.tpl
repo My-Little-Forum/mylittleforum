@@ -166,7 +166,13 @@ JavaScript isn't available.
 <dt id="list" title="{#bbcode_list_label#}">{#bbcode_list_title#}</dt>
 <dd>{#bbcode_list_instruction#}</dd>
 <dt id="img" title="{#bbcode_image_label#}">{#bbcode_image_title#}</dt>
-<dd>{#bbcode_image_instruction#}</dd>
+<dd title="{#bbcode_image_label_default#}">{#bbcode_image_instr_default#}</dd>
+<dd id="left" title="{#bbcode_image_label_left#}">{#bbcode_image_instr_left#}</dd>
+<dd id="right" title="{#bbcode_image_label_right#}">{#bbcode_image_instr_right#}</dd>
+<dd id="thumbnail" title="{#bbcode_image_label_thumb#}">{#bbcode_image_instr_thumb#}</dd>
+<dd id="thumbnail-left" title="{#bbcode_image_label_thumb_left#}">{#bbcode_image_instr_thumb_left#}</dd>
+<dd id="thumbnail-right" title="{#bbcode_image_label_thumb_right#}">{#bbcode_image_instr_thumb_right#}</dd>
+
 {if $upload_images}
 <dt id="upload" title="{#bbcode_upload_label#}">{#bbcode_upload_title#}</dt>
 <dd><a href="index.php?mode=upload_image">{#bbcode_upload_instruction#}</a></dd>

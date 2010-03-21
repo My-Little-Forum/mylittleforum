@@ -539,12 +539,13 @@ a.reply-search:visited   { /*color:#800080;*/ }
 a.thread-search:active,
 a.reply-search:active    { color:#ff0000; }
 
-img.left                 { float:left; padding:0 10px 10px 0; }
-img.right                { float:right; padding:0 0 10px 10px; }
 img.thumbnail            { width:150px; border:1px solid #c0c0c0; margin: 0px; }
 a:link img.thumbnail     { color: #0000ff; border:1px solid #c0c0c0; }
 a:visited img.thumbnail  { color: #0000ff; border:1px solid #c0c0c0; }
 a:hover img.thumbnail    { color: #0000ff; border:1px solid #000000; }
+img.left                 { display:block; float:left; margin:0 10px 10px 0; }
+img.right                { float:right; margin:0 0 10px 10px; }
+
 
 /* ajax preview: */
 #ajax-preview            { display:none; position:absolute; top:100px; left:100px; margin:13px 0 0 -3px; z-index:10; width:20px; }
@@ -566,6 +567,9 @@ a:hover img.thumbnail    { color: #0000ff; border:1px solid #000000; }
 #ajax-preview-content li,
 #ajax-preview-content ul ul
                          { font-size:1em; }
+
+#image-canvas            { position:absolute; top:0; left:0; width:100%; height:100%; background:url(images/canvas_bg.png); }
+#image-canvas img        { display:block; margin:2em auto 0 auto; border:1px solid #000; }
 
 /* IE: */
 #ie ul.reply             { width:100%; }

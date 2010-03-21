@@ -516,7 +516,7 @@ function do_bbcode_img($action, $attributes, $content, $params, &$node_object)
       // [img]image[/img]
       if(!isset($attributes['default'])) return true;
       // [img=xxx]image[/img]
-      elseif(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right' || $attributes['default']=='thumbnail')) return true;
+      elseif(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right' || $attributes['default']=='thumbnail' || $attributes['default']=='thumbnail-left' || $attributes['default']=='thumbnail-right')) return true;
       else return false;
      }
    }
@@ -526,6 +526,8 @@ function do_bbcode_img($action, $attributes, $content, $params, &$node_object)
     if(isset($attributes['default']) && $attributes['default']=='left') return '<img src="'.htmlspecialchars($content).'" class="left" alt="[image]" />';
     if(isset($attributes['default']) && $attributes['default']=='right') return '<img src="'.htmlspecialchars($content).'" class="right" alt="[image]" />';
     if(isset($attributes['default']) && $attributes['default']=='thumbnail') return '<a rel="thumbnail" href="'.htmlspecialchars($content).'"><img src="'.htmlspecialchars($content).'" class="thumbnail" alt="[image]" /></a>';
+    if(isset($attributes['default']) && $attributes['default']=='thumbnail-left') return '<a rel="thumbnail" href="'.htmlspecialchars($content).'"><img src="'.htmlspecialchars($content).'" class="thumbnail left" alt="[image]" /></a>';
+    if(isset($attributes['default']) && $attributes['default']=='thumbnail-right') return '<a rel="thumbnail" href="'.htmlspecialchars($content).'"><img src="'.htmlspecialchars($content).'" class="thumbnail right" alt="[image]" /></a>';
     // [img]image[/img]
     return '<img src="'.htmlspecialchars($content).'" alt="[image]" />';
    }
@@ -727,7 +729,7 @@ function do_bbcode_img_email ($action, $attributes, $content, $params, $node_obj
       // [img]image[/img]
       if(!isset($attributes['default'])) return true;
       // [img=xxx]image[/img]
-      elseif(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right')) return true;
+      elseif(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right' || $attributes['default']=='thumbnail' || $attributes['default']=='thumbnail-left' || $attributes['default']=='thumbnail-right')) return true;
       else return false;
      }
    }

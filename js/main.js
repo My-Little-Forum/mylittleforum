@@ -192,22 +192,76 @@ document.createElementWithAttributes = function(tagName, att, par) {
 };
 
 /**
- * Liefert die Groesse des Dokuments
- * @return docSize
+ * Liefert die Scroll-Position des aktuellen
+ * Fensters
+ * @return scrollPos
+ * @see http://forum.de.selfhtml.org/archiv/2005/4/t106392/#m659379
  */
-document.getWindowSize = function() {
-	var w = 0, h = 0;
-	if (window.innerWidth) {
-		w = window.innerWidth;
-		h = window.innerHeight;
-	}
-	else if (document.body && document.body.offsetWidth) {
-		w = document.body.offsetWidth;
-		h = document.body.offsetHeight;
+document.getScrollPosition = function() {
+	var l = 0, t = 0;
+	if( typeof window.pageYOffset == "number" ) {
+		t = window.pageYOffset;
+		l = window.pageXOffset;
+	} 
+	// else if( document.documentElement && typeof document.documentElement.scrollLeft == "number" && typeof document.documentElement.scrollTop  == "number" ) 
+	else if (document.compatMode && document.compatMode == "CSS1Compat") {
+		t = document.documentElement.scrollTop;
+		l = document.documentElement.scrollLeft;
+	} 
+	else if( document.body && typeof document.body.scrollLeft == "number" && typeof document.body.scrollTop == "number" ) {
+		t = document.body.scrollTop;
+		l = document.body.scrollLeft;
 	}
 	return {
-		width: w,
-		height: h
+		left: l,
+		top: t
+	};
+};
+
+/**
+ * Liefert die Groesse des Dokuments
+ * @return docSize
+ * @see http://forum.de.selfhtml.org/archiv/2009/1/t181640/
+ */
+document.getWindowSize = function() {
+	var l, t, windowWidth, windowHeight;
+	if (window.innerHeight && window.scrollMaxY) {
+		l = document.body.scrollWidth;
+		t = window.innerHeight + window.scrollMaxY;
+	} 
+	else if (document.body.scrollHeight > document.body.offsetHeight){
+		l = document.body.scrollWidth;
+		t = document.body.scrollHeight;
+	} 
+	else {
+		l = document.getElementsByTagName("html").item(0).offsetWidth;
+		t = document.getElementsByTagName("html").item(0).offsetHeight;
+		l = (l < document.body.offsetWidth) ? document.body.offsetWidth : l;
+		t = (t < document.body.offsetHeight) ? document.body.offsetHeight : t;
+	}
+	if (window.innerHeight) {
+		windowWidth  = window.innerWidth;
+		windowHeight = window.innerHeight;
+	} 
+	//else if (document.documentElement && document.documentElement.clientHeight) {
+	else if (document.compatMode && document.compatMode == "CSS1Compat") {
+		windowWidth  = document.documentElement.clientWidth;
+		windowHeight = document.documentElement.clientHeight;
+	} 
+	else if (document.body) {
+		windowWidth  = document.getElementsByTagName("html").item(0).clientWidth;
+		windowHeight = document.getElementsByTagName("html").item(0).clientHeight;
+		windowWidth  = (windowWidth == 0) ? document.body.clientWidth : windowWidth;
+		windowHeight = (windowHeight == 0) ? document.body.clientHeight : windowHeight;
+	}
+	var pageHeight = (t < windowHeight) ? windowHeight : t;
+	var pageWidth = (l < windowWidth) ? windowWidth : l;
+	
+	return {
+		pageWidth: pageWidth,
+		pageHeight: pageHeight,
+		windowWidth: windowWidth,
+		windowHeight: windowHeight
 	};
 };
 
@@ -556,7 +610,7 @@ var ready = new (function () {
 				icon.src = templatePath + settings["show_sidebar_image"];
 				icon.className = "show-sidebar";
 			}
-		}
+		};
 		
 		this.isVisible = function() {
 			return content.style.display != "none";
@@ -705,7 +759,7 @@ var ready = new (function () {
 		
 		this.setFold(this.isFold());
 	}
-	
+		
 	/**
 	 * Erzeugt anhand eines HTML-Strings ein Geruest fuer
 	 * ein Vorschaufenster und haengt dieses im Dokument
@@ -742,12 +796,12 @@ var ready = new (function () {
 				oldOnMouseDownFunc(e);
 		};
 
-		var oldOnKeyPressFunc = window.document.onmousedown;
+		var oldOnKeyPressFunc = window.document.onkeypress;
 		window.document.onkeypress = function(e) { 
 			var keyCode = document.getKeyCode(e);
-			if (keyCode == 27)
+			if (keyCode == 27) {
 				self.setVisible(false);	
-				
+			}
 			if (typeof oldOnKeyPressFunc == "function")
 				oldOnKeyPressFunc(e);
 		};
@@ -783,7 +837,7 @@ var ready = new (function () {
 			win.style.left = x + "px";
 			win.style.top  = y + "px";
 			var winWidth = this.getWidth();	
-			var documentWidth = document.getWindowSize().width;
+			var documentWidth = document.getWindowSize().windowWidth;
 			if ((x+winWidth) >= documentWidth) {
 				this.moveHorizontal( documentWidth-25-(x+winWidth) );			
 			}
@@ -1117,8 +1171,76 @@ var ready = new (function () {
 					}
 				}
 			}
+			initFullSizeImage();
+		};
+		
+		var initFullSizeImage = function() {
+			var postings = document.getElementsByClassName("posting");
+			postings = postings.length>0?postings:document.getElementsByClassName("thread-posting");
+			if (!postings) return;
+			var hashTrigger = null;
+			var body = document.body;
+			//var isIE = /*@cc_on!@*/false;
+			var isIELower8 = /*@cc_on!@*/false && !(document.documentMode && document.documentMode >= 8);
+   			var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", [["id", "image-canvas"]], body);	
+   			imageCanvas.setVisible = function(enable) {
+				this.style.display = enable?"block":"none";
+				if (!enable && hashTrigger) {
+					window.clearInterval(hashTrigger);
+					var scrollPos = document.getScrollPosition();
+					// http://aktuell.de.selfhtml.org/weblog/kompatibilitaetsmodus-im-internet-explorer-8
+					if (!isIELower8)
+						window.history.back();
+					else
+						window.location.hash="GET_OPERA";
+					// Fuer den Fall, dass man bei eingeblendeten Bild gescrollt hat
+					window.scrollTo(scrollPos.left, scrollPos.top);	
+				}
+			};
+			var oldOnKeyPressFunc = window.document.onkeypress;
+			window.document.onkeypress = function(e) { 
+				var keyCode = document.getKeyCode(e);
+				if (keyCode == 27) 
+					imageCanvas.setVisible(false);
+				if (typeof oldOnKeyPressFunc == "function")
+					oldOnKeyPressFunc(e);
+			};
+			imageCanvas.onclick = function(e) {
+				imageCanvas.setVisible(false);
+			}; 
+			imageCanvas.setVisible(false);			
+			var fullSizeImage = document.getElementById("fullSizeImage") || document.createElementWithAttributes("img", [["id", "fullSizeImage"]], imageCanvas);
+			fullSizeImage.style.position = "absolute";
 
-			
+			for (var i=0; i<postings.length; i++) {
+				var links = postings[i].getElementsByTagName("a");
+				for (var j=0; j<links.length; j++) {
+					if(links[j].rel.search(/thumbnail/) != -1) {
+						links[j].onclick = function(e) {
+							window.location.hash="image";
+   							var currentHash = window.location.hash;
+							fullSizeImage.src = this.href;
+							imageCanvas.setVisible(true);
+							var imgPoSi = document.getElementPoSi(fullSizeImage);
+							var scrollPos = document.getScrollPosition();
+							var winSize = document.getWindowSize();							
+							imageCanvas.style.height=winSize.pageHeight+"px";
+							fullSizeImage.style.left = ((winSize.windowWidth-imgPoSi.width)/2)  + "px"; 
+							//fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
+							fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/15) + "px"; 
+							
+							hashTrigger = window.setInterval( 
+								function() {
+									if ( this.location.hash != currentHash ) {
+										imageCanvas.setVisible(false);
+									}
+								},50 
+							);
+							return false;
+						};				
+					}
+				}
+			}
 		};
 
 		var setDefaultInputValue = function(id) {
@@ -1211,8 +1333,8 @@ var ready = new (function () {
 					var docSize = document.getWindowSize();
 					var w = els[i][1];
 					var h = els[i][2];
-					var l = parseInt(0.5*(docSize.width-w));
-					var t = parseInt(0.25*(docSize.height-h));
+					var l = parseInt(0.5*(docSize.windowWidth-w));
+					var t = parseInt(0.25*(docSize.windowHeight-h));
 					els[i][0].onclick = function(e) {
 						window.open(this.href,"MyLittleForum","width="+w+",height="+h+",left="+l+",top="+t+",scrollbars,resizable");
 						return false;

@@ -43,7 +43,7 @@ function BBCodeButton(el) {
 
 	this.canInsert = function() {
 		return buttonGroup && buttonGroup.getTextArea();
-	}
+	};
 	
 	this.getCode = function() {
 		return htmlEl.name;
@@ -180,7 +180,7 @@ function BBCodeColorChooserButton(el) {
 		link.appendChild( document.createTextNode( String.fromCharCode(160) ) );
 		
 		if((i+1)%7==0)
-			var row = document.createElementWithAttributes("tr", [], colorTableBody);
+			row = document.createElementWithAttributes("tr", [], colorTableBody);
 	}
 
 	this.insertOptionCode = function(obj) {
@@ -209,9 +209,14 @@ function BBCodeColorChooserButton(el) {
  * Sonderbutton mit zusaetzlichen Optionen
  * @param el
  * @param list
+ * @param quest
+ * @param par
  */
-function BBCodeOptionButton(el, list) {
+function BBCodeOptionButton(el, list, quest, par) {
 	this.constructor(el);
+	if (!list) return;
+	quest = quest || false;
+	par = par || "";
 	var optionList = document.createElement("ul");
 	var self = this;
 	for (var i=0; i<list.length; i++) {
@@ -227,16 +232,22 @@ function BBCodeOptionButton(el, list) {
 			return;
 		var buttonGroup = this.getButtonGroup();	
 		var txtarea = buttonGroup.getTextArea();
-		
+		var selectionRange = txtarea.getSelection();
 		// Ausnahme INLINECODE
-		var codestart = codeend = this.getCode();
+		var codestart = this.getCode(), codeend = this.getCode();
 		if (obj.attribute.toLowerCase() == "inlinecode") {
 			codestart = codeend = obj.attribute;
 		}
 		if (obj.attribute.trim() && obj.attribute.toLowerCase() != "inlinecode")
 			codestart += "=" + obj.attribute;
-		
-		txtarea.insertTextRange( "[" + codestart + "]" + txtarea.getSelection() + "[/" + codeend + "]" );
+			
+		if (quest && selectionRange == "") {
+			var p = window.prompt(quest, par);
+			if (p && p.trim() != "" && p.trim() != par ) 
+				txtarea.insertTextRange( "[" + codestart + "]" + p + "[/" + codeend + "]" );
+		}	
+		else
+			txtarea.insertTextRange( "[" + codestart + "]" + selectionRange + "[/" + codeend + "]" );
 			
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(false);
 	}
@@ -245,8 +256,6 @@ function BBCodeOptionButton(el, list) {
 		if (!this.canInsert()) 
 			return;
 		var buttonGroup = this.getButtonGroup();	
-		var txtarea = buttonGroup.getTextArea();
-		selectionRange = txtarea.getSelection();
 		var objPos = document.getElementPoSi(obj);
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(optionList);
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	
@@ -566,7 +575,10 @@ function ButtonGroup(f) {
 				bbCodeButton = new BBCodeLinkButton( button );
 			break;
 			case "img":
-				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); //new BBCodeImageButton( button );
+				if (list && list.length > 1)
+					bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "http://" );
+				else
+					bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); 
 			break;
 			case "color":
 				bbCodeButton = new BBCodeColorChooserButton( button );
@@ -581,7 +593,7 @@ function ButtonGroup(f) {
 				bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=upload_image", settings["upload_popup_width"], settings["upload_popup_height"]);	
 			break;
 			case "tex":
-				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); //BBCodeTexButton( button );
+				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); 
 			break;
 			
 			default:
@@ -604,57 +616,12 @@ function ButtonGroup(f) {
 	 * @return win
 	 */
 	var createAdditionalOptionsWindow = function() {
-		// fadin/out kann der IE zwar aber dann geht der HOVER ueber die Links nicht mehr - get OPERA ;)
-		var isIE = /*@cc_on!@*/false;
 		var w = document.createElementWithAttributes("div", [["id", "bbcode-options"]], document.body);
 		var content = document.createElementWithAttributes("div", [], w);
 		w.style.display = "none";
 		w.style.position = "absolute";
 		var timeout = null;
-		/*
-		var finalOpacity = 1.0;
-		var fadeInterval = 10;
-		w.fadeOut = function (opac) { 
-			opac = opac || finalOpacity;
-			var newOpac = opac - 0.1;
-			if (newOpac > 0 && !isIE) {
-				this.style.opacity = newOpac;
-				this.style.filter = "alpha(opacity:" + (newOpac * 100) + ")";
-				self = this;
-				window.setTimeout(function () {
-					self.fadeOut(newOpac);
-				}, fadeInterval);
-
-			} else {
-				if (!isIE) {
-					this.style.opacity = 0;
-					this.style.filter = "alpha(opacity:0)";
-				}
-				this.style.display = "none";
-			}
-		}
 		
-		w.fadeIn = function (opac) {
-			if (!opac)
-				this.style.display = "";
-			if (isIE)
-				return;
-			opac = opac || 0;
-			var newOpac = opac + 0.1;
-			if (newOpac < finalOpacity) {
-				this.style.opacity = newOpac;
-				this.style.filter = "alpha(opacity:" + (newOpac * 100) + ")";
-				self = this;
-				window.setTimeout(function () {
-					self.fadeIn(newOpac);
-				}, fadeInterval);
-
-			} else {
-				this.style.opacity = finalOpacity;
-				this.style.filter = "alpha(opacity:" + (finalOpacity * 100) + ")";
-			}
-		}	
-                */
 		w.onmouseover = function(e) {
 			if (timeout)
 				window.clearTimeout(timeout);
@@ -685,8 +652,6 @@ function ButtonGroup(f) {
 				this.style.top = pos.top + "px";
 			}
 			this.style.display = enable?"":"none";
-			//if (enable)	this.fadeIn();
-			//else this.fadeOut();
 		};
 		
 		var oldOnKeyPressFunc = window.document.onmousedown;
@@ -842,8 +807,7 @@ function ButtonGroup(f) {
 	}());
 }
 
-var mlf = null;
-	window.ready.push(function() {
-		if (typeof settings == "object" && typeof lang == "object") 
-			new ButtonGroup( document.getElementById("postingform") );
+window.ready.push(function() {
+	if (typeof settings == "object" && typeof lang == "object") 
+		new ButtonGroup( document.getElementById("postingform") );
 });

@@ -328,7 +328,18 @@ bbcode_list_title =               Liste einfügen
 bbcode_list_instruction =         [list][*]Listenpunkt[/list]
 bbcode_image_label =              Bild
 bbcode_image_title =              Bild einfügen
-bbcode_image_instruction =        [img]http://example.com/image.jpg[/img]
+bbcode_image_label_default =      normal
+bbcode_image_instr_default =      [img]http://example.com/image.jpg[/img]
+bbcode_image_label_left =         links       
+bbcode_image_instr_left =         links: [img=left]http://example.com/image.jpg[/img]
+bbcode_image_label_right =        rechts       
+bbcode_image_instr_right =        rechts: [img=right]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb =        Thumbnail       
+bbcode_image_instr_thumb =        Thumbnail: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_left =   Thumbnail links       
+bbcode_image_instr_thumb_left =   Thumbnail links: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_right =  Thumbnail rechts       
+bbcode_image_instr_thumb_right =  Thumbnail rechts: [img=thumbnail]http://example.com/image.jpg[/img]
 bbcode_upload_label =             Upload
 bbcode_upload_title =             Bild hoch laden
 bbcode_upload_instruction =       Bild hoch laden ...
