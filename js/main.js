@@ -715,7 +715,7 @@ var ready = new (function () {
 		var foldExpandWrapper = document.createElementWithAttributes("span", [["className", "fold-expand"]], null);
 		
 		if (lis.length == 1) {
-			var inactiveFoldExpandImg = document.createElementWithAttributes("img", [["src", templatePath + settings["expand_thread_inactive_image"]], ["alt", ""], ["onerror", function(e) { this.alt = "[]"; }]], foldExpandWrapper)
+			var inactiveFoldExpandImg = document.createElementWithAttributes("img", [["src", templatePath + settings["expand_thread_inactive_image"]], ["className", "expand-thread-inactive"], ["alt", ""], ["onerror", function(e) { this.alt = "[]"; }]], foldExpandWrapper)
 			setIcon(foldExpandWrapper);  
 		}
 		else {
@@ -758,6 +758,78 @@ var ready = new (function () {
 		};
 		
 		this.setFold(this.isFold());
+	}
+	
+	
+	function FullSizeImage(els) {
+		if (!els) return;
+		els = typeof els == "object" && typeof els.length == "number"?els:[els];
+		var hashTrigger = null;
+		var body = document.body;
+		// http://aktuell.de.selfhtml.org/weblog/kompatibilitaetsmodus-im-internet-explorer-8
+		var isIELower8 = /*@cc_on!@*/false && !(document.documentMode && document.documentMode >= 8);
+   		var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", [["id", "image-canvas"]], body);	
+   		imageCanvas.setVisible = function(enable) {
+			this.style.display = enable?"block":"none";
+		};
+		var stopTrigger = function() {
+			if (hashTrigger) {
+				window.clearInterval(hashTrigger);
+				var scrollPos = document.getScrollPosition();
+				if (!isIELower8)
+					window.history.back();
+				else
+					window.location.hash="GET_OPERA";
+				// Fuer den Fall, dass man bei eingeblendeten Bild gescrollt hat
+				window.scrollTo(scrollPos.left, scrollPos.top);	
+			}
+		};
+		
+		var oldOnKeyPressFunc = window.document.onkeypress;
+		window.document.onkeypress = function(e) { 
+			var keyCode = document.getKeyCode(e);
+			if (keyCode == 27) {
+				imageCanvas.setVisible(false);
+				stopTrigger();
+			}
+			if (typeof oldOnKeyPressFunc == "function")
+				oldOnKeyPressFunc(e);
+		};
+		imageCanvas.onclick = function(e) {
+			imageCanvas.setVisible(false);
+			stopTrigger();
+		}; 
+		imageCanvas.setVisible(false);			
+		var fullSizeImage = document.getElementById("fullSizeImage") || document.createElementWithAttributes("img", [["id", "fullSizeImage"]], imageCanvas);
+		for (var i=0; i<els.length; i++) {
+			var links = els[i].getElementsByTagName("a");
+			for (var j=0; j<links.length; j++) {
+				if(links[j].rel.search(/thumbnail/) != -1) {
+					links[j].onclick = function(e) {
+						window.location.hash="image";
+   						var currentHash = window.location.hash;
+						fullSizeImage.src = this.href;
+						imageCanvas.setVisible(true);
+						var imgPoSi = document.getElementPoSi(fullSizeImage);
+						var scrollPos = document.getScrollPosition();
+						var winSize = document.getWindowSize();							
+						imageCanvas.style.height=winSize.pageHeight+"px";
+						fullSizeImage.style.left = ((winSize.windowWidth-imgPoSi.width)/2)  + "px"; 
+						//fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
+						fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/15) + "px"; 
+						
+						hashTrigger = window.setInterval( 
+							function() {
+								if ( this.location.hash != currentHash ) {
+									imageCanvas.setVisible(false);
+								}
+							},50 
+						);
+						return false;
+					};				
+				}
+			}
+		}
 	}
 		
 	/**
@@ -812,7 +884,8 @@ var ready = new (function () {
 		replylinkLink.appendChild( document.createTextNode( lang["reply_link"] ));
 		replylinkWrapper.style.display = "none";
 		this.closeByOutSideClick = function(e) {
-			if (self.isVisible()) {
+			var imgCanvas = document.getElementById("image-canvas");
+			if (self.isVisible() && imgCanvas && imgCanvas.style.display=="none") {
 				var obj = document.getTarget(e);
 				if (obj && obj != self.getOpener().firstChild) {
 					var evtPos = document.getMousePos(e);
@@ -898,6 +971,7 @@ var ready = new (function () {
 					replylinkWrapper.appendChild( replylinkLink );
 					contentEl.appendChild( replylinkWrapper );
 				}
+				new FullSizeImage(contentEl);
 			}
 			else {
 				contentEl.appendChild( throbberIcon );
@@ -1171,76 +1245,10 @@ var ready = new (function () {
 					}
 				}
 			}
-			initFullSizeImage();
-		};
-		
-		var initFullSizeImage = function() {
-			var postings = document.getElementsByClassName("posting");
-			postings = postings.length>0?postings:document.getElementsByClassName("thread-posting");
-			if (!postings) return;
-			var hashTrigger = null;
-			var body = document.body;
-			//var isIE = /*@cc_on!@*/false;
-			var isIELower8 = /*@cc_on!@*/false && !(document.documentMode && document.documentMode >= 8);
-   			var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", [["id", "image-canvas"]], body);	
-   			imageCanvas.setVisible = function(enable) {
-				this.style.display = enable?"block":"none";
-				if (!enable && hashTrigger) {
-					window.clearInterval(hashTrigger);
-					var scrollPos = document.getScrollPosition();
-					// http://aktuell.de.selfhtml.org/weblog/kompatibilitaetsmodus-im-internet-explorer-8
-					if (!isIELower8)
-						window.history.back();
-					else
-						window.location.hash="GET_OPERA";
-					// Fuer den Fall, dass man bei eingeblendeten Bild gescrollt hat
-					window.scrollTo(scrollPos.left, scrollPos.top);	
-				}
-			};
-			var oldOnKeyPressFunc = window.document.onkeypress;
-			window.document.onkeypress = function(e) { 
-				var keyCode = document.getKeyCode(e);
-				if (keyCode == 27) 
-					imageCanvas.setVisible(false);
-				if (typeof oldOnKeyPressFunc == "function")
-					oldOnKeyPressFunc(e);
-			};
-			imageCanvas.onclick = function(e) {
-				imageCanvas.setVisible(false);
-			}; 
-			imageCanvas.setVisible(false);			
-			var fullSizeImage = document.getElementById("fullSizeImage") || document.createElementWithAttributes("img", [["id", "fullSizeImage"]], imageCanvas);
-			fullSizeImage.style.position = "absolute";
 
-			for (var i=0; i<postings.length; i++) {
-				var links = postings[i].getElementsByTagName("a");
-				for (var j=0; j<links.length; j++) {
-					if(links[j].rel.search(/thumbnail/) != -1) {
-						links[j].onclick = function(e) {
-							window.location.hash="image";
-   							var currentHash = window.location.hash;
-							fullSizeImage.src = this.href;
-							imageCanvas.setVisible(true);
-							var imgPoSi = document.getElementPoSi(fullSizeImage);
-							var scrollPos = document.getScrollPosition();
-							var winSize = document.getWindowSize();							
-							imageCanvas.style.height=winSize.pageHeight+"px";
-							fullSizeImage.style.left = ((winSize.windowWidth-imgPoSi.width)/2)  + "px"; 
-							//fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
-							fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/15) + "px"; 
-							
-							hashTrigger = window.setInterval( 
-								function() {
-									if ( this.location.hash != currentHash ) {
-										imageCanvas.setVisible(false);
-									}
-								},50 
-							);
-							return false;
-						};				
-					}
-				}
-			}
+			var pEls = document.getElementsByClassName("posting");
+			pEls = pEls.length>0?pEls:document.getElementsByClassName("thread-posting");
+			new FullSizeImage(pEls);
 		};
 
 		var setDefaultInputValue = function(id) {

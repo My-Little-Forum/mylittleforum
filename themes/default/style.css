@@ -568,8 +568,8 @@ img.right                { float:right; margin:0 0 10px 10px; }
 #ajax-preview-content ul ul
                          { font-size:1em; }
 
-#image-canvas            { position:absolute; top:0; left:0; width:100%; height:100%; background:url(images/canvas_bg.png); }
-#image-canvas img        { display:block; margin:2em auto 0 auto; border:1px solid #000; }
+#image-canvas            { position:absolute; top:0; left:0; width:100%; height:100%; background:url(images/canvas_bg.png); z-index:20; }
+#image-canvas img        { position:absolute; display:block; margin:2em auto 0 auto; border:1px solid #000; z-index:30; }
 
 /* IE: */
 #ie ul.reply             { width:100%; }
