@@ -5,12 +5,12 @@
 <meta http-equiv="content-type" content="text/html; charset={#charset#}" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta name="description" content="{$settings.forum_description|escape:"html"}" />
-<meta name="keywords" content="{$keywords|default:""}" />
+{if $keywords}<meta name="keywords" content="{$keywords}" />{/if}
 {if $mode=='posting'}
 <meta name="robots" content="noindex" />
 {/if}
 <meta name="generator" content="my little forum {$settings.version}" />
-<link rel="stylesheet" type="text/css" href="{$THEMES_DIR}/{$theme}/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{$THEMES_DIR}/{$theme}/style.min.css" media="all" />
 {if $settings.rss_feed==1}<link rel="alternate" type="application/rss+xml" title="RSS" href="index.php?mode=rss" />{/if}
 {if !$top}
 <link rel="top" href="./" />

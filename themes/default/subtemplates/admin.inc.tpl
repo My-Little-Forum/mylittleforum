@@ -359,7 +359,7 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="action" value="user" />
-<input id="search-user" type="text" name="search_user" value="{if $search_user}{$search_user}{else}{#search_user_default_value#}{/if}" size="30" />{*&nbsp;<input type="image" src="{$THEMES_DIR}/{$theme}/images/submit.png" alt="[&raquo;]" />*}
+<input id="search-user" type="text" name="search_user" value="{if $search_user}{$search_user}{else}{#search_user_default_value#}{/if}" size="25" alt="{#search_user_default_value#}" />{*&nbsp;<input type="image" src="{$THEMES_DIR}/{$theme}/images/submit.png" alt="[&raquo;]" />*}
 </div>
 </form>
 </div>

@@ -4,15 +4,13 @@ my little forum changelog
 2.2 (2010-03-??)
 ----------------
 Changes:
- - New user settings: language, time zone and theme
- - Server-side storage of read postings for registered users implemented
- - JavaScript code completely rewritten
- - Some minor code improvements concerning the complete thread view
- - Template/CSS improvements:
-   - menus as unordered lists (user menu, subnavigation, bottom menu)
-   - CSS Sprites for background images to reduce the amount of HTTP requests
-   - indenting if line breaks in threads
-   - merged regular and IE stylesheet (new <div id="ie"> for IE)
+- New user settings: language, time zone and theme
+- Server-side storage of read postings for registered users implemented
+- JavaScript code completely rewritten
+- New BBCode for TeX formulas ([tex]TeX formula[/tex])
+- New thumbnail feature ([img=thumbnail]image URL[img])
+- Template/CSS improvements (menus as unordered lists, CSS Sprites for 
+  background images)
 
 Edited files:
  - all

@@ -1255,7 +1255,8 @@ var ready = new (function () {
 			var inp = document.getElementById(id);
 			if (!inp) 
 				return;
-			var value = inp.value;
+			//var value = inp.value;
+			var value = (inp.alt) ? inp.alt : inp.value;
 			inp.onfocus = function(e) {
 				if (this.value == value) 
 					this.value="";
