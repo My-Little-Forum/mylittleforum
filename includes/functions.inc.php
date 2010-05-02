@@ -19,6 +19,7 @@ function connect_db($host,$user,$pw,$db)
   $connid = @mysql_connect($host, $user, $pw) or raise_error('mysql_connect',mysql_error());
   @mysql_select_db($db, $connid) or raise_error('mysql_select_db',mysql_error());
   @mysql_query('SET NAMES utf8', $connid);
+  //@mysql_query("SET time_zone='+00:00'", $connid);
   return $connid;
  }
 
@@ -2244,7 +2245,6 @@ function my_quoted_printable_encode($input, $line_max=76, $space_conv = false )
    } // end of while
   return $output;
  }
-
 
 /**
  * tries to find a simpler character encoding to encode the e-mail

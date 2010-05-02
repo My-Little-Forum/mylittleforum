@@ -3,7 +3,6 @@
 <head>
 <title>{$settings.forum_name|escape:"html"}{if $page_title} - {$page_title}{elseif $subnav_location} - {$subnav_location}{/if}</title>
 <meta http-equiv="content-type" content="text/html; charset={#charset#}" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta name="description" content="{$settings.forum_description|escape:"html"}" />
 {if $keywords}<meta name="keywords" content="{$keywords}" />{/if}
 {if $mode=='posting'}

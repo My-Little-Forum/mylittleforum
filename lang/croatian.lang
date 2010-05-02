@@ -4,8 +4,8 @@
 # Translated by Riba                                                           #
 # 2010-02-10                                                                   #
 #------------------------------------------------------------------------------#
-# Update 2010-03-13 (Alex < alex at mylittleforum dot net >):                  #
-# added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
+# Update 2010-04-19 (Riba < riba at ml1 dot net >):                            #
+# updated strings for version 2.2                                              #
 ################################################################################
 
 language =                        hr
@@ -80,7 +80,7 @@ table_view_linktitle =            Prikaži poruke unutar tabele
 thread_view =                     Razgranati prikaz
 thread_view_linktitle =           Prikaži poruke razgranato
 refresh_link =                    Osvježi
-refresh_linktitle =               <!-- TODO -->Reset new and read postings
+refresh_linktitle =               Osvježi oznake za nove i pročitane poruke
 thread_hierarchical =             Hijerarhijski
 thread_hierarchical_linktitle =   Prikaži teme hijerarhijski (zadano)
 open_in_thread_link =             Otvori unutar teme
@@ -227,7 +227,7 @@ no_users =                        Nema pronađenih korisnika.
 no_text_title =                   Tijelo poruke je prazno
 no_text_alt =                     Nema teksta
 no_text =                         - Nema teksta -
-error_invalid_form =              <!-- TODO -->Invalid request - please try again!
+error_invalid_form =              Neispravan zahtjev - pokušajte nanovo!
 error_form_sent_too_fast =        Obrazac je poslan pre brzo - počekajte par sekundi i pokušajte opet (prevencija automatskog popunjavanja obrasca)
 error_form_sent_too_slow =        Obrazac više ne vrijedi - kopirajte sadržaj i osvježite stranicu 
 terms_of_use_agreement =          Prihvaćam [[terms of use]]
@@ -241,7 +241,7 @@ ajax_preview_title =              Prikaži sadržaj
 bbcode_link_text =                Tekst linka (nije obavezno):
 bbcode_link_url =                 Adresa linka (URL):
 bbcode_image_url =                Adresa slike (URL):
-bbcode_tex_code =                 <!-- TODO -->TeX formula (e.g. \sqrt{x}):
+bbcode_tex_code =                 TeX formula (npr. \sqrt{x}):
 quote_label =                     citiraj poruku
 quote_title =                     citiraj poruku
 error_no_name =                   Ime nije uneseno
@@ -331,18 +331,18 @@ bbcode_list_title =               Ubaci popis
 bbcode_list_instruction =         [list][*]redak popisa[/list]
 bbcode_image_label =              slika
 bbcode_image_title =              Ubaci sliku
-bbcode_image_label_default =      <!-- TODO -->default
-bbcode_image_instr_default =      <!-- TODO -->[img]http://example.com/image.jpg[/img]
-bbcode_image_label_left =         <!-- TODO -->left       
-bbcode_image_instr_left =         <!-- TODO -->left: [img=left]http://example.com/image.jpg[/img]
-bbcode_image_label_right =        <!-- TODO -->right       
-bbcode_image_instr_right =        <!-- TODO -->right: [img=right]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb =        <!-- TODO -->thumbnail       
-bbcode_image_instr_thumb =        <!-- TODO -->thumbnail: [img=thumbnail]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb_left =   <!-- TODO -->thumbnail left       
-bbcode_image_instr_thumb_left =   <!-- TODO -->thumbnail left: [img=thumbnail]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb_right =  <!-- TODO -->thumbnail right       
-bbcode_image_instr_thumb_right =  <!-- TODO -->thumbnail right: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_default =      zadano
+bbcode_image_instr_default =      [img]http://primjer.com/slika.jpg[/img]
+bbcode_image_label_left =         lijevo       
+bbcode_image_instr_left =         lijevo: [img=left]http://primjer.com/slika.jpg[/img]
+bbcode_image_label_right =        desno       
+bbcode_image_instr_right =        desno: [img=right]http://primjer.com/slika.jpg[/img]
+bbcode_image_label_thumb =        mala sličica       
+bbcode_image_instr_thumb =        mala sličica: [img=thumbnail]http://primjer.com/slika.jpg[/img]
+bbcode_image_label_thumb_left =   mala sličica lijevo       
+bbcode_image_instr_thumb_left =   mala sličica lijevo: [img=thumbnail]http://primjer.com/slika.jpg[/img]
+bbcode_image_label_thumb_right =  mala sličica desno       
+bbcode_image_instr_thumb_right =  mala sličica desno: [img=thumbnail]http://primjer.com/slika.jpg[/img]
 bbcode_upload_label =             upload
 bbcode_upload_title =             Upload slike
 bbcode_upload_instruction =       Upload slike ...
@@ -350,8 +350,8 @@ bbcode_flash_label =              flash
 bbcode_flash_title =              Flash sadržaj
 bbcode_flash_instruction =        [flash]http://example.com/flash.swf[/flash]
 bbcode_tex_label =                TeX
-bbcode_tex_title =                <!-- TODO -->Insert TeX code
-bbcode_tex_instruction =          <!-- TODO -->[tex]TeX code[/tex]
+bbcode_tex_title =                TeX kod
+bbcode_tex_instruction =          [tex]TeX kod[/tex]
 bbcode_code_label =               kod
 bbcode_code_title =               Programski kod
 bbcode_code_label_inline =        Inline kod
@@ -574,14 +574,14 @@ edit_user_location =              Lokacija:
 edit_user_profile =               Profil:
 edit_user_signature =             potpis:
 edit_user_cat_selection =         Odabrane kategorije:
-edit_user_time_zone =             <!-- TODO -->Time zone:
-edit_user_time_difference =       <!-- TODO -->Additional time difference in hours (e.g. +3 or -5:30):
-edit_user_default_time_zone_svr = <!-- TODO -->Default (server time)
-edit_user_default_time_zone =     <!-- TODO -->Default ([default_time_zone])
-edit_user_language =              <!-- TODO -->Language:
-edit_user_default_language =      <!-- TODO -->Default ([default_language])
-edit_user_theme =                 <!-- TODO -->Theme:
-edit_user_default_theme =         <!-- TODO -->Default ([default_theme])
+edit_user_time_zone =             Vremenska zona:
+edit_user_time_difference =       Vremenska razlika u satima (npr. +3 ili -5:30):
+edit_user_default_time_zone_svr = Zadano (vrijeme na serveru)
+edit_user_default_time_zone =     Zadano ([default_time_zone])
+edit_user_language =              Jezik:
+edit_user_default_language =      Zadan ([default_language])
+edit_user_theme =                 Predložak:
+edit_user_default_theme =         Zadan ([default_theme])
 edit_user_auto_login =            Automatska prijava:
 enable_auto_login =               uključite automatsku prijavu
 edit_user_notification =          E-mail obavijesti:
@@ -680,12 +680,12 @@ home_link_desc =                  Link na naslovnicu, npr. http://www.domena.tld
 home_link_name =                  Naziv linka
 home_link_name_desc =             Naziv linka prema naslovnici, npr. &quot;Natrag na naslovnicu&quot;
 default_language =                Jezik
-default_language_desc =           <!-- TODO -->Default language of the forum
-default_time_zone =               <!-- TODO -->Time zone
-default_time_zone_desc =          <!-- TODO -->Default time zone
-default_time_difference =         <!-- TODO -->Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
+default_language_desc =           Zadan jezik foruma
+default_time_zone =               Vremenska zona
+default_time_zone_desc =          Zadana vremenska zona
+default_time_difference =         Postavka vremenske zone nije dostupna. Alternativno je vremensku razliku između poslužitelja i foruma moguće odrediti ručno (u minutama, npr. 240 ili -360):
 default_theme =                   Predložak
-default_theme_desc =              <!-- TODO -->Default forum layout theme
+default_theme_desc =              Zadan predložak za izgled foruma
 threads_per_page =                Tema po stranici
 threads_per_page_desc =           Koliko tema će biti prikazano po stranici
 auto_lock_old_threads =           Automatsko zaključavanje starih tema
@@ -938,8 +938,8 @@ update_instructions =             Raspakirajte arhivu, potražite odgovarajuću 
 update_instructions =             Datoteka za instalaciju nove verzije bi se nakon toga trebala pojaviti ispod nakon osvježavanja ove stranice
 update_instructions =             Kliknite na datoteku i pratite upute koje slijede
 update_instructions =             Nakon završetka dobit ćete popis svih datoteka i direktorija koji su dodani ili promijenjeni, i morat ćete obrisati sadržaj direktorija <em>templates_c</em>
-update_instructions =             <!-- TODO -->Clear the directory <strong>templates_c</strong> (delete all files in this dirctory) after you have added/replaced the files/folders
-update_available_files =          Dostupne instalacijke datoteke
+update_instructions =             Obrišite sadržaj <strong>templates_c</strong> direktorija nakon dodavanja ili izmjene datoteka ili direktorija
+update_available_files =          Dostupne instalacijske datoteke
 update_no_files_available =       Nema pronađenih instalacijskih datoteka.
 update_file_title =               Pokreni ovu instalacijsku datoteku
 update_confirm =                  Želite li zaista pokrenuti ovu instalacijsku datoteku?

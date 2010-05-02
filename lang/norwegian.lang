@@ -1,9 +1,6 @@
-﻿################################################################################
-# Norwegian language file for my little forum 2.2                              #
-################################################################################
-# Update 2010-03-13 (Alex < alex at mylittleforum dot net >):                  #
-# added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
-################################################################################
+﻿###################################################
+# Norwegian language file for my little forum 2.2 #
+###################################################
 
 language =                        no
 charset =                         utf-8
@@ -230,7 +227,7 @@ error_form_sent_too_slow =        Innlegget er ikke gyldig lenger - kopier tekst
 terms_of_use_agreement =          Jeg godtar [[terms of use]]
 error_not_accepted_word =         Ikke akseptert ord: [not_accepted_word]
 error_not_accepted_words =        Ikke aksepterte ord: [not_accepted_words]
-error_username_invalid_chars =    <!-- TODO -->The user name contains special characters
+error_username_invalid_chars =    Brukernavnet inneholder spesialtegn
 user_locked =                     Kontoen din er for tiden låst.
 forum_disabled =                  Forumet er for tiden ikke tilgjengelig.
 cookie_deleted =                  Informasjonskapselen er slettet.
@@ -238,9 +235,9 @@ ajax_preview_title =              Forhåndsvis
 bbcode_link_text =                Lenketekst (valgfritt):
 bbcode_link_url =                 Lenkeadresse (URL):
 bbcode_image_url =                Bildeadresse (URL):
-bbcode_tex_code =                 <!-- TODO -->TeX formula (e.g. \sqrt{x}):
+bbcode_tex_code =                 TeX-formel (f.eks. \sqrt{x}):
 quote_label =                     siter melding
-quote_title =                     <!-- TODO -->Insert quoted text of the posting to be replied on
+quote_title =                     Sett inn sitert tekst i innlegget som skal svares på
 error_no_name =                   Navn er ikke skrevet inn
 error_no_subject =                Emne er ikke skrevet inn
 error_no_text =                   Tekst er ikke skrevet inn
@@ -328,18 +325,18 @@ bbcode_list_title =               Sett inn liste
 bbcode_list_instruction =         [list][*]listepunkt[/list]
 bbcode_image_label =              bilde
 bbcode_image_title =              Sett inn bilde
-bbcode_image_label_default =      <!-- TODO -->default
-bbcode_image_instr_default =      <!-- TODO -->[img]http://example.com/image.jpg[/img]
-bbcode_image_label_left =         <!-- TODO -->left       
-bbcode_image_instr_left =         <!-- TODO -->left: [img=left]http://example.com/image.jpg[/img]
-bbcode_image_label_right =        <!-- TODO -->right       
-bbcode_image_instr_right =        <!-- TODO -->right: [img=right]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb =        <!-- TODO -->thumbnail       
-bbcode_image_instr_thumb =        <!-- TODO -->thumbnail: [img=thumbnail]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb_left =   <!-- TODO -->thumbnail left       
-bbcode_image_instr_thumb_left =   <!-- TODO -->thumbnail left: [img=thumbnail]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb_right =  <!-- TODO -->thumbnail right       
-bbcode_image_instr_thumb_right =  <!-- TODO -->thumbnail right: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_default =      standard
+bbcode_image_instr_default =      [img]http://eksempel.com/bilde.jpg[/img]
+bbcode_image_label_left =         venstre       
+bbcode_image_instr_left =         venstre: [img=left]http://eksempel.com/bilde.jpg[/img]
+bbcode_image_label_right =        høyre
+bbcode_image_instr_right =        høyre: [img=right]http://eksempel.com/bilde.jpg[/img]
+bbcode_image_label_thumb =        miniatyrbilde      
+bbcode_image_instr_thumb =        miniatyrbilde: [img=thumbnail]http://eksempel.com/bilde.jpg[/img]
+bbcode_image_label_thumb_left =   miniatyrbilde venstre       
+bbcode_image_instr_thumb_left =   miniatyrbilde venstre: [img=thumbnail]http://eksempel.com/bilde.jpg[/img]
+bbcode_image_label_thumb_right =  miniatyrbilde høyre       
+bbcode_image_instr_thumb_right =  miniatyrbilde hæyre: [img=thumbnail]http://eksempel.com/bilde.jpg[/img]
 bbcode_upload_label =             last opp
 bbcode_upload_title =             Last opp bilde
 bbcode_upload_instruction =       Last opp bilde ...
@@ -347,8 +344,8 @@ bbcode_flash_label =              flash
 bbcode_flash_title =              Sett inn flash
 bbcode_flash_instruction =        [flash]http://example.com/flash.swf[/flash]
 bbcode_tex_label =                TeX
-bbcode_tex_title =                <!-- TODO -->insert TeX code
-bbcode_tex_instruction =          <!-- TODO -->[tex]TeX code[/tex]
+bbcode_tex_title =                sett inn TeX-lode
+bbcode_tex_instruction =          [tex]TeX-kode[/tex]
 bbcode_code_label =               kode
 bbcode_code_title =               Sett inn kode
 bbcode_code_label_inline =        Inline-kode
@@ -572,15 +569,15 @@ edit_user_profile =               Profil:
 edit_user_signature =             Signatur:
 edit_user_cat_selection =         Mine kategorivalg:
 edit_user_time_zone =             Tidssone:
-edit_user_time_difference =       <!-- TODO -->Additional time difference in hours (e.g. +3 or -5:30):
-edit_user_default_time_zone_svr = <!-- TODO -->Default (server time)
-edit_user_default_time_zone =     <!-- TODO -->Default ([default_time_zone])
+edit_user_time_difference =       Ytterligere tidsdifferance i timer (f.eks. +3 eller -5:30):
+edit_user_default_time_zone_svr = Standard (servertid)
+edit_user_default_time_zone =     Standard ([default_time_zone])
 edit_user_language =              Språk:
-edit_user_default_language =      <!-- TODO -->Default ([default_language])
+edit_user_default_language =      Standard ([default_language])
 edit_user_theme =                 Grafisk mal:
-edit_user_default_theme =         <!-- TODO -->Default ([default_theme])
-edit_user_auto_login =            <!-- TODO -->Auto login:
-enable_auto_login =               <!-- TODO -->enable automatic login
+edit_user_default_theme =         Standard ([default_theme])
+edit_user_auto_login =            Automatisk innlogging:
+enable_auto_login =               aktiver automatisk innlogging
 edit_user_notification =          E-postvarsling:
 admin_mod_notif_posting =         når et innlegg har blitt lagt inn
 admin_mod_notif_register =        når en ny bruker har registrert seg
@@ -678,12 +675,12 @@ home_link_desc =                  Lenke til hjemmesiden din, f.eks. http://www.d
 home_link_name =                  Navn på Hjem-lenken
 home_link_name_desc =             Navn på Hjem-lenken, f.eks. &quot;Tilbake til hjemmesiden&quot;
 default_language =                Språk
-default_language_desc =           <!-- TODO -->Default language of the forum
+default_language_desc =           Forumets standardspråk
 default_time_zone =               Tidssone
-default_time_zone_desc =          <!-- TODO -->Default time zone
+default_time_zone_desc =          Standard tidssone
 default_time_difference =         Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
 default_theme =                   Grafisk mal
-default_theme_desc =              <!-- TODO -->Default forum layout theme
+default_theme_desc =              Standard grafisk mal for forumet
 threads_per_page =                Tråder per side
 threads_per_page_desc =           Hvor mange tråder skal vises per side?
 auto_lock_old_threads =           Automatisk låse gamle tråder?
@@ -935,7 +932,7 @@ update_instructions =             Pakk opp skript-pakken, se etter oppdateringsf
 update_instructions =             Oppdater denne siden, og du vil se oppdateringsfilen nedenfor
 update_instructions =             Klikk på filen og følg de videre instruksjonene
 update_instructions =             Etter at du har kjørt oppdateringen får du opp en liste med filer og mapper som har blitt lagt til eller erstattet
-update_instructions =             <!-- TODO -->Clear the directory <strong>templates_c</strong> (delete all files in this dirctory) after you have added/replaced the files/folders
+update_instructions =             Fjern katalogen <strong>templates_c</strong> (slett alle filer i katalogen) etter at du har lagt til/erstattet filene/mappene
 update_available_files =          Tilgjengelig(e) oppdateringsfil(er)
 update_no_files_available =       Ingen oppdateringsfiler er tilgjengelig.
 update_file_title =               Kjør denne oppdateringsfilen

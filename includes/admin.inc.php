@@ -1929,20 +1929,20 @@ switch($action)
    exit;
   break;
   case 'reorder':
-   if(isset($_REQUEST['pages']))
+   if(isset($_POST['pages']))
     {
      $table = $db_settings['pages_table'];
-     $list = $_REQUEST['pages'];
+     $list = $_POST['pages'];
     }
-   elseif(isset($_REQUEST['smilies']))
+   elseif(isset($_POST['smilies']))
     {
      $table = $db_settings['smilies_table'];
-     $list = $_REQUEST['smilies'];
+     $list = $_POST['smilies'];
     }
-   elseif(isset($_REQUEST['categories']))
+   elseif(isset($_POST['categories']))
     {
      $table = $db_settings['category_table'];
-     $list = $_REQUEST['categories'];
+     $list = $_POST['categories'];
     }
    if(isset($list) && isset($table))
     {

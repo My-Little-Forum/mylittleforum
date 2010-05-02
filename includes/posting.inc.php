@@ -33,9 +33,10 @@ if(isset($_REQUEST['p_category']) && isset($_SESSION[$settings['session_prefix']
 
 $category = isset($_SESSION[$settings['session_prefix'].'usersettings']['category']) ? intval($_SESSION[$settings['session_prefix'].'usersettings']['category']) : 0;
 
-$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
+$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
 $back = isset($_REQUEST['back']) ? $_REQUEST['back'] : 'index';
-$posting_mode = isset($_REQUEST['posting_mode']) ? $_REQUEST['posting_mode'] : 0; // 0 = post, 1 = edit
+if($back!='entry' && $back!='thread' && $back!='index') $back='index';
+$posting_mode = isset($_REQUEST['posting_mode']) ? intval($_REQUEST['posting_mode']) : 0; // 0 = post, 1 = edit
 
 if(isset($_GET['edit']) && intval($_GET['edit'])>0) $posting_mode = 1;
 
@@ -870,7 +871,7 @@ switch($action)
        if(isset($_SESSION[$settings['session_prefix'].'user_id'])) $savename = '';
        else $savename = $name;
 
-       @mysql_query("INSERT INTO ".$db_settings['forum_table']." (pid, tid, uniqid, time, last_reply, user_id, name, subject, email, hp, location, ip, text, tags, show_signature, email_notification, category, locked, sticky, spam, spam_check_status, edit_key) VALUES (".intval($id).",".intval($thread).",'".mysql_real_escape_string($uniqid)."',NOW(), NOW(),".intval($user_id).",'".mysql_real_escape_string($savename)."','".mysql_real_escape_string($subject)."','".mysql_real_escape_string($email)."','".mysql_real_escape_string($hp)."','".mysql_real_escape_string($location)."','".mysql_real_escape_string($_SERVER["REMOTE_ADDR"])."','".mysql_real_escape_string($text)."','".mysql_real_escape_string($s_tags)."',".intval($show_signature).",".intval($email_notification).",".intval($p_category).",".intval($locked).",".intval($sticky).",".intval($spam).", ".intval($spam_check_status).", '".mysql_real_escape_string($edit_key_hash)."')", $connid) or raise_error('database_error',mysql_error());
+       @mysql_query("INSERT INTO ".$db_settings['forum_table']." (pid, tid, uniqid, time, last_reply, user_id, name, subject, email, hp, location, ip, text, tags, show_signature, email_notification, category, locked, sticky, spam, spam_check_status, edit_key) VALUES (".intval($id).",".intval($thread).",'".mysql_real_escape_string($uniqid)."',NOW(),NOW(),".intval($user_id).",'".mysql_real_escape_string($savename)."','".mysql_real_escape_string($subject)."','".mysql_real_escape_string($email)."','".mysql_real_escape_string($hp)."','".mysql_real_escape_string($location)."','".mysql_real_escape_string($_SERVER["REMOTE_ADDR"])."','".mysql_real_escape_string($text)."','".mysql_real_escape_string($s_tags)."',".intval($show_signature).",".intval($email_notification).",".intval($p_category).",".intval($locked).",".intval($sticky).",".intval($spam).", ".intval($spam_check_status).", '".mysql_real_escape_string($edit_key_hash)."')", $connid) or raise_error('database_error',mysql_error());
 
        if($id == 0)
         {

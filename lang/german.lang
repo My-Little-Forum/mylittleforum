@@ -8,9 +8,9 @@
 language =                        de
 charset =                         utf-8
 locale =                          de_DE.utf8
+locale =                          de_DE
 locale =                          de_DE@euro
 locale =                          de
-locale =                          deu
 locale_charset =                  utf-8
 dir =                             ltr
 time_format =                     %d.%m.%Y, %H:%M
@@ -49,12 +49,12 @@ caution =                         Achtung!
 spam =                            Spam
 forum_index_link =                Hauptseite
 forum_index_link_title =          zur Hauptseite
-log_in_link =                     Log in
-log_in_link_title =               Log in
-log_out_link =                    Log out
-log_out_link_title =              Log out
-register_link =                   Anmelden
-register_link_title =             Als neuer Benutzer anmelden
+log_in_link =                     Login
+log_in_link_title =               Anmelden
+log_out_link =                    Logout
+log_out_link_title =              Abmelden
+register_link =                   Registrieren
+register_link_title =             Benutzerkonto einrichten
 profile_link_title =              Profil
 user_area_link =                  Benutzer
 user_area_link_title =            Benutzerbereich
@@ -118,12 +118,12 @@ subnav_create_page =              Seite erstellen
 subnav_edit_smiley =              Smiley bearbeiten
 subnav_edit_user =                Benutzer bearbeiten
 subnav_delete_users =             Benutzer löschen
-subnav_register_user =            Benutzer anmelden
+subnav_register_user =            Benutzer registrieren
 subnav_spam_protection =          Spam-Schutz
-subnav_email_list =               E-Mail-Liste aller angemeldeten Benutzer
+subnav_email_list =               E-Mail-Liste aller registrierten Benutzer
 subnav_clear_userdata =           Benutzerdaten aufräumen
 subnav_search =                   Suche
-subnav_register =                 Anmelden
+subnav_register =                 Registrieren
 subnav_reset_uninstall =          Reset / Forum deinstallieren
 subnav_userarea =                 Benutzerbereich
 subnav_contact =                  Kontakt
@@ -142,8 +142,8 @@ subnav_delete_cookie =            Cookie
 subnav_disabled =                 Forum deaktiviert
 subnav_page_error =               Fehler
 subnav_page =                     [var]
-counter =                         [total_postings] Einträge in [total_threads] Threads, [registered_users] angemeldete Benutzer
-counter_users_online =            [total_postings] Einträge in [total_threads] Threads, [registered_users] angemeldete Benutzer, [total_users_online] Benutzer online ([registered_users_online] angemeldete, [unregistered_users_online] Gäste)
+counter =                         [total_postings] Einträge in [total_threads] Threads, [registered_users] registrierte Benutzer
+counter_users_online =            [total_postings] Einträge in [total_threads] Threads, [registered_users] registrierte Benutzer, [total_users_online] Benutzer online ([registered_users_online] registrierte, [unregistered_users_online] Gäste)
 contact_link =                    Kontakt
 contact_linktitle =               E-Mail an den Foren-Administrator
 rss_feed_postings =               RSS Einträge
@@ -244,7 +244,7 @@ quote_title =                     zitierten Text des Postings einfügen, auf das
 error_no_name =                   kein Name eingegeben
 error_no_subject =                kein Betreff eingegeben
 error_no_text =                   kein Text eingegeben
-terms_of_use_error_register =     Sie müssen mit den Nutzungsbedingungen einverstanden sein um sich anmelden zu können
+terms_of_use_error_register =     Sie müssen mit den Nutzungsbedingungen einverstanden sein um sich registrieren zu können
 terms_of_use_error_posting =      Sie müssen mit den Nutzungsbedingungen einverstanden sein um den Eintrag absenden zu können
 check_all =                       alle auswählen
 uncheck_all =                     keine auswählen
@@ -286,7 +286,7 @@ spam_note =                       Der Eintrag hat den Spamfilter nicht passiert 
 [posting]
 no_authorization_edit =           Der Eintrag kann nicht bearbeitet werden! Entweder es besteht keine Berechtigung, der Bearbeitungszeitraum ist abgelaufen, der Thread ist gesperrt oder der Eintrag hat bereits Antworten.
 posting_locked_no_reply =         Antworten nicht möglich, da der Eintrag gesperrt ist!
-no_auth_post_reg_users =          Nur angemeldete Benutzer können antworten!
+no_auth_post_reg_users =          Nur registrierte Benutzer können antworten!
 no_auth_session_expired =         Sitzung abgelaufen, bitte den Text kopieren und erneut einloggen!
 no_auth_readonly =                Es können im Moment keine Einträge gemacht werden. 
 new_topic_hl =                    Neuer Eintrag
@@ -372,7 +372,7 @@ minutes_left_to_edit_reply =      noch [minutes] Minuten, um diesen Eintrag zu b
 preview_headline =                Vorschau:
 error_repeated_posting =          wiederholter Eintrag innerhalb von [minutes] Minuten - bitte einen Moment warten! 
 error_name_like_subject =         Name und Betreff sind identisch 
-error_name_reserved =             der Name wird bereits von einem angemeldeten Benutzer verwendet
+error_name_reserved =             der Name wird bereits von einem registrierten Benutzer verwendet
 error_username_too_long =         der Name ist zu lang
 error_name_too_long =             der Name ist zu lang
 error_no_email_to_notify =        keine E-Mail für die Benachrichtigung eingegeben
@@ -390,7 +390,7 @@ delete_spam_confirm =             Sicher, dass alle als Spam gekennzeichneten Ei
 delete_posting_submit =           OK - Löschen
 report_spam_hl =                  Spam melden
 posting_already_spam =            Dieser Eintrag ist bereits als Spam gekennzeichnet.
-spamcheck_posting_not_checked =   Dieser Eintrag ist als Ham (kein Spam) gekennzeichnet oder wurde nicht von Akismet überprüft, da Akismet enweder nicht eingeschaltet war oder der Eintrag von einem angemeldeten Benutzer stammt.
+spamcheck_posting_not_checked =   Dieser Eintrag ist als Ham (kein Spam) gekennzeichnet oder wurde nicht von Akismet überprüft, da Akismet entweder nicht eingeschaltet war oder der Eintrag von einem registrierten Benutzer stammt.
 spamcheck_posting_passed =        Dieser Eintrag hat den Spamfilter passiert. Bitte nur als Spam melden, wenn es auch wirklich Spam ist!
 spamcheck_akismet_api_error =     Dieser Eintrag hat den Spamfilter passiert, weil beim Überrüfen ein Fehler aufgetreten ist. Das kann durch einen ungültigen API-Key passieren.  
 spamcheck_akismet_timeout_error = Dieser Eintrag hat den Spamfilter wegen einem Server-Timeout des Akismet-Servers passiert.
@@ -409,7 +409,7 @@ no_authorisation_delete =         Der Eintrag kann nicht gelöscht werden! Entwe
 captcha_marking =                 Spamschutz-Maßnahme:
 captcha_expl_math =               Bitte die beiden Zahlen addieren:
 captcha_expl_image =              Bitte die Buchstaben/Zahlen des Bildes eingeben:
-captcha_image_alt =               Wenn Sie das Bild nicht sehen können, müssen Sie sich zuerst anmelden/einloggen, um den Eintrag machen zu können
+captcha_image_alt =               Wenn Sie das Bild nicht sehen können, müssen Sie sich zuerst registrieren/einloggen, um den Eintrag machen zu können
 captcha_image_alt_reg =           Bitte den Foren-Administrator kontaktieren, wenn Sie das Bild nicht sehen können 
 captcha_check_failed =            Spamschutz-Maßnahme nicht bestanden - bitte nochmal versuchen!
 
@@ -485,7 +485,7 @@ login_advice =                    Um sich einloggen zu können, müssen Cookies 
 pw_forgotten_link =               Passwort vergessen
 pwf_failed =                      Kein Benutzer mit dieser E-Mail-Adresse vorhanden
 login_failed =                    Unbekannter Benutzername oder Passwort falsch!
-registered_users_only =           Nur angemeldete Benutzer können Einträge schreiben!
+registered_users_only =           Nur registrierte Benutzer können Einträge schreiben!
 account_not_activated =           Benutzerkonto ist noch nicht aktiviert!
 account_activated =               Benutzerkonto erfolgreich aktiviert!
 account_activated_but_locked =    Benutzerkonto erfolgreich aktiviert aber es muss noch von einem Administrator oder Moderator freigeschaltet werden!
@@ -538,7 +538,7 @@ email =                           E-Mail
 homepage =                        Homepage
 user_hp_email =                   Homepage / E-mail:
 user_location =                   Ort:
-user_registered =                 Angemeldet:
+user_registered =                 Registriert:
 user_last_login =                 Letzer Login:
 user_logins =                     Logins:
 user_postings =                   Einträge:
@@ -583,7 +583,7 @@ edit_user_auto_login =            Automatisches einloggen:
 enable_auto_login =               automatischs Login aktivieren
 edit_user_notification =          E-Mail-Benachrichtigung:
 admin_mod_notif_posting =         bei neuen Einträgen
-admin_mod_notif_register =        bei neuen Benutzeranmeldungen
+admin_mod_notif_register =        beim Registrieren neuer Benutzer
 userdata_submit_button =          OK - Speichern
 profile_saved =                   Profil gespeichert
 pw_changed =                      Passwort geändert
@@ -609,12 +609,12 @@ error_email_invalid =             die E-Mail-Adresse ist ungültig
 pw_wrong =                        das Passwort ist falsch
 
 [register]
-register_exp =                    Bitte gewünschten Benutzername, Passwort und eine eine gültige E-Mail-Adresse angeben. Nach Anmeldung wird ein Aktivierungslink an diese E-Mail-Adresse gesendet. Das Konto muss dann innerhalb eines Tages aktiviert werden.
+register_exp =                    Bitte gewünschten Benutzername, Passwort und eine eine gültige E-Mail-Adresse angeben. Nach dem Registrieren wird ein Aktivierungslink an diese E-Mail-Adresse gesendet. Das Konto muss dann innerhalb eines Tages aktiviert werden.
 register_username =               Benutzername:
 register_user_email =             E-Mail:
 register_pw =                     Passwort:
 register_pw_conf =                Passwort wiederholen:
-register_only_by_admin =          Neue Benutzer können nur vom Administrator angemeldet werden.
+register_only_by_admin =          Neue Benutzer können nur vom Administrator registriert werden.
 registered =                      Das Benutzerkonto wurde eingerichtet und der Aktivierungslink wurde an <strong>[var]</strong> gesendet. Bitte das Konto innerhalb eines Tages aktivieren.
 registered_send_error =           Das Benutzerkonto wurde eingerichtet aber der Aktivierungslink konnte nicht gesendet werden (Mailserver-Fehler). Bitte den Administrator kontaktieren um das Konto manuell zu aktivieren.
 activation_failed =               Aktivierung fehlgeschlagen!
@@ -691,31 +691,31 @@ accession =                       Zugangsberechtigung
 accession_desc =                  Wer hat Zugang zum Forum?
 post_permission =                 Eintrags-Berechtigung
 post_permission_desc =            Wer kann Einträge machen?
-only_registered_users =           nur angemeldete Benutzer
+only_registered_users =           nur registrierte Benutzer
 all_users =                       alle
 register_permission =             User registration
-register_permission_desc =        Können sich Benutzer selbst anmelden?
+register_permission_desc =        Können sich Benutzer selbst registrieren?
 register_self =                   selbst
 register_self_locked =            selbst, aber neue Benutzerkonten müssen von einem Admin oder Moderator freigeschaltet werden
-register_only_admin =             Anmeldung nur durch Administrator
+register_only_admin =             Registrieren nur durch Administrator
 user_area =                       Benutzerbereich
 user_area_desc =                  Ist der Benutzerbereich (Benutzerliste, Profile) öffentlich zugänglich?
 public_accessible =               öffentlich
-accessible_reg_users_only =       nur für angemeldete Benutzer zugänglich
+accessible_reg_users_only =       nur für registrierte Benutzer zugänglich
 latest_postings =                 Letzte Einträge
 latest_postings_desc =            Wieviele letzte Einträge sollen in einer Liste auf der Hauptseite angezeigt werden (0=keine)? 
 tag_cloud =                       Tag-Cloud (Schlagwortwolke)
 tag_cloud_desc =                  Soll auf der Hauptseite eine Tag-Cloud mit den aktuellen Tags angezeigt werden? 
 enable_tag_cloud =                Tag-Cloud anzeigen
 terms_of_use_agreement =          Nutzungsbedingungen
-terms_of_use_agreement_desc =     Müssen Nutzungsbedingungen von nicht angemeldeten Benutzern beim Schreiben von Einträgen und bei der Anmeldung zugestimmt werden?
+terms_of_use_agreement_desc =     Müssen Nutzungsbedingungen von nicht registrierten Benutzern beim Schreiben von Einträgen und bem Registrieren zugestimmt werden?
 terms_of_use_agreement_enabled =  Nutzungsbedingungen verwenden
 terms_of_use_url =                Adresse (URL) der Nutzungsbedingungen:
 edit_postings =                   Einträge bearbeiten
 edit_postings_desc =              Einstellungen zur Bearbeitung von Einträgen
 edit_own_postings =               Bearbeiten eigener Einträge:
 edit_own_postings_all =           alle Benutzer können ihre eigenen Einträge bearbeiten
-edit_own_postings_users =         nur angemeldete Benutzer können ihre Einträge bearbeiten
+edit_own_postings_users =         nur registrierte Benutzer können ihre Einträge bearbeiten
 edit_own_postings_disabled =      aus (nur Admins und Moderatoren können Einträge bearbeiten)
 user_edit_if_no_replies =         wenn ein Eintrag eine Antwort erhält, kann er nur noch innerhalb von [minutes] Minuten bearbeitet werden (0 =       kann nicht mehr bearbeitet werden, wenn geantwortet wurde)  
 edit_max_time_period =            Maximaler Zeitraum, in dem ein Beitrag bearbeitet werden kann: [minutes] Minuten (0 =       unbegrenzt)
@@ -731,14 +731,14 @@ smilies =                         Smilies
 smilies_desc =                    Sollen Smilies wie ":-)" durch Bilder ersetzt werden? (Smilies können in der Smiley-Administration verwaltet werden)
 smilies_enabled =                 Smilies aktiviert
 enamble_avatars =                 Avatare
-enamble_avatars_desc =            Können angemeldete Benutzer Avatar-Bilder hochladen? Dafür muss das Verzeichnis images/avatars/ beschreibbar sein (CHMOD 777).
+enamble_avatars_desc =            Können registrierte Benutzer Avatar-Bilder hochladen? Dafür muss das Verzeichnis images/avatars/ beschreibbar sein (CHMOD 777).
 avatars_profiles_postings =       Avatare in Profilen und Einträgen anzeigen
 avatars_profiles =                Avatare nur in Profilen anzeigen
 max_avatar_size =                 Maximale Größe der Avatar-Bilder:<br /> [width] x [height], [filesize] KB 
 upload_images =                   Bilder-Upload
 upload_images_desc =              Sollen Bilder hochgeladen werden können? Dafür muss das Verzeichnis images/uploaded/ beschreibbar sein (CHMOD 777).
 upload_enabled_admins_mods =      nur Administratoren und Moderatoren können Bilder hochladen
-upload_enabled_users =            alle angemeldeten Benutzer können Bilder hochladen
+upload_enabled_users =            alle registrierten Benutzer können Bilder hochladen
 upload_enabled_all =              alle Benutzer können Bilder hochladen
 max_upload_size =                 Maximale Bildgröße:<br /> [width] x [height], [filesize] KB
 autolink =                        Auto-Link
@@ -759,7 +759,7 @@ forum_disabled_message =          Nachricht, die angezeigt wird, wenn nicht in B
 category_name =                   Kategorie
 category_accession =              zugänglich für
 cat_accessible_admin_mod =        Admins und Mods
-cat_accessible_reg_users =        angemeldete Benutzer
+cat_accessible_reg_users =        registrierte Benutzer
 cat_accessible_all =              alle
 category_topics =                 Threads
 category_entries =                Einträge
@@ -800,7 +800,7 @@ page_content_desc =               zur Formatierung kann HTML verwendet werden
 page_menu_linkname =              Menü-Linkname
 page_menu_linkname_desc =         nur wenn die Seite im Menü angezeigt werden soll
 page_access =                     Zugänglichkeit
-page_access_reg_users =           nur angemeldete Benutzer
+page_access_reg_users =           nur registrierte Benutzer
 page_access_public =              öffentlich
 no_pages =                        keine Seiten vorhanden
 add_page_link =                   Seite hinzufügen
@@ -812,12 +812,12 @@ error_no_page_title =             kein Seitentitel
 
 # Benutzerverwaltung:
 user_name_empty =                 kein Benutzername eingegeben
-num_registerd_users =             [number] angemeldete Benutzer
+num_registerd_users =             [number] registrierte Benutzer
 user_id =                         ID
 user_name =                       Benutzername
 user_email =                      E-Mail
 user_type =                       Typ
-user_registered =                 angemeldet
+user_registered =                 registriert
 user_logins =                     Logins
 last_login =                      letzter Login
 lock =                            Sperre
@@ -833,7 +833,7 @@ activate_note =                   Das Benutzerkonto ist noch nicht aktiviert ode
 activate_link =                   Benutzerkonto aktivieren
 delete_selected_users =           ausgewählte Benutzer löschen 
 add_user =                        Benutzer hinzufügen
-email_list =                      E-Mail-Liste der angemeldeten Benutzer
+email_list =                      E-Mail-Liste der registrierten Benutzer
 clear_userdata =                  Benutzerkonten aufräumen
 delete_avatar =                   Avatar löschen
 delete_user_confirmation =        Sicher, dass dieser Benutzer gelöscht werden soll?
@@ -847,19 +847,19 @@ register_pw_conf =                Passwort wiederholen:
 register_send_userdata =          Zugangsdaten an die angegebene E-Mail-Adresse senden
 error_send_userdata =             Wenn kein Passwort angegeben werden soll, muss das generierte Passwoert per E-Mail versendet werden
 error_email_wrong =               E-Mail-Adresse ungültig
-new_user_registered =             Der Benutzer "[name]" wurde angemeldet.
-new_user_reg_send_error =         Der Benutzer "[name]" wurde angemeldet, aber die Zugangsdaten konnten nicht versendet werden.
+new_user_registered =             Der Benutzer "[name]" wurde registriert.
+new_user_reg_send_error =         Der Benutzer "[name]" wurde registriert, aber die Zugangsdaten konnten nicht versendet werden.
 clear_userdata_condition =        Benutzer löschen, die sich höchstens [logins] mal eingeloggt haben und das letzte Mal vor über [days] Tagen. 
 clear_userdata_note =             Administratoren und Moderatoren werden nicht erfasst, vor dem entgültigen Löschen wird eine Liste der betroffenen Benutzer angezeigt.
 no_users_in_selection =           keine Benutzer in der Auswahl
 
 # Spamschutz:
 captcha =                         CAPTCHA
-captcha_desc =                    Welche Formulare sollen mit welchem CAPTCHA-Typ geschützt werden (betrifft nur nicht angemeldete Benutzer)?
+captcha_desc =                    Welche Formulare sollen mit welchem CAPTCHA-Typ geschützt werden (betrifft nur nicht registrierte Benutzer)?
 captcha_graphical_desc =          Das graphische CAPTCHA benötigt die GD Lib und es sollte mindestens eine TTF-Schrift verwendet werden. Die Schrift-Dateien (*.ttf) müssen in das Verzeichnis modules/captcha/fonts/ kopiert werden. Schriften gibt es z.B. auf www.dafont.com.
 captcha_posting =                 Eintrags-Formular:
 captcha_email =                   E-Mail-Formular:
-captcha_register =                Anmeldeformular:
+captcha_register =                Registrier-Formular:
 captcha_disabled =                aus
 captcha_mathematical =            mathematisch
 captcha_graphical =               graphisch
@@ -975,7 +975,7 @@ Betreff: [subject]
 [text]
 
 URL des Eintrags: [posting_address]"""
-admin_reg_user_email_subj =       Foren-Anmeldung
+admin_reg_user_email_subj =       Foren-Registrierung
 admin_reg_user_email_text =       """Hallo [name],
 willkommen im Forum!
 
@@ -989,21 +989,21 @@ Direkter Link zum Einloggen:
 
 Das Passwort kann nach dem Einloggen geändert werden."""
 
-new_user_email_sj =               Foren-Anmeldung
+new_user_email_sj =               Foren-Registrierung
 new_user_email_txt =              """Hallo [name],
 willkommen im Forum!
 
 Zur Aktivierung bitte diesen Link aufrufen:
 [activate_link]"""
-new_user_notif_sj =               Neue Benutzer-Anmeldung
+new_user_notif_sj =               Neue Benutzer-Registrierung
 new_user_notif_txt =              """Hallo [recipient],
-es hat sich ein neuer Benutzer angemeldet.
+es hat sich ein neuer Benutzer registriert.
 Benutzername: [name]
 E-Mail: [email]
 
 [user_link]"""
 new_user_notif_txt_locked =       """Hallo [recipient],
-es hat sich ein neuer Benutzer angemeldet.
+es hat sich ein neuer Benutzer registriert.
 Benutzername: [name]
 E-Mail: [email]
 

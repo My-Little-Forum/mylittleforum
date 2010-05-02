@@ -814,9 +814,10 @@ var ready = new (function () {
 						var scrollPos = document.getScrollPosition();
 						var winSize = document.getWindowSize();							
 						imageCanvas.style.height=winSize.pageHeight+"px";
-						fullSizeImage.style.left = ((winSize.windowWidth-imgPoSi.width)/2)  + "px"; 
+						//fullSizeImage.style.left = ((winSize.windowWidth-imgPoSi.width)/2)  + "px";
+						//fullSizeImage.style.left = ((winSize.windowWidth-fullSizeImage.width)/2)  + "px";  
 						//fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
-						fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/15) + "px"; 
+						fullSizeImage.style.marginTop = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
 						
 						hashTrigger = window.setInterval( 
 							function() {
