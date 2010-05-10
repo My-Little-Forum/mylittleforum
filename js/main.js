@@ -1415,6 +1415,24 @@ var ready = new (function () {
 		this.getAjaxPreviewWindow = function() {
 			return ajaxPreviewWindow;
 		}
+
+		/**
+		 * Sendet das Formular im Submenue ab, wenn sich der
+		 * Wert im Drop-Down-Menue aendert
+		 */
+		var setAutoSubmitSubNaviForms = function() {
+			var subNav = document.getElementById("subnav-2");
+			if (subNav) {
+				var f = subNav.getElementsByTagName("form");
+				for (var i=0; i<f.length; i++) {
+					var els = f[i].getElementsByTagName("select");
+					for (var j=0; j<els.length; j++) {
+						els[j].f = f[i];
+						els[j].onchange = function(e) { this.f.submit(); return false; };
+					}
+				}
+			}
+		};
 		
 		/**
 		 * Initialisiert MyLittelJavaScript
@@ -1434,12 +1452,13 @@ var ready = new (function () {
 			
 			initPostingFolding( document.getElementsByClassName("thread-posting") );
 			initPopUpLinks();
+			setAutoSubmitSubNaviForms();
 			sidebar = new Sidebar(templatePath);
 			
 			if (typeof preload == "object") 
-				document.preloadImages(preload, templatePath);
+				document.preloadImages(preload, templatePath);		
 		};
-		
+	
 	}
 	
 	var mlf = null;

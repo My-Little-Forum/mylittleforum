@@ -9,7 +9,7 @@
 {if $categories && $mode=='index'}
 <form action="index.php" method="get" accept-charset="{#charset#}"><div>
 <input type="hidden" name="mode" value="{$mode}" />
-&nbsp;<select class="small" size="1" name="category" onchange="this.form.submit();" title="{#category_title#}">
+&nbsp;<select class="small" size="1" name="category" title="{#category_title#}">
 <option value="0"{if $category==0} selected="selected"{/if}>{#all_categories#}</option>
 {if $category_selection}<option value="-1"{if $category==-1} selected="selected"{/if}>{#my_category_selection#}</option>{/if}
 {foreach key=key item=val from=$categories}
@@ -22,7 +22,7 @@
 <input type="hidden" name="mode" value="{$mode}" />
 {if $order}<input type="hidden" name="order" value="{$order}" />{/if}
 {if $category}<input type="hidden" name="category" value="{$category}" />{/if}
-<select class="small" size="1" name="page" onchange="this.form.submit();" title="{#browse_page_title#}">
+<select class="small" size="1" name="page" title="{#browse_page_title#}">
 {foreach from=$pagination_top.items item=item}
 {if $item!=0}<option value="{$item}"{if $item==$page} selected="selected"{/if}>{$item}</option>{/if}
 {/foreach}
