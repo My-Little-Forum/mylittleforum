@@ -1,7 +1,7 @@
 <?php
 /******************************************************************************
 * my little forum                                                             *
-* update file to update from version 2.0.* to version 2.2                     *
+* update file to update from version 2.* to version 2.2                       *
 *                                                                             *
 * Update instructions:                                                        *
 * - Load up this file into the directory "update"                             *
@@ -249,7 +249,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
    {
     $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysql_error();
    }
-  if(!@mysql_query("UPDATE ".$db_settings['settings_table']." SET name = 'theme' WHERE name = 'template'", $connid))
+  if(!@mysql_query("UPDATE ".$db_settings['settings_table']." SET name = 'theme', value = 'default' WHERE name = 'template'", $connid))
    {
     $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysql_error();
    }
