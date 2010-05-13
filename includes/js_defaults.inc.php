@@ -5,7 +5,7 @@ if(!defined('IN_INDEX'))
   exit;
  }
 
-if(isset($_SESSION[$settings['session_prefix'].'usersettings']['theme']) && $smarty->template_exists($_SESSION[$settings['session_prefix'].'usersettings']['theme'].'/'.$template)) $theme = $_SESSION[$settings['session_prefix'].'usersettings']['theme'];
+if(isset($_SESSION[$settings['session_prefix'].'usersettings']['theme']) && $smarty->template_exists($_SESSION[$settings['session_prefix'].'usersettings']['theme'].'/main.tpl')) $theme = $_SESSION[$settings['session_prefix'].'usersettings']['theme'];
 else $theme = $settings['theme'];
 
 $theme_config = parse_ini_file('./'.THEMES_DIR.'/'.$theme.'/js_config.ini');
