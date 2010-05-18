@@ -1,6 +1,22 @@
 my little forum changelog
 -------------------------
 
+2.2.1 (2010-05-??)
+------------------
+- Bugfix: Thumbnail feature didn't work in Safari
+
+Edited files:
+ - js/main.js
+ - js/main.min.js
+
+Database changes:
+- no database changes
+ 
+Manual update:
+- replace the changed files
+- set "version" to "2.2.1" in Admin --> Forum settings --> Advanced settings
+
+
 2.2 (2010-05-13)
 ----------------
 Changes:

@@ -529,7 +529,7 @@ var ready = new (function () {
 	 *
 	 */
 	function Request(uri,m,q,obj,func,args,resXML,mimeType){
-		args = args?(typeof args == "object"?args:[args]):[];
+		args = args?(typeof args == "object"||typeof args == "function"?args:[args]):[];
 		resXML  = resXML || false;
 		mimeType = mimeType?mimeType:resXML?"text/xml":"text/plain";
 		obj = obj || null;
@@ -562,7 +562,7 @@ var ready = new (function () {
 		var qStr = "";	
 		if (q instanceof Query)
 			qStr = q.toString();
-		else if(typeof q == "object" && q.length > 0)
+		else if((typeof q == "object"||typeof q == "function") && q.length > 0)
 			for (var i=0; i<q.length; i++)
 				qStr += q[i].toString();
 		qStr +=	new Date().getTime();
@@ -763,7 +763,7 @@ var ready = new (function () {
 	
 	function FullSizeImage(els) {
 		if (!els) return;
-		els = typeof els == "object" && typeof els.length == "number"?els:[els];
+		els = (typeof els == "object" || typeof els == "function") && typeof els.length == "number"?els:[els];
 		var hashTrigger = null;
 		var body = document.body;
 		// http://aktuell.de.selfhtml.org/weblog/kompatibilitaetsmodus-im-internet-explorer-8
@@ -1087,7 +1087,7 @@ var ready = new (function () {
 		 * @param param2 null || args
 		 */
 		this.selectPosting = function(par1, par2) {
-			var isResponse = par2 && typeof par2 == "object" && par2.length > 0;
+			var isResponse = par2 && (typeof par2 == "object" || typeof par2 == "function") && par2.length > 0;
 			var pid = isResponse?par2[0]:par1;
 			var xml = isResponse?par1:false;
 			var imgEl = null;
