@@ -1,13 +1,17 @@
 my little forum changelog
 -------------------------
 
-2.2.1 (2010-05-??)
+2.2.1 (2010-05-20)
 ------------------
-- Bugfix: Thumbnail feature didn't work in Safari
+- Minor JavaScript improvements / JavaScript issue in Safari fixed
+- Russian language file updated 
 
 Edited files:
  - js/main.js
  - js/main.min.js
+ - js/posting.js
+ - js/posting.min.js
+ - lang/russian.lang
 
 Database changes:
 - no database changes

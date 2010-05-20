@@ -196,9 +196,7 @@ function BBCodeColorChooserButton(el) {
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
-		var buttonGroup = this.getButtonGroup();	
-		var txtarea = buttonGroup.getTextArea();
-		selectionRange = txtarea.getSelection();
+		var buttonGroup = this.getButtonGroup();
 		var objPos = document.getElementPoSi(obj);
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(colorTable);
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	
@@ -337,8 +335,8 @@ function BBCodeSmilieButton(el, list) {
 		if (!this.canInsert()) 
 			return;
 		var buttonGroup = this.getButtonGroup();	
-		var txtarea = buttonGroup.getTextArea();
-		selectionRange = txtarea.getSelection();
+		//var txtarea = buttonGroup.getTextArea();
+		//selectionRange = txtarea.getSelection();
 		var objPos = document.getElementPoSi(obj);
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(smilies);
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	

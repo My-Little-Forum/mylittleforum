@@ -214,7 +214,17 @@ UPDATE mlf2_settings SET value = '2.1.1' WHERE name = 'version';
 UPDATE mlf2_settings SET value = '2.1.2' WHERE name = 'version';
 */
 --------------------------------------------------------------------------------
--- 2.1.2 to 2.2
+-- 2.1.2 to 2.1.3
+/*
+UPDATE mlf2_settings SET value = '2.1.3' WHERE name = 'version';
+*/
+--------------------------------------------------------------------------------
+-- 2.1.3 to 2.1.4
+/*
+UPDATE mlf2_settings SET value = '2.1.4' WHERE name = 'version';
+*/
+--------------------------------------------------------------------------------
+-- 2.1.4 to 2.2
 /*
 ALTER TABLE mlf2_userdata DROP time_difference;
 ALTER TABLE mlf2_userdata ADD language VARCHAR(255) NOT NULL DEFAULT '';
@@ -231,4 +241,9 @@ UPDATE mlf2_settings SET name = 'theme' WHERE name = 'template';
 UPDATE mlf2_settings SET name = 'time_zone' WHERE name = 'timezone';
 UPDATE mlf2_settings SET value = '0' WHERE name = 'time_difference';
 UPDATE mlf2_settings SET value = '2.2' WHERE name = 'version';
+*/
+--------------------------------------------------------------------------------
+-- 2.2 to 2.2.1
+/*
+UPDATE mlf2_settings SET value = '2.2.1' WHERE name = 'version';
 */

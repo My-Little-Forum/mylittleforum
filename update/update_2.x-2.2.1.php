@@ -1,7 +1,7 @@
 <?php
 /******************************************************************************
 * my little forum                                                             *
-* update file to update from version 2.* to version 2.2                       *
+* update file to update from version 2.* to version 2.2.1                     *
 *                                                                             *
 * Update instructions:                                                        *
 * - Load up this file into the directory "update"                             *
@@ -15,18 +15,22 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4');
-$update['new_version'] = '2.2';
+$update['version'] = array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2');
+$update['new_version'] = '2.2.1';
 #$update['download_url'] = 'http://downloads.sourceforge.net/mylittleforum/my_little_forum_2.2.zip';
 #$update['message'] = '<p>HTML formated message...</p>';
 
 // changed files (folders followed by a slash like this: folder/):
-#switch($settings['version'])
-# {
-#  case '2.2':
-#     $update['items'][] = '';
-#     break;
-#  default:
+switch($settings['version'])
+ {
+  case '2.2':
+     $update['items'][] = 'js/main.js';
+     $update['items'][] = 'js/main.min.js';
+     $update['items'][] = 'js/posting.js';
+     $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'lang/russian.lang';
+     break;
+  default:
      $update['items'][] = 'includes/';
      $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
@@ -36,7 +40,7 @@ $update['new_version'] = '2.2';
      $update['items'][] = 'themes/';
      $update['items'][] = 'config/time_zones';
      $update['items'][] = 'index.php';
-# }
+ }
 
 // check version:
 if(!in_array($settings['version'], $update['version']))
@@ -282,6 +286,10 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
     $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysql_error();
    }
  }
+
+#if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1')))
+# {
+# }
 
 if(empty($update['errors']))
  {
