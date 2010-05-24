@@ -1,6 +1,22 @@
 my little forum changelog
 -------------------------
 
+2.2.2 (2010-05-25)
+------------------
+- Bugfix: JS error if not logged in and forum is accessible by registered users 
+  only
+  
+Edited files:
+ - index.php
+
+Database changes:
+- no database changes
+ 
+Manual update:
+- replace the changed file
+- set "version" to "2.2.2" in Admin --> Forum settings --> Advanced settings
+
+
 2.2.1 (2010-05-20)
 ------------------
 - Minor JavaScript improvements / JavaScript issue in Safari fixed

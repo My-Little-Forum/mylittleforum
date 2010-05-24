@@ -5,7 +5,7 @@
  *
  * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
  * @copyright 2006-2010 Mark Alexander Hoschek
- * @version 2.2.1 (2010-05-20)
+ * @version 2.2.2 (2010-05-25)
  * @link http://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -102,11 +102,11 @@ $mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : '';
 
 if($settings['access_for_users_only'] == 1 && empty($_SESSION[$settings['session_prefix'].'user_id']))
  {
-  if(empty($mode) || $mode!='account_locked' && $mode!='register' && $mode!='page') $mode = 'login';
+  if(empty($mode) || $mode!='account_locked' && $mode!='register' && $mode!='page' && $mode!='js_defaults') $mode = 'login';
  }
 if($settings['forum_enabled']!=1 && (empty($_SESSION[$settings['session_prefix'].'user_type']) || $_SESSION[$settings['session_prefix'].'user_type']<2))
  {
-  if(empty($mode) || $mode!='disabled' && $mode!='rss' && $mode!='login') $mode = 'disabled';
+  if(empty($mode) || $mode!='disabled' && $mode!='rss' && $mode!='login' && $mode!='js_defaults') $mode = 'disabled';
  }
 if(empty($mode) && isset($_REQUEST['id'])) $mode = 'entry';
 

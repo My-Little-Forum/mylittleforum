@@ -247,3 +247,8 @@ UPDATE mlf2_settings SET value = '2.2' WHERE name = 'version';
 /*
 UPDATE mlf2_settings SET value = '2.2.1' WHERE name = 'version';
 */
+--------------------------------------------------------------------------------
+-- 2.2.1 to 2.2.2
+/*
+UPDATE mlf2_settings SET value = '2.2.2' WHERE name = 'version';
+*/
