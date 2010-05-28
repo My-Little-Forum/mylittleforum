@@ -1464,7 +1464,7 @@ var ready = new (function () {
 	var mlf = null;
 	window.ready.push(function() {
 		mlf = new MyLittleJavaScript();
-		var ajaxPreviewStructure = typeof settings["ajaxPreviewStructure"] == "string"?settings["ajaxPreviewStructure"]:false;
+		var ajaxPreviewStructure = typeof settings != "undefined" && typeof settings["ajaxPreviewStructure"] == "string"?settings["ajaxPreviewStructure"]:false;
 		if (mlf && typeof lang == "object") 
 			mlf.init(ajaxPreviewStructure);
 	});

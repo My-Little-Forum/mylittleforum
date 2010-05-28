@@ -25,9 +25,13 @@ switch($settings['version'])
  {
   case '2.2.2':
      $update['items'][] = 'includes/functions.inc.php';
+     $update['items'][] = 'js/main.js';
+     $update['items'][] = 'js/main.min.js';
      break;
   case '2.2.1':
      $update['items'][] = 'includes/functions.inc.php';
+     $update['items'][] = 'js/main.js';
+     $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'index.php';
      break;
   case '2.2':

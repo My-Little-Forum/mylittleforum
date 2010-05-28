@@ -2140,16 +2140,16 @@ function my_strpos($haystack, $needle, $offset=0, $encoding='utf-8')
  * @param string $name
  * @return string
  */
-function encode_mail_name($name, $charset=CHARSET)
+function encode_mail_name($name, $charset=CHARSET, $linefeed="\r\n")
  {
   $name = str_replace('"', '\\"', $name);
   if(preg_match("/(\.|\;|\")/", $name))
    {
-    return '"'.my_mb_encode_mimeheader($name, $charset, "Q").'"';
+    return '"'.my_mb_encode_mimeheader($name, $charset, "Q", $linefeed).'"';
    }
   else
    {
-    return my_mb_encode_mimeheader($name, $charset, "Q");
+    return my_mb_encode_mimeheader($name, $charset, "Q", $linefeed);
    }
  }
 
@@ -2273,15 +2273,16 @@ function my_mail($to, $subject, $message, $from='')
   global $settings;
   $mail_header_separator = "\n"; // "\r\n" complies with RFC 2822 but might cause problems in some cases (see http://php.net/manual/en/function.mail.php)
 
-  $mail_charset = get_mail_encoding($subject.$message.$from);
+  if($from=='') $mail_charset = get_mail_encoding($subject.$message.$settings['forum_name'].$settings['forum_email']);
+  else $mail_charset = get_mail_encoding($subject.$message.$from);
 
   $to = mail_header_filter($to);
-  $subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q");
+  $subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q", $mail_header_separator);
   $message = my_quoted_printable_encode($message);
   
   if($from == '')
    {
-    $headers = "From: " . encode_mail_name($settings['forum_name'], $mail_charset)." <".$settings['forum_email'].">". $mail_header_separator;
+    $headers = "From: " . encode_mail_name($settings['forum_name'], $mail_charset, $mail_header_separator)." <".$settings['forum_email'].">". $mail_header_separator;
    }
   else
    {
