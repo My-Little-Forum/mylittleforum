@@ -2271,13 +2271,12 @@ function get_mail_encoding($string)
 function my_mail($to, $subject, $message, $from='')
  {
   global $settings;
-  $mail_header_separator = "\r\n"; // try to use "\n" if messages are not sent (see http://php.net/manual/en/function.mail.php)
+  $mail_header_separator = "\n"; // "\r\n" complies with RFC 2822 but might cause problems in some cases (see http://php.net/manual/en/function.mail.php)
 
   $mail_charset = get_mail_encoding($subject.$message.$from);
 
   $to = mail_header_filter($to);
   $subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q");
-  #$message = chunk_split(base64_encode($message));
   $message = my_quoted_printable_encode($message);
   
   if($from == '')

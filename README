@@ -1,6 +1,4 @@
-my little forum
-Version 2.2.2 (2010-05-25)
-http://mylittleforum.net/
+my little forum - http://mylittleforum.net/
 
 REQUIREMENTS:
 * Webserver with PHP >= 4.2 and MySQL >= 4.1
@@ -9,9 +7,9 @@ INSTALLATION:
 * Unzip the script package.
 * Upload the complete folder "forum" to your server.
 * Depending on your server configuration the write permissions of the 
-  subdirectory templates_c (CHMOD 770/775) and the file config/db_settings.php 
-  (CHMOD 666) might need to be changed in order that they are writable by the 
-  script.
+  subdirectory templates_c (CHMOD 770, 775 or 777) and the file 
+  config/db_settings.php (CHMOD 666) might need to be changed in order that they 
+  are writable by the script.
 * Run the installation script by accessing http://yourdomain.tld/forum/install/ 
   in your web browser and follow the instructions.
 

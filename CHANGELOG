@@ -1,7 +1,23 @@
 my little forum changelog
 -------------------------
 
-2.2.2 (2010-05-25)
+2.2.3 (2010-05-30)
+------------------
+- Mail header separator changed from "\r\n" to "\n". Seems to be less 
+  error-prone although it doesn't comply with RFC 2822
+  
+Edited files:
+ - includes/functions.inc.php
+
+Database changes:
+- no database changes
+ 
+Manual update:
+- replace the changed file
+- set "version" to "2.2.3" in Admin --> Forum settings --> Advanced settings
+
+
+2.2.2 (2010-05-26)
 ------------------
 - Bugfix: JS error if not logged in and forum is accessible by registered users 
   only
