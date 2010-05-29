@@ -1021,8 +1021,9 @@ the e-mail address has been changed. You now have to activate your account again
 [activate_link]"""
 pwf_activating_email_sj =         Request for a new password
 pwf_activating_email_txt =        """Hi [name],
-this e-mail has been sent from the forum ([forum_address]) because a new password has been requested. Please click the link below to confirm your request. By following the link a new password will be generated and sent to you. If this e-mail has been sent in error (either by you or someone else) please ignore this e-mail.
+this e-mail has been sent by the forum on [forum_address] because a new password has been requested. Please click the link below to confirm your request. By following the link a new password will be generated and sent to you. If this e-mail has been sent in error (either by you or someone else) please ignore this e-mail.
 
+Link to confirm your request:
 [activating_link]"""
 new_pw_email_sj =                 "New user data for the forum"
 new_pw_email_txt =                """Hi [name],

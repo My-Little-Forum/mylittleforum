@@ -27,11 +27,15 @@ switch($settings['version'])
      $update['items'][] = 'includes/functions.inc.php';
      $update['items'][] = 'js/main.js';
      $update['items'][] = 'js/main.min.js';
+     $update['items'][] = 'lang/english.lang';
+     $update['items'][] = 'lang/german.lang';
      break;
   case '2.2.1':
      $update['items'][] = 'includes/functions.inc.php';
      $update['items'][] = 'js/main.js';
      $update['items'][] = 'js/main.min.js';
+     $update['items'][] = 'lang/english.lang';
+     $update['items'][] = 'lang/german.lang';
      $update['items'][] = 'index.php';
      break;
   case '2.2':
@@ -40,6 +44,8 @@ switch($settings['version'])
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'lang/english.lang';
+     $update['items'][] = 'lang/german.lang';
      $update['items'][] = 'lang/russian.lang';
      $update['items'][] = 'index.php';
      break;

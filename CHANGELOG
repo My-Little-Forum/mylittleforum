@@ -6,11 +6,14 @@ my little forum changelog
 - Mail header separator changed from "\r\n" to "\n". Seems to be less 
   error-prone although it doesn't comply with RFC 2822
 - Minor JS improvements
+- Minor language file changes
   
 Edited files:
  - includes/functions.inc.php
  - js/main.js
  - js/main.min.js
+ - lang/english.lang
+ - lang/german.lang
 
 Database changes:
 - no database changes

@@ -1014,8 +1014,9 @@ die E-Mail-Adresse wurde geändert. Das Benutzerkonto muss nun wieder mit folgen
 [activate_link]"""
 pwf_activating_email_sj =         Neues Passwort anfordern
 pwf_activating_email_txt =        """Hallo [name],
-diese E-Mail wurde vom Forum ([forum_address]) gesendet, da ein neues Passwort angefordert wurde. Falls es sich nicht um ein Irrtum handelt (z.B. weil jemand anderes diese E-Mail angefordert hat), bitte dies mit folgendem Link bestätigen. Ansonsten den Link nicht anklicken und diese E-Mail ignorieren. Mit Klicken des Links wird ein neues Passwort generiert und per E-Mail gesendet.
+diese E-Mail wurde vom Forum auf [forum_address] gesendet, da ein neues Passwort angefordert wurde. Falls es sich nicht um ein Irrtum handelt (z.B. weil jemand anderes diese E-Mail angefordert hat), bitte dies mit folgendem Link bestätigen. Ansonsten den Link nicht anklicken und diese E-Mail ignorieren. Mit Klicken des Links wird ein neues Passwort generiert und per E-Mail gesendet.
 
+Bestätigungslink:
 [activating_link]"""
 new_pw_email_sj =                 "Neue Zugangsdaten für das Forum"
 new_pw_email_txt =                """Hallo [name],
