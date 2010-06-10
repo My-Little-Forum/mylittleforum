@@ -1,5 +1,4 @@
 {if $user_postings_data}
-{include file="$theme/subtemplates/ajax_preview.inc.tpl"}
 <p>{if $user_postings_count>1}{$smarty.config.several_postings_by_user|replace:"[number]":$user_postings_count}{else}{#one_posting_by_user#}{/if}</p>
 <ul class="searchresults">
 {section name=ix loop=$user_postings_data}

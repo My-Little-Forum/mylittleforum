@@ -1,6 +1,10 @@
 my little forum changelog
 -------------------------
 
+2.2.4 (2010-06-11)
+------------------
+- Template bug fixed (http://mylittleforum.net/forum/index.php?id=4982)
+
 2.2.3 (2010-05-30)
 ------------------
 - Mail header separator changed from "\r\n" to "\n". Seems to be less 
