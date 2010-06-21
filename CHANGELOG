@@ -1,9 +1,36 @@
 my little forum changelog
 -------------------------
 
+2.2.5 (2010-06-21)
+------------------
+- Template bug fixed (http://mylittleforum.net/forum/index.php?id=5000)
+
+Edited files:
+- themes/default/subtemplates/thread.inc.tpl
+- themes/default/subtemplates/thread_linear.inc.tpl
+
+Database changes:
+- no database changes
+ 
+Manual update:
+- replace the changed files
+- set "version" to "2.2.4" in Admin --> Forum settings --> Advanced settings
+
+
 2.2.4 (2010-06-11)
 ------------------
 - Template bug fixed (http://mylittleforum.net/forum/index.php?id=4982)
+
+Edited files:
+- themes/default/subtemplates/user_postings.inc.tpl
+
+Database changes:
+- no database changes
+ 
+Manual update:
+- replace the changed file
+- set "version" to "2.2.4" in Admin --> Forum settings --> Advanced settings
+
 
 2.2.3 (2010-05-30)
 ------------------

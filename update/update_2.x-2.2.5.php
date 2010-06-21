@@ -1,7 +1,7 @@
 <?php
 /******************************************************************************
 * my little forum                                                             *
-* update file to update from version 2.* to version 2.2.4                     *
+* update file to update from version 2.* to version 2.2.5                     *
 *                                                                             *
 * Update instructions:                                                        *
 * - Load up this file into the directory "update"                             *
@@ -15,16 +15,22 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3');
-$update['new_version'] = '2.2.4';
+$update['version'] = array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4');
+$update['new_version'] = '2.2.5';
 #$update['download_url'] = 'http://downloads.sourceforge.net/mylittleforum/my_little_forum_2.2.zip';
 #$update['message'] = '<p>HTML formated message...</p>';
 
 // changed files (folders followed by a slash like this: folder/):
 switch($settings['version'])
  {
+  case '2.2.4':
+     $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+     break;
   case '2.2.3':
-     $update['items'][] = 'themes/default/subtemplates/user_postings.tpl';
+     $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
      break;
   case '2.2.2':
      $update['items'][] = 'includes/functions.inc.php';
@@ -32,6 +38,8 @@ switch($settings['version'])
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
+     $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/user_postings.tpl';
      break;
   case '2.2.1':
@@ -40,6 +48,8 @@ switch($settings['version'])
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
+     $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/user_postings.tpl';
      $update['items'][] = 'index.php';
      break;
@@ -52,6 +62,8 @@ switch($settings['version'])
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
      $update['items'][] = 'lang/russian.lang';
+     $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/user_postings.tpl';
      $update['items'][] = 'index.php';
      break;
@@ -312,7 +324,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
    }
  }
 
-#if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4')))
+#if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5')))
 # {
 # }
 

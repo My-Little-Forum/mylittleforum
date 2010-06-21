@@ -57,7 +57,7 @@
 {/if}
 </div>
 <div class="posting-footer">
-<div class="reply">{if $element.locked==0}<a class="stronglink" href="index.php?mode=posting&amp;id={$element.id}&amp;back=thread" title="{#reply_link_title#}">{#reply_link#}</a>{else}<span class="locked"><img src="{$THEMES_DIR}/{$theme}/images/lock.png" alt="" width="14" height="12" />{#posting_locked#}</span>{/if}</div>
+<div class="reply">{if $element.locked==0}<a class="stronglink" href="index.php?mode=posting&amp;id={$element.id}&amp;back=thread" title="{#reply_link_title#}">{#reply_link#}</a>{else}<span class="locked">{#posting_locked#}</span>{/if}</div>
 <div class="info">
 {if $element.views}<span class="views">{if $element.views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$element.views}{/if}</span>{/if}
 {if $element.options}
@@ -78,4 +78,4 @@
 </div>
 {/foreach}
 </div>
-{if $settings.rss_feed==1}<div class="small" style="text-align:right;"><img src="{$THEMES_DIR}/{$theme}/images/rss_link.png" alt="" width="13" height="9" /><a href="index.php?mode=rss&amp;thread={$tid}">{#rss_feed_thread#}</a></div>{/if}
+{if $settings.rss_feed==1}<div class="small" style="text-align:right;"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}">{#rss_feed_thread#}</a></div>{/if}
