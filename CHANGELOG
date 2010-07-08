@@ -1,6 +1,24 @@
 my little forum changelog
 -------------------------
 
+2.2.6 (2011-07-??)
+------------------
+- minor template bug fixed (bbcode button "image" was displayed even if
+  disabled)
+- rss feed uses cached entry data now
+
+Edited files:
+- includes/rss.inc.php
+- themes/default/subtemplates/posting.inc.tpl
+
+Database changes:
+- no database changes
+ 
+Manual update:
+- replace the changed files
+- set "version" to "2.2.6" in Admin --> Forum settings --> Advanced settings
+
+
 2.2.5 (2010-06-21)
 ------------------
 - Template bug fixed (http://mylittleforum.net/forum/index.php?id=5000)
@@ -14,7 +32,7 @@ Database changes:
  
 Manual update:
 - replace the changed files
-- set "version" to "2.2.4" in Admin --> Forum settings --> Advanced settings
+- set "version" to "2.2.5" in Admin --> Forum settings --> Advanced settings
 
 
 2.2.4 (2010-06-11)

@@ -32,8 +32,9 @@ if($settings['rss_feed'] == 1 && $settings['forum_enabled']==1)
   // database request
   if($categories == false)
    {
-    $result = @mysql_query("SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, subject, text
+    $result = @mysql_query("SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, subject, text, cache_text
                             FROM ".$db_settings['forum_table']."
+                            LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=id
                             LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                             WHERE spam=0".$query_addition."
                             ORDER BY time DESC LIMIT ".$settings['rss_feed_max_items'], $connid) or raise_error('database_error',mysql_error());
@@ -41,8 +42,9 @@ if($settings['rss_feed'] == 1 && $settings['forum_enabled']==1)
     }
   else
    {
-    $result = @mysql_query("SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, category, subject, text
+    $result = @mysql_query("SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, category, subject, text, cache_text
     FROM ".$db_settings['forum_table']."
+    LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=id
     LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
     WHERE category IN (".$category_ids_query.") AND spam=0".$query_addition."
     ORDER BY time DESC LIMIT ".$settings['rss_feed_max_items'], $connid) or raise_error('database_error',mysql_error());
@@ -55,8 +57,18 @@ if($settings['rss_feed'] == 1 && $settings['forum_enabled']==1)
     while ($row = mysql_fetch_array($result))
      {
       if($row['pid']!=0) $rss_items[$i]['reply'] = true;
-      $text = html_format($row['text']);
-      $rss_items[$i]['text'] = $text;
+      
+      if($row['cache_text']=='') 
+       {
+        $rss_items[$i]['text'] = html_format($row['text']);
+        @mysql_query("DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id=".intval($row['id']), $connid);
+        @mysql_query("INSERT INTO ".$db_settings['entry_cache_table']." (cache_id, cache_text) VALUES (".intval($row['id']).",'".mysql_real_escape_string($rss_items[$i]['text'])."')", $connid);
+       }
+      else $rss_items[$i]['text'] = $row['cache_text'];
+  
+      #$text = html_format($row['text']);
+      #$rss_items[$i]['text'] = $text;
+      
       $rss_items[$i]['title'] = htmlspecialchars($row['subject']);
 
       if($categories!=false && isset($categories[$row['category']]) && $categories[$row['category']]!='') $rss_items[$i]['category'] = $categories[$row['category']];
