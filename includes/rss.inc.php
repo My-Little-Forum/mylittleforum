@@ -64,21 +64,24 @@ if($settings['rss_feed'] == 1 && $settings['forum_enabled']==1)
         @mysql_query("DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id=".intval($row['id']), $connid);
         @mysql_query("INSERT INTO ".$db_settings['entry_cache_table']." (cache_id, cache_text) VALUES (".intval($row['id']).",'".mysql_real_escape_string($rss_items[$i]['text'])."')", $connid);
        }
-      else $rss_items[$i]['text'] = $row['cache_text'];
+      else
+       {
+        $rss_items[$i]['text'] = $row['cache_text'];
+       }
   
       #$text = html_format($row['text']);
       #$rss_items[$i]['text'] = $text;
       
-      $rss_items[$i]['title'] = htmlspecialchars($row['subject']);
+      $rss_items[$i]['title'] = htmlspecialchars(filter_control_characters($row['subject']));
 
       if($categories!=false && isset($categories[$row['category']]) && $categories[$row['category']]!='') $rss_items[$i]['category'] = $categories[$row['category']];
 
       if($row['user_id']>0)
        {
         if(!$row['user_name']) $rss_items[$i]['name'] = $lang['unknown_user'];
-        else $rss_items[$i]['name'] = htmlspecialchars($row['user_name']);
+        else $rss_items[$i]['name'] = htmlspecialchars(filter_control_characters($row['user_name']));
        }
-      else $rss_items[$i]['name'] = htmlspecialchars($row['name']);
+      else $rss_items[$i]['name'] = htmlspecialchars(filter_control_characters($row['name']));
 
       $rss_items[$i]['link'] = $settings['forum_address']."index.php?id=".$row['id'];
       if(isset($thread_starts)) $rss_items[$i]['commentRss'] = $settings['forum_address']."index.php?mode=rss&amp;replies=".$row['id'];

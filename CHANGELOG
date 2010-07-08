@@ -6,6 +6,7 @@ my little forum changelog
 - minor template bug fixed (bbcode button "image" was displayed even if
   disabled)
 - rss feed uses cached entry data now
+- control characters filter for rss feed implemented
 
 Edited files:
 - includes/rss.inc.php

@@ -24,16 +24,19 @@ $update['new_version'] = '2.2.6';
 switch($settings['version'])
  {
   case '2.2.5':
+     $update['items'][] = 'includes/functions.inc.php';
      $update['items'][] = 'includes/rss.inc.php';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      break;
   case '2.2.4':
+     $update['items'][] = 'includes/functions.inc.php';
      $update['items'][] = 'includes/rss.inc.php';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
      break;
   case '2.2.3':
+     $update['items'][] = 'includes/functions.inc.php';
      $update['items'][] = 'includes/rss.inc.php';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
