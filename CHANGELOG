@@ -1,6 +1,25 @@
 my little forum changelog
 -------------------------
 
+
+2.2.7 (2011-??-??)
+------------------
+- minor CSS and JavaScript modifications
+
+Edited files:
+- themes/default/style.css
+- themes/default/style.min.css
+- js/main.js
+- js/main.min.js
+
+Database changes:
+- no database changes
+ 
+Manual update:
+- replace the changed files
+- set "version" to "2.2.7" in Admin --> Forum settings --> Advanced settings
+
+
 2.2.6 (2011-07-10)
 ------------------
 - minor template bug fixed (bbcode button "image" was displayed even if

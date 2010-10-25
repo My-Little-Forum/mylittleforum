@@ -53,24 +53,24 @@ document.getStyle = function(el,styleProp) {
  * @return node_list
  */
 if(typeof document.getElementsByClassName != 'function') {  
-	document.getElementsByClassName = function (class_name) {
-		var all_obj,ret_obj=new Array(),j=0,teststr;
-		if(this.all)
-			all_obj=this.all;
-		else if(this.getElementsByTagName && !this.all)
-			all_obj=this.getElementsByTagName("*");
- 
-		for(var i=0;i<all_obj.length;i++) {
-			if(all_obj[i].className.indexOf(class_name)!=-1) {
-				teststr=","+all_obj[i].className.split(" ").join(",")+",";
-				if(teststr.indexOf(","+class_name+",")!=-1) {
-					ret_obj[j]=all_obj[i];
-					j++;
-				}
-			}	
-		}
-		return ret_obj;
-	};
+ document.getElementsByClassName = function (class_name) {
+  var all_obj,ret_obj=new Array(),j=0,teststr;
+  if(this.all)
+   all_obj=this.all;
+  else if(this.getElementsByTagName && !this.all)
+   all_obj=this.getElementsByTagName("*");
+  var len=all_obj.length;
+  for(var i=0;i<len;i++) {
+   if(all_obj[i].className.indexOf(class_name)!=-1) {
+    teststr=","+all_obj[i].className.split(" ").join(",")+",";
+    if(teststr.indexOf(","+class_name+",")!=-1) {
+     ret_obj[j]=all_obj[i];
+     j++;
+    }
+   } 
+  }
+  return ret_obj;
+ };
 }
 
 /**
@@ -859,7 +859,7 @@ var ready = new (function () {
 		var mainEl    = document.getElementById("ajax-preview-main");		
 		
 		if (!closeEl || !contentEl || !mainEl)
-			window.alert("AjaxPreviewWindow kann nicht erzeugt werden!");
+			window.alert("fail");
 		
 		
 		var oldOnMouseDownFunc = window.document.onmousedown;
