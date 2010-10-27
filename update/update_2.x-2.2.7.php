@@ -26,6 +26,8 @@ switch($settings['version'])
   case '2.2.5':
      $update['items'][] = 'js/main.js';
      $update['items'][] = 'js/main.min.js';
+     $update['items'][] = 'js/posting.js';
+     $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      break;
@@ -34,6 +36,8 @@ switch($settings['version'])
      $update['items'][] = 'includes/rss.inc.php';
      $update['items'][] = 'js/main.js';
      $update['items'][] = 'js/main.min.js';
+     $update['items'][] = 'js/posting.js';
+     $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
@@ -43,6 +47,8 @@ switch($settings['version'])
      $update['items'][] = 'includes/rss.inc.php';
      $update['items'][] = 'js/main.js';
      $update['items'][] = 'js/main.min.js';
+     $update['items'][] = 'js/posting.js';
+     $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
@@ -54,6 +60,8 @@ switch($settings['version'])
      $update['items'][] = 'includes/rss.inc.php';
      $update['items'][] = 'js/main.js';
      $update['items'][] = 'js/main.min.js';
+     $update['items'][] = 'js/posting.js';
+     $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
@@ -66,6 +74,8 @@ switch($settings['version'])
      $update['items'][] = 'includes/rss.inc.php';
      $update['items'][] = 'js/main.js';
      $update['items'][] = 'js/main.min.js';
+     $update['items'][] = 'js/posting.js';
+     $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
@@ -80,6 +90,8 @@ switch($settings['version'])
      $update['items'][] = 'includes/rss.inc.php';
      $update['items'][] = 'js/main.js';
      $update['items'][] = 'js/main.min.js';
+     $update['items'][] = 'js/posting.js';
+     $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';

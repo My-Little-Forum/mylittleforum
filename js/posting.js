@@ -101,7 +101,7 @@ function BBCodeLinkButton(el) {
 
 		if (!insert_link || insert_link == '' || insert_link == "http://") 
 			return;
-		if (insert_link.indexOf(forumURI) > 0 && regExpFID.test(insert_link)) {
+		if (insert_link.indexOf(forumURI) > 0 && insert_link.indexOf("mode=page") < 0 && regExpFID.test(insert_link)) {
 			var msgQuery = regExpFID.exec(insert_link);
 			link_bb_code = "msg";
 			insert_link = msgQuery[1];
