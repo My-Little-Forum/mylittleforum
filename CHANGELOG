@@ -2,15 +2,18 @@ my little forum changelog
 -------------------------
 
 
-2.2.7 (2011-??-??)
+2.2.7 (2011-11-21)
 ------------------
 - minor CSS and JavaScript modifications
+- Chinese and Croatian language files updated
 
 Edited files:
 - themes/default/style.css
 - themes/default/style.min.css
 - js/main.js
 - js/main.min.js
+- lang/chinese.lang
+- lang/croatian.lang
 
 Database changes:
 - no database changes

@@ -1,9 +1,8 @@
 ################################################################################
 # Chinese language file for my little forum 2.2                                #
-# More information here: http://mylittleforum.net/forum/index.php?id=4136      #
 #------------------------------------------------------------------------------#
-# Update 2010-03-13 (Alex < alex at mylittleforum dot net >):                  #
-# added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
+# More information here: http://mylittleforum.net/forum/index.php?id=4136      #
+# Updated 2010-11-09 by zhuaxiaomao                                            #
 ################################################################################
 
 language =                        zh_CN
@@ -21,7 +20,7 @@ forum_time_with_time_zone =       论坛时间: [time] ([time_zone])
 unknown_user =                    游客
 db_error =                        数据库错误！
 mail_error =                      邮件服务器暂时不可用，请稍后再试！
-
+ 
 [general]
 subject =                         标题
 author =                          作者
@@ -239,7 +238,7 @@ ajax_preview_title =              预览帖子
 bbcode_link_text =                链接文本(可选):
 bbcode_link_url =                 链接地址(URL):
 bbcode_image_url =                图片地址(URL):
-bbcode_tex_code =                 <!-- TODO -->TeX formula (e.g. \sqrt{x}):
+bbcode_tex_code =                 TeX 公式 (例如： \sqrt{x}):
 quote_label =                     引用内容
 quote_title =                     引用内容
 error_no_name =                   未填写名字
@@ -252,7 +251,7 @@ uncheck_all =                     全部不选
 delete_backup_confirm =           确认删除备份文件?
 delete_sel_backup_confirm =       确认删除所有选中的备份文件?
 drag_and_drop_title =             拖放以上下移动
-
+ 
 [entry]
 edited_by =                       编辑: [name], 时间: [time]
 tags_marking =                    标签:
@@ -283,7 +282,7 @@ posting_locked =                  锁定
 email =                           E-mail
 homepage =                        主页
 spam_note =                       此帖疑似垃圾帖, 将由论坛管理员或版主审查后发表.
-
+ 
 [posting]
 no_authorization_edit =           不能编辑帖子! 原因为帖子可编辑时限已过、帖子被锁定或帖子已有回复.
 posting_locked_no_reply =         帖子已锁定, 不能回复.
@@ -329,34 +328,34 @@ bbcode_list_title =               插入列表
 bbcode_list_instruction =         [list][*]list item[/list]
 bbcode_image_label =              图片
 bbcode_image_title =              插入图片
-bbcode_image_label_default =      <!-- TODO -->default
-bbcode_image_instr_default =      <!-- TODO -->[img]http://example.com/image.jpg[/img]
-bbcode_image_label_left =         <!-- TODO -->left       
-bbcode_image_instr_left =         <!-- TODO -->left: [img=left]http://example.com/image.jpg[/img]
-bbcode_image_label_right =        <!-- TODO -->right       
-bbcode_image_instr_right =        <!-- TODO -->right: [img=right]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb =        <!-- TODO -->thumbnail       
-bbcode_image_instr_thumb =        <!-- TODO -->thumbnail: [img=thumbnail]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb_left =   <!-- TODO -->thumbnail left       
-bbcode_image_instr_thumb_left =   <!-- TODO -->thumbnail left: [img=thumbnail]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb_right =  <!-- TODO -->thumbnail right       
-bbcode_image_instr_thumb_right =  <!-- TODO -->thumbnail right: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_default =      图片位置默认
+bbcode_image_instr_default =      [img]http://example.com/image.jpg[/img]
+bbcode_image_label_left =         图片居左       
+bbcode_image_instr_left =         图片居左: [img=left]http://example.com/image.jpg[/img]
+bbcode_image_label_right =        图片居右       
+bbcode_image_instr_right =        图片居右: [img=right]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb =        缩略图       
+bbcode_image_instr_thumb =        缩略图: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_left =   缩略图居左      
+bbcode_image_instr_thumb_left =   缩略图居左: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_right =  缩略图居右       
+bbcode_image_instr_thumb_right =  缩略图居右: [img=thumbnail]http://example.com/image.jpg[/img]
 bbcode_upload_label =             上传
 bbcode_upload_title =             上传图片
 bbcode_upload_instruction =       上传图片 ...
 bbcode_flash_label =              flash
 bbcode_flash_title =              插入 flash
 bbcode_flash_instruction =        [flash]http://example.com/flash.swf[/flash]
-bbcode_tex_label =                <!-- TODO -->TeX
-bbcode_tex_title =                <!-- TODO -->insert TeX code
-bbcode_tex_instruction =          <!-- TODO -->[tex]TeX code[/tex]
-bbcode_code_label =               <!-- TODO -->code
-bbcode_code_title =               <!-- TODO -->insert code
-bbcode_code_label_inline =        <!-- TODO -->inline code
+bbcode_tex_label =                TeX
+bbcode_tex_title =                插入TeX代码
+bbcode_tex_instruction =          [tex]TeX代码[/tex]
+bbcode_code_label =               代码
+bbcode_code_title =               插入代码
+bbcode_code_label_inline =        内嵌代码
 bbcode_code_instruction_inline =  [inlinecode]code[/inlinecode]
-bbcode_code_label_general =       <!-- TODO -->code block
+bbcode_code_label_general =       代码块
 bbcode_code_instruction_general = [code]code[/code]
-bbcode_code_label_specific =      <!-- TODO -->code block [language]
+bbcode_code_label_specific =      代码块 [language]
 bbcode_code_instruction_spec =    [code=[language]]code[/code]
 insert_smiley_title =             插入表情
 email_notific_reply_thread =      此主题有回复时发送E-mail通知
@@ -381,7 +380,7 @@ error_subject_too_long =          标题过长
 error_text_too_long =             内容过长 ([text_length]字符, 限[text_maxlength]字符)
 error_tags_too_long =             标签过长
 error_posting_unavailable =       帖子不存在
-
+ 
 [delete_posting]
 delete_postings_hl =              删除帖子
 delete_marked_hl =                删除已标记的帖子
@@ -405,7 +404,7 @@ flag_ham_note =                   此帖被Akismet检验为垃圾帖. 如果您�
 report_flag_ham_submit =          举报并标记为有害帖
 flag_ham_submit =                 标记为有害帖
 no_authorisation_delete =         帖子无法删除! 可能由于帖子可删除时限已过, 帖子被锁定或帖子已有回复.
-
+ 
 [captcha]
 captcha_marking =                 防灌水验证:
 captcha_expl_math =               请将两个数字相加:
@@ -413,7 +412,7 @@ captcha_expl_image =              请输入以上图片中的字符/数字:
 captcha_image_alt =               如果看不到图片, 您需成为注册用户并登陆后才能提交此表单
 captcha_image_alt_reg =           如果看不到图片请联络论坛管理员
 captcha_check_failed =            防灌水验证失败, 请重试!
-
+ 
 [upload_image]
 image_upload_not_enabled =        不允许图片上传
 upload_image_hl =                 上传图片
@@ -432,7 +431,7 @@ back =                            &laquo; 返回
 no_images =                       没有图片可用
 delete_image_confirm =            确定删除图片?
 delete_image_button =             确定删除
-
+ 
 [insert_flash]
 insert_flash_hl =                 插入flash视频
 insert_flash_code =               视频代码 (<code>&lt;object&gt;...&lt;/object&gt;</code>)
@@ -442,7 +441,7 @@ insert_flash_custom =             Custom flash video
 flash_url =                       URL:
 flash_size =                      尺寸:
 insert_flash_button =             插入flash视频
-
+ 
 [avatar]
 avatar_hl =                       头像
 delete_avatar =                   删除头像
@@ -457,14 +456,14 @@ upload_successful =               头像上传成功
 close_window =                    关闭窗口
 image_downsized =                 <strong>注意:</strong> 头像将被缩小为 [width] x [height] px, [filesize] KB.
 avatars_disabled =                头像功能已关闭
-
+ 
 [move_posting]
 move_posting_hl =                 转移帖子
 move_posting_new_thread =         将此帖与其所有回复新建成为主题
 move_posting =                    将此帖与其所有回复转移至帖子 #[number](id)
 move_posting_submit =             OK - 转移帖子
 invalid_posting_to_move =         非法id
-
+ 
 [manage_postings]
 manage_postings_hl =              管理帖子
 mark_postings =                   标记
@@ -475,7 +474,7 @@ lock_postings =                   锁定
 lock_all_postings =               锁定所有主题
 unlock_all_postings =             解锁所有主题
 lock_old_threads =                将最后回复时间早于 [days] 天的主题锁定
-
+ 
 [login]
 login_ip_temp_blocked =           重复登陆失败, 您暂时不能登陆, 请稍后再试.
 login_username =                  用户名:
@@ -493,14 +492,14 @@ account_activated_but_locked =    您的帐户已成功激活, 但登陆论坛�
 mail_sent =                       电子邮件已发送.
 pw_sent =                         新密码已发送.
 code_invalid =                    激活码错误.
-
+ 
 [pw_forgotten]
 new_pw_ok =                       新密码已生成并发送.
 new_pw_failed =                   确认链接不正确, 无法生成新密码.
 pw_forgotten_exp =                密码系统采用单向算法加密, 因而无法取回您的密码. 您只能生成一个新密码. 您将收到一封电子邮件并需要访问邮件中的链接以确认您的请求. 经确认后将生成新密码并发送给您.
 pwf_username =                    用户名:
 pwf_email =                       E-mail:
-
+ 
 [user]
 user_name =                       用户名
 user_type =                       用户类型
@@ -521,7 +520,7 @@ lock_title =                      锁定用户
 unlocked =                        关闭
 unlock_title =                    解锁用户
 currently_online =                当前在线
-
+ 
 [user_show]
 user_name =                       用户名:
 user_avatar =                     头像:
@@ -549,7 +548,7 @@ logins_per_day =                  每天登陆次数:
 postings_per_day =                每天帖子数:
 user_profile =                    个人简介:
 user_account_doesnt_exist =       此用户帐户不存在.
-
+ 
 [user_edit]
 edit_user_name =                  用户名:
 edit_avatar =                     头像:
@@ -573,13 +572,13 @@ edit_user_profile =               个人简介:
 edit_user_signature =             签名:
 edit_user_cat_selection =         我选择的类别:
 edit_user_time_zone =             时区:
-edit_user_time_difference =       <!-- TODO -->Additional time difference in hours (e.g. +3 or -5:30):
-edit_user_default_time_zone_svr = <!-- TODO -->Default (Server time)
-edit_user_default_time_zone =     <!-- TODO -->Default ([default_time_zone])
-edit_user_language =              <!-- TODO -->Language:
-edit_user_default_language =      <!-- TODO -->Default ([default_language])
-edit_user_theme =                 <!-- TODO -->Theme:
-edit_user_default_theme =         <!-- TODO -->Default ([default_theme])
+edit_user_time_difference =       其他时区 (例如： +3 or -5:30):
+edit_user_default_time_zone_svr = 默认时区 (服务器时间)
+edit_user_default_time_zone =     默认时区 ([default_time_zone])
+edit_user_language =              语言:
+edit_user_default_language =      默认语言 ([default_language])
+edit_user_theme =                 主题:
+edit_user_default_theme =         默认主题 ([default_theme])
 edit_user_auto_login =            自动登录
 enable_auto_login =               启用自动登录
 edit_user_notification =          E-mail 通知:
@@ -588,7 +587,7 @@ admin_mod_notif_register =        当新用户注册时
 userdata_submit_button =          OK - 保存
 profile_saved =                   资料已保存
 pw_changed =                      密码已更改
-
+ 
 [edit_pw]
 edit_pw_old =                     旧密码:
 edit_pw_new =                     新密码:
@@ -596,7 +595,7 @@ edit_pw_conf =                    重复新密码:
 error_old_pw_wrong =              旧密码错误
 error_pw_conf_wrong =             新密码输入不匹配
 error_new_pw_too_short =          新密码最少[characters]字符
-
+ 
 [edit_email]
 edit_email_exp =                  更改密码时您的帐户需重新激活. 激活代码将发送至新的e-mail地址, 并需在一日内激活.
 edit_email_new =                  新E-mail:
@@ -608,7 +607,7 @@ error_email_too_long =            E-mail地址过长
 error_identic_email =             新E-mail与原地址相同
 error_email_invalid =             E-mail地址非法
 pw_wrong =                        密码错误
-
+ 
 [register]
 register_exp =                    请指定用户名, 密码以及合法E-mail地址. 帐户激活代码将发送至这个地址. 帐户需在一日内激活.
 register_username =               用户名:
@@ -622,7 +621,7 @@ activation_failed =               激活帐户未成功.
 error_password_too_short =        密码至少包含[characters]个字符
 error_email_alr_exists =          已有用户使用这个E-mail地址
 error_reg_not_accepted_word =     防垃圾保护: E-mail或名字包含禁止字符或域名
-
+ 
 [contact]
 contact_hl =                      给论坛管理员发送E-mail
 contact_user_hl =                 E-mail至[recipient_name]
@@ -640,7 +639,7 @@ error_email_invalid =             非法E-mail地址
 error_email_subject_too_long =    标题过长
 error_email_text_too_long =       内容过长([text_length]字符, 限[text_maxlength]字符)
 error_spam_suspicion =            疑似垃圾信息! 请修改邮件内容(如去除链接)
-
+ 
 [admin]
 enabled =                         启用
 disabled =                        禁用
@@ -648,7 +647,7 @@ folder_alt =                      目录
 file_alt =                        文件
 admin_confirm_password =          管理员密码:
 error_password_wrong =            密码错误
-
+ 
 # admin menu
 forum_settings_link =             论坛设定
 category_administr_link =         分类管理
@@ -659,7 +658,7 @@ spam_protection_link =            防垃圾保护
 backup_restore_link =             备份
 update_link =                     升级
 reset_uninstall_link =            重设或卸载
-
+ 
 # forum settings:
 clear_chache =                    清除缓存
 settings_submit_button =          OK - 保存设置
@@ -681,7 +680,7 @@ default_language =                语言
 default_language_desc =           论坛语言
 default_time_zone =               时区
 default_time_zone_desc =          默认时区
-default_time_difference =         <!-- TODO -->Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
+default_time_difference =         时区设定不可用。你可以指定论坛与服务器之间的时间差 (以分钟计算, 例如： 240 or -360):
 default_theme =                   模板
 default_theme_desc =              模板
 threads_per_page =                每页主题数
@@ -777,7 +776,7 @@ delete_category_compl =           删除分类及所有帖子
 del_cat_keep_entries =            删除分类但保留帖子
 del_cat_move_entries =            删除分类但保留帖子并转移至此分类:
 delete_category_submit =          OK - 删除分类
-
+ 
 # Smilies:
 edit_smilies_smiley =             表情:
 edit_smilies_codes =              代码:
@@ -793,7 +792,7 @@ enable_smilies =                  启用表情
 add_smiley =                      添加表情:
 add_smiley_code =                 代码:
 smilies_disabled =                表情已禁止.
-
+ 
 # pages:
 page_title =                      标题
 page_content =                    内容
@@ -810,7 +809,7 @@ page_doesnt_exist =               页面不存在.
 delete_page_confirm =             确认删除此页面?
 delete_page_submit =              OK - 删除页面
 error_no_page_title =             没有标题
-
+ 
 # user administration:
 user_name_empty =                 未填写用户名
 num_registerd_users =             [number] 注册用户
@@ -853,7 +852,7 @@ new_user_reg_send_error =         用户"[name]"已被注册但用户信息无�
 clear_userdata_condition =        删除登陆次数不超过 [logins] 次并且最后一次登陆超过 [days] 天前的用户.
 clear_userdata_note =             管理员与板主不受影响. 删除前您将看到选中的用户列表.
 no_users_in_selection =           未选择用户
-
+ 
 # spam protection:
 captcha =                         CAPTCHA
 captcha_desc =                    选择保护表单与保护类型 (仅对非注册用户)
@@ -886,7 +885,7 @@ spam_protection_submit =          OK - 保存
 error_own_ip_banned =             你办了你自己的ip!
 error_own_user_agent_banned =     你办了自己了!
 spam_protection_saved =           已保存
-
+ 
 # Reset / Uninstall:
 reset_forum =                     重设论坛
 delete_postings =                 删除所有帖子
@@ -896,7 +895,7 @@ uninstall_forum =                 卸载论坛
 uninstall_forum_exp =             此操作将删除所有论坛表格, 论坛不复存在!
 uninstall_forum_submit =          OK - 卸载论坛
 error_no_selection_made =         未选择项目No selection made
-
+ 
 # Backup:
 backup_note =                     使用备份功能时目录"<i>backup</i>"应设置为可写, 并请确保该目录不能通过Web访问!
 backup_file =                     文件
@@ -926,7 +925,7 @@ error_file_doesnt_exist =         文件不存在!
 error_delete_backup_file =        备份文件无法删除
 error_create_backup_file =        文件无法生成. 请确认目录"backup"正确设置了可写权限.
 error_restore_mysql =             MySQL错误: [mysql_error]
-
+ 
 # Update:
 update_current_version =          当前版本: <strong>[version]</strong>
 update_instructions_hl =          如何升级
@@ -936,7 +935,7 @@ update_instructions =             解压缩包, 在子目录"update"中找到升
 update_instructions =             刷新本页面, 升级文件将出现在页面下方
 update_instructions =             点击升级文件并按提示操作
 update_instructions =             运行升级文件后您将得到需要添加和修改的文件与目录清单
-update_instructions =             <!-- TODO -->Clear the directory <strong>templates_c</strong> (delete all files in this dirctory) after you have added/replaced the files/folders
+update_instructions =             添加、替换文件或文件夹之后，清空<strong>templates_c</strong>目录(删除该目录下所有内容)
 update_available_files =          升级文件
 update_no_files_available =       没有升级文件
 update_file_title =               运行升级文件
@@ -945,55 +944,55 @@ update_submit =                   OK - 执行升级
 update_successful =               数据库已成功升级
 update_items_note =               请上传下列文件/目录(版本[version]):
 update_download =                 如果没有下列文件, 您可在此下载[[here]]
-
+ 
 [emails]
 email_subject =                   回复 "[original_subject]"
 email_text =                      """您好 [recipient],
 [name]对"[original_subject]"发表了回复:
-
+ 
 标题: [subject]
 [text]
-
+ 
 本帖URL: [posting_address]
-
+ 
 --- 原帖内容 ---
-
+ 
 [original_text]"""
-
+ 
 email_text_delayed_addition =     """---
 This notification is delayed because the posting was activated manually"""
-
+ 
 admin_email_subject =             论坛新帖: [subject]
 admin_email_text =                """[name]发表的新贴
 标题: [subject]
-
+ 
 [text]
-
+ 
 帖子URL: [posting_address]"""
 admin_email_text_reply =          """由[name]回复
 标题: [subject]
-
+ 
 [text]
-
+ 
 帖子URL: [posting_address]"""
 admin_reg_user_email_subj =       论坛注册
 admin_reg_user_email_text =       """您好 [name],
 欢迎来到论坛!
-
+ 
 使用下列信息登陆:
-
+ 
 用户名: [name]
 密码: [password]
-
+ 
 点击以下链接可直接登陆:
 [login_link]
-
+ 
 登陆后可更改密码."""
-
+ 
 new_user_email_sj =               论坛注册
 new_user_email_txt =              """您好 [name],
 欢迎加入论坛!
-
+ 
 请点击以下链接激活您的帐户:
 [activate_link]"""
 new_user_notif_sj =               新用户订阅
@@ -1001,13 +1000,13 @@ new_user_notif_txt =              """您好 [recipient],
 一位新用户已订阅本论坛.
 用户名: [name]
 E-mail: [email]
-
+ 
 [user_link]"""
 new_user_notif_txt_locked =       """您好 [recipient],
 一位新用户已订阅本论坛.
 用户名: [name]
 E-mail: [email]
-
+ 
 重要提示: 此用户已被解锁, 可登陆论坛!"""
 edit_address_email_sj =           更改e-mail地址后帐户激活
 edit_address_email_txt =          """您好 [name],
@@ -1016,36 +1015,36 @@ E-mail地址已更改. 您需点击以下链接再次激活帐户:
 pwf_activating_email_sj =         索取新密码
 pwf_activating_email_txt =        """您好 [name],
 此电子邮件发送自论坛([forum_address]), 原因是接收到申请新密码的请求. 请点击以下链接确认您的请求. 系统将生成新密码并发送给您. 如果此电子邮件为误发送(无论是因为您还是其他人), 请忽略此邮件.
-
+ 
 [activating_link]"""
 new_pw_email_sj =                 "New user data for the forum"
 new_pw_email_txt =                """您好 [name],
 新的用户信息:
-
+ 
 用户名: [name]
 密码: [password]
-
+ 
 点此直接登陆:
 [login_link]
-
+ 
 密码可在登陆后更改."""
 contact_email_txt =               """[message]
-
+ 
 -- 
 This e-mail has been sent via the forum on [forum_address]."""
 contact_email_txt_user =          """[message]
-
+ 
 -- 
 This e-mail has been sent by [user] via forum on [forum_address]."""
 contact_notification_sj =         Copy of sent e-mail: [subject]
 contact_notification_txt =        """This e-mail has been sent with your e-mail address to [recipient]:
-
+ 
 Subject: [subject]
 [message]
-
+ 
 -- 
 This e-mail has been sent via forum on [forum_address]."""
-
+ 
 [install]
 installation_title =              安装
 label_choose_language =           请选择语言:

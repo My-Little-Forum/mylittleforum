@@ -23,11 +23,13 @@ $update['new_version'] = '2.2.7';
 // changed files (folders followed by a slash like this: folder/):
 switch($settings['version'])
  {
-  case '2.2.5':
+  case '2.2.6':
      $update['items'][] = 'js/main.js';
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'lang/chinese.lang';
+     $update['items'][] = 'lang/croatian.lang';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      break;
@@ -38,6 +40,8 @@ switch($settings['version'])
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'lang/chinese.lang';
+     $update['items'][] = 'lang/croatian.lang';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
@@ -49,6 +53,8 @@ switch($settings['version'])
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'lang/chinese.lang';
+     $update['items'][] = 'lang/croatian.lang';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
@@ -62,6 +68,8 @@ switch($settings['version'])
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'lang/chinese.lang';
+     $update['items'][] = 'lang/croatian.lang';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
@@ -76,6 +84,8 @@ switch($settings['version'])
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'lang/chinese.lang';
+     $update['items'][] = 'lang/croatian.lang';
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
@@ -92,6 +102,8 @@ switch($settings['version'])
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'lang/chinese.lang';
+     $update['items'][] = 'lang/croatian.lang';
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
@@ -109,6 +121,8 @@ switch($settings['version'])
      $update['items'][] = 'js/main.min.js';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'lang/chinese.lang';
+     $update['items'][] = 'lang/croatian.lang';
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
      $update['items'][] = 'lang/russian.lang';

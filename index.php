@@ -1,11 +1,11 @@
 <?php
 /**
- * my little forum - a simple PHP and MySQL based web forum that displays the 
- * messages in classical threaded view
+ * my little forum - a simple PHP and MySQL based internet forum that displays 
+ * the messages in classical threaded view
  *
  * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
  * @copyright 2006-2010 Mark Alexander Hoschek
- * @version 2.2.7 (2010-??-??)
+ * @version 2.2.7 (2010-11-21)
  * @link http://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
