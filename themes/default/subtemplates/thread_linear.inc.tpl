@@ -58,7 +58,7 @@
 </div>
 <div class="posting-footer">
 <div class="reply">{if $element.locked==0}<a class="stronglink" href="index.php?mode=posting&amp;id={$element.id}&amp;back=thread" title="{#reply_link_title#}">{#reply_link#}</a>{else}<span class="locked">{#posting_locked#}</span>{/if}</div>
-<div class="info">
+<div class="info">&nbsp;
 {if $element.views}<span class="views">{if $element.views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$element.views}{/if}</span>{/if}
 {if $element.options}
 <ul class="options">

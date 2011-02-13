@@ -189,9 +189,9 @@ if($settings['latest_postings']>0)
       $latest_postings[$i]['formated_time'] = format_time($lang['time_format'],$latest_postings_data['timestamp']);
       if(isset($categories[$latest_postings_data['category']]) && $categories[$latest_postings_data['category']]!='') $latest_postings[$i]['category_name']=$categories[$latest_postings_data['category']];
 
-      $ago['days'] = floor((time() - $latest_postings_data['time'])/86400);
-      $ago['hours'] = floor(((time() - $latest_postings_data['time'])/3600)-($ago['days']*24));
-      $ago['minutes'] = floor(((time() - $latest_postings_data['time'])/60)-($ago['hours']*60+$ago['days']*1440));
+      $ago['days'] = floor((TIMESTAMP - $latest_postings_data['time'])/86400);
+      $ago['hours'] = floor(((TIMESTAMP - $latest_postings_data['time'])/3600)-($ago['days']*24));
+      $ago['minutes'] = floor(((TIMESTAMP - $latest_postings_data['time'])/60)-($ago['hours']*60+$ago['days']*1440));
       if($ago['hours']>12) $ago['days_rounded'] = $ago['days'] + 1;
       else $ago['days_rounded'] = $ago['days'];
       $latest_postings[$i]['ago'] = $ago;

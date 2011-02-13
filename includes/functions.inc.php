@@ -83,7 +83,7 @@ function get_settings()
 function daily_actions($current_time=0)
  {
   global $settings, $db_settings, $connid;
-  if($current_time==0) $current_time = time();
+  if($current_time==0) $current_time = TIMESTAMP;
   if($current_time > $settings['next_daily_actions'])
    {
     // clear up expired auto_login_codes:
@@ -253,7 +253,7 @@ function set_read($ids)
 function save_read($save_db=true)
  {
   global $settings, $read, $db_settings, $connid;
-  setcookie($settings['session_prefix'].'read',implode('.',$read),time()+(3600*24*30));
+  setcookie($settings['session_prefix'].'read',implode('.',$read),TIMESTAMP+(3600*24*30));
   if(isset($_SESSION[$settings['session_prefix'].'user_id']))
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['read'] = $read;
@@ -1250,13 +1250,13 @@ function user_online($user_online_period=10)
  {
   global $connid, $db_settings, $settings;
   if (isset($_SESSION[$settings['session_prefix'].'user_id'])) $user_id = $_SESSION[$settings['session_prefix'].'user_id']; else $user_id = 0;
-  $diff = time()-($user_online_period*60);
+  $diff = TIMESTAMP-($user_online_period*60);
   if (isset($_SESSION[$settings['session_prefix'].'user_id'])) $ip = "uid_".$_SESSION[$settings['session_prefix'].'user_id'];
   else $ip = $_SERVER['REMOTE_ADDR'];
   @mysql_query("DELETE FROM ".$db_settings['useronline_table']." WHERE time < ".$diff, $connid);
   list($is_online) = @mysql_fetch_row(@mysql_query("SELECT COUNT(*) FROM ".$db_settings['useronline_table']." WHERE ip= '".$ip."'", $connid));
-  if ($is_online > 0) @mysql_query("UPDATE ".$db_settings['useronline_table']." SET time='".time()."', user_id='".$user_id."' WHERE ip='".$ip."'", $connid);
-  else @mysql_query("INSERT INTO ".$db_settings['useronline_table']." SET time='".time()."', ip='".$ip."', user_id='".$user_id."'", $connid);
+  if ($is_online > 0) @mysql_query("UPDATE ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', user_id='".$user_id."' WHERE ip='".$ip."'", $connid);
+  else @mysql_query("INSERT INTO ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', ip='".$ip."', user_id='".$user_id."'", $connid);
   #list($user_online) = @mysql_fetch_row(@mysql_query("SELECT COUNT(*) FROM ".$db_settings['useronline_table'], $connid));
   #return $user_online;
  }
@@ -1713,13 +1713,13 @@ function tag_cloud($days,$scale_min,$scale_max)
 /**
  * converts a unix timestamp into a formated date string
  *
- * @param string $format : like parameter for strftime()
+ * @param string $format : like parameter for strfTIMESTAMP
  * @param int $timestamp : UNIX timestamp
  * @return string
  */
 function format_time($format, $timestamp=0)
  {
-  if($timestamp==0) $timestamp=time();
+  if($timestamp==0) $timestamp=TIMESTAMP;
   if(defined('LOCALE_CHARSET'))
    {
     return iconv(LOCALE_CHARSET,CHARSET,strftime($format,$timestamp));
@@ -1746,10 +1746,10 @@ function get_edit_authorization($id, $posting_user_id, $edit_key, $time, $locked
   list($replies) = mysql_fetch_row($reply_result);
   #$authorization['replies'] = $replies;
 
-  if($settings['edit_min_time_period'] != 0 && (time() - $settings['edit_min_time_period']*60) < $time) $edit_min_time_period_expired = false;
+  if($settings['edit_min_time_period'] != 0 && (TIMESTAMP - $settings['edit_min_time_period']*60) < $time) $edit_min_time_period_expired = false;
   else $edit_min_time_period_expired = true;
 
-  if($settings['edit_max_time_period'] == 0 || (time() - $settings['edit_max_time_period']*60) < $time) $edit_max_time_period_expired = false;
+  if($settings['edit_max_time_period'] == 0 || (TIMESTAMP - $settings['edit_max_time_period']*60) < $time) $edit_max_time_period_expired = false;
   else $edit_max_time_period_expired = true;
 
   if($locked == 0) $locked = false;
@@ -1925,7 +1925,7 @@ function create_backup_file($mode=0)
     $backup->assign("TRUNCATE TABLE ".$db_settings['userdata_table'].";\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['userdata_cache_table'].";\n");
     $result = @mysql_query("SELECT user_id, user_type, user_name, user_real_name, gender, birthday, user_pw, user_email, email_contact, user_hp, user_location, signature, profile, logins, last_login, last_logout, user_ip, registered, category_selection, thread_order, user_view, sidebar, fold_threads, thread_display, new_posting_notification, new_user_notification, user_lock, auto_login_code, pwf_code, activate_code, language, time_zone, time_difference, theme, entries_read FROM ".$db_settings['userdata_table'], $connid) or $error=true;
-    $time_start = time();
+    $time_start = TIMESTAMP;
     while($data = mysql_fetch_array($result))
      {
       $data['user_name'] = mysql_real_escape_string($data['user_name']);
@@ -1965,7 +1965,7 @@ function create_backup_file($mode=0)
     $backup->assign("TRUNCATE TABLE ".$db_settings['forum_table'].";\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['entry_cache_table'].";\n");
     $result = @mysql_query("SELECT id,pid,tid,uniqid,time,last_reply,edited,edited_by,user_id,name,subject,category,email,hp,location,ip,text,tags,show_signature,email_notification,marked,locked,sticky,views,spam,spam_check_status,edit_key FROM ".$db_settings['forum_table'], $connid) or $error=true;
-    $time_start = time();
+    $time_start = TIMESTAMP;
     while($data = mysql_fetch_array($result))
      {
       $data['uniqid'] = mysql_real_escape_string($data['uniqid']);
@@ -2013,7 +2013,7 @@ function restore_backup($backup_file)
  {
   global $connid, $error_message;
   @set_time_limit(30);
-  $time_start = time();
+  $time_start = TIMESTAMP;
   $handle = fopen ($backup_file, "r");
   @mysql_query("START TRANSACTION", $connid) or die(mysql_error());
   while (!feof($handle))
@@ -2031,7 +2031,7 @@ function restore_backup($backup_file)
         break;
        }
      }
-    $time_now = time();
+    $time_now = TIMESTAMP;
     if(($time_now-25)>=$time_start)
      {
       $time_start = $time_now;

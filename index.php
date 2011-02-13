@@ -4,8 +4,8 @@
  * the messages in classical threaded view
  *
  * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
- * @copyright 2006-2010 Mark Alexander Hoschek
- * @version 2.2.7 (2010-11-21)
+ * @copyright 2006-2011 Mark Alexander Hoschek
+ * @version 2.2.8 (2011-??-??)
  * @link http://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ setlocale(LC_ALL, $lang['locale']);
 
 $smarty->assign('settings', $settings);
 
-$smarty->assign('forum_time', format_time($lang['time_format'],time()+intval($time_difference)*60));
+$smarty->assign('forum_time', format_time($lang['time_format'],TIMESTAMP+intval($time_difference)*60));
 if(isset($forum_time_zone)) $smarty->assign('forum_time_zone', htmlspecialchars($forum_time_zone));
 
 if(isset($_SESSION[$settings['session_prefix'].'usersettings'])) $smarty->assign('usersettings', $_SESSION[$settings['session_prefix'].'usersettings']);

@@ -104,9 +104,9 @@ else $order = 'time';
       if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['time'] || $last_visit && $data['time'] > $last_visit) $data['new'] = true;
       else $data['new'] = false;
       
-      $ago['days'] = floor((time() - $data['time'])/86400);
-      $ago['hours'] = floor(((time() - $data['time'])/3600)-($ago['days']*24));
-      $ago['minutes'] = floor(((time() - $data['time'])/60)-($ago['hours']*60+$ago['days']*1440));
+      $ago['days'] = floor((TIMESTAMP - $data['time'])/86400);
+      $ago['hours'] = floor(((TIMESTAMP - $data['time'])/3600)-($ago['days']*24));
+      $ago['minutes'] = floor(((TIMESTAMP - $data['time'])/60)-($ago['hours']*60+$ago['days']*1440));
       if($ago['hours']>12) $ago['days_rounded'] = $ago['days'] + 1;
       else $ago['days_rounded'] = $ago['days'];
       $data['ago'] = $ago;

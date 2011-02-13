@@ -93,7 +93,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
 
         // auto delete spam:
         if($user_type>0 && $settings['auto_delete_spam']>0) @mysql_query("DELETE FROM ".$db_settings['forum_table']." WHERE time < (NOW() - INTERVAL ".$settings['auto_delete_spam']." HOUR) AND spam=1", $connid);
-        setcookie($settings['session_prefix'].'auto_login',$_COOKIE[$settings['session_prefix'].'auto_login'],time()+(3600*24*$settings['cookie_validity_days']));
+        setcookie($settings['session_prefix'].'auto_login',$_COOKIE[$settings['session_prefix'].'auto_login'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
         if($db_settings['useronline_table'] != "")
          {
           @mysql_query("DELETE FROM ".$db_settings['useronline_table']." WHERE ip = '".$_SERVER['REMOTE_ADDR']."'", $connid);

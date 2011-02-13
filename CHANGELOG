@@ -2,7 +2,27 @@ my little forum changelog
 -------------------------
 
 
-2.2.7 (2011-11-21)
+2.2.8 (2011-??-??)
+------------------
+- the timestamp is exclusively fetched from the database server now
+  (http://mylittleforum.net/forum/index.php?id=5706)
+- image-code is directly included into message after upload
+- BBCode size button can now be deactivated 
+
+Edited files:
+- index.php
+- includes/
+- themes/default/upload_image.tpl
+- themes/default/subtemplates/posting.inc.tpl
+
+Database changes:
+- no database changes
+ 
+Manual update:
+- replace the changed files
+- set "version" to "2.2.8" in Admin --> Forum settings --> Advanced settings
+
+2.2.7 (2010-11-21)
 ------------------
 - minor CSS and JavaScript modifications
 - Chinese and Croatian language files updated
@@ -23,7 +43,7 @@ Manual update:
 - set "version" to "2.2.7" in Admin --> Forum settings --> Advanced settings
 
 
-2.2.6 (2011-07-10)
+2.2.6 (2010-07-10)
 ------------------
 - minor template bug fixed (bbcode button "image" was displayed even if
   disabled)

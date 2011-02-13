@@ -5,8 +5,6 @@ if(!defined('IN_INDEX'))
   exit;
  }
 
-$current_time = time();
-
 if(empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha_email']>0)
  {
   require('modules/captcha/captcha.php');
@@ -95,7 +93,7 @@ switch($action)
        $smarty->assign('recipient_user_id',intval($_REQUEST['user_id']));
       }
     }
-   $_SESSION[$settings['session_prefix'].'formtime'] = $current_time;
+   $_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP;
   break;
   case 'message_submit':
    if(isset($_POST['id'])) $id = intval($_POST['id']);
@@ -110,7 +108,7 @@ switch($action)
      if(empty($_SESSION[$settings['session_prefix'].'formtime'])) $errors[] = 'error_invalid_form';
      else
       {
-       $time_need = $current_time - intval($_SESSION[$settings['session_prefix'].'formtime']);
+       $time_need = TIMESTAMP - intval($_SESSION[$settings['session_prefix'].'formtime']);
        if($time_need<10) $errors[] = 'error_form_sent_too_fast';
        elseif($time_need>10800) $errors[] = 'error_form_sent_too_slow';
        unset($_SESSION[$settings['session_prefix'].'formtime']);
@@ -291,7 +289,7 @@ switch($action)
     }
    if(isset($errors))
     {
-     $_SESSION[$settings['session_prefix'].'formtime'] = $current_time - 7; // 7 seconds credit (form already sent)
+     $_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP - 7; // 7 seconds credit (form already sent)
      $smarty->assign('errors',$errors);
      if(isset($id)) $smarty->assign('id',$id);
      if(isset($user_id)) $smarty->assign('recipient_user_id',$user_id);

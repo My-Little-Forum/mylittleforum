@@ -210,9 +210,9 @@ $smarty->assign('disp_time',$entrydata['disp_time']);
 $smarty->assign('formated_time',$entrydata['formated_time']);
 $smarty->assign('locked',$entrydata['locked']);
 
-$ago['days'] = floor((time() - $entrydata['time'])/86400);
-$ago['hours'] = floor(((time() - $entrydata['time'])/3600)-($ago['days']*24));
-$ago['minutes'] = floor(((time() - $entrydata['time'])/60)-($ago['hours']*60+$ago['days']*1440));
+$ago['days'] = floor((TIMESTAMP - $entrydata['time'])/86400);
+$ago['hours'] = floor(((TIMESTAMP - $entrydata['time'])/3600)-($ago['days']*24));
+$ago['minutes'] = floor(((TIMESTAMP - $entrydata['time'])/60)-($ago['hours']*60+$ago['days']*1440));
 if($ago['hours']>12) $ago['days_rounded'] = $ago['days'] + 1;
 else $ago['days_rounded'] = $ago['days'];
 $smarty->assign('ago',$ago);

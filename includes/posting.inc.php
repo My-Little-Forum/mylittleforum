@@ -437,7 +437,7 @@ switch($action)
 
      $smarty->assign("subnav_link",$subnav_link);
 
-     $_SESSION[$settings['session_prefix'].'formtime'] = $current_time;
+     $_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP;
 
      $smarty->assign('subtemplate','posting.inc.tpl');
     }
@@ -530,7 +530,7 @@ switch($action)
          if(empty($_SESSION[$settings['session_prefix'].'formtime'])) $errors[] = 'error_invalid_form';
          else
           {
-           $time_need = $current_time - intval($_SESSION[$settings['session_prefix'].'formtime']);
+           $time_need = TIMESTAMP - intval($_SESSION[$settings['session_prefix'].'formtime']);
            if($time_need<10) $errors[] = 'error_form_sent_too_fast';
            elseif($time_need>10800) $errors[] = 'error_form_sent_too_slow';
            unset($_SESSION[$settings['session_prefix'].'formtime']);
@@ -633,7 +633,7 @@ switch($action)
 
        if($settings['edit_max_time_period']>0 && (empty($_SESSION[$settings['session_prefix'].'user_type']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==0))
         {
-         $minutes_left_to_edit = round((($field['time']+$settings['edit_max_time_period']*60)-$current_time)/60);
+         $minutes_left_to_edit = round((($field['time']+$settings['edit_max_time_period']*60)-TIMESTAMP)/60);
          if($minutes_left_to_edit>=0) $smarty->assign('minutes_left_to_edit',$minutes_left_to_edit);
         }
       }
@@ -916,7 +916,7 @@ switch($action)
        if($settings['remember_userdata'] && isset($setcookie) && $setcookie==1)
         {
          $cookie_data = urlencode($name).'|'.urlencode($email).'|'.urlencode($hp).'|'.urlencode($location);
-         setcookie($settings['session_prefix'].'userdata',$cookie_data,$current_time+(3600*24*$settings['cookie_validity_days']));
+         setcookie($settings['session_prefix'].'userdata',$cookie_data,TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
         }
        if(isset($back) && $back=='thread') header('Location: index.php?mode=thread&id='.$new_data['id'].'#p'.$new_data['id']);
        else header('Location: index.php?id='.$new_data['id']);
@@ -1032,7 +1032,7 @@ switch($action)
        if(isset($terms_of_use_agree)) $smarty->assign('terms_of_use_agree', intval($terms_of_use_agree));
        $smarty->assign('preview_text', $preview_text);
        $smarty->assign('preview_subject', htmlspecialchars($subject));
-       $_SESSION[$settings['session_prefix'].'formtime'] = $current_time - 7; // 7 seconds credit for preview
+       $_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP - 7; // 7 seconds credit for preview
        $smarty->assign('subtemplate','posting.inc.tpl');
      }
 
@@ -1070,7 +1070,7 @@ switch($action)
       if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && (empty($id) || $posting_mode==1 && $pid==0)) $smarty->assign('provide_sticky',true);
       if($settings['terms_of_use_agreement']==1 && empty($_SESSION[$settings['session_prefix'].'user_id'])) $smarty->assign("terms_of_use_agreement",true);
       if(isset($terms_of_use_agree)) $smarty->assign('terms_of_use_agree', intval($terms_of_use_agree));
-      $_SESSION[$settings['session_prefix'].'formtime'] = $current_time - 7; // 7 seconds credit (form already sent)
+      $_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP - 7; // 7 seconds credit (form already sent)
       $smarty->assign('subtemplate','posting.inc.tpl');
      }
    }
@@ -1095,7 +1095,7 @@ switch($action)
      $smarty->assign('no_authorisation','error_posting_unavailable');
      $subnav_link = array('mode'=>'index', 'name'=>'thread_entry_back_link', 'title'=>'thread_entry_back_title');
      $smarty->assign("subnav_link",$subnav_link);
-     #$_SESSION[$settings['session_prefix'].'formtime'] = $current_time - 7;
+     #$_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP - 7;
      $smarty->assign('subtemplate','posting.inc.tpl');
      break;
     }
@@ -1135,7 +1135,7 @@ switch($action)
 
      if($settings['edit_max_time_period']>0 && (empty($_SESSION[$settings['session_prefix'].'user_type']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==0))
       {
-       $minutes_left_to_edit = round((($field['time']+$settings['edit_max_time_period']*60)-$current_time)/60);
+       $minutes_left_to_edit = round((($field['time']+$settings['edit_max_time_period']*60)-TIMESTAMP)/60);
        $smarty->assign('minutes_left_to_edit',$minutes_left_to_edit);
       }
 
@@ -1170,7 +1170,7 @@ switch($action)
    $subnav_link = array('mode'=>$back, 'id' => $id, 'title'=>'back_to_entry_link_title', 'name'=>'back_to_entry_link');
    $smarty->assign('subnav_link',$subnav_link);
 
-   #$_SESSION[$settings['session_prefix'].'formtime'] = $current_time - 7;
+   #$_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP - 7;
 
    $smarty->assign('subtemplate','posting.inc.tpl');
   break;

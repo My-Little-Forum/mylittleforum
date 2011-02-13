@@ -27,7 +27,7 @@ if($settings['ajax_preview'])
 $expires = 2592000; // 30 days
 header("Pragma: public");
 header("Cache-Control: maxage=".$expires);
-header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
+header('Expires: ' . gmdate('D, d M Y H:i:s', TIMESTAMP + $expires) . ' GMT');
 header('Content-type: application/javascript');
 
 ?>var lang = new Array();

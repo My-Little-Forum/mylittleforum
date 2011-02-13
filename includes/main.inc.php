@@ -5,9 +5,6 @@ if(!defined('IN_INDEX'))
   exit;
  }
 
-// set current time:
-$current_time = time();
-
 // stripslashes on GPC if magic_quotes_gpc is enabled:
 if(get_magic_quotes_gpc())
  {
@@ -24,6 +21,10 @@ if(get_magic_quotes_gpc())
 
 // database connection:
 $connid = connect_db($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database']);
+
+// set current timestamp:
+list($timestamp) = mysql_fetch_row(mysql_query("SELECT UNIX_TIMESTAMP(NOW())"));
+define('TIMESTAMP', $timestamp);
 
 // get settings:
 $settings = get_settings();
@@ -81,7 +82,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']))
  }
 
 // do daily actions:
-daily_actions($current_time);
+daily_actions(TIMESTAMP);
 
 // set time zone:
 if(function_exists('date_default_timezone_set'))
@@ -147,14 +148,14 @@ if(empty($_SESSION[$settings['session_prefix'].'usersettings']))
   $usersettings['page'] = 1;
   $usersettings['category'] = 0;
   $_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
-  setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],time()+(3600*24*$settings['cookie_validity_days']));
+  setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
  }
 
 if(isset($_REQUEST['toggle_sidebar']))
  {
   if(empty($_SESSION[$settings['session_prefix'].'usersettings']['sidebar'])) $_SESSION[$settings['session_prefix'].'usersettings']['sidebar']=1;
   else $_SESSION[$settings['session_prefix'].'usersettings']['sidebar']=0;
-  setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],time()+(3600*24*$settings['cookie_validity_days']));
+  setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
   // update database for registered users:
   if(isset($_SESSION[$settings['session_prefix'].'user_id']))
    {
@@ -177,7 +178,7 @@ if(isset($_GET['thread_order']) && isset($_SESSION[$settings['session_prefix'].'
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['page']=1;
     $_SESSION[$settings['session_prefix'].'usersettings']['thread_order']=$thread_order;
-    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$thread_order.'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],time()+(3600*24*$settings['cookie_validity_days']));
+    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$thread_order.'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
     if(isset($_SESSION[$settings['session_prefix'].'user_id'])) @mysql_query("UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, last_logout=last_logout, registered=registered, thread_order=".intval($thread_order)." WHERE user_id='".intval($_SESSION[$settings['session_prefix'].'user_id'])."'", $connid);
    }
  }
@@ -187,12 +188,12 @@ if(isset($_GET['toggle_view']))
   if(isset($_SESSION[$settings['session_prefix'].'usersettings']) && $_SESSION[$settings['session_prefix'].'usersettings']['user_view'] == 0)
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['user_view'] = 1;
-    setcookie($settings['session_prefix'].'usersettings','1.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],time()+(3600*24*$settings['cookie_validity_days']));
+    setcookie($settings['session_prefix'].'usersettings','1.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
    }
   elseif(isset($_SESSION[$settings['session_prefix'].'usersettings']) && $_SESSION[$settings['session_prefix'].'usersettings']['user_view'] == 1)
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['user_view'] = 0;
-    setcookie($settings['session_prefix'].'usersettings','0.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],time()+(3600*24*$settings['cookie_validity_days']));
+    setcookie($settings['session_prefix'].'usersettings','0.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
    }
   // update database for registered users:
   if(isset($_SESSION[$settings['session_prefix'].'user_id']))
@@ -210,12 +211,12 @@ if(isset($_GET['toggle_thread_display']) && isset($_GET['id']))
   if(isset($_SESSION[$settings['session_prefix'].'usersettings']) && $_SESSION[$settings['session_prefix'].'usersettings']['thread_display'] == 0)
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['thread_display'] = 1;
-    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.1',time()+(3600*24*$settings['cookie_validity_days']));
+    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.1',TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
    }
   elseif(isset($_SESSION[$settings['session_prefix'].'usersettings']) && $_SESSION[$settings['session_prefix'].'usersettings']['thread_display'] == 1)
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['thread_display'] = 0;
-    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.0',time()+(3600*24*$settings['cookie_validity_days']));
+    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.0',TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
    }
   // update database for registered users:
   if(isset($_SESSION[$settings['session_prefix'].'user_id']))
@@ -232,12 +233,12 @@ if(isset($_GET['fold_threads']))
   if($_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] == 0)
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] = 1;
-    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.1.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],time()+(3600*24*$settings['cookie_validity_days']));
+    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.1.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
    }
   else
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] = 0;
-    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.0.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],time()+(3600*24*$settings['cookie_validity_days']));
+    setcookie($settings['session_prefix'].'usersettings',$_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.0.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
    }
   #$clear_cache=true;
   // update database for registered users:
@@ -256,11 +257,11 @@ if(isset($_GET['refresh']))
  {
   if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']))
    {
-    $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] = $current_time;
+    $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] = TIMESTAMP;
     $_SESSION[$settings['session_prefix'].'usersettings']['read'] = array();
     @mysql_query("UPDATE ".$db_settings['userdata_table']." SET last_logout=NOW(), entries_read='' WHERE user_id='".intval($_SESSION[$settings['session_prefix'].'user_id'])."'", $connid);
    }
-  setcookie($settings['session_prefix'].'last_visit',$current_time.".".$current_time,$current_time+(3600*24*$settings['cookie_validity_days']));
+  setcookie($settings['session_prefix'].'last_visit',TIMESTAMP.".".TIMESTAMP,TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
   setcookie($settings['session_prefix'].'read','',0);
   header('location: index.php?mode=index');
   exit;
@@ -280,18 +281,18 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['remembe
   if(isset($_COOKIE[$settings['session_prefix'].'last_visit']))
    {
     $c_last_visit = explode(".", $_COOKIE[$settings['session_prefix'].'last_visit']);
-    if(isset($c_last_visit[0])) $c_last_visit[0] = intval(trim($c_last_visit[0])); else $c_last_visit[0] = time();
-    if(isset($c_last_visit[1])) $c_last_visit[1] = intval(trim($c_last_visit[1])); else $c_last_visit[1] = time();
-    if($c_last_visit[1] < (time() - 600))
+    if(isset($c_last_visit[0])) $c_last_visit[0] = intval(trim($c_last_visit[0])); else $c_last_visit[0] = TIMESTAMP;
+    if(isset($c_last_visit[1])) $c_last_visit[1] = intval(trim($c_last_visit[1])); else $c_last_visit[1] = TIMESTAMP;
+    if($c_last_visit[1] < (TIMESTAMP - 600))
      {
       $c_last_visit[0] = $c_last_visit[1];
-      $c_last_visit[1] = time();
-      setcookie($settings['session_prefix'].'last_visit',$c_last_visit[0].".".$c_last_visit[1],time()+(3600*24*$settings['cookie_validity_days']));
+      $c_last_visit[1] = TIMESTAMP;
+      setcookie($settings['session_prefix'].'last_visit',$c_last_visit[0].".".$c_last_visit[1],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
      }
    }
-  else setcookie($settings['session_prefix'].'last_visit',time().".".time(),time()+(3600*24*$settings['cookie_validity_days']));
+  else setcookie($settings['session_prefix'].'last_visit',TIMESTAMP.".".TIMESTAMP,TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
  }
-if(isset($c_last_visit)) $last_visit = intval($c_last_visit[0]); else $last_visit = time();
+if(isset($c_last_visit)) $last_visit = intval($c_last_visit[0]); else $last_visit = TIMESTAMP;
 
 if(isset($_GET['category']))
  {

@@ -12,10 +12,8 @@
 <link>{$item.link}</link>
 <guid>{$item.link}</guid>
 <pubDate>{$item.pubdate}</pubDate>
-{if $item.category}
-<category>{$item.category}</category>
+{if $item.category}<category>{$item.category}</category>{/if}
 {if $thread_starts}<wfw:commentRss>{$item.commentRss}</wfw:commentRss>{/if}
-{/if}
 <dc:creator>{$item.name}</dc:creator>
 </item>
 {/foreach}

@@ -241,7 +241,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        if($postings>0) $smarty->assign('postings_percent', number_format($postings/$total_postings*100,1));
        else $smarty->assign('postings_percent', 0);
        $smarty->assign('logins', $row['logins']);
-       $days_registered = (time() - $row['registered'])/86400;
+       $days_registered = (TIMESTAMP - $row['registered'])/86400;
        if($days_registered<1) $days_registered=1;
        $smarty->assign('logins_per_day',number_format($row['logins']/$days_registered,2));
        $smarty->assign('postings_per_day',number_format($postings/$days_registered,2));
@@ -437,7 +437,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        if($time_difference_minutes>0) $user_time_difference .= ':'.$time_difference_minutes;
        $smarty->assign('user_time_difference', $user_time_difference);
 
-       #$smarty->assign('default_forum_time', format_time($lang['time_format'],time()+intval($settings['time_difference'])*60));
+       #$smarty->assign('default_forum_time', format_time($lang['time_format'],TIMESTAMP+intval($settings['time_difference'])*60));
        if(isset($_GET['msg'])) $smarty->assign('msg',$_GET['msg']);
        $smarty->assign('user_name', htmlspecialchars($row['user_name']));
        $smarty->assign('user_real_name', htmlspecialchars($row['user_real_name']));
@@ -734,7 +734,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
              $auto_login_code = $row['auto_login_code'];
             }
            $auto_login_code_cookie = $auto_login_code . intval($id);
-           setcookie($settings['session_prefix'].'auto_login',$auto_login_code_cookie,time()+(3600*24*$settings['cookie_validity_days']));
+           setcookie($settings['session_prefix'].'auto_login',$auto_login_code_cookie,TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
            @mysql_query("UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, last_logout=last_logout, registered=registered, auto_login_code='".mysql_real_escape_string($auto_login_code)."' WHERE user_id=".intval($id), $connid);
           }
          else

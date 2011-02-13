@@ -162,9 +162,11 @@ JavaScript isn't available.
 <dt id="color" title="{#bbcode_color_label#}">{#bbcode_color_title#}</dt>
 <dd>{#bbcode_color_instruction#}</dd>
 {/if}
+{if $settings.bbcode_size}
 <dt id="size" title="{#bbcode_size_label#}">{#bbcode_size_title#}</dt>
 <dd id="small" title="{#bbcode_size_label_small#}">{#bbcode_size_instruction_small#}</dd>
 <dd id="large" title="{#bbcode_size_label_large#}">{#bbcode_size_instruction_large#}</dd>
+{/if}
 <dt id="list" title="{#bbcode_list_label#}">{#bbcode_list_title#}</dt>
 <dd>{#bbcode_list_instruction#}</dd>
 {if $settings.bbcode_img}
