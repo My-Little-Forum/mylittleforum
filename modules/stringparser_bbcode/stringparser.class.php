@@ -282,8 +282,8 @@ class StringParser {
 			StringParser_Node::destroyNode ($this->_root);
 		}
 		unset ($this->_root);
-		$this->_root =& new StringParser_Node_Root ();
-		$this->_stack[0] =& $this->_root;
+		$this->_root = new StringParser_Node_Root ();
+		$this->_stack[0] = $this->_root;
 		
 		$this->_parserInit ();
 		
@@ -342,7 +342,7 @@ class StringParser {
 		}
 		
 		if (is_null ($this->_output)) {
-			$root =& $this->_root;
+			$root = $this->_root;
 			unset ($this->_root);
 			$this->_root = null;
 			while (count ($this->_stack)) {
@@ -438,9 +438,9 @@ class StringParser {
 		if (($stack_count = count ($this->_stack)) < 2) {
 			return false;
 		}
-		$topelem =& $this->_stack[$stack_count-1];
+		$topelem = $this->_stack[$stack_count-1];
 		
-		$node_parent =& $topelem->_parent;
+		$node_parent = $topelem->_parent;
 		// remove the child from the tree
 		$res = $node_parent->removeChild ($topelem, false);
 		if (!$res) {
@@ -746,11 +746,11 @@ class StringParser {
 	 */
 	function _pushNode (&$node) {
 		$stack_count = count ($this->_stack);
-		$max_node =& $this->_stack[$stack_count-1];
+		$max_node = $this->_stack[$stack_count-1];
 		if (!$max_node->appendChild ($node)) {
 			return false;
 		}
-		$this->_stack[$stack_count] =& $node;
+		$this->_stack[$stack_count] = $node;
 		return true;
 	}
 	
@@ -947,7 +947,7 @@ class StringParser_Node {
 		// if node already has a parent
 		if ($node->_parent !== false) {
 			// remove node from there
-			$parent =& $node->_parent;
+			$parent = $node->_parent;
 			if (!$parent->removeChild ($node, false)) {
 				return false;
 			}
@@ -958,15 +958,15 @@ class StringParser_Node {
 		// move all nodes to a new index
 		while ($index >= 0) {
 			// save object
-			$object =& $this->_children[$index];
+			$object = $this->_children[$index];
 			// we have to unset it because else it will be
 			// overridden in in the loop
 			unset ($this->_children[$index]);
 			// put object to new position
-			$this->_children[$index+1] =& $object;
+			$this->_children[$index+1] = $object;
 			$index--;
 		}
-		$this->_children[0] =& $node;
+		$this->_children[0] = $node;
 		return true;
 	}
 	
@@ -979,7 +979,7 @@ class StringParser_Node {
 	function appendToLastTextChild ($text) {
 		$ccount = count ($this->_children);
 		if ($ccount == 0 || $this->_children[$ccount-1]->_type != STRINGPARSER_NODE_TEXT) {
-			$ntextnode =& new StringParser_Node_Text ($text);
+			$ntextnode = new StringParser_Node_Text ($text);
 			return $this->appendChild ($ntextnode);
 		} else {
 			$this->_children[$ccount-1]->appendText ($text);
@@ -1011,7 +1011,7 @@ class StringParser_Node {
 		// if node already has a parent
 		if ($node->_parent !== null) {
 			// remove node from there
-			$parent =& $node->_parent;
+			$parent = $node->_parent;
 			if (!$parent->removeChild ($node, false)) {
 				return false;
 			}
@@ -1020,8 +1020,8 @@ class StringParser_Node {
 		
 		// append it to current node
 		$new_index = count ($this->_children);
-		$this->_children[$new_index] =& $node;
-		$node->_parent =& $this;
+		$this->_children[$new_index] = $node;
+		$node->_parent = $this;
 		return true;
 	}
 	
@@ -1054,7 +1054,7 @@ class StringParser_Node {
 		// if node already has a parent
 		if ($node->_parent !== null) {
 			// remove node from there
-			$parent =& $node->_parent;
+			$parent = $node->_parent;
 			if (!$parent->removeChild ($node, false)) {
 				return false;
 			}
@@ -1065,15 +1065,15 @@ class StringParser_Node {
 		// move all nodes to a new index
 		while ($index >= $child) {
 			// save object
-			$object =& $this->_children[$index];
+			$object = $this->_children[$index];
 			// we have to unset it because else it will be
 			// overridden in in the loop
 			unset ($this->_children[$index]);
 			// put object to new position
-			$this->_children[$index+1] =& $object;
+			$this->_children[$index+1] = $object;
 			$index--;
 		}
-		$this->_children[$child] =& $node;
+		$this->_children[$child] = $node;
 		return true;
 	}
 	
@@ -1106,7 +1106,7 @@ class StringParser_Node {
 		// if node already has a parent
 		if ($node->_parent !== false) {
 			// remove node from there
-			$parent =& $node->_parent;
+			$parent = $node->_parent;
 			if (!$parent->removeChild ($node, false)) {
 				return false;
 			}
@@ -1117,15 +1117,15 @@ class StringParser_Node {
 		// move all nodes to a new index
 		while ($index >= $child + 1) {
 			// save object
-			$object =& $this->_children[$index];
+			$object = $this->_children[$index];
 			// we have to unset it because else it will be
 			// overridden in in the loop
 			unset ($this->_children[$index]);
 			// put object to new position
-			$this->_children[$index+1] =& $object;
+			$this->_children[$index+1] = $object;
 			$index--;
 		}
-		$this->_children[$child + 1] =& $node;
+		$this->_children[$child + 1] = $node;
 		return true;
 	}
 	
@@ -1147,7 +1147,7 @@ class StringParser_Node {
 	function removeChild (&$child, $destroy = false) {
 		if (is_object ($child)) {
 			// if object: get index
-			$object =& $child;
+			$object = $child;
 			unset ($child);
 			$child = $this->_findChild ($object);
 			if ($child === false) {
@@ -1163,7 +1163,7 @@ class StringParser_Node {
 			if (!isset($this->_children[$child])) {
 				return false;
 			}
-			$object =& $this->_children[$child];
+			$object = $this->_children[$child];
 		}
 		
 		// store count for later use
@@ -1193,12 +1193,12 @@ class StringParser_Node {
 		// move all remaining objects one index higher
 		while ($child < $ccount - 1) {
 			// save object
-			$obj =& $this->_children[$child+1];
+			$obj = $this->_children[$child+1];
 			// we have to unset it because else it will be
 			// overridden in in the loop
 			unset ($this->_children[$child+1]);
 			// put object to new position
-			$this->_children[$child] =& $obj;
+			$this->_children[$child] = $obj;
 			// UNSET THE OBJECT!
 			unset ($obj);
 			$child++;
@@ -1248,13 +1248,13 @@ class StringParser_Node {
 	 * @param object $node The node to destroy
 	 * @return bool True on success, else false.
 	 */
-	function destroyNode (&$node) {
+	static function destroyNode (&$node) {
 		if ($node === null) {
 			return false;
 		}
 		// if parent exists: remove node from tree!
 		if ($node->_parent !== null) {
-			$parent =& $node->_parent;
+			$parent = $node->_parent;
 			// directly return that result because the removeChild
 			// method will call destroyNode again
 			return $parent->removeChild ($node, true);
@@ -1357,13 +1357,13 @@ class StringParser_Node {
 		$node_ctr = 0;
 		for ($i = 0; $i < count ($this->_children); $i++) {
 			if ($this->_children[$i]->matchesCriterium ($criterium, $value)) {
-				$nodes[$node_ctr++] =& $this->_children[$i];
+				$nodes[$node_ctr++] = $this->_children[$i];
 			}
 			$subnodes = $this->_children[$i]->getNodesByCriterium ($criterium, $value);
 			if (count ($subnodes)) {
 				$subnodes_count = count ($subnodes);
 				for ($j = 0; $j < $subnodes_count; $j++) {
-					$nodes[$node_ctr++] =& $subnodes[$j];
+					$nodes[$node_ctr++] = $subnodes[$j];
 					unset ($subnodes[$j]);
 				}
 			}

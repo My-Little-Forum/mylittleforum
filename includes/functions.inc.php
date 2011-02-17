@@ -456,7 +456,7 @@ function contains_invalid_string($string)
 /**
  * processes BBCode links
  */
-function do_bbcode_url ($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_url ($action, $attributes, $content, $params, $node_object)
  {
   // 1) the code is validated
   if ($action == 'validate')
@@ -484,7 +484,7 @@ function do_bbcode_url ($action, $attributes, $content, $params, &$node_object)
 /**
  * processes BBCode message links
  */
-function do_bbcode_msg($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_msg($action, $attributes, $content, $params, $node_object)
  {
   if ($action == 'validate')
    {
@@ -504,7 +504,7 @@ function do_bbcode_msg($action, $attributes, $content, $params, &$node_object)
 /**
  * processes BBCode img
  */
-function do_bbcode_img($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_img($action, $attributes, $content, $params, $node_object)
  {
   if($action == 'validate')
    {
@@ -537,7 +537,7 @@ function do_bbcode_img($action, $attributes, $content, $params, &$node_object)
 /**
  * processes BBCode tex
  */
-function do_bbcode_tex($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_tex($action, $attributes, $content, $params, $node_object)
  {
   global $settings;
   if ($action == 'validate')
@@ -554,7 +554,7 @@ function do_bbcode_tex($action, $attributes, $content, $params, &$node_object)
 /**
  * processes BBCode flash
  */
-function do_bbcode_flash($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_flash($action, $attributes, $content, $params, $node_object)
  {
   global $settings;
   if($action == 'validate')
@@ -602,7 +602,7 @@ function do_bbcode_flash($action, $attributes, $content, $params, &$node_object)
  }
 
 // processes BBCode links for e-mail notifications (plain text)
-function do_bbcode_flash_email($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_flash_email($action, $attributes, $content, $params, $node_object)
  {
   if($action == 'validate')
    {
@@ -681,7 +681,7 @@ function do_bbcode_size($action, $attributes, $content, $params, $node_object)
  }
 
 // processes BBCode links for e-mail notifications (plain text)
-function do_bbcode_url_email($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_url_email($action, $attributes, $content, $params, $node_object)
  {
   if ($action == 'validate')
    {
@@ -696,7 +696,7 @@ function do_bbcode_url_email($action, $attributes, $content, $params, &$node_obj
  }
 
 // processes BBCode msg code for e-mail notifications (plain text)
-function do_bbcode_msg_email($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_msg_email($action, $attributes, $content, $params, $node_object)
  {
   global $settings;
   if($action == 'validate')
@@ -743,7 +743,7 @@ function do_bbcode_img_email ($action, $attributes, $content, $params, $node_obj
 /**
  * processes BBCode tex for e-mail notifications (plain text)
  */
-function do_bbcode_tex_email($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_tex_email($action, $attributes, $content, $params, $node_object)
  {
   global $settings;
   if ($action == 'validate')
@@ -779,7 +779,7 @@ function do_bbcode_size_email($action, $attributes, $content, $params, $node_obj
 /**
  * processes bbcode code
  */
-function do_bbcode_code($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_code($action, $attributes, $content, $params, $node_object)
  {
   global $settings;
   if ($action == 'validate')
@@ -816,7 +816,7 @@ function do_bbcode_code($action, $attributes, $content, $params, &$node_object)
 /**
  * removes [code] and [/code] in email texts
  */
-function do_bbcode_code_email($action, $attributes, $content, $params, &$node_object)
+function do_bbcode_code_email($action, $attributes, $content, $params, $node_object)
  {
   if ($action == 'validate')
    {
@@ -1598,24 +1598,24 @@ function resize_image($uploaded_file, $file, $new_width, $new_height, $compressi
   {
   if($image_info[2]==1) // GIF
    {
-    $current_image = @ImageCreateFromGIF($uploaded_file) or $error = true;
-    if(empty($error)) $new_image = @ImageCreate($new_width,$new_height) or $error = true;
-    if(empty($error)) @ImageCopyResized($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error=true;
-    if(empty($error)) @ImageGIF($new_image, $file) or $error = true;
+    $current_image = @imagecreatefromgif($uploaded_file) or $error = true;
+    if(empty($error)) $new_image = @imagecreate($new_width,$new_height) or $error = true;
+    if(empty($error)) @imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error=true;
+    if(empty($error)) @imagegif($new_image, $file) or $error = true;
    }
   elseif($image_info[2]==2) // JPG
    {
-    $current_image = @ImageCreateFromJPEG($uploaded_file) or $error = true;
+    $current_image = @imagecreatefromjpeg($uploaded_file) or $error = true;
     if(empty($error)) $new_image=@imagecreatetruecolor($new_width,$new_height) or $error = true;
-    if(empty($error)) @ImageCopyResized($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
-    if(empty($error)) @ImageJPEG($new_image, $file, $compression) or $error = true;
+    if(empty($error)) @imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
+    if(empty($error)) @imagejpeg($new_image, $file, $compression) or $error = true;
    }
   elseif($image_info[2]==3) // PNG
    {
-    $current_image=ImageCreateFromPNG($uploaded_file) or $error = true;
+    $current_image=imagecreatefrompng($uploaded_file) or $error = true;
     if(empty($error)) $new_image=imagecreatetruecolor($new_width,$new_height) or $error = true;
-    if(empty($error)) ImageCopyResized($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
-    if(empty($error)) ImagePNG($new_image, $file) or $error = $true;
+    if(empty($error)) imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
+    if(empty($error)) imagepng($new_image, $file) or $error = $true;
    }
   }
   if(empty($error)) return true;

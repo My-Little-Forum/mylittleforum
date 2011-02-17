@@ -26,6 +26,7 @@ switch($settings['version'])
   case '2.2.7':
      $update['items'][] = 'includes/';     
      $update['items'][] = 'index.php';
+     $update['items'][] = 'modules/stringparser_bbcode/';
      $update['items'][] = 'themes/default/upload_image.tpl';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      break;
@@ -38,6 +39,7 @@ switch($settings['version'])
      $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'lang/chinese.lang';
      $update['items'][] = 'lang/croatian.lang';
+     $update['items'][] = 'modules/stringparser_bbcode/';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/upload_image.tpl';
@@ -51,6 +53,7 @@ switch($settings['version'])
      $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'lang/chinese.lang';
      $update['items'][] = 'lang/croatian.lang';
+     $update['items'][] = 'modules/stringparser_bbcode/';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/upload_image.tpl';
@@ -65,6 +68,7 @@ switch($settings['version'])
      $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'lang/chinese.lang';
      $update['items'][] = 'lang/croatian.lang';
+     $update['items'][] = 'modules/stringparser_bbcode/';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/upload_image.tpl';
@@ -82,6 +86,7 @@ switch($settings['version'])
      $update['items'][] = 'js/posting.min.js';
      $update['items'][] = 'lang/chinese.lang';
      $update['items'][] = 'lang/croatian.lang';
+     $update['items'][] = 'modules/stringparser_bbcode/';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
@@ -101,6 +106,7 @@ switch($settings['version'])
      $update['items'][] = 'lang/croatian.lang';
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
+     $update['items'][] = 'modules/stringparser_bbcode/';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
@@ -120,6 +126,7 @@ switch($settings['version'])
      $update['items'][] = 'lang/croatian.lang';
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
+     $update['items'][] = 'modules/stringparser_bbcode/';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
@@ -140,6 +147,7 @@ switch($settings['version'])
      $update['items'][] = 'lang/english.lang';
      $update['items'][] = 'lang/german.lang';
      $update['items'][] = 'lang/russian.lang';
+     $update['items'][] = 'modules/stringparser_bbcode/';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';

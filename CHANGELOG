@@ -6,12 +6,16 @@ my little forum changelog
 ------------------
 - the timestamp is exclusively fetched from the database server now
   (http://mylittleforum.net/forum/index.php?id=5706)
+- imagecopyresized() replaced by imagecopyresampled()
+- minor modifications in stringparser_bbcode class to prevent deprecated and
+  strict standards warning in PHP 5.3
 - image-code is directly included into message after upload
 - BBCode size button can now be deactivated 
 
 Edited files:
 - index.php
 - includes/
+- modules/stringparser_bbcode/
 - themes/default/upload_image.tpl
 - themes/default/subtemplates/posting.inc.tpl
 
