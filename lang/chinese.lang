@@ -5,6 +5,7 @@
 # Updated 2010-11-09 by zhuaxiaomao                                            #
 ################################################################################
 
+[default]
 language =                        zh_CN
 charset =                         utf-8
 locale =                          zh_CN.utf8
@@ -827,7 +828,7 @@ user =                            用户
 locked =                          已锁定
 unlocked =                        未锁定
 lock_title =                      锁定用户
-unlock_title                      解锁用户
+unlock_title =                    解锁用户
 user_inactive =                   用户未激活
 activate_note =                   用户帐户未激活或用户正在更改e-mail地址. 如果用户无法自行激活帐户则使用此功能.
 activate_link =                   激活帐户
@@ -946,9 +947,9 @@ update_items_note =               请上传下列文件/目录(版本[version]):
 update_download =                 如果没有下列文件, 您可在此下载[[here]]
  
 [emails]
-email_subject =                   回复 "[original_subject]"
+email_subject =                   回复 \"[original_subject]\"
 email_text =                      """您好 [recipient],
-[name]对"[original_subject]"发表了回复:
+[name]对\"[original_subject]\"发表了回复:
  
 标题: [subject]
 [text]

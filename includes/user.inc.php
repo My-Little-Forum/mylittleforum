@@ -845,10 +845,9 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
       }
      if(empty($errors))
       {
-       $smarty->config_load($settings['language_file'], 'emails');
-       $lang = $smarty->get_config_vars();
-       if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
-
+       $smarty->configLoad($settings['language_file'], 'emails');
+       $lang = $smarty->getConfigVars();
+       #if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
        $activate_code = random_string(20);
        $activate_code_hash = generate_pw_hash($activate_code);
        // send mail with activation key:

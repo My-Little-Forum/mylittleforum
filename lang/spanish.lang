@@ -7,6 +7,7 @@
 # Not yet translated strings are marked with <!-- TODO -->                     #
 ################################################################################
 
+[default]
 language =                        es
 charset =                         utf-8
 locale =                          es_ES.utf8
@@ -520,7 +521,7 @@ online =                          En Linea
 locked =                          bloqueado
 lock_title =                      usuario bloqueado
 unlocked =                        desbloquear
-unlock_title                      desbloquear usuario
+unlock_title =                    desbloquear usuario
 currently_online =                Actualmente en linea.
 
 [user_show]
@@ -574,9 +575,13 @@ edit_user_location =              Localizacon:
 edit_user_profile =               Perfil:
 edit_user_signature =             Firma:
 edit_user_cat_selection =         Mi seleccion de categoria:
-edit_user_time_diff =             Diferencia Horaria:
-time_diff_format =                Diferencia en Horas, e.g. +3 or -5:30 
-default_forum_time =              Hora del foro por defecto: [time]
+edit_user_time_difference =       Additional time difference in hours (e.g. +3 or -5:30):
+edit_user_default_time_zone_svr = Default (server time)
+edit_user_default_time_zone =     Default ([default_time_zone])
+edit_user_language =              Language:
+edit_user_default_language =      Default ([default_language])
+edit_user_theme =                 Theme:
+edit_user_default_theme =         Default ([default_theme])
 edit_user_auto_login =            Inicio de sesion automatico
 enable_auto_login =               Habilitar Inicio de sesion automatico
 edit_user_notification =          E-mail notificacion:
@@ -824,7 +829,7 @@ user =                            Usuario
 locked =                          Blockeado
 unlocked =                        Desbloqueado
 lock_title =                      Blockeo de usuario
-unlock_title                      Desbloqueo de usuario
+unlock_title =                    Desbloqueo de usuario
 user_inactive =                   Usuario esta inactivo
 activate_note =                   La cuenta de usuario no se ha activado o el usuario esta cambiando su direccion de correo electronico. Solo se activara si el usuario tenia problemas activarlo por el mismo.
 activate_link =                   Activar la cuenta
@@ -949,7 +954,7 @@ update_download =                 If you do not have these files yet you can dow
 [emails]
 email_subject =                   Reply on "[original_subject]"
 email_text =                      """Hi [recipient],
-[name] has posted a reply on "[original_subject]":
+[name] has posted a reply on \"[original_subject]\":
 
 Subject: [subject]
 [text]

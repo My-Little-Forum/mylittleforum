@@ -1,7 +1,8 @@
-﻿###################################################
+###################################################
 # Norwegian language file for my little forum 2.2 #
 ###################################################
 
+[default]
 language =                        no
 charset =                         utf-8
 locale =                          nb_NO.utf8
@@ -515,7 +516,7 @@ online =                          pålogget
 locked =                          låst
 lock_title =                      lås bruker
 unlocked =                        av
-unlock_title                      lås opp bruker
+unlock_title =                    lås opp bruker
 currently_online =                Pålogget nå
 
 [user_show]
@@ -825,7 +826,7 @@ user =                            Bruker
 locked =                          låst
 unlocked =                        av
 lock_title =                      lås bruker
-unlock_title                      lås opp bruker
+unlock_title =                    lås opp bruker
 user_inactive =                   Bruker er inaktiv
 activate_note =                   Brukerkontoen er ikke aktivert enda, eller brukeren skifter e-postadressen sin. Kun aktiver den dersom brukeren har problemer med å aktivere den selv.
 activate_link =                   Aktiver konto
@@ -945,7 +946,7 @@ update_download =                 Dersom du ikke har disse filene kan de lastes 
 [emails]
 email_subject =                   Svar på "[original_subject]"
 email_text =                      """Hei [recipient],
-[name] har skrevet et svar på innlegget "[original_subject]":
+[name] har skrevet et svar på innlegget \"[original_subject]\":
 
 Emne: [subject]
 [text]

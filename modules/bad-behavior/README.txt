@@ -1,10 +1,15 @@
 === Bad Behavior ===
 Tags: comment,trackback,referrer,spam,robot,antispam
-Contributors: error, MarkJaquith, Firas, skeltoac
+Contributors: error, markjaquith, skeltoac
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=error%40ioerror%2eus&item_name=Bad%20Behavior%20%28From%20WordPress%20Page%29&no_shipping=1&cn=Comments%20about%20Bad%20Behavior&tax=0&currency_code=USD&bn=PP%2dDonationsBF&charset=UTF%2d8
-Requires at least: 1.5
-Tested up to: 2.9
-Stable tag: 2.0.36
+Requires at least: 2.7
+Tested up to: 3.1.0
+Stable tag: 2.0.42
+
+Bad Behavior prevents spammers from ever delivering their junk, and in many
+cases, from ever reading your site in the first place.
+
+== Description ==
 
 Welcome to a whole new way of keeping your blog, forum, guestbook, wiki or
 content management system free of link spam. Bad Behavior is a PHP-based
@@ -35,7 +40,7 @@ Installing and configuring Bad Behavior on most platforms is simple and takes
 only a few minutes. In most cases, no configuration at all is needed. Simply
 turn it on and stop worrying about spam!
 
-The core of Bad Behavior is free software released under the GNU General
+The core of Bad Behavior is free software released under the GNU Lesser General
 Public License. (On some non-free platforms, special license terms exist for
 Bad Behavior's platform connector.)
 
@@ -43,8 +48,10 @@ Bad Behavior's platform connector.)
 
 *Warning*: If you are upgrading from a 1.x.x version of Bad Behavior,
 you must remove it from your system entirely, and delete all of its
-database tables, before installing Bad Behavior 2.0.x. You do not need
-to remove a 2.0.x version of Bad Behavior before upgrading to this
+database tables, before installing Bad Behavior 2.0.x. If you are upgrading
+from version 2.0.18 or prior, you must delete all of its files before
+upgrading, but do not need to delete the database tables. You do not need
+to remove a 2.0.19 or later version of Bad Behavior before upgrading to this
 release.
 
 Bad Behavior has been designed to install on each host software in the
@@ -62,41 +69,43 @@ the following:
 For complete documentation and installation instructions, please visit
 http://www.bad-behavior.ioerror.us/
 
+== Screenshots ==
+
+1. Most of the time, only spammers see this. In the rare event a human
+winds up here, a way out is provided. This may involve removing malicious
+software from the user's computer, changing firewall settings or other simple
+fixes which will immediately grant access again.
+
 == Release Notes ==
 
 = Bad Behavior 2.0 Known Issues =
 
-* Bad Behavior may be unable to protect cached pages on MediaWiki.
+* Bad Behavior 2.0 requires MySQL 4.1 or later and PHP 4.3 or later. Bad
+Behavior 2.1 requires MySQL 5.0 or later and PHP 5.2 or later.
+
+* Bad Behavior is unable to protect internally cached pages on MediaWiki.
+Only form submissions will be protected.
 
 * When upgrading from version 2.0.19 or prior on MediaWiki and WordPress,
 you must remove the old version of Bad Behavior from your system manually
 before manually installing the new version. Other platforms are not
 affected by this issue.
 
-* The basic functionality of Bad Behavior on WordPress requires version 1.2
-or later. The management page for WordPress, which allows browsing Bad
-Behavior's logs, requires version 2.1 or later. Users of older versions should
-use phpMyAdmin to browse Bad Behavior's logs, or upgrade WordPress.
+* Bad Behavior on WordPress requires version 2.7 or later. Users of older
+versions should upgrade WordPress prior to installing Bad Behavior.
 
-* On WordPress when using WordPress Advanced Cache (WP-Cache) or WP-Super
-Cache, Bad Behavior requires a patch to WP-Cache or WP-Super Cache in order to
-protect Cached pages. Bad Behavior cannot protect Super Cached pages.
-
-  Edit the wp-content/plugins/wp-cache/wp-cache-phase1.php or
-wp-content/plugins/wp-super-cache/wp-cache-phase1.php file and find the
-following two lines at around line 34 (line 56 in WP-Super Cache):
-
-`	if (! ($meta = unserialize(@file_get_contents($meta_pathname))) )
-		return true;`
-
-  Immediately after this, insert the following line:
-
-`	require_once( ABSPATH . 'wp-content/plugins/Bad-Behavior/bad-behavior-generic.php');`
-
-  Then visit your site. Everything should work normally, but spammers will
-not be able to access your cached pages either.
+* On WordPress when using WP-Super Cache, Bad Behavior must be enabled in
+WP-Super Cache's configuration in order to protect PHP Cached or Legacy
+Cached pages. Bad Behavior cannot protect mod_rewrite cached (Super Cached)
+pages.
 
 * When using Bad Behavior in conjunction with Spam Karma 2, you may see PHP
 warnings when Spam Karma 2 displays its internally generated CAPTCHA. This
 is a design problem in Spam Karma 2. Contact the author of Spam Karma 2 for
 a fix.
+
+== Upgrade Notice ==
+
+= 2.0.40 =
+
+This release fixes a security issue. Upgrade as soon as possible.

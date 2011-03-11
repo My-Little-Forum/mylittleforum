@@ -41,6 +41,7 @@ function match_cidr($addr, $cidr) {
 		foreach ($cidr as $cidrlet) {
 			if (match_cidr($addr, $cidrlet)) {
 				$output = true;
+				break;
 			}
 		}
 	} else {
@@ -59,7 +60,7 @@ function bb2_load_headers() {
 	if (!is_callable('getallheaders')) {
 		$headers = array();
 		foreach ($_SERVER as $h => $v)
-			if (ereg('HTTP_(.+)', $h, $hp))
+			if (preg_match('/HTTP_(.+)/', $h, $hp))
 				$headers[str_replace("_", "-", uc_all($hp[1]))] = $v;
 	} else {
 		$headers = getallheaders();

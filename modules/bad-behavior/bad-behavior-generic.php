@@ -11,7 +11,7 @@ the Free Software Foundation; either version 2 of the License, or
 As a special exemption, you may link this program with any of the
 programs listed below, regardless of the license terms of those
 programs, and distribute the resulting program, without including the
-source code for such programs: ExpressionEngine
+source code for such programs: ExpressionEngine; Simple Machines Forum
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -34,7 +34,7 @@ define('BB2_CWD', dirname(__FILE__));
 // Most of these are unused in non-database mode.
 $bb2_settings_defaults = array(
 	'log_table' => 'bad_behavior',
-	'display_stats' => true,
+	'display_stats' => false,
 	'strict' => false,
 	'verbose' => false,
 	'logging' => true,

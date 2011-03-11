@@ -5,6 +5,7 @@
 # 2010-03-13                                                                   #
 ################################################################################
 
+[default]
 language =                        de
 charset =                         utf-8
 locale =                          de_DE.utf8
@@ -827,7 +828,7 @@ user =                            User
 locked =                          gesperrt
 unlocked =                        aus
 lock_title =                      Benutzer sperren
-unlock_title                      Benutzer entsperren
+unlock_title =                    Benutzer entsperren
 user_inactive =                   Benutzer inaktiv
 activate_note =                   Das Benutzerkonto ist noch nicht aktiviert oder der Benutzer ändert gerade seine E-Mail-Adresse. Nur aktivieren, falls der Benutzer Probleme bei der Aktivierung hatte.
 activate_link =                   Benutzerkonto aktivieren
@@ -948,7 +949,7 @@ update_download =                 Falls nicht verfügbar, können diese Dateien 
 [emails]
 email_subject =                   Antwort auf "[original_subject]"
 email_text =                      """Hallo [recipient],
-[name] hat eine Antwort zu "[original_subject]" geschrieben:
+[name] hat eine Antwort zu \"[original_subject]\" geschrieben:
 
 Betreff: [subject]
 [text]

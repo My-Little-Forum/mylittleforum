@@ -5,7 +5,7 @@
  *
  * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
  * @copyright 2006-2011 Mark Alexander Hoschek
- * @version 2.2.8 (2011-??-??)
+ * @version 2.3 (2011-??-??)
  * @link http://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,8 +32,9 @@ include('config/db_settings.php');
 include('includes/functions.inc.php');
 include('includes/main.inc.php');
 
-require('modules/smarty/Smarty.class.php'); // requires plugin compiler.defun.php
+require('modules/smarty/Smarty.class.php');
 $smarty = new Smarty;
+$smarty->error_reporting = 'E_ALL & ~E_NOTICE';
 $smarty->template_dir = THEMES_DIR;
 $smarty->assign('THEMES_DIR', THEMES_DIR);
 $smarty->compile_dir = 'templates_c';
@@ -49,8 +50,8 @@ else
   $language_file = $settings['language_file'];
  }
 $smarty->assign('language_file', $language_file);
-$smarty->config_load($language_file);
-$lang = $smarty->get_config_vars();
+$smarty->configLoad($language_file, 'default');
+$lang = $smarty->getConfigVars();
 
 define('CHARSET', $lang['charset']);
 if($lang['locale_charset']!=$lang['charset']) define('LOCALE_CHARSET', $lang['locale_charset']);

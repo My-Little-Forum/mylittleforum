@@ -2,7 +2,33 @@ my little forum changelog
 -------------------------
 
 
-2.2.8 (2011-??-??)
+2.3 (2011-??-??)
+------------------
+- Smarty updated (3.0.7)
+- Bad Behavior updated (2.0.42)
+- GeSHi updated (1.0.8.10)
+
+Edited files:
+- includes/
+- lang/
+- modules/bad-behavior/
+- modules/geshi/
+- modules/smarty/
+- themes/default/subtemplats/entry.inc.tpl
+- themes/default/subtemplats/index.inc.tpl
+- themes/default/subtemplats/index_table.inc.tpl
+- themes/default/subtemplats/thread.inc.tpl
+- index.php
+
+Database changes:
+- no database changes
+ 
+Manual update:
+- replace the changed files
+- set "version" to "2.3" in Admin --> Forum settings --> Advanced settings
+
+
+2.2.8 (2011-03-08)
 ------------------
 - the timestamp is exclusively fetched from the database server now
   (http://mylittleforum.net/forum/index.php?id=5706)

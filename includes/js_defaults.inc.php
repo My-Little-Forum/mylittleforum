@@ -13,8 +13,8 @@ $theme_config = parse_ini_file('./'.THEMES_DIR.'/'.$theme.'/js_config.ini');
 if(isset($_GET['user_type'])) $user_type = intval($_GET['user_type']); 
 if(isset($user_type) && $user_type > 2) unset($user_type);
 
-$smarty->config_load($language_file, 'general');
-$lang = $smarty->get_config_vars();
+$smarty->configLoad($settings['language_file'], 'general');
+$lang = $smarty->getConfigVars();
 
 if($settings['ajax_preview'])
  {

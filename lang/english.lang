@@ -13,6 +13,7 @@
 #   http://www.smarty.net/manual/en/config.files.php                           #
 ################################################################################
 
+[default]
 language =                        en
 charset =                         utf-8
 locale =                          en_US.utf8
@@ -177,7 +178,7 @@ error_pw_conf_wrong =             The password is not the same as the repeated o
 error_akismet_connection =        Server timed out, please try again!
 error_akismet_connection_admin =  Could not connect to the Akismet server to verify the API key!
 error_akismet_api_key =           Invalid Wordpress API Key
-error_spam_suspicion =            Spam suspicion! Please modify your posting (e.g. remove Links)
+error_spam_suspicion =            Spam suspicion! Please modify your posting (e.g. remove links)
 user_name_already_exists =        This user name already exists
 open_whole_thread =               Open whole thread
 change_category_link =            Show postings in category "[category]"
@@ -955,7 +956,7 @@ update_download =                 If you do not have these files yet you can dow
 [emails]
 email_subject =                   Reply on "[original_subject]"
 email_text =                      """Hi [recipient],
-[name] has posted a reply on "[original_subject]":
+[name] has posted a reply on \"[original_subject]\":
 
 Subject: [subject]
 [text]

@@ -902,8 +902,8 @@ switch($action)
         }
 
        // load e-mail strings from language file:
-       $smarty->config_load($settings['language_file'], 'emails');
-       $lang = $smarty->get_config_vars();
+       $smarty->configLoad($settings['language_file'], 'emails');
+       $lang = $smarty->getConfigVars();
        if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
 
        // e-mail notification:
@@ -1478,8 +1478,8 @@ switch($action)
        @mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply='".$field['time']."' WHERE tid=".intval($data['tid']), $connid);
 
        // load e-mail strings from language file:
-       $smarty->config_load($settings['language_file'], 'emails');
-       $lang = $smarty->get_config_vars();
+       $smarty->configLoad($settings['language_file'], 'emails');
+       $lang = $smarty->getConfigVars();
        if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
 
        // send confirm mails as they haven't been seent in spam status: (2nd parameter "true" adds a delayed message)

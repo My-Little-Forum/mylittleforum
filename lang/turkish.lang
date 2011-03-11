@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # Turkish language file for my little forum 2.2                                #
 #------------------------------------------------------------------------------#
 # Translated by Özgür Kazanççı < ozgur dot kazancci at info dot uvt dot ro >   #
@@ -8,12 +8,16 @@
 # added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
 ################################################################################
 
+[default]
 language =                        tr
 charset =                         utf-8
-locale =                          tr_TR.utf8
-locale =                          tr_TR
-locale =                          tr
-locale =                          tur
+#locale =                          tr_TR.utf8
+#locale =                          tr_TR
+#locale =                          tr
+# Caution: setting Turkish locale can cause problems --> http://bugs.php.net/39993
+locale =                          en_US.utf8
+locale =                          en_US
+locale =                          en
 locale_charset =                  utf-8
 dir =                             ltr
 time_format =                     %d-%m-%Y, %H:%M
@@ -830,7 +834,7 @@ user =                            Kullanıcı
 locked =                          kilitli
 unlocked =                        kapalı
 lock_title =                      kullanıcıyı kilitle
-unlock_title                      kullanıcı kilidini kaldır
+unlock_title =                    kullanıcı kilidini kaldır
 user_inactive =                   Bu kullanıcı aktif değil
 activate_note =                   Bu kullanıcı henüz aktif edilmedi veya mevcut e-posta adresini değiştiriyor olabilir. Sadece kullanıcının kendisi hesabını aktif edemediği hallerde aktif edin.
 activate_link =                   Hesabı aktif et
@@ -951,7 +955,7 @@ update_download =                 Eğer henüz bu dosyalara sahip değilseniz [[
 [emails]
 email_subject =                   "[original_subject]" üzerine yanıt
 email_text =                      """Merhaba [recipient],
-[name] adlı kullanıcı "[original_subject]" konusuna yanıt gönderdi:
+[name] adlı kullanıcı \"[original_subject]\" konusuna yanıt gönderdi:
 
 Konu: [subject]
 [text]

@@ -237,8 +237,8 @@ switch ($action)
      $pwf_code_hash = generate_pw_hash($pwf_code);
      $update_result = mysql_query("UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, pwf_code='".mysql_real_escape_string($pwf_code_hash)."' WHERE user_id = ".intval($field['user_id'])." LIMIT 1", $connid);
      // send mail with activating link:
-     $smarty->config_load($settings['language_file'],'emails');
-     $lang = $smarty->get_config_vars();
+     $smarty->configLoad($settings['language_file'], 'emails');
+     $lang = $smarty->getConfigVars();
      $lang['pwf_activating_email_txt'] = str_replace("[name]", $field["user_name"], $lang['pwf_activating_email_txt']);
      $lang['pwf_activating_email_txt'] = str_replace("[forum_address]", $settings['forum_address'], $lang['pwf_activating_email_txt']);
      $lang['pwf_activating_email_txt'] = str_replace("[activating_link]", $settings['forum_address'].basename($_SERVER['PHP_SELF'])."?mode=login&activate=".$field["user_id"]."&code=".$pwf_code, $lang['pwf_activating_email_txt']);
@@ -275,8 +275,8 @@ switch ($action)
       $update_result = mysql_query("UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, user_pw='".mysql_real_escape_string($pw_hash)."', pwf_code='' WHERE user_id='".$field["user_id"]."' LIMIT 1", $connid);
 
       // send new password:
-      $smarty->config_load($settings['language_file'],'emails');
-      $lang = $smarty->get_config_vars();
+      $smarty->configLoad($settings['language_file'], 'emails');
+      $lang = $smarty->getConfigVars();
 
       $lang['new_pw_email_txt'] = str_replace("[name]", $field['user_name'], $lang['new_pw_email_txt']);
       $lang['new_pw_email_txt'] = str_replace("[password]", $new_pw, $lang['new_pw_email_txt']);

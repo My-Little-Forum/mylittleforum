@@ -8,6 +8,7 @@
 # added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
 ################################################################################
 
+[default]
 language =                        fr
 charset =                         utf-8
 locale =                          fr_FR.utf8
@@ -520,7 +521,7 @@ online =                          en ligne
 locked =                          bloqué
 lock_title =                      utilisateur bloqué
 unlocked =                        débloqué
-unlock_title                    débloquer un utilisateur
+unlock_title =                    débloquer un utilisateur
 currently_online =                Actuellement en ligne
 
 [user_show]
@@ -829,7 +830,7 @@ user =                            Utilisateur
 locked =                          bloqué
 unlocked =                        Désactivé
 lock_title =                      bloquer un utilisateur
-unlock_title                    débloquer un utilisateur
+unlock_title =                   débloquer un utilisateur
 user_inactive =                   Utilisateur inactif
 activate_note =                   Le compte utilisateur n'est pas encore activé ou l'utilisateur a changé d'adresse email. A n'activer que si l'utilisateur rencontre des problèmes pour l'activer par lui-même.
 activate_link =                   Activer le compte
@@ -950,7 +951,7 @@ update_download =                 Si vous n'avez pas ces fichiers vous pouvez le
 [emails]
 email_subject =                   Réponse de "[original_subject]"
 email_text =                      """Bonjour [recipient],
-[name] a posté une réponse à "[original_subject]":
+[name] a posté une réponse à \"[original_subject]\":
 
 Subject: [subject]
 [text]

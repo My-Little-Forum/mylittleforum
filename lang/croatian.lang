@@ -3,6 +3,7 @@
 # Translated by Riba < riba at ml1 dot net > 2010-07-27                        #
 ################################################################################
 
+[default]
 language =                        hr
 charset =                         utf-8
 locale =                          hr_HR.utf8
@@ -945,7 +946,7 @@ update_download =                 Ako nemate potrebne datoteke možete ih naći 
 [emails]
 email_subject =                 Odgovor na "[original_subject]"
 email_text =                    """Pozdrav [recipient],
-[name] je ostavio poruku na temu "[original_subject]":
+[name] je ostavio poruku na temu \"[original_subject]\":
 
 Tema: [subject]
 [text]

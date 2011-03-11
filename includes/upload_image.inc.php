@@ -147,6 +147,7 @@ if(($settings['upload_images']==1 && isset($_SESSION[$settings['session_prefix']
   // browse uploaded images:
   elseif(isset($_GET['browse_images']))
    {
+      $images = array();
       $browse_images = intval($_GET['browse_images']);
       if($browse_images<1)$browse_images=1;
       $handle=opendir($uploaded_images_path);
@@ -158,7 +159,7 @@ if(($settings['upload_images']==1 && isset($_SESSION[$settings['session_prefix']
          }
         }
       closedir($handle);
-      if(isset($images))
+      if($images)
        {
         rsort($images);
         $images_count = count($images);

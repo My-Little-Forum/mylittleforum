@@ -7,6 +7,7 @@
 # added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
 ################################################################################
 
+[default]
 language =                        it
 charset =                         utf-8
 locale =                          it_IT.utf8
@@ -829,7 +830,7 @@ user =                            Utente
 locked =                          bloccato
 unlocked =                        sbloccato
 lock_title =                      blocca utente
-unlock_title                      sbocca utente
+unlock_title =                    sbocca utente
 user_inactive =                   L'utente è inattivo
 activate_note =                   Questo account non tuttora attivo o l'utente sta cambiando il suo indirizzo e-mail. Attivalo manualmente solo se l'utente ha difficoltà nella sua attivazione.
 activate_link =                   Attiva account
@@ -950,7 +951,7 @@ update_download =                 Se non possiedi questi files, puoi scaricarti 
 [emails]
 email_subject =                   Rispondi a "[original_subject]"
 email_text =                      """Ciao [recipient],
-[name] ha risposto al tuo messaggio "[original_subject]":
+[name] ha risposto al tuo messaggio \"[original_subject]\":
 
 Oggetto: [subject]
 [text]

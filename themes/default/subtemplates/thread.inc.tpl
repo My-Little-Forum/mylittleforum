@@ -1,5 +1,5 @@
 {config_load file=$language_file section="entry"}
-{defun name="tree" element=$tid level=0}
+{function name=tree level=0}
 <div class="{if $level==0}thread-wrapper{elseif $level>0&&$level<$settings.deep_reply}reply-wrapper{elseif $level>=$settings.deep_reply&&$level<$settings.very_deep_reply}deep-reply-wrapper{else}very-deep-reply-wrapper{/if}">
 {*{assign var=formated_time value=$data.$element.disp_time|date_format:#time_format_full#}*}
 {assign var=email_alt value=$smarty.config.email}
@@ -77,8 +77,9 @@
 </div>
 </div>
 {if is_array($child_array[$element])}
-{foreach from=$child_array[$element] item=child}{fun name="tree" element=$child level=$level+1}{/foreach}
+{foreach from=$child_array[$element] item=child}{tree element=$child level=$level+1}{/foreach}
 {/if}
 </div>
-{/defun}
+{/function}
+{tree element=$tid}
 {if $settings.rss_feed==1}<div class="small" style="text-align:right;"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}" title="{#rss_feed_thread_title#}">{#rss_feed_thread#}</a></div>{/if}

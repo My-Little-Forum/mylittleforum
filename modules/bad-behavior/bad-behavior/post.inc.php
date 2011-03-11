@@ -30,7 +30,7 @@ function bb2_post($settings, $package)
 	}
 
 	// If Referer exists, it should refer to a page on our site
-	if ($settings['offsite_forms'] && array_key_exists('Referer', $package['headers_mixed']) && stripos($package['headers_mixed']['Referer'], $package['headers_mixed']['Host']) === FALSE) {
+	if (!$settings['offsite_forms'] && array_key_exists('Referer', $package['headers_mixed']) && stripos($package['headers_mixed']['Referer'], $package['headers_mixed']['Host']) === FALSE) {
 		return "cd361abb";
 	}
 

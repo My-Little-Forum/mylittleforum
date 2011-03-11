@@ -5,8 +5,8 @@ if(!defined('IN_INDEX'))
   exit;
  }
 
-$smarty->config_load($settings['language_file'], 'emails');
-$lang = $smarty->get_config_vars();
+$smarty->configLoad($settings['language_file'], 'emails');
+$lang = $smarty->getConfigVars();
 
 // remove not activated user accounts:
 @mysql_query("DELETE FROM ".$db_settings['userdata_table']." WHERE registered < (NOW() - INTERVAL 24 HOUR) AND activate_code != '' AND logins=0", $connid);
