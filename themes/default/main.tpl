@@ -28,6 +28,7 @@
 {/if}
 <link rel="search" href="index.php?mode=search" />
 <link rel="shortcut icon" href="{$THEMES_DIR}/{$theme}/images/favicon.ico" />
+{if $mode=='entry'}<link rel="canonical" href="{$settings.forum_address}index.php?mode=thread&amp;id={$tid}" />{/if}
 <script src="index.php?mode=js_defaults&amp;t={$settings.last_changes}{if $user}&amp;user_type={$user_type}{/if}" type="text/javascript" charset="utf-8"></script>
 <script src="js/main.min.js" type="text/javascript" charset="utf-8"></script>
 {if $mode=='posting'}
@@ -52,9 +53,7 @@
 <ul id="usermenu">
 {if $user}<li><a href="index.php?mode=user&amp;action=edit_profile" title="{#profile_link_title#}"><strong>{$user}</strong></a></li><li><a href="index.php?mode=user" title="{#user_area_link_title#}">{#user_area_link#}</a></li>{if $admin}<li><a href="index.php?mode=admin" title="{#admin_area_link_title#}">{#admin_area_link#}</a></li>{/if}<li><a href="index.php?mode=login" title="{#log_out_link_title#}">{#log_out_link#}</a></li>{else}<li><a href="index.php?mode=login" title="{#log_in_link_title#}">{#log_in_link#}</a></li>{if $settings.register_mode!=2}<li><a href="index.php?mode=register" title="{#register_link_title#}">{#register_link#}</a></li>{/if}{if $settings.user_area_public}<li><a href="index.php?mode=user" title="{#user_area_link_title#}">{#user_area_link#}</a></li>{/if}{/if}
 {if $menu}
-{*
-{foreach name='menu' from=$menu item=menu}<li><a href="index.php?mode=page&amp;id={$menu.id}">{$menu.linkname}</a></li>{if !$smarty.foreach.menu.last}{/if}{/foreach}
-*}
+{foreach $menu as $item}<li><a href="index.php?mode=page&amp;id={$item.id}">{$item.linkname}</a></li>{/foreach}
 {/if}
 </ul>
 <form id="topsearch" action="index.php" method="get" title="{#search_title#}" accept-charset="{#charset#}"><div><input type="hidden" name="mode" value="search" /><label for="search-input">{#search_marking#}</label>&nbsp;<input id="search-input" type="text" name="search" value="{#search_default_value#}" /><!--&nbsp;<input type="image" src="templates/{$settings.template}/images/submit.png" alt="[&raquo;]" />--></div></form></div>

@@ -208,7 +208,7 @@ else
   header('Content-Type: text/html; charset='.$lang['charset']);
  }
 
-if(isset($_SESSION[$settings['session_prefix'].'usersettings']['theme']) && $smarty->template_exists($_SESSION[$settings['session_prefix'].'usersettings']['theme'].'/'.$template)) $theme = $_SESSION[$settings['session_prefix'].'usersettings']['theme'];
+if(isset($_SESSION[$settings['session_prefix'].'usersettings']['theme']) && $smarty->templateExists($_SESSION[$settings['session_prefix'].'usersettings']['theme'].'/'.$template)) $theme = $_SESSION[$settings['session_prefix'].'usersettings']['theme'];
 else $theme = $settings['theme'];
 $smarty->assign('theme',$theme);
 $smarty->display($theme.'/'.$template);
