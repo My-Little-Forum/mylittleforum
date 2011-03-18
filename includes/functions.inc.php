@@ -2417,7 +2417,7 @@ function is_ip_banned($ip, $banned_ips)
         return true;
        }
      }
-    elseif(strpos($banned_ip,'/')!==false && ereg("(([0-9]{1,3}\.){3}[0-9]{1,3})/([0-9]{1,2})", $banned_ip, $regs)) // $banned_ip contains "/" => CIDR notation (the regular expression is only used if $banned_ip contains "/")
+    elseif(strpos($banned_ip,'/')!==false && preg_match("/(([0-9]{1,3}\.){3}[0-9]{1,3})\/([0-9]{1,2})/", $banned_ip, $regs)) // $banned_ip contains "/" => CIDR notation (the regular expression is only used if $banned_ip contains "/")
      {
       // convert IP into bit pattern:
       $n_user_leiste = '00000000000000000000000000000000'; // 32 bits
