@@ -746,7 +746,7 @@ if(isset($_POST['clear_userdata']) && isset($_POST['logins']) && isset($_POST['d
   $logins = intval($_POST['logins']);
   $days = intval($_POST['days']);
 
-  $result = @mysql_query("SELECT user_id, user_name FROM ".$db_settings['userdata_table']." WHERE user_type != 1 AND user_type != 2 AND logins <= ".$logins." AND last_login<(NOW()-INTERVAL ".$days." DAY) ORDER BY user_name", $connid) or raise_error('database_error',mysql_error());
+  $result = @mysql_query("SELECT user_id, user_name FROM ".$db_settings['userdata_table']." WHERE user_type != 1 AND user_type != 2 AND logins <= ".$logins." AND last_login<(NOW()-INTERVAL ".$days." DAY) AND activate_code='' ORDER BY user_name", $connid) or raise_error('database_error',mysql_error());
   $i=0;
   while($line = mysql_fetch_array($result))
    {
