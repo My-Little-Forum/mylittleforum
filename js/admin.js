@@ -120,10 +120,10 @@ function MyLittleAdmin() {
 			return c;
 		}
 		
-		var wrapperEl = document.createElementWithAttributes("span", [["className", "checkall"]], el);
-		var checkAll  = document.createElementWithAttributes("a", [["onclick", function(e) {selectAll(this.setSelect); return false;} ], ["href", "#"], ["setSelect", true]], wrapperEl);
+		var wrapperEl = document.createElementWithAttributes("span", {"className": "checkall"}, el);
+		var checkAll  = document.createElementWithAttributes("a", {"onclick": function(e) {selectAll(this.setSelect); return false;}, "href": "#", "setSelect": true}, wrapperEl);
 		wrapperEl.appendChild(document.createTextNode(" / "));
-		var checkNone = document.createElementWithAttributes("a", [["onclick", function(e) {selectAll(this.setSelect); return false;} ], ["href", "#"], ["setSelect", false]], wrapperEl);
+		var checkNone = document.createElementWithAttributes("a", {"onclick": function(e) {selectAll(this.setSelect); return false;}, "href": "#", "setSelect": false}, wrapperEl);
 		checkAll.appendChild( document.createTextNode( lang["check_all"] ));
 		checkNone.appendChild( document.createTextNode( lang["uncheck_all"] ));
 

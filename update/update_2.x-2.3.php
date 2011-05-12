@@ -26,10 +26,12 @@ switch($settings['version'])
   case '2.2.8':
      $update['items'][] = 'includes/';
      $update['items'][] = 'index.php';
+     $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';
+     $update['items'][] = 'themes/default/main.tpl';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
@@ -38,11 +40,13 @@ switch($settings['version'])
   case '2.2.7':
      $update['items'][] = 'includes/';
      $update['items'][] = 'index.php';
+     $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';
      $update['items'][] = 'modules/stringparser_bbcode/';
+     $update['items'][] = 'themes/default/main.tpl';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
@@ -53,15 +57,13 @@ switch($settings['version'])
   case '2.2.6':
      $update['items'][] = 'includes/';     
      $update['items'][] = 'index.php';
-     $update['items'][] = 'js/main.js';
-     $update['items'][] = 'js/main.min.js';
-     $update['items'][] = 'js/posting.js';
-     $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';   
      $update['items'][] = 'modules/stringparser_bbcode/';
+     $update['items'][] = 'themes/default/main.tpl';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
@@ -74,15 +76,13 @@ switch($settings['version'])
   case '2.2.5':
      $update['items'][] = 'includes/';     
      $update['items'][] = 'index.php';
-     $update['items'][] = 'js/main.js';
-     $update['items'][] = 'js/main.min.js';
-     $update['items'][] = 'js/posting.js';
-     $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';   
      $update['items'][] = 'modules/stringparser_bbcode/';
+     $update['items'][] = 'themes/default/main.tpl';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
@@ -95,15 +95,13 @@ switch($settings['version'])
   case '2.2.4':
      $update['items'][] = 'includes/';     
      $update['items'][] = 'index.php';
-     $update['items'][] = 'js/main.js';
-     $update['items'][] = 'js/main.min.js';
-     $update['items'][] = 'js/posting.js';
-     $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';   
      $update['items'][] = 'modules/stringparser_bbcode/';
+     $update['items'][] = 'themes/default/main.tpl';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
@@ -117,15 +115,13 @@ switch($settings['version'])
   case '2.2.3':
      $update['items'][] = 'includes/';     
      $update['items'][] = 'index.php';
-     $update['items'][] = 'js/main.js';
-     $update['items'][] = 'js/main.min.js';
-     $update['items'][] = 'js/posting.js';
-     $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';   
      $update['items'][] = 'modules/stringparser_bbcode/';
+     $update['items'][] = 'themes/default/main.tpl';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
@@ -140,15 +136,13 @@ switch($settings['version'])
   case '2.2.2':
      $update['items'][] = 'includes/';     
      $update['items'][] = 'index.php';
-     $update['items'][] = 'js/main.js';
-     $update['items'][] = 'js/main.min.js';
-     $update['items'][] = 'js/posting.js';
-     $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';   
      $update['items'][] = 'modules/stringparser_bbcode/';
+     $update['items'][] = 'themes/default/main.tpl';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
@@ -163,15 +157,13 @@ switch($settings['version'])
   case '2.2.1':
      $update['items'][] = 'includes/';     
      $update['items'][] = 'index.php';
-     $update['items'][] = 'js/main.js';
-     $update['items'][] = 'js/main.min.js';
-     $update['items'][] = 'js/posting.js';
-     $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';   
      $update['items'][] = 'modules/stringparser_bbcode/';
+     $update['items'][] = 'themes/default/main.tpl';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
@@ -186,15 +178,13 @@ switch($settings['version'])
   case '2.2':
      $update['items'][] = 'includes/';     
      $update['items'][] = 'index.php';
-     $update['items'][] = 'js/main.js';
-     $update['items'][] = 'js/main.min.js';
-     $update['items'][] = 'js/posting.js';
-     $update['items'][] = 'js/posting.min.js';
+     $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';   
      $update['items'][] = 'modules/stringparser_bbcode/';
+     $update['items'][] = 'themes/default/main.tpl';
      $update['items'][] = 'themes/default/style.css';
      $update['items'][] = 'themes/default/style.min.css';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';

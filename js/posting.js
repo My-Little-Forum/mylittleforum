@@ -166,21 +166,21 @@ function BBCodeColorChooserButton(el) {
 	
 	
 	var colorTable     = document.createElement("table");
-	var colorTableBody = document.createElementWithAttributes("tbody", [], colorTable);
+	var colorTableBody = document.createElementWithAttributes("tbody", {}, colorTable);
 	var self = this;
-	var row = document.createElementWithAttributes("tr", [], colorTableBody);
+	var row = document.createElementWithAttributes("tr", {}, colorTableBody);
 	for (var i=0; i<colors.length; i++) {
-		var cell = document.createElementWithAttributes("td", [], row);
+		var cell = document.createElementWithAttributes("td", {}, row);
 		cell.style.backgroundColor = colors[i];
 		cell.style.width = "15px";
 		cell.style.height = "15px";
 		cell.style.fontSize = "15px";
-		var link = document.createElementWithAttributes("a", [["href", "#"],["extension", "="+colors[i]],["onclick", function(e) { self.insertOptionCode(this); return false; }]], cell);
+		var link = document.createElementWithAttributes("a", {"href": "#", "extension": "="+colors[i], "onclick": function(e) { self.insertOptionCode(this); return false; } }, cell);
 		link.style.display = "block";
 		link.appendChild( document.createTextNode( String.fromCharCode(160) ) );
 		
 		if((i+1)%7==0)
-			row = document.createElementWithAttributes("tr", [], colorTableBody);
+			row = document.createElementWithAttributes("tr", {}, colorTableBody);
 	}
 
 	this.insertOptionCode = function(obj) {
@@ -219,8 +219,8 @@ function BBCodeOptionButton(el, list, quest, par) {
 	var self = this;
 	for (var i=0; i<list.length; i++) {
 		var obj = list[i];
-		var listElement = document.createElementWithAttributes("li", [], optionList);
-		var link = document.createElementWithAttributes("a", [["href", "#"],["attribute", obj.attribute],["onclick", function(e) { self.insertOptionCode(this); return false; }]], listElement);
+		var listElement = document.createElementWithAttributes("li", {}, optionList);
+		var link = document.createElementWithAttributes("a", {"href": "#", "attribute": obj.attribute, "onclick": function(e) { self.insertOptionCode(this); return false; } }, listElement);
 		link.appendChild( document.createTextNode(obj.label) );
 		optionList.appendChild(listElement);
 	}
@@ -310,13 +310,13 @@ function BBCodeSmilieButton(el, list) {
 	this.constructor(el, list);
 	var self = this;
 	//var smilies = document.createElement("div");
-	var smilies = document.createElementWithAttributes("div", [["id", "additional-smilies"]], null);
+	var smilies = document.createElementWithAttributes("div", {"id": "additional-smilies"}, null);
 	
 	for (var i=0; i<list.length; i++) {
-		var link = document.createElementWithAttributes("a", [["href", "#"],["title", list[i].title],["code", list[i].code],["onclick", function(e) { self.insertOptionCode(this); return false; }]], smilies);
+		var link = document.createElementWithAttributes("a", {"href": "#", "title": list[i].title, "code": list[i].code, "onclick": function(e) { self.insertOptionCode(this); return false; } }, smilies);
 		link.appendChild( list[i].label );
 		//if ((i+1)%5==0)
-		//	document.createElementWithAttributes("br", [], smilies);
+		//	document.createElementWithAttributes("br", {}, smilies);
 		//else
 		//smilies.appendChild( document.createTextNode( String.fromCharCode(32) ) );
 	}
@@ -389,7 +389,7 @@ function ButtonGroup(f) {
 
 	var textarea = f.elements["text"];
 	if (!textarea)
-		textarea = document.createElementWithAttributes("textarea", [["name", "text"], ["id", "text"], ["cols", 80], ["rows", 20]], f);
+		textarea = document.createElementWithAttributes("textarea", {"name": "text", "id": "text", "cols": 80, "rows": 20}, f);
 	
 	var hasUserButtons = false;
 	var buttons = [];
@@ -542,12 +542,12 @@ function ButtonGroup(f) {
 	 * @param buttonBar
 	 */
 	var createSingleButton = function(obj, buttonBar) {
-		var par = [["className", obj.classes], ["name", obj.code], ["type", "button"], ["title", obj.title]];
+		var par = {"className": obj.classes, "name": obj.code, "type": "button", "title": obj.title};
 		var id = obj.code.trim() == ""?"bbcodebutton":"bbcodebutton-"+obj.code;
 		if (obj.isSmilie)
-			par.push(["isSmilie", obj.isSmilie]);
+			par["isSmilie"] = obj.isSmilie;
 		else
-			par.push(["id", id]);
+			par["id"] = id;
 			
 		var b = document.createElementWithAttributes("button", par, buttonBar);
 		var buttonSpan = document.createElement("span");
@@ -614,8 +614,8 @@ function ButtonGroup(f) {
 	 * @return win
 	 */
 	var createAdditionalOptionsWindow = function() {
-		var w = document.createElementWithAttributes("div", [["id", "bbcode-options"]], document.body);
-		var content = document.createElementWithAttributes("div", [], w);
+		var w = document.createElementWithAttributes("div", {"id": "bbcode-options"}, document.body);
+		var content = document.createElementWithAttributes("div", {}, w);
 		w.style.display = "none";
 		w.style.position = "absolute";
 		var timeout = null;
@@ -715,7 +715,7 @@ function ButtonGroup(f) {
 			}
 			if (label) {
 				label.appendChild( document.createTextNode( String.fromCharCode(160) ) );
-				var quoteLink = document.createElementWithAttributes("a", [["onclick", function(e) {textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; this.style.display = "none"; textarea.focus(); return false;}], ["id", "insert-quote"], ["href", window.location.href], ["title", lang["quote_title"]]], label);
+				var quoteLink = document.createElementWithAttributes("a", {"onclick": function(e) {textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; this.style.display = "none"; textarea.focus(); return false;}, "id": "insert-quote", "href": window.location.href, "title": lang["quote_title"] }, label);
 				quoteLink.appendChild( document.createTextNode(lang["quote_label"]) );
 			}
 		}

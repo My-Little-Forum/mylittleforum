@@ -8,13 +8,16 @@ my little forum changelog
 - Bad Behavior updated (2.0.42)
 - GeSHi updated (1.0.8.10)
 - fixed this bug: http://mylittleforum.net/forum/index.php?id=5787
+- minor JavaScript modifications
 
 Edited files:
 - includes/
+- js/
 - lang/
 - modules/bad-behavior/
 - modules/geshi/
 - modules/smarty/
+- themes/default/main.tpl
 - themes/default/subtemplats/entry.inc.tpl
 - themes/default/subtemplats/index.inc.tpl
 - themes/default/subtemplats/index_table.inc.tpl

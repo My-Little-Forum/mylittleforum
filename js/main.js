@@ -119,75 +119,79 @@ if (window.Node && Node.prototype && !Node.prototype.contains) {
 }
 
 /**
- * Erzeugt ein INPUT-Element mit zusaetzlichen Attributen
- * Attribute werden als einfaches Array uebergeben
- * [[key1, value1], [key2, value2], ...]
+ * Erzeugt ein INPUT/BUTTON-Element mit zusaetzlichen Attributen
+ * Attribute werden als einfaches Objekt uebergeben
+ * {"type": "text", "class": "foo"}
  * Optional kann das Elternelement angegeben werden,
- * um neues Element einzuhaengen
+ * um das neue Element einzuhaengen
  * Funktion ist notwendig, da der IE (korrekterweise) 
- * das TYPE-Attribut bei diesen Elementen nicht setzt.
+ * das TYPE-Attribut bei diesen Elementen nicht setzt,
+ * wenn das Element bereits im DOM ist
  *
  * @param tagName
  * @param att
  * @param par
  * @return el 
  * @see http://forum.de.selfhtml.org/archiv/2007/4/t151146/#m982711
+ * @see http://forum.de.selfhtml.org/archiv/2011/3/t204212/#m1382727
  */
-document.createInputElementWithAttributes = function(tagName, att, par) {
+document.createInputElementWithAttributes = function(tagName, attributes, parentElement) {
 	if (tagName.toLowerCase() != "input" && tagName.toLowerCase() != "button") 
-		return;
+		return document.createElementWithAttributes(tagName, attributes, parentElement);
 
-	var type = false;
-	var el = false;
-	for (var i=0; i<att.length; i++) {
-		if (att[i][0].toLowerCase() == "type") {
-			type = att[i][1];
-			break;
-		}
-	}
+	var type = attributes["type"] || false;
+	var name = attributes["name"] || false;
+	var el   = false;
 	
 	if (type) {
 		try {
 			el = document.createElement(tagName);
 			el.type = type;
+			if (name)
+				el.name = name;
 		}
 		catch(err) {
-			el = document.createElement('<'+tagName+' type="'+type+'">');
+			var attr = "type=" + type +(name?" name=" + name : "");
+			//el = document.createElement('<'+tagName+' type="'+type+'">');
+			el = document.createElement("<" + tagName + attr + ">");
 		}
 	}
 	el = el || document.createElement(tagName);
 
-	for (var i=0; i<att.length; i++) {
-		if (att[i][0].toLowerCase() != "type")
-			el[att[i][0]] = att[i][1];
-	}
-	if (par)
-		par.appendChild(el);
+	for (var attribute in attributes)  
+		if (attribute.toLowerCase() != "type" && attribute.toLowerCase() != "name")
+			el[attribute] = attributes[attribute];
+
+	if (parentElement) 
+		parentElement.appendChild(el);
+
 	return el;
 };
 
 /**
  * Erzeugt ein Element mit zusaetzlichen Attributen
- * Attribute werden als einfaches Array uebergeben
- * [[key1, value1], [key2, value2], ...]
+ * Attribute werden als einfache Objekte uebergeben
+ * {"class": "foo", "href": "#"}
  * Optional kann das Elternelement angegeben werden,
- * um neues Element einzuhaengen
+ * um das neue Element einzuhaengen
  *
  * @param tagName
- * @param att
- * @param par
+ * @param attributes
+ * @param parentElement
  * @return el 
+ * @see http://forum.de.selfhtml.org/archiv/2011/3/t204212/#m1382727
  */
-document.createElementWithAttributes = function(tagName, att, par) {
+document.createElementWithAttributes = function(tagName, attributes, parentElement) {
 	if (tagName.toLowerCase() == "input" || tagName.toLowerCase() == "button") 
-		return document.createInputElementWithAttributes(tagName, att, par);
+		return document.createInputElementWithAttributes(tagName, attributes, parentElement);
 	
 	var el = document.createElement(tagName);
-	for (var i=0; i<att.length; i++) 
-		el[att[i][0]] = att[i][1];
-	if (par) {
-		par.appendChild(el);
-	}
+	for (var attribute in attributes) 
+		el[attribute] = attributes[attribute];
+
+	if (parentElement) 
+		parentElement.appendChild(el);
+
 	return el;
 };
 
@@ -659,7 +663,7 @@ var ready = new (function () {
 			if (tail && lis.length > 1) {
 				repliesInfo = document.getFirstChildByElement(tail, "span", ["replies"]);
 				if (!repliesInfo) {
-					repliesInfo = document.createElementWithAttributes("span", [["className", "replies"]], tail);
+					repliesInfo = document.createElementWithAttributes("span", {"className": "replies"}, tail);
 					repliesInfo.appendChild( document.createTextNode( " (" + (lis.length-1) + ")" ) );
 				}
 			}
@@ -712,14 +716,14 @@ var ready = new (function () {
 				lis[0].appendChild(el);
 		};
 		
-		var foldExpandWrapper = document.createElementWithAttributes("span", [["className", "fold-expand"]], null);
+		var foldExpandWrapper = document.createElementWithAttributes("span", {"className": "fold-expand"}, null);
 		
 		if (lis.length == 1) {
-			var inactiveFoldExpandImg = document.createElementWithAttributes("img", [["src", templatePath + settings["expand_thread_inactive_image"]], ["className", "expand-thread-inactive"], ["alt", ""], ["onerror", function(e) { this.alt = "[]"; }]], foldExpandWrapper)
+			var inactiveFoldExpandImg = document.createElementWithAttributes("img", {"src": templatePath + settings["expand_thread_inactive_image"], "className": "expand-thread-inactive", "alt": "", "onerror": function(e) { this.alt = "[]"; } }, foldExpandWrapper)
 			setIcon(foldExpandWrapper);  
 		}
 		else {
-			var link = document.createElementWithAttributes("a", [["href", "#"], ["onclick", function(e) {self.setFold(!self.isFold()); this.blur(); return false;}]], foldExpandWrapper);
+			var link = document.createElementWithAttributes("a", {"href": "#", "onclick": function(e) {self.setFold(!self.isFold()); this.blur(); return false;} }, foldExpandWrapper);
 			this.setFold(this.isFold());
 			link.appendChild(icon);
 			setIcon(foldExpandWrapper);
@@ -768,7 +772,7 @@ var ready = new (function () {
 		var body = document.body;
 		// http://aktuell.de.selfhtml.org/weblog/kompatibilitaetsmodus-im-internet-explorer-8
 		var isIELower8 = /*@cc_on!@*/false && !(document.documentMode && document.documentMode >= 8);
-   		var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", [["id", "image-canvas"]], body);	
+   		var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", {"id": "image-canvas"}, body);	
    		imageCanvas.setVisible = function(enable) {
 			this.style.display = enable?"block":"none";
 		};
@@ -800,7 +804,7 @@ var ready = new (function () {
 			stopTrigger();
 		}; 
 		imageCanvas.setVisible(false);			
-		var fullSizeImage = document.getElementById("fullSizeImage") || document.createElementWithAttributes("img", [["id", "fullSizeImage"]], imageCanvas);
+		var fullSizeImage = document.getElementById("fullSizeImage") || document.createElementWithAttributes("img", {"id": "fullSizeImage"}, imageCanvas);
 		for (var i=0; i<els.length; i++) {
 			var links = els[i].getElementsByTagName("a");
 			for (var j=0; j<links.length; j++) {
@@ -846,7 +850,7 @@ var ready = new (function () {
 		var win = document.getElementById('ajax-preview');
 		var self = this;
 		if (!win) {
-			win = document.createElementWithAttributes("div", [["id", "ajax-preview"]], null);	
+			win = document.createElementWithAttributes("div", {"id": "ajax-preview"}, null);	
 			win.style.display = "none";
 			document.body.appendChild( win );
 		}
@@ -879,9 +883,9 @@ var ready = new (function () {
 				oldOnKeyPressFunc(e);
 		};
 		closeEl.onclick = function() { self.setVisible(false); return false; };
-		var throbberIcon = document.createElementWithAttributes("img", [["id", "ajax-preview-throbber"], ["src", templatePath + settings["ajax_preview_throbber_image"]], ["alt", "[*]"]], contentEl);
-		var replylinkWrapper = document.createElementWithAttributes("p", [["id", "ajax-preview-replylink-wrapper"]], contentEl);
-		var replylinkLink = document.createElementWithAttributes("a", [["id", "ajax-preview-replylink"], ["href", "#"]], null);
+		var throbberIcon = document.createElementWithAttributes("img", {"id": "ajax-preview-throbber", "src": templatePath + settings["ajax_preview_throbber_image"], "alt": "[*]"}, contentEl);
+		var replylinkWrapper = document.createElementWithAttributes("p", {"id": "ajax-preview-replylink-wrapper"}, contentEl);
+		var replylinkLink = document.createElementWithAttributes("a", {"id": "ajax-preview-replylink", "href": "#"}, null);
 		replylinkLink.appendChild( document.createTextNode( lang["reply_link"] ));
 		replylinkWrapper.style.display = "none";
 		this.closeByOutSideClick = function(e) {
@@ -1041,8 +1045,8 @@ var ready = new (function () {
 		 * @return link
 		 */
 		var createAjaxPreviewLink = function(id) {
-			var link = document.createElementWithAttributes("a", [["pid", id], ["title", lang["ajax_preview_title"]], ["href", strURL+"?id="+id], ["onclick", function(e) {self.showAjaxPreviewWindow(this); this.blur(); return false; }]], null);
-			var img  = document.createElementWithAttributes("img", [["src", templatePath + settings["ajax_preview_image"]], ["title", lang["ajax_preview_title"]], ["alt",""], ["onload", function(e) { this.alt = "[…]"; }], ["onerror", function(e) { this.alt = "[…]"; }]], link);
+			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this); this.blur(); return false; } }, null);
+			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "title": lang["ajax_preview_title"], "alt": "", "onload": function(e) { this.alt = "[…]"; }, "onerror": function(e) { this.alt = "[…]"; } }, link);
 			return link;
 		};
 		
@@ -1317,8 +1321,8 @@ var ready = new (function () {
 			var menu = null;
 			if (postings.length == 0 || !(menu=document.getElementById("subnavmenu")))
 				return;
-			var listEntry = document.createElementWithAttributes("li", [], menu);
-			var link = document.createElementWithAttributes("a", [["isExpand", true], ["title", lang["fold_postings_title"]],["href", "#"],["className", "fold-postings"]], listEntry);
+			var listEntry = document.createElementWithAttributes("li", {}, menu);
+			var link = document.createElementWithAttributes("a", {"isExpand": true, "title": lang["fold_postings_title"],"href": "#", "className": "fold-postings"}, listEntry);
 			link.appendChild( document.createTextNode( lang["fold_postings"] ) );
 			link.onclick = function(e) {
 				//var isExpand = this.className.search(/expand/)!=-1;

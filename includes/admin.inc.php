@@ -746,7 +746,7 @@ if(isset($_POST['clear_userdata']) && isset($_POST['logins']) && isset($_POST['d
   $logins = intval($_POST['logins']);
   $days = intval($_POST['days']);
 
-  $result = @mysql_query("SELECT user_id, user_name FROM ".$db_settings['userdata_table']." WHERE user_type != 1 AND user_type != 2 AND logins <= ".$logins." AND last_login<(NOW()-INTERVAL ".$days." DAY) AND activate_code='' ORDER BY user_name", $connid) or raise_error('database_error',mysql_error());
+  $result = @mysql_query("SELECT user_id, user_name FROM ".$db_settings['userdata_table']." WHERE user_type != 1 AND user_type != 2 AND logins <= ".$logins." AND last_login<(NOW()-INTERVAL ".$days." DAY) AND registered<(NOW()-INTERVAL ".$days." DAY) ORDER BY user_name", $connid) or raise_error('database_error',mysql_error());
   $i=0;
   while($line = mysql_fetch_array($result))
    {
@@ -1021,7 +1021,7 @@ if(isset($_POST['register_submit']))
       $ar_pw = random_string($pwl);
      }
     $pw_hash = generate_pw_hash($ar_pw);
-    mysql_query("INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, signature, profile, auto_login_code, pwf_code, activate_code, entries_read) VALUES (0,'".mysql_real_escape_string($ar_username)."', '', '".mysql_real_escape_string($pw_hash)."','".mysql_real_escape_string($ar_email)."', '', '', ".$settings['default_email_contact'].", NOW(), NOW(),'".$_SERVER["REMOTE_ADDR"]."',NOW(),".intval($settings['default_view']).",".intval($settings['fold_threads']).",'','','','','','')", $connid) or die(mysql_error()); //raise_error('database_error',mysql_error());
+    mysql_query("INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, signature, profile, auto_login_code, pwf_code, activate_code, entries_read) VALUES (0,'".mysql_real_escape_string($ar_username)."', '', '".mysql_real_escape_string($pw_hash)."','".mysql_real_escape_string($ar_email)."', '', '', ".$settings['default_email_contact'].", '0000-00-00 00:00:00', NOW(),'".$_SERVER["REMOTE_ADDR"]."',NOW(),".intval($settings['default_view']).",".intval($settings['fold_threads']).",'','','','','','')", $connid) or die(mysql_error()); //raise_error('database_error',mysql_error());
 
     // send userdata:
     $send_error='';
