@@ -89,7 +89,7 @@ INSERT INTO mlf2_settings VALUES ('forum_enabled', '1');
 INSERT INTO mlf2_settings VALUES ('forum_readonly', '0');
 INSERT INTO mlf2_settings VALUES ('forum_disabled_message', '');
 INSERT INTO mlf2_settings VALUES ('page_browse_range', '10');
-INSERT INTO mlf2_settings VALUES ('page_browse_show_last', '1');
+INSERT INTO mlf2_settings VALUES ('page_browse_show_last', '0');
 INSERT INTO mlf2_settings VALUES ('deep_reply', '15');
 INSERT INTO mlf2_settings VALUES ('very_deep_reply', '30');
 INSERT INTO mlf2_settings VALUES ('users_per_page', '20');

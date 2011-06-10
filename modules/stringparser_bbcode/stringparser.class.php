@@ -1248,7 +1248,7 @@ class StringParser_Node {
 	 * @param object $node The node to destroy
 	 * @return bool True on success, else false.
 	 */
-	static function destroyNode (&$node) {
+	public static function destroyNode (&$node) {
 		if ($node === null) {
 			return false;
 		}
