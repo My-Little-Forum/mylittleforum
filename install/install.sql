@@ -98,6 +98,7 @@ INSERT INTO mlf2_settings VALUES ('bad_behavior', '0');
 INSERT INTO mlf2_settings VALUES ('akismet_entry_check', '0');
 INSERT INTO mlf2_settings VALUES ('akismet_mail_check', '0');
 INSERT INTO mlf2_settings VALUES ('akismet_key', '');
+INSERT INTO mlf2_settings VALUES ('akismet_check_registered', '0');
 INSERT INTO mlf2_settings VALUES ('tags', '1');
 INSERT INTO mlf2_settings VALUES ('tag_cloud', '0');
 INSERT INTO mlf2_settings VALUES ('tag_cloud_day_period', '30');

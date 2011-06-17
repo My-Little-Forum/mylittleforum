@@ -588,7 +588,17 @@
 {section name=nr loop=$selected_users}
 <input type="hidden" name="selected_confirmed[]" value="{$selected_users[nr].id}" />
 {/section}
-<input type="submit" name="delete_confirmed" value="{#delete_users_submit#}" />
+<input type="submit" name="delete_confirmed" value="{#delete_submit#}" />
+</div>
+</form>
+{elseif $action=='user_delete_entries'}
+<p class="caution">{#caution#}</p>
+<p>{#delete_entries_of_user_confirm#|replace:"[user]":$user_delete_entries['user']}</p>
+<form action="index.php" method="post" accept-charset="{#charset#}">
+<div>
+<input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="user_delete_entries" value="{$user_delete_entries.id}" />
+<input type="submit" name="delete_confirmed" value="{#delete_submit#}" />
 </div>
 </form>
 {elseif $action=='register'}
@@ -741,7 +751,8 @@
 <td class="d"><p>{#akismet_key#}<br />
 <input type="text" name="akismet_key" value="{$akismet_key}" size="25" /></p>
 <p><input id="akismet_entry_check" type="checkbox" name="akismet_entry_check" value="1"{if $akismet_entry_check==1} checked="checked"{/if} /><label for="akismet_entry_check">{#akismet_entry#}</label><br />
-<input id="akismet_mail_check" type="checkbox" name="akismet_mail_check" value="1"{if $akismet_mail_check==1} checked="checked"{/if} /><label for="akismet_mail_check">{#akismet_mail#}</label></p>
+<input id="akismet_mail_check" type="checkbox" name="akismet_mail_check" value="1"{if $akismet_mail_check==1} checked="checked"{/if} /><label for="akismet_mail_check">{#akismet_mail#}</label><br />
+<input id="akismet_check_registered" type="checkbox" name="akismet_check_registered" value="1"{if $akismet_check_registered==1} checked="checked"{/if} /><label for="akismet_check_registered">{#akismet_registered#}</label></p>
 <p>{#akismet_save_spam#} <input type="radio" name="save_spam" value="1"{if $save_spam==1} checked="checked"{/if} />{#yes#} <input type="radio" name="save_spam" value="0"{if $save_spam==0} checked="checked"{/if} />{#no#}<br />
 {#akismet_auto_delete_spam#} <input type="text" name="auto_delete_spam" value="{$auto_delete_spam}" size="5" /></p></td>
 </tr>

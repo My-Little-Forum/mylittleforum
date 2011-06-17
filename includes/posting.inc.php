@@ -802,46 +802,59 @@ switch($action)
    $spam_check_status = 0;
 
    // Akismet spam check:
-   if(empty($errors) && $settings['akismet_key']!='' && $settings['akismet_entry_check']==1 && isset($_POST['save_entry']) && empty($_SESSION[$settings['session_prefix'].'user_id']))
+   if(empty($errors) && $settings['akismet_key']!='' && $settings['akismet_entry_check']==1 && isset($_POST['save_entry']))
     {
-     require('modules/akismet/akismet.class.php');
-     $check_posting['author'] = $name;
-     if($email!='') $check_posting['email'] = $email;
-     if($hp!='') $check_posting['website'] = $hp;
-     $check_posting['body'] = $text;
-
-     $akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
-
-     // test for errors
-     if($akismet->errorsExist()) // returns true if any errors exist
+     if(empty($_SESSION[$settings['session_prefix'].'user_id']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==0 && $settings['akismet_check_registered']==1)
       {
-       if($akismet->isError(AKISMET_INVALID_KEY))
+       require('modules/akismet/akismet.class.php');
+       // fetch user data if registered user:
+       if(isset($_SESSION[$settings['session_prefix'].'user_id']))
         {
-         if($settings['save_spam']==0) $errors[] = 'error_akismet_api_key';
-         else $spam_check_status = 3;
+         $akismet_userdata_result = @mysql_query("SELECT user_email, user_hp FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($_SESSION[$settings['session_prefix'].'user_id'])." LIMIT 1", $connid) or die(mysql_error());
+         $akismet_userdata_data = mysql_fetch_array($akismet_userdata_result);
+         mysql_free_result($akismet_userdata_result);
+         #if($akismet_userdata_data['user_email']!='') $check_posting['email'] = $akismet_userdata_data['user_email'];
+         if($akismet_userdata_data['user_hp']!='') $check_posting['website'] = $akismet_userdata_data['user_hp'];
+        } 
+       else
+        {
+         if($email!='') $check_posting['email'] = $email;
+         if($hp!='') $check_posting['website'] = $hp;
         }
-       elseif($akismet->isError(AKISMET_RESPONSE_FAILED))
+       $check_posting['author'] = $name;
+       $check_posting['body'] = $text; 
+       $akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
+       // test for errors
+       if($akismet->errorsExist()) // returns true if any errors exist
         {
-         if($settings['save_spam']==0) $errors[] = 'error_akismet_connection';
-         else $spam_check_status = 2;
-        }
-       elseif($akismet->isError(AKISMET_SERVER_NOT_FOUND))
-        {
-         if($settings['save_spam']==0) $errors[] = 'error_akismet_connection';
-         else $spam_check_status = 2;
-        }
-      }
-     else
-      {
-       // No errors, check for spam
-       if($akismet->isSpam())
-        {
-         if($settings['save_spam']==0) $errors[] = 'error_spam_suspicion';
-         else $spam = 1;
+         if($akismet->isError(AKISMET_INVALID_KEY))
+          {
+           if($settings['save_spam']==0) $errors[] = 'error_akismet_api_key';
+           else $spam_check_status = 3;
+          }
+         elseif($akismet->isError(AKISMET_RESPONSE_FAILED))
+          {
+           if($settings['save_spam']==0) $errors[] = 'error_akismet_connection';
+           else $spam_check_status = 2;
+          }
+         elseif($akismet->isError(AKISMET_SERVER_NOT_FOUND))
+          {
+           if($settings['save_spam']==0) $errors[] = 'error_akismet_connection';
+           else $spam_check_status = 2;
+          }
         }
        else
         {
-         $spam_check_status = 1;
+         // No errors, check for spam
+         if($akismet->isSpam())
+          {
+           if($settings['save_spam']==0) $errors[] = 'error_spam_suspicion';
+           else $spam = 1;
+          }
+         else
+          {
+           $spam_check_status = 1;
+          }
         }
       }
     }
@@ -1356,10 +1369,18 @@ switch($action)
   break;
   case 'report_spam':
    $id = intval($_GET['report_spam']);
-   $delete_result = mysql_query("SELECT tid, pid, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time, name, subject, category, spam, spam_check_status FROM ".$db_settings['forum_table']." WHERE id = ".$id." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
+   $delete_result = mysql_query("SELECT tid, pid, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time, user_id, name, subject, category, spam, spam_check_status FROM ".$db_settings['forum_table']." WHERE id = ".$id." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
    $field = mysql_fetch_array($delete_result);
    if(mysql_num_rows($delete_result)==1)
    {
+    // fetch user data if registered user:
+    if($field['user_id']>0)
+     {
+      $userdata_result = @mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($field['user_id'])." LIMIT 1", $connid) or die(mysql_error());
+      $userdata = mysql_fetch_array($userdata_result);
+      mysql_free_result($userdata_result);
+      $field['name'] = $userdata['user_name'];
+     }
    if(empty($_SESSION[$settings['session_prefix'].'user_type']) || $_SESSION[$settings['session_prefix'].'user_type']!=1&&$_SESSION[$settings['session_prefix'].'user_type']!=2)
     {
      $smarty->assign('no_authorisation','no_auth_delete');
@@ -1395,15 +1416,28 @@ switch($action)
     {
      if($settings['akismet_key']!='' && $settings['akismet_entry_check']==1)
       {
-       $result = mysql_query("SELECT name, email, hp, subject, location, text FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
+       $result = mysql_query("SELECT user_id, name, email, hp, subject, location, text FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
        $data = mysql_fetch_array($result);
        if(mysql_num_rows($result)==1)
         {
-         require('modules/akismet/akismet.class.php');
-         $check_posting['author'] = $data['name'];
-         if($data['email'] != '') $check_posting['email'] = $data['email'];
-         if($data['hp'] != '') $check_posting['website'] = $data['hp'];
+         // fetch user data if registered user:
+         if($data['user_id']>0)
+          {
+           $akismet_userdata_result = @mysql_query("SELECT user_name, user_email, user_hp FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['user_id'])." LIMIT 1", $connid) or die(mysql_error());
+           $akismet_userdata_data = mysql_fetch_array($akismet_userdata_result);
+           mysql_free_result($akismet_userdata_result);
+           $check_posting['author'] = $akismet_userdata_data['user_name'];
+           #if($akismet_userdata_data['user_email']!='') $check_posting['email'] = $akismet_userdata_data['user_email'];
+           if($akismet_userdata_data['user_hp']!='') $check_posting['website'] = $akismet_userdata_data['user_hp'];
+          } 
+         else
+          {
+           $check_posting['author'] = $data['name'];
+           if($data['email'] != '') $check_posting['email'] = $data['email'];
+           if($data['hp'] != '') $check_posting['website'] = $data['hp'];
+          }
          $check_posting['body'] = $data['text'];
+         require('modules/akismet/akismet.class.php');
          $akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
          if(!$akismet->errorsExist())
           {
@@ -1428,10 +1462,18 @@ switch($action)
   break;
   case 'flag_ham':
    $id = intval($_GET['flag_ham']);
-   $result = mysql_query("SELECT tid, pid, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time, name, subject, category, spam, spam_check_status FROM ".$db_settings['forum_table']." WHERE id = ".$id." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
+   $result = mysql_query("SELECT tid, pid, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time, user_id, name, subject, category, spam, spam_check_status FROM ".$db_settings['forum_table']." WHERE id = ".$id." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
    $field = mysql_fetch_array($result);
    if(mysql_num_rows($result)==1)
     {
+     // fetch user data if registered user:
+     if($field['user_id']>0)
+      {
+       $userdata_result = @mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($field['user_id'])." LIMIT 1", $connid) or die(mysql_error());
+       $userdata = mysql_fetch_array($userdata_result);
+       mysql_free_result($userdata_result);
+       $field['name'] = $userdata['user_name'];
+      }
      if(empty($_SESSION[$settings['session_prefix'].'user_type']) || $_SESSION[$settings['session_prefix'].'user_type']!=1&&$_SESSION[$settings['session_prefix'].'user_type']!=2)
       {
        $smarty->assign('no_authorisation','no_auth_delete');
@@ -1465,7 +1507,7 @@ switch($action)
   case 'flag_ham_submit':
    if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0)
     {
-     $result = mysql_query("SELECT tid, name, email, hp, subject, location, text FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
+     $result = mysql_query("SELECT tid, user_id, name, email, hp, subject, location, text FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
      $data = mysql_fetch_array($result);
      if(mysql_num_rows($result)==1)
       {
@@ -1488,22 +1530,35 @@ switch($action)
 
        if(isset($_POST['report_flag_ham_submit']) && $settings['akismet_key']!='' && $settings['akismet_entry_check']==1)
         {
+         // fetch user data if registered user:
+         if($data['user_id']>0)
+          {
+           $akismet_userdata_result = @mysql_query("SELECT user_name, user_email, user_hp FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['user_id'])." LIMIT 1", $connid) or die(mysql_error());
+           $akismet_userdata_data = mysql_fetch_array($akismet_userdata_result);
+           mysql_free_result($akismet_userdata_result);
+           $check_posting['author'] = $akismet_userdata_data['user_name'];
+           #if($akismet_userdata_data['user_email']!='') $check_posting['email'] = $akismet_userdata_data['user_email'];
+           if($akismet_userdata_data['user_hp']!='') $check_posting['website'] = $akismet_userdata_data['user_hp'];
+          } 
+         else
+          {
+           $check_posting['author'] = $data['name'];
+           if($data['email'] != '') $check_posting['email'] = $data['email'];
+           if($data['hp'] != '') $check_posting['website'] = $data['hp'];
+          }
+         $check_posting['body'] = $data['text'];       
          require('modules/akismet/akismet.class.php');
-         $check_posting['author'] = $data['name'];
-         if($data['email'] != '') $check_posting['email'] = $data['email'];
-         if($data['hp'] != '') $check_posting['website'] = $data['hp'];
-         $check_posting['body'] = $data['text'];
          $akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
          if(!$akismet->errorsExist())
           {
            $akismet->submitHam();
           }
         }
-       header('location: index.php?id='.$id);
+       header('Location: index.php?id='.$id);
       }
      else
       {
-       header('location: index.php?mode=index');
+       header('Location: index.php?mode=index');
       }
      exit;
     }

@@ -162,43 +162,45 @@ switch($action)
     }
 
    // Akismet spam check:
-   if(empty($errors) && $settings['akismet_key']!='' && $settings['akismet_mail_check']==1 && empty($_SESSION[$settings['session_prefix'].'user_id']))
+   if(empty($errors) && $settings['akismet_key']!='' && $settings['akismet_mail_check']==1)
     {
-     require('modules/akismet/akismet.class.php');
-     $mail_parts = explode("@", $sender_email);
-     $sender_name = $mail_parts[0];
-     $check_mail['author'] = $mail_parts[0];
-     $check_mail['email'] = $sender_email;
-     #$check_mail['body'] = $subject."\n\n".$text;
-     $check_mail['body'] = $text;
-     $akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_mail);
-     // test for errors
-     if($akismet->errorsExist())
+     if(empty($_SESSION[$settings['session_prefix'].'user_id']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==0 && $settings['akismet_check_registered']==1)
       {
-       // returns true if any errors exist
-       if($akismet->isError(AKISMET_INVALID_KEY))
+       require('modules/akismet/akismet.class.php');
+       $mail_parts = explode("@", $sender_email);
+       $sender_name = $mail_parts[0];
+       $check_mail['author'] = $mail_parts[0];
+       $check_mail['email'] = $sender_email;
+       #$check_mail['body'] = $subject."\n\n".$text;
+       $check_mail['body'] = $text;
+       $akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_mail);
+       // test for errors
+       if($akismet->errorsExist())
         {
-         $errors[] = 'error_akismet_api_key';
+         // returns true if any errors exist
+         if($akismet->isError(AKISMET_INVALID_KEY))
+          {
+           $errors[] = 'error_akismet_api_key';
+          }
+         elseif($akismet->isError(AKISMET_RESPONSE_FAILED))
+          {
+           $errors[] = 'error_akismet_connection';
+          }
+         elseif($akismet->isError(AKISMET_SERVER_NOT_FOUND))
+          {
+           $errors[] = 'error_akismet_connection';
+          }
         }
-       elseif($akismet->isError(AKISMET_RESPONSE_FAILED))
+       else
         {
-         $errors[] = 'error_akismet_connection';
-        }
-       elseif($akismet->isError(AKISMET_SERVER_NOT_FOUND))
-        {
-         $errors[] = 'error_akismet_connection';
-        }
-      }
-     else
-      {
-       // No errors, check for spam
-       if($akismet->isSpam())
-        {
-         $errors[] = 'error_spam_suspicion';
+         // No errors, check for spam
+         if($akismet->isSpam())
+          {
+           $errors[] = 'error_spam_suspicion';
+          }
         }
       }
     }
-
    if(isset($id))
     {
      // get email address from entry:

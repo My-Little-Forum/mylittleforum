@@ -1,3 +1,7 @@
+/*
+This file documentates the database changes in the different versions of my
+little forum. The relevant parts can be used for manual database updates.
+*/
 -- 2.0 beta 1 to 2.0 beta 4
 /*
 ALTER TABLE mlf2_entries ADD tags varchar(255) NOT NULL AFTER text;
@@ -285,5 +289,6 @@ UPDATE mlf2_settings SET value = '2.2.8' WHERE name = 'version';
 --------------------------------------------------------------------------------
 -- 2.2.8 to 2.3
 /*
+INSERT INTO mlf2_settings VALUES ('akismet_check_registered', '0');
 UPDATE mlf2_settings SET value = '2.3' WHERE name = 'version';
 */

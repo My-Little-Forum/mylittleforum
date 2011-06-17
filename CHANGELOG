@@ -9,6 +9,8 @@ my little forum changelog
 - GeSHi updated (1.0.8.10)
 - fixed this bug: http://mylittleforum.net/forum/index.php?id=5787
 - minor JavaScript modifications
+- possibility of akismet spam checking of posts by registered users added
+- added administration options to user profile page
 
 Edited files:
 - includes/
@@ -18,17 +20,21 @@ Edited files:
 - modules/geshi/
 - modules/smarty/
 - themes/default/main.tpl
+- themes/default/subtemplats/admin.inc.tpl
 - themes/default/subtemplats/entry.inc.tpl
 - themes/default/subtemplats/index.inc.tpl
 - themes/default/subtemplats/index_table.inc.tpl
 - themes/default/subtemplats/thread.inc.tpl
+- themes/default/subtemplats/user.inc.tpl
+- themes/default/subtemplats/user_profile.inc.tpl
 - index.php
 
 Database changes:
-- no database changes
+- setting "akismet_check_registered" added:
+  INSERT INTO mlf2_settings VALUES ('akismet_check_registered', '0');
  
 Manual update:
-- replace the changed files
+- replace the changed files 
 - set "version" to "2.3" in Admin --> Forum settings --> Advanced settings
 
 

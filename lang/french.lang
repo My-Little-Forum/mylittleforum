@@ -1,14 +1,10 @@
 ################################################################################
 # French language file for my little forum 2.2                                 #
 #------------------------------------------------------------------------------#
-# Translated by Michel Gosse < mgosse3 at gmail dot com >                      #
-# 2009-03-27                                                                   #
-#------------------------------------------------------------------------------#
-# Update 2010-03-13 (Alex < alex at mylittleforum dot net >):                  #
-# added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
+# Translated by Michel Gosse < mgosse3 at gmail dot com > 2009-03-27           #
+# Updated by Marc Duval < duvalm at gmail dot com > 2011-05-22                 #
 ################################################################################
 
-[default]
 language =                        fr
 charset =                         utf-8
 locale =                          fr_FR.utf8
@@ -34,7 +30,7 @@ category =                        Categorie
 submit_button_ok =                &nbsp;OK&nbsp;
 yes =                             oui
 no =                              non
-go =                              Allez
+go =                              aller
 edit =                            editer
 delete =                          supprimer
 next_page_link =                  &raquo;
@@ -121,6 +117,7 @@ subnav_create_page =              Créer page
 subnav_edit_smiley =              Editer smiley
 subnav_edit_user =                Editer un utilisateur
 subnav_delete_users =             Supprimer des utilisateurs
+subnav_delete_entries_user =      <!-- TODO -->Delete entries of user
 subnav_register_user =            Utilisateur enregistré
 subnav_spam_protection =          Protection contre le spam
 subnav_email_list =               liste des emails des utilisateurs enregistrés
@@ -131,7 +128,7 @@ subnav_reset_uninstall =          Remise à zéro / Désinstaller forum
 subnav_userarea =                 Zone d'utilisateur
 subnav_contact =                  Contact
 subnav_userarea_show_user =       [var]
-subnav_userarea_show_posts =       Posté par [var]
+subnav_userarea_show_posts =      Posté par [var]
 subnav_userarea_edit_user =       Editer le profil
 subnav_userarea_edit_pw =         Changer le mot de passe
 subnav_userarea_edit_mail =       Changer l'adresse email
@@ -152,7 +149,7 @@ contact_linktitle =               Message à l'administrateur du forum
 rss_feed_postings =               Fil RSS des messages
 rss_feed_postings_title =         Fil RSS de tous les nouveaux messages
 rss_feed_new_threads =            Fil RSS des discussions
-rss_feed_new_threads_title =       Fil RSS uniquement des sujets de discussion
+rss_feed_new_threads_title =      Fil RSS uniquement des sujets de discussion
 rss_feed_thread =                 Fil RSS du sujet
 rss_feed_thread_title =           Fil RSS de ce sujet
 no_messages =                     Aucun message n'a encore été posté.
@@ -207,7 +204,7 @@ move_up =                         monter
 move_down =                       descendre
 delete_posting_title =            Supprimer message
 delete_posting_confirm =          Voulez vous vraiment supprimer ce message ?
-delete_posting_replies_confirm =   Voulez vous vraiment supprimer ce message et toutes les réponses ?
+delete_posting_replies_confirm =  Voulez vous vraiment supprimer ce message et toutes les réponses ?
 latest_postings_hl =              Derniers messages
 toggle_latest_postings =          Montrer / cacher les derniers messages
 posting_minutes_ago =             il y a [minutes] minutes
@@ -233,17 +230,18 @@ error_form_sent_too_slow =        Le formulaire n'est plus valide - veuillez cop
 terms_of_use_agreement =          J'accepte les [[terms of use]]
 error_not_accepted_word =         Mot non autorisé : [not_accepted_word]
 error_not_accepted_words =        Mots non autorisés : [not_accepted_words]
-error_username_invalid_chars =    <!-- TODO -->The user name contains special characters
-user_locked =                     Votre compte est actuellement bloqué.
+error_username_invalid_chars =    Le nom de l'utilisateur contient des caractères spéciaux
+user_locked =                     bloqué
+user_locked_message =             Votre compte est actuellement bloqué.
 forum_disabled =                  Le forum est actuellement indisponible.
 cookie_deleted =                  Le cookie a été supprimé.
 ajax_preview_title =              Aperçu
 bbcode_link_text =                Texte pour le lien (en option):
 bbcode_link_url =                 Adresse pour le lien (URL):
 bbcode_image_url =                Adresse de l'image (URL):
-bbcode_tex_code =                 <!-- TODO -->TeX formula (e.g. \sqrt{x}):
+bbcode_tex_code =                 Formule TeX(ex. \sqrt{x}):
 quote_label =                     citation
-quote_title =                     <!-- TODO -->Insert quoted text of the posting to be replied on
+quote_title =                     Insérer le texte marqué du message auquel vous répondez
 error_no_name =                   Aucun nom n'a été entré
 error_no_subject =                Aucun sujet n'a été entré
 error_no_text =                   Aucun texte n'a été entré
@@ -331,18 +329,18 @@ bbcode_list_title =               Insérer une liste
 bbcode_list_instruction =         [list][*]numéro de liste[/list]
 bbcode_image_label =              image
 bbcode_image_title =              Insérer une image
-bbcode_image_label_default =      <!-- TODO -->default
-bbcode_image_instr_default =      <!-- TODO -->[img]http://example.com/image.jpg[/img]
-bbcode_image_label_left =         <!-- TODO -->left       
-bbcode_image_instr_left =         <!-- TODO -->left: [img=left]http://example.com/image.jpg[/img]
-bbcode_image_label_right =        <!-- TODO -->right       
-bbcode_image_instr_right =        <!-- TODO -->right: [img=right]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb =        <!-- TODO -->thumbnail       
-bbcode_image_instr_thumb =        <!-- TODO -->thumbnail: [img=thumbnail]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb_left =   <!-- TODO -->thumbnail left       
-bbcode_image_instr_thumb_left =   <!-- TODO -->thumbnail left: [img=thumbnail]http://example.com/image.jpg[/img]
-bbcode_image_label_thumb_right =  <!-- TODO -->thumbnail right       
-bbcode_image_instr_thumb_right =  <!-- TODO -->thumbnail right: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_default =      défaut
+bbcode_image_instr_default =      [img]http://example.com/image.jpg[/img]
+bbcode_image_label_left =         gauche       
+bbcode_image_instr_left =         gauche: [img=left]http://example.com/image.jpg[/img]
+bbcode_image_label_right =        droite       
+bbcode_image_instr_right =        droite: [img=right]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb =        cliché réduit       
+bbcode_image_instr_thumb =        cliché réduit: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_left =   cliché réduit gauche       
+bbcode_image_instr_thumb_left =   cliché réduit gauche: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_right =  cliché réduit droit       
+bbcode_image_instr_thumb_right =  cliché réduit droit: [img=thumbnail]http://example.com/image.jpg[/img]
 bbcode_upload_label =             télécharger
 bbcode_upload_title =             Télécharger une image
 bbcode_upload_instruction =       Télécharger une image ...
@@ -350,16 +348,16 @@ bbcode_flash_label =              flash
 bbcode_flash_title =              Insérer une animation flash
 bbcode_flash_instruction =        [flash]http://example.com/flash.swf[/flash]
 bbcode_tex_label =                TeX
-bbcode_tex_title =                <!-- TODO -->insert TeX code
-bbcode_tex_instruction =          [tex]TeX code[/tex]
-bbcode_code_label =               <!-- TODO -->code
-bbcode_code_title =               <!-- TODO -->insert code
-bbcode_code_label_inline =        <!-- TODO -->inline code
-bbcode_code_instruction_inline =   <!-- TODO -->[inlinecode]code[/inlinecode]
-bbcode_code_label_general =        <!-- TODO -->code block
-bbcode_code_instruction_general =   <!-- TODO -->[code]code[/code]
-bbcode_code_label_specific =       <!-- TODO -->code block [language]
-bbcode_code_instruction_spec =    <!-- TODO -->[code=[language]]code[/code]
+bbcode_tex_title =                insérer le code TeX
+bbcode_tex_instruction =          [tex]code TeX[/tex]
+bbcode_code_label =               code
+bbcode_code_title =               insérer le code
+bbcode_code_label_inline =        code en ligne
+bbcode_code_instruction_inline =  [inlinecode]code[/inlinecode]
+bbcode_code_label_general =       block de code
+bbcode_code_instruction_general = [code]code[/code]
+bbcode_code_label_specific =      block de code [language]
+bbcode_code_instruction_spec =    [code=[language]]code[/code]
 insert_smiley_title =             Insérer un smiley
 email_notific_reply_thread =      Indiquer un email pour les réponses à ce fil
 email_notific_reply_post =        Indiquer un email en réponse à ce message
@@ -432,7 +430,7 @@ insert_image_exp_no_js =          Vous pouvez utiliser le code suivant pour ins�
 browse_uploaded_images =          Parcourir les images transférées...
 back =                            &laquo; Retour
 no_images =                       Aucune image n'est disponible.
-delete_image_confirm =            <!-- TODO -->Delete this image?
+delete_image_confirm =            Effacer cette image ?
 delete_image_button =             OK - Supprimer
 
 [insert_flash]
@@ -518,7 +516,6 @@ user_postings =                   Messages
 user_online =                     En ligne
 user_blockage =                   Bloqué
 online =                          en ligne
-locked =                          bloqué
 lock_title =                      utilisateur bloqué
 unlocked =                        débloqué
 unlock_title =                    débloquer un utilisateur
@@ -550,6 +547,11 @@ last_posting =                    Derniers messages:
 logins_per_day =                  connexions par jour :
 postings_per_day =                Messages par jour :
 user_profile =                    Profil:
+user_delete_all_entries =         <!-- TODO -->Delete all postings of this user
+user_lock_account =               <!-- TODO -->Lock user account
+user_unlock_account =             <!-- TODO -->Unlock user account  
+user_edit_account =               <!-- TODO -->Edit user account
+user_delete_account =             <!-- TODO -->Delete user account
 user_account_doesnt_exist =       Le compte de cet utilisateur n'existe pas.
 
 [user_edit]
@@ -576,7 +578,7 @@ edit_user_signature =             Signature:
 edit_user_cat_selection =         Ma catégorie sélectionnée :
 edit_user_time_zone =             Fuseau horaire:
 edit_user_time_difference =       Décalage additionnel en heures, cad  +3 or -5:30:
-edit_user_default_time_zone_svr =   Standard (temps de serveur)
+edit_user_default_time_zone_svr = Standard (temps de serveur)
 edit_user_default_time_zone =     Standard ([default_time_zone])
 edit_user_language =              Langage:
 edit_user_default_language =      Standard ([default_language])
@@ -683,13 +685,13 @@ default_language =                Langage
 default_language_desc =           Langage du forum
 default_time_zone =               Fuseau horaire
 default_time_zone_desc =          Fuseau horaire standard
-default_time_difference =         <!-- TODO -->Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
+default_time_difference =         Le fuseau horaire n'est pas disponible. Alternativement, la différence de temps entre le serveur et le forum peut être spécifiée (en minutes, e.g. 240 or -360):
 default_theme =                   Thème
 default_theme_desc =              Thème pour le gabarit de la page
 threads_per_page =                Fils par page
 threads_per_page_desc =           Combien de fils faut-il afficher par page ?
-auto_lock_old_threads =           <!-- TODO -->Auto lock old threads
-auto_lock_old_threads_desc =      <!-- TODO -->Automaticlly lock threads with last replies older than how many days? (0=disabled)
+auto_lock_old_threads =           Fermeture automatique des vieux fils de discussion
+auto_lock_old_threads_desc =      Ferme automatiquement les fils de discussions dans la dernière réponse est plus vieille de combien de jours ? (0=désactivé)
 accession =                       Gestion des accès ou des permissions
 accession_desc =                  Qui peut accéder au forum ?
 post_permission =                 Autorisation de publication
@@ -830,7 +832,7 @@ user =                            Utilisateur
 locked =                          bloqué
 unlocked =                        Désactivé
 lock_title =                      bloquer un utilisateur
-unlock_title =                   débloquer un utilisateur
+unlock_title =                    débloquer un utilisateur
 user_inactive =                   Utilisateur inactif
 activate_note =                   Le compte utilisateur n'est pas encore activé ou l'utilisateur a changé d'adresse email. A n'activer que si l'utilisateur rencontre des problèmes pour l'activer par lui-même.
 activate_link =                   Activer le compte
@@ -841,7 +843,8 @@ clear_userdata =                  Effacer les données des utilisateurs
 delete_avatar =                   Supprimer l'avatar
 delete_user_confirmation =        Etes vous sur de vouloir supprimer cet utilisateur ?
 delete_users_confirmation =       Etes vous sur de vouloir supprimer les utilisateurs suivants ?
-delete_users_submit =             OK - Supprimer
+delete_entries_of_user_confirm =  <!-- TODO -->Are you sure you want to delete all postings of <strong>[user]</strong>? Replies by other users will also be deleted!
+delete_submit =                   OK - Supprimer
 register_exp =                    Vous pouvez laisser vides les champs pour le mot de passe si un mot de passe aléatoire doit être généré. Dans ce cas, ces informations doivent être envoyées à l'adresse email indiquée.
 register_username =               Nom d'utilisateur:
 register_email =                  Email:
@@ -878,6 +881,7 @@ akismet_save_spam =               Sauvegarder le spam (avec une étiquette spam 
 akismet_auto_delete_spam =        Supprimer les spams automatiquement après combien d'heures (0=ne pas supprimer)?
 akismet_entry =                   vérifier les formulaires des messages
 akismet_mail =                    vérifier le formulaire pour l'email
+akismet_registered =              <!-- TODO -->check submissions of registered users
 banned_ips =                      Adresses IP en liste noire
 banned_ips_desc =                 Adresses IP dont l'accès est interdit. Les plages d'IP (cad 10.10.1.*) et la notation CIDR (cad 10.10.1.32/27) est possible. Une seule IP par ligne.
 banned_user_agents =              Programmes d'emails interdits
@@ -938,7 +942,7 @@ update_instructions =             Décompacter le fichier, trouver le fichier de
 update_instructions =             Recharger cette page et le fichier de mise à jour devrait apparaitre ci-dessous
 update_instructions =             Cliquer sur le fichier et suivre les instructions
 update_instructions =             Après une mise à jour, vous obtiendrez une liste des fichiers et des dossiers qui ont été ajoutés ou remplacés
-update_instructions =             <!-- TODO -->Clear the directory <strong>templates_c</strong> (delete all files in this dirctory) after you have added/replaced the files/folders
+update_instructions =             Vider le répertoire <strong>templates_c</strong> (effacer tous les fichiers dans le répertoire) après avoir ajouté/ remplacer les fichiers/les dossiers.
 update_available_files =          Fichier(s) de mise à jour disponible(s)
 update_no_files_available =       Aucune mise à jour n'est disponible.
 update_file_title =               Exécuter ce fichier de mise à jour
@@ -1094,6 +1098,6 @@ error_db_connection =             Erreur de connexion à la base de données - v
 error_db_inexistent =             La base de données indiquée n'existe pas - veuillez vérfier le nom de la base de données
 error_sql_file_doesnt_exist =     Le fichier d'installation SQL (install.sql) n'existe pas
 error_overwrite_config_file =     Vous n'avez pas la permission de modifier le fichier <strong>config/db_settings.php</strong> (à mettre sur CHMOD 666, actuellement [CHMOD])
-error_sql =                       SQL erreur
+error_sql =                       Erreur SQL
 forum_install_ok =                OK - Installer le forum
 error_conf_pw =                   Les mots de passe admin ne correspondent pas

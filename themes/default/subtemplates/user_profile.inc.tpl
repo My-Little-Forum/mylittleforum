@@ -3,7 +3,7 @@
 <table class="normaltab wide" border="0" cellpadding="5" cellspacing="1">
 <tr>
 <td class="c"><p class="userdata"><strong>{#user_name#}</strong></p></td>
-<td class="d"><p class="userdata"><strong>{$user_name}</strong>{if $gender==1} <img src="{$THEMES_DIR}/{$theme}/images/male.png" alt="{#male#}" width="16" height="16" />{elseif $gender==2} <img src="{$THEMES_DIR}/{$theme}/images/female.png" alt="{#female#}" width="16" height="16" />{/if} <span class="xsmall">{if $p_user_type==2}({#admin#}){elseif $p_user_type==1}({#mod#}){else}<!--({#user#})-->{/if}</span></p></td>
+<td class="d"><p class="userdata"><strong>{$user_name}</strong>{if $gender==1} <img src="{$THEMES_DIR}/{$theme}/images/male.png" alt="{#male#}" width="16" height="16" />{elseif $gender==2} <img src="{$THEMES_DIR}/{$theme}/images/female.png" alt="{#female#}" width="16" height="16" />{/if} <span class="xsmall">{if $p_user_type==2}({#admin#}){elseif $p_user_type==1}({#mod#}){else}<!--({#user#})-->{/if}</span>{if $user_is_locked} <span class="small user-locked">({#user_locked#})</span>{/if}</p></td>
 </tr>
 {if $avatar}
 <tr>
@@ -74,6 +74,16 @@
 </tr>
 {/if}
 </table>
+
+{if $mod||$admin}
+<ul class="adminmenu">
+{if $admin}{if $postings}<li><a href="index.php?mode=admin&amp;user_delete_all_entries={$p_user_id}"><img src="{$THEMES_DIR}/{$theme}/images/delete_entries.png" alt="" width="16" height="16" /><span>{#user_delete_all_entries#}</span></a></li>{/if}{/if}
+{if $p_user_type==0}<li><a href="index.php?mode=user&amp;user_lock={$p_user_id}">{if $user_is_locked}<img src="{$THEMES_DIR}/{$theme}/images/unlock_user.png" alt="" width="16" height="16" /><span>{#user_unlock_account#}</span></a>{else}<img src="{$THEMES_DIR}/{$theme}/images/lock_user.png" alt="" width="16" height="16" /><span>{#user_lock_account#}</span></a>{/if}</li>{/if}
+{if $admin}<li><a href="index.php?mode=admin&amp;edit_user={$p_user_id}"><img src="{$THEMES_DIR}/{$theme}/images/edit_user.png" alt="" width="16" height="16" /><span>{#user_edit_account#}</span></a></li>{/if}
+{if $admin}<li><a href="index.php?mode=admin&amp;delete_user={$p_user_id}"><img src="{$THEMES_DIR}/{$theme}/images/delete_user.png" alt="" width="16" height="16" /><span>{#user_delete_account#}</span></a></li>{/if}
+</ul>
+{/if}
+
 {else}
 <p class="caution">{#user_account_doesnt_exist#}</p>
 {/if}

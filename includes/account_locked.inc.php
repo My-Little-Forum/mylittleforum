@@ -5,7 +5,7 @@ if(!defined('IN_INDEX'))
   exit;
  }
 
-$smarty->assign('message','user_locked');
+$smarty->assign('message','user_locked_message');
 $smarty->assign('subnav_location','subnav_locked');
 $smarty->assign('subtemplate','info.inc.tpl');
 $template = 'main.tpl';

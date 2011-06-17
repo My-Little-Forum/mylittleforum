@@ -506,15 +506,14 @@ if(isset($_GET['delete_user']))
  {
   $user_id = intval($_GET['delete_user']);
   $user_result = mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id='".$user_id."' LIMIT 1", $connid);
-  if (!$user_result) raise_error('database_error',mysql_error());
+  if(!$user_result) raise_error('database_error',mysql_error());
   $user = mysql_fetch_array($user_result);
   mysql_free_result($user_result);
   $selected_users[0]['id'] = $user_id;
   $selected_users[0]['name'] = htmlspecialchars($user["user_name"]);
   $selected_users_count = 1;
-  $action="delete_users";
+  $action = 'delete_users';
  }
-
 
 if(isset($_POST['delete_selected_users']))
  {
@@ -531,9 +530,41 @@ if(isset($_POST['delete_selected_users']))
      $selected_users[$x]['id'] = $selected[$x];
      $selected_users[$x]['name'] = htmlspecialchars($user["user_name"]);
     }
-   $action="delete_users";
+   $action = 'delete_users';
    }
-  else $action="user";
+  else $action = 'user';
+ }
+
+if(isset($_POST['user_delete_entries']) && isset($_POST['delete_confirmed']))
+ {
+  $user_delete_entries = intval($_POST['user_delete_entries']);
+  $result = mysql_query("SELECT id FROM ".$db_settings['forum_table']." WHERE user_id = ".$user_delete_entries, $connid) or raise_error('database_error',mysql_error());
+  while($data = mysql_fetch_array($result))
+   {
+    delete_posting_recursive($data['id']);
+   }
+  mysql_free_result($result);
+  header('Location: index.php?mode=user&show_user='.$user_delete_entries);
+  exit;
+ }
+
+
+if(isset($_GET['user_delete_all_entries']))
+ {
+  $user_id = intval($_GET['user_delete_all_entries']);
+  $user_result = mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id='".$user_id."' LIMIT 1", $connid);
+  if(!$user_result) raise_error('database_error',mysql_error());
+  if(mysql_num_rows($user_result)==1)
+   {
+    #$count_postings_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".$user_id, $connid);
+    #list($user_delete_entries['number']) = mysql_fetch_row($count_postings_result);
+    #mysql_free_result($count_postings_result);
+    $user = mysql_fetch_array($user_result);
+    mysql_free_result($user_result);
+    $user_delete_entries['id'] = $user_id;
+    $user_delete_entries['user'] = htmlspecialchars($user['user_name']);
+    $action = 'user_delete_entries';
+   }
  }
 
 if(isset($_GET['download_backup_file']))
@@ -1392,6 +1423,15 @@ switch($action)
    $smarty->assign('selected_users',$selected_users);
    $smarty->assign('selected_users_count',$selected_users_count);
   break;
+  case "user_delete_entries":
+   $breadcrumbs[0]['link'] = 'index.php?mode=admin';
+   $breadcrumbs[0]['linkname'] = 'subnav_admin_area';
+   $breadcrumbs[1]['link'] = 'index.php?mode=admin&amp;action=user';
+   $breadcrumbs[1]['linkname'] = 'subnav_user';
+   $smarty->assign('breadcrumbs', $breadcrumbs);
+   $smarty->assign('subnav_location', 'subnav_delete_entries_user');
+   $smarty->assign('user_delete_entries', $user_delete_entries);
+  break;
   case "delete_category":
   break;
   case "edit_category":
@@ -1557,6 +1597,7 @@ switch($action)
    $smarty->assign('akismet_key',$settings['akismet_key']);
    $smarty->assign('akismet_entry_check',$settings['akismet_entry_check']);
    $smarty->assign('akismet_mail_check',$settings['akismet_mail_check']);
+   $smarty->assign('akismet_check_registered',$settings['akismet_check_registered']);
    $smarty->assign('save_spam',$settings['save_spam']);
    $smarty->assign('auto_delete_spam',$settings['auto_delete_spam']);
  break;
@@ -1679,6 +1720,7 @@ switch($action)
    if(isset($_POST['captcha_register'])) $captcha_register = intval($_POST['captcha_register']); else $captcha_register = 0;
    if(empty($_POST['akismet_entry_check'])) $akismet_entry_check = 0; else $akismet_entry_check = 1;
    if(empty($_POST['akismet_mail_check'])) $akismet_mail_check = 0; else $akismet_mail_check = 1;
+   if(empty($_POST['akismet_check_registered'])) $akismet_check_registered = 0; else $akismet_check_registered = 1;
    if(empty($_POST['save_spam'])) $save_spam = 0; else $save_spam = intval($_POST['save_spam']);
 
    // check akismet API key:
@@ -1753,6 +1795,7 @@ switch($action)
      mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($akismet_key)."' WHERE name='akismet_key'", $connid);
      mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($akismet_entry_check)."' WHERE name='akismet_entry_check'", $connid);
      mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($akismet_mail_check)."' WHERE name='akismet_mail_check'", $connid);
+     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($akismet_check_registered)."' WHERE name='akismet_check_registered'", $connid);
      mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($save_spam)."' WHERE name='save_spam'", $connid);
      mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($_POST['auto_delete_spam'])."' WHERE name='auto_delete_spam'", $connid);
      mysql_query("UPDATE ".$db_settings['banlists_table']." SET list='".mysql_real_escape_string($banned_ips)."' WHERE name='ips'", $connid);
@@ -1776,6 +1819,7 @@ switch($action)
      $smarty->assign('akismet_key',htmlspecialchars($akismet_key));
      $smarty->assign('akismet_entry_check',$akismet_entry_check);
      $smarty->assign('akismet_mail_check',$akismet_mail_check);
+     $smarty->assign('akismet_check_registered',$akismet_check_registered);
      $smarty->assign('save_spam',$save_spam);
      $smarty->assign('auto_delete_spam',$_POST['auto_delete_spam']);
      $smarty->assign('banned_ips',htmlspecialchars($_POST['banned_ips']));

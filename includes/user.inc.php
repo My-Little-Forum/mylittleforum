@@ -164,13 +164,15 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
      $template = 'main.tpl';
     break;
     case 'user_lock':
-     $page = intval($_GET['page']);
-     if($page < 1) $page = 1;
-     $order = urlencode($_GET['order']);
-     $descasc = urlencode($_GET['descasc']);
-     if(isset($_GET['search_user'])) $search_user_q = '&search_user='.urlencode($_GET['search_user']);
-     else $search_user_q = '';
-
+     if(isset($_GET['page']))
+      {
+       $page = intval($_GET['page']);
+       if($page < 1) $page = 1;
+       $order = urlencode($_GET['order']);
+       $descasc = urlencode($_GET['descasc']);
+       if(isset($_GET['search_user'])) $search_user_q = '&search_user='.urlencode($_GET['search_user']);
+       else $search_user_q = '';
+      }
      if(isset($_SESSION[$settings['session_prefix'].'user_type']) && ($_SESSION[$settings['session_prefix'].'user_type']==1 || $_SESSION[$settings['session_prefix'].'user_type']==2))
       {
        $lock_result = @mysql_query("SELECT user_type, user_lock FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($_GET['user_lock'])." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
@@ -182,13 +184,15 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
          @mysql_query("UPDATE ".$db_settings['userdata_table']." SET user_lock='".$new_lock."', last_login=last_login, registered=registered WHERE user_id='".intval($_GET['user_lock'])."' LIMIT 1", $connid);
         }
       }
-     header('Location: index.php?mode=user'.$search_user_q.'&page='.$page.'&order='.$order.'&descasc='.$descasc);
+     if(isset($_GET['page'])) header('Location: index.php?mode=user'.$search_user_q.'&page='.$page.'&order='.$order.'&descasc='.$descasc);
+     else header('Location: index.php?mode=user&show_user='.intval($_GET['user_lock']));
      exit;
     break;
     case 'show_user':
      $id = intval($_GET['show_user']);
 
-     $result = mysql_query("SELECT user_id, user_type, user_name, user_real_name, gender, birthday, user_email, email_contact, user_hp, user_location, profile, cache_profile, logins, UNIX_TIMESTAMP(registered) AS registered, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS user_registered, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS user_last_login FROM ".$db_settings['userdata_table']."
+     $result = mysql_query("SELECT user_id, user_type, user_name, user_real_name, gender, birthday, user_email, email_contact, user_hp, user_location, profile, cache_profile, logins, UNIX_TIMESTAMP(registered) AS registered, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS user_registered, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS user_last_login, user_lock
+     FROM ".$db_settings['userdata_table']."
      LEFT JOIN ".$db_settings['userdata_cache_table']." ON ".$db_settings['userdata_cache_table'].".cache_id=".$db_settings['userdata_table'].".user_id
      WHERE user_id = ".$id." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
 
@@ -298,6 +302,8 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        #if($settings['bbcode'] == 1) $profile = bbcode($profile);
        #if($settings['smilies'] == 1) $profile = smilies($profile);
        $smarty->assign('profile', $profile);
+       if($row['user_lock']==1) $smarty->assign('user_is_locked', true);
+       else $smarty->assign('user_is_locked', false);
        $breadcrumbs[0]['link'] = 'index.php?mode=user';
        $breadcrumbs[0]['linkname'] = 'subnav_userarea';
        $smarty->assign('breadcrumbs',$breadcrumbs);
