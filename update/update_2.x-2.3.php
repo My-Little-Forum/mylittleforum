@@ -25,17 +25,20 @@ switch($settings['version'])
  {
   case '2.2.8':
      $update['items'][] = 'includes/';
-     $update['items'][] = 'index.php';
      $update['items'][] = 'js/';
      $update['items'][] = 'lang/';
      $update['items'][] = 'modules/bad-behavior/';
      $update['items'][] = 'modules/geshi/';
      $update['items'][] = 'modules/smarty/';
      $update['items'][] = 'themes/default/main.tpl';
+     $update['items'][] = 'themes/default/subtemplats/admin.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
+     $update['items'][] = 'index.php';
      break;
   case '2.2.7':
      $update['items'][] = 'includes/';
@@ -52,6 +55,8 @@ switch($settings['version'])
      $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';     
      $update['items'][] = 'themes/default/upload_image.tpl';
      break;
   case '2.2.6':
@@ -71,6 +76,8 @@ switch($settings['version'])
      $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
      $update['items'][] = 'themes/default/upload_image.tpl';
      break;
   case '2.2.5':
@@ -90,6 +97,8 @@ switch($settings['version'])
      $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
      $update['items'][] = 'themes/default/upload_image.tpl';
      break;
   case '2.2.4':
@@ -110,6 +119,8 @@ switch($settings['version'])
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
      $update['items'][] = 'themes/default/upload_image.tpl';
      break;
   case '2.2.3':
@@ -130,7 +141,9 @@ switch($settings['version'])
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
      $update['items'][] = 'themes/default/upload_image.tpl';
      break;
   case '2.2.2':
@@ -151,7 +164,9 @@ switch($settings['version'])
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
      $update['items'][] = 'themes/default/upload_image.tpl';
      break;
   case '2.2.1':
@@ -172,7 +187,9 @@ switch($settings['version'])
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
      $update['items'][] = 'themes/default/upload_image.tpl';
      break;
   case '2.2':
@@ -193,7 +210,9 @@ switch($settings['version'])
      $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
      $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
      $update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
      $update['items'][] = 'themes/default/upload_image.tpl';
      break;
   default:

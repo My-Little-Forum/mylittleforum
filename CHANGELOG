@@ -2,10 +2,10 @@ my little forum changelog
 -------------------------
 
 
-2.3 (2011-??-??)
+2.3 (2011-09-01)
 ------------------
-- Smarty updated (3.0.7)
-- Bad Behavior updated (2.0.42)
+- Smarty updated (3.0.8)
+- Bad Behavior updated (2.0.44)
 - GeSHi updated (1.0.8.10)
 - fixed this bug: http://mylittleforum.net/forum/index.php?id=5787
 - minor JavaScript modifications

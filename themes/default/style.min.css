@@ -200,6 +200,8 @@ fieldset.inactive{border:none;margin:0;padding:0;}
 fieldset.inactive label,fieldset.inactive input{color:#808080;}
 .checkboxlist{list-style-type:none;margin:0;padding:0;font-size:1em!important;}
 .login{width:17em;}
+.nowrap{white-space:nowrap;}
+.user-locked{color:red!important;}
 ul.filelist{list-style-type:none;padding-left:0;margin-left:0;font-size:.82em;line-height:1.7em!important;}
 ul.filelist img{margin:0 5px -3px 0;padding:0;}
 ul.thread span.mod,ul.thread span.admin,td span.admin,td span.mod{cursor:help;}

@@ -1,7 +1,7 @@
 my little forum - http://mylittleforum.net/
 
 REQUIREMENTS:
-* Webserver with PHP >= 4.2 and MySQL >= 4.1
+* Webserver with PHP >= 5.2 and MySQL >= 4.1
 
 INSTALLATION:
 * Unzip the script package.

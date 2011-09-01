@@ -91,8 +91,8 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #content .small          { font-size:0.69em; line-height:1.19em; font-weight:normal; }
 
 #footer                  { clear:both; font-size:0.69em; line-height:1.5em; margin:0; padding:0; color:#000000; background:#f9f9f9; border-top:1px solid #bacbdf; }
-#footer #footer-1        { margin:0; padding:7px 0 10px 20px; float:left; /* image preloading:  background:url(images/ajax_preview_tail.png) no-repeat -9999px 9999px;*/ }
-#footer #footer-2        { margin:0; padding:7px 20px 10px 0; text-align:right; /* image preloading:  background:url(images/throbber.gif) no-repeat -9999px 9999px; */ }
+#footer #footer-1        { margin:0; padding:7px 0 10px 20px; float:left; }
+#footer #footer-2        { margin:0; padding:7px 20px 10px 0; text-align:right; }
 #footermenu              { margin:0 0 1em 0; list-style-type:none; }
 #footermenu li           { display:inline; margin-left:6px; padding-left:7px; background:url(images/bg_sprite_1.png) no-repeat 0 -1097px; }
 #footermenu li:first-child
@@ -283,6 +283,8 @@ fieldset.inactive label,
 fieldset.inactive input  { color:#808080; }
 .checkboxlist            { list-style-type:none; margin:0; padding:0; font-size:1em !important; }
 .login                   { width:17em; }
+.nowrap                  { white-space:nowrap; }
+.user-locked             { color:red !important; }
 
 ul.filelist              { list-style-type:none; padding-left:0; margin-left:0; font-size:0.82em; line-height:1.7em !important; }
 ul.filelist img          { margin:0 5px -3px 0; padding:0; }

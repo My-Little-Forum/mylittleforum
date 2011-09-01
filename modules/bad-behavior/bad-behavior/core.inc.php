@@ -165,7 +165,7 @@ function bb2_start($settings)
 			bb2_test($settings, $package, bb2_msnbot($package));
 			bb2_approved($settings, $package);
 			return true;
-		} elseif (stripos($ua, "Googlebot") !== FALSE || stripos($ua, "Mediapartners-Google") !== FALSE) {
+		} elseif (stripos($ua, "Googlebot") !== FALSE || stripos($ua, "Mediapartners-Google") !== FALSE || stripos($ua, "Google Web Preview") !== FALSE) {
 			require_once(BB2_CORE . "/google.inc.php");
 			bb2_test($settings, $package, bb2_google($package));
 			bb2_approved($settings, $package);
