@@ -1,9 +1,9 @@
 ################################################################################
-# Russian language file for my little forum 2.2                                #
+# Russian language file for my little forum 2.3                                #
 # Translated from English by Victor Urusov aka Urfin®                          #
 # < urfin77 at yandex dot ru >                                                 #
 #------------------------------------------------------------------------------#
-# Русский языковой файл для my little forum_2.2                                #
+# Русский языковой файл для my little forum 2.3                                #
 # Перевод c английского сделал Виктор Урусов aka Urfin®                        #
 # < urfin77 at yandex dot ru >                                                 #
 #------------------------------------------------------------------------------#
@@ -728,9 +728,9 @@ latest_postings_desc =            Количество последних соо
 tag_cloud =                       Панель тэгов
 tag_cloud_desc =                  Должна ли панель тэгов отображаться на индексной странице форума?
 enable_tag_cloud =                Панель тэгов включена
-terms_of_use_agreement =          Пользовательское соглашение
-terms_of_use_agreement_desc =     Обязательные условия, которые должны принять незарегистрированные пользователи перед получением права на публикацию сообщений и регистрацию
-terms_of_use_agreement_enabled =  Пользовательское соглашение включено
+terms_of_use_settings =           Пользовательское соглашение
+terms_of_use_settings_desc =      Обязательные условия, которые должны принять незарегистрированные пользователи перед получением права на публикацию сообщений и регистрацию
+terms_of_use_settings_enabled =   Пользовательское соглашение включено
 terms_of_use_url =                URL Пользовательского соглашения:
 edit_postings =                   Редактирование сообщений
 edit_postings_desc =              Правила редактирования сообщений
@@ -888,7 +888,7 @@ captcha_graphical =               графическая
 gr_captcha_not_available =        Графическая капча недоступна (недоступна библиотека GD Lib)
 gr_captcha_no_font =              Нет доступного шрифта, код капчи может отображаться неидеально
 bad_behavior =                    Bad Behavior
-bad_behavior_desc =               Защита от спама <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a>.
+bad_behavior_desc =               Защита от спама <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a>.
 bad_behavior_enable =             включить Bad Behavior
 akismet =                         Akismet
 akismet_desc =                    Служба защиты от спама <a href="http://akismet.com/">Akismet</a>. Для её использование вам потребуется <a href="http://wordpress.com/api-keys/">ключ Wordpress API Key</a> (не будет работать без ключа или с неправильным ключом API Key!).

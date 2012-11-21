@@ -1,5 +1,5 @@
 ###################################################
-# Norwegian language file for my little forum 2.2 #
+# Norwegian language file for my little forum 2.3 #
 ###################################################
 
 [default]
@@ -712,9 +712,9 @@ latest_postings_desc =            Hvor mange siste innlegg skal vises i listen p
 tag_cloud =                       Merkelappliste
 tag_cloud_desc =                  Skal en liste med de siste merkelappene vises på hovedsiden?
 enable_tag_cloud =                Liste med merkelapper aktivert
-terms_of_use_agreement =          Samtykkeerklæring
-terms_of_use_agreement_desc =     Uregistrerte brukere må godkjenne en samtykkeerklæring før de legger inn innlegg og registrerer seg
-terms_of_use_agreement_enabled =  Samtykkeerklæring aktivert
+terms_of_use_settings =           Samtykkeerklæring
+terms_of_use_settings_desc =      Uregistrerte brukere må godkjenne en samtykkeerklæring før de legger inn innlegg og registrerer seg
+terms_of_use_settings_enabled =   Samtykkeerklæring aktivert
 terms_of_use_url =                Lenke til samtykkeerklæring:
 edit_postings =                   Redigering av innlegg
 edit_postings_desc =              Innstillinger for redigering av innlegg
@@ -874,7 +874,7 @@ captcha_graphical =               grafisk
 gr_captcha_not_available =        Grafisk CAPTCHA er ikke tilgjengelig(GD Lib ikke tilgjengelig)
 gr_captcha_no_font =              Ingen font tilgjengelig, CAPTCHA-kode kan ikke vises
 bad_behavior =                    Bad Behavior
-bad_behavior_desc =               <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a>-spambeskyttelse.
+bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a>-spambeskyttelse.
 bad_behavior_enable =             aktiver Bad Behavior
 akismet =                         Akismet
 akismet_desc =                    <a href="http://akismet.com/">Akismet</a>-spambeskyttelsesservice. For å bruke den trenger du en <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> (vil ikke fungere uten eller med en ugyldig API-nøkkel!).

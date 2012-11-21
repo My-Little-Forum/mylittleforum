@@ -1,5 +1,5 @@
 ################################################################################
-# Spanish language file for my little forum 2.2                                #
+# Spanish language file for my little forum 2.3                                #
 #------------------------------------------------------------------------------#
 # Translated by afm maker < afmmaker at gmail dot com > 2010-06-29             #                                                                   #
 #------------------------------------------------------------------------------#
@@ -715,9 +715,9 @@ latest_postings_desc =            Cuantos ultimos mensages se mostraran el la pa
 tag_cloud =                       Nube de etiquetas
 tag_cloud_desc =                  En caso de una nube de etiquetas recientes se mostrara en la pagina de inicio? 
 enable_tag_cloud =                Nube de etiquetas habilitada
-terms_of_use_agreement =          Teminos y Condiciones de uso
-terms_of_use_agreement_desc =     Obligacion de los usuarios no registrados a aceptar los Teminos y Condiciones de uso cuando escriban sus mensages y se registren
-terms_of_use_agreement_enabled =  Teminos y Condiciones de uso Habilitadas
+terms_of_use_settings =           Teminos y Condiciones de uso
+terms_of_use_settings_desc =      Obligacion de los usuarios no registrados a aceptar los Teminos y Condiciones de uso cuando escriban sus mensages y se registren
+terms_of_use_settings_enabled =   Teminos y Condiciones de uso Habilitadas
 terms_of_use_url =                Teminos y Condiciones de uso URL:
 edit_postings =                   Editando mensages
 edit_postings_desc =              Comportamientos para la edicion de mensages
@@ -879,7 +879,7 @@ captcha_graphical =               graphical
 gr_captcha_not_available =        Graphical CAPTCHA not available (GD Lib not available)
 gr_captcha_no_font =              No font available, CAPTCHA image cannot be displayed correctly
 bad_behavior =                    Bad Behavior
-bad_behavior_desc =               <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a> spam protection.
+bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a> spam protection.
 bad_behavior_enable =             enable Bad Behavior
 akismet =                         Akismet
 akismet_desc =                    <a href="http://akismet.com/">Akismet</a> spam protection service. To use it you need a <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> (won't work without or with invalid API Key!).

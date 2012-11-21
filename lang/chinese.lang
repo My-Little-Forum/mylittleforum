@@ -1,5 +1,5 @@
 ################################################################################
-# Chinese language file for my little forum 2.2                                #
+# Chinese language file for my little forum 2.3                                #
 #------------------------------------------------------------------------------#
 # More information here: http://mylittleforum.net/forum/index.php?id=4136      #
 # Updated 2010-11-09 by zhuaxiaomao                                            #
@@ -714,9 +714,9 @@ latest_postings_desc =            主页显示最新帖子数(0=关闭)?
 tag_cloud =                       标签云
 tag_cloud_desc =                  主页是否显示最新标签的标签云?
 enable_tag_cloud =                启用标签云
-terms_of_use_agreement =          用户协议
-terms_of_use_agreement_desc =     用户注册与发贴需同意遵守的规则
-terms_of_use_agreement_enabled =  启用用户协议
+terms_of_use_settings =           用户协议
+terms_of_use_settings_desc =      用户注册与发贴需同意遵守的规则
+terms_of_use_settings_enabled =   启用用户协议
 terms_of_use_url =                用户协议 URL:
 edit_postings =                   编辑帖子
 edit_postings_desc =              编辑帖子

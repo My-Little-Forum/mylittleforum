@@ -566,47 +566,48 @@ function ButtonGroup(f) {
 	 * @param list
 	 * @return button
 	 */
-	var createBBCodeButton = function(button, list) {
-		var bbCodeButton = null;
-		switch(button.name.toLowerCase()) {
-			case "link":
-				bbCodeButton = new BBCodeLinkButton( button );
-			break;
-			case "img":
-				if (list && list.length > 1)
-					bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "http://" );
-				else
-					bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); 
-			break;
-			case "color":
-				bbCodeButton = new BBCodeColorChooserButton( button );
-			break;
-			case "list":
-				bbCodeButton = new BBCodeListButton( button );
-			break;
-			case "flash":
-				bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=insert_flash", settings["flash_popup_width"], settings["flash_popup_height"]);
-			break;
-			case "upload":
-				bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=upload_image", settings["upload_popup_width"], settings["upload_popup_height"]);	
-			break;
-			case "tex":
-				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); 
-			break;
-			
-			default:
-				if (button.isSmilie && list && list.length > 1)
-					bbCodeButton = new BBCodeSmilieButton( button, list );
-				else if (button.isSmilie)
-					bbCodeButton = new BBCodeSingleSmilieButton( button );
-				else if (list && list.length > 1) 
-					bbCodeButton = new BBCodeOptionButton( button, list );
-				else
-					bbCodeButton = new BBCodeButton( button );
-			break;
-		}
-		return bbCodeButton;
-	}
+         var createBBCodeButton = function(button, list) {
+         	var bbCodeButton = null;
+         	var bname=button&&button.name?button.name.toLowerCase():"";
+         	//switch(button.name.toLowerCase()) {
+         	switch(bname) {
+         	case "link":
+         	bbCodeButton = new BBCodeLinkButton( button );
+         	break;
+         	case "img":
+         	if (list && list.length > 1)
+         	bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "http://" );
+         	else
+         	bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); 
+         	break;
+         	case "color":
+         	bbCodeButton = new BBCodeColorChooserButton( button );
+         	break;
+         	case "list":
+         	bbCodeButton = new BBCodeListButton( button );
+         	break;
+         	case "flash":
+         	bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=insert_flash", settings["flash_popup_width"], settings["flash_popup_height"]);
+         	break;
+         	case "upload":
+         	bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=upload_image", settings["upload_popup_width"], settings["upload_popup_height"]); 
+         	break;
+         	case "tex":
+         	bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); 
+         	break;
+         	default:
+         	if (button.isSmilie && list && list.length > 1)
+         	bbCodeButton = new BBCodeSmilieButton( button, list );
+         	else if (button.isSmilie)
+         	bbCodeButton = new BBCodeSingleSmilieButton( button );
+         	else if (list && list.length > 1) 
+         	bbCodeButton = new BBCodeOptionButton( button, list );
+         	else
+         	bbCodeButton = new BBCodeButton( button );
+         	break;
+         	}
+         	return bbCodeButton;
+         };
 		
 	/** 
 	 * Erzeugt ein Fenster, in dem die Zusatzoptionen

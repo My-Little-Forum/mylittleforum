@@ -1,8 +1,5 @@
 ################################################################################
-# Tamil language file for my little forum 2.2                                  #
-#------------------------------------------------------------------------------#
-# Update 2010-03-13 (Alex < alex at mylittleforum dot net >):                  #
-# added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
+# Tamil language file for my little forum 2.3                                  #
 ################################################################################
 
 [default]
@@ -713,9 +710,9 @@ latest_postings_desc =            எத்தனை சமீபத்திய
 tag_cloud =                       அடையாள மேகம்
 tag_cloud_desc =                  சமீபத்திய அடையாள மேகத்தை முதல் பக்கத்தில் காட்ச்சிக்கு வைக்கவேண்டும்?
 enable_tag_cloud =                அடையாள மேகத்தை செயல்பட வை
-terms_of_use_agreement =          உபயொக விதிமுரைக்கான உடன்பாடு
-terms_of_use_agreement_desc =வேண்டுகோள்!  பதிவு செய்யாதற்கும், செய்தி அநுப்புவதற்கும். பதிவு செய்யாதவர்களுக்கான உபயொக விதிமுரை உடன்பாடு.
-terms_of_use_agreement_enabled =  உபயொக விதிமுரைக்கான உடன்பாட்டை செயல்பட வை
+terms_of_use_settings =           உபயொக விதிமுரைக்கான உடன்பாடு
+terms_of_use_settings_desc =      வேண்டுகோள்!  பதிவு செய்யாதற்கும், செய்தி அநுப்புவதற்கும். பதிவு செய்யாதவர்களுக்கான உபயொக விதிமுரை உடன்பாடு.
+terms_of_use_settings_enabled =   உபயொக விதிமுரைக்கான உடன்பாட்டை செயல்பட வை
 terms_of_use_url =                உபயொக விதிமுரைக்கான URL:
 edit_postings =                   போஸ்டிங்கை  மாற்றுக
 edit_postings_desc =              போஸ்டிங் நடத்தையை மாற்றுக
@@ -872,7 +869,7 @@ captcha_graphical =               படத்துடன் கூடிய
 gr_captcha_not_available =        படத்துடன் கூடிய CAPTCHA பெற முடியாது(GD Lib இல்லை)
 gr_captcha_no_font =              வார்த்தை வடிவம் இல்லை, CAPTCHA குறியீடு காட்சிக்கு கொண்டுவரமுடியாது
 bad_behavior =                    தவறான நடத்தை
-bad_behavior_desc =               <a href="http://www.bad-behavior.ioerror.us/">தவறான நடத்தை</a> நம்பத்தகாதவரிடமிருந்து பாதுகாப்பு.
+bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">தவறான நடத்தை</a> நம்பத்தகாதவரிடமிருந்து பாதுகாப்பு.
 bad_behavior_enable =             தவறான நடத்தையை காண்பிக்கச் செய்
 akismet =                         Akismet
 akismet_desc =                    <a href="http://akismet.com/">Akismet</a> நம்பத்தகாதவரிடமிருந்து பாதுகாப்தற்கான சேவை. இந்த சேவையை பயனபடுத்த, உங்களுக்கு <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> தேவைப்படுகிறது (API சாவி இல்லாமலோ அல்லது செல்லாததோ ஆனால் இது வேலை செய்யாது!).

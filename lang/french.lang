@@ -1,5 +1,5 @@
 ################################################################################
-# French language file for my little forum 2.2                                 #
+# French language file for my little forum 2.3                                 #
 #------------------------------------------------------------------------------#
 # Translated by Michel Gosse < mgosse3 at gmail dot com > 2009-03-27           #
 # Updated by Marc Duval < duvalm at gmail dot com > 2011-05-22                 #
@@ -712,9 +712,9 @@ latest_postings_desc =            Combien de derniers messages doivent être aff
 tag_cloud =                       Bulle signet
 tag_cloud_desc =                  Une bulle signet constituée des signets récents doit-elle s'afficher sur la page d'index ?
 enable_tag_cloud =                Activer la bulle signet
-terms_of_use_agreement =          Règles d'usage
-terms_of_use_agreement_desc =     Obligation pour les utilisateurs non enregistrés d'accepter les règles d'usage pour publier des messages et pour s'enregistrer
-terms_of_use_agreement_enabled =   Règles d'usage activées
+terms_of_use_settings =           Règles d'usage
+terms_of_use_settings_desc =      Obligation pour les utilisateurs non enregistrés d'accepter les règles d'usage pour publier des messages et pour s'enregistrer
+terms_of_use_settings_enabled =   Règles d'usage activées
 terms_of_use_url =                Adresse des règles d'usage:
 edit_postings =                   Editer les messages
 edit_postings_desc =              Editer les comportements des messages

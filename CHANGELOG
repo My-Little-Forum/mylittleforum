@@ -1,6 +1,13 @@
 my little forum changelog
 -------------------------
 
+2.3.1 (2012-11-??)
+------------------
+- JavaScript fix: http://mylittleforum.net/forum/index.php?id=6718
+- Smarty updated (3.1.12)
+- Bad Behavior updated (2.2.11)
+- GeSHi updated (1.0.8.11)
+- set default time zone to UTC to prevent generating a E_NOTICE
 
 2.3 (2011-09-01)
 ------------------

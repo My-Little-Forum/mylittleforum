@@ -1,5 +1,5 @@
 ################################################################################
-# Croatian language file for my little forum 2.2                               #
+# Croatian language file for my little forum 2.3                               #
 # Translated by Riba < riba at ml1 dot net > 2010-07-27                        #
 ################################################################################
 
@@ -711,9 +711,9 @@ latest_postings_desc =            Koliko će najnovijih poruka biti prikazano na
 tag_cloud =                       Oznake
 tag_cloud_desc =                  Hoće li nedavne oznake poruka biti prikazane na naslovnoj straniciShould a tag cloud of the recent tags be displayed on the index page? 
 enable_tag_cloud =                Uključi prikaz
-terms_of_use_agreement =          Uvjeti korištenja
-terms_of_use_agreement_desc =     Zahtjevaj od neregistriranih korisnika da se slože sa uvjetima korištenja pri registraciji i upisu poruke
-terms_of_use_agreement_enabled =  Uvjeti korištenja uključeni
+terms_of_use_settings =           Uvjeti korištenja
+terms_of_use_settings_desc =      Zahtjevaj od neregistriranih korisnika da se slože sa uvjetima korištenja pri registraciji i upisu poruke
+terms_of_use_settings_enabled =   Uvjeti korištenja uključeni
 terms_of_use_url =                URL uvjeta korištenja:
 edit_postings =                   Izmjena poruka
 edit_postings_desc =              Ponašanje pri izmjeni poruka

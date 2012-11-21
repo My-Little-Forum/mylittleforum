@@ -1,10 +1,6 @@
 ################################################################################
-# File per la lingua italiana di my little forum 2.2                           #
-# Translated by Antonio Arras                                                  #
-# 2009-09-03                                                                   #
-#------------------------------------------------------------------------------#
-# Update 2010-03-13 (Alex < alex at mylittleforum dot net >):                  #
-# added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
+# File per la lingua italiana di my little forum 2.3                           #
+# Translated by Antonio Arras 2009-09-03                                       #
 ################################################################################
 
 [default]
@@ -716,9 +712,9 @@ latest_postings_desc =            Quanti ultimi messaggi possono essere visualiz
 tag_cloud =                       Tag cloud
 tag_cloud_desc =                  Desideri che un tag cloud dei recenti tag venga visualizzato nella pagina iniziale del forum?
 enable_tag_cloud =                Tag cloud abilitato
-terms_of_use_agreement =          Condizioni d'utilizzo del servizio
-terms_of_use_agreement_desc =     Obbligo per gli utenti non registrati di accettare le condizioni d'utilizzo del servizio per poter lasciare messaggi sul forum e registrarsi
-terms_of_use_agreement_enabled =  Condizioni d'utilizzo abilitate
+terms_of_use_settings =           Condizioni d'utilizzo del servizio
+terms_of_use_settings_desc =      Obbligo per gli utenti non registrati di accettare le condizioni d'utilizzo del servizio per poter lasciare messaggi sul forum e registrarsi
+terms_of_use_settings_enabled =   Condizioni d'utilizzo abilitate
 terms_of_use_url =                URL delle Condizioni d'utilizzo:
 edit_postings =                   Modifica messaggi
 edit_postings_desc =              Modifica comportamento dei messaggi
@@ -876,7 +872,7 @@ captcha_graphical =               grafico
 gr_captcha_not_available =        Grafica CAPTCHA non disponibile (Librerie GD Lib non disponibili)
 gr_captcha_no_font =              Nessun font disponibile, immagine CAPTCHA non può essere visualizzata correttamente
 bad_behavior =                    Bad Behavior
-bad_behavior_desc =               <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a> Protezione anti-spam.
+bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a> Protezione anti-spam.
 bad_behavior_enable =             Abilita Bad Behavior
 akismet =                         Akismet
 akismet_desc =                    <a href="http://akismet.com/">Akismet</a> Servizio protezione anti-spam. Per utilizzarno necessiti di <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> (non funziona senza o con una API Key errata!).

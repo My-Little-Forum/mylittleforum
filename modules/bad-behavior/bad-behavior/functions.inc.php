@@ -2,6 +2,11 @@
 
 // Miscellaneous helper functions.
 
+// Quick and dirty check for an IPv6 address
+function is_ipv6($address) {
+	return (strpos($address, ":")) ? TRUE : FALSE;
+}
+
 // stripos() needed because stripos is only present on PHP 5
 if (!function_exists('stripos')) {
 	function stripos($haystack,$needle,$offset = 0) {
@@ -53,6 +58,10 @@ function match_cidr($addr, $cidr) {
 	return $output;
 }
 
+// Determine if an IP address is reserved by RFC 1918.
+function is_rfc1918($addr) {
+	return match_cidr($addr, array("10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"));
+}
 // Obtain all the HTTP headers.
 // NB: on PHP-CGI we have to fake it out a bit, since we can't get the REAL
 // headers. Run PHP as Apache 2.0 module if possible for best results.
@@ -67,5 +76,3 @@ function bb2_load_headers() {
 	}
 	return $headers;
 }
-
-?>

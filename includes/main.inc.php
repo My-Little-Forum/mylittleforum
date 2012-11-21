@@ -111,6 +111,12 @@ if(function_exists('date_default_timezone_set'))
     date_default_timezone_set($settings['time_zone']);
     $forum_time_zone = $settings['time_zone'];
    }
+  else
+   {
+    date_default_timezone_set('UTC');
+    $forum_time_zone = 'UTC';
+   }
+   
  }
 
 $categories = get_categories();

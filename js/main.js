@@ -136,36 +136,36 @@ if (window.Node && Node.prototype && !Node.prototype.contains) {
  * @see http://forum.de.selfhtml.org/archiv/2011/3/t204212/#m1382727
  */
 document.createInputElementWithAttributes = function(tagName, attributes, parentElement) {
-	if (tagName.toLowerCase() != "input" && tagName.toLowerCase() != "button") 
-		return document.createElementWithAttributes(tagName, attributes, parentElement);
-
-	var type = attributes["type"] || false;
-	var name = attributes["name"] || false;
-	var el   = false;
-	
-	if (type) {
-		try {
-			el = document.createElement(tagName);
-			el.type = type;
-			if (name)
-				el.name = name;
-		}
-		catch(err) {
-			var attr = "type=" + type +(name?" name=" + name : "");
-			//el = document.createElement('<'+tagName+' type="'+type+'">');
-			el = document.createElement("<" + tagName + attr + ">");
-		}
-	}
-	el = el || document.createElement(tagName);
-
-	for (var attribute in attributes)  
-		if (attribute.toLowerCase() != "type" && attribute.toLowerCase() != "name")
-			el[attribute] = attributes[attribute];
-
-	if (parentElement) 
-		parentElement.appendChild(el);
-
-	return el;
+ if (tagName.toLowerCase() != "input" && tagName.toLowerCase() != "button") 
+  return document.createElementWithAttributes(tagName, attributes, parentElement);
+ 
+ var type = attributes["type"] || false;
+ var name = attributes["name"] || false;
+ var el   = false;
+ 
+ if (type) {
+  try {
+   el = document.createElement(tagName);
+   el.type = type;
+   if (name)
+    el.name = name;
+  }
+  catch(err) {
+   var attr = " type=" + type +(name?" name=" + name : "");
+   //el = document.createElement('<'+tagName+' type="'+type+'">');
+   el = document.createElement("<" + tagName + attr + ">");
+  }
+ }
+ el = el || document.createElement(tagName);
+ 
+ for (var attribute in attributes)  
+  if (attribute.toLowerCase() != "type" && attribute.toLowerCase() != "name")
+   el[attribute] = attributes[attribute];
+ 
+ if (parentElement) 
+  parentElement.appendChild(el);
+ 
+ return el;
 };
 
 /**

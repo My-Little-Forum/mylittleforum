@@ -1,11 +1,8 @@
 ################################################################################
-# Turkish language file for my little forum 2.2                                #
+# Turkish language file for my little forum 2.3                                #
 #------------------------------------------------------------------------------#
 # Translated by Özgür Kazanççı < ozgur dot kazancci at info dot uvt dot ro >   #
 # 2010-02-08                                                                   #
-#------------------------------------------------------------------------------#
-# Update 2010-03-13 (Alex < alex at mylittleforum dot net >):                  #
-# added not yet translated strings for version 2.2 (marked with <!-- TODO -->) #
 ################################################################################
 
 [default]
@@ -720,12 +717,12 @@ latest_postings_desc =            Ana sayfada kaç adet gönderilen son iletiler
 tag_cloud =                       Etiketler
 tag_cloud_desc =                  Gönderilen etiketler ana sayfada görüntülensin mi?
 enable_tag_cloud =                Etiketler açık
-terms_of_use_agreement =          Kullanım şartı
-terms_of_use_agreement_desc =     Kayıtsız kullanıcıların yeni mesaj gönderirken veya kayıt olurken kullanım şartını kabul etmeleri zorunludur
-terms_of_use_agreement_enabled =  Kullanım şartı aktif
+terms_of_use_settings =           Kullanım şartı
+terms_of_use_settings_desc =      Kayıtsız kullanıcıların yeni mesaj gönderirken veya kayıt olurken kullanım şartını kabul etmeleri zorunludur
+terms_of_use_settings_enabled =   Kullanım şartı aktif
 terms_of_use_url =                Kullanım şartı URL adresi:
-edit_postings =                   İletileri düzenle
-edit_postings_desc =              İleti düzenlemesi
+edit_postings =                               İletileri düzenle
+edit_postings_desc =                       İleti düzenlemesi
 edit_own_postings =               Kullanıcıların kendi iletilerini düzenlemesi:
 edit_own_postings_all =           tüm kullanıcılar kendi iletilerini düzenleyebilirler
 edit_own_postings_users =         sadece kayıtlı kullanıcılar kendi iletilerini düzenleyebilirler
@@ -880,7 +877,7 @@ captcha_graphical =               grafiksel
 gr_captcha_not_available =        Grafiksel CAPTCHA mevcut değil (GD kütüphanesi yok)
 gr_captcha_no_font =              Font bulunamıyor, CAPTCHA resmi doğru gösterilemez
 bad_behavior =                    Kötü Eylem
-bad_behavior_desc =               <a href="http://www.bad-behavior.ioerror.us/">Kötü Eylem</a> spam koruması.
+bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Kötü Eylem</a> spam koruması.
 bad_behavior_enable =             Kötü Eylem aktif
 akismet =                         Akismet
 akismet_desc =                    <a href="http://akismet.com/">Akismet</a> spam koruma servisi. Kullanabilmek için <a href="http://wordpress.com/api-keys/">Wordpress API anahtarı gerekli</a> (Yanlış veya olmayan bir API anahtarıyla çalışamaz!).   

@@ -4,8 +4,7 @@
 
 function bb2_protocol($settings, $package)
 {
-	// Is it claiming to be HTTP/1.0?  Then it shouldn't do HTTP/1.1 things
-	// Always run this test; we should never see Expect:
+	// We should never see Expect: for HTTP/1.0 requests
 	if (array_key_exists('Expect', $package['headers_mixed']) && stripos($package['headers_mixed']['Expect'], "100-continue") !== FALSE && !strcmp($package['server_protocol'], "HTTP/1.0")) {
 		return "a0105122";
 	}
@@ -41,6 +40,8 @@ function bb2_misc_headers($settings, $package)
 
 	// Broken spambots send URLs with various invalid characters
 	// Some broken browsers send the #vector in the referer field :(
+	// Worse yet, some Javascript client-side apps do the same in
+	// blatant violation of the protocol and good sense.
 	// if (strpos($package['request_uri'], "#") !== FALSE || strpos($package['headers_mixed']['Referer'], "#") !== FALSE) {
 	if ($settings['strict'] && strpos($package['request_uri'], "#") !== FALSE) {
 		return "dfd9b1ad";
@@ -69,7 +70,6 @@ function bb2_misc_headers($settings, $package)
 	// Lowercase via is used by open proxies/referrer spammers
 	// Exceptions: Clearswift uses lowercase via (refuses to fix;
 	// may be blocked again in the future)
-	// Coral CDN uses lowercase via
 	if (array_key_exists('via', $package['headers']) &&
 		strpos($package['headers']['via'],'Clearswift') === FALSE &&
 		strpos($ua,'CoralWebPrx') === FALSE) {
@@ -106,6 +106,10 @@ function bb2_misc_headers($settings, $package)
 		if (preg_match('/\bkeep-alive,\s?keep-alive\b/i', $package['headers_mixed']['Connection'])) {
 			return "a52f0448";
 		}
+		// Keep-Alive format in RFC 2068; some bots mangle these headers
+		if (stripos($package['headers_mixed']['Connection'], "Keep-Alive: ") !== FALSE) {
+			return "b0924802";
+		}
 	}
 	
 
@@ -114,6 +118,8 @@ function bb2_misc_headers($settings, $package)
 		return "b9cc1d86";
 	}
 	// Proxy-Connection does not exist and should never be seen in the wild
+	// http://lists.w3.org/Archives/Public/ietf-http-wg-old/1999JanApr/0032.html
+	// http://lists.w3.org/Archives/Public/ietf-http-wg-old/1999JanApr/0040.html
 	if ($settings['strict'] && array_key_exists('Proxy-Connection', $package['headers_mixed'])) {
 		return "b7830251";
 	}
@@ -126,7 +132,7 @@ function bb2_misc_headers($settings, $package)
 
 		// Referer, if it exists, must contain a :
 		// While a relative URL is technically valid in Referer, all known
-		// legit user-agents send an absolute URL
+		// legitimate user-agents send an absolute URL
 		if (strpos($package['headers_mixed']['Referer'], ":") === FALSE) {
 			return "45b35e30";
 		}
@@ -140,5 +146,3 @@ function bb2_misc_headers($settings, $package)
 
 	return false;
 }
-
-?>

@@ -1,8 +1,7 @@
 ################################################################################
-# German language file for my little forum 2.2                                 #
+# German language file for my little forum 2.3                                 #
 #------------------------------------------------------------------------------#
-# Translated by Alex < alex at mylittleforum dot net >                         #
-# 2010-03-13                                                                   #
+# Translated by Alex < alex at mylittleforum dot net > 2011-09-01              #                                                     #
 ################################################################################
 
 [default]
@@ -714,9 +713,9 @@ latest_postings_desc =            Wieviele letzte Einträge sollen in einer List
 tag_cloud =                       Tag-Cloud (Schlagwortwolke)
 tag_cloud_desc =                  Soll auf der Hauptseite eine Tag-Cloud mit den aktuellen Tags angezeigt werden? 
 enable_tag_cloud =                Tag-Cloud anzeigen
-terms_of_use_agreement =          Nutzungsbedingungen
-terms_of_use_agreement_desc =     Müssen Nutzungsbedingungen von nicht registrierten Benutzern beim Schreiben von Einträgen und bem Registrieren zugestimmt werden?
-terms_of_use_agreement_enabled =  Nutzungsbedingungen verwenden
+terms_of_use_settings =           Nutzungsbedingungen
+terms_of_use_settings_desc =      Müssen Nutzungsbedingungen von nicht registrierten Benutzern beim Schreiben von Einträgen und bem Registrieren zugestimmt werden?
+terms_of_use_settings_enabled =   Nutzungsbedingungen verwenden
 terms_of_use_url =                Adresse (URL) der Nutzungsbedingungen:
 edit_postings =                   Einträge bearbeiten
 edit_postings_desc =              Einstellungen zur Bearbeitung von Einträgen
@@ -874,7 +873,7 @@ captcha_graphical =               graphisch
 gr_captcha_not_available =        graphisches CAPTCHA nicht verfügbar (GD Lib nicht verfügbar)
 gr_captcha_no_font =              keine Schrift verfügbar, CAPTCHA kann nicht ideal angezeigt werden
 bad_behavior =                    Bad Behavior
-bad_behavior_desc =               Spamschutz <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a>
+bad_behavior_desc =               Spamschutz <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a>
 bad_behavior_enable =             Bad Behavior aktivieren
 akismet =                         Akismet
 akismet_desc =                    Spamschutz <a href="http://akismet.com/">Akismet</a> - hierfür wird ein <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> benötigt (funktioniert nicht ohne oder mit ungültigem API Key!). 
@@ -1091,10 +1090,10 @@ inst_advanced_options =           erweiterte Optionen
 inst_advanced_options_desc =      für Experten - normalerweise muss hier nichts geändert werden
 inst_advanced_database =          Datenbank erstellen
 inst_advanced_database_desc =     nur wenn die angegebene Datenbank nicht vorhanden ist und Rechte zur Erstellung vorhanden sind
-inst_advanced_conf_file =         kein Überschreiten der Konfigurationsdatei
+inst_advanced_conf_file =         kein Überschreiben der Konfigurationsdatei
 inst_advanced_conf_file_desc =    nur falls die Konfigurationsdatei bereits manuell bearbeitet wurde
 create_database =                 angegebene Datenbank erstellen
-dont_overwrite_settings =         Datenbank-Konfigurationsdatei nicht überschreiten
+dont_overwrite_settings =         Datenbank-Konfigurationsdatei nicht überschreiben
 create_db_error =                 Die Datenbank konnte nicht erstellt werden
 error_create_admin =              Das Administratoren-Konto konnte nicht erstellt werden            
 error_db_connection =             Datenbank-Verbindungsfehler - bitte Host, Benutzer und Passwort überprüfen

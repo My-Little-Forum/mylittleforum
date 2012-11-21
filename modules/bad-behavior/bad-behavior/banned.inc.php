@@ -5,7 +5,22 @@
 
 require_once(BB2_CORE . "/responses.inc.php");
 
-function bb2_display_denial($settings, $key, $previous_key = false)
+function bb2_housekeeping($settings, $package)
+{
+	if (!$settings['logging']) return;
+
+	// FIXME Yes, the interval's hard coded (again) for now.
+	$query = "DELETE FROM `" . $settings['log_table'] . "` WHERE `date` < DATE_SUB('" . bb2_db_date() . "', INTERVAL 7 DAY)";
+	bb2_db_query($query);
+
+	// Waste a bunch more of the spammer's time, sometimes.
+	if (rand(1,1000) == 1) {
+		$query = "OPTIMIZE TABLE `" . $settings['log_table'] . "`";
+		bb2_db_query($query);
+	}
+}
+
+function bb2_display_denial($settings, $package, $key, $previous_key = false)
 {
 	define('DONOTCACHEPAGE', true);	// WP Super Cache
 	if (!$previous_key) $previous_key = $key;
@@ -13,7 +28,7 @@ function bb2_display_denial($settings, $key, $previous_key = false)
 		// FIXME: lookup the real key
 	}
 	// Create support key
-	$ip = explode(".", $_SERVER['REMOTE_ADDR']);
+	$ip = explode(".", $package['ip']);
 	$ip_hex = "";
 	foreach ($ip as $octet) {
 		$ip_hex .= str_pad(dechex($octet), 2, 0, STR_PAD_LEFT);
@@ -24,7 +39,7 @@ function bb2_display_denial($settings, $key, $previous_key = false)
 	$response = bb2_get_response($previous_key);
 	header("HTTP/1.1 " . $response['response'] . " Bad Behavior");
 	header("Status: " . $response['response'] . " Bad Behavior");
-	$request_uri = $_SERVER['REQUEST_URI'];
+	$request_uri = $_SERVER["REQUEST_URI"];
 	if (!$request_uri) $request_uri = $_SERVER['SCRIPT_NAME'];	# IIS
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,5 +63,3 @@ function bb2_log_denial($settings, $package, $key, $previous_key=false)
 	if (!$settings['logging']) return;
 	bb2_db_query(bb2_insert($settings, $package, $key));
 }
-
-?>

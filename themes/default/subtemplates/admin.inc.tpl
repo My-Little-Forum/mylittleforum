@@ -72,8 +72,8 @@
 </tr>
 
 <tr>
-<td class="c"><strong>{#terms_of_use_agreement#}</strong><br /><span class="small">{#terms_of_use_agreement_desc#}</span></td>
-<td class="d"><p><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $settings.terms_of_use_agreement==1} checked="checked"{/if} /><label id="terms_of_use_agreement_label" for="terms_of_use_agreement" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_agreement_enabled#}</label></p>
+<td class="c"><strong>{#terms_of_use_settings#}</strong><br /><span class="small">{#terms_of_use_settings_desc#}</span></td>
+<td class="d"><p><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $settings.terms_of_use_agreement==1} checked="checked"{/if} /><label id="terms_of_use_agreement_label" for="terms_of_use_agreement" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_settings_enabled#}</label></p>
 <p><label id="terms_of_use_url_label" for="terms_of_use_url" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_url#}</label><br /><input id="terms_of_use_url" type="text" name="terms_of_use_url" value="{$settings.terms_of_use_url|escape}" size="40" /></p></td>
 </tr>
 

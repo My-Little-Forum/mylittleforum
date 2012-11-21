@@ -1,10 +1,5 @@
 <?php if (!defined('BB2_CORE')) die('I said no cheating!');
 
-// Quick and dirty check for an IPv6 address
-function is_ipv6($address) {
-	return (strpos($address, ":")) ? TRUE : FALSE;
-}
-
 // Look up address on various blackhole lists.
 // These should not be used for GET requests under any circumstances!
 // FIXME: Note that this code is no longer in use
@@ -60,7 +55,6 @@ function bb2_httpbl($settings, $package) {
 	$result = gethostbynamel($settings['httpbl_key'].".${find}.dnsbl.httpbl.org.");
 	if (!empty($result)) {
 		$ip = explode('.', $result[0]);
-		// Check if threat
 		if ($ip[0] == 127 && ($ip[3] & 7) && $ip[2] >= $settings['httpbl_threat'] && $ip[1] <= $settings['httpbl_maxage']) {
 			return '2b021b1f';
 		}
@@ -71,4 +65,3 @@ function bb2_httpbl($settings, $package) {
 	}
 	return false;
 }
-?>

@@ -1,5 +1,5 @@
 ################################################################################
-# English language file for my little forum 2.2                                #
+# English language file for my little forum 2.3                                #
 #------------------------------------------------------------------------------#
 # - don't modify or translate the section names like "[general]" or "[entry]"! #
 # - placeholders in square brackets (e.g. "[name]") will be replaced by values #
@@ -10,7 +10,7 @@
 #   quotes (e.g. """Hi,                                                        #
 #   how are you?""")                                                           #
 # - more details about the file fomat:                                         #
-#   http://www.smarty.net/manual/en/config.files.php                           #
+#   http://www.smarty.net/docs/en/config.files.tpl                             #
 ################################################################################
 
 [default]
@@ -721,9 +721,9 @@ latest_postings_desc =            How many latest postings should be displayed i
 tag_cloud =                       Tag cloud
 tag_cloud_desc =                  Should a tag cloud of the recent tags be displayed on the index page?
 enable_tag_cloud =                Tag cloud enabled
-terms_of_use_agreement =          Terms of use agreement
-terms_of_use_agreement_desc =     Obligation for unregistered users to agree to terms of use when posting messages and registering
-terms_of_use_agreement_enabled =  Terms of use agreement enabled
+terms_of_use_settings =           Terms of use agreement
+terms_of_use_settings_desc =      Obligation for unregistered users to agree to terms of use when posting messages and registering
+terms_of_use_settings_enabled =   Terms of use agreement enabled
 terms_of_use_url =                Terms of use URL:
 edit_postings =                   Editing postings
 edit_postings_desc =              Editing postings behavior
@@ -881,7 +881,7 @@ captcha_graphical =               graphical
 gr_captcha_not_available =        Graphical CAPTCHA not available (GD Lib not available)
 gr_captcha_no_font =              No font available, CAPTCHA image cannot be displayed correctly
 bad_behavior =                    Bad Behavior
-bad_behavior_desc =               <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a> spam protection.
+bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a> spam protection.
 bad_behavior_enable =             enable Bad Behavior
 akismet =                         Akismet
 akismet_desc =                    <a href="http://akismet.com/">Akismet</a> spam protection service. To use it you need a <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> (won't work without or with invalid API Key!).

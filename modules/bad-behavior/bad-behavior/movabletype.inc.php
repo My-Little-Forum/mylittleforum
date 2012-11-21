@@ -10,5 +10,3 @@ function bb2_movabletype($package)
 	}
 	return false;
 }
-
-?>
