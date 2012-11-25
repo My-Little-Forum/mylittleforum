@@ -292,3 +292,8 @@ UPDATE mlf2_settings SET value = '2.2.8' WHERE name = 'version';
 INSERT INTO mlf2_settings VALUES ('akismet_check_registered', '0');
 UPDATE mlf2_settings SET value = '2.3' WHERE name = 'version';
 */
+--------------------------------------------------------------------------------
+-- 2.3 to 2.3.1
+/*
+UPDATE mlf2_settings SET value = '2.3.1' WHERE name = 'version';
+*/
