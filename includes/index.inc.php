@@ -242,12 +242,9 @@ if($page<$page_count)
   $smarty->assign('link_rel_last', 'index.php?mode=index&amp;page='.$page_count.$cqsa); 
  }
 
-if($total_spam>0 && isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam']))
- {
-  $smarty->assign('hide_spam_link',true);
-  $smarty->assign('delete_spam_link',true);
- }
-elseif(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $total_spam>0) $smarty->assign('show_spam_link',true);
+if($total_spam>0 && !isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) $smarty->assign('show_spam_link',true);
+elseif($total_spam>0 && isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) $smarty->assign('hide_spam_link',true);
+if($total_spam>0) $smarty->assign('delete_spam_link',true);
 
 $smarty->assign("subnav_link",$subnav_link);
 if($user_view==1) $smarty->assign('subtemplate','index_table.inc.tpl');
