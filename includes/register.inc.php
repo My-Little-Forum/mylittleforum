@@ -91,10 +91,9 @@ switch($action)
      // check for not accepted words:
      $checkstring = my_strtolower($new_user_name.' '.$new_user_email, $lang['charset']);
      $not_accepted_words = get_not_accepted_words($checkstring);
-     if($not_accepted_words!=false)
-      {
-       $errors[] = 'error_reg_not_accepted_word';
-      }
+     if($settings['stop_forum_spam']==1) $infamous_email = isInfamousEmail($new_user_email);
+     else $infamous_email = false;
+     if($not_accepted_words!=false || $infamous_email) $errors[] = 'error_reg_not_accepted_word';
 
      // CAPTCHA check:
      if(empty($errors) && empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha_register']>0)

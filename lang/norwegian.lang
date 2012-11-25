@@ -871,6 +871,9 @@ captcha_mathematical =            matematisk
 captcha_graphical =               grafisk
 gr_captcha_not_available =        Grafisk CAPTCHA er ikke tilgjengelig(GD Lib ikke tilgjengelig)
 gr_captcha_no_font =              Ingen font tilgjengelig, CAPTCHA-kode kan ikke vises
+stop_forum_spam =                 Stop Forum Spam
+stop_forum_spam_desc =            <!-- TODO --><a href="http://www.stopforumspam.com/">Stop Forum Spam</a> spam protection
+stop_forum_spam_enable =          <!-- TODO -->enable Stop Forum Spam
 bad_behavior =                    Bad Behavior
 bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a>-spambeskyttelse.
 bad_behavior_enable =             aktiver Bad Behavior

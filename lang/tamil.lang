@@ -866,6 +866,9 @@ captcha_mathematical =            கணிதம்
 captcha_graphical =               படத்துடன் கூடிய
 gr_captcha_not_available =        படத்துடன் கூடிய CAPTCHA பெற முடியாது(GD Lib இல்லை)
 gr_captcha_no_font =              வார்த்தை வடிவம் இல்லை, CAPTCHA குறியீடு காட்சிக்கு கொண்டுவரமுடியாது
+stop_forum_spam =                 Stop Forum Spam
+stop_forum_spam_desc =            <!-- TODO --><a href="http://www.stopforumspam.com/">Stop Forum Spam</a> spam protection
+stop_forum_spam_enable =          <!-- TODO -->enable Stop Forum Spam
 bad_behavior =                    தவறான நடத்தை
 bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">தவறான நடத்தை</a> நம்பத்தகாதவரிடமிருந்து பாதுகாப்பு.
 bad_behavior_enable =             தவறான நடத்தையை காண்பிக்கச் செய்

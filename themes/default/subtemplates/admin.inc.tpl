@@ -741,7 +741,10 @@
  {/if}
 </td>
 </tr>
-
+<tr>
+<td class="c"><strong>{#stop_forum_spam#}</strong><br /><span class="small">{#stop_forum_spam_desc#}</span></td>
+<td class="d"><input id="stop_forum_spam" type="checkbox" name="stop_forum_spam" value="1"{if $stop_forum_spam==1} checked="checked"{/if} /><label for="stop_forum_spam">{#stop_forum_spam_enable#}</label></td>
+</tr>
 <tr>
 <td class="c"><strong>{#bad_behavior#}</strong><br /><span class="small">{#bad_behavior_desc#}</span></td>
 <td class="d"><input id="bad_behavior" type="checkbox" name="bad_behavior" value="1"{if $bad_behavior==1} checked="checked"{/if} /><label for="bad_behavior">{#bad_behavior_enable#}</label></td>

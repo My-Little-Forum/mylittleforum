@@ -871,6 +871,9 @@ captcha_mathematical =            数学题
 captcha_graphical =               图形
 gr_captcha_not_available =        图形CAPTCHA不可用 (GD Lib不可用)
 gr_captcha_no_font =              未找到字体, 无法显示CAPTCHA码
+stop_forum_spam =                 Stop Forum Spam
+stop_forum_spam_desc =            <!-- TODO --><a href="http://www.stopforumspam.com/">Stop Forum Spam</a> spam protection
+stop_forum_spam_enable =          <!-- TODO -->enable Stop Forum Spam
 bad_behavior =                    Bad Behavior
 bad_behavior_desc =               <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a>防垃圾保护.
 bad_behavior_enable =             启用Bad Behavior

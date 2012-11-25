@@ -874,6 +874,9 @@ captcha_mathematical =            matematiksel
 captcha_graphical =               grafiksel
 gr_captcha_not_available =        Grafiksel CAPTCHA mevcut değil (GD kütüphanesi yok)
 gr_captcha_no_font =              Font bulunamıyor, CAPTCHA resmi doğru gösterilemez
+stop_forum_spam =                 Stop Forum Spam
+stop_forum_spam_desc =            <!-- TODO --><a href="http://www.stopforumspam.com/">Stop Forum Spam</a> spam protection
+stop_forum_spam_enable =          <!-- TODO -->enable Stop Forum Spam
 bad_behavior =                    Kötü Eylem
 bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Kötü Eylem</a> spam koruması.
 bad_behavior_enable =             Kötü Eylem aktif

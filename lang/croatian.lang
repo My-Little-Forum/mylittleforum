@@ -868,6 +868,9 @@ captcha_mathematical =          matematički
 captcha_graphical =             grafički
 gr_captcha_not_available =      Grafička CAPTCHA zaštita nije moguća (GD biblioteka nije dostupna)
 gr_captcha_no_font =            CAPTCHA sliku nije moguće prikazati jer ne postoji dostupan font
+stop_forum_spam =               Stop Forum Spam
+stop_forum_spam_desc =          <!-- TODO --><a href="http://www.stopforumspam.com/">Stop Forum Spam</a> spam protection
+stop_forum_spam_enable =        <!-- TODO -->enable Stop Forum Spam
 bad_behavior =                  Bad Behavior
 bad_behavior_desc =             <a href="http://www.bad-behavior.ioerror.us/">Bad Behavior</a> zaštita od spama.
 bad_behavior_enable =           uključi Bad Behavior zaštitu

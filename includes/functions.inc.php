@@ -2527,6 +2527,44 @@ function get_not_accepted_words($string)
  }
 
 /**
+ * Check email via stopforumspam.com and returns true, if the adress is infamous.
+ * In any other case, this function returns false
+ *
+ * @param String $email
+ * @return boolean $isInfamous
+ */
+function isInfamousEmail($email)
+ {
+  $url = "http://www.stopforumspam.com/api?email=" . urlencode(iconv('GBK', 'UTF-8', $email));
+  $url_parsed = @parse_url($url);
+  if($url_parsed === false) return false; //echo "Could not parse URI " . $url_parsed . "\n";
+  $host = $url_parsed["host"];
+  if(isset($url_parsed["port"])) $port = $url_parsed["port"];
+  $path = $url_parsed["path"];
+  if(empty($port)) $port = 80;
+  if($url_parsed["query"] != "") $path .= "?".$url_parsed["query"];
+  $out = "GET $path HTTP/1.0\r\nHost: $host\r\n\r\n";
+  $fp = @fsockopen($host, $port, $errno, $errstr, 15);
+  if(!$fp) return false;
+  @fwrite($fp, $out);
+  $body = false;
+  $xml_string = "";
+  while (!feof($fp))
+   {
+    $str = fgets($fp, 1024);
+    if($body) $xml_string .= $str;
+    if($str == "\r\n") $body = true;
+   }
+  @fclose($fp);
+  if ($xml_string != "")
+   {
+    $xml = new SimpleXMLElement($xml_string);
+    return $xml->appears == 'yes';
+   }
+  return false;
+}
+
+/**
  * checks for invalid characters, used for username checks
  *
  * @param string $string

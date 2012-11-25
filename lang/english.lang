@@ -878,6 +878,9 @@ captcha_mathematical =            mathematical
 captcha_graphical =               graphical
 gr_captcha_not_available =        Graphical CAPTCHA not available (GD Lib not available)
 gr_captcha_no_font =              No font available, CAPTCHA image cannot be displayed correctly
+stop_forum_spam =                 Stop Forum Spam
+stop_forum_spam_desc =            <a href="http://www.stopforumspam.com/">Stop Forum Spam</a> spam protection
+stop_forum_spam_enable =          enable Stop Forum Spam
 bad_behavior =                    Bad Behavior
 bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a> spam protection.
 bad_behavior_enable =             enable Bad Behavior
