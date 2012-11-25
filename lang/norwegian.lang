@@ -434,10 +434,6 @@ delete_image_button =             OK - Slett
 
 [insert_flash]
 insert_flash_hl =                 sett inn flash-video
-insert_flash_code =               Flash-kode (<code>&lt;object&gt;...&lt;/object&gt;</code>)
-flash_code =                      Kode:
-select_flash_or =                 ... eller ...
-insert_flash_custom =             Egendefinert flash-video
 flash_url =                       URL:
 flash_size =                      Størrelse:
 insert_flash_button =             Sett inn flash-video

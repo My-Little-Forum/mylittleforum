@@ -435,10 +435,6 @@ delete_image_button =             OK - Supprimer
 
 [insert_flash]
 insert_flash_hl =                 Insérer une vidéo au format flash
-insert_flash_code =               Code de la vidéo (<code>&lt;object&gt;...&lt;/object&gt;</code>)
-flash_code =                      Code:
-select_flash_or =                 ... ou ...
-insert_flash_custom =             Vidéo au format flash personnelle
 flash_url =                       Adresse :
 flash_size =                      Taille :
 insert_flash_button =             Insérer une vidéo au format flash

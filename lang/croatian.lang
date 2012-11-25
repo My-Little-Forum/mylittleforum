@@ -434,10 +434,6 @@ delete_image_button =             Obriši
 
 [insert_flash]
 insert_flash_hl =                 Umetni flash video sadržaj
-insert_flash_code =               Video kod (<code>&lt;object&gt;...&lt;/object&gt;</code>)
-flash_code =                      Kod:
-select_flash_or =                 ... ili ...
-insert_flash_custom =             Poseban flash video sadržaj
 flash_url =                       URL:
 flash_size =                      Veličina:
 insert_flash_button =             Umetni flash video sadržaj

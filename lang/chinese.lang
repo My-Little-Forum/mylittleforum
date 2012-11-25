@@ -437,10 +437,6 @@ delete_image_button =             确定删除
  
 [insert_flash]
 insert_flash_hl =                 插入flash视频
-insert_flash_code =               视频代码 (<code>&lt;object&gt;...&lt;/object&gt;</code>)
-flash_code =                      代码:
-select_flash_or =                 ... 或 ...
-insert_flash_custom =             Custom flash video
 flash_url =                       URL:
 flash_size =                      尺寸:
 insert_flash_button =             插入flash视频

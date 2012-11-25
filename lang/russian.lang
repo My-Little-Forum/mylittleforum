@@ -448,10 +448,6 @@ delete_image_button =             OK - Удалить
 
 [insert_flash]
 insert_flash_hl =                 Вставить флэш-видео
-insert_flash_code =               Вставить флэш-код (<code>&lt;object&gt;...&lt;/object&gt;</code>)
-flash_code =                      Код:
-select_flash_or =                 ... или ...
-insert_flash_custom =             Пользовательское флэш-видео
 flash_url =                       URL:
 flash_size =                      Размер:
 insert_flash_button =             Вставить флэш-видео

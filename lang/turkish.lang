@@ -440,10 +440,6 @@ delete_image_button =             Tamam - Sil
 
 [insert_flash]
 insert_flash_hl =                 Flash video ekle
-insert_flash_code =               Video kodu (<code>&lt;object&gt;...&lt;/object&gt;</code>)
-flash_code =                      Kod:
-select_flash_or =                 ... veya ...
-insert_flash_custom =             Manüel flash video
 flash_url =                       URL:
 flash_size =                      Boyut:
 insert_flash_button =             Flash video ekle

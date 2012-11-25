@@ -443,14 +443,10 @@ delete_image_confirm =            Delete this image?
 delete_image_button =             OK - Delete
 
 [insert_flash]
-insert_flash_hl =                 Insert flash video
-insert_flash_code =               Video code (<code>&lt;object&gt;...&lt;/object&gt;</code>)
-flash_code =                      Code:
-select_flash_or =                 ... or ...
-insert_flash_custom =             Custom flash video
-flash_url =                       URL:
+insert_flash_hl =                 Insert flash
+flash_url =                       Flash URL:
 flash_size =                      Size:
-insert_flash_button =             Insert flash video
+insert_flash_button =             Insert flash
 
 [avatar]
 avatar_hl =                       Avatar

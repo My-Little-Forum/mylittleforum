@@ -433,10 +433,6 @@ delete_image_button =             சரி - அழிக்க
 
 [insert_flash]
 insert_flash_hl =                 பிளாஷ் விடியோவை செருகுக
-insert_flash_code =               விடியோ நிரல் (<code>&lt;object&gt;...&lt;/object&gt;</code>)
-flash_code =                      நிரல்:
-select_flash_or =                 ... அல்லது ...
-insert_flash_custom =             தனிப்பட்ட பிளாஷ் விடியோ
 flash_url =                       URL:
 flash_size =                      அளவு:
 insert_flash_button =             பிளாஷ் விடியோவை செருகுக
