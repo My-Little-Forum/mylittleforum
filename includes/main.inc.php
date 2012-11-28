@@ -81,9 +81,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']))
    }
  }
 
-// do daily actions:
-daily_actions(TIMESTAMP);
-
 // set time zone:
 if(function_exists('date_default_timezone_set'))
  {
@@ -116,8 +113,10 @@ if(function_exists('date_default_timezone_set'))
     date_default_timezone_set('UTC');
     $forum_time_zone = 'UTC';
    }
-   
  }
+
+// do daily actions:
+daily_actions(TIMESTAMP);
 
 $categories = get_categories();
 $category_ids = get_category_ids($categories);

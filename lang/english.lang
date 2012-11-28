@@ -632,7 +632,7 @@ registered_send_error =           The account has been registered but the activa
 activation_failed =               The activation of the account failed.
 error_password_too_short =        The password must contain at least [characters] characters
 error_email_alr_exists =          There is already a user with this e-mail address
-error_reg_not_accepted_word =     Spam protection: E-mail or name contain a not accepted word or domain
+error_reg_not_accepted_word =     Spam protection: E-mail or user name not accepted
 
 [contact]
 contact_hl =                      E-mail to the forum administrator
@@ -879,7 +879,7 @@ captcha_graphical =               graphical
 gr_captcha_not_available =        Graphical CAPTCHA not available (GD Lib not available)
 gr_captcha_no_font =              No font available, CAPTCHA image cannot be displayed correctly
 stop_forum_spam =                 Stop Forum Spam
-stop_forum_spam_desc =            <a href="http://www.stopforumspam.com/">Stop Forum Spam</a> spam protection
+stop_forum_spam_desc =            <a href="http://www.stopforumspam.com/">Stop Forum Spam</a> spam protection to ckeck e-mail addresses on registrations
 stop_forum_spam_enable =          enable Stop Forum Spam
 bad_behavior =                    Bad Behavior
 bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a> spam protection.

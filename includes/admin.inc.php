@@ -1723,7 +1723,7 @@ switch($action)
    if(empty($_POST['akismet_entry_check'])) $akismet_entry_check = 0; else $akismet_entry_check = 1;
    if(empty($_POST['akismet_mail_check'])) $akismet_mail_check = 0; else $akismet_mail_check = 1;
    if(empty($_POST['akismet_check_registered'])) $akismet_check_registered = 0; else $akismet_check_registered = 1;
-   if(empty($_POST['save_spam'])) $save_spam = 0; else $save_spam = intval($_POST['save_spam']);
+   if(empty($_POST['save_spam'])) $save_spam = 0; else $save_spam = 1;
 
    // check akismet API key:
    if($akismet_key!='')
