@@ -298,3 +298,8 @@ UPDATE mlf2_settings SET value = '2.3' WHERE name = 'version';
 INSERT INTO mlf2_settings VALUES ('stop_forum_spam', '0');
 UPDATE mlf2_settings SET value = '2.3.1' WHERE name = 'version';
 */
+--------------------------------------------------------------------------------
+-- 2.3.1 to 2.3.2
+/*
+UPDATE mlf2_settings SET value = '2.3.2' WHERE name = 'version';
+*/

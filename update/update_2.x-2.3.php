@@ -15,14 +15,19 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3');
-$update['new_version'] = '2.3.1';
+$update['version'] = array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3','2.3.1');
+$update['new_version'] = '2.3.2';
 #$update['download_url'] = 'http://downloads.sourceforge.net/mylittleforum/my_little_forum_2.3.1.zip';
 #$update['message'] = '<p>HTML formated message...</p>';
 
 // changed files (folders followed by a slash like this: folder/):
 switch($settings['version'])
  {
+  case '2.3.1':
+     $update['items'][] = 'includes/js_defaults.inc.php';
+     $update['items'][] = 'modules/smarty/';
+     $update['items'][] = 'modules/bad-behavior/';    
+     break;
   case '2.3':
      $update['items'][] = 'includes/';
      $update['items'][] = 'js/';

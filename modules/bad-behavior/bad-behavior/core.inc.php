@@ -1,5 +1,5 @@
 <?php if (!defined('BB2_CWD')) die("I said no cheating!");
-define('BB2_VERSION', "2.2.11");
+define('BB2_VERSION', "2.2.14");
 
 // Bad Behavior entry point is bb2_start()
 // If you're reading this, you are probably lost.
@@ -161,6 +161,13 @@ function bb2_screen($settings, $package)
 		} elseif (stripos($ua, "Yahoo! Slurp") !== FALSE || stripos($ua, "Yahoo! SearchMonkey") !== FALSE) {
 			require_once(BB2_CORE . "/searchengine.inc.php");
 			if ($r = bb2_yahoo($package)) {
+				if ($r == 1) return false;	# whitelisted
+				return $r;
+			}
+			return false;
+		} elseif (stripos($ua, "Baidu") !== FALSE) {
+			require_once(BB2_CORE . "/searchengine.inc.php");
+			if ($r = bb2_baidu($package)) {
 				if ($r == 1) return false;	# whitelisted
 				return $r;
 			}

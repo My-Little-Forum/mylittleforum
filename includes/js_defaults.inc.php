@@ -5,7 +5,7 @@ if(!defined('IN_INDEX'))
   exit;
  }
 
-if(isset($_SESSION[$settings['session_prefix'].'usersettings']['theme']) && $smarty->template_exists($_SESSION[$settings['session_prefix'].'usersettings']['theme'].'/main.tpl')) $theme = $_SESSION[$settings['session_prefix'].'usersettings']['theme'];
+if(isset($_SESSION[$settings['session_prefix'].'usersettings']['theme']) && $smarty->templateExists($_SESSION[$settings['session_prefix'].'usersettings']['theme'].'/main.tpl')) $theme = $_SESSION[$settings['session_prefix'].'usersettings']['theme'];
 else $theme = $settings['theme'];
 
 $theme_config = parse_ini_file('./'.THEMES_DIR.'/'.$theme.'/js_config.ini');
@@ -13,7 +13,7 @@ $theme_config = parse_ini_file('./'.THEMES_DIR.'/'.$theme.'/js_config.ini');
 if(isset($_GET['user_type'])) $user_type = intval($_GET['user_type']); 
 if(isset($user_type) && $user_type > 2) unset($user_type);
 
-$smarty->configLoad($settings['language_file'], 'general');
+$smarty->configLoad($language_file, 'general');
 $lang = $smarty->getConfigVars();
 
 if($settings['ajax_preview'])

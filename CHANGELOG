@@ -1,6 +1,15 @@
 my little forum changelog
 -------------------------
 
+2.3.2 (2013-11-24)
+------------------
+- language bug fix: http://mylittleforum.net/forum/index.php?id=7077
+- theme switch bug fix: http://mylittleforum.net/forum/index.php?id=7345
+- Smarty updated (3.1.15)
+- Bad Behavior updated (2.2.14)
+- Swedish language file added
+
+
 2.3.1 (2012-12-01)
 ------------------
 - JavaScript fix: http://mylittleforum.net/forum/index.php?id=6718

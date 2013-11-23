@@ -1,0 +1,1115 @@
+################################################################################
+# Swedish language file for my little forum 2.3 							   #
+# Transladed from English by Rövarn, rovarn at gmail dot com                   #
+#------------------------------------------------------------------------------#
+# - don't modify or translate the section names like "[general]" or "[entry]"! #
+# - placeholders in square brackets (e.g. "[name]") will be replaced by values #
+#   automatically - don't modify or translate them!                            #
+# - words in double square brackets (e.g. "click [[here]]") are transformed    #
+#   into hyperlinks - should be translated (e.g. "haga click [[aquí]]")        #
+# - strings that span more than one line (E-Mail texts) are enclosed in triple #
+#   quotes (e.g. """Hi,                                                        #
+#   how are you?""")                                                           #
+# - more details about the file fomat:                                         #
+#   http://www.smarty.net/docs/en/config.files.tpl                             #
+################################################################################
+
+[default]
+language =                        sv
+charset =                         utf-8
+locale =                          sv_SE.utf8
+locale =                          sv_SE
+locale =                          sv
+locale_charset =                  utf-8
+dir =                             ltr
+time_format =                     %Y-%m-%d, %H:%M
+time_format_full =                %A, %B %d, %Y, %H:%M
+forum_time =                      Forum tid: [time]
+forum_time_with_time_zone =       Forum tidszon: [time] ([time_zone])
+unknown_user =                    Okänd
+db_error =                        Databas error!
+mail_error =                      Mail server inte tillgänglig - försök senare!
+
+[general]
+subject =                         Ämne
+author =                          Skribent
+date =                            Datum
+replies =                         Svar
+views =                           Visningar
+category =                        Kategori
+submit_button_ok =                &nbsp;OK&nbsp;
+yes =                             Ja
+no =                              Nej
+go =                              Gå
+edit =                            Ändra
+delete =                          Radera
+next_page_link =                  &raquo;
+previous_page_link =              &laquo;
+next_page_link_title =            Nästa sida
+previous_page_link_title =        Föregående sida
+posted_by =                       av <strong>[name]</strong>[email_hp], [time]
+posted_by_location =              av <strong>[name]</strong>[email_hp], [location], [time]
+original_posting_linktitle =      Klicka för att komma till ursprungsinlägget av: [name]
+error_headline =                  Fel!
+no_authorisation =                Inte autensierad!!
+page_doesnt_exist =               Sidan finns inte!!
+error_form_uncomplete =           Alla fält är inte ifyllda!
+caution =                         Hallå!!!
+spam =                            Spam
+forum_index_link =                Startsida
+forum_index_link_title =          Startsida
+log_in_link =                     Logga in
+log_in_link_title =               Logga in
+log_out_link =                    Logga ut
+log_out_link_title =              Logga ut
+register_link =                   Registera
+register_link_title =             Regisrera ny medlem
+profile_link_title =              Redigera profil
+user_area_link =                  Medlemmar
+user_area_link_title =            Medlemslista
+admin_area_link =                 Administrera
+admin_area_link_title =           Administrera forumet
+search_marking =                  Sök:
+search_default_value =            Sök...
+search_title =                    Sök inlägg
+new_topic_link =                  Nytt Ämne
+new_topic_link_title =            Posta Nytt Ämne
+order_link =                      Sortering
+order_link_title_1 =              Sortera efter senaste svar
+order_link_title_2 =              Sortera efter datum då ämne startades (standard)
+fold_threads =                    Kollapsa trådar
+fold_threads_linktitle =          Göm svar
+expand_threads =                  Expandera trådar
+expand_threads_linktitle =        Visa svar
+table_view =                      Tabellvisning
+table_view_linktitle =            Visar forumet som plankister inte vill
+thread_view =                     Plankvisning
+thread_view_linktitle =           Standard segelplankvisning
+refresh_link =                    Markera allt som läst
+refresh_linktitle =               Återställer visning för nya inlägg
+thread_hierarchical =             Hierarchical
+thread_hierarchical_linktitle =   Display thread in hierarchical order (default)
+open_in_thread_link =             Öppna i tråd
+open_in_thread_linktitle =        Visa det här inlägget i sin tråd
+thread_linear =                   Linjär
+thread_linear_linktitle =         Visa tråden linjärt
+fold_posting_title =              Kollapsa/expandera alla inlägg 
+fold_postings =                   Kollapsa/expandera 
+fold_postings_title =             Kollapsa eller expandera alla inlägg
+expand_fold_thread_linktitle =    Expandera / Kollapsa tråd
+category_title =                  Kategori
+all_categories =                  Alla kategorier
+my_category_selection =           Mitt val
+browse_page_title =               Sida
+thread_entry_back_link =          Tillbaka till förstasidan
+thread_entry_back_title =         Startsida
+reply_link =                      Svara på inlägg
+reply_link_title =                Svara på detta inlägg
+back_to_index_link =              Tillbaka till förstasidan
+back_to_index_link_title =        Förstasidan
+back_to_entry_link =              Tillbaka till [name]'s inlägg
+back_to_entry_link_title =        Tillbaka till [name]'s inlägg
+subnav_login =                    Login
+subnav_pw_forgotten =             Glömt lösenord
+subnav_admin_area =               Administrera
+subnav_settings =                 Foruminställningar
+subnav_advanced_settings =        Avancerade inställningar
+subnav_categories =               Kategorier
+subnav_edit_category =            Editera kategorier
+subnav_delete_category =          Radera kategori
+subnav_user =                     Medlemsadministration
+subnav_smilies =                  Smajlisar
+subnav_pages =                    Sidor
+subnav_delete_page =              Radera sida
+subnav_edit_page =                Redigera sida
+subnav_add_page =                 Lägg till sida
+subnav_create_page =              Skapa sida
+subnav_edit_smiley =              Redigera smajlis
+subnav_edit_user =                Redigera medlem
+subnav_delete_users =             Radera medlemmar
+subnav_delete_entries_user =      Radera inlägg av medlem
+subnav_register_user =            Registrera medlem
+subnav_spam_protection =          Spamskydd
+subnav_email_list =               E-postlista med registrerade medlemmar
+subnav_clear_userdata =           Rensa medlemmar
+subnav_search =                   Sök
+subnav_list_spam =                Spam
+subnav_register =                 Registrera
+subnav_reset_uninstall =          Återställ / avinstallera forumet
+subnav_userarea =                 Profilsida
+subnav_contact =                  Kontakta admin
+subnav_userarea_show_user =       [var]
+subnav_userarea_show_posts =      Inlägg av [var]
+subnav_userarea_edit_user =       Ändra profil
+subnav_userarea_edit_pw =         Ändra lösenord
+subnav_userarea_edit_mail =       Ändra E-postadress
+subnav_backup =                   säkerhetskopia
+subnav_update =                   Uppdatera
+subnav_update_run =               Kör uppdatering
+subnav_delete_backup_file =       Ta bort säkerhetskopian
+subnav_restore =                  Återställ
+subnav_locked =                   Konto låst
+subnav_delete_cookie =            Radera cookie
+subnav_disabled =                 Forumet inaktiverat
+subnav_page_error =               Fel
+subnav_page =                     [var]
+counter =                         [total_postings] Inlägg i [total_threads] Ämnen, [registered_users] registrerade medlemmar
+counter_users_online =            [total_postings] Inlägg i [total_threads] Ämnen, [registered_users] registrerade medlemmar, [total_users_online] medlemmar ([registered_users_online] medlemmar, [unregistered_users_online] gäster)
+contact_link =                    Kontakta admin
+contact_linktitle =               E-posta forumadministratören
+rss_feed_postings =               RSS Inlägg
+rss_feed_postings_title =         RSS-feed av alla nya inlägg
+rss_feed_new_threads =            RSS-feed av nya Trådar
+rss_feed_new_threads_title =      RSS-feed av endast nya Trådar
+rss_feed_thread =                 RSS-feed av trådar
+rss_feed_thread_title =           RSS-feed av denna tråden
+no_messages =                     Inga inlägg ännu.
+no_messages_in_category =         Inga inlägg har ännu postats.
+error_invalid_category =          Ogiltig kategori!
+error_word_too_long =             Ordet "[word]" är för långt!
+error_name_too_long =             Namnet är för långt!
+error_email_too_long =            E-postadressen är för lång!
+error_hp_too_long =               Hemsideadressen är för lång!
+error_location_too_long =         Platsinformationen är får lång!
+error_profile_too_long =          Profilen är för lång, ([profile_length] tecken - endast [profile_maxlength] tecken är tillåtet)!
+error_signature_too_long =        Signaturen är för lång, ([signature_length] tecken - endast [signature_maxlength] tecken är tillåtet)!
+error_invalid_date_format =       Ogiltigt datumformat på födelsedag, (YYYY-MM-DD)!
+error_invalid_date =              Ogiltigt datumformat!
+error_email_wrong =               Ogiltig E-postadress!
+error_hp_wrong =                  Ogiltig hemsideadress!
+error_pw_conf_wrong =             Lösenorden är inte lika!
+error_akismet_connection =        Servertimeout, vänligen försök igen!
+error_akismet_connection_admin =  Kunde inte kontakta Akismet server för att verifiera API-nyckeln!
+error_akismet_api_key =           Ogiltig Wordpress API Nyckel!
+error_spam_suspicion =            Misstänkt spam! Vänligen ändra ditt inlägg (T.ex. ta bort länkar)
+user_name_already_exists =        Användarnamnet finns redan!
+open_whole_thread =               Öppna hela tråden
+change_category_link =            Visa inlägg i kategori "[category]"
+mark_linktitle =                  Markera inlägg
+unmark_linktitle =                Avmarkera inlägg
+delete_marked_link =              Radera markerade inlägg
+manage_postings_link =            Hantera inlägg
+show_spam_link =                  Visa spam ([number])
+hide_spam_link =                  Dölj spam
+delete_spam_link =                Radera spam
+list_spam_link =                  Lista spam
+no_replies =                      Inga svar
+one_reply =                       1 svar
+several_replies =                 [replies] svar
+more_smilies_label =              Fler...
+more_smilies_title =              Fler smajlisar
+close =                           Stäng
+no_postings_user =                Inga inlägg.
+search_submit_button =            Sök
+search_fulltext =                 Fulltext
+search_tags =                     Sökord
+no_postings_found =               Hittar ej sökt ord eller fras.
+one_posting_found =               1 inlägg hittades:
+several_postings_found =          [number] inlägg hittdes:
+no_postings_by_user =             Inga inlägg.
+one_posting_by_user =             1 inlägg:
+several_postings_by_user =        [number] postings:
+rss_posting_by =                  Inlägg av [name], [time]:
+rss_reply_by =                    Svar av [name], [time]:
+rss_reply_marking =               (reply)
+move_up =                         Flytta upp
+move_down =                       Flytta ner
+delete_posting_title =            Ta bort inlägg
+delete_posting_confirm =          Vill Du verkligen radera inlägget?
+delete_posting_replies_confirm =  Vill Du verkligen ta bort det här inlägget och alla dess svar??
+latest_postings_hl =              Senaste inlägg
+toggle_latest_postings =          Visa/dölj senaste inlägg
+posting_minutes_ago =             [minutes] min. sen
+posting_hours_ago =               [hours] h, [minutes] min. sen
+posting_one_day_ago =             1 dag, [hours] h, [minutes] min. sen
+posting_several_days_ago =        [days] dagar sedan
+tag_cloud_hl =                    Senaste sökord
+sidebar =                         Sidopanel
+toggle_sidebar =                  Visa/göm sidopanel
+options =                         Val
+administrator_title =             Administratör
+moderator_title =                 Moderator
+avatar_img_alt =                  Avatar
+search_user =                     Sök medlem:
+search_user_default_value =       Sök medlem...
+no_users =                        Inget sökresultat.
+no_text_title =                   Tomt inlägg/ingen text
+no_text_alt =                     [ No text ]
+no_text =                         - Ingen text -
+error_invalid_form =              Sessionen har upphört! Vänligen kopiera inlägget och logga in igen, eller posta inlägget som gäst.
+error_form_sent_too_fast =        Inlägget postades för fort - vänligen vänta en stund och försök sedan igen! (automated form submission prevention)
+error_form_sent_too_slow =        Formuläret är inte giltigt längre - vänligen kopiera texten och uppdatera sidan!
+terms_of_use_agreement =          Ja, jag godkänner [[terms of use]]
+error_not_accepted_word =         Ogiltigt ord: [not_accepted_word]
+error_not_accepted_words =        Ogiltigt ord: [not_accepted_words]
+error_username_invalid_chars =    Användarnamnet innehåller ogiltiga tecken!
+user_locked =                     Medlemmen är spärrad!
+user_locked_message =             Ditt konto är för närvarande spärrat.
+forum_disabled =                  Forumet är inte tillgängligt.
+cookie_deleted =                  Cookien är raderad.
+ajax_preview_title =              Förhandsgranska
+bbcode_link_text =                Länktext (optional):
+bbcode_link_url =                 Länk (URL):
+bbcode_image_url =                Bildadress (URL):
+bbcode_tex_code =                 TeX formula (e.g. \sqrt{x}):
+quote_label =                     Infoga citat
+quote_title =                     Infoga citerad text
+error_no_name =                   Du har glömt att skriva in ditt namn!
+error_no_subject =                Inget ämne ifyllt!
+error_no_text =                   Inget inlägg skrivet!
+terms_of_use_error_register =     Du måste godkänna villkoren för att kunna fortsätta registreringen!
+terms_of_use_error_posting =      Du måste godkänna villkoren för att kunna fortsätta registreringen!
+check_all =                       Markera alla
+uncheck_all =                     Avmarkera alla
+delete_backup_confirm =           Vill Du verkligen radera den här säkerhetskopian?
+delete_sel_backup_confirm =       Är Du säker på att Du vill radera markerade backuppfiler?
+drag_and_drop_title =             Dra & släpp för att flytta upp eller ner
+
+[entry]
+edited_by =                       edited by [name], [time]
+tags_marking =                    Sökord:
+one_view =                        1 visning
+several_views =                   [views] visningar
+complete_thread_marking =         Hela tråden:
+branch_marking =                  Current branch of thread:
+direct_replies_marking =          Svara på inlägget:
+edit_message_linkname =           Ändra
+edit_message_linktitle =          Ändra inlägget
+delete_message_linkname =         Radera
+delete_message_linktitle =        Radera inlägg
+move_posting_linkname =           Flytta
+move_posting_linktitle =          Flytta inlägget
+report_spam_linkname =            Spam
+report_spam_linktitle =           Rapportera som spam
+flag_ham_linkname =               Ej spam
+flag_ham_linktitle =              Rapportera som icke spam
+lock_linkname =                   Lås
+lock_linktitle =                  Lås inlägg
+unlock_linkname =                 Lås upp
+unlock_linktitle =                Lås upp inlägg
+lock_thread_linkname =            Lås tråd
+lock_thread_linktitle =           Lås hela tråden
+unlock_thread_linkname =          Lås upp tråd
+unlock_thread_linktitle =         Lås upp hela tråden
+posting_locked =                  Låst
+email =                           E-post
+homepage =                        Hemsida
+spam_note =                       Ditt inlägg passerade inte spamfiltret och kommer inte att visas förrän en moderator eller administratör tittat på det!
+
+[posting]
+no_authorization_edit =           Inlägget kan inte ändras! Möjligen har tiden för editering utgått, tråden är låst eller så finns det svar på inlägget!
+posting_locked_no_reply =         Tråd låst, Du kan inte svara!
+no_auth_post_reg_users =          Endast registrerade medlemmar kan svara!
+no_auth_session_expired =         Sessionen har upphört! Vänligen kopiera inlägget och logga in igen!
+no_auth_readonly =                Forumet är tillfälligt försatt i endast läsbehörighet!
+new_topic_hl =                    Nytt ämne
+reply_hl =                        Skriv svar
+edit_hl =                         Ändra inlägg
+name_marking =                    Namn:
+email_marking =                   E-post:
+hp_marking =                      Hemsida:
+location_marking =                Plats:
+optional =                        (valfritt)
+optional_email =                  (Valfritt, kommer inte att synas direkt)
+remember_userdata_marking =       Kom ihåg mig (cookie)
+delete_cookie_linkname =          Ta bort cookie
+category_marking =                Kategori:
+subject_marking =                 Ämne:
+message_marking =                 Inlägg:
+tags_marking =                    Sökord:
+tags_note =                       (valfritt, separera med kommatecken)
+bbcode_bold_label =               Fet
+bbcode_bold_title =               Fetstil 
+bbcode_bold_instruction =         [b]Text[/b]
+bbcode_italic_label =             Kursiv
+bbcode_italic_title =             Kursiv stil
+bbcode_italic_instruction =       [i]Text[/i]
+bbcode_color_label =              Färg
+bbcode_color_title =              Textfärg
+bbcode_color_instruction =        [color=color]text[/color]
+bbcode_link_label =               Länk
+bbcode_link_title =               Infoga hyperlänk
+bbcode_link_instruction =         [link=http://example.com/]link text[/link] / [link]http://example.com/[/link]
+bbcode_size_label =               Storlek
+bbcode_size_title =               Teckenstorlek
+bbcode_size_label_small =         Mindre
+bbcode_size_label_large =         Större
+bbcode_size_instruction_small =   [size=small]mindre text[/size]
+bbcode_size_instruction_large =   [size=large]större text[/size]
+bbcode_list_label =               Lista
+bbcode_list_title =               Infoga lista
+bbcode_list_instruction =         [list][*]list objekt[/list]
+bbcode_image_label =              Bild
+bbcode_image_title =              Infoga bildlänk
+bbcode_image_label_default =      Standard
+bbcode_image_instr_default =      [img]http://example.com/image.jpg[/img]
+bbcode_image_label_left =         Vänster       
+bbcode_image_instr_left =         Vänsterjusterad: [img=left]http://example.com/image.jpg[/img]
+bbcode_image_label_right =        Höger       
+bbcode_image_instr_right =        Högerjusterad: [img=right]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb =        Miniatyr       
+bbcode_image_instr_thumb =        Miniatyr: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_left =   Miniatyr vänster       
+bbcode_image_instr_thumb_left =   Miniatyr vänster: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_image_label_thumb_right =  Miniatyr höger       
+bbcode_image_instr_thumb_right =  Miniatyr höger: [img=thumbnail]http://example.com/image.jpg[/img]
+bbcode_upload_label =             Ladda
+bbcode_upload_title =             Ladda upp och infoga bild
+bbcode_upload_instruction =       Ladda bild ...
+bbcode_flash_label =              Flash
+bbcode_flash_title =              Infoga flash
+bbcode_flash_instruction =        [flash]http://example.com/flash.swf[/flash]
+bbcode_tex_label =                TeX
+bbcode_tex_title =                Infoga TeX kod
+bbcode_tex_instruction =          [tex]TeX code[/tex]
+bbcode_code_label =               Kod
+bbcode_code_title =               Infoga kod
+bbcode_code_label_inline =        Inline kod
+bbcode_code_instruction_inline =  [inlinecode]code[/inlinecode]
+bbcode_code_label_general =       Kodblock
+bbcode_code_instruction_general = [code]code[/code]
+bbcode_code_label_specific =      Kodblock [language]
+bbcode_code_instruction_spec  =   [code=[language]]code[/code]
+insert_smiley_title =             Infoga smajli
+email_notific_reply_thread =      E-posta mig när någon svarar på detta inlägg
+email_notific_reply_post =        E-posta mig när någon svarar på detta inlägg
+show_signature_marking =          Infoga signatur
+sticky_thread =                   Klistrad
+message_submit_button =           OK - Skicka
+message_submit_title =            Spara inlägg
+message_preview_button =          Förhandsgranska
+message_preview_title =           Förhandsgranska inlägg före Du postar
+reply_to_posting_marking =        Svara på <strong>[name]</strong>'s inlägg
+minutes_left_to_edit =            Du har [minutes] minuter kvar att editera inlägget!
+minutes_left_to_edit_reply =      Du har [minutes] minuter kvar att redigera inlägget om ingen postar svar innan!
+preview_headline =                Förhandsvisa
+error_repeated_posting =          Upprepad postning inom [minutes] minut(er). Vänligen vänta en stund och försök senare! 
+error_name_like_subject =         Namnet är det samma som ämnet!
+error_name_reserved =             Det finns redan en medlem med det här namnet!
+error_username_too_long =         Användarnamnet är för långt!
+error_name_too_long =             Användarnamnet är för långt!
+error_no_email_to_notify =        Ingen e-postadress angiven!
+error_subject_too_long =          Ämnestexten är för lång!
+error_text_too_long =             Inlägget är för långt, ([text_length] tecken - endast [text_maxlength] tecken tillåtet)
+error_tags_too_long =             Sökord för långt!
+error_posting_unavailable =       Inlägget finns inte!
+
+[delete_posting]
+delete_postings_hl =              Radera inlägg
+delete_marked_hl =                Radera markerade inlägg
+delete_marked_confirm =           Är du säker på att Du vill radera inlägget och dess savar??
+delete_spam_hl =                  Radera spam
+delete_spam_confirm =             Vill Du verkligen raderar inläggen markerade som spam?
+delete_posting_submit =           OK - Radera
+report_spam_hl =                  Rapportera spam
+posting_already_spam =            Det här inlägget är redan raporterat som spam!
+spamcheck_posting_not_checked =   Detta inlägg är redan flaggas som skinka eller inte kontrolleras av Akismet eftersom antingen var inte Akismet aktiverat eller att det är postat av en registrerad medlem.
+spamcheck_posting_passed =        Detta inlägg har passerat Akismet spamfilter, rapportera endast som spam om det med säkerhet är spam!
+spamcheck_akismet_api_error =     Detta inlägg passerade Akismet spamfilter eftersom ett fel uppstod när det söktes igenom. Detta kan ha orsakats av en ogiltigt API-nyckel!
+spamcheck_akismet_timeout_error = Detta inlägg passerade Akismet spamfilter på grund av ett "timeout error" på Akismet server.
+report_spam_delete_submit =       Rapportera som spam och radera!
+report_spam_submit =              Endast rapportera som spam!
+delete_only_submit =              Endast radera
+postings_doesnt_exist =           Endast radera
+posting_not_flagged_as_spam =     Detta inlägg är inte spam!
+flag_ham_hl =                     Rapportera som icke spam
+flag_ham_note =                   Inlägget rapporterades som spam av Akismet spam filter. Rapportera endast som icke spam om det är helt fastställt att det inte är spam!
+report_flag_ham_submit =          Rapportera och markera som icke spam
+flag_ham_submit =                 Endast markera som spam
+no_authorisation_delete =         Inlägget kan inte ändras! Möjligen har tiden för editering utgått, tråden är låst eller så finns det svar på inlägget!
+
+[captcha]
+captcha_marking =                 Spamskyddtest:
+captcha_expl_math =               Summera siffrorna:
+captcha_expl_image =              Fyll i tecknen på bilden:
+captcha_image_alt =               Kan Du inte se bilden måste Du skapa ett konto och logga in för att kunna använda forumet
+captcha_image_alt_reg =           Kontakta forumadministratören om Du inte ser bilden!
+captcha_check_failed =            Spamskydd aktiverat - vänligen försök igen!
+
+[upload_image]
+image_upload_not_enabled =        Bilduppladdning är inaktiverat
+upload_image_hl =                 Ladda upp bild
+upload_image_button =             Ladda upp
+upload_error =                    Uppladdningen misslyckades!
+upload_error_2 =                  Ingen bild vald eller fel bildstorlek ([server_max_filesize]).
+invalid_file_format =             Ogiltigt filformat!
+file_too_large =                  Filen är för stor ([width]*[height], [filesize] KB, maxstorlek är: [max_width]*[max_height], [max_filesize] KB)
+upload_successful =               Uppladdningen lyckades
+image_downsized =                 <strong>OBS:</strong> Bildstorleken har ändrats, ny storlek är: [width] x [height] px, [filesize] KB.
+insert_image =                    Infoga bild
+insert_image_exp =                Klicka på bilden för att infoga den i ditt inlägg
+insert_image_exp_no_js =          Du kan använda följande kod för att infoga bilder i ditt inlägg:
+browse_uploaded_images =          Bläddra bland alla uppladdade bilder...
+back =                            &laquo; Tillbaka
+no_images =                       Inga bilder tillgängliga.
+delete_image_confirm =            Radera bilden?
+delete_image_button =             OK - Radera
+
+[insert_flash]
+insert_flash_hl =                 Infoga flashobjekt
+flash_url =                       Flash URL:
+flash_size =                      Storlek:
+insert_flash_button =             Infoga flashobjekt
+
+[avatar]
+avatar_hl =                       Avatar (profilbild)
+delete_avatar =                   Radera avatar
+upload_avatar_hl =                Ladda upp avatar
+upload_avatar_notes =             Max bildstorlek för avatar: [width]*[height] px, [filesize] KB
+upload_image_button =             Ladda upp
+upload_error =                    Fel vid uppladdning av bild
+upload_error_2 =                  Ingen bild vald eller för stor bild, max: ([server_max_filesize]).
+invalid_file_format =             Fel filformat
+file_too_large =                  Filen är för stor ([width]*[height], [filesize] KB, Max är: [max_width]*[max_height], [max_filesize] KB)
+upload_successful =               Avataren laddades upp korrekt!
+close_window =                    Stäng fönster
+image_downsized =                 <strong>Note:</strong> The avatar had to be downsized, the new size is [width] x [height] px, [filesize] KB.
+avatars_disabled =                Avatarer är inaktiverade
+
+[move_posting]
+move_posting_hl =                 Flytta inlägg
+move_posting_new_thread =         Skapa nytt ämne av detta inlägg och dess svar 
+move_posting =                    Flytta detta inlägg och dess svar till inlägg # [number]
+move_posting_submit =             OK - Flytta inlägg
+invalid_posting_to_move =         Ogiltigt inläggsnummer!
+
+[manage_postings]
+manage_postings_hl =              Hantera inlägg
+mark_postings =                   Markera
+mark_all_postings =               Markera alla inlägg
+unmark_all_postings =             Avmarkera alla inlägg
+mark_old_threads =                Markera ämnen där senaste svar är äldre än [days] dagar
+lock_postings =                   Lås
+lock_all_postings =               Lås alla inlägg
+unlock_all_postings =             Lås upp alla inlägg
+lock_old_threads =                Lås ämnen där senaste svar är äldre än [days] dagar
+
+[login]
+login_ip_temp_blocked =           För många misslyckade inloggningsförsök, prova igen lite senare. 
+login_username =                  Användarnamn:
+login_password =                  Lösenord:
+login_auto =                      Logga in mig automatiskt på den här datorn!
+login_submit =                    Logga in
+login_advice =                    Cookies måste vara aktiverade för att kunna logga in!
+pw_forgotten_link =               Jag har glömt lösenordet!
+pwf_failed =                      Det finns ingen medlem med den E-postadressen!
+login_failed =                    Fel användarnamn eller lösenord!
+registered_users_only =           Endast registrerade medlemmar kan posta inlägg!
+account_not_activated =           Ditt konto är inte aktiverat ännu!
+account_activated =               Aktiveringen av ditt konto lyckades.
+account_activated_but_locked =    Ditt konto har registrerats, men måste aktiveras av administratör eller moderator!
+mail_sent =                       Ett E-brev har skickats.
+pw_sent =                         Ett nytt lösenord har skickats till E-postadressen som tillhör kontot.
+code_invalid =                    Ogiltig kod!
+
+[pw_forgotten]
+new_pw_ok =                       Ett nytt lösenord har genererats och skickats till E-postadressen.
+new_pw_failed =                   Aktiveringslänken är ogiltig, nytt lösenord kunde inte genereras!
+pw_forgotten_exp =                Lösenordet är krypterat i en envägsalgoritm så Du kan inte återfå ditt lösenord, Du kan endast skapa ett nytt. För att undvika missbruk kommer du att få ett E-postmeddelande och kommer att uppmanas att följa en länk för att bekräfta din begäran. Vid mottagandet av din bekräftelse kommer ett nytt lösenord att genereras och skickas till dig.
+pwf_username =                    Användarnamn:
+pwf_email =                       E-post:
+
+[user]
+user_name =                       Användarnamn
+user_type =                       Typ
+admin =                           Administratör
+mod =                             Moderator
+user =                            Medlem
+user_email =                      E-post
+user_hp =                         Hemsida
+mailto_user =                     Skicka E-post till [user]
+email =                           E-post
+homepage =                        Hemsida
+user_postings =                   Inlägg
+user_online =                     Online
+user_blockage =                   Bannlysning
+online =                          Akiv nu
+lock_title =                      Bannlys medlem
+unlocked =                        Av
+unlock_title =                    Ta bort bannlysning
+currently_online =                Aktiva nu
+
+[user_show]
+user_name =                       Användarnamn:
+user_avatar =                     Avatar (profilbild):
+user_type =                       Typ:
+admin =                           Administratör
+mod =                             Moderator
+user =                            Medlem
+user_real_name =                  Namn:
+gender =                          Kön:
+male =                            Man
+female =                          Kvinna
+age_birthday =                    Ålder/födelsedag:
+mailto_user =                     Skicka E-post till [user]
+email =                           E-post
+homepage =                        Hemsida
+user_hp_email =                   Hemsida/E-post:
+user_location =                   Plats:
+user_registered =                 Registerad:
+user_last_login =                 Senast aktiv:
+user_logins =                     Antal inloggningar:
+user_postings =                   Inlägg:
+show_postings_link =              Visa inlägg
+last_posting =                    Senaste inlägget:
+logins_per_day =                  Antal inloggningar/dag:
+postings_per_day =                Antal inlägg/dag:
+user_profile =                    Profil:
+user_delete_all_entries =         Radera alla inlägg av denna medlem
+user_lock_account =               Bannlys denna medlem
+user_unlock_account =             Ta bort bannlysning  
+user_edit_account =               Redigera medlemmens konto
+user_delete_account =             Ta bort medelemskontot
+user_account_doesnt_exist =       Denne medlemmen finns inte.
+
+[user_edit]
+edit_user_name =                  Användarnamn:
+edit_avatar =                     Avatar (profilbild):
+edit_avatar_link =                Byt avatar
+edit_user_type =                  Typ:
+edit_user_email =                 E-post:
+edit_email =                      Ändra E-postadress
+edit_user_pw =                    Lösenord:
+pw_not_displayed =                visas inte
+edit_pw =                         Ändra lösenord
+edit_user_email_contact =         Tillåt andra medlemmar att kontakta mig via E-post
+edit_user_real_name =             Namn:
+edit_user_gender =                Kön:
+male =                            Man
+female =                          Kvinna
+edit_user_birthday =              Födelsedag:
+birthday_format =                 ÅÅÅÅ-MM-DD
+edit_user_hp =                    Hemsida:
+edit_user_location =              Plats:
+edit_user_profile =               Profil:
+edit_user_signature =             Signatur:
+edit_user_cat_selection =         Mina kategorier:
+edit_user_time_zone =             Tidszon:
+edit_user_time_difference =       Ytterligare tidsskillnad i timmar (t.ex. +3 eller -5:30):
+edit_user_default_time_zone_svr = Standard (server time)
+edit_user_default_time_zone =     Standard ([default_time_zone])
+edit_user_language =              Språkval:
+edit_user_default_language =      Standard ([default_language])
+edit_user_theme =                 Tema:
+edit_user_default_theme =         Standard ([default_theme])
+edit_user_auto_login =            Automatisk inloggning:
+enable_auto_login =               Aktivera automatisk inloggning
+edit_user_notification =          E-posta mig när:
+admin_mod_notif_posting =         Ett nytt inlägg postas
+admin_mod_notif_register =        En ny medlem registrerar sig
+userdata_submit_button =          OK - Spara
+profile_saved =                   Profil sparad
+pw_changed =                      Lösenord ändrat
+
+[edit_pw]
+edit_pw_old =                     Nuvarande lösenord:
+edit_pw_new =                     Nytt lösenord:
+edit_pw_conf =                    Upprepa lösenord:
+error_old_pw_wrong =              Nuvarande lösenord felaktigt
+error_pw_conf_wrong =             De nya lösenorden matchar inte
+error_new_pw_too_short =          Det nya lösenordet måste innehålla [characters] tecken
+
+[edit_email]
+edit_email_exp =                  Vid byte av E-postadress loggas Du ut och kontot måste aktiveras igen. En aktiveringsnyckel kommer att skickas till den nya E-postadressen. Se till att E-postadress är korrekt! Kontot måste aktiveras inom ett dygn.
+edit_email_new =                  Ny E-postadress:
+edit_email_new_confirm =          Ny E-postadress igen:
+edit_email_pw =                   Lösenord:
+error_form_uncompl =              Alla fält är inte ifyllda!
+error_email_confirmation =        Nya E-postadressen matchar inte!
+error_email_too_long =            Nya E-postadressen är för lång!
+error_identic_email =             Nya E-postadressen är samma som den gamla!
+error_email_invalid =             Nya E-postadressen är ogiltig!
+pw_wrong =                        Felaktigt lösenord!
+
+[register]
+register_exp =                    Vänligen ange önskat användarnamn, ett lösenord och en giltig E-postadress. En aktiveringsnyckel kommer att skickas till E-postadressen. Kontot måste aktiveras inom ett dygn.
+register_username =               Användarnamn:
+register_user_email =             E-post:
+register_pw =                     Lösenord:
+register_pw_conf =                Upprepa lösenord:
+register_only_by_admin =          Nya medlemmar kan bara registreras av administratörer
+registered =                      Registreringen lyckades, ett aktiveringsmail har skickats <strong>[var]</strong>. Kontot måste aktiveras inom ett dygn.
+registered_send_error =           Registreringen lyckades med aktiveringsmailet kunde inte skickas (mail server not available). Kontakta en forumadministratör för manuell registrering.
+activation_failed =               Aktiveringen misslyckades!
+error_password_too_short =        Lösenordet måste innehålla [characters] tecken!
+error_email_alr_exists =          Användarnamnet används redan!
+error_reg_not_accepted_word =     Spamskydd: E-postadress eller användarnamn är spärrat!
+
+[contact]
+contact_hl =                      E-post till administraören
+contact_user_hl =                 E-post till [recipient_name]
+impossible_to_contact =           Det går inte att kontakta denne medlem via E-post
+contact_doesnt_exist =            Den här kontakten existerar inte!
+sender_address_caption =          Avsändare:
+subject_caption =                 Ämne:
+message_caption =                 Meddelande:
+message_submit_caption =          OK - Skicka meddelande
+email_sent =                      Meddelandet har skickats som E-post
+error_no_text =                   Inget meddelande ifyllt!
+error_no_email =                  Ingen avsändare ifylld!
+error_no_subject =                Inget ämne angett!
+error_email_invalid =             E-postadressen är ogiltig!
+error_email_subject_too_long =    Ämnesraden är för lång!
+error_email_text_too_long =       Meddelandet är för långt,([text_length] tecken - endast [text_maxlength] tecken är tillåtet)
+error_spam_suspicion =            Misstänkt spam! Försök ändra texten (t.ex. ta bort länkar)
+
+[admin]
+enabled =                         Aktiverat
+disabled =                        Inaktiverat
+folder_alt =                      Mapp
+file_alt =                        Fil
+admin_confirm_password =          Administratörslösenord:
+error_password_wrong =            Fel lösenord
+
+# admin menu
+forum_settings_link =             Foruminställningar
+category_administr_link =         Hantera kategorier
+user_administr_link =             Medlemshantering
+smilies_administr_link =          Hantera smajlisar
+pages_administr_link =            Hantera sidor
+spam_protection_link =            Inställningar spamskydd
+backup_restore_link =             Säkerhetskopiera databas
+update_link =                     Updatera forumet
+reset_uninstall_link =            Återställ eller avinstallera forumet
+
+# forum settings:
+clear_chache =                    Rensa cache för att ändringen ska börja gälla på befintliga inlägg
+settings_submit_button =          OK - Spara ändringar
+settings_saved =                  Ändringar sparade
+advanced_settings_link =          Avancerade inställningar
+forum_name =                      Namn på forumet
+forum_name_desc =                 Kommer bland annat att synas överst på startsidan
+forum_description =               Beskrivning av forumet
+forum_description_desc =          En kort beskrivning av sidans innehåll och inriktning
+forum_address =                   Forumets adress
+forum_address_desc =              URL till forumet (använd format: http://www.domain.tld/forum/)
+forum_email =                     Forumets E-postadress
+forum_email_desc =                Används som avsändare i all E-post som skickas från forumet
+home_link =                       Länk till hemsidan
+home_link_desc =                  Länk till din hemsida, t.ex. http://www.domain.tld/ or ../index.html (valfritt)
+home_link_name =                  Namn på hemsidans länk
+home_link_name_desc =             Namn på länken, t.ex. &quot;Till hemsidan&quot;
+default_language =                Språk
+default_language_desc =           Forumets standardspråk
+default_time_zone =               Tidszon
+default_time_zone_desc =          Standard tidszon
+default_time_difference =         Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
+default_theme =                   Forumets tema
+default_theme_desc =              Forumets standard tema
+threads_per_page =                Ämnen per sida
+threads_per_page_desc =           Hur många ämnen ska synas på varje sida?
+auto_lock_old_threads =           Lås automatiskt gamla ämnen
+auto_lock_old_threads_desc =      Lås automatiskt ämnen som är äldre än antal dagar (0=disabled)
+accession =                       Tillgång till forumet
+accession_desc =                  Vem ska kunna se ämnen och inlägg?
+post_permission =                 Tillstånd att posta
+post_permission_desc =            Vem ska ha tillgång att skriva på forumet?
+only_registered_users =           Registrerade medlemmar
+all_users =                       Alla
+register_permission =             Medlemsregistrering
+register_permission_desc =        Hur registreras medlemmar?
+register_self =                   Själv
+register_self_locked =            Själv, men nya medlemmar måste aktiveras av administratör eller moderator
+register_only_admin =             Endast aktivering av administratör
+user_area =                       Medlemsinformation
+user_area_desc =                  Är medlemsinformation (medlemslista, profilsidor) publika?
+public_accessible =               Tillgängligt för alla
+accessible_reg_users_only =       Tillgänglig endast för registrerade medlemmar
+latest_postings =                 Senaste inlägg
+latest_postings_desc =            Hur många nya inlägg ska visas i lista på forumets startsida (0=inaktivera)?
+tag_cloud =                       Tag cloud
+tag_cloud_desc =                  Ska <a href="http://en.wikipedia.org/wiki/Tag_cloud">Tag cloud</a> visas på startsidan?
+enable_tag_cloud =                Aktivera Tag cloud
+terms_of_use_settings =           Användarvillkor
+terms_of_use_settings_desc =      Gör det obligatoriskt för nya medlemmar att acceptera anändarvillkor
+terms_of_use_settings_enabled =   Aktivera användarvillkor
+terms_of_use_url =                URL till användarvillkor:
+edit_postings =                   Ändra inlägg
+edit_postings_desc =              Inställningar för editering av inlägg
+edit_own_postings =               Ändra egna inlägg:
+edit_own_postings_all =           Alla medlemmar kan ändra i sina egna inlägg
+edit_own_postings_users =         Endast medlemmar kan ändra sina egna inlägg
+edit_own_postings_disabled =      Inaktivera (endast admin och mod kan ändras i inlägg)
+user_edit_if_no_replies =         Om ett inlägg fått svar kan det ändras upp till [minutes] minuter efter första svaret (0 = kan inte ändras om någon svarat)
+edit_max_time_period =            Maxtid under vilken man kan ändra ett inlägg: [minutes] minuter (0 = obegränsat)
+show_if_edited =                  Visa om ett inlägg har ändrats efter [minutes] minuter
+dont_show_edit_by_admin =         Visa inte om ett inlägg ändras av en administratör
+dont_show_edit_by_mod =           Visa inte om ett inlägg ändras av en moderator
+bbcode =                          BB Kod
+bbcode_desc =                     Aktivera BB Kod för att formatera inläggen?
+bbcodes_enabled =                 Aktivera BB Kod
+bbcodes_img_enabled =             Tillåt BB Kod att infoga bilder
+bbcodes_flash_enabled =           Tillåt BB Kod att infoga flash video
+smilies =                         Smajlisar
+smilies_desc =                    Ska smajlisar som ":-)" ersättas av bilder? (Smajlisar kan definieras på sidan "Hantera smajlisar")
+smilies_enabled =                 Aktivera smajlisar
+enamble_avatars =                 Avatarer
+enamble_avatars_desc =            Ska det vara möjligt att Ladda upp avaterer? Mappen images/avatars/ måste vara skrivbar (CHMOD 777).
+avatars_profiles_postings =       Visa avatarer på profilsidan och i inlägg
+avatars_profiles =                Visa avatarer endast på profilsidan
+max_avatar_size =                 Max avatar bildstorlek:<br /> [width] x [height], [filesize] KB
+upload_images =                   Ladda upp bilder
+upload_images_desc =              Ska det vara möjligt att ladda upp bilder? Mappen images/uploaded/ måste vara skrivbar (CHMOD 777).
+upload_enabled_admins_mods =      Endast mod och admin
+upload_enabled_users =            Aktiverat för medlemmar
+upload_enabled_all =              Aktiverat för alla
+max_upload_size =                 Max storlek på bild:<br /> [width] x [height], [filesize] KB
+autolink =                        Automatisk länkning
+autolink_desc =                   Ska URLs per automatik bli klickbara?
+autolink_enabled =                Aktivera automatisk länkning
+count_views =                     Räknare för sidvisning
+count_views_desc =                Ska räknare för visningar synas i inläggen?
+views_counter_enabled =           Aktivera räknare för sidvisning
+count_users_online =              Räknare användare online
+count_users_online_desc =         Räknar de användare som är online inom hur många minuter (0=inaktiverad)?
+rss_feed =                        RSS Feeds
+rss_feed_desc =                   Aktivera RSS Feeds (endast om åtkomstbehörighet har ställts in på "Alla")?
+rss_feed_enabled =                Aktivera RSS Feed
+forum_enabled_marking =           Forumet aktiverat
+forum_enabled_desc =              Avmarkera detta om forumet ska inaktiveras (för underhåll t.ex.). Inaktiverat forum är fortfarande tillgänglig om du är inloggad som administratör.
+forum_enabled =                   Forumet aktiverat
+forum_disabled_message =          Meddelande vid inaktivitet:
+category_name =                   Kategori
+category_accession =              Tillgängligt för
+cat_accessible_admin_mod =        Admins och mods
+cat_accessible_reg_users =        Registrerade medlemmar
+cat_accessible_all =              Alla
+category_topics =                 Ämnen
+category_entries =                Inlägg
+no_categories =                   Det finns inga kategorier.
+new_category =                    Ny kategori:
+edit_category =                   Kategori:
+category_accessible_by =          Tillgänglig för:
+entries_in_not_ex_cat =           <strong>OBS:</strong> Det finns poster som inte kan visas eftersom de inte är i en befintlig kategori. Vad vill du göra med dessa poster?
+entries_in_not_ex_cat_del =       Radera dem
+entries_in_not_ex_cat_mov =       Flytta till kategori:
+category_already_exists =         Kategorin existerar redan
+delete_category_hl =              Ta bort kategori "[category]"
+delete_category_compl =           Ta bort kategori och alla poster
+del_cat_keep_entries =            Ta bort kategori men spara poster
+del_cat_move_entries =            Ta bort kategori men spara poster och flytta dem till:
+delete_category_submit =          OK - Radera kategori
+
+# Smilies:
+edit_smilies_smiley =             Smajli:
+edit_smilies_codes =              Kod:
+edit_smilies_title =              Titel:
+smiley_file_doesnt_exist =        Smajlifil finns inte
+smiley_code_empty =               Ingen smajlikod finns
+no_other_smilies_in_folder =      Det finns inga andra smajlisar i smajli-mappen. För att lägga till smajlisar, ladda upp smajli-filer i mappen 'images/smilies'.
+smiley_image =                    Smajli
+smiley_codes =                    Kod(er)
+smiley_title =                    Titel
+disable_smilies =                 Inaktivera smajlis
+enable_smilies =                  Aktivera smajlis
+add_smiley =                      Lägg till smajli:
+add_smiley_code =                 Kod:
+smilies_disabled =                Smajlis är inaktiverade.
+
+# pages:
+page_title =                      Titel
+page_content =                    Innehåll
+page_content_desc =               Du kan använda HTML för att redigera sidor
+page_menu_linkname =              Namn på menylänk
+page_menu_linkname_desc =         Endast om sidan ska vara synlig på startsidans meny
+page_access =                     Tillgänglig för
+page_access_reg_users =           Endast registrerade medlemmar
+page_access_public =              Alla
+no_pages =                        Inga sidor skapade
+add_page_link =                   Skapa/lägg till sida
+edit_page_submit =                OK - Spara sida
+page_doesnt_exist =               Denna sida finns inte.
+delete_page_confirm =             Vill Du verkligen radera sidan?
+delete_page_submit =              OK - Radera sidan
+error_no_page_title =             Ingen titel!
+
+# user administration:
+user_name_empty =                 Inget användarnamn angett
+num_registerd_users =             [number] registrerade medlemmar
+user_id =                         ID
+user_name =                       Användarnamn
+user_email =                      E-post
+user_type =                       Typ
+user_registered =                 Registerad
+user_logins =                     Inloggningar
+last_login =                      Senast aktiv
+lock =                            Bannlys
+admin =                           Administratör
+mod =                             Moderator
+user =                            Medlem
+locked =                          Bannlyst
+unlocked =                        Av
+lock_title =                      Bannlys medlem
+unlock_title =                    Ta bort bannlysning
+user_inactive =                   Ej aktiverad
+activate_note =                   Medlemskontot är ännu inte aktiverat, eller så har användaren ändrat sin E-postadress. Aktivera endast om användaren hade problem med att aktivera det själv.
+activate_link =                   Aktivera kontot
+delete_selected_users =           Ta bort valda
+add_user =                        Lägg till medlem
+email_list =                      E-postlista med alla medlemmar
+clear_userdata =                  Radera äldre användare
+delete_avatar =                   Radera avatar
+delete_user_confirmation =        Är Du säker på att medlemmen ska tas bort?
+delete_users_confirmation =       Är Du säker på att följande medlemmar ska tas bort?
+delete_entries_of_user_confirm =  Är Du säker på att Du vill ta bort alla inlägg gjorda av <strong>[user]</strong>? OBS! Alla svar på dessa inlägg kommer också att raderas!
+delete_submit =                   OK - Radera
+register_exp =                    Lämnar Du fältet för lösenord tomt skapas ett slumpmässigt lösenord. I detta fall måste användardata skickas till den angivna E-postadressen.
+register_username =               Användarnamn:
+register_email =                  E-post:
+register_pw =                     Lösenord:
+register_pw_conf =                Upprepa lösenord:
+register_send_userdata =          Skicka användardata till angiven E-postadress
+error_send_userdata =             Om fältet för lösenord lämnas tomt måste E-post skickas till angiven adress.
+error_email_wrong =               Felaktig E-postadress
+new_user_registered =             Medlemmen "[name]" har registrerats.
+new_user_reg_send_error =         Medlemmen "[name]" har registrerats men användardata kunde inte skickas.
+clear_userdata_condition =        Ta bort medlemmar som loggat in mindre än [logins] gånger och som inte har loggat in alls de senaste [days] dagarna.<p>
+clear_userdata_note =             Administratörer och moderatorer påverkas inte, en lista genereras och visas innan Du raderar.
+no_users_in_selection =           Inga medlemmar finns i detta urval
+
+# spam protection:
+captcha =                         CAPTCHA
+captcha_desc =                    Vilka formulär ska skyddas av CAPTCHA (endast för registrerade medlemmar)?
+captcha_graphical_desc =          Grafisk CAPTCHA kräver GD Lib och det rekomenderas att använda minst ett TTF teckensnitt. Placera teckensnittfiler (*.ttf) i mappen modules/captcha/fonts/. Du kan hämta teckensnitt på t.ex. www.dafont.com.
+captcha_posting =                 Skapa inlägg:
+captcha_email =                   Skicka E-post:
+captcha_register =                Registreringsformulär:
+captcha_disabled =                Inaktivera
+captcha_mathematical =            Mattematisk
+captcha_graphical =               Grafisk
+gr_captcha_not_available =        Grafisk CAPTCHA är inte möjlig (GD Lib är inte tillgänglig)
+gr_captcha_no_font =              Inga teckensnitt tillgängliga, CAPTCHA kan inte visas korrekt
+stop_forum_spam =                 Stop Forum Spam
+stop_forum_spam_desc =            <a href="http://www.stopforumspam.com/">Stop Forum Spam</a> Spamskydd som kontrollerar E-postadresser vid registrering
+stop_forum_spam_enable =          Aktivera Stop Forum Spam
+bad_behavior =                    Bad Behavior
+bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a> Spamskydd.
+bad_behavior_enable =             Aktivera Bad Behavior
+akismet =                         Akismet
+akismet_desc =                    <a href="http://akismet.com/">Akismet</a> Tjänst som skyddar mot spam. Du behöver en <a href="http://wordpress.com/api-keys/">Wordpress API Nyckel</a> (fungerar inte utan en giltig API Nyckel!).
+akismet_key =                     Wordpress API Nyckel:
+akismet_save_spam =               Markera spam (markerad som spam och visas inte)?
+akismet_auto_delete_spam =        Radera spam automatiskt efter detta antal timmar (0=radera inte)?
+akismet_entry =                   Kontrollera inlägg
+akismet_mail =                    Kontrollera E-post
+akismet_registered =              Kontrollera inlägg från registrerade användare
+banned_ips =                      Bannlys IP-adresser
+banned_ips_desc =                 Bannlys IP-adresser som inte ska ha tillgång till forumet. IP-spann (t.ex. 10.10.1.*) och CIDR adressblock(t.ex. 10.10.1.32/27) är möjliga. En IP-adress/rad.
+banned_user_agents =              Bannlys <a href="http://sv.wikipedia.org/wiki/Anv%C3%A4ndaragent">användaragenter</a>
+banned_user_agents_desc =         Strängar i användaragenter som inte ska ha access. En sträng/rad. Information om <a href="http://sv.wikipedia.org/wiki/Anv%C3%A4ndaragent">användaragenter</a>
+not_accepted_words =              Bannlysta ord
+not_accepted_words_desc =         Ord som ska bannlysas i inlägg och E-post. Ett ord/rad.
+spam_protection_submit =          OK - Spara
+error_own_ip_banned =             Du har bannlyst din egen IP-adress!
+error_own_user_agent_banned =     Du har bannlyst din egen användaragent!
+spam_protection_saved =           Sparat!
+
+# Reset / Uninstall:
+reset_forum =                     Återställ forumet
+delete_postings =                 Radera alla ämnen och inlägg
+delete_userdata =                 Radera alla medlemmar (administratör undantagen)
+reset_forum_submit =              OK - Återställ
+uninstall_forum =                 Avinstallera forumet
+uninstall_forum_exp =             OBS! Detta raderar alla poster i databasen, forumet kommer inte att fungera efter utförd åtgärd!!!
+uninstall_forum_submit =          OK - Radera
+error_no_selection_made =         Inget val gjort!
+
+# Backup:
+backup_note =                     För att kunna använda backupfunktionen måste mappen <i>backup</i> vara skrivbar. Se också till att mappen inte kan kommas åt via webben!
+backup_file =                     Fil
+backup_date =                     Datum
+backup_size =                     Storlek
+create_backup_complete =          Skapa komplett säkerhetskopia
+only_create_backup_of =           Skapa säkerhetskopia på:
+backup_entries =                  Inlägg
+backup_userdata =                 Medlemmar
+backup_settings =                 Inställningar
+backup_categories =               Kategorier
+backup_pages =                    Sidor
+backup_smilies =                  Smajlisar
+backup_banlists =                 Bannlysningslistor
+download_backup_file =            Ladda ner säkerhetskopian
+delete_selected =                 Radera markerad
+restore =                         Återställ
+delete_backup_file =              Radera säkerhetskopian
+delete_backup_submit =            OK - Radera
+restore_confirm =                 Är Du säker på att Du vill återställa med vald säkerhetskopia?<br /><strong>Alla berörda tabeller i databasen kommer att skrivas över!</strong>
+restore_safe_mode_warning =       Safe Mode Warning!
+restore_safe_mode_note =          Eftersom felsäkert läge är aktiverat på denna server kan tiden som skriptet körs inte förlängas! För att undvika ofullbordade säkerhetskopior bör du dela upp långa säkerhetskopierade filer i flera mindre och exekvera en efter en!
+restore_submit =                  OK - Återställ
+restore_backup_ok =               Säkerhetskopian är återställd.
+backup_file_created =             Säkerhetskopian har skapats.
+error_file_doesnt_exist =         Filen existerar inte!
+error_delete_backup_file =        Säkerhetskopian kunde inte raderas
+error_create_backup_file =        Filen kunde inte skapas - kontrollera att skrivrättighet är insällt på mappen "backup"
+error_restore_mysql =             MySQL fel: [mysql_error]
+
+# Update:
+update_current_version =          Aktuell version: <strong>[version]</strong>
+update_instructions_hl =          Instruktioner:
+update_instructions =             Du rekomenderas att inaktivera forumet före uppdatering (Avmarkera "Forumet aktiverat" på <a href="index.php?mode=admin&action=settings">Foruminställningar</a>)
+update_instructions =             Ladda ner den senaste versionen från <a href="http://mylittleforum.net/">mylittleforum.net</a>
+update_instructions =             Packa upp filerna på hårddisken, leta upp uppdateringsfilen i undermappen "update" och ladda upp den till mappen "update" på servern
+update_instructions =             Uppdatera denna sidan och följ vidare instruktioner.
+update_instructions =             Klicka på filen och följ vidare instruktioner.
+update_instructions =             Efter uppdateringen visas en lista med filer och mappar som måste ersättas och läggas till
+update_instructions =             Radera alla filer i mappen <strong>templates_c</strong> efter att Du lagt till/ersatt  filer/mappar
+update_available_files =          Uppdateringar som finns på servern:
+update_no_files_available =       Inga uppdateringar finns i mappen.
+update_file_title =               Installera denna uppdateringen
+update_confirm =                  Vill Du verkligen installera följande uppdatering?
+update_submit =                   OK - Uppdatera
+update_successful =               Databasen har uppdaterats.
+update_items_note =               Ladda upp följande filer/mappar från den hämtade uppdaterineg (version [version]) till servern:
+update_download =                 Om Du inte laddat ner filerna kan Du göra det här: [[here]].
+
+[emails]
+email_subject =                   Svar på "[original_subject]"
+email_text =                      """Hej [recipient],
+[name] har postat ett svar i \"[original_subject]\":
+
+Ämne: [subject]
+[text]
+
+Länk till inlägget: [posting_address]
+
+--- Ditt ursprungliga inlägg ---
+
+[original_text]"""
+
+email_text_delayed_addition =     """---
+Detta meddelande har skickats eftersom Du har aktiverat mailfunktionen manuellt"""
+
+admin_email_subject =             Nytt inlägg i forumet: [subject]
+admin_email_text =                """Nytt inlägg av [name]
+Ämne: [subject]
+
+[text]
+
+Länk till inlägget: [posting_address]"""
+admin_email_text_reply =          """Svar av [name]
+Ämne: [subject]
+
+[text]
+
+Länk till inlägget: [posting_address]"""
+admin_reg_user_email_subj =       Registrering på forum
+admin_reg_user_email_text =       """Hej [name],
+Välkommen till forumet!
+
+Här är dina användaruppgifter för att logga in:
+
+Användarnamn: [name]
+Lösenord: [password]
+
+Logga in direkt med denna länk:
+[login_link]
+
+Lösenordet kan ändras efter att Du loggat in!"""
+
+new_user_email_sj =               Registrering på forum
+new_user_email_txt =              """Hej [name],
+Välkommen till forumet!
+
+För att aktivera kontot, vänligen följ aktiveringslänken:
+[activate_link]"""
+new_user_notif_sj =               Ny medlem registrerad
+new_user_notif_txt =              """Hej [recipient],
+En ny medlem har registrerat sig på forumet.
+Användarnamn: [name]
+E-post: [email]
+
+[user_link]"""
+new_user_notif_txt_locked =       """Hej [recipient],
+En ny medlem har registrerat sig på forumet.
+Användarnamn: [name]
+E-post: [email]
+
+VIKTIGT: Denna medlem måste aktiveras!"""
+edit_address_email_sj =           Kontoaktivering efter byte av E-postadress
+edit_address_email_txt =          """Hej [name],
+E-postadressen har ändrats, Du måste återaktivera kontot via länken:
+[activate_link]"""
+pwf_activating_email_sj =         Begäran om nytt lösenord
+pwf_activating_email_txt =        """Hej [name],
+Detta mail har skickats från [forum_address] eftersom ett nytt lösenord har begärts, klicka på länken för att bekräfta begäran. Ett nytt lösenord kommer då att skapas och skickas till dig. Om Du själv inte begärt byte av lösenord ber vi dig bortse från detta mail och lämna det utan åtgärd.
+
+Aktiveringslänk:
+[activating_link]"""
+new_pw_email_sj =                 "Nya användaruppgifter till forumet"
+new_pw_email_txt =                """Hej [name],
+Här är dina nya användaruppgifter:
+
+Användarnamn: [name]
+Lösenord: [password]
+
+Logga in via länken:
+[login_link]
+
+Lösenordet kan ändras efter att Du loggat in."""
+contact_email_txt =               """[message]
+
+-- 
+Detta mail har skickats från [forum_address]."""
+contact_email_txt_user =          """[message]
+
+-- 
+E-post från [user] på [forum_address]."""
+contact_notification_sj =         Kopia på mailet: [subject]
+contact_notification_txt =        """Detta mail har skickats med din E-postadress till [recipient]:
+
+Ämne: [subject]
+[message]
+
+-- 
+Detta mail har skickats från [forum_address]."""
+
+[install]
+installation_title =              Installation
+label_choose_language =           Välj språk:
+installation_instructions =       Fyll i följande formulär för att installera forumet.
+installation_instructions =       Under installationen kommer filen <strong>config/db_settings.php</strong> att skrivas över, beroende på serverkonfigurering behöver kanske filrättigheterna ändras. (prova CHMOD 666 om Du får felmeddelande, återställ till 644 efter installationen).
+installation_instructions =       Mappen <strong>templates_c</strong> måste vara skrivbar, beroende på serverkonfigurering behöver kanske rättigheterna på mappen ändras (prova CHMOD 770, 775 eller 777 om Du får felmeddelande eller en blank sida efter installationen).
+installation_instructions =       Fil och mapprättigheter (CHMOD) kan oftast ändras i ditt FTP-program (högerklick på fil/mapp --> CHMOD eller liknande).
+installation_instructions =       Mappen <strong>install</strong> kan raderas efter installationen.
+inst_basic_settings =             Grundläggande intällningar
+inst_main_settings_desc =         Några grundläggande inställningar
+inst_admin_settings =             Administratör
+inst_admin_settings_desc =        Användaruppgifter till forumets administratör
+inst_db_settings =                Databas
+inst_db_settings_desc =           Inloggning till MySQL databas
+inst_admin_name =                 Namn på administratör
+inst_admin_name_desc =            Namn på forumets administratör
+inst_admin_email =                Admin e-post
+inst_admin_email_desc =           E-postadress till administratören
+inst_admin_pw =                   Admin lösenord
+inst_admin_pw_desc =              Lösenord för att logga in som administratör
+inst_admin_pw_conf =              Upprepa lösenord
+inst_admin_pw_conf_desc =         Upprepa lösenord
+inst_db_host =                    Databas host
+inst_db_host_desc =               hostnamn, oftast "localhost"
+inst_db_user =                    Databas användare
+inst_db_user_desc =               Användarnamn för att logga in på databasen
+inst_db_pw =                      Databas lösenord
+inst_db_pw_desc =                 Lösenord för att logga in på databasen
+inst_db_name =                    Databas namn
+inst_db_name_desc =               Namnet på databasen
+inst_table_prefix =               Tabell prefix
+inst_table_prefix_desc =          Prefix för tabellerna i databasen
+inst_advanced_options =           Avancerade inställningar
+inst_advanced_options_desc =      För experter - normalt behöver inga ändringar göras här
+inst_advanced_database =          Skapa databas
+inst_advanced_database_desc =     Markera endast om ingen databas finns och Du har rättighet att skapa en
+inst_advanced_conf_file =         Skriv inte över databasens konfigurationsfil
+inst_advanced_conf_file_desc =    Markera endast om Du redan konfigurerat filen
+create_database =                 skapa specificerad databas
+dont_overwrite_settings =         Skriv inte över databasens konfigurationsfil
+create_db_error =                 Databasen kunde inte skapas
+error_create_admin =              Administratörskontot kunde inte skapas
+error_db_connection =             Databasen kunde inte kontaktas - kontrollera host, användarnamn och lösenord
+error_db_inexistent =             Specificerad databas existerar inte - kontrollera databasens namn
+error_sql_file_doesnt_exist =     SQL's installationsfil (install.sql) existerar inte
+error_overwrite_config_file =     Saknar rättighet att skriva till fil <strong>config/db_settings.php</strong> (ställ in CHMOD 666, nuvarande är [CHMOD])
+error_sql =                       SQL fel
+forum_install_ok =                OK - Installera forum
+error_conf_pw =                   Administratörslösenorden stämmer inte överens

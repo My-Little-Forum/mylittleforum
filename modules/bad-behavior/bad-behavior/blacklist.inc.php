@@ -50,10 +50,12 @@ function bb2_blacklist($package) {
 		"Nutscrape/",		// misc comment spam
 		"OmniExplorer",		// spam harvester
 		"Opera/9.64(",		// comment spam bot
+		"PMAFind",		// vulnerability scanner
 		"psycheclone",		// spam harvester
 		"PussyCat ",		// misc comment spam
 		"PycURL",		// misc comment spam
 		"Python-urllib",	// commonly abused
+		"revolt",		// vulnerability scanner
 //		WP 2.5 now has Flash; FIXME
 //		"Shockwave Flash",	// spam harvester
 		"sqlmap/",		// SQL injection
@@ -81,7 +83,7 @@ function bb2_blacklist($package) {
 		"DTS Agent",		// misc comment/email spam
 		"Email Extractor",	// spam harvester
 		"Firebird/",		// too old; assumed robot
-		"Gecko/25",		// revisit this in 500 years
+		"Gecko/2525",		// revisit this in 500 years
 		"grub-client",		// search engine ignores robots.txt
 		"hanzoweb",		// very badly behaved crawler
 		"Havij",		// SQL injection tool
@@ -140,9 +142,6 @@ function bb2_blacklist($package) {
 		"..\\",				// path traversal
 		"%60information_schema%60",	// SQL injection probe
 		"+%2F*%21",			// SQL injection probe
-		"+and+%",			// SQL injection probe
-		"+and+1%",			// SQL injection probe
-		"+and+if",			// SQL injection probe
 		"%27--",			// SQL injection
 		"%27 --",			// SQL injection
 		"%27%23",			// SQL injection
