@@ -408,9 +408,9 @@ switch($action)
       {
        $cookie_parts = explode("|", $_COOKIE[$settings['session_prefix'].'userdata']);
        $smarty->assign('name',htmlspecialchars(urldecode($cookie_parts[0])));
-       if(isset($cookie_parts[1])) htmlspecialchars($smarty->assign('email',urldecode($cookie_parts[1])));
-       if(isset($cookie_parts[2])) htmlspecialchars($smarty->assign('hp',urldecode($cookie_parts[2])));
-       if(isset($cookie_parts[3])) htmlspecialchars($smarty->assign('location',urldecode($cookie_parts[3])));
+       if(isset($cookie_parts[1])) $smarty->assign('email',htmlspecialchars(urldecode($cookie_parts[1])));
+       if(isset($cookie_parts[2])) $smarty->assign('hp',htmlspecialchars(urldecode($cookie_parts[2])));
+       if(isset($cookie_parts[3])) $smarty->assign('location',htmlspecialchars(urldecode($cookie_parts[3])));
        $smarty->assign('setcookie',1);
        $smarty->assign('cookie', true);
       }
