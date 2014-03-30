@@ -2,7 +2,7 @@
 /**
  * Project:     Smarty: the PHP compiling template engine
  * File:        Smarty.class.php
- * SVN:         $Id: Smarty.class.php 4778 2013-09-17 20:44:41Z Uwe.Tews@googlemail.com $
+ * SVN:         $Id: Smarty.class.php 4814 2014-02-16 18:34:08Z Uwe.Tews@googlemail.com $
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,7 +28,7 @@
  * @author Uwe Tews
  * @author Rodney Rehm
  * @package Smarty
- * @version 3.1.15
+ * @version 3.1.17
  */
 
 /**
@@ -113,7 +113,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     /**
      * smarty version
      */
-    const SMARTY_VERSION = 'Smarty-3.1.15';
+    const SMARTY_VERSION = 'Smarty-3.1.17';
 
     /**
      * define variable scopes
@@ -299,6 +299,11 @@ class Smarty extends Smarty_Internal_TemplateBase
      * @var boolean
      */
     public $merge_compiled_includes = false;
+    /**
+     * template inheritance merge compiled includes
+     * @var boolean
+     */    
+    public $inheritance_merge_compiled_includes = true;
     /**
      * cache lifetime in seconds
      * @var integer
@@ -830,7 +835,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     {
         $this->template_dir = array();
         foreach ((array) $template_dir as $k => $v) {
-            $this->template_dir[$k] = rtrim($v, '/\\') . DS;
+            $this->template_dir[$k] = str_replace(array('//','\\\\'), DS, rtrim($v, '/\\')) . DS;
         }
 
         $this->joined_template_dir = join(DIRECTORY_SEPARATOR, $this->template_dir);
@@ -853,20 +858,24 @@ class Smarty extends Smarty_Internal_TemplateBase
 
         if (is_array($template_dir)) {
             foreach ($template_dir as $k => $v) {
+                $v = str_replace(array('//','\\\\'), DS, rtrim($v, '/\\')) . DS;
                 if (is_int($k)) {
                     // indexes are not merged but appended
-                    $this->template_dir[] = rtrim($v, '/\\') . DS;
+                    $this->template_dir[] = $v;
                 } else {
                     // string indexes are overridden
-                    $this->template_dir[$k] = rtrim($v, '/\\') . DS;
+                    $this->template_dir[$k] = $v;
                 }
             }
-        } elseif ($key !== null) {
-            // override directory at specified index
-            $this->template_dir[$key] = rtrim($template_dir, '/\\') . DS;
-        } else {
-            // append new directory
-            $this->template_dir[] = rtrim($template_dir, '/\\') . DS;
+        } else {           
+            $v = str_replace(array('//','\\\\'), DS, rtrim($template_dir, '/\\')) . DS;
+            if ($key !== null) {
+                // override directory at specified index
+                $this->template_dir[$key] = $v;
+                } else {
+                // append new directory
+                $this->template_dir[] = $v;
+                }
         }
         $this->joined_template_dir = join(DIRECTORY_SEPARATOR, $this->template_dir);
 
@@ -898,7 +907,7 @@ class Smarty extends Smarty_Internal_TemplateBase
     {
         $this->config_dir = array();
         foreach ((array) $config_dir as $k => $v) {
-            $this->config_dir[$k] = rtrim($v, '/\\') . DS;
+            $this->config_dir[$k] = str_replace(array('//','\\\\'), DS, rtrim($v, '/\\')) . DS;
         }
 
         $this->joined_config_dir = join(DIRECTORY_SEPARATOR, $this->config_dir);
@@ -920,20 +929,24 @@ class Smarty extends Smarty_Internal_TemplateBase
 
         if (is_array($config_dir)) {
             foreach ($config_dir as $k => $v) {
+            $v = str_replace(array('//','\\\\'), DS, rtrim($v, '/\\')) . DS;
                 if (is_int($k)) {
                     // indexes are not merged but appended
-                    $this->config_dir[] = rtrim($v, '/\\') . DS;
+                    $this->config_dir[] = $v;
                 } else {
                     // string indexes are overridden
-                    $this->config_dir[$k] = rtrim($v, '/\\') . DS;
+                    $this->config_dir[$k] = $v;
                 }
             }
-        } elseif ($key !== null) {
-            // override directory at specified index
-            $this->config_dir[$key] = rtrim($config_dir, '/\\') . DS;
         } else {
-            // append new directory
-            $this->config_dir[] = rtrim($config_dir, '/\\') . DS;
+            $v = str_replace(array('//','\\\\'), DS, rtrim($config_dir, '/\\')) . DS;
+            if ($key !== null) {
+                // override directory at specified index
+                $this->config_dir[$key] = rtrim($v, '/\\') . DS;
+                } else {
+                // append new directory
+                $this->config_dir[] = rtrim($v, '/\\') . DS;
+                }
         }
 
         $this->joined_config_dir = join(DIRECTORY_SEPARATOR, $this->config_dir);
