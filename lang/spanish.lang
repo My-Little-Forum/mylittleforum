@@ -1,10 +1,8 @@
 ################################################################################
 # Spanish language file for my little forum 2.3                                #
 #------------------------------------------------------------------------------#
-# Translated by afm maker < afmmaker at gmail dot com > 2010-06-29             #                                                                   #
-#------------------------------------------------------------------------------#
-# Translation not complete!                                                    #
-# Not yet translated strings are marked with <!-- TODO -->                     #
+# Translated by afm maker < afmmaker at gmail dot com > 2010-06-29             #
+# Updated by el Reverendo 2014-03-30                                           #
 ################################################################################
 
 [default]
@@ -45,7 +43,7 @@ posted_by =                       Escrito por  <strong>[name]</strong>[email_hp]
 posted_by_location =              Escrito por  <strong>[name]</strong>[email_hp], [location], [time]
 original_posting_linktitle =      click para ir al menaje original escrito por [name]
 error_headline =                  Error!
-no_authorisation =                No se dispone de la autorizacion necesaria !
+no_authorisation =                No tiene permiso para hacer eso!
 page_doesnt_exist =               La pagina no existe!
 error_form_uncomplete =           No estan completos todos los campos
 caution =                         Precaucion!
@@ -66,8 +64,8 @@ admin_area_link_title =           Areal del Admin
 search_marking =                  Busqueda:
 search_default_value =            Buscar...
 search_title =                    Busqueda de entradas
-new_topic_link =                  Nuevo tema
-new_topic_link_title =            Publicar un nuevo tema
+new_topic_link =                  Nuevo mensaje
+new_topic_link_title =            Publicar un nuevo mensaje
 order_link =                      Ordenar
 order_link_title_1 =              Ordenar por la fecha de la contestacion
 order_link_title_2 =              Ordenar por la fecha del hilo (default)
@@ -121,13 +119,13 @@ subnav_create_page =              Crear pagina
 subnav_edit_smiley =              Editar smiley
 subnav_edit_user =                Editar usuario
 subnav_delete_users =             Borrar usuarios
-subnav_delete_entries_user =      <!-- TODO -->Delete entries of user
+subnav_delete_entries_user =      Eliminar las entradas del usuario
 subnav_register_user =            Registrar usuarios
 subnav_spam_protection =          Spam protecion
 subnav_email_list =               Lista de E-mail de usuarios registrados
 subnav_clear_userdata =           Borrar datos de usuario
 subnav_search =                   Busqueda
-subnav_list_spam =                <!-- TODO -->Spam
+subnav_list_spam =                Mostrar spam
 subnav_register =                 Busqueda
 subnav_reset_uninstall =          Restablecer / desinstalar foro
 subnav_userarea =                 Area usuarios
@@ -174,8 +172,8 @@ error_hp_wrong =                  La direccionpagina principal no es valida
 error_pw_conf_wrong =             La contrasena no coincide con la anterior
 error_akismet_connection =        Servidor de tiempo de espera, por favor,intentelo de nuevo!
 error_akismet_connection_admin =  No se ha podido conectar con el servidor Akismet para verificar la clave de API!
-error_akismet_api_key =           Wordpress no valido clave de API
-error_spam_suspicion =            Sospecha de spam!Por favor, modifique su desplazamiento (por ejemplo, eliminar Links)
+error_akismet_api_key =           No es valida la clave de Akismet
+error_spam_suspicion =            Sospecha de spam! Por favor, modifique su desplazamiento (por ejemplo, eliminar Links)
 user_name_already_exists =        Este nombre de usuario ya existe
 open_whole_thread =               Abrir todo el hilo
 change_category_link =            Mostrar anuncios en la categoria "[category]"
@@ -186,7 +184,7 @@ manage_postings_link =            Administrar anuncios
 show_spam_link =                  Mostrar spam ([number])
 hide_spam_link =                  Ocultar spam
 delete_spam_link =                Eliminar spam
-list_spam_link =                  <!-- TODO -->List spam
+list_spam_link =                  Mostrar spam
 no_replies =                      No hay respuestas
 one_reply =                       1 respuesta
 several_replies =                 [replies] respuestas
@@ -288,7 +286,7 @@ unlock_thread_linktitle =         desbloquear hilo entero
 posting_locked =                  bloqueado
 email =                           E-mail
 homepage =                        Pagina web
-spam_note =                       Este mensaje paso el filtro de spam y no se mostrara en la pagina de principal hasta que sea activado manualmente por un moderador del foro o administrador.
+spam_note =                       Este mensaje no paso el filtro de spam y no se mostrara en la pagina de principal hasta que sea activado manualmente por un moderador del foro o administrador.
 
 [posting]
 no_authorization_edit =           El mensaje no se puede editar! Tal vez el plazo para editar mensajes ha expirado, el hilo esta bloqueado o que ya hay respuestas a este anuncio.
@@ -296,7 +294,7 @@ posting_locked_no_reply =         No es posible responder a este mensaje porque 
 no_auth_post_reg_users =          Solo los usuarios registrados pueden enviar mensajes.
 no_auth_session_expired =         La sesion ha expirado, por favor, copie su mensaje y acceda de nuevo!
 no_auth_readonly =                El foro esta actualmente establecida en modo de solo lectura!
-new_topic_hl =                    nuevo tema
+new_topic_hl =                    nuevo mensaje
 reply_hl =                        Responder
 edit_hl =                         Editar entrada
 name_marking =                    Nombre:
@@ -304,7 +302,7 @@ email_marking =                   E-mail:
 hp_marking =                      Pagina de inicio:
 location_marking =                Localizacion:
 optional =                        (opcional)
-optional_email =                  (opcional, no se mostrarÃ¡n directamente)
+optional_email =                  (opcional, no se mostrara directamente)
 remember_userdata_marking =       Recordarme (cookie)
 delete_cookie_linkname =          borrar cookies
 category_marking =                Categoria:
@@ -396,21 +394,21 @@ delete_spam_hl =                  Eliminar el spam
 delete_spam_confirm =             Esta seguro de que desea borrar todos los mensajes clasificados como spam?
 delete_posting_submit =           OK - Eliminar
 report_spam_hl =                  Informe spam
-posting_already_spam =            este anuncio ya esta marcado como spam.
-spamcheck_posting_not_checked =   This posting is already flagged as ham or was not checked by Akismet because either Akismet was not enabled or it's the posting of a registered user.
-spamcheck_posting_passed =        This posting has passed the Akismet spam filter. Only report it as spam if it's definetly spam!
-spamcheck_akismet_api_error =     This posting passed the Akismet spam filter because an error occured while checking it. This might have been caused by an invalid API key!
-spamcheck_akismet_timeout_error = This posting passed the spam filter because of a timeout error of the Akismet server.
+posting_already_spam =            este mensaje ya esta marcado como spam.
+spamcheck_posting_not_checked =   Este mensaje ya esta marcado como bueno, o no fue chequeado por Akismet porque Akismet no esta activo o ha sido escrito por un usuario registrado.
+spamcheck_posting_passed =        Este mensaje ha pasado el filtro de spam de Akismet. Solo marcalo como spam si estas seguro de que lo es!
+spamcheck_akismet_api_error =     Este mensaje ha pasado el filtro de spam de Akismet porque ocurrio un error mientras se revisaba. Una clave invalida de Akismet puede haber provocado esto!
+spamcheck_akismet_timeout_error = Este mensaje ha pasado el filtro antispam porque el servidor de Akismet ha tardado en responder.
 report_spam_delete_submit =       Informe como spam y eliminar
 report_spam_submit =              Informe solo como spam
 delete_only_submit =              Eliminar solo
-postings_doesnt_exist =           Este mensage no existe!
-posting_not_flagged_as_spam =     Este mensage no esta marcado como spam.
+postings_doesnt_exist =           Este mensaje no existe!
+posting_not_flagged_as_spam =     Este mensaje no esta marcado como spam.
 flag_ham_hl =                     Marcado como spam
-flag_ham_note =                   This posting was classified as spam by the Akismet spam filter. Only report it as ham (not spam) if it's definetly no spam!
+flag_ham_note =                   Este mensaje fue marcado como spam por el filtro de Akismet. Marcalo como bueno (ham) solo si estas seguro de que no es spam!
 report_flag_ham_submit =          Informar y marcar como spam
-flag_ham_submit =                 Flag as ham only
-no_authorisation_delete =         El mensage no se puede eliminar! Tal vez el plazo de para suprimir mensajes ha expirado, el hilo esta bloqueado o que ya hay respuestas a este anuncio.
+flag_ham_submit =                 Marcar como bueno (ham)
+no_authorisation_delete =         El mensaje no se puede eliminar! Tal vez el plazo de para suprimir mensajes ha expirado, el hilo esta bloqueado o que ya hay respuestas a este anuncio.
 
 [captcha]
 captcha_marking =                 Verificacion de proteccion anti-spam:
@@ -418,23 +416,23 @@ captcha_expl_math =               Por favor suma los 2 numeros:
 captcha_expl_image =              Por favor, introduzca las letras / numeros de la imagen de arriba:
 captcha_image_alt =               Si no puede visualizar esta imagen que usted necesita para crear una cuenta de usuario e inicie la sesion con el fin de enviar este formulario.
 captcha_image_alt_reg =           Pongase en contacto con el administrador del foro si usted no puede ver esta imagen.
-captcha_check_failed =            Verificacion de proteccion anti-spam fallida -Porfavor intentelo de nuevo!
+captcha_check_failed =            Verificacion de proteccion anti-spam fallida - Por favor intentelo de nuevo!
 
 [upload_image]
-image_upload_not_enabled =        Imagen de carga no esta habilitado.
+image_upload_not_enabled =        No esta activada la subida de imagenes.
 upload_image_hl =                 Subir imagen
 upload_image_button =             Subir
-upload_error =                    Error al cargar la imagen
-upload_error_2 =                  No se especifica la imagen o el tamano de la imagen mas grande que el tamano maximo aceptado por el servidor ([server_max_filesize]).
+upload_error =                    Error al subir la imagen
+upload_error_2 =                  No ha seleccionado una imagen o el tamano de la imagen es mas grande que el tamano maximo aceptado por el servidor ([server_max_filesize]).
 invalid_file_format =             formato de archivo no valido
 file_too_large =                  archivo es demasiado grande ([ancho] * [la altura], [filesize] KB, el maximo es [max_width] * [max_height], [max_filesize] KB)
 upload_successful =               Imagen subida correctamente
-image_downsized =                 strong>Note:</strong> La imagen tubo que ser reducida, el nuevo tamano es [width] x [height] px, [filesize] KB.
+image_downsized =                 <strong>Nota:</strong> La imagen tuvo que ser reducida, el nuevo tamano es [width] x [height] px, [filesize] KB.
 insert_image =                    Insertar imagen
-insert_image_exp =                Por favor haga click en la imagen para insertar dentro su mensage.
-insert_image_exp_no_js =          Usted puede utilizar el siguiente codigo para insertar la imagen en su mensage:
+insert_image_exp =                Por favor haga click en la imagen para insertar dentro su mensaje.
+insert_image_exp_no_js =          Usted puede utilizar el siguiente codigo para insertar la imagen en su mensaje:
 browse_uploaded_images =          Buscar imagenes subidas...
-back =                            laquo; back
+back =                            &laquo; Volver
 no_images =                       No hay imagenes disponibles.
 delete_image_confirm =            Borrar esta imagen?
 delete_image_button =             OK - Eliminar
@@ -449,49 +447,49 @@ insert_flash_button =             Insertar flash
 avatar_hl =                       Avatar
 delete_avatar =                   Borrar avatar
 upload_avatar_hl =                Subir avatar
-upload_avatar_notes =             tamano maximo de avatar: [ancho] * [la altura] px, [filesize] KB
+upload_avatar_notes =             tamano maximo de avatar: [width] * [height] px, [filesize] KB
 upload_image_button =             Subir
 upload_error =                    Error al cargar la imagen
-upload_error_2 =                  No se especifica la imagen o el tamano de la imagen mas grande que el tamano maximo aceptado por el servidor ([server_max_filesize]).
+upload_error_2 =                  No ha seleccionado una imagen o el tamano de la imagen es mas grande que el tamano maximo aceptado por el servidor ([server_max_filesize]).
 invalid_file_format =             formato de archivo no valido
 file_too_large =                  Archivo muy grande ([width]*[height], [filesize] KB, el maximo permitido es [max_width]*[max_height], [max_filesize] KB)
 upload_successful =               Avatar se ha subido correctamente
 close_window =                    Cerrar ventana
-image_downsized =                 strong>Note:</strong> El avatar tuvo que ser reducido, el nuevo tamano es [width] x [height] px, [filesize] KB.
+image_downsized =                 <strong>Nota:</strong> El avatar tuvo que ser reducido, el nuevo tamano es [width] x [height] px, [filesize] KB.
 avatars_disabled =                Avatares se han deshabilitado
 
 [move_posting]
 move_posting_hl =                 Mover mensajes
-move_posting_new_thread =         Crear un propio argumento para ser puestoen el mensage y sus respectivas respuestas
-move_posting =                    Mover este mensage y sus respuesta # [number]
+move_posting_new_thread =         Crea un nuevo hilo con este mensaje y sus respuestas
+move_posting =                    Mover este mensaje y sus respuesta # [number]
 move_posting_submit =             OK - Mover mensaje
-invalid_posting_to_move =         Invalidar mensage numero
+invalid_posting_to_move =         Invalidar mensaje numero
 
 [manage_postings]
-manage_postings_hl =              Gestionar mensages
+manage_postings_hl =              Gestionar mensajes
 mark_postings =                   Marcar
-mark_all_postings =               Marcar todos los mensages
-unmark_all_postings =             desmarcar todos los mensages
+mark_all_postings =               Marcar todos los mensajes
+unmark_all_postings =             desmarcar todos los mensajes
 mark_old_threads =                Marcar los hilos con las ultimas respuestas mayores de [days] dias
 lock_postings =                   Bloquear
-lock_all_postings =               Bloquear todos los mensages
-unlock_all_postings =             Desbloquear todos los mensages
+lock_all_postings =               Bloquear todos los mensajes
+unlock_all_postings =             Desbloquear todos los mensajes
 lock_old_threads =                Bloquear hilos con las ultimas respuestas mayores [days] dias
 
 [login]
-login_ip_temp_blocked =           Debido a las reiteradas intentos fallidos de acceso, se encuentra temporalmente bloqueado para acceder. Puedes volver a intentarlo en unos minutos. 
+login_ip_temp_blocked =           Debido a los reiterados intentos fallidos de acceso, se encuentra temporalmente bloqueado para acceder. Puedes volver a intentarlo en unos minutos. 
 login_username =                  Nombre de Usuario:
-login_password =                  contrasena:
+login_password =                  Contrasena:
 login_auto =                      Entrar automaticamente en este equipo
 login_submit =                    Inicio de sesion
 login_advice =                    En cuanto inice sesion , las cockies seran activadas. 
-pw_forgotten_link =               No recuedo mi contrasena
-pwf_failed =                      Ningun usuario con esta direccion de e-mail ha sido encrontrado
+pw_forgotten_link =               No recuerdo mi contrasena
+pwf_failed =                      No se ha encontrado ningun usuario con este correo
 login_failed =                    Nombre de usuario desconocido o contrasena fallida!
 registered_users_only =           Solo los usuarios registrados pueden enviar mensajes!
-account_not_activated =           Su cuenta no esta activada todavaa!
-account_activated =               Su cuenta ha sido activado con exito.
-account_activated_but_locked =    Su cuenta ha sido activado con exito, pero tiene que ser abierta por un dministrador o un moderador para que te puedo conectarse!
+account_not_activated =           Su cuenta no esta activada todavia!
+account_activated =               Su cuenta ha sido activada con exito.
+account_activated_but_locked =    Su cuenta ha sido activada con exito, pero tiene que ser validada por un administrador o un moderador para que te puedas conectar!
 mail_sent =                       El E-mail ha sido enviado
 pw_sent =                         La nueva contrasena ha sido enviada.
 code_invalid =                    Codigo no valido
@@ -499,7 +497,7 @@ code_invalid =                    Codigo no valido
 [pw_forgotten]
 new_pw_ok =                       Una nueva contrasena ha sido generado y enviado.
 new_pw_failed =                   El enlace de confirmacion no es valido. La nueva contrasena no puede ser generada.
-pw_forgotten_exp =                Las contrasenas son cifradas con un algoritmo de manera por lo que no puede recuperar su contrasena. Solo se puede obtener una nueva contrasena. Para evitar cualquier mal uso que usted recibira un e-mail y se les pedira a seguir un vinculo para confirmar su solicitud. Tras la recepcion de la confirmacion de una nueva contrasena sera generada y enviada a usted.
+pw_forgotten_exp =                Las contrasenas son cifradas con un algoritmo que impide que recuperemos tu contrasena, pero podemos generar una nueva. Para evitar robos de identidad recibiras un e-mail y se te pedira que sigas un enlace para confirmar tu solicitud. Tras la activacion del enlace se generara una nueva contrasena y se te enviara por correo.
 pwf_username =                    Nombre de usuario:
 pwf_email =                       E-mail:
 
@@ -514,7 +512,7 @@ user_hp =                         Pagina web
 mailto_user =                     E-mail a [user]
 email =                           E-mail
 homepage =                        Pagina web
-user_postings =                   Mensages
+user_postings =                   Mensajes
 user_online =                     En Linea
 user_blockage =                   Bloquear
 online =                          En Linea
@@ -549,25 +547,24 @@ last_posting =                    Ultimo mensaje:
 logins_per_day =                  Conexiones por dia:
 postings_per_day =                publicaciones por dia: 
 user_profile =                    Perfil: 
-user_delete_all_entries =         <!-- TODO -->Delete all postings of this user
-user_lock_account =               <!-- TODO -->Lock user account
-user_unlock_account =             <!-- TODO -->Unlock user account  
-user_edit_account =               <!-- TODO -->Edit user account
-user_delete_account =             <!-- TODO -->Delete user account
+user_delete_all_entries =         Borrar todos los mensajes del usuario
+user_lock_account =               Bloquear la cuenta del usuario
+user_unlock_account =             Desbloquear la cuenta del usuario
+user_edit_account =               Editar la cuenta del usuario
+user_delete_account =             Borrar la cuenta del usuario
 user_account_doesnt_exist =       Esta cuenta de usuario no existe.
 
 [user_edit]
 edit_user_name =                  Nombre de usuario: 
 edit_avatar =                     Avatar:
-add_avatar_link =                 anadir avatar
-edit_avatar_link_title =          editar avatar
+edit_avatar_link =                Editar avatar
 edit_user_type =                  Tipo:
 edit_user_email =                 E-mail:
 edit_email =                      cambiar E-mail
 edit_user_pw =                    contrasena:
 pw_not_displayed =                no se muestra 
 edit_pw =                         cambiar la contrasena 
-edit_user_email_contact =         E-mail contacto 
+edit_user_email_contact =         Mostrar sobrecito
 edit_user_real_name =             Nombre:
 edit_user_gender =                Sexo:
 male =                            masculino
@@ -579,12 +576,12 @@ edit_user_location =              Localizacon:
 edit_user_profile =               Perfil:
 edit_user_signature =             Firma:
 edit_user_cat_selection =         Mi seleccion de categoria:
-edit_user_time_difference =       Additional time difference in hours (e.g. +3 or -5:30):
+edit_user_time_difference =       Diferencia de tiempo adicional (e.g. +3 or -5:30):
 edit_user_default_time_zone_svr = Default (server time)
 edit_user_default_time_zone =     Default ([default_time_zone])
-edit_user_language =              Language:
+edit_user_language =              Lenguaje:
 edit_user_default_language =      Default ([default_language])
-edit_user_theme =                 Theme:
+edit_user_theme =                 Tema:
 edit_user_default_theme =         Default ([default_theme])
 edit_user_auto_login =            Inicio de sesion automatico
 enable_auto_login =               Habilitar Inicio de sesion automatico
@@ -596,34 +593,34 @@ profile_saved =                   Su perfil ha sido guardado.
 pw_changed =                      La contrasena se ha cambiado.
 
 [edit_pw]
-edit_pw_old =                     <!-- TODO -->Old password:
-edit_pw_new =                     <!-- TODO -->New password:
-edit_pw_conf =                    <!-- TODO -->Repeat new password:
-error_old_pw_wrong =              <!-- TODO -->The old password is wrong
-error_pw_conf_wrong =             <!-- TODO -->The new password is not the same as the repeated one
-error_new_pw_too_short =          <!-- TODO -->The new password must contain at least [characters] characters
+edit_pw_old =                     Antigua contrasena:
+edit_pw_new =                     Nueva contrasena:
+edit_pw_conf =                    Repite la nueva contrasena:
+error_old_pw_wrong =              La antigua contrasena es incorrecta
+error_pw_conf_wrong =             Las nuevas contrasenas no coinciden
+error_new_pw_too_short =          La nueva contrasena debe contener al menos [characters] caracteres
 
 [edit_email]
-edit_email_exp =                  <!-- TODO -->When changing the e-mail address you will be logged out and the account has to be activated again. An activation key will be sent to the new e-mail address. Be sure the e-mail adress is correct! The account has to be activated within one day.
-edit_email_new =                  <!-- TODO -->New e-mail:
-edit_email_new_confirm =          <!-- TODO -->Confirm new e-mail:
-edit_email_pw =                   <!-- TODO -->Password:
-error_form_uncompl =              <!-- TODO -->Not all fields have been filled out
-error_email_confirmation =        <!-- TODO -->New e-mail and confirmation are not the same
-error_email_too_long =            <!-- TODO -->The e-mail address is too long
-error_identic_email =             <!-- TODO -->The new e-mail is the same as the old one
-error_email_invalid =             <!-- TODO -->The e-mail address is invalid
-pw_wrong =                        <!-- TODO -->The password is wrong
+edit_email_exp =                  Cuando cambias de correo se cierra la sesion y la cuenta debe ser activada de nuevo. Se enviara a tu correo una clave de activacion. Asegurate que el nuevo e-mail es correcto! La cuenta debe ser activada antes de 24 horas.
+edit_email_new =                  Nuevo e-mail:
+edit_email_new_confirm =          Confirma el nuevo e-mail:
+edit_email_pw =                   Contrasena:
+error_form_uncompl =              No has rellenado todos los campos
+error_email_confirmation =        El correo nuevo y la confirmacion no coinciden
+error_email_too_long =            El correo es demasiado largo
+error_identic_email =             El nuevo correo es igual que el antiguo correo
+error_email_invalid =             La direccion de correo no es valida
+pw_wrong =                        La contrasena es incorrecta
 
 [register]
 register_exp =                    Por favor, especifique el nombre de usuario, una contrasena y una direccion valida de correo de correo electronico. Una clave de activacion sera enviada a esta direccion de correo electronico. La cuenta tiene que ser activada en plazo de un dia !!!.
-register_username =               Mombre de usuario:
+register_username =               Nombre de usuario:
 register_user_email =             E-mail:
 register_pw =                     Contrasena:
 register_pw_conf =                Repetir contrasena:
 register_only_by_admin =          Los usuarios solo pueden ser registrados por el administrador del foro.
-registered =                      La cuenta ha sido registrada y la clave de activacion ha sido enviado a <strong>[var]</strong>. La cuenta tiene que ser activada en plazo de un dia !!!.
-registered_send_error =           La cuenta ha sido registrada, pero la clave de activacion no ha enviada(mail server not available). Pongase en contacto con el administrador del foro y solicite la activacion de la cuenta manualmente.
+registered =                      La cuenta ha sido registrada y la clave de activacion ha sido enviado a <strong>[var]</strong>. La cuenta tiene que ser activada en plazo de un dia!!!.
+registered_send_error =           La cuenta ha sido registrada, pero la clave de activacion no se ha enviado (el servidor de correos no esta disponible). Pongase en contacto con el administrador del foro y solicite la activacion de la cuenta manualmente.
 activation_failed =               La activacion de la cuenta ha sido fallida
 error_password_too_short =        La contrasena debe contener al menos [characters] caracteres
 error_email_alr_exists =          Ya existe un usuario con esta direccion de e-mail
@@ -636,20 +633,20 @@ impossible_to_contact =           Este usuario no puede ponerse en contacto!
 contact_doesnt_exist =            Este contacto no existe!
 sender_address_caption =          Remitente e-mail:
 subject_caption =                 Tema:
-message_caption =                 Mensage:
+message_caption =                 Mensaje:
 message_submit_caption =          OK - Enviar mensaje
 email_sent =                      El mensaje ha sido enviado con exito.
-error_no_text =                   No message enetered
-error_no_email =                  No sender e-mail address specified
-error_no_subject =                No subject entered
+error_no_text =                   No has escrito un mensaje
+error_no_email =                  No has puesto tu e-mail
+error_no_subject =                No has puesto Asunto
 error_email_invalid =             La direccion de correo electronico no es valida
 error_email_subject_too_long =    El tema es demasiado largo
 error_email_text_too_long =       El mensaje es demasiado largo([text_length] caracteres - solo [text_maxlength] caracteres permitidos)
 error_spam_suspicion =            Sospecha de Spam! Por favor, modifica el mensaje (e.g. eliminar los enlaces)
 
 [admin]
-enabled =                         habilitado
-disabled =                        Deshabilitado
+enabled =                         Activado
+disabled =                        Desactivado
 folder_alt =                      Carpeta
 file_alt =                        Archivo
 admin_confirm_password =          Admin Contrasena:
@@ -659,7 +656,7 @@ error_password_wrong =            Contrasena incorrecta
 forum_settings_link =             Configuracion del Foro
 category_administr_link =         Administracion Categorias
 user_administr_link =             Administracion de usuarios
-smilies_administr_link =          Smilies
+smilies_administr_link =          Emoticonos
 pages_administr_link =            Paginas
 spam_protection_link =            Spam protecion
 backup_restore_link =             Copia de seguridad
@@ -667,30 +664,30 @@ update_link =                     Actualizar
 reset_uninstall_link =            Reset o desinstalar foro
 
 # forum settings:
-clear_chache =                    Limpie cache para aplicar los cambios a entradas au existentes
+clear_chache =                    Borre la cache para aplicar los cambios a las entradas ya existentes
 settings_submit_button =          OK-Guardar configuracion
 settings_saved =                  Configuracion guardada
 advanced_settings_link =          Configuracion avanzada
 forum_name =                      Nombre del foro
-forum_name_desc =                 sera (amongst others) se muestra en el encabezado
+forum_name_desc =                 Se mostrara en el encabezado
 forum_description =               Descripcion del Foro
 forum_description_desc =          Una breve descripcion del foro
 forum_address =                   Direccion del foro
-forum_address_desc =              URL del foro (use this format: http://www.domain.tld/forum/)
+forum_address_desc =              URL del foro (usa este formato: http://www.domain.tld/forum/)
 forum_email =                     Direccion de E-mail del foro
 forum_email_desc =                se utilizara como direccion de contacto del remitente y la direccion de correo electronico para todos los e-mails enviados por el foro.
 home_link =                       Enlace al inicio
-home_link_desc =                  Enlace a su pagina de inicio, e.g. http://www.domain.tld/ or ../index.html (optional)
+home_link_desc =                  Enlace a su pagina de inicio, p.ej. http://www.domain.tld/ o ../index.html (opcional)
 home_link_name =                  Nombre de enlace Inicio
-home_link_name_desc =             Nombre del link de inicio , e.g. &quot;Back to homepage&quot;
+home_link_name_desc =             Nombre del link de inicio , p.ej. &quot;Back to homepage&quot;
 template =                        Tema
 template_desc =                   Tema para el diseño de la pagina
-language_file =                   Lenguage
-language_file_desc =              Lenguage del Foro
+language_file =                   Lenguaje
+language_file_desc =              Lenguaje del Foro
 threads_per_page =                Hilos por pagina
 threads_per_page_desc =           Cuantos hilos deberian ser mostrados por pagina?
 auto_lock_old_threads =           Bloqueo automatico de hilos antiguos
-auto_lock_old_threads_desc =      Auntomaticamnete se bloqueraran los hilos y sus respueatas mayores a dias? (0=disabled)
+auto_lock_old_threads_desc =      Automaticamente se bloquearan los hilos y sus respuestas mayores a dias? (0=desactivado)
 time_difference =                 Diferencia horaria:
 time_difference_desc =            Diferencia de tiempo entre el servidor y el tiempo de foro en minutos
 accession =                       Permiso de acceso
@@ -702,44 +699,44 @@ all_users =                       todos
 register_permission =             Registro de usuarios
 register_permission_desc =        Pueden los usuarios registrarse?
 register_self =                   auto
-register_self_locked =            auto pero las cuentas nuevas deven ser desbloqueadas por un admin o moderador
+register_self_locked =            auto pero las cuentas nuevas deben ser desbloqueadas por un admin o moderador
 register_only_admin =             Solo por el admin
 user_area =                       Area de usuario
-user_area_desc =                  Es el arera de usuario (user list, profiles) acesible al publico?
+user_area_desc =                  Es el area de usuario (lista de usuarios, perfiles) acesible al publico?
 public_accessible =               Aceso publico
 accessible_reg_users_only =       Aceso solo a usuarios registrados
-latest_postings =                 Ultimos mensages
-latest_postings_desc =            Cuantos ultimos mensages se mostraran el la pagina de inicio(0=disabled)? 
+latest_postings =                 Ultimos mensajes
+latest_postings_desc =            Cuantos ultimos mensajes se mostraran el la pagina de inicio(0=desactivado)? 
 tag_cloud =                       Nube de etiquetas
 tag_cloud_desc =                  En caso de una nube de etiquetas recientes se mostrara en la pagina de inicio? 
 enable_tag_cloud =                Nube de etiquetas habilitada
 terms_of_use_settings =           Teminos y Condiciones de uso
-terms_of_use_settings_desc =      Obligacion de los usuarios no registrados a aceptar los Teminos y Condiciones de uso cuando escriban sus mensages y se registren
+terms_of_use_settings_desc =      Obligar a los usuarios no registrados a aceptar los Teminos y Condiciones de uso cuando escriban sus mensajes y se registren
 terms_of_use_settings_enabled =   Teminos y Condiciones de uso Habilitadas
 terms_of_use_url =                Teminos y Condiciones de uso URL:
-edit_postings =                   Editando mensages
-edit_postings_desc =              Comportamientos para la edicion de mensages
-edit_own_postings =               Edicion de nuestros mensages:
-edit_own_postings_all =           todos los usuarios pueden editar sus mensages
-edit_own_postings_users =         solo los usuarios registrados pueden editar susu mensages
-edit_own_postings_disabled =      deshabilitado (solo los admin pueden editar los mensages)
-user_edit_if_no_replies =         si un mensage recibe respuestas solo puede ser editado en [minutes] minutos (0 = can't be edited if got replies)  
-edit_max_time_period =            Periodo maximo en el que podemos editar nuestros mensages: [minutes] minutes (0 = unlimited)
-show_if_edited =                  Mostrar si un mensage fue editado  cuando se ha hecho mas tarde de [minutes] minutes after posted
-dont_show_edit_by_admin =         no mostrar si un mensage fue editado por un administrador
-dont_show_edit_by_mod =           no mostrar si un mensage fue editado por un moderador
+edit_postings =                   Editando mensajes
+edit_postings_desc =              Comportamientos para la edicion de mensajes
+edit_own_postings =               Edicion de nuestros mensajes:
+edit_own_postings_all =           todos los usuarios pueden editar sus mensajes
+edit_own_postings_users =         solo los usuarios registrados pueden editar sus mensajes
+edit_own_postings_disabled =      deshabilitado (solo los admin pueden editar los mensajes)
+user_edit_if_no_replies =         si un mensaje recibe respuestas solo puede ser editado en [minutes] minutos (0 = no puede ser editado si tiene respuestas)  
+edit_max_time_period =            Periodo maximo en el que podemos editar nuestros mensajes: [minutes] minutes (0 = ilimitado)
+show_if_edited =                  Mostrar si un mensaje fue editado  cuando se ha hecho mas tarde de [minutes] minutos despues de publicado
+dont_show_edit_by_admin =         no mostrar si un mensaje fue editado por un administrador
+dont_show_edit_by_mod =           no mostrar si un mensaje fue editado por un moderador
 bbcode =                          BB codigo
-bbcode_desc =                     Habilitar BB Codigos para dar formato a los mensages?
+bbcode_desc =                     Habilitar BB Codigos para dar formato a los mensajes?
 bbcodes_enabled =                 BB Codigos habilitado
 bbcodes_img_enabled =             Permitir BB Codigo para insertar imagenes
 bbcodes_flash_enabled =           Permitir BB Codigo para insertar  flash videos
-smilies =                         Smilies
-smilies_desc =                    En caso de smilies como ":-)" se sustituye por imagenes? (Smilies pueden definidos en el panel de emoticones de la admin)
-smilies_enabled =                 Smilies Habilitados
+smilies =                         Emoticonos
+smilies_desc =                    En caso de emoticonos como ":-)" se sustituye por imagenes? (Los emoticonos pueden definidos en el panel de control)
+smilies_enabled =                 Emoticonos activados
 enamble_avatars =                 Avatars
 enamble_avatars_desc =            Deberia ser posible para los usuarios registrados subir imagenes avatar? Por lo tanto la carpeta  images/avatars/ tiene que ser escribible  (CHMOD 777).
-avatars_profiles_postings =       Mostrar avatares en perfiles y mensages
-avatars_profiles =                Molstar avatares solo en perfiles
+avatars_profiles_postings =       Mostrar avatares en perfiles y mensajes
+avatars_profiles =                Mostrar avatares solo en perfiles
 max_avatar_size =                 Tamano maximo para avatar:<br /> [width] x [height], [filesize] KB 
 upload_images =                   Subir imagenes
 upload_images_desc =              Deberia ser posible subir imagenes? Por lo tanto la carpeta   images/uploaded/ tiene que ser escribible   (CHMOD 777).
@@ -748,20 +745,20 @@ upload_enabled_users =            Habilitado para usuarios registrados
 upload_enabled_all =              Habilitado para todos
 max_upload_size =                 Tamaño maximo para la imagen:<br /> [width] x [height], [filesize] KB
 autolink =                        link automatico
-autolink_desc =                   Deben las URLs ser automaticamente reconocidas y poder ser clickable?
+autolink_desc =                   Deben las URLs ser automaticamente reconocidas y poder ser clickables?
 autolink_enabled =                link automatico habilitado
 count_views =                     Contador de vistas
 count_views_desc =                Deben contarse visitas de los mensajes?
-views_counter_enabled =           Contador de vistas habilitado
+views_counter_enabled =           Contador de vistas activado
 count_users_online =              Contador de usuarios online
-count_users_online_desc =         Contar los usuarios que estan en linea en un plazo de minutes (0=disabled)?
+count_users_online_desc =         Contar los usuarios que estan en linea en un plazo de minutes (0=desactivado)?
 rss_feed =                        RSS Feeds
-rss_feed_desc =                   Habilitar RSS Feeds (only if access permission has been set to "Everyone")?
+rss_feed_desc =                   Habilitar RSS Feeds (solo si se permite el acceso a todos)?
 rss_feed_enabled =                RSS Feed Habilitado
-forum_enabled_marking =           Foro habilitado
-forum_enabled_desc =              Desactive esto si el foro debe estar deshabilitado. The disabled forum is still available if logged in as admin. 
+forum_enabled_marking =           Foro activado
+forum_enabled_desc =              Desactive esto si el foro debe estar deshabilitado. El foro desactivado todavia esta disponible si inicias sesion como administrador. 
 forum_enabled =                   foro habilitado
-forum_disabled_message =          Mensage de muestra si nio esta habilitado: 
+forum_disabled_message =          Mensaje de muestra si no esta habilitado: 
 category_name =                   Categoria
 category_accession =              Acesible por
 cat_accessible_admin_mod =        admins y moderadores
@@ -772,24 +769,24 @@ category_entries =                Entradas
 no_categories =                   No hay categorias especificadas.
 new_category =                    Nueva categoria:
 edit_category =                   Categoria:
-category_accessible_by =          Acesible por:
-entries_in_not_ex_cat =           <strong>Note:</strong> There are entries which can't be displayed because they are in a not existing category. What do you want to do with these entries?
-entries_in_not_ex_cat_del =       delete them
-entries_in_not_ex_cat_mov =       move them into this category:
-category_already_exists =         This category already exists
-delete_category_hl =              Delete category "[category]"
-delete_category_compl =           Delete category and all its entries
-del_cat_keep_entries =            Delete category but keep its entries
-del_cat_move_entries =            Delete category but keep its entries and move them into this category:
-delete_category_submit =          OK - Delete category
+category_accessible_by =          Accesible por:
+entries_in_not_ex_cat =           <strong>Nota:</strong> Hay mensajes que no pueden ser mostrados porque estan en una categoria inexistente. Que quieres hacer con ellos?
+entries_in_not_ex_cat_del =       borrarlos
+entries_in_not_ex_cat_mov =       moverlos a esta categoria:
+category_already_exists =         Esta categoria ya existe
+delete_category_hl =              Borrar la categoria "[category]"
+delete_category_compl =           Borrar la categoria y todos sus mensajes
+del_cat_keep_entries =            Borrar la categoria pero mantener los mensajes
+del_cat_move_entries =            Borrar la categoria pero mantener sus mensajes y moverlos a esta otra categoria:
+delete_category_submit =          OK - Borrar categoria
 
 # Smilies:
 edit_smilies_smiley =             Emoticonos:
-edit_smilies_codes =              Codigoss:
+edit_smilies_codes =              Codigos:
 edit_smilies_title =              Titulos:
 smiley_file_doesnt_exist =        Los archivos de emoticonos no existen
 smiley_code_empty =               Codigo de emoticono no especificado
-no_other_smilies_in_folder =      No hay otras Emoticonos en la carpeta. Para agregar emoticones, carga de archivos emoticonos en la carpeta 'images/smilies'.
+no_other_smilies_in_folder =      No hay otras Emoticonos en la carpeta. Para agregar emoticones, carga los emoticonos en la carpeta 'images/smilies'.
 smiley_image =                    Emoticonos
 smiley_codes =                    Codigo (s)
 smiley_title =                    Titulo
@@ -803,7 +800,7 @@ smilies_disabled =                Emoticonos deshabilitados.
 page_title =                      Titulo
 page_content =                    Contenido
 page_content_desc =               Puedes usar HTML para dar formato a la pagina
-page_menu_linkname =              Nombre del menu a linkar
+page_menu_linkname =              Nombre del menu a enlazar
 page_menu_linkname_desc =         solo si la pagina se mostrara en el menu
 page_access =                     Acceso
 page_access_reg_users =           Solo para usuarios registrados
@@ -844,269 +841,265 @@ clear_userdata =                  Limpiar datos de usuario
 delete_avatar =                   Borrar avatar
 delete_user_confirmation =        Esta usted seguro que desea borrar este usuario?
 delete_users_confirmation =       Estas seguro que quieres eliminar los siguientes usuarios?
-delete_entries_of_user_confirm =  <!-- TODO -->Are you sure you want to delete all postings of <strong>[user]</strong>? Replies by other users will also be deleted!
+delete_entries_of_user_confirm =  Estas seguro que quieres borrar todos los mensajes de <strong>[user]</strong>? Las repuestas de otros usuarios tambien se borraran!
 delete_submit =                   OK - Borrar
-register_exp =                    Usted puede dejar en blanco los campos para la contraseña si una contraseña arbitraria sea generada. En este caso los datos de usuario tienen que ser enviados a una direccion de correo electronico especificado.
+register_exp =                    Puede dejar en blanco el campo de la contrasena si quieres que se genere una al azar. En este caso los datos de usuario tienen que ser enviados a una direccion de correo electronico especificado.
 register_username =               Nombre de usuario:
 register_email =                  E-mail:
 register_pw =                     Contrasena:
 register_pw_conf =                Confirmar contrasena:
-register_send_userdata =          Send userdata to the above specified e-mail address
-error_send_userdata =             If you leave blank the password, the userdata has to be sent to the specified e-mail adress
-error_email_wrong =               The e-mail address is incorrect
-new_user_registered =             The user "[name]" has been registered.
-new_user_reg_send_error =         The user "[name]" has been registered but the userdata could not be sent.
-clear_userdata_condition =        Delete users that logged in maximum [logins] times and the last time more than [days] days ago.
-clear_userdata_note =             Admins and Moderators will not be affected. Before deleting you get a list of the selected users.
-no_users_in_selection =           No users in selection
-
-######################### <!-- TODO --> ########################################
-#                   ¡No traducido a partir de aquí!                            #
-################################################################################
+register_send_userdata =          Enviar los datos de usuario a la cuenta de correos especificada
+error_send_userdata =             Si dejas en blanco la contrasena, los datos de usuario se enviaran al correo especificado
+error_email_wrong =               La direccion de e-mail es incorrecta
+new_user_registered =             Acabas de registrar el usuario "[name]".
+new_user_reg_send_error =         Acabas de registrar el usuario "[name]" pero no ha sido posible enviarte los datos de usuario.
+clear_userdata_condition =        Borrar los usuarios que hayan iniciado sesion [logins] veces y la ultima vez hace mas de [days] dias.
+clear_userdata_note =             Administradores and Moderadores no se veran afectados. Antes de borrar se te mostrara una lista de los usuarios seleccionados.
+no_users_in_selection =           No hay usuarios en la seleccion
 
 # spam protection:
 captcha =                         CAPTCHA
-captcha_desc =                    Which forms should be protected by what type of CAPTCHA (only for not registered users)?
-captcha_graphical_desc =          The graphical CAPTCHA requires the GD Lib and it's recommended to use at least one TTF font. Put the font files (*.ttf) into the folder modules/captcha/fonts/. You can get fonts e.g. on www.dafont.com.
-captcha_posting =                 Posting form:
-captcha_email =                   E-mail form:
-captcha_register =                Register form:
-captcha_disabled =                disabled
-captcha_mathematical =            mathematical
-captcha_graphical =               graphical
-gr_captcha_not_available =        Graphical CAPTCHA not available (GD Lib not available)
-gr_captcha_no_font =              No font available, CAPTCHA image cannot be displayed correctly
+captcha_desc =                    Que formularios quieres proteger, y con que tipo de CAPTCHA? (solo para usuarios no registrados)
+captcha_graphical_desc =          El CAPTCHA grafico requiere las librerias GD y es recomendable usar al menos una fuente TTF. Pon las fuentes (*.ttf) en la carpeta modules/captcha/fonts/. Puedes conseguir fuentes en p.ej: www.dafont.com.
+captcha_posting =                 Formulario mensajes:
+captcha_email =                   Formulario e-mails:
+captcha_register =                Formulario registros:
+captcha_disabled =                desactivado
+captcha_mathematical =            matematico
+captcha_graphical =               grafico
+gr_captcha_not_available =        CAPTCHA grafico no disponible (librerias GD no instaladas)
+gr_captcha_no_font =              No hay fuentes disponibles, las imagenes CAPTCHA no se pueden mostrar correctamente
 stop_forum_spam =                 Stop Forum Spam
-stop_forum_spam_desc =            <!-- TODO --><a href="http://www.stopforumspam.com/">Stop Forum Spam</a> spam protection
-stop_forum_spam_enable =          <!-- TODO -->enable Stop Forum Spam
+stop_forum_spam_desc =            <a href="http://www.stopforumspam.com/">Stop Forum Spam</a> proteccion anti-spam
+stop_forum_spam_enable =          Activar Stop Forum Spam
 bad_behavior =                    Bad Behavior
-bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a> spam protection.
-bad_behavior_enable =             enable Bad Behavior
+bad_behavior_desc =               <a href="http://bad-behavior.ioerror.us/">Bad Behavior</a> proteccion anti-spam.
+bad_behavior_enable =             Activar Bad Behavior
 akismet =                         Akismet
-akismet_desc =                    <a href="http://akismet.com/">Akismet</a> spam protection service. To use it you need a <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> (won't work without or with invalid API Key!).
+akismet_desc =                    <a href="http://akismet.com/">Akismet</a> servicio de proteccion anti-spam. Para usarlo necesitas una <a href="http://wordpress.com/api-keys/">Wordpress API Key</a> (no trabajara con una API Key invalida!).
 akismet_key =                     Wordpress API Key:
-akismet_save_spam =               Save spam (flagged as spam and not displayed)?
-akismet_auto_delete_spam =        Delete spam automatically after how many hours (0=don't delete)?
-akismet_entry =                   check posting form
-akismet_mail =                    check e-mail form
-akismet_registered =              <!-- TODO -->check submissions of registered users
-banned_ips =                      Banned IPs
-banned_ips_desc =                 IP adresses which should not have access. IP ranges (e.g. 10.10.1.*) and CIDR notation (e.g. 10.10.1.32/27) possible. One IP per line.
-banned_user_agents =              Banned user agents
-banned_user_agents_desc =         Strings in user agents, which should not have access. One string per line.
-not_accepted_words =              Not accepted words
-not_accepted_words_desc =         Words or domains that should not be accepted in entries and e-mails. One word per line.
-spam_protection_submit =          OK - Save
-error_own_ip_banned =             You banned your own IP!
-error_own_user_agent_banned =     You banned your own user agent!
-spam_protection_saved =           Saved
+akismet_save_spam =               Guardar spam (marcado como spam y no mostrado)?
+akismet_auto_delete_spam =        Borrar spam automaticamente despues de cuantas horas? (0=no borrar)
+akismet_entry =                   Verifica el formulario de mensajes
+akismet_mail =                    Verifica el formulario de e-mails
+akismet_registered =              Verifica los mensajes de usuarios registrados
+banned_ips =                      IPs prohibidas
+banned_ips_desc =                 Direcciones IP que no deberian acceder. Se admiten rangos de IP (p.ej: 10.10.1.*) y nomenclatura CIDR (p.ej: 10.10.1.32/27). Una IP por linea.
+banned_user_agents =              User Agents prohibidos
+banned_user_agents_desc =         Cadenas de los User Agents que no deberian acceder. Una cadena por linea.
+not_accepted_words =              Palabras prohibidas
+not_accepted_words_desc =         Palabras o dominios que no se permiten en mensajes y e-mails. Una por linea.
+spam_protection_submit =          OK - Guardar
+error_own_ip_banned =             Prohibiste tu propia IP!
+error_own_user_agent_banned =     Prohibiste tu propio User Agent!
+spam_protection_saved =           Guardado
 
 # Reset / Uninstall:
-reset_forum =                     Reset forum
-delete_postings =                 delete all postings
-delete_userdata =                 delete all userdata (except your admin account)
-reset_forum_submit =              OK - Reset forum
-uninstall_forum =                 Uninstall forum
-uninstall_forum_exp =             This will delete all forum tables. After this the forum won't work anymore!
-uninstall_forum_submit =          OK - Uninstall forum
-error_no_selection_made =         No selection made
+reset_forum =                     Resetear el foro
+delete_postings =                 Borrar todos los mensajes
+delete_userdata =                 Borrar todos los datos de usuario (excepto la cuenta del administrador)
+reset_forum_submit =              OK - Resetea el foro
+uninstall_forum =                 Desinstalar el foro
+uninstall_forum_exp =             Esto borrara todas las tablas del foro. Despues de esto no volvera a funcionar!
+uninstall_forum_submit =          OK - Desinstala el foro
+error_no_selection_made =         No has seleccionado
 
 # Backup:
-backup_note =                     To use the backup function the directory <i>backup</i> must be writable. Also make sure that this directory is not accessible via the web!
-backup_file =                     File
-backup_date =                     Date
-backup_size =                     Size
-create_backup_complete =          Create complete backup
-only_create_backup_of =           Only create backup of:
-backup_entries =                  entries
-backup_userdata =                 userdata
-backup_settings =                 settings
-backup_categories =               categories
-backup_pages =                    pages
-backup_smilies =                  smilies
-backup_banlists =                 banlists
-download_backup_file =            Download backup file
-delete_selected =                 Delete selected
-restore =                         Restore
-delete_backup_file =              Delete backup file
-delete_backup_submit =            OK - Delete
-restore_confirm =                 Are you sure you want to restore the database with this backup file?<br /><strong>All	affected backuped tables will be overwritten!</strong>
-restore_safe_mode_warning =       Safe Mode Warning!
-restore_safe_mode_note =          As Safe Mode is activated on this server the script running time cannot be extended! To avoid uncompleted backups you should split long backup files into several smaller ones and execute one after another!
-restore_submit =                  OK - Restore
-restore_backup_ok =               The backup has been restored.
-backup_file_created =             The backup file has been created.
-error_file_doesnt_exist =         File doesn't exist!
-error_delete_backup_file =        Backup file could not be deleted
-error_create_backup_file =        File could not be craeted - make sure you properly set the write permission for the folder "backup"
-error_restore_mysql =             MySQL error: [mysql_error]
+backup_note =                     Para usar la funcion de backup, debes tener permisos de escritura en el directorio <i>backup</i>. Asegurate que no se puede acceder a este directorio desde la web!
+backup_file =                     Archivo
+backup_date =                     Fecha
+backup_size =                     Tamano
+create_backup_complete =          Crear backup completo
+only_create_backup_of =           Crea solo un backup de:
+backup_entries =                  Mensajes
+backup_userdata =                 Datos de usuarios
+backup_settings =                 Configuraciones
+backup_categories =               Categorias
+backup_pages =                    Paginas
+backup_smilies =                  Emoticonos
+backup_banlists =                 Listas prohibidas
+download_backup_file =            Descargar archivo de backup
+delete_selected =                 Borrar seleccion
+restore =                         Restaurar
+delete_backup_file =              Borrar archivo de backup
+delete_backup_submit =            OK - Borrar
+restore_confirm =                 Estas seguro que quieres restaurar la base de datos con este archivo de backup?<br /><strong>Todas	las tablas se sobreescribiran!</strong>
+restore_safe_mode_warning =       Aviso de Modo Seguro!
+restore_safe_mode_note =          Como has activado el Modo Seguro no se puede aumentar el tiempo de ejecucion del script! Para evitar backups incompletos deberias dividir los archivos grandes de backup en varios pequenos y ejecutarlos uno detras de otro!
+restore_submit =                  OK - Restaurar
+restore_backup_ok =               La copia de seguridad se ha restaurado.
+backup_file_created =             El archivo de copia de seguridad se ha creado.
+error_file_doesnt_exist =         El archivo no existe!
+error_delete_backup_file =        La copia de seguridad no se puede borrar
+error_create_backup_file =        El archivo no se puede crear - Verifica que tienes bien configurados los permisos de escritura en la carpeta "backup"
+error_restore_mysql =             Error MySQL: [mysql_error]
 
 # Update:
-update_current_version =          Current version: <strong>[version]</strong>
-update_instructions_hl =          How to update
-update_instructions =             It's recommended to disable the forum while updating (uncheck "forum enabled" in the <a href="index.php?mode=admin&action=settings">forum settings</a>)
-update_instructions =             Download the latest version from <a href="http://mylittleforum.net/">mylittleforum.net</a>
-update_instructions =             Unpack the script package, look for the according update file in the subfolder "update" and upload this file into the folder "update" on your server
-update_instructions =             Reload this page and the update file should appear below
-update_instructions =             Click on the file and follow the further instructions
-update_instructions =             After running the update you get a list of files and folders which have to be added or replaced
-update_instructions =             Clear the directory <strong>templates_c</strong> (delete all files in this dirctory) after you have added/replaced the files/folders
-update_available_files =          Available update file(s)
-update_no_files_available =       No update files available.
-update_file_title =               Run this update file
-update_confirm =                  Do you really want to run the following update file?
-update_submit =                   OK - Run update
-update_successful =               The database has been updated successfully.
-update_items_note =               Please upload now the following files/folders of the new forum package (version [version]) to your server:
-update_download =                 If you do not have these files yet you can download them [[here]].
+update_current_version =          Version actual: <strong>[version]</strong>
+update_instructions_hl =          Como actualizar
+update_instructions =             Es recomendable desactivar el foro mientras actualizas (desmarca la casilla "Foro activado" en <a href="index.php?mode=admin&action=settings">Configuracion del foro</a>)
+update_instructions =             Descarga la ultima version desde <a href="http://mylittleforum.net/">mylittleforum.net</a>
+update_instructions =             Descomprime el paquete descargado, busca el archivo correspondiente en la carpeta "update" y subelo a la carpeta "update" del servidor
+update_instructions =             Refresca esta pagina y el archivo de actualizacion deberia aparecer debajo
+update_instructions =             Pulsa en el archivo y sigue las instrucciones
+update_instructions =             Despues de la instalacion veras una lista de archivos y carpetas que debes anadir o reemplazar
+update_instructions =             Borra los archivos del directorio <strong>templates_c</strong> despues del paso anterior
+update_available_files =          Actualizaciones disponibles
+update_no_files_available =       No hay actualizaciones disponibles.
+update_file_title =               Ejecuta esta actualizacion
+update_confirm =                  Seguro que quieres ejecutar esta actualizacion?
+update_submit =                   OK - Actualiza
+update_successful =               La base de datos se ha actualizado correctamente.
+update_items_note =               Por favor, sube los siguientes archivos o carpetas de la nueva version ([version]) a tu servidor:
+update_download =                 Si no tienes estos archivos puedes descargarlos [[here]].
 
 [emails]
-email_subject =                   Reply on "[original_subject]"
-email_text =                      """Hi [recipient],
-[name] has posted a reply on \"[original_subject]\":
+email_subject =                   Responder en "[original_subject]"
+email_text =                      """Hola [recipient],
+[name] ha enviado una respuesta a \"[original_subject]\":
 
-Subject: [subject]
+Asunto: [subject]
 [text]
 
-URL of this posting: [posting_address]
+Direccion del mensaje: [posting_address]
 
---- Your original posting ---
+--- Tu mensaje inicial ---
 
 [original_text]"""
 
 email_text_delayed_addition =     """---
-This notification is delayed because the posting was activated manually"""
+Este mensaje se retraso porque tuvo que ser activado manualmente"""
 
-admin_email_subject =             New entry in the forum: [subject]
-admin_email_text =                """New Entry by [name]
-Subject: [subject]
-
-[text]
-
-URL of the posting: [posting_address]"""
-admin_email_text_reply =          """Reply by [name]
-Subject: [subject]
+admin_email_subject =             Nuevo mensaje en el foro: [subject]
+admin_email_text =                """Nuevo mensaje de [name]
+Asunto: [subject]
 
 [text]
 
-URL of the posting: [posting_address]"""
-admin_reg_user_email_subj =       Forum registration
-admin_reg_user_email_text =       """Hi [name],
-welcome to the forum!
+Direccion del mensaje: [posting_address]"""
+admin_email_text_reply =          """Respuesta de [name]
+Asunto: [subject]
 
-Here is the access data to log in:
+[text]
 
-User name: [name]
-Password: [password]
+Direccion del mensaje: [posting_address]"""
+admin_reg_user_email_subj =       Nuevo registro en el foro
+admin_reg_user_email_text =       """Hola [name],
+Bienvenido al foro!
 
-Link to log in directly:
+Aqui tienes los datos de acceso:
+
+Nombre de usuario: [name]
+Contrasena: [password]
+
+Direccion para acceder:
 [login_link]
 
-The password can be changed after logging in."""
+Puedes cambiar la contrasena despues de entrar."""
 
-new_user_email_sj =               Forum registration
-new_user_email_txt =              """Hi [name],
-welcome to the forum!
+new_user_email_sj =               Registro en el foro
+new_user_email_txt =              """Hola [name],
+Bienvenido al foro!
 
-To activate your account please follow this link:
+Para activar tu cuenta por favor visita el siguiente enlace (HAZ SOLO UN CLICK):
 [activate_link]"""
-new_user_notif_sj =               New user subscription
-new_user_notif_txt =              """Hi [recipient],
-a new user has subscribed to the forum.
-User name: [name]
+new_user_notif_sj =               Nueva suscripcion
+new_user_notif_txt =              """Hola [recipient],
+Un nuevo usuario se ha suscrito al foro.
+Nombre de usuario: [name]
 E-mail: [email]
 
 [user_link]"""
-new_user_notif_txt_locked =       """Hi [recipient],
-a new user has subscribed to the forum.
-User name: [name]
+new_user_notif_txt_locked =       """Hola [recipient],
+Un nuevo usuario se ha suscrito al foro.
+Nombre de usuario: [name]
 E-mail: [email]
 
-IMPORTANT: This user has to be unlocked in order that he can log in!"""
-edit_address_email_sj =           Account activation after changing e-mail address
-edit_address_email_txt =          """Hi [name],
-the e-mail address has been changed. You now have to activate your account again using the following link:
+IMPORTANTE: Tienes que desbloquear a este usuario para que pueda iniciar sesion!"""
+edit_address_email_sj =           Activacion de cuenta despues de cambiar el e-mail
+edit_address_email_txt =          """Hola [name],
+La direccion de e-mail ha cambiado. Puedes activar la cuenta de nuevo usando el siguiente enlace (HAZ SOLO UN CLICK):
 [activate_link]"""
-pwf_activating_email_sj =         Request for a new password
-pwf_activating_email_txt =        """Hi [name],
-this e-mail has been sent by the forum on [forum_address] because a new password has been requested. Please click the link below to confirm your request. By following the link a new password will be generated and sent to you. If this e-mail has been sent in error (either by you or someone else) please ignore this e-mail.
+pwf_activating_email_sj =         Solicitar una nueva contrasena
+pwf_activating_email_txt =        """Hola [name],
+El foro [forum_address] te ha enviado este correo porque has solicitado una nueva contrasena. Por favor pulsa el enlace para confirmar tu solicitud (HAZ UN SOLO CLICK), se generara una nueva contrasena y te la enviaremos por correo. Si has recibido este mensaje por error por favor ignoralo.
 
-Link to confirm your request:
+Enlace para confirmar tu solicitud:
 [activating_link]"""
-new_pw_email_sj =                 "New user data for the forum"
-new_pw_email_txt =                """Hi [name],
-here is your new user data:
+new_pw_email_sj =                 "Contrasena solicitada"
+new_pw_email_txt =                """Hola [name],
+Aqui estan tus datos de acceso:
 
-User name: [name]
-Password: [password]
+Nombre de usuario: [name]
+Contrasena: [password]
 
-Click here to log in directly:
+Pulsa aqui para acceder directamente:
 [login_link]
 
-The password can be changed after logging in."""
+Puedes cambiar la contrasena despues de entrar."""
 contact_email_txt =               """[message]
 
 -- 
-This e-mail has been sent via the forum on [forum_address]."""
+Este e-mail ha sido enviado desde el foro [forum_address]."""
 contact_email_txt_user =          """[message]
 
 -- 
-This e-mail has been sent by [user] via forum on [forum_address]."""
-contact_notification_sj =         Copy of sent e-mail: [subject]
-contact_notification_txt =        """This e-mail has been sent with your e-mail address to [recipient]:
+[user] te ha enviado este email a traves del foro [forum_address]."""
+contact_notification_sj =         Copia del correo enviado: [subject]
+contact_notification_txt =        """Se ha enviado este correo con tu direccion a [recipient]:
 
-Subject: [subject]
+Asunto: [subject]
 [message]
 
 -- 
-This e-mail has been sent via forum on [forum_address]."""
+Este email se ha enviado desde el foro [forum_address]."""
 
 [install]
-installation_title =              Installation
-label_choose_language =           Please select a language:
-installation_instructions =       To install the forum please fill out and submit the following form.
-installation_instructions =       During the installation process the file <strong>config/db_settings.php</strong> will be overwritten. Depending on your server configuration you might have to change the write permission of this file (try CHMOD 666 if you get an error message; set it back to 644 after the installation).
-installation_instructions =       The directory <strong>templates_c</strong> needs to be writable by the template engine. Depending on your server configuration you might have to change the write permission of this directory (try CHMOD 770, 775 or 777 if you get an error message or blank page after the installation).
-installation_instructions =       Write permissions (CHMOD) of files and directories can normally be changed with the FTP program (right click on file/directory --> CHMOD or similar).
-installation_instructions =       The directory <strong>install</strong> can be deleted after the installation.
-inst_basic_settings =             Basic settings
-inst_main_settings_desc =         Some basic settings
-inst_admin_settings =             Administrator
-inst_admin_settings_desc =        Data of the forum administrator
-inst_db_settings =                Database
-inst_db_settings_desc =           Access data of the MySQL database
-inst_admin_name =                 Admin name
-inst_admin_name_desc =            Name of the forum administrator
-inst_admin_email =                Admin e-mail
-inst_admin_email_desc =           E-mail address of the forum administrator
-inst_admin_pw =                   Admin password
-inst_admin_pw_desc =              Password to log in as forum administrator
-inst_admin_pw_conf =              Password confirmation
-inst_admin_pw_conf_desc =         Repeat the password
-inst_db_host =                    Database host
-inst_db_host_desc =               host name, mostly "localhost"
-inst_db_user =                    Database user
-inst_db_user_desc =               Username to access the database
-inst_db_pw =                      Database password
-inst_db_pw_desc =                 Password to access the database
-inst_db_name =                    Database name
-inst_db_name_desc =               Name of the database
-inst_table_prefix =               Table prefix
-inst_table_prefix_desc =          Prefix for tables in database
-inst_advanced_options =           Advanced options
-inst_advanced_options_desc =      For experts - normally you don't need to change anything here
-inst_advanced_database =          Create database
-inst_advanced_database_desc =     Check this only if the specified database doesn't exist yet and you have permissions to create a database
-inst_advanced_conf_file =         No overwriting of the database configuration file
-inst_advanced_conf_file_desc =    Check this only if you already edited the database configuration file
-create_database =                 create specified database
-dont_overwrite_settings =         don't overwrite database configuration file
-create_db_error =                 The database couldn't be created
-error_create_admin =              The admin account could not be created
-error_db_connection =             Database connection error - please check host, user and password
-error_db_inexistent =             Specified database doesn't exist - please check database name
-error_sql_file_doesnt_exist =     Installation SQL file (install.sql) doesn't exist
-error_overwrite_config_file =     No permission to overwrite the file <strong>config/db_settings.php</strong> (set CHMOD 666, current is [CHMOD])
+installation_title =              Instalacion
+label_choose_language =           Por favor selecciona un lenguaje:
+installation_instructions =       Para instalar el foro por favor rellena y envia los siguientes campos.
+installation_instructions =       Durante la instalacion el archivo <strong>config/db_settings.php</strong> se sobreescribira. Dependiendo de la configuracion de tu servidor puede que tengas que cambiar los permisos de escritura de este archivo (intenta CHMOD 666 si da un mensaje de error; vuelve a ponerlo en 644 despues de la instalacion).
+installation_instructions =       El directorio <strong>templates_c</strong> debe tener permisos de escritura. Dependiendo de la configuracion de tu servidor puede que tengas que cambiar los permisos del directorio (intenta CHMOD 770, 775 o 777 si te da mensajes de error o una pagina en blanco despues de la instalacion).
+installation_instructions =       Puedes cambiar los permisos de escritura (CHMOD) de archivos y directorios con un programa de FTP (boton derecho del raton --> CHMOD o algo asi).
+installation_instructions =       Puedes borrar el directorio <strong>install</strong> despues de la instalacion.
+inst_basic_settings =             Configuracion basica
+inst_main_settings_desc =         Algunos ajustes basicos
+inst_admin_settings =             Administrador
+inst_admin_settings_desc =        Datos del administrador del foro
+inst_db_settings =                Base de datos
+inst_db_settings_desc =           Datos para acceder a la base de datos MySQL
+inst_admin_name =                 Nombre del administrador
+inst_admin_name_desc =            Nombre del administrador del foro
+inst_admin_email =                E-mail del administrador
+inst_admin_email_desc =           Direccion e-mail del administrador del foro
+inst_admin_pw =                   Contrasena del administrador
+inst_admin_pw_desc =              Contrasena para acceder como administrador del foro
+inst_admin_pw_conf =              Confirmacion de contrasena
+inst_admin_pw_conf_desc =         Repite la contrasena
+inst_db_host =                    Servidor de la base de datos
+inst_db_host_desc =               Nombre del servidor, normalmente "localhost"
+inst_db_user =                    Usuario de la base de datos
+inst_db_user_desc =               Usuario para acceder a la base de datos
+inst_db_pw =                      Contrasena de la base de datos
+inst_db_pw_desc =                 Contrasena para acceder a la base de datos
+inst_db_name =                    Nombre de la base de datos
+inst_db_name_desc =               Nombre de la base de datos
+inst_table_prefix =               Prefijo de las tablas
+inst_table_prefix_desc =          Prefijo que usaran las tablas en la base de datos
+inst_advanced_options =           Opciones avanzadas
+inst_advanced_options_desc =      Para expertos - normalmente no tendras que cambiar nada aqui
+inst_advanced_database =          Crear base de datos
+inst_advanced_database_desc =     Marca esto solo si la base de datos no existe todavia y tienes permisos para crearla
+inst_advanced_conf_file =         No sobreescribir el archivo de configuracion de la base de datos
+inst_advanced_conf_file_desc =    Marca esto solo si ya has editado el archivo de configuracion de la base de datos
+create_database =                 Crear la base de datos
+dont_overwrite_settings =         No sobreescribir el archivo de configuracion de la base de datos
+create_db_error =                 No se pudo crear la base de datos
+error_create_admin =              No se pudo crear la cuenta de administrador
+error_db_connection =             Error conectando a la base de datos - Por favor verifica el servidor, usuario y contrasena
+error_db_inexistent =             La base de datos seleccionada no existe - Por favor verifica el nombre de la base de datos
+error_sql_file_doesnt_exist =     El archivo de instalacion SQL (install.sql) no existe
+error_overwrite_config_file =     No tienes permisos para sobreescribir el archivo <strong>config/db_settings.php</strong> (pon CHMOD 666, actualmente es [CHMOD])
 error_sql =                       SQL error
-forum_install_ok =                OK - Install forum
-error_conf_pw =                   The admin passwords did not match
+forum_install_ok =                OK - Instala el foro
+error_conf_pw =                   Las contrasenas no coinciden
