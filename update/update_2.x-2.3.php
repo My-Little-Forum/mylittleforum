@@ -25,9 +25,14 @@ switch($settings['version'])
  {
   case '2.3.2':
      $update['items'][] = 'includes/posting.inc.php';
+     $update['items'][] = 'lang/french.lang';
+     $update['items'][] = 'lang/spanish.lang';
+     $update['items'][] = 'modules/smarty/';
      break;
   case '2.3.1':
      $update['items'][] = 'includes/js_defaults.inc.php';
+     $update['items'][] = 'includes/posting.inc.php';
+     $update['items'][] = 'lang/';
      $update['items'][] = 'modules/smarty/';
      $update['items'][] = 'modules/bad-behavior/';    
      break;
