@@ -5,6 +5,7 @@
 # Updated by Marc Duval < duvalm at gmail dot com > 2011-05-22                 #
 ################################################################################
 
+[default]
 language =                        fr
 charset =                         utf-8
 locale =                          fr_FR.utf8
