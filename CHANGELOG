@@ -3,8 +3,10 @@ my little forum changelog
 
 2.3.3 (2014-04-10)
 ------------------
-- bug fix: http://mylittleforum.net/forum/index.php?id=7576
-
+- htmlspecialchars warnings bug fix (http://mylittleforum.net/forum/index.php?id=7576)
+- more smilies button bug fix (http://mylittleforum.net/forum/index.php?id=7612)
+- French language file bug fix (http://mylittleforum.net/forum/index.php?id=7175)
+- Spanish translation completed
 
 2.3.2 (2013-11-24)
 ------------------
