@@ -596,7 +596,7 @@ function ButtonGroup(f) {
          	bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); 
          	break;
          	default:
-         	if (button.isSmilie && list && list.length > 1)
+         	if (button.isSmilie && list && list.length > 0)
          	bbCodeButton = new BBCodeSmilieButton( button, list );
          	else if (button.isSmilie)
          	bbCodeButton = new BBCodeSingleSmilieButton( button );
