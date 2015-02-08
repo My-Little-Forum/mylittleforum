@@ -25,11 +25,13 @@ switch($settings['version'])
  {
   case '2.3.3':
      $update['items'][] = 'includes/admin.inc.php';
+     $update['items'][] = 'includes/functions.inc.php';
      $update['items'][] = 'includes/posting.inc.php';
      $update['items'][] = 'modules/smarty/';
      break;
   case '2.3.2':
      $update['items'][] = 'includes/admin.inc.php';
+     $update['items'][] = 'includes/functions.inc.php';
      $update['items'][] = 'includes/posting.inc.php';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';
@@ -40,6 +42,7 @@ switch($settings['version'])
   case '2.3.1':
      $update['items'][] = 'includes/js_defaults.inc.php';
      $update['items'][] = 'includes/admin.inc.php';
+     $update['items'][] = 'includes/functions.inc.php';
      $update['items'][] = 'includes/posting.inc.php';
      $update['items'][] = 'js/posting.js';
      $update['items'][] = 'js/posting.min.js';     
