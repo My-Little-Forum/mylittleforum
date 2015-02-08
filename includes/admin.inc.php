@@ -372,7 +372,7 @@ if(isset($_POST['edit_user_submit']))
 
 if(isset($_GET['edit_category']))
  {
-  $category_result = mysql_query("SELECT id, order_id, category, accession FROM ".$db_settings['category_table']." WHERE id = '".$_GET['edit_category']."' LIMIT 1", $connid);
+  $category_result = mysql_query("SELECT id, order_id, category, accession FROM ".$db_settings['category_table']." WHERE id = '".intval($_GET['edit_category'])."' LIMIT 1", $connid);
   if(!$category_result) raise_error('database_error',mysql_error());
   $field = mysql_fetch_array($category_result);
   mysql_free_result($category_result);
@@ -1303,12 +1303,10 @@ switch($action)
     }
    $result_count = mysql_num_rows($result);
 
-   if(isset($_GET['letter']) && $_GET['letter']!="") $su_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE user_name LIKE '".$_GET['letter']."%'", $connid);
+   if(isset($_GET['letter']) && $_GET['letter']!="") $su_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE user_name LIKE '".mysql_real_escape_string($_GET['letter'])."%'", $connid);
    else $su_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['userdata_table'], $connid);
    list($sel_user_count) = mysql_fetch_row($su_result);
    mysql_free_result($su_result);
-
-   #if(isset($letter) && $letter == "A") $la = ' selected="selected"'; else $la = ''; if (isset($letter) && $letter == "B") $lb = ' selected="selected"'; else $lb = ''; if (isset($letter) && $letter == "C") $lc = ' selected="selected"'; else $lc = ''; if (isset($letter) && $letter == "D") $ld = ' selected="selected"'; else $ld = ''; if (isset($letter) && $letter == "E") $le = ' selected="selected"'; else $le = ''; if (isset($letter) && $letter == "F") $lf = ' selected="selected"'; else $lf = ''; if (isset($letter) && $letter == "G") $lg = ' selected="selected"'; else $lg = ''; if (isset($letter) && $letter == "H") $lh = ' selected="selected"'; else $lh = ''; if (isset($letter) && $letter == "I") $li = ' selected="selected"'; else $li = ''; if (isset($letter) && $letter == "J") $lj = ' selected="selected"'; else $lj = '';   if (isset($letter) && $letter == "K") $lk = ' selected="selected"'; else $lk = ''; if (isset($letter) && $letter == "L") $ll = ' selected="selected"'; else $ll = ''; if (isset($letter) && $letter == "M") $lm = ' selected="selected"'; else $lm = ''; if (isset($letter) && $letter == "N") $ln = ' selected="selected"'; else $ln = ''; if (isset($letter) && $letter == "O") $lo = ' selected="selected"'; else $lo = ''; if (isset($letter) && $letter == "P") $lp = ' selected="selected"'; else $lp = ''; if (isset($letter) && $letter == "Q") $lq = ' selected="selected"'; else $lq = ''; if (isset($letter) && $letter == "R") $lr = ' selected="selected"'; else $lr = ''; if (isset($letter) && $letter == "S") $ls = ' selected="selected"'; else $ls = ''; if (isset($letter) && $letter == "T") $lt = ' selected="selected"'; else $lt = ''; if (isset($letter) && $letter == "U") $lu = ' selected="selected"'; else $lu = ''; if (isset($letter) && $letter == "V") $lv = ' selected="selected"'; else $lv = ''; if (isset($letter) && $letter == "W") $lw = ' selected="selected"'; else $lw = ''; if (isset($letter) && $letter == "X") $lx = ' selected="selected"'; else $lx = ''; if (isset($letter) && $letter == "Y") $ly = ' selected="selected"'; else $ly = ''; if (isset($letter) && $letter == "Z") $lz = ' selected="selected"'; else $lz = '';
 
    $smarty->assign('order',$order);
    $smarty->assign('descasc',$descasc);

@@ -1210,10 +1210,7 @@ switch($action)
      $smarty->assign('name',htmlspecialchars($field['name']));
      $smarty->assign('subject',htmlspecialchars($field['subject']));
      $smarty->assign('formated_time',format_time($lang['time_format_full'],$field['disp_time']));
-     if(isset($_REQUEST['back'])) $smarty->assign('back',$_REQUEST['back']);
-     #$smarty->assign('page',$page);
-     #$smarty->assign('order',$order);
-     #$smarty->assign('descasc',$descasc);
+     if(isset($_REQUEST['back']) && ($_REQUEST['back']=='entry' || $_REQUEST['back']=='thread' || $_REQUEST['back']=='index')) $smarty->assign('back',htmlspecialchars($_REQUEST['back']));
      $smarty->assign('category',$category);
      $smarty->assign('posting_mode',1);
     }
