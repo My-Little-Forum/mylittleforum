@@ -53,24 +53,24 @@ document.getStyle = function(el,styleProp) {
  * @return node_list
  */
 if(typeof document.getElementsByClassName != 'function') {  
- document.getElementsByClassName = function (class_name) {
-  var all_obj,ret_obj=new Array(),j=0,teststr;
-  if(this.all)
-   all_obj=this.all;
-  else if(this.getElementsByTagName && !this.all)
-   all_obj=this.getElementsByTagName("*");
-  var len=all_obj.length;
-  for(var i=0;i<len;i++) {
-   if(all_obj[i].className.indexOf(class_name)!=-1) {
-    teststr=","+all_obj[i].className.split(" ").join(",")+",";
-    if(teststr.indexOf(","+class_name+",")!=-1) {
-     ret_obj[j]=all_obj[i];
-     j++;
-    }
-   } 
-  }
-  return ret_obj;
- };
+	document.getElementsByClassName = function (class_name) {
+	var all_obj,ret_obj=new Array(),j=0,teststr;
+	if(this.all)
+		all_obj=this.all;
+	else if(this.getElementsByTagName && !this.all)
+		all_obj=this.getElementsByTagName("*");
+	var len=all_obj.length;
+	for(var i=0;i<len;i++) {
+		if(all_obj[i].className.indexOf(class_name)!=-1) {
+			teststr=","+all_obj[i].className.split(" ").join(",")+",";
+			if(teststr.indexOf(","+class_name+",")!=-1) {
+				ret_obj[j]=all_obj[i];
+				j++;
+			}
+		} 
+	}
+	return ret_obj;
+	};
 }
 
 /**
@@ -136,36 +136,36 @@ if (window.Node && Node.prototype && !Node.prototype.contains) {
  * @see http://forum.de.selfhtml.org/archiv/2011/3/t204212/#m1382727
  */
 document.createInputElementWithAttributes = function(tagName, attributes, parentElement) {
- if (tagName.toLowerCase() != "input" && tagName.toLowerCase() != "button") 
-  return document.createElementWithAttributes(tagName, attributes, parentElement);
+	if (tagName.toLowerCase() != "input" && tagName.toLowerCase() != "button") 
+		return document.createElementWithAttributes(tagName, attributes, parentElement);
  
- var type = attributes["type"] || false;
- var name = attributes["name"] || false;
- var el   = false;
+	var type = attributes["type"] || false;
+	var name = attributes["name"] || false;
+	var el   = false;
  
- if (type) {
-  try {
-   el = document.createElement(tagName);
-   el.type = type;
-   if (name)
-    el.name = name;
-  }
-  catch(err) {
-   var attr = " type=" + type +(name?" name=" + name : "");
-   //el = document.createElement('<'+tagName+' type="'+type+'">');
-   el = document.createElement("<" + tagName + attr + ">");
-  }
- }
- el = el || document.createElement(tagName);
+	if (type) {
+		try {
+			el = document.createElement(tagName);
+			el.type = type;
+			if (name)
+				el.name = name;
+		}
+		catch(err) {
+			var attr = " type=" + type +(name?" name=" + name : "");
+			//el = document.createElement('<'+tagName+' type="'+type+'">');
+			el = document.createElement("<" + tagName + attr + ">");
+		}
+	}
+	el = el || document.createElement(tagName);
  
- for (var attribute in attributes)  
-  if (attribute.toLowerCase() != "type" && attribute.toLowerCase() != "name")
-   el[attribute] = attributes[attribute];
+	for (var attribute in attributes)  
+		if (attribute.toLowerCase() != "type" && attribute.toLowerCase() != "name")
+			el[attribute] = attributes[attribute];
  
- if (parentElement) 
-  parentElement.appendChild(el);
+	if (parentElement) 
+		parentElement.appendChild(el);
  
- return el;
+	return el;
 };
 
 /**

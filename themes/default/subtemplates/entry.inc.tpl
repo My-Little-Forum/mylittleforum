@@ -12,10 +12,12 @@
 {/if}
 {if $user_type==2}
 {assign var=admin_title value=$smarty.config.administrator_title}
-{assign var=name value="<span class=\"admin\" title=\"$admin_title\">$name</span>"}
+{assign var=name value="<span class=\"admin registered_user\" title=\"$admin_title\">$name</span>"}
 {elseif $user_type==1}
 {assign var=mod_title value=$smarty.config.moderator_title}
-{assign var=name value="<span class=\"mod\" title=\"$mod_title\">$name</span>"}
+{assign var=name value="<span class=\"mod registered_user\" title=\"$mod_title\">$name</span>"}
+{elseif $posting_user_id>0}
+{assign var=name value="<span class=\"registered_user\">$name</span>"}
 {else}
 {assign var=name value="$name"}
 {/if}
@@ -65,7 +67,15 @@
 
 <ul class="thread openthread">
 {function name=tree level=0}
-<li>{if $data.$element.id!=$id}<a class="{if $data.$element.pid==0&&$data.$element.new}threadnew{elseif $data.$element.pid==0}thread{elseif $data.$element.pid!=0&&$data.$element.new}replynew{else}reply{/if}{if $read && in_array($data.$element.id,$read)} read{/if}" href="index.php?id={$data.$element.id}">{$data.$element.subject}</a>{else}<span class="{if $data.$element.pid==0}{if $data.$element.new}currentthreadnew{else}currentthread{/if}{else}{if $data.$element.new}currentreplynew{else}currentreply{/if}{/if}">{$data.$element.subject}</span>{/if}{if $data.$element.no_text} <img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="[ {#no_text_alt#} ]" width="11" height="9" />{/if} - <strong>{$data.$element.name}</strong>, <span id="p{$data.$element.id}" class="tail">{$data.$element.formated_time}{if $data.$element.pid==0} <a href="index.php?mode=thread&amp;id={$data.$element.id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" title="{#open_whole_thread#}" alt="[*]" width="11" height="11" /></a>{/if}{if $admin || $mod} <a id="marklink_{$data.$element.id}" href="index.php?mode=posting&amp;mark={$data.$element.id}&amp;back={$id}" title="{#mark_linktitle#}" onclick="mark({$data.$element.id},'{$THEMES_DIR}/{$theme}/images/marked.png','{$THEMES_DIR}/{$theme}/images/unmarked.png','{$THEMES_DIR}/{$theme}/images/mark_process.png','{#mark_linktitle#}','{#unmark_linktitle#}'); return false">{if $data.$element.marked==0}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/unmarked.png" title="{#mark_linktitle#}" alt="[○]" width="11" height="11" />{else}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/marked.png" title="{#unmark_linktitle#}" alt="[●]" width="11" height="11" title="{#unmark_linktitle#}" />{/if}</a> <a href="index.php?mode=posting&amp;delete_posting={$data.$element.id}&amp;back=entry" title="{#delete_posting_title#}" onclick="return delete_posting_confirm(this, '{$smarty.config.delete_posting_confirm|escape:"url"}')"><img src="{$THEMES_DIR}/{$theme}/images/delete_posting.png" alt="[x]" width="9" height="9" /></a>{/if}</span>
+<li>{if $data.$element.id!=$id}<a class="{if $data.$element.pid==0&&$data.$element.new}threadnew{elseif $data.$element.pid==0}thread{elseif $data.$element.pid!=0&&$data.$element.new}replynew{else}reply{/if}{if $read && in_array($data.$element.id,$read)} read{/if}" href="index.php?id={$data.$element.id}">{$data.$element.subject}</a>{else}<span class="{if $data.$element.pid==0}{if $data.$element.new}currentthreadnew{else}currentthread{/if}{else}{if $data.$element.new}currentreplynew{else}currentreply{/if}{/if}">{$data.$element.subject}</span>{/if}{if $data.$element.no_text} <img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="[ {#no_text_alt#} ]" width="11" height="9" />{/if} - 
+
+{if $data.$element.user_id>0}
+<strong class="registered_user">{$data.$element.name}</strong>, 
+{else}
+<strong>{$data.$element.name}</strong>, 
+{/if}
+
+<span id="p{$data.$element.id}" class="tail">{$data.$element.formated_time}{if $data.$element.pid==0} <a href="index.php?mode=thread&amp;id={$data.$element.id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" title="{#open_whole_thread#}" alt="[*]" width="11" height="11" /></a>{/if}{if $admin || $mod} <a id="marklink_{$data.$element.id}" href="index.php?mode=posting&amp;mark={$data.$element.id}&amp;back={$id}" title="{#mark_linktitle#}" onclick="mark({$data.$element.id},'{$THEMES_DIR}/{$theme}/images/marked.png','{$THEMES_DIR}/{$theme}/images/unmarked.png','{$THEMES_DIR}/{$theme}/images/mark_process.png','{#mark_linktitle#}','{#unmark_linktitle#}'); return false">{if $data.$element.marked==0}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/unmarked.png" title="{#mark_linktitle#}" alt="[○]" width="11" height="11" />{else}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/marked.png" title="{#unmark_linktitle#}" alt="[●]" width="11" height="11" title="{#unmark_linktitle#}" />{/if}</a> <a href="index.php?mode=posting&amp;delete_posting={$data.$element.id}&amp;back=entry" title="{#delete_posting_title#}" onclick="return delete_posting_confirm(this, '{$smarty.config.delete_posting_confirm|escape:"url"}')"><img src="{$THEMES_DIR}/{$theme}/images/delete_posting.png" alt="[x]" width="9" height="9" /></a>{/if}</span>
 {if is_array($child_array[$element])}
 <ul{if $fold_threads==1} style="display:none;"{/if} class="{if $level<$settings.deep_reply}reply{elseif $level>=$settings.deep_reply&&$level<$settings.very_deep_reply}deep-reply{else}very-deep-reply{/if}">{foreach from=$child_array[$element] item=child}{tree element=$child level=$level+1}{/foreach}</ul>{/if}</li>
 {/function}

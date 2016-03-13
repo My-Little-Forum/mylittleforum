@@ -20,11 +20,14 @@
 {if $data.$element.user_type==2}
 {assign var=admin_name value=$data.$element.name}
 {assign var=admin_title value=$smarty.config.administrator_title}
-{assign var=name value="<span class=\"admin\" title=\"$admin_title\">$admin_name</span>"}
+{assign var=name value="<span class=\"admin registered_user\" title=\"$admin_title\">$admin_name</span>"}
 {elseif $data.$element.user_type==1}
 {assign var=mod_name value=$data.$element.name}
 {assign var=mod_title value=$smarty.config.moderator_title}
-{assign var=name value="<span class=\"mod\" title=\"$mod_title\">$mod_name</span>"}
+{assign var=name value="<span class=\"mod registered_user\" title=\"$mod_title\">$mod_name</span>"}
+{elseif $data.$element.user_id>0}
+{assign var=user_name value=$data.$element.name}
+{assign var=name value="<span class=\"registered_user\">$user_name</span>"}
 {else}
 {assign var=name value=$data.$element.name}
 {/if}

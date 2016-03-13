@@ -19,7 +19,6 @@
 * along with this program; if not, write to the                        *
 * Free Software Foundation, Inc.,                                      *
 * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.            *
-*                                                                      *
 ***********************************************************************/
 
 /***********************************************************************
@@ -78,7 +77,7 @@ function BBCodeButton(el) {
 	};
 	
 	this.setHTMLElement(el);
-}
+};
 
 /**
  * Sonderbutton - LINK
@@ -93,32 +92,34 @@ function BBCodeLinkButton(el) {
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
-		var buttonGroup = this.getButtonGroup();	
-		var txtarea = buttonGroup.getTextArea();
-		var selectionRange = txtarea.getSelection().trim();
-
-		var insert_link = (regExpURI.test( selectionRange ))?window.prompt(lang["bbcode_link_url"], selectionRange):window.prompt(lang["bbcode_link_url"],"http://");
-
-		if (!insert_link || insert_link == '' || insert_link == "http://") 
-			return;
-		if (insert_link.indexOf(forumURI) > 0 && insert_link.indexOf("mode=page") < 0 && insert_link.indexOf("mode=contact") < 0 && regExpFID.test(insert_link)) {
-			var msgQuery = regExpFID.exec(insert_link);
-			link_bb_code = "msg";
-			insert_link = msgQuery[1];
-		}
-		else
-			link_bb_code = "link";
-		
-		if (selectionRange == '' || regExpURI.test( selectionRange )) 
-			selectionRange = window.prompt(lang["bbcode_link_text"], "");
-		if (selectionRange != null) {
-			if(selectionRange != '')
-				txtarea.insertTextRange( "["+link_bb_code+"=" + insert_link + "]" + selectionRange + "[/"+link_bb_code+"]" );
+		var buttonGroup = this.getButtonGroup();
+		window.setTimeout(function(){ 
+			var txtarea = buttonGroup.getTextArea();
+			var selectionRange = txtarea.getSelection().trim();
+	
+			var insert_link = (regExpURI.test( selectionRange ))?window.prompt(lang["bbcode_link_url"], selectionRange):window.prompt(lang["bbcode_link_url"],"http://");
+	
+			if (!insert_link || insert_link == '' || insert_link == "http://") 
+				return;
+			if (insert_link.indexOf(forumURI) > 0 && insert_link.indexOf("mode=page") < 0 && insert_link.indexOf("mode=contact") < 0 && regExpFID.test(insert_link)) {
+				var msgQuery = regExpFID.exec(insert_link);
+				link_bb_code = "msg";
+				insert_link = msgQuery[1];
+			}
 			else
-				txtarea.insertTextRange( "["+link_bb_code+"]" + insert_link + "[/"+link_bb_code+"]" );
-		}
+				link_bb_code = "link";
+			
+			if (selectionRange == '' || regExpURI.test( selectionRange )) 
+				selectionRange = window.prompt(lang["bbcode_link_text"], "");
+			if (selectionRange != null) {
+				if(selectionRange != '')
+					txtarea.insertTextRange( "["+link_bb_code+"=" + insert_link + "]" + selectionRange + "[/"+link_bb_code+"]" );
+				else
+					txtarea.insertTextRange( "["+link_bb_code+"]" + insert_link + "[/"+link_bb_code+"]" );
+			}
+		}, 150);
     };
-}
+};
 
 /**
  * Sonderbutton mit Promt-Box
@@ -132,20 +133,22 @@ function BBCodePromtButton(el, quest, par) {
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
-		var buttonGroup = this.getButtonGroup();	
-		var txtarea = buttonGroup.getTextArea();
-
-		var selectionRange = txtarea.getSelection().trim();
+		var buttonGroup = this.getButtonGroup();
+		var code = this.getCode();
+		window.setTimeout(function(){
+			var txtarea = buttonGroup.getTextArea();
+			var selectionRange = txtarea.getSelection().trim();
 		
-		if (selectionRange == "") {
-			var p = window.prompt(quest, par);
-			if (p && p.trim() != "" && p.trim() != par ) 
-				txtarea.insertTextRange( "[" + this.getCode() + "]" + p + "[/" + this.getCode() + "]" );
-		}
-		else
-			txtarea.insertTextRange( "[" + this.getCode() + "]" + selectionRange + "[/" + this.getCode() + "]" );
+			if (selectionRange == "") {
+				var p = window.prompt(quest, par);
+				if (p && p.trim() != "" && p.trim() != par ) 
+					txtarea.insertTextRange( "[" + code + "]" + p + "[/" + code + "]" );
+			}
+			else
+				txtarea.insertTextRange( "[" + code + "]" + selectionRange + "[/" + code + "]" );
+		}, 150);
 	};
-}
+};
 
 /**
  * Sonderbutton - COLOR
@@ -191,7 +194,7 @@ function BBCodeColorChooserButton(el) {
 		var code = this.getCode();
 		txtarea.insertTextRange( "[" + code + obj.extension + "]" + txtarea.getSelection() + "[/" + code + "]" );			
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(false);
-	}
+	};
 	
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
@@ -201,7 +204,7 @@ function BBCodeColorChooserButton(el) {
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(colorTable);
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	
 	};
-}
+};
 
 /**
  * Sonderbutton mit zusaetzlichen Optionen
@@ -228,27 +231,30 @@ function BBCodeOptionButton(el, list, quest, par) {
 	this.insertOptionCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
-		var buttonGroup = this.getButtonGroup();	
-		var txtarea = buttonGroup.getTextArea();
-		var selectionRange = txtarea.getSelection();
+		var buttonGroup = this.getButtonGroup();
 		// Ausnahme INLINECODE
-		var codestart = this.getCode(), codeend = this.getCode();
-		if (obj.attribute.toLowerCase() == "inlinecode") {
-			codestart = codeend = obj.attribute;
-		}
-		if (obj.attribute.trim() && obj.attribute.toLowerCase() != "inlinecode")
-			codestart += "=" + obj.attribute;
+		var codestart = this.getCode(), codeend = this.getCode();	
+		window.setTimeout(function(){
+			var txtarea = buttonGroup.getTextArea();
+			var selectionRange = txtarea.getSelection();
+		
+			if (obj.attribute.toLowerCase() == "inlinecode") {
+				codestart = codeend = obj.attribute;
+			}
+			if (obj.attribute.trim() && obj.attribute.toLowerCase() != "inlinecode")
+				codestart += "=" + obj.attribute;
 			
-		if (quest && selectionRange == "") {
-			var p = window.prompt(quest, par);
-			if (p && p.trim() != "" && p.trim() != par ) 
-				txtarea.insertTextRange( "[" + codestart + "]" + p + "[/" + codeend + "]" );
-		}	
-		else
-			txtarea.insertTextRange( "[" + codestart + "]" + selectionRange + "[/" + codeend + "]" );
+			if (quest && selectionRange == "") {
+				var p = window.prompt(quest, par);
+				if (p && p.trim() != "" && p.trim() != par ) 
+					txtarea.insertTextRange( "[" + codestart + "]" + p + "[/" + codeend + "]" );
+			}	
+			else
+				txtarea.insertTextRange( "[" + codestart + "]" + selectionRange + "[/" + codeend + "]" );
 			
-		buttonGroup.getAdditionalOptionsWindow().enableOptionList(false);
-	}
+			buttonGroup.getAdditionalOptionsWindow().enableOptionList(false);
+		}, 150);
+	};
 	
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
@@ -258,7 +264,7 @@ function BBCodeOptionButton(el, list, quest, par) {
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(optionList);
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	
 	};
-}
+};
 
 /**
  * Sonderbutton - LIST
@@ -282,7 +288,7 @@ function BBCodeListButton(el) {
 		
 		txtarea.insertTextRange( "\r\n[list]" + listStr + "\r\n[/list]\r\n");
 	};
-}
+};
 
 /**
  * Sonderbutton - einzelnes Smilies
@@ -299,7 +305,7 @@ function BBCodeSingleSmilieButton(el) {
 		var selectionRange = txtarea.getSelection();
 		txtarea.insertTextRange( selectionRange + this.getCode() + " " );
 	};
-}
+};
 
 /**
  * Sonderbutton - Smilies
@@ -341,8 +347,7 @@ function BBCodeSmilieButton(el, list) {
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(smilies);
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	
 	};	
-	
-}
+};
 
 /**
  * Sonderbutton mit Zusatzfenster
@@ -366,8 +371,8 @@ function BBCodePopUpButton(el, uri, width, height) {
 		var win = window.open(uri,"MyLittleForum","height="+height+",width="+width+",left="+left+", top="+top+",scrollbars,resizable");
 		window.mlfBBCodeButton = this;
 		win.focus();
-	}
-}
+	};
+};
 
 /* Vererbung */
 BBCodeLinkButton.prototype   = new BBCodeButton;
