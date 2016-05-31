@@ -37,14 +37,14 @@ if(isset($_GET['login_message'])) $smarty->assign('login_message',$_GET['login_m
 // clear failed logins and check if there are failed logins from this ip:
 if($settings['temp_block_ip_after_repeated_failed_logins']==1)
  {
-  @mysql_query("DELETE FROM ".$db_settings['login_control_table']." WHERE time < (NOW()-INTERVAL 10 MINUTE)", $connid);
-  $failed_logins_result = @mysql_query("SELECT logins FROM ".$db_settings['login_control_table']." WHERE ip='".mysql_real_escape_string($_SERVER["REMOTE_ADDR"])."'", $connid);
-  if(mysql_num_rows($failed_logins_result)==1)
+  @mysqli_query($connid, "DELETE FROM ".$db_settings['login_control_table']." WHERE time < (NOW()-INTERVAL 10 MINUTE)");
+  $failed_logins_result = @mysqli_query($connid, "SELECT logins FROM ".$db_settings['login_control_table']." WHERE ip='".mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"])."'");
+  if(mysqli_num_rows($failed_logins_result)==1)
    {
-    $data = mysql_fetch_array($failed_logins_result);
+    $data = mysqli_fetch_array($failed_logins_result);
     if($data['logins']>=3) $action = 'ip_temporarily_blocked';
    }
-  mysql_free_result($failed_logins_result);
+  mysqli_free_result($failed_logins_result);
  }
 
 switch ($action)
@@ -52,10 +52,10 @@ switch ($action)
   case "do_login":
    if(isset($request_username) && isset($request_userpw))
     {
-     $result = mysql_query("SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, entries_read FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysql_real_escape_string(my_strtolower($request_username, $lang['charset']))."'", $connid) or raise_error('database_error',mysql_error());
-     if (mysql_num_rows($result) == 1)
+     $result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, entries_read FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysqli_real_escape_string($connid, my_strtolower($request_username, $lang['charset']))."'") or raise_error('database_error',mysqli_error($connid));
+     if (mysqli_num_rows($result) == 1)
       {
-       $feld = mysql_fetch_array($result);
+       $feld = mysqli_fetch_array($result);
 
        if(is_pw_correct($request_userpw,$feld['user_pw']))
         {
@@ -153,19 +153,19 @@ switch ($action)
 
          if(isset($save_auto_login))
           {
-           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', auto_login_code='".mysql_real_escape_string($auto_login_code)."', pwf_code='', language='".mysql_real_escape_string($language_update)."', time_zone='".mysql_real_escape_string($time_zone_update)."', theme='".mysql_real_escape_string($theme_update)."', entries_read='".mysql_real_escape_string(implode(',',$read))."' WHERE user_id=".intval($user_id), $connid);
+           @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR'])."', auto_login_code='".mysqli_real_escape_string($connid, $auto_login_code)."', pwf_code='', language='".mysqli_real_escape_string($connid, $language_update)."', time_zone='".mysqli_real_escape_string($connid, $time_zone_update)."', theme='".mysqli_real_escape_string($connid, $theme_update)."', entries_read='".mysqli_real_escape_string($connid, implode(',',$read))."' WHERE user_id=".intval($user_id));
           }
          else
           {
-           @mysql_query("UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', pwf_code='', language='".mysql_real_escape_string($language_update)."', time_zone='".mysql_real_escape_string($time_zone_update)."', theme='".mysql_real_escape_string($theme_update)."', entries_read='".mysql_real_escape_string(implode(',',$read))."' WHERE user_id=".intval($user_id), $connid);
+           @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR'])."', pwf_code='', language='".mysqli_real_escape_string($connid, $language_update)."', time_zone='".mysqli_real_escape_string($connid, $time_zone_update)."', theme='".mysqli_real_escape_string($connid, $theme_update)."', entries_read='".mysqli_real_escape_string($connid, implode(',',$read))."' WHERE user_id=".intval($user_id));
           }
 
          // auto delete spam:
-         if($user_type>0 && $settings['auto_delete_spam']>0) @mysql_query("DELETE FROM ".$db_settings['forum_table']." WHERE time < (NOW() - INTERVAL ".$settings['auto_delete_spam']." HOUR) AND spam=1", $connid);
+         if($user_type>0 && $settings['auto_delete_spam']>0) @mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE time < (NOW() - INTERVAL ".$settings['auto_delete_spam']." HOUR) AND spam=1");
 
          if ($db_settings['useronline_table'] != "")
           {
-           @mysql_query("DELETE FROM ".$db_settings['useronline_table']." WHERE ip = '".$_SERVER['REMOTE_ADDR']."'", $connid);
+           @mysqli_query($connid, "DELETE FROM ".$db_settings['useronline_table']." WHERE ip = '".$_SERVER['REMOTE_ADDR']."'");
           }
 
          if(isset($_POST['back']) && isset($_POST['id']))
@@ -226,16 +226,16 @@ switch ($action)
    if(trim($_POST['pwf_email'])=='') $error=true;
    if(empty($error))
     {
-     $pwf_result = @mysql_query("SELECT user_id, user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_email = '".mysql_real_escape_string($_POST['pwf_email'])."' LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-     if(mysql_num_rows($pwf_result)!=1) $error=true;
-     else $field = mysql_fetch_array($pwf_result);
-     mysql_free_result($pwf_result);
+     $pwf_result = @mysqli_query($connid, "SELECT user_id, user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_email = '".mysqli_real_escape_string($connid, $_POST['pwf_email'])."' LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+     if(mysqli_num_rows($pwf_result)!=1) $error=true;
+     else $field = mysqli_fetch_array($pwf_result);
+     mysqli_free_result($pwf_result);
     }
    if(empty($error))
     {
      $pwf_code = random_string(20);
      $pwf_code_hash = generate_pw_hash($pwf_code);
-     $update_result = mysql_query("UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, pwf_code='".mysql_real_escape_string($pwf_code_hash)."' WHERE user_id = ".intval($field['user_id'])." LIMIT 1", $connid);
+     $update_result = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, pwf_code='".mysqli_real_escape_string($connid, $pwf_code_hash)."' WHERE user_id = ".intval($field['user_id'])." LIMIT 1");
      // send mail with activating link:
      $smarty->configLoad($settings['language_file'], 'emails');
      $lang = $smarty->getConfigVars();
@@ -261,10 +261,10 @@ switch ($action)
   case "activate":
   if(isset($_GET['activate']) && trim($_GET['activate']) != "" && isset($_GET['code']) && trim($_GET['code']) != "")
    {
-    $pwf_result = mysql_query("SELECT user_id, user_name, user_email, pwf_code FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($_GET["activate"])."'", $connid);
-    if (!$pwf_result) raise_error('database_error',mysql_error());
-    $field = mysql_fetch_array($pwf_result);
-    mysql_free_result($pwf_result);
+    $pwf_result = mysqli_query($connid, "SELECT user_id, user_name, user_email, pwf_code FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($_GET["activate"])."'");
+    if (!$pwf_result) raise_error('database_error',mysqli_error($connid));
+    $field = mysqli_fetch_array($pwf_result);
+    mysqli_free_result($pwf_result);
     if(trim($field['pwf_code'])!='' && $field['user_id'] == $_GET['activate'] && is_pw_correct($_GET['code'],$field['pwf_code']))
      {
       // generate new password:
@@ -272,7 +272,7 @@ switch ($action)
       else $pwl = $settings['min_pw_length'];
       $new_pw = random_string($pwl);
       $pw_hash = generate_pw_hash($new_pw);
-      $update_result = mysql_query("UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, user_pw='".mysql_real_escape_string($pw_hash)."', pwf_code='' WHERE user_id='".$field["user_id"]."' LIMIT 1", $connid);
+      $update_result = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, user_pw='".mysqli_real_escape_string($connid, $pw_hash)."', pwf_code='' WHERE user_id='".$field["user_id"]."' LIMIT 1");
 
       // send new password:
       $smarty->configLoad($settings['language_file'], 'emails');

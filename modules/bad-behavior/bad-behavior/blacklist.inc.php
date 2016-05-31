@@ -6,6 +6,7 @@ function bb2_blacklist($package) {
 	// These user agent strings occur at the beginning of the line.
 	$bb2_spambots_0 = array(
 		"8484 Boston Project",	// video poker/porn spam
+		"ArchiveTeam",	// ignores robots.txt and hammers server
 		"adwords",		// referrer spam
 		"autoemailspider",	// spam harvester
 		"blogsearchbot-martin",	// from honeypot
@@ -77,6 +78,7 @@ function bb2_blacklist($package) {
 		"<sc",			// XSS exploit attempts
 		"; Widows ",		// misc comment/email spam
 		"a href=",		// referrer spam
+		"ArchiveBot",	// ignores robots.txt and hammers server
 		"Bad Behavior Test",	// Add this to your user-agent to test BB
 		"compatible ; MSIE",	// misc comment/email spam
 		"compatible-",		// misc comment/email spam
@@ -93,6 +95,7 @@ function bb2_blacklist($package) {
 		"Murzillo compatible",	// comment spam bot
 		".NET CLR 1)",		// free poker, etc.
 		".NET CLR1",		// spam harvester
+		"Netsparker",		// vulnerability scanner
 		"Nikto/",		// vulnerability scanner
 		"Perman Surfer",	// old and very broken harvester
 		"POE-Component-Client",	// free poker, etc.

@@ -9,7 +9,7 @@ $smarty->configLoad($settings['language_file'], 'emails');
 $lang = $smarty->getConfigVars();
 
 // remove not activated user accounts:
-@mysql_query("DELETE FROM ".$db_settings['userdata_table']." WHERE registered < (NOW() - INTERVAL 24 HOUR) AND activate_code != '' AND logins=0", $connid);
+@mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_table']." WHERE registered < (NOW() - INTERVAL 24 HOUR) AND activate_code != '' AND logins=0");
 
 if(empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha_register']>0)
  {
@@ -71,14 +71,14 @@ switch($action)
        if($too_long_word) $errors[] = 'error_word_too_long';
 
        // look if name already exists:
-       $name_result = mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysql_real_escape_string(my_strtolower($new_user_name, $lang['charset']))."'", $connid) or raise_error('database_error',mysql_error());
-       if(mysql_num_rows($name_result)>0) $errors[] = 'user_name_already_exists';
-       mysql_free_result($name_result);
+       $name_result = mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysqli_real_escape_string($connid, my_strtolower($new_user_name, $lang['charset']))."'") or raise_error('database_error',mysqli_error($connid));
+       if(mysqli_num_rows($name_result)>0) $errors[] = 'user_name_already_exists';
+       mysqli_free_result($name_result);
 
        // look, if e-mail already exists:
-       $email_result = mysql_query("SELECT user_email FROM ".$db_settings['userdata_table']." WHERE lower(user_email) = '".mysql_real_escape_string(my_strtolower($new_user_email, $lang['charset']))."'", $connid) or raise_error('database_error',mysql_error());
-       if(mysql_num_rows($email_result)>0) $errors[] = 'error_email_alr_exists';
-       mysql_free_result($email_result);
+       $email_result = mysqli_query($connid, "SELECT user_email FROM ".$db_settings['userdata_table']." WHERE lower(user_email) = '".mysqli_real_escape_string($connid, my_strtolower($new_user_email, $lang['charset']))."'") or raise_error('database_error',mysqli_error($connid));
+       if(mysqli_num_rows($email_result)>0) $errors[] = 'error_email_alr_exists';
+       mysqli_free_result($email_result);
 
        // e-mail correct?
        if(!is_valid_email($new_user_email)) $errors[] = 'error_email_wrong';
@@ -117,14 +117,14 @@ switch($action)
        $activate_code_hash = generate_pw_hash($activate_code);
        if($settings['register_mode']==1) $user_lock = 1;
        else $user_lock = 0;
-       @mysql_query("INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, signature, profile, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, user_lock, auto_login_code, pwf_code, activate_code, entries_read) VALUES (0,'".mysql_real_escape_string($new_user_name)."','','".mysql_real_escape_string($pw_hash)."','".mysql_real_escape_string($new_user_email)."','','','','',".$settings['default_email_contact'].",'0000-00-00 00:00:00',NOW(),'".mysql_real_escape_string($_SERVER["REMOTE_ADDR"])."',NOW(),".intval($settings['default_view']).", ".intval($settings['fold_threads']).", ".$user_lock.", '', '', '".mysql_real_escape_string($activate_code_hash)."', '')", $connid) or raise_error('database_error',mysql_error());
+       @mysqli_query($connid, "INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, signature, profile, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, user_lock, auto_login_code, pwf_code, activate_code, entries_read) VALUES (0,'".mysqli_real_escape_string($connid, $new_user_name)."','','".mysqli_real_escape_string($connid, $pw_hash)."','".mysqli_real_escape_string($connid, $new_user_email)."','','','','',".$settings['default_email_contact'].",'0000-00-00 00:00:00',NOW(),'".mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"])."',NOW(),".intval($settings['default_view']).", ".intval($settings['fold_threads']).", ".$user_lock.", '', '', '".mysqli_real_escape_string($connid, $activate_code_hash)."', '')") or raise_error('database_error',mysqli_error($connid));
 
        // get new user ID:
-       $new_user_id_result = mysql_query("SELECT user_id FROM ".$db_settings['userdata_table']." WHERE user_name = '".mysql_real_escape_string($new_user_name)."' LIMIT 1", $connid);
-       if (!$new_user_id_result) raise_error('database_error',mysql_error());
-       $field = mysql_fetch_array($new_user_id_result);
+       $new_user_id_result = mysqli_query($connid, "SELECT user_id FROM ".$db_settings['userdata_table']." WHERE user_name = '".mysqli_real_escape_string($connid, $new_user_name)."' LIMIT 1");
+       if (!$new_user_id_result) raise_error('database_error',mysqli_error($connid));
+       $field = mysqli_fetch_array($new_user_id_result);
        $new_user_id = $field['user_id'];
-       mysql_free_result($new_user_id_result);
+       mysqli_free_result($new_user_id_result);
 
        // send e-mail with activation key to new user:
        $lang['new_user_email_txt'] = str_replace("[name]", $new_user_name, $lang['new_user_email_txt']);
@@ -162,10 +162,10 @@ switch($action)
     }
    if(empty($error))
     {
-     $result = mysql_query("SELECT user_name, user_email, logins, activate_code FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($id)." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-     if(mysql_num_rows($result) != 1) $errors[] = true;
-     $data = mysql_fetch_array($result);
-     mysql_free_result($result);
+     $result = mysqli_query($connid, "SELECT user_name, user_email, logins, activate_code FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($id)." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+     if(mysqli_num_rows($result) != 1) $errors[] = true;
+     $data = mysqli_fetch_array($result);
+     mysqli_free_result($result);
     }
    if(empty($error))
     {
@@ -175,7 +175,7 @@ switch($action)
     {
      if(is_pw_correct($key,$data['activate_code']))
       {
-       @mysql_query("UPDATE ".$db_settings['userdata_table']." SET activate_code = '' WHERE user_id=".intval($id), $connid) or raise_error('database_error',mysql_error());
+       @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET activate_code = '' WHERE user_id=".intval($id)) or raise_error('database_error',mysqli_error($connid));
 
        // E-mail notification to mods and admins:
        if($data['logins']==0) // if != 0 user has changed his e-mail address
@@ -187,9 +187,9 @@ switch($action)
          $new_user_notif_txt = str_replace("[user_link]", $settings['forum_address']."index.php?mode=user&show_user=".$id, $new_user_notif_txt);
 
          // who gets a notification?
-         $admin_result = @mysql_query("SELECT user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_type>0 AND new_user_notification=1", $connid);
-         if(!$admin_result) raise_error('database_error',mysql_error());
-         while($admin_array = mysql_fetch_array($admin_result))
+         $admin_result = @mysqli_query($connid, "SELECT user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_type>0 AND new_user_notification=1");
+         if(!$admin_result) raise_error('database_error',mysqli_error($connid));
+         while($admin_array = mysqli_fetch_array($admin_result))
           {
            $ind_reg_emailbody = str_replace("[recipient]", $admin_array['user_name'], $new_user_notif_txt);
            $admin_mailto = my_mb_encode_mimeheader($admin_array['user_name'], CHARSET, "Q")." <".$admin_array['user_email'].">";

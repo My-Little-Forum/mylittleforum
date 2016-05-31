@@ -8,12 +8,12 @@ if(!defined('IN_INDEX'))
 if(isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] == 2)
 {
 // remove not activated user accounts:
-@mysql_query("DELETE FROM ".$db_settings['userdata_table']." WHERE registered < (NOW() - INTERVAL 24 HOUR) AND activate_code != '' AND logins=0", $connid);
+@mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_table']." WHERE registered < (NOW() - INTERVAL 24 HOUR) AND activate_code != '' AND logins=0");
 
-#$result = mysql_query("SELECT id, subject, text FROM ".$db_settings['forum_table'], $connid);
-#while($data = mysql_fetch_array($result))
+#$result = mysqli_query($connid, "SELECT id, subject, text FROM ".$db_settings['forum_table']);
+#while($data = mysqli_fetch_array($result))
 # {
-#  mysql_query("UPDATE ".$db_settings['forum_table']." SET subject = '".mysql_real_escape_string(utf8_encode($data['subject']))."', text = '".mysql_real_escape_string(utf8_encode($data['text']))."' WHERE id=".intval($data['id']), $connid);
+#  mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET subject = '".mysqli_real_escape_string($connid, utf8_encode($data['subject']))."', text = '".mysqli_real_escape_string($connid, utf8_encode($data['text']))."' WHERE id=".intval($data['id']));
 # }
 
 unset($errors);
@@ -37,17 +37,16 @@ if(isset($_POST['new_category']))
     #if(preg_match("/\"/i",$new_category) || preg_match("/</i",$new_category) || preg_match("/>/i",$new_category)) $errors[] = $lang_add['category_invalid_chars'];
 
     // does this category already exist?
-    $result = mysql_query("SELECT category FROM ".$db_settings['category_table']." WHERE lower(category) = '".mysql_real_escape_string(my_strtolower($new_category, $lang['charset']))."'", $connid) or raise_error('database_error',mysql_error());
-    if(mysql_num_rows($result)>0) $errors[] = 'category_already_exists';
-    mysql_free_result($result);
+    $result = mysqli_query($connid, "SELECT category FROM ".$db_settings['category_table']." WHERE lower(category) = '".mysqli_real_escape_string($connid, my_strtolower($new_category, $lang['charset']))."'") or raise_error('database_error',mysqli_error($connid));
+    if(mysqli_num_rows($result)>0) $errors[] = 'category_already_exists';
+    mysqli_free_result($result);
 
     if(empty($errors))
      {
-      $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['category_table'], $connid);
-      list($category_count) = mysql_fetch_row($count_result);
-      mysql_free_result($count_result);
-      @mysql_query("INSERT INTO ".$db_settings['category_table']." (order_id, category, description, accession)
-      VALUES (".$category_count."+1,'".mysql_real_escape_string($new_category)."','',".$accession.")", $connid) or die(mysql_error());
+      $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['category_table']);
+      list($category_count) = mysqli_fetch_row($count_result);
+      mysqli_free_result($count_result);
+      @mysqli_query($connid, "INSERT INTO ".$db_settings['category_table']." (order_id, category, description, accession) VALUES (".$category_count."+1,'".mysqli_real_escape_string($connid, $new_category)."','',".$accession.")") or die(mysqli_error($connid));
       header("location: index.php?mode=admin&action=categories");
       exit();
      }
@@ -62,9 +61,9 @@ if(isset($_POST['new_category']))
 if(isset($_GET['edit_user']))
  {
   $edit_user_id = intval($_GET['edit_user']);
-  $result = mysql_query("SELECT user_type, user_name, user_real_name, user_email, email_contact, user_hp, user_location, signature, profile, user_view, new_posting_notification, new_user_notification, gender, birthday, activate_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = '".$edit_user_id."'", $connid) or raise_error('database_error',mysql_error());
-  $field = mysql_fetch_array($result);
-  mysql_free_result($result);
+  $result = mysqli_query($connid, "SELECT user_type, user_name, user_real_name, user_email, email_contact, user_hp, user_location, signature, profile, user_view, new_posting_notification, new_user_notification, gender, birthday, activate_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = '".$edit_user_id."'") or raise_error('database_error',mysqli_error($connid));
+  $field = mysqli_fetch_array($result);
+  mysqli_free_result($result);
 
   if(trim($field['birthday']) == '' || $field['birthday']=='0000-00-00') $user_birthday = '';
   else
@@ -227,21 +226,21 @@ if(isset($_POST['edit_user_submit']))
    }
 
   // old user name:
-  $oun_result = @mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($edit_user_id)." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-  $oun_data = mysql_fetch_array($oun_result);
-  mysql_free_result($oun_result);
+  $oun_result = @mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($edit_user_id)." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+  $oun_data = mysqli_fetch_array($oun_result);
+  mysqli_free_result($oun_result);
   $old_user_name = $oun_data['user_name'];
 
   // check data:
   if($edit_user_name=='') $errors[] = 'user_name_empty';
 
   // does the name already exist?
-  $name_result = @mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id != ".intval($edit_user_id)." AND lower(user_name) = '".mysql_real_escape_string(my_strtolower($edit_user_name, $lang['charset']))."'", $connid) or raise_error('database_error',mysql_error());
-  if(mysql_num_rows($name_result)>0) $errors[] = 'user_name_already_exists';
-  mysql_free_result($name_result);
+  $name_result = @mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id != ".intval($edit_user_id)." AND lower(user_name) = '".mysqli_real_escape_string($connid, my_strtolower($edit_user_name, $lang['charset']))."'") or raise_error('database_error',mysqli_error($connid));
+  if(mysqli_num_rows($name_result)>0) $errors[] = 'user_name_already_exists';
+  mysqli_free_result($name_result);
 
-  /*$field = mysql_fetch_array($name_result);
-  mysql_free_result($name_result);
+  /*$field = mysqli_fetch_array($name_result);
+  mysqli_free_result($name_result);
   if($edit_user_id != $field['user_id'] && my_strtolower($field["user_name"], $lang['charset']) == my_strtolower($edit_user_name, $lang['charset'])) $errors[] = 'user_name_already_exists';
   */
   if(my_strlen($edit_user_name, $lang['charset']) > $settings['username_maxlength']) $errors[] = 'error_username_too_long';
@@ -297,10 +296,10 @@ if(isset($_POST['edit_user_submit']))
   // save if no errors:
   if(empty($errors))
    {
-    @mysql_query("UPDATE ".$db_settings['userdata_table']." SET user_name='".mysql_real_escape_string($edit_user_name)."', user_type='".intval($edit_user_type)."', user_email='".mysql_real_escape_string($user_email)."', user_real_name='".mysql_real_escape_string($user_real_name)."', gender=".intval($gender).", birthday='".mysql_real_escape_string($birthday)."', email_contact=".intval($email_contact).", user_hp='".mysql_real_escape_string($user_hp)."', user_location='".mysql_real_escape_string($user_location)."', profile='".mysql_real_escape_string($profile)."', signature='".mysql_real_escape_string($signature)."', last_login=last_login, registered=registered, new_posting_notification=".intval($new_posting_notification).", new_user_notification=".intval($new_user_notification).", language='".mysql_real_escape_string($user_language)."', time_zone='".mysql_real_escape_string($user_time_zone)."', time_difference=".intval($time_difference).", theme='".mysql_real_escape_string($user_theme)."' WHERE user_id=".$edit_user_id, $connid) or raise_error('database_error',mysql_error());
-    #@mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, name='".mysql_real_escape_string($edit_user_name)."' WHERE user_id=".intval($edit_user_id), $connid);
-    #@mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, edited_by='".mysql_real_escape_string($edit_user_name)."' WHERE edited_by='".mysql_real_escape_string($old_user_name)."'", $connid);
-    @mysql_query("DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".$edit_user_id, $connid);
+    @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_name='".mysqli_real_escape_string($connid, $edit_user_name)."', user_type='".intval($edit_user_type)."', user_email='".mysqli_real_escape_string($connid, $user_email)."', user_real_name='".mysqli_real_escape_string($connid, $user_real_name)."', gender=".intval($gender).", birthday='".mysqli_real_escape_string($connid, $birthday)."', email_contact=".intval($email_contact).", user_hp='".mysqli_real_escape_string($connid, $user_hp)."', user_location='".mysqli_real_escape_string($connid, $user_location)."', profile='".mysqli_real_escape_string($connid, $profile)."', signature='".mysqli_real_escape_string($connid, $signature)."', last_login=last_login, registered=registered, new_posting_notification=".intval($new_posting_notification).", new_user_notification=".intval($new_user_notification).", language='".mysqli_real_escape_string($connid, $user_language)."', time_zone='".mysqli_real_escape_string($connid, $user_time_zone)."', time_difference=".intval($time_difference).", theme='".mysqli_real_escape_string($connid, $user_theme)."' WHERE user_id=".$edit_user_id) or raise_error('database_error',mysqli_error($connid));
+    #@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, name='".mysqli_real_escape_string($connid, $edit_user_name)."' WHERE user_id=".intval($edit_user_id));
+    #@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, edited_by='".mysqli_real_escape_string($connid, $edit_user_name)."' WHERE edited_by='".mysqli_real_escape_string($connid, $old_user_name)."'");
+    @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".$edit_user_id);
 
     if(isset($_POST['delete_avatar']))
      {
@@ -372,10 +371,10 @@ if(isset($_POST['edit_user_submit']))
 
 if(isset($_GET['edit_category']))
  {
-  $category_result = mysql_query("SELECT id, order_id, category, accession FROM ".$db_settings['category_table']." WHERE id = '".intval($_GET['edit_category'])."' LIMIT 1", $connid);
-  if(!$category_result) raise_error('database_error',mysql_error());
-  $field = mysql_fetch_array($category_result);
-  mysql_free_result($category_result);
+  $category_result = mysqli_query($connid, "SELECT id, order_id, category, accession FROM ".$db_settings['category_table']." WHERE id = '".intval($_GET['edit_category'])."' LIMIT 1");
+  if(!$category_result) raise_error('database_error',mysqli_error($connid));
+  $field = mysqli_fetch_array($category_result);
+  mysqli_free_result($category_result);
   $smarty->assign('category_id',$field['id']);
   $smarty->assign('edit_category',htmlspecialchars($field['category']));
   $smarty->assign('edit_accession',$field['accession']);
@@ -384,10 +383,10 @@ if(isset($_GET['edit_category']))
 
 if (isset($_GET['delete_category']))
  {
-  $category_result = mysql_query("SELECT id, category FROM ".$db_settings['category_table']." WHERE id = '".intval($_GET['delete_category'])."' LIMIT 1", $connid);
-  if(!$category_result) raise_error('database_error',mysql_error());
-  $field = mysql_fetch_array($category_result);
-  mysql_free_result($category_result);
+  $category_result = mysqli_query($connid, "SELECT id, category FROM ".$db_settings['category_table']." WHERE id = '".intval($_GET['delete_category'])."' LIMIT 1");
+  if(!$category_result) raise_error('database_error',mysqli_error($connid));
+  $field = mysqli_fetch_array($category_result);
+  mysqli_free_result($category_result);
   $smarty->assign('category_id',$field['id']);
   $smarty->assign('category_name',$field['category']);
 
@@ -416,17 +415,17 @@ if(isset($_POST['edit_category_submit']))
   $category = str_replace('"','\'',$category);
   $accession = intval($_POST['accession']);
   // does this category already exist?
-  $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['category_table']." WHERE category LIKE '".mysql_real_escape_string($category)."' AND id != ".$id, $connid);
-  if(!$count_result) raise_error('database_error',mysql_error());
-  list($category_count) = mysql_fetch_row($count_result);
-  mysql_free_result($count_result);
+  $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['category_table']." WHERE category LIKE '".mysqli_real_escape_string($connid, $category)."' AND id != ".$id);
+  if(!$count_result) raise_error('database_error',mysqli_error($connid));
+  list($category_count) = mysqli_fetch_row($count_result);
+  mysqli_free_result($count_result);
 
   if($category_count > 0) { $errors[] = 'category_already_exists'; }
 
   if(empty($errors))
    {
-    mysql_query("UPDATE ".$db_settings['category_table']." SET category='".mysql_real_escape_string($category)."', accession=".$accession." WHERE id=".$id, $connid);
-    #mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category='".$_POST['edit_category_conf']."' WHERE category='".$_POST['old_category']."'", $connid);
+    mysqli_query($connid, "UPDATE ".$db_settings['category_table']." SET category='".mysqli_real_escape_string($connid, $category)."', accession=".$accession." WHERE id=".$id);
+    #mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category='".$_POST['edit_category_conf']."' WHERE category='".$_POST['old_category']."'");
     header("location: index.php?mode=admin&action=categories");
     die();
    }
@@ -447,22 +446,22 @@ if(isset($_POST['entries_in_not_existing_categories_submit']))
    {
     if(isset($category_ids_query))
      {
-      mysql_query("DELETE FROM ".$db_settings['forum_table']." WHERE category NOT IN (".$category_ids_query.")", $connid);
+      mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE category NOT IN (".$category_ids_query.")");
      }
     else
      {
-      mysql_query("DELETE FROM ".$db_settings['forum_table']." WHERE category != 0", $connid);
+      mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE category != 0");
      }
    }
   else
    {
     if(isset($category_ids_query))
      {
-      mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category=".intval($_POST['move_category'])." WHERE category NOT IN (".$category_ids_query.")", $connid);
+      mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category=".intval($_POST['move_category'])." WHERE category NOT IN (".$category_ids_query.")");
      }
     else
      {
-      mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category=".intval($_POST['move_category'])." WHERE category != 0", $connid);
+      mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category=".intval($_POST['move_category'])." WHERE category != 0");
      }
    }
   header("location: index.php?mode=admin&action=categories");
@@ -475,26 +474,26 @@ if(isset($_POST['delete_category_submit']))
   if($category_id > 0)
    {
     // delete category from category table:
-    mysql_query("DELETE FROM ".$db_settings['category_table']." WHERE id=".$category_id, $connid);
+    mysqli_query($connid, "DELETE FROM ".$db_settings['category_table']." WHERE id=".$category_id);
 
     // reset order:
-    $result = mysql_query("SELECT id FROM ".$db_settings['category_table']." ORDER BY order_id ASC", $connid);
+    $result = mysqli_query($connid, "SELECT id FROM ".$db_settings['category_table']." ORDER BY order_id ASC");
     $i=1;
-    while ($data = mysql_fetch_array($result))
+    while ($data = mysqli_fetch_array($result))
      {
-      mysql_query("UPDATE ".$db_settings['category_table']." SET order_id=".$i." WHERE id = ".intval($data['id']), $connid);
+      mysqli_query($connid, "UPDATE ".$db_settings['category_table']." SET order_id=".$i." WHERE id = ".intval($data['id']));
       $i++;
      }
-    mysql_free_result($result);
+    mysqli_free_result($result);
 
     // what to to with the entries of deleted category:
     if ($_POST['delete_mode'] == "complete")
      {
-      mysql_query("DELETE FROM ".$db_settings['forum_table']." WHERE category = ".$category_id, $connid);
+      mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE category = ".$category_id);
      }
     else
      {
-      mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category=".intval($_POST['move_category'])." WHERE category = ".$category_id, $connid);
+      mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category=".intval($_POST['move_category'])." WHERE category = ".$category_id);
      }
     header("location: index.php?mode=admin&action=categories");
     die();
@@ -505,10 +504,10 @@ if(isset($_POST['delete_category_submit']))
 if(isset($_GET['delete_user']))
  {
   $user_id = intval($_GET['delete_user']);
-  $user_result = mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id='".$user_id."' LIMIT 1", $connid);
-  if(!$user_result) raise_error('database_error',mysql_error());
-  $user = mysql_fetch_array($user_result);
-  mysql_free_result($user_result);
+  $user_result = mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id='".$user_id."' LIMIT 1");
+  if(!$user_result) raise_error('database_error',mysqli_error($connid));
+  $user = mysqli_fetch_array($user_result);
+  mysqli_free_result($user_result);
   $selected_users[0]['id'] = $user_id;
   $selected_users[0]['name'] = htmlspecialchars($user["user_name"]);
   $selected_users_count = 1;
@@ -523,10 +522,10 @@ if(isset($_POST['delete_selected_users']))
     $selected_users_count = count($selected);
     for($x=0; $x<$selected_users_count; $x++)
     {
-     $user_result = mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id='".$selected[$x]."' LIMIT 1", $connid);
-     if(!$user_result) raise_error('database_error',mysql_error());
-     $user = mysql_fetch_array($user_result);
-     mysql_free_result($user_result);
+     $user_result = mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id='".$selected[$x]."' LIMIT 1");
+     if(!$user_result) raise_error('database_error',mysqli_error($connid));
+     $user = mysqli_fetch_array($user_result);
+     mysqli_free_result($user_result);
      $selected_users[$x]['id'] = $selected[$x];
      $selected_users[$x]['name'] = htmlspecialchars($user["user_name"]);
     }
@@ -538,12 +537,12 @@ if(isset($_POST['delete_selected_users']))
 if(isset($_POST['user_delete_entries']) && isset($_POST['delete_confirmed']))
  {
   $user_delete_entries = intval($_POST['user_delete_entries']);
-  $result = mysql_query("SELECT id FROM ".$db_settings['forum_table']." WHERE user_id = ".$user_delete_entries, $connid) or raise_error('database_error',mysql_error());
-  while($data = mysql_fetch_array($result))
+  $result = mysqli_query($connid, "SELECT id FROM ".$db_settings['forum_table']." WHERE user_id = ".$user_delete_entries) or raise_error('database_error',mysqli_error($connid));
+  while($data = mysqli_fetch_array($result))
    {
     delete_posting_recursive($data['id']);
    }
-  mysql_free_result($result);
+  mysqli_free_result($result);
   header('Location: index.php?mode=user&show_user='.$user_delete_entries);
   exit;
  }
@@ -552,15 +551,15 @@ if(isset($_POST['user_delete_entries']) && isset($_POST['delete_confirmed']))
 if(isset($_GET['user_delete_all_entries']))
  {
   $user_id = intval($_GET['user_delete_all_entries']);
-  $user_result = mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id='".$user_id."' LIMIT 1", $connid);
-  if(!$user_result) raise_error('database_error',mysql_error());
-  if(mysql_num_rows($user_result)==1)
+  $user_result = mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id='".$user_id."' LIMIT 1");
+  if(!$user_result) raise_error('database_error',mysqli_error($connid));
+  if(mysqli_num_rows($user_result)==1)
    {
-    #$count_postings_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".$user_id, $connid);
-    #list($user_delete_entries['number']) = mysql_fetch_row($count_postings_result);
-    #mysql_free_result($count_postings_result);
-    $user = mysql_fetch_array($user_result);
-    mysql_free_result($user_result);
+    #$count_postings_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".$user_id);
+    #list($user_delete_entries['number']) = mysqli_fetch_row($count_postings_result);
+    #mysqli_free_result($count_postings_result);
+    $user = mysqli_fetch_array($user_result);
+    mysqli_free_result($user_result);
     $user_delete_entries['id'] = $user_id;
     $user_delete_entries['user'] = htmlspecialchars($user['user_name']);
     $action = 'user_delete_entries';
@@ -645,9 +644,9 @@ if(isset($_REQUEST['restore_submit']))
     if(empty($_POST['restore_password']) || $_POST['restore_password']=='') $errors[] = 'error_password_wrong';
     if(empty($errors))
      {
-      $result = mysql_query("SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id=".intval($_SESSION[$settings['session_prefix'].'user_id'])." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-      if(mysql_num_rows($result)!=1) raise_error('database_error',mysql_error());
-      $data = mysql_fetch_array($result);
+      $result = mysqli_query($connid, "SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id=".intval($_SESSION[$settings['session_prefix'].'user_id'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+      if(mysqli_num_rows($result)!=1) raise_error('database_error',mysqli_error($connid));
+      $data = mysqli_fetch_array($result);
       if(!is_pw_correct($_POST['restore_password'],$data['user_pw'])) $errors[] = 'error_password_wrong';
       #if(md5($_POST['restore_password'])!=$data['user_pw']) $errors[] = 'error_password_wrong';
       if(empty($errors))
@@ -717,9 +716,9 @@ if(isset($_POST['update_file_submit']))
     if(empty($_POST['update_password']) || $_POST['update_password']=='') $errors[] = 'error_password_wrong';
     if(empty($errors))
      {
-      $result = mysql_query("SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id=".intval($_SESSION[$settings['session_prefix'].'user_id'])." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-      if(mysql_num_rows($result)!=1) raise_error('database_error',mysql_error());
-      $data = mysql_fetch_array($result);
+      $result = mysqli_query($connid, "SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id=".intval($_SESSION[$settings['session_prefix'].'user_id'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+      if(mysqli_num_rows($result)!=1) raise_error('database_error',mysqli_error($connid));
+      $data = mysqli_fetch_array($result);
       if(!is_pw_correct($_POST['update_password'],$data['user_pw'])) $errors[] = 'error_password_wrong';
       #if(md5($_POST['update_password'])!=$data['user_pw']) $errors[] = 'error_password_wrong';
       if(empty($errors))
@@ -777,15 +776,15 @@ if(isset($_POST['clear_userdata']) && isset($_POST['logins']) && isset($_POST['d
   $logins = intval($_POST['logins']);
   $days = intval($_POST['days']);
 
-  $result = @mysql_query("SELECT user_id, user_name FROM ".$db_settings['userdata_table']." WHERE user_type != 1 AND user_type != 2 AND logins <= ".$logins." AND last_login<(NOW()-INTERVAL ".$days." DAY) AND registered<(NOW()-INTERVAL ".$days." DAY) ORDER BY user_name", $connid) or raise_error('database_error',mysql_error());
+  $result = @mysqli_query($connid, "SELECT user_id, user_name FROM ".$db_settings['userdata_table']." WHERE user_type != 1 AND user_type != 2 AND logins <= ".$logins." AND last_login<(NOW()-INTERVAL ".$days." DAY) AND registered<(NOW()-INTERVAL ".$days." DAY) ORDER BY user_name") or raise_error('database_error',mysqli_error($connid));
   $i=0;
-  while($line = mysql_fetch_array($result))
+  while($line = mysqli_fetch_array($result))
    {
     $selected_users[$i]['id'] = $line['user_id'];
     $selected_users[$i]['name'] = $line['user_name'];
     $i++;
    }
-   mysql_free_result($result);
+   mysqli_free_result($result);
    if(isset($selected_users))
     {
      $selected_users_count = count($selected_users);
@@ -810,25 +809,25 @@ if (isset($_POST['email_list'])) $action="email_list";
       if($_SESSION[$settings['session_prefix'].'user_id']!=$selected_confirmed[$x])
        {
         // get user name:
-        $delete_result = @mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($selected_confirmed[$x])." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-        if(mysql_num_rows($delete_result)==1)
+        $delete_result = @mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($selected_confirmed[$x])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+        if(mysqli_num_rows($delete_result)==1)
          {
           unset($user_name);
-          list($user_name) = @mysql_fetch_array($delete_result);
+          list($user_name) = @mysqli_fetch_array($delete_result);
 
           // save user name in forum table (like unregistered users):
-          @mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, name='".mysql_real_escape_string($user_name)."' WHERE user_id = ".intval($selected_confirmed[$x]), $connid);
+          @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, name='".mysqli_real_escape_string($connid, $user_name)."' WHERE user_id = ".intval($selected_confirmed[$x]));
 
           // set "edited_by" in own edited postings to 0:
-          @mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited_by=0 WHERE edited_by = ".intval($selected_confirmed[$x])." AND user_id = ".intval($selected_confirmed[$x]), $connid);
+          @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited_by=0 WHERE edited_by = ".intval($selected_confirmed[$x])." AND user_id = ".intval($selected_confirmed[$x]));
 
           // set user_id = 0
-          @mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, user_id=0, email_notification=0 WHERE user_id = ".intval($selected_confirmed[$x]), $connid);
+          @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, user_id=0, email_notification=0 WHERE user_id = ".intval($selected_confirmed[$x]));
 
-          @mysql_query("DELETE FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($selected_confirmed[$x]), $connid);
-          @mysql_query("DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".intval($selected_confirmed[$x]), $connid);
+          @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($selected_confirmed[$x]));
+          @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".intval($selected_confirmed[$x]));
          }
-        @mysql_free_result($delete_result);
+        @mysqli_free_result($delete_result);
 
         // delete avatar:
         $uploaded_avatars_path = 'images/avatars/';
@@ -866,14 +865,14 @@ if(isset($_GET['user_lock']))
   if(isset($_GET['search_user'])) $search_user_q = '&search_user='.urlencode($_GET['search_user']);
   else $search_user_q = '';
 
-  $lock_result = mysql_query("SELECT user_type, user_lock FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($_GET['user_lock'])." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-  $field = mysql_fetch_array($lock_result);
-  mysql_free_result($lock_result);
+  $lock_result = mysqli_query($connid, "SELECT user_type, user_lock FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($_GET['user_lock'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+  $field = mysqli_fetch_array($lock_result);
+  mysqli_free_result($lock_result);
 
   if($field['user_type']==0)
    {
     if($field['user_lock'] == 0) $new_lock = 1; else $new_lock = 0;
-    $update_result = mysql_query("UPDATE ".$db_settings['userdata_table']." SET user_lock='".$new_lock."', last_login=last_login, registered=registered WHERE user_id=".intval($_GET['user_lock'])." LIMIT 1", $connid);
+    $update_result = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_lock='".$new_lock."', last_login=last_login, registered=registered WHERE user_id=".intval($_GET['user_lock'])." LIMIT 1");
    }
   header('Location: index.php?mode=admin&action=user'.$search_user_q.'&page='.$page.'&order='.$order.'&descasc='.$descasc);
   exit;
@@ -881,7 +880,7 @@ if(isset($_GET['user_lock']))
 
 if (isset($_GET['activate']))
  {
-  mysql_query("UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, activate_code='' WHERE user_id=".intval($_GET['activate'])." LIMIT 1", $connid);
+  mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, activate_code='' WHERE user_id=".intval($_GET['activate'])." LIMIT 1");
   header('Location: index.php?mode=admin&edit_user='.intval($_GET['activate']));
   exit;
  }
@@ -892,9 +891,9 @@ if(isset($_POST['reset_forum_confirmed']) || isset($_POST['uninstall_forum_confi
 
   if(empty($errors))
    {
-    $pw_result = @mysql_query("SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($_SESSION[$settings['session_prefix'].'user_id'])." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-    $field = mysql_fetch_array($pw_result);
-    mysql_free_result($pw_result);
+    $pw_result = @mysqli_query($connid, "SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($_SESSION[$settings['session_prefix'].'user_id'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+    $field = mysqli_fetch_array($pw_result);
+    mysqli_free_result($pw_result);
     if(!is_pw_correct($_POST['confirm_pw'],$field['user_pw'])) $errors[] = 'error_password_wrong';
     #if($field['user_pw'] != md5($_POST['confirm_pw'])) $errors[] = 'error_password_wrong';
    }
@@ -908,13 +907,13 @@ if(isset($_POST['reset_forum_confirmed']) || isset($_POST['uninstall_forum_confi
        {
         if(isset($_POST['delete_postings']))
          {
-          @mysql_query("TRUNCATE TABLE ".$db_settings['forum_table'], $connid) or raise_error('database_error',mysql_error());
-          @mysql_query("TRUNCATE TABLE ".$db_settings['entry_cache_table'], $connid) or raise_error('database_error',mysql_error());
+          @mysqli_query($connid, "TRUNCATE TABLE ".$db_settings['forum_table']) or raise_error('database_error',mysqli_error($connid));
+          @mysqli_query($connid, "TRUNCATE TABLE ".$db_settings['entry_cache_table']) or raise_error('database_error',mysqli_error($connid));
          }
         if(isset($_POST['delete_userdata']))
          {
-          @mysql_query("DELETE FROM ".$db_settings['userdata_table']." WHERE user_id != ".intval($_SESSION[$settings['session_prefix'].'user_id']), $connid) or raise_error('database_error',mysql_error());
-          @mysql_query("TRUNCATE TABLE ".$db_settings['userdata_cache_table'], $connid) or raise_error('database_error',mysql_error());
+          @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_table']." WHERE user_id != ".intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error',mysqli_error($connid));
+          @mysqli_query($connid, "TRUNCATE TABLE ".$db_settings['userdata_cache_table']) or raise_error('database_error',mysqli_error($connid));
          }
         header('Location: index.php?mode=admin');
         exit;
@@ -924,37 +923,37 @@ if(isset($_POST['reset_forum_confirmed']) || isset($_POST['uninstall_forum_confi
      {
       echo '<pre>';
       echo 'Deleting table <strong>'.$db_settings['forum_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['forum_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['forum_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['userdata_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['userdata_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['userdata_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['settings_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['settings_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['settings_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['category_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['category_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> (MySQL: '.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['category_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> (MySQL: '.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['pages_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['pages_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> (MySQL: '.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['pages_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> (MySQL: '.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['smilies_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['smilies_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> (MySQL: '.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['smilies_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> (MySQL: '.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['banlists_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['banlists_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> (MySQL: '.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['banlists_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> (MySQL: '.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['useronline_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['useronline_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['useronline_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['login_control_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['login_control_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['login_control_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['entry_cache_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['entry_cache_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['entry_cache_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['userdata_cache_table'].'</strong>... ';
-      if(@mysql_query("DROP TABLE ".$db_settings['userdata_cache_table'], $connid)) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysql_error($connid).')';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['userdata_cache_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
 
       echo '</pre>';
       exit;
@@ -992,16 +991,16 @@ if(isset($_POST['settings_submit']))
 
   while(list($key, $val) = each($settings))
    {
-    if(isset($_POST[$key])) mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($_POST[$key])."' WHERE name='".mysql_real_escape_string($key)."' LIMIT 1", $connid);
+    if(isset($_POST[$key])) mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST[$key])."' WHERE name='".mysqli_real_escape_string($connid, $key)."' LIMIT 1");
    }
   if(isset($_POST['clear_cache']))
    {
-    mysql_query("TRUNCATE TABLE ".$db_settings['entry_cache_table'], $connid);
-    mysql_query("TRUNCATE TABLE ".$db_settings['userdata_cache_table'], $connid);
+    mysqli_query($connid, "TRUNCATE TABLE ".$db_settings['entry_cache_table']);
+    mysqli_query($connid, "TRUNCATE TABLE ".$db_settings['userdata_cache_table']);
    }
   if($settings['autologin']==1 && isset($_POST['autologin']) && $_POST['autologin']==0)
    {
-    mysql_query("UPDATE ".$db_settings['userdata_table']." SET auto_login_code=''", $connid);
+    mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET auto_login_code=''");
    }
 
   header("Location: index.php?mode=admin&action=settings&saved=true");
@@ -1025,9 +1024,9 @@ if(isset($_POST['register_submit']))
   if(empty($errors))
    {
     // look if name already exists:
-    $name_result = mysql_query("SELECT user_name FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysql_real_escape_string(my_strtolower($ar_username, $lang['charset']))."'", $connid) or raise_error('database_error',mysql_error());
-    if(mysql_num_rows($name_result)>0) $errors[] = 'user_name_already_exists';
-    mysql_free_result($name_result);
+    $name_result = mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysqli_real_escape_string($connid, my_strtolower($ar_username, $lang['charset']))."'") or raise_error('database_error',mysqli_error($connid));
+    if(mysqli_num_rows($name_result)>0) $errors[] = 'user_name_already_exists';
+    mysqli_free_result($name_result);
 
     if(!is_valid_email($ar_email)) $errors[] = 'error_email_wrong';
 
@@ -1052,7 +1051,7 @@ if(isset($_POST['register_submit']))
       $ar_pw = random_string($pwl);
      }
     $pw_hash = generate_pw_hash($ar_pw);
-    mysql_query("INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, signature, profile, auto_login_code, pwf_code, activate_code, entries_read) VALUES (0,'".mysql_real_escape_string($ar_username)."', '', '".mysql_real_escape_string($pw_hash)."','".mysql_real_escape_string($ar_email)."', '', '', ".$settings['default_email_contact'].", '0000-00-00 00:00:00', NOW(),'".$_SERVER["REMOTE_ADDR"]."',NOW(),".intval($settings['default_view']).",".intval($settings['fold_threads']).",'','','','','','')", $connid) or die(mysql_error()); //raise_error('database_error',mysql_error());
+    mysqli_query($connid, "INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, signature, profile, auto_login_code, pwf_code, activate_code, entries_read) VALUES (0,'".mysqli_real_escape_string($connid, $ar_username)."', '', '".mysqli_real_escape_string($connid, $pw_hash)."','".mysqli_real_escape_string($connid, $ar_email)."', '', '', ".$settings['default_email_contact'].", '0000-00-00 00:00:00', NOW(),'".$_SERVER["REMOTE_ADDR"]."',NOW(),".intval($settings['default_view']).",".intval($settings['fold_threads']).",'','','','','','')") or die(mysqli_error($connid)); //raise_error('database_error',mysqli_error($connid));
 
     // send userdata:
     $send_error='';
@@ -1088,12 +1087,12 @@ if(isset($_POST['add_smiley']))
 
   if(empty($errors))
    {
-    $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['smilies_table'], $connid);
-    list($smilies_count) = mysql_fetch_row($count_result);
-    mysql_free_result($count_result);
+    $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['smilies_table']);
+    list($smilies_count) = mysqli_fetch_row($count_result);
+    mysqli_free_result($count_result);
     $order_id = $smilies_count+1;
 
-    mysql_query("INSERT INTO ".$db_settings['smilies_table']." (order_id, file, code_1, code_2, code_3, code_4, code_5, title) VALUES (".mysql_real_escape_string($order_id).",'".mysql_real_escape_string($_POST['add_smiley'])."','".mysql_real_escape_string(trim($_POST['smiley_code']))."','','','','','')", $connid);
+    mysqli_query($connid, "INSERT INTO ".$db_settings['smilies_table']." (order_id, file, code_1, code_2, code_3, code_4, code_5, title) VALUES (".mysqli_real_escape_string($connid, $order_id).",'".mysqli_real_escape_string($connid, $_POST['add_smiley'])."','".mysqli_real_escape_string($connid, trim($_POST['smiley_code']))."','','','','','')");
 
     header("location: index.php?mode=admin&action=smilies");
     exit;
@@ -1107,16 +1106,16 @@ if(isset($_POST['add_smiley']))
 
 if(isset($_GET['delete_smiley']))
  {
-  mysql_query("DELETE FROM ".$db_settings['smilies_table']." WHERE id = ".intval($_GET['delete_smiley']), $connid);
+  mysqli_query($connid, "DELETE FROM ".$db_settings['smilies_table']." WHERE id = ".intval($_GET['delete_smiley']));
 
-  $result = mysql_query("SELECT id FROM ".$db_settings['smilies_table']." ORDER BY order_id ASC", $connid);
+  $result = mysqli_query($connid, "SELECT id FROM ".$db_settings['smilies_table']." ORDER BY order_id ASC");
   $i=1;
-  while ($data = mysql_fetch_array($result))
+  while ($data = mysqli_fetch_array($result))
    {
-    mysql_query("UPDATE ".$db_settings['smilies_table']." SET order_id=".$i." WHERE id = ".intval($data['id']), $connid);
+    mysqli_query($connid, "UPDATE ".$db_settings['smilies_table']." SET order_id=".$i." WHERE id = ".intval($data['id']));
     $i++;
    }
-  mysql_free_result($result);
+  mysqli_free_result($result);
 
   header("location: index.php?mode=admin&action=smilies");
   die();
@@ -1124,10 +1123,10 @@ if(isset($_GET['delete_smiley']))
 
 if(isset($_GET['edit_smiley']))
  {
-  $result = mysql_query("SELECT id, file, code_1, code_2, code_3, code_4, code_5, title FROM ".$db_settings['smilies_table']." WHERE id = ".intval($_GET['edit_smiley'])." LIMIT 1", $connid);
-  if(!$result) raise_error('database_error',mysql_error());
-  $data = mysql_fetch_array($result);
-  mysql_free_result($result);
+  $result = mysqli_query($connid, "SELECT id, file, code_1, code_2, code_3, code_4, code_5, title FROM ".$db_settings['smilies_table']." WHERE id = ".intval($_GET['edit_smiley'])." LIMIT 1");
+  if(!$result) raise_error('database_error',mysqli_error($connid));
+  $data = mysqli_fetch_array($result);
+  mysqli_free_result($result);
   $id = intval($data['id']);
   $file = $data['file'];
   $code_1 = $data['code_1'];
@@ -1154,7 +1153,7 @@ if(isset($_POST['edit_smiley_submit']))
   if($code_1=='' && $code_2=='' && $code_3=='' && $code_4=='' && $code_5=='') $errors[] = 'smiley_code_empty';
   if(empty($errors))
    {
-    mysql_query("UPDATE ".$db_settings['smilies_table']." SET file='".mysql_real_escape_string($file)."', code_1='".mysql_real_escape_string($code_1)."', code_2='".mysql_real_escape_string($code_2)."', code_3='".mysql_real_escape_string($code_3)."', code_4='".mysql_real_escape_string($code_4)."', code_5='".mysql_real_escape_string($code_5)."', title='".mysql_real_escape_string($title)."' WHERE id=".$id, $connid);
+    mysqli_query($connid, "UPDATE ".$db_settings['smilies_table']." SET file='".mysqli_real_escape_string($connid, $file)."', code_1='".mysqli_real_escape_string($connid, $code_1)."', code_2='".mysqli_real_escape_string($connid, $code_2)."', code_3='".mysqli_real_escape_string($connid, $code_3)."', code_4='".mysqli_real_escape_string($connid, $code_4)."', code_5='".mysqli_real_escape_string($connid, $code_5)."', title='".mysqli_real_escape_string($connid, $title)."' WHERE id=".$id);
     header("location: index.php?mode=admin&action=smilies");
     exit;
    }
@@ -1167,14 +1166,14 @@ if(isset($_POST['edit_smiley_submit']))
 
 if(isset($_GET['enable_smilies']))
  {
-  mysql_query("UPDATE ".$db_settings['settings_table']." SET value=1 WHERE name='smilies'", $connid);
+  mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value=1 WHERE name='smilies'");
   header("location: index.php?mode=admin&action=smilies");
   die();
  }
 
 if(isset($_GET['disable_smilies']))
  {
-  mysql_query("UPDATE ".$db_settings['settings_table']." SET value=0 WHERE name='smilies'", $connid);
+  mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value=0 WHERE name='smilies'");
   header("location: index.php?mode=admin&action=smilies");
   die();
  }
@@ -1215,37 +1214,37 @@ switch($action)
   // look if there are entries in not existing categories:
   if(isset($category_ids_query))
    {
-    $count_result=mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE category NOT IN (".$category_ids_query.")", $connid);
+    $count_result=mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE category NOT IN (".$category_ids_query.")");
    }
   else
    {
-    $count_result=mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE category != 0", $connid);
+    $count_result=mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE category != 0");
    }
-  list($entries_in_not_existing_categories) = mysql_fetch_row($count_result);
-  mysql_free_result($count_result);
+  list($entries_in_not_existing_categories) = mysqli_fetch_row($count_result);
+  mysqli_free_result($count_result);
   $smarty->assign('entries_in_not_existing_categories',$entries_in_not_existing_categories);
 
-  $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['category_table'], $connid);
-  list($categories_count) = mysql_fetch_row($count_result);
-  mysql_free_result($count_result);
+  $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['category_table']);
+  list($categories_count) = mysqli_fetch_row($count_result);
+  mysqli_free_result($count_result);
   $smarty->assign('categories_count',$categories_count);
 
   if(isset($errors)) $smarty->assign('errors',$errors);
 
   if($categories_count > 0)
    {
-    $result = mysql_query("SELECT id, order_id, category, accession FROM ".$db_settings['category_table']." ORDER BY order_id ASC", $connid);
-    if(!$result) raise_error('database_error',mysql_error());
+    $result = mysqli_query($connid, "SELECT id, order_id, category, accession FROM ".$db_settings['category_table']." ORDER BY order_id ASC");
+    if(!$result) raise_error('database_error',mysqli_error($connid));
 
     $i=0;
-    while ($line = mysql_fetch_array($result))
+    while ($line = mysqli_fetch_array($result))
      {
-      $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE category = '".intval($line['id'])."' AND pid = 0", $connid);
-      list($threads_in_category) = mysql_fetch_row($count_result);
-      mysql_free_result($count_result);
-      $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE category = '".intval($line['id'])."'", $connid);
-      list($postings_in_category) = mysql_fetch_row($count_result);
-      mysql_free_result($count_result);
+      $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE category = '".intval($line['id'])."' AND pid = 0");
+      list($threads_in_category) = mysqli_fetch_row($count_result);
+      mysqli_free_result($count_result);
+      $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE category = '".intval($line['id'])."'");
+      list($postings_in_category) = mysqli_fetch_row($count_result);
+      mysqli_free_result($count_result);
       $categories_list[$i]['id'] = $line['id'];
       $categories_list[$i]['name'] = htmlspecialchars($line['category']);
       $categories_list[$i]['accession'] = $line['accession'];
@@ -1254,7 +1253,7 @@ switch($action)
       $i++;
      }
     $smarty->assign('categories_list',$categories_list);
-    mysql_free_result($result);
+    mysqli_free_result($result);
    }
   break;
   case 'user':
@@ -1279,14 +1278,14 @@ switch($action)
    // count users and pages:
    if(isset($search_user))
     {
-     $user_count_result = @mysql_query("SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE concat(lower(user_name),lower(user_email)) LIKE '%".mysql_real_escape_string(my_strtolower($search_user, $lang['charset']))."%'", $connid);
+     $user_count_result = @mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE concat(lower(user_name),lower(user_email)) LIKE '%".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%'");
     }
    else
     {
-     $user_count_result = @mysql_query("SELECT COUNT(*) FROM ".$db_settings['userdata_table'], $connid);
+     $user_count_result = @mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']);
     }
-   list($total_users) = mysql_fetch_row($user_count_result);
-   mysql_free_result($user_count_result);
+   list($total_users) = mysqli_fetch_row($user_count_result);
+   mysqli_free_result($user_count_result);
    $total_pages = ceil($total_users / $settings['users_per_page']);
    if($page > $total_pages) $page = $total_pages;
    if($page < 1) $page = 1;
@@ -1294,19 +1293,19 @@ switch($action)
 
    if(isset($search_user))
     {
-     #$result = @mysql_query("SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." WHERE lower(user_name) LIKE '".mysql_real_escape_string(my_strtolower($search_user, $lang['charset']))."%' OR user_email LIKE '".mysql_real_escape_string(my_strtolower($search_user, $lang['charset']))."%' ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page'], $connid);
-     $result = @mysql_query("SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." WHERE concat(lower(user_name),lower(user_email)) LIKE '%".mysql_real_escape_string(my_strtolower($search_user, $lang['charset']))."%' ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page'], $connid);
+     #$result = @mysqli_query($connid, "SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." WHERE lower(user_name) LIKE '".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%' OR user_email LIKE '".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%' ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']);
+     $result = @mysqli_query($connid, "SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." WHERE concat(lower(user_name),lower(user_email)) LIKE '%".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%' ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']);
     }
    else
     {
-     $result = @mysql_query("SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page'], $connid);
+     $result = @mysqli_query($connid, "SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']);
     }
-   $result_count = mysql_num_rows($result);
+   $result_count = mysqli_num_rows($result);
 
-   if(isset($_GET['letter']) && $_GET['letter']!="") $su_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE user_name LIKE '".mysql_real_escape_string($_GET['letter'])."%'", $connid);
-   else $su_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['userdata_table'], $connid);
-   list($sel_user_count) = mysql_fetch_row($su_result);
-   mysql_free_result($su_result);
+   if(isset($_GET['letter']) && $_GET['letter']!="") $su_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE user_name LIKE '".mysqli_real_escape_string($connid, $_GET['letter'])."%'");
+   else $su_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']);
+   list($sel_user_count) = mysqli_fetch_row($su_result);
+   mysqli_free_result($su_result);
 
    $smarty->assign('order',$order);
    $smarty->assign('descasc',$descasc);
@@ -1338,7 +1337,7 @@ switch($action)
      $smarty->assign('pagination', pagination($total_pages,$page,3));
 
    $i=0;
-   while($row = mysql_fetch_array($result))
+   while($row = mysqli_fetch_array($result))
     {
      $userdata[$i]['user_id'] = $row['user_id'];
      $userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
@@ -1351,7 +1350,7 @@ switch($action)
      if($row['activate_code']!='') $userdata[$i]['inactive'] = true;
      $i++;
     }
-   mysql_free_result($result);
+   mysqli_free_result($result);
    $smarty->assign('result_count',$result_count);
    if(isset($userdata)) $smarty->assign('userdata',$userdata);
 
@@ -1535,13 +1534,13 @@ switch($action)
   break;
 
   case "email_list":
-   $email_result = mysql_query("SELECT user_email FROM ".$db_settings['userdata_table'], $connid);
-   if (!$email_result) raise_error('database_error',mysql_error());
-   while ($line = mysql_fetch_array($email_result))
+   $email_result = mysqli_query($connid, "SELECT user_email FROM ".$db_settings['userdata_table']);
+   if (!$email_result) raise_error('database_error',mysqli_error($connid));
+   while ($line = mysqli_fetch_array($email_result))
     {
      $email_list[] = $line['user_email'];
     }
-   mysql_free_result($email_result);
+   mysqli_free_result($email_result);
    $breadcrumbs[0]['link'] = 'index.php?mode=admin';
    $breadcrumbs[0]['linkname'] = 'subnav_admin_area';
    $breadcrumbs[1]['link'] = 'index.php?mode=admin&amp;action=user';
@@ -1570,23 +1569,23 @@ switch($action)
    if(isset($_GET['saved'])) $smarty->assign('saved',true);
 
    // get banned users:
-   $result=mysql_query("SELECT list FROM ".$db_settings['banlists_table']." WHERE name = 'user_agents' LIMIT 1", $connid);
-   if(!$result) raise_error('database_error',mysql_error());
-   $data = mysql_fetch_array($result);
+   $result=mysqli_query($connid, "SELECT list FROM ".$db_settings['banlists_table']." WHERE name = 'user_agents' LIMIT 1");
+   if(!$result) raise_error('database_error',mysqli_error($connid));
+   $data = mysqli_fetch_array($result);
    $smarty->assign('banned_user_agents',htmlspecialchars($data['list']));
-   mysql_free_result($result);
+   mysqli_free_result($result);
    // get banned ips:
-   $result=mysql_query("SELECT list FROM ".$db_settings['banlists_table']." WHERE name = 'ips' LIMIT 1", $connid);
-   if(!$result) raise_error('database_error',mysql_error());
-   $data = mysql_fetch_array($result);
+   $result=mysqli_query($connid, "SELECT list FROM ".$db_settings['banlists_table']." WHERE name = 'ips' LIMIT 1");
+   if(!$result) raise_error('database_error',mysqli_error($connid));
+   $data = mysqli_fetch_array($result);
    $smarty->assign('banned_ips',htmlspecialchars($data['list']));
-   mysql_free_result($result);
+   mysqli_free_result($result);
    // get not accepted words:
-   $result=mysql_query("SELECT list FROM ".$db_settings['banlists_table']." WHERE name = 'words' LIMIT 1", $connid);
-   if(!$result) raise_error('database_error',mysql_error());
-   $data = mysql_fetch_array($result);
+   $result=mysqli_query($connid, "SELECT list FROM ".$db_settings['banlists_table']." WHERE name = 'words' LIMIT 1");
+   if(!$result) raise_error('database_error',mysqli_error($connid));
+   $data = mysqli_fetch_array($result);
    $smarty->assign('not_accepted_words',htmlspecialchars($data['list']));
-   mysql_free_result($result);
+   mysqli_free_result($result);
 
    $smarty->assign('captcha_posting',$settings['captcha_posting']);
    $smarty->assign('captcha_email',$settings['captcha_email']);
@@ -1608,9 +1607,9 @@ switch($action)
 
   if($settings['smilies']==1)
   {
-  $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['smilies_table'], $connid);
-  list($smilies_count) = mysql_fetch_row($count_result);
-  mysql_free_result($count_result);
+  $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['smilies_table']);
+  list($smilies_count) = mysqli_fetch_row($count_result);
+  mysqli_free_result($count_result);
 
   $fp=opendir('images/smilies/');
   while ($file = readdir($fp))
@@ -1624,10 +1623,10 @@ switch($action)
 
   if ($smilies_count > 0)
    {
-    $result = mysql_query("SELECT id, file, code_1, code_2, code_3, code_4, code_5, title FROM ".$db_settings['smilies_table']." ORDER BY order_id ASC", $connid);
-    if(!$result) raise_error('database_error',mysql_error());
+    $result = mysqli_query($connid, "SELECT id, file, code_1, code_2, code_3, code_4, code_5, title FROM ".$db_settings['smilies_table']." ORDER BY order_id ASC");
+    if(!$result) raise_error('database_error',mysqli_error($connid));
     $i=0;
-    while($line = mysql_fetch_array($result))
+    while($line = mysqli_fetch_array($result))
      {
       // remove used smilies from smiley array:
       if(isset($smiley_files))
@@ -1656,7 +1655,7 @@ switch($action)
       $smilies[$i]['title'] = $line['title'];
       $i++;
      }
-    mysql_free_result($result);
+    mysqli_free_result($result);
    }
    else $smilies='';
 
@@ -1788,24 +1787,24 @@ switch($action)
 
    if(empty($errors))
     {
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($captcha_posting)."' WHERE name='captcha_posting'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($captcha_email)."' WHERE name='captcha_email'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($captcha_register)."' WHERE name='captcha_register'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($stop_forum_spam)."' WHERE name='stop_forum_spam'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($bad_behavior)."' WHERE name='bad_behavior'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($akismet_key)."' WHERE name='akismet_key'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($akismet_entry_check)."' WHERE name='akismet_entry_check'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($akismet_mail_check)."' WHERE name='akismet_mail_check'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($akismet_check_registered)."' WHERE name='akismet_check_registered'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($save_spam)."' WHERE name='save_spam'", $connid);
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".intval($_POST['auto_delete_spam'])."' WHERE name='auto_delete_spam'", $connid);
-     mysql_query("UPDATE ".$db_settings['banlists_table']." SET list='".mysql_real_escape_string($banned_ips)."' WHERE name='ips'", $connid);
-     mysql_query("UPDATE ".$db_settings['banlists_table']." SET list='".mysql_real_escape_string($banned_user_agents)."' WHERE name='user_agents'", $connid);
-     mysql_query("UPDATE ".$db_settings['banlists_table']." SET list='".mysql_real_escape_string($not_accepted_words)."' WHERE name='words'", $connid);
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $captcha_posting)."' WHERE name='captcha_posting'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $captcha_email)."' WHERE name='captcha_email'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $captcha_register)."' WHERE name='captcha_register'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $stop_forum_spam)."' WHERE name='stop_forum_spam'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $bad_behavior)."' WHERE name='bad_behavior'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $akismet_key)."' WHERE name='akismet_key'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($akismet_entry_check)."' WHERE name='akismet_entry_check'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($akismet_mail_check)."' WHERE name='akismet_mail_check'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($akismet_check_registered)."' WHERE name='akismet_check_registered'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($save_spam)."' WHERE name='save_spam'");
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($_POST['auto_delete_spam'])."' WHERE name='auto_delete_spam'");
+     mysqli_query($connid, "UPDATE ".$db_settings['banlists_table']." SET list='".mysqli_real_escape_string($connid, $banned_ips)."' WHERE name='ips'");
+     mysqli_query($connid, "UPDATE ".$db_settings['banlists_table']." SET list='".mysqli_real_escape_string($connid, $banned_user_agents)."' WHERE name='user_agents'");
+     mysqli_query($connid, "UPDATE ".$db_settings['banlists_table']." SET list='".mysqli_real_escape_string($connid, $not_accepted_words)."' WHERE name='words'");
 
      if(trim($banned_ips=='') && trim($banned_user_agents=='')) $access_permission_checks = 0;
      else $access_permission_checks = 1;
-     mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($access_permission_checks)."' WHERE name='access_permission_checks'", $connid);
+     mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $access_permission_checks)."' WHERE name='access_permission_checks'");
 
      header("Location: index.php?mode=admin&action=spam_protection&saved=true");
      exit;
@@ -1840,11 +1839,11 @@ switch($action)
    $smarty->assign('breadcrumbs',$breadcrumbs);
    $smarty->assign('subnav_location','subnav_pages');
 
-   $result = mysql_query("SELECT id, title, content, menu_linkname, access FROM ".$db_settings['pages_table']." ORDER BY order_id ASC", $connid) or raise_error('database_error',mysql_error());
-   if(mysql_num_rows($result)>0)
+   $result = mysqli_query($connid, "SELECT id, title, content, menu_linkname, access FROM ".$db_settings['pages_table']." ORDER BY order_id ASC") or raise_error('database_error',mysqli_error($connid));
+   if(mysqli_num_rows($result)>0)
     {
      $i=0;
-     while($data= mysql_fetch_array($result))
+     while($data= mysqli_fetch_array($result))
       {
        $pages[$i]['id'] = intval($data['id']);
        $pages[$i]['title'] = $data['title'];
@@ -1855,23 +1854,23 @@ switch($action)
       }
      $smarty->assign('pages',$pages);
     }
-   mysql_free_result($result);
+   mysqli_free_result($result);
   break;
   case 'edit_page':
    if(isset($_GET['edit_page']))
     {
      $id = intval($_GET['edit_page']);
-     $result = mysql_query("SELECT id, title, content, menu_linkname, access FROM ".$db_settings['pages_table']." WHERE id = ".$id." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-     if(mysql_num_rows($result)>0)
+     $result = mysqli_query($connid, "SELECT id, title, content, menu_linkname, access FROM ".$db_settings['pages_table']." WHERE id = ".$id." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+     if(mysqli_num_rows($result)>0)
       {
-       $data = mysql_fetch_array($result);
+       $data = mysqli_fetch_array($result);
        $smarty->assign('id',$id);
        $smarty->assign('title',htmlspecialchars($data['title']));
        $smarty->assign('content',htmlspecialchars($data['content']));
        $smarty->assign('menu_linkname',htmlspecialchars($data['menu_linkname']));
        $smarty->assign('access',$data['access']);
       }
-     mysql_free_result($result);
+     mysqli_free_result($result);
     }
    $breadcrumbs[0]['link'] = 'index.php?mode=admin';
    $breadcrumbs[0]['linkname'] = 'subnav_admin_area';
@@ -1894,13 +1893,13 @@ switch($action)
     {
      if(isset($id))
       {
-       @mysql_query("UPDATE ".$db_settings['pages_table']." SET title='".mysql_real_escape_string($title)."', content='".mysql_real_escape_string($content)."', menu_linkname='".mysql_real_escape_string($menu_linkname)."', access=".intval($access)." WHERE id=".$id, $connid) or die(mysql_error());
+       @mysqli_query($connid, "UPDATE ".$db_settings['pages_table']." SET title='".mysqli_real_escape_string($connid, $title)."', content='".mysqli_real_escape_string($connid, $content)."', menu_linkname='".mysqli_real_escape_string($connid, $menu_linkname)."', access=".intval($access)." WHERE id=".$id) or die(mysqli_error($connid));
       }
      else
       {
-       list($pages_count) = mysql_fetch_row(mysql_query("SELECT COUNT(*) FROM ".$db_settings['pages_table'], $connid));
+       list($pages_count) = mysqli_fetch_row(mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['pages_table']));
        $order_id = $pages_count+1;
-       @mysql_query("INSERT INTO ".$db_settings['pages_table']." (order_id, title, content, menu_linkname, access) VALUES (".intval($order_id).", '".mysql_real_escape_string($title)."', '".mysql_real_escape_string($content)."', '".mysql_real_escape_string($menu_linkname)."', ".intval($access).")", $connid) or die(mysql_error());
+       @mysqli_query($connid, "INSERT INTO ".$db_settings['pages_table']." (order_id, title, content, menu_linkname, access) VALUES (".intval($order_id).", '".mysqli_real_escape_string($connid, $title)."', '".mysqli_real_escape_string($connid, $content)."', '".mysqli_real_escape_string($connid, $menu_linkname)."', ".intval($access).")") or die(mysqli_error($connid));
       }
      header('Location: index.php?mode=admin&action=pages');
      exit;
@@ -1925,15 +1924,15 @@ switch($action)
   break;
   case 'delete_page':
    $id = intval($_GET['delete_page']);
-   $result = mysql_query("SELECT id, title FROM ".$db_settings['pages_table']." WHERE id= ".$id." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-   if(mysql_num_rows($result)>0)
+   $result = mysqli_query($connid, "SELECT id, title FROM ".$db_settings['pages_table']." WHERE id= ".$id." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+   if(mysqli_num_rows($result)>0)
     {
-     $data = mysql_fetch_array($result);
+     $data = mysqli_fetch_array($result);
      $page['id'] = intval($data['id']);
      $page['title'] = $data['title'];
      $smarty->assign('page',$page);
     }
-   mysql_free_result($result);
+   mysqli_free_result($result);
    $breadcrumbs[0]['link'] = 'index.php?mode=admin';
    $breadcrumbs[0]['linkname'] = 'subnav_admin_area';
    $breadcrumbs[0]['link'] = 'index.php?mode=admin&amp;action=pages';
@@ -1943,16 +1942,16 @@ switch($action)
   break;
   case 'delete_page_submit':
    // delete item:
-   mysql_query("DELETE FROM ".$db_settings['pages_table']." WHERE id= ".intval($_POST['id']), $connid) or raise_error('database_error',mysql_error());
+   mysqli_query($connid, "DELETE FROM ".$db_settings['pages_table']." WHERE id= ".intval($_POST['id'])) or raise_error('database_error',mysqli_error($connid));
    // reorder remaining items:
-   $result = mysql_query("SELECT id FROM ".$db_settings['pages_table']." ORDER BY order_id ASC", $connid);
+   $result = mysqli_query($connid, "SELECT id FROM ".$db_settings['pages_table']." ORDER BY order_id ASC");
    $i=1;
-   while($data = mysql_fetch_array($result))
+   while($data = mysqli_fetch_array($result))
     {
-     mysql_query("UPDATE ".$db_settings['pages_table']." SET order_id=".$i." WHERE id = ".intval($data['id']), $connid);
+     mysqli_query($connid, "UPDATE ".$db_settings['pages_table']." SET order_id=".$i." WHERE id = ".intval($data['id']));
      $i++;
     }
-   mysql_free_result($result);
+   mysqli_free_result($result);
    header('Location: index.php?mode=admin&action=pages');
    exit;
   break;
@@ -1996,7 +1995,7 @@ switch($action)
      $order_id = 1;
      foreach($list_items as $id)
       {
-       mysql_query("UPDATE ".$table." SET order_id = ".$order_id." WHERE id = ".intval($id), $connid);
+       mysqli_query($connid, "UPDATE ".$table." SET order_id = ".$order_id." WHERE id = ".intval($id));
        ++$order_id;
       }
     } 

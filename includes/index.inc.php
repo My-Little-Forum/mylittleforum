@@ -49,28 +49,28 @@ $ul = ($page-1) * $settings['threads_per_page'];
 // database request
 if($categories == false) // no categories defined
  {
-  $result=mysql_query("SELECT id, tid FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and." ORDER BY sticky DESC, ".$db_thread_order." ".$descasc." LIMIT ".$ul.", ".$settings['threads_per_page'], $connid) or raise_error('database_error',mysql_error());
+  $result=mysqli_query($connid, "SELECT id, tid FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and." ORDER BY sticky DESC, ".$db_thread_order." ".$descasc." LIMIT ".$ul.", ".$settings['threads_per_page']) or raise_error('database_error',mysqli_error($connid));
  }
 elseif(is_array($categories) && $category <= 0) // there are categories and all categories or category selection should be shown
  {
   if(isset($category_selection_query) && $category==-1) // category selection
    {
     $category_ids_query = $category_selection_query;
-    $pid_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and." AND category IN (".$category_ids_query.")", $connid);
-    list($total_threads) = mysql_fetch_row($pid_result);
-    mysql_free_result($pid_result);
+    $pid_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and." AND category IN (".$category_ids_query.")");
+    list($total_threads) = mysqli_fetch_row($pid_result);
+    mysqli_free_result($pid_result);
    }
-  $result=mysql_query("SELECT id, tid FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and." AND category IN (".$category_ids_query.") ORDER BY sticky DESC, ".$db_thread_order." ".$descasc." LIMIT ".$ul.", ".$settings['threads_per_page'], $connid) or raise_error('database_error',mysql_error());
+  $result=mysqli_query($connid, "SELECT id, tid FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and." AND category IN (".$category_ids_query.") ORDER BY sticky DESC, ".$db_thread_order." ".$descasc." LIMIT ".$ul.", ".$settings['threads_per_page']) or raise_error('database_error',mysqli_error($connid));
  }
 elseif(is_array($categories) && $category > 0) // there are categories and only one category should be shown
  {
   if(in_array($category, $category_ids))
    {
-    $result=mysql_query("SELECT id, tid FROM ".$db_settings['forum_table']." WHERE category = '".mysql_real_escape_string($category)."' AND pid = 0".$display_spam_query_and." ORDER BY sticky DESC, ".$db_thread_order." ".$descasc." LIMIT ".$ul.", ".$settings['threads_per_page'], $connid) or raise_error('database_error',mysql_error());
+    $result=mysqli_query($connid, "SELECT id, tid FROM ".$db_settings['forum_table']." WHERE category = '".mysqli_real_escape_string($connid, $category)."' AND pid = 0".$display_spam_query_and." ORDER BY sticky DESC, ".$db_thread_order." ".$descasc." LIMIT ".$ul.", ".$settings['threads_per_page']) or raise_error('database_error',mysqli_error($connid));
     // how many entries?
-    $pid_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and." AND category = '".mysql_real_escape_string($category)."'", $connid);
-    list($total_threads) = mysql_fetch_row($pid_result);
-    mysql_free_result($pid_result);
+    $pid_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and." AND category = '".mysqli_real_escape_string($connid, $category)."'");
+    list($total_threads) = mysqli_fetch_row($pid_result);
+    mysqli_free_result($pid_result);
    }
   else // invalid category
    {
@@ -79,18 +79,18 @@ elseif(is_array($categories) && $category > 0) // there are categories and only 
    }
  }
 
-$result_count = @mysql_num_rows($result);
+$result_count = @mysqli_num_rows($result);
 if($result_count > 0)
  {
-  while($zeile = mysql_fetch_array($result))
+  while($zeile = mysqli_fetch_array($result))
    {
-    $thread_result = @mysql_query("SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, user_type, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, spam
+    $thread_result = @mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, user_type, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, spam
                                    FROM ".$db_settings['forum_table']."
                                    LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                                    WHERE tid = ".$zeile['tid'].$display_spam_query_and."
-                                   ORDER BY time ASC", $connid) or raise_error('database_error',mysql_error());
+                                   ORDER BY time ASC") or raise_error('database_error',mysqli_error($connid));
     // put result into arrays:
-    while($data = mysql_fetch_array($thread_result))
+    while($data = mysqli_fetch_array($thread_result))
      {
       // count replies:
       if(!isset($replies[$data['tid']])) $replies[$data['tid']] = 0;
@@ -130,9 +130,9 @@ if($result_count > 0)
       $data_array[$data['id']] = $data;
       $child_array[$data['pid']][] =  $data['id'];
      }
-    mysql_free_result($thread_result);
+    mysqli_free_result($thread_result);
    }
-  @mysql_free_result($result);
+  @mysqli_free_result($result);
  }
 
 // latest postings:
@@ -140,35 +140,35 @@ if($settings['latest_postings']>0)
  {
   if($categories == false)
    {
-    $latest_postings_result = @mysql_query("SELECT id, pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category
+    $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category
                                             FROM ".$db_settings['forum_table']."
                                             LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                                             WHERE spam=0
-                                            ORDER BY time DESC LIMIT ".$settings['latest_postings'], $connid) or raise_error('database_error',mysql_error());
+                                            ORDER BY time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
    }
   else
    {
     if($category>0)
      {
-      $latest_postings_result = @mysql_query("SELECT id, pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category
+      $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category
                                               FROM ".$db_settings['forum_table']."
                                               LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                                               WHERE spam=0 AND category = ".intval($category)."
-                                              ORDER BY time DESC LIMIT ".$settings['latest_postings'], $connid) or raise_error('database_error',mysql_error());
+                                              ORDER BY time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
      }
     else
      {
-      $latest_postings_result = @mysql_query("SELECT id, pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category
+      $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category
                                               FROM ".$db_settings['forum_table']."
                                               LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                                               WHERE spam=0 AND category IN (".$category_ids_query.")
-                                              ORDER BY time DESC LIMIT ".$settings['latest_postings'], $connid) or raise_error('database_error',mysql_error());
+                                              ORDER BY time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
      }
    }
-  if(mysql_num_rows($latest_postings_result)>0)
+  if(mysqli_num_rows($latest_postings_result)>0)
    {
     $i=0;
-    while($latest_postings_data = mysql_fetch_array($latest_postings_result))
+    while($latest_postings_data = mysqli_fetch_array($latest_postings_result))
      {
       $latest_postings[$i]['id'] = intval($latest_postings_data['id']);
       $latest_postings[$i]['tid'] = intval($latest_postings_data['tid']);
@@ -199,7 +199,7 @@ if($settings['latest_postings']>0)
      }
     $smarty->assign('latest_postings',$latest_postings);
    }
-  mysql_free_result($latest_postings_result);
+  mysqli_free_result($latest_postings_result);
  }
 
 // tag cloud:

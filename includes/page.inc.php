@@ -8,10 +8,10 @@ if(!defined('IN_INDEX'))
 if(isset($_GET['id']))
  {
   $id = intval($_GET['id']);
-  $result = @mysql_query("SELECT id, title, content, access FROM ".$db_settings['pages_table']." WHERE id= ".$id." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-   if(mysql_num_rows($result)>0)
+  $result = @mysqli_query($connid, "SELECT id, title, content, access FROM ".$db_settings['pages_table']." WHERE id= ".$id." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+   if(mysqli_num_rows($result)>0)
     {
-     $data = mysql_fetch_array($result);
+     $data = mysqli_fetch_array($result);
      if($data['access']==0||isset($_SESSION[$settings['session_prefix'].'user_id']))
       {
        $page['id'] = intval($data['id']);
@@ -23,7 +23,7 @@ if(isset($_GET['id']))
      else $smarty->assign('no_authorisation',true);
     }
    else $smarty->assign('page_doesnt_exist',true);
-   mysql_free_result($result);
+   mysqli_free_result($result);
  }
 
 if(isset($page))

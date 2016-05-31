@@ -45,8 +45,8 @@ if(get_magic_quotes_gpc())
 function table_exists($table)
  {
   global $connid;
-  $result = @mysql_query("SHOW TABLES", $connid);
-  while($row = mysql_fetch_array($result))
+  $result = @mysqli_query($connid, "SHOW TABLES");
+  while($row = mysqli_fetch_array($result))
    {
     if($table==$row[0]) return true;
    }
@@ -56,11 +56,11 @@ function table_exists($table)
 if(isset($_POST['language_file'])) $language_file = $_POST['language_file'];
 
 // try to connect to the database...
-if($connid = @mysql_connect($db_settings['host'], $db_settings['user'], $db_settings['password']))
+if($connid = @mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password']))
  {
-  if(@mysql_select_db($db_settings['database'], $connid))
+  if(@mysqli_select_db($connid, $db_settings['database']))
    {
-    @mysql_query('SET NAMES utf8', $connid);
+    @mysqli_query($connid, 'SET NAMES utf8');
     if(table_exists($db_settings['forum_table']))
      {
       // the forum seems to be installed
@@ -171,8 +171,8 @@ if(isset($_POST['install_submit']))
   // try to connect the database with posted access data:
   if(empty($errors))
    {
-    $connid = @mysql_connect($_POST['host'], $_POST['user'], $_POST['password']);
-    if(!$connid) $errors[] = $lang['error_db_connection']." (MySQL: ".mysql_error().")";
+    $connid = @mysqli_connect($_POST['host'], $_POST['user'], $_POST['password']);
+    if(!$connid) $errors[] = $lang['error_db_connection']." (MySQL: ".mysqli_error($connid).")";
    }
 
   if(empty($errors))
@@ -231,14 +231,14 @@ if(isset($_POST['install_submit']))
   if(empty($errors) && isset($_POST['create_database']))
    {
     // create database if desired:
-    @mysql_query("CREATE DATABASE ".$db_settings['database'], $connid) or $errors[] = $lang['create_db_error']." (MySQL: ".mysql_error($connid).")";
+    @mysqli_query($connid, "CREATE DATABASE ".$db_settings['database']) or $errors[] = $lang['create_db_error']." (MySQL: ".mysqli_error($connid).")";
    }
 
   // select database:
   if(empty($errors))
    {
-    @mysql_select_db($db_settings['database'], $connid) or $errors[] = $lang['error_db_inexistent']." (MySQL: ".mysql_error($connid).")";
-    @mysql_query('SET NAMES utf8', $connid);
+    @mysqli_select_db($connid, $db_settings['database']) or $errors[] = $lang['error_db_inexistent']." (MySQL: ".mysqli_error($connid).")";
+    @mysqli_query($connid, 'SET NAMES utf8');
    }
 
   // run installation sql file:
@@ -254,32 +254,32 @@ if(isset($_POST['install_submit']))
       if($line != '' && my_substr($line,0,1,$lang['charset'])!='#') $cleared_lines[] = $line;
      }
 
-    @mysql_query("START TRANSACTION", $connid) or die(mysql_error());
+    @mysqli_query($connid, "START TRANSACTION") or die(mysqli_error($connid));
     foreach($cleared_lines as $line)
      {
-      if(!@mysql_query($line, $connid))
+      if(!@mysqli_query($connid, $line))
        {
-        $errors[] = $lang['error_sql']." (MySQL: ".mysql_error($connid).")";
+        $errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
         #break;
       }
      }
-    @mysql_query("COMMIT", $connid);
+    @mysqli_query($connid, "COMMIT");
    }
 
    // insert admin in userdata table:
    if(empty($errors))
     {
      $pw_hash = generate_pw_hash($_POST['admin_pw']);
-     @mysql_query("UPDATE ".$db_settings['userdata_table']." SET user_name='".mysql_real_escape_string($_POST['admin_name'])."', user_pw = '".mysql_real_escape_string($pw_hash)."', user_email = '".mysql_real_escape_string($_POST['admin_email'])."' WHERE user_id=1", $connid) or $errors[] = $lang['error_create_admin']." (MySQL: ".mysql_error($connid).")";
+     @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_name='".mysqli_real_escape_string($connid, $_POST['admin_name'])."', user_pw = '".mysqli_real_escape_string($connid, $pw_hash)."', user_email = '".mysqli_real_escape_string($connid, $_POST['admin_email'])."' WHERE user_id=1") or $errors[] = $lang['error_create_admin']." (MySQL: ".mysqli_error($connid).")";
     }
 
    // set forum name, address and email address:
    if(empty($errors))
     {
-     @mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($_POST['forum_name'])."' WHERE name='forum_name' LIMIT 1", $connid) or $errors[] = $lang['error_update_settings']." (MySQL: ".mysql_error($connid).")";
-     @mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($_POST['forum_address'])."' WHERE name='forum_address' LIMIT 1", $connid) or $errors[] = $lang['error_update_settings']." (MySQL: ".mysql_error($connid).")";
-     @mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($_POST['forum_email'])."' WHERE name='forum_email' LIMIT 1", $connid) or $errors[] = $lang['error_update_settings']." (MySQL: ".mysql_error($connid).")";
-     @mysql_query("UPDATE ".$db_settings['settings_table']." SET value='".mysql_real_escape_string($_POST['language_file'])."' WHERE name='language_file' LIMIT 1", $connid) or $errors[] = $lang['error_update_settings']." (MySQL: ".mysql_error($connid).")";
+     @mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['forum_name'])."' WHERE name='forum_name' LIMIT 1") or $errors[] = $lang['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
+     @mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['forum_address'])."' WHERE name='forum_address' LIMIT 1") or $errors[] = $lang['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
+     @mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['forum_email'])."' WHERE name='forum_email' LIMIT 1") or $errors[] = $lang['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
+     @mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['language_file'])."' WHERE name='language_file' LIMIT 1") or $errors[] = $lang['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
     }
 
    if(empty($errors))

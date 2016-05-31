@@ -22,9 +22,9 @@ switch($action)
    // sender:
    if(isset($_SESSION[$settings['session_prefix'].'user_id']))
     {
-     $result = @mysql_query("SELECT user_email FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($_SESSION[$settings['session_prefix'].'user_id'])."' LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-     $data = mysql_fetch_array($result);
-     mysql_free_result($result);
+     $result = @mysqli_query($connid, "SELECT user_email FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($_SESSION[$settings['session_prefix'].'user_id'])."' LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+     $data = mysqli_fetch_array($result);
+     mysqli_free_result($result);
      $smarty->assign('sender_email',htmlspecialchars($data['user_email']));
     }
    else
@@ -35,20 +35,20 @@ switch($action)
    if(isset($_REQUEST['id']))
     {
      // contact by entry:
-     $result = @mysql_query("SELECT user_id, name, email FROM ".$db_settings['forum_table']." WHERE id = ".intval($_REQUEST['id'])." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-     if(mysql_num_rows($result)!=1)
+     $result = @mysqli_query($connid, "SELECT user_id, name, email FROM ".$db_settings['forum_table']." WHERE id = ".intval($_REQUEST['id'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+     if(mysqli_num_rows($result)!=1)
       {
        header('Location: index.php');
        exit;
       }
-     $data = mysql_fetch_array($result);
-     mysql_free_result($result);
+     $data = mysqli_fetch_array($result);
+     mysqli_free_result($result);
      if($data['user_id']>0)
       {
        // registered user, get  data from userdata table:
-       $result = @mysql_query("SELECT user_name, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['user_id'])." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-       $userdata = mysql_fetch_array($result);
-       mysql_free_result($result);
+       $result = @mysqli_query($connid, "SELECT user_name, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['user_id'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+       $userdata = mysqli_fetch_array($result);
+       mysqli_free_result($result);
        if($userdata['email_contact']!=1)
         {
          $smarty->assign('error_message','impossible_to_contact');
@@ -75,14 +75,14 @@ switch($action)
     }
    elseif(isset($_REQUEST['user_id']))
     {
-     $result = @mysql_query("SELECT user_name, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($_REQUEST['user_id'])."' LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-      if(mysql_num_rows($result)!=1)
+     $result = @mysqli_query($connid, "SELECT user_name, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($_REQUEST['user_id'])."' LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+      if(mysqli_num_rows($result)!=1)
       {
        header('Location: index.php');
        exit;
       }
-     $userdata = mysql_fetch_array($result);
-     mysql_free_result($result);
+     $userdata = mysqli_fetch_array($result);
+     mysqli_free_result($result);
      if($userdata['email_contact']!=1)
       {
        $smarty->assign('error_message','impossible_to_contact');
@@ -204,20 +204,20 @@ switch($action)
    if(isset($id))
     {
      // get email address from entry:
-     $result = @mysql_query("SELECT user_id, name, email FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-     if(mysql_num_rows($result)!=1)
+     $result = @mysqli_query($connid, "SELECT user_id, name, email FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+     if(mysqli_num_rows($result)!=1)
       {
        header('Location: index.php');
        exit;
       }
-     $data = mysql_fetch_array($result);
-     mysql_free_result($result);
+     $data = mysqli_fetch_array($result);
+     mysqli_free_result($result);
      if($data['user_id']>0)
       {
        // registered user, get  data from userdata table:
-       $result = @mysql_query("SELECT user_email, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['user_id'])." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-       $userdata = mysql_fetch_array($result);
-       mysql_free_result($result);
+       $result = @mysqli_query($connid, "SELECT user_email, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['user_id'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+       $userdata = mysqli_fetch_array($result);
+       mysqli_free_result($result);
        if($userdata['email_contact']!=1)
         {
          $errors[] = TRUE;
@@ -247,14 +247,14 @@ switch($action)
     }
    elseif(isset($user_id))
     {
-     $result = @mysql_query("SELECT user_name, user_email, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($user_id)."' LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-     if(mysql_num_rows($result)!=1)
+     $result = @mysqli_query($connid, "SELECT user_name, user_email, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($user_id)."' LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+     if(mysqli_num_rows($result)!=1)
       {
        header('Location: index.php');
        exit;
       }
-     $userdata = mysql_fetch_array($result);
-     mysql_free_result($result);
+     $userdata = mysqli_fetch_array($result);
+     mysqli_free_result($result);
      if($userdata['email_contact']!=1)
       {
        $errors[] = TRUE;

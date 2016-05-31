@@ -26,16 +26,16 @@ if(isset($_GET['order']) && $_GET['order']=='last_reply') $order = 'last_reply';
 else $order = 'time';
 
 // tid, subject and category of starting posting:
-  $result=mysql_query("SELECT tid, subject, category FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1", $connid) or raise_error('database_error',mysql_error());
-  if(mysql_num_rows($result)!=1)
+  $result=mysqli_query($connid, "SELECT tid, subject, category FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+  if(mysqli_num_rows($result)!=1)
    {
     header('Location: index.php');
     exit;
    }
   else
    {
-    $data = mysql_fetch_array($result);
-    mysql_free_result($result);
+    $data = mysqli_fetch_array($result);
+    mysqli_free_result($result);
    }
 
   // category of this posting accessible by user?
@@ -55,13 +55,13 @@ else $order = 'time';
     $tid = $data['tid'];
     $smarty->assign("tid",$tid);
 
-    if(isset($settings['count_views']) && $settings['count_views'] == 1) @mysql_query("UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, views=views+1 WHERE tid=".$id, $connid);
+    if(isset($settings['count_views']) && $settings['count_views'] == 1) @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, views=views+1 WHERE tid=".$id);
 
     $smarty->assign('page_title',htmlspecialchars($data['subject']));
     $smarty->assign('category_name',$categories[$data["category"]]);
 
     // get all postings of thread:
-    $result = mysql_query("SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS disp_time,
+    $result = mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS disp_time,
                            UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(edited + INTERVAL ".intval($time_difference)." MINUTE) AS e_time,
                            UNIX_TIMESTAMP(edited - INTERVAL ".$settings['edit_delay']." MINUTE) AS edited_diff, edited_by, name, email,
                            subject, hp, location, ip, text, cache_text, tags, show_signature, views, spam, spam_check_status, category, locked, ip,
@@ -70,11 +70,11 @@ else $order = 'time';
                            LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=id
                            LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                            LEFT JOIN ".$db_settings['userdata_cache_table']." ON ".$db_settings['userdata_cache_table'].".cache_id=".$db_settings['userdata_table'].".user_id
-                           WHERE tid = ".$tid.$display_spam_query_and." ORDER BY time ASC", $connid) or raise_error('database_error',mysql_error());
+                           WHERE tid = ".$tid.$display_spam_query_and." ORDER BY time ASC") or raise_error('database_error',mysqli_error($connid));
 
-    if(mysql_num_rows($result) > 0)
+    if(mysqli_num_rows($result) > 0)
      {
-      while($data = mysql_fetch_array($result))
+      while($data = mysqli_fetch_array($result))
       {
        $new_read[] = $data['id'];
 
@@ -157,11 +157,9 @@ else $order = 'time';
         if($data['user_id'] == $data['edited_by']) $data['edited_by'] = $data['name'];
         else
          {
-          $edited_result = @mysql_query("SELECT user_name
-                                         FROM ".$db_settings['userdata_table']."
-                                         WHERE user_id = ".intval($data['edited_by'])." LIMIT 1", $connid);
-          $edited_data = mysql_fetch_array($edited_result);
-          @mysql_free_result($edited_result);
+          $edited_result = @mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['edited_by'])." LIMIT 1");
+          $edited_data = mysqli_fetch_array($edited_result);
+          @mysqli_free_result($edited_result);
           if(!$edited_data['user_name']) $data['edited_by'] = $lang['unknown_user'];
           else $data['edited_by'] = htmlspecialchars($edited_data['user_name']);
          }
@@ -172,8 +170,8 @@ else $order = 'time';
         // no cached text so parse it and cache it:
         $data['posting'] = html_format($data['text']);
         // make sure not to make a double entry:
-        @mysql_query("DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id=".intval($data['id']), $connid);
-        @mysql_query("INSERT INTO ".$db_settings['entry_cache_table']." (cache_id, cache_text) VALUES (".intval($data['id']).",'".mysql_real_escape_string($data['posting'])."')", $connid);
+        @mysqli_query($connid, "DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id=".intval($data['id']));
+        @mysqli_query($connid, "INSERT INTO ".$db_settings['entry_cache_table']." (cache_id, cache_text) VALUES (".intval($data['id']).",'".mysqli_real_escape_string($connid, $data['posting'])."')");
        }
       else
        {
@@ -192,8 +190,8 @@ else $order = 'time';
         }
         else
         {
-         $s_result = @mysql_query("SELECT cache_signature FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".intval($data['user_id'])." LIMIT 1", $connid);
-         $s_data = mysql_fetch_array($s_result);
+         $s_result = @mysqli_query($connid, "SELECT cache_signature FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".intval($data['user_id'])." LIMIT 1");
+         $s_data = mysqli_fetch_array($s_result);
          if($s_data['cache_signature']!='')
           {
            $data['signature'] = $s_data['cache_signature'];
@@ -202,17 +200,17 @@ else $order = 'time';
           {
            $data['signature'] = signature_format($data['signature']);
            // cache signature:
-           $xxx = mysql_query("SELECT COUNT(*) FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".intval($data['user_id']), $connid) or die(mysql_error());
-           list($row_count) = mysql_fetch_row($xxx);
+           $xxx = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".intval($data['user_id'])) or die(mysqli_error($connid));
+           list($row_count) = mysqli_fetch_row($xxx);
            #echo 'row count: '.$row_count.' user_id: '.$data['user_id'].'<br />';
            if($row_count==1)
             {
-             @mysql_query("UPDATE ".$db_settings['userdata_cache_table']." SET cache_signature='".mysql_real_escape_string($data['signature'])."' WHERE cache_id=".intval($data['user_id']), $connid);
+             @mysqli_query($connid, "UPDATE ".$db_settings['userdata_cache_table']." SET cache_signature='".mysqli_real_escape_string($connid, $data['signature'])."' WHERE cache_id=".intval($data['user_id']));
             }
            else
             {
-             @mysql_query("DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".intval($data['user_id']), $connid);
-             @mysql_query("INSERT INTO ".$db_settings['userdata_cache_table']." (cache_id, cache_signature, cache_profile) VALUES (".intval($data['user_id']).",'".mysql_real_escape_string($data['signature'])."','')", $connid);
+             @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".intval($data['user_id']));
+             @mysqli_query($connid, "INSERT INTO ".$db_settings['userdata_cache_table']." (cache_id, cache_signature, cache_profile) VALUES (".intval($data['user_id']).",'".mysqli_real_escape_string($connid, $data['signature'])."','')");
             }
           }
         }
@@ -249,7 +247,7 @@ else $order = 'time';
       $data_array[$data["id"]] = $data;
       $child_array[$data["pid"]][] =  $data["id"];
      }
-    mysql_free_result($result);
+    mysqli_free_result($result);
 
     save_read(set_read($new_read));
     }

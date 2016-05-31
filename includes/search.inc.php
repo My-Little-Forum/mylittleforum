@@ -8,8 +8,8 @@ if(!defined('IN_INDEX'))
 if(isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0)
  {
   // list spam postings:
-  $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE spam=1", $connid);
-  list($search_results_count) = mysql_fetch_row($count_result);
+  $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE spam=1");
+  list($search_results_count) = mysqli_fetch_row($count_result);
   $total_pages = ceil($search_results_count / $settings['search_results_per_page']);
   if(isset($_GET['page'])) $page = intval($_GET['page']); else $page = 1;
   if($page < 1) $page = 1;
@@ -32,13 +32,13 @@ if(isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'].'use
   $smarty->assign('page_browse',$page_browse);
   if($search_results_count>0)
    {
-    $result = @mysql_query("SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky
+    $result = @mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky
                             FROM ".$db_settings['forum_table']."
                             LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                             WHERE spam=1
-                            ORDER BY tid DESC, time ASC LIMIT ".$ul.", ".$settings['search_results_per_page'], $connid) or die(mysql_error());
+                            ORDER BY tid DESC, time ASC LIMIT ".$ul.", ".$settings['search_results_per_page']) or die(mysqli_error($connid));
     $i=0;
-    while($row = mysql_fetch_array($result))
+    while($row = mysqli_fetch_array($result))
      {
       $search_results[$i]['id'] = intval($row['id']);
       $search_results[$i]['pid'] = intval($row['pid']);
@@ -60,7 +60,7 @@ if(isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'].'use
        }
       $i++;
      }
-    mysql_free_result($result);
+    mysqli_free_result($result);
    }
   $smarty->assign('search_results_count',$search_results_count);
   if(isset($search_results)) $smarty->assign('search_results',$search_results);
@@ -86,7 +86,7 @@ elseif(isset($_GET['search']))
   $x_search_array = explode(' ', my_strtolower($x_search, $lang['charset']));
   foreach($x_search_array as $item)
    {
-    $search_array[] = mysql_real_escape_string(str_replace($help_pattern,' ',$item));
+    $search_array[] = mysqli_real_escape_string($connid, str_replace($help_pattern,' ',$item));
    }
 
   // limit to 3 words:
@@ -128,9 +128,9 @@ elseif(isset($_GET['search']))
   // count results:
   if($search!='')
    {
-    if($categories!=false) $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE ".$search_string." AND category IN (".$category_ids_query.")", $connid);
-    else $count_result = mysql_query("SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE ".$search_string, $connid);
-    list($search_results_count) = mysql_fetch_row($count_result);
+    if($categories!=false) $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE ".$search_string." AND category IN (".$category_ids_query.")");
+    else $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE ".$search_string);
+    list($search_results_count) = mysqli_fetch_row($count_result);
    }
   else $search_results_count = 0;
 
@@ -159,22 +159,22 @@ elseif(isset($_GET['search']))
    {
     if($categories!=false)
      {
-      $result = @mysql_query("SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky
+      $result = @mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky
                               FROM ".$db_settings['forum_table']."
                               LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                               WHERE ".$search_string." AND category IN (".$category_ids_query.")
-                              ORDER BY tid DESC, time ASC LIMIT ".$ul.", ".$settings['search_results_per_page'], $connid) or die(mysql_error());
+                              ORDER BY tid DESC, time ASC LIMIT ".$ul.", ".$settings['search_results_per_page']) or die(mysqli_error($connid));
      }
     else
      {
-      $result = @mysql_query("SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky
+      $result = @mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky
                               FROM ".$db_settings['forum_table']."
                               LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                               WHERE ".$search_string."
-                              ORDER BY tid DESC, time ASC LIMIT ".$ul.", ".$settings['search_results_per_page'], $connid) or die(mysql_error());
+                              ORDER BY tid DESC, time ASC LIMIT ".$ul.", ".$settings['search_results_per_page']) or die(mysqli_error($connid));
      }
     $i=0;
-    while($row = mysql_fetch_array($result))
+    while($row = mysqli_fetch_array($result))
      {
       $search_results[$i]['id'] = intval($row['id']);
       $search_results[$i]['pid'] = intval($row['pid']);
@@ -197,7 +197,7 @@ elseif(isset($_GET['search']))
        }
       $i++;
      }
-    mysql_free_result($result);
+    mysqli_free_result($result);
    }
 
   $smarty->assign('search_results_count',$search_results_count);

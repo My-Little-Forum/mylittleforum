@@ -32,37 +32,37 @@ if($settings['rss_feed'] == 1 && $settings['forum_enabled']==1)
   // database request
   if($categories == false)
    {
-    $result = @mysql_query("SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, subject, text, cache_text
+    $result = @mysqli_query($connid, "SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, subject, text, cache_text
                             FROM ".$db_settings['forum_table']."
                             LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=id
                             LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                             WHERE spam=0".$query_addition."
-                            ORDER BY time DESC LIMIT ".$settings['rss_feed_max_items'], $connid) or raise_error('database_error',mysql_error());
-    if(!$result) raise_error('database_error',mysql_error());
+                            ORDER BY time DESC LIMIT ".$settings['rss_feed_max_items']) or raise_error('database_error',mysqli_error($connid));
+    if(!$result) raise_error('database_error',mysqli_error($connid));
     }
   else
    {
-    $result = @mysql_query("SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, category, subject, text, cache_text
+    $result = @mysqli_query($connid, "SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, category, subject, text, cache_text
     FROM ".$db_settings['forum_table']."
     LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=id
     LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
     WHERE category IN (".$category_ids_query.") AND spam=0".$query_addition."
-    ORDER BY time DESC LIMIT ".$settings['rss_feed_max_items'], $connid) or raise_error('database_error',mysql_error());
+    ORDER BY time DESC LIMIT ".$settings['rss_feed_max_items']) or raise_error('database_error',mysqli_error($connid));
    }
-  $result_count = mysql_num_rows($result);
+  $result_count = mysqli_num_rows($result);
 
   if($result_count > 0)
    {
     $i=0;
-    while ($row = mysql_fetch_array($result))
+    while ($row = mysqli_fetch_array($result))
      {
       if($row['pid']!=0) $rss_items[$i]['reply'] = true;
       
       if($row['cache_text']=='') 
        {
         $rss_items[$i]['text'] = html_format($row['text']);
-        @mysql_query("DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id=".intval($row['id']), $connid);
-        @mysql_query("INSERT INTO ".$db_settings['entry_cache_table']." (cache_id, cache_text) VALUES (".intval($row['id']).",'".mysql_real_escape_string($rss_items[$i]['text'])."')", $connid);
+        @mysqli_query($connid, "DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id=".intval($row['id']));
+        @mysqli_query($connid, "INSERT INTO ".$db_settings['entry_cache_table']." (cache_id, cache_text) VALUES (".intval($row['id']).",'".mysqli_real_escape_string($connid, $rss_items[$i]['text'])."')");
        }
       else
        {

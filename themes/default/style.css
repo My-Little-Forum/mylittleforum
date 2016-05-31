@@ -296,6 +296,8 @@ ul.thread span.admin,
 td span.admin,
 td span.mod              { cursor:help; }
 
+.registered_user::after  {content:" \00AE"}
+
 #captcha                 { margin:0; padding:0; }
 #captcha p               { font-size:1em; }
 #captcha img,
