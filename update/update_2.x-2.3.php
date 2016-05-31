@@ -1,7 +1,7 @@
 <?php
 /******************************************************************************
 * my little forum                                                             *
-* update file to update from version 2.* to version 2.3.5 RC                  *
+* update file to update from version 2.* to version 2.3.5                     *
 *                                                                             *
 * Update instructions:                                                        *
 * - Load up this file into the directory "update"                             *
@@ -16,7 +16,7 @@ if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
 $update['version'] = array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3','2.3.1','2.3.2','2.3.3','2.3.4');
-$update['new_version'] = '2.3.5 RC';
+$update['new_version'] = '2.3.5';
 $update['download_url'] = 'https://sourceforge.net/projects/mylittleforum/files/latest/download';
 #$update['message'] = '<p>HTML formated message...</p>';
 
