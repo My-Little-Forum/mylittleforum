@@ -1,11 +1,46 @@
 my little forum changelog
 -------------------------
 
-2.3.5 (2016-03-??)
-------------------
-- 
--
--
+2.3.5 RC (2016-05-26)
+---------------------
+- Smarty update (3.1.29)
+- Bad Behavior updated (2.2.18)
+- Marked locked thread without opening (http://mylittleforum.net/forum/index.php?id=8721)
+- Several minor translation errors in german.lang (http://mylittleforum.net/forum/index.php?id=8549)
+- Sticky becomes unstuck when thread is edited-Fix (http://mylittleforum.net/forum/index.php?id=8310)
+- JavaScript fix for iOS (http://mylittleforum.net/forum/index.php?id=8393)
+- Showing registered users (http://mylittleforum.net/forum/index.php?id=8285)
+- Replace mysql_* by mysqli_* functions (http://mylittleforum.net/forum/index.php?id=8942)
+
+Edited files:
+- js/
+- modules/smarty/
+- modules/bad-behavior/
+- lang/german.lang
+- themes/default/images/bg_sprite_1.png
+- themes/default/subtemplates/entry.inc.tpl
+- themes/default/subtemplates/index.inc.tpl
+- themes/default/subtemplates/index_table.inc.tpl
+- themes/default/subtemplates/thread.inc.tpl
+- themes/default/subtemplates/thread_linear.inc.tpl
+- themes/default/style.css
+- themes/default/style.mini.css
+- includes/admin.inc.php
+- includes/auto_login.inc.php
+- includes/contact.inc.php
+- includes/entry.inc.php
+- includes/functions.inc.php
+- includes/index.inc.php
+- includes/login.inc.php
+- includes/main.inc.php
+- includes/page.inc.php
+- includes/posting.inc.php
+- includes/register.inc.php
+- includes/rss.inc.php
+- includes/search.inc.php
+- includes/thread.inc.php
+- includes/user.inc.php
+
 
 2.3.4 (2015-02-08)
 ------------------
