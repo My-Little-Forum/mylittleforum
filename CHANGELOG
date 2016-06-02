@@ -11,6 +11,7 @@ my little forum changelog
 - JavaScript fix for iOS (http://mylittleforum.net/forum/index.php?id=8393)
 - Showing registered users (http://mylittleforum.net/forum/index.php?id=8285)
 - Replace mysql_* by mysqli_* functions (http://mylittleforum.net/forum/index.php?id=8942)
+- Set empty timestamp values to null for MySQL>=5.6.5
 
 Edited files:
 - js/
