@@ -1051,7 +1051,7 @@ if(isset($_POST['register_submit']))
       $ar_pw = random_string($pwl);
      }
     $pw_hash = generate_pw_hash($ar_pw);
-    mysqli_query($connid, "INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, signature, profile, auto_login_code, pwf_code, activate_code, entries_read) VALUES (0,'".mysqli_real_escape_string($connid, $ar_username)."', '', '".mysqli_real_escape_string($connid, $pw_hash)."','".mysqli_real_escape_string($connid, $ar_email)."', '', '', ".$settings['default_email_contact'].", '0000-00-00 00:00:00', NOW(),'".$_SERVER["REMOTE_ADDR"]."',NOW(),".intval($settings['default_view']).",".intval($settings['fold_threads']).",'','','','','','')") or die(mysqli_error($connid)); //raise_error('database_error',mysqli_error($connid));
+    mysqli_query($connid, "INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, signature, profile, auto_login_code, pwf_code, activate_code, entries_read) VALUES (0,'".mysqli_real_escape_string($connid, $ar_username)."', '', '".mysqli_real_escape_string($connid, $pw_hash)."','".mysqli_real_escape_string($connid, $ar_email)."', '', '', ".$settings['default_email_contact'].", NULL, NOW(),'".$_SERVER["REMOTE_ADDR"]."',NOW(),".intval($settings['default_view']).",".intval($settings['fold_threads']).",'','','','','','')") or die(mysqli_error($connid)); //raise_error('database_error',mysqli_error($connid));
 
     // send userdata:
     $send_error='';

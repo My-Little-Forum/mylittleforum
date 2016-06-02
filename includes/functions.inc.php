@@ -1921,7 +1921,7 @@ function create_backup_file($mode=0)
      {
       $data['user_name'] = mysqli_real_escape_string($connid, $data['user_name']);
       $data['user_real_name'] = mysqli_real_escape_string($connid, $data['user_real_name']);
-      $data['birthday'] = mysqli_real_escape_string($connid, $data['birthday']);
+      $data['birthday'] = !is_null($data['birthday']) ? mysqli_real_escape_string($connid, $data['birthday']) : 'NULL';
       $data['user_pw'] = mysqli_real_escape_string($connid, $data['user_pw']);
       $data['user_email'] = mysqli_real_escape_string($connid, $data['user_email']);
       $data['user_hp'] = mysqli_real_escape_string($connid, $data['user_hp']);
@@ -1932,10 +1932,11 @@ function create_backup_file($mode=0)
       $data['profile'] = mysqli_real_escape_string($connid, $data['profile']);
       $data['profile'] = str_replace("\r", "\\r", $data['profile']);
       $data['profile'] = str_replace("\n",  "\\n", $data['profile']);
-      $data['last_login'] = mysqli_real_escape_string($connid, $data['last_logout']);
+      $data['last_login'] = !is_null($data['last_login']) ? "'".mysqli_real_escape_string($connid, $data['last_login'])."'" : 'NULL';
+      $data['last_logout'] = !is_null($data['last_logout']) ? "'".mysqli_real_escape_string($connid, $data['last_logout'])."'" : 'NULL';
       $data['user_ip'] = mysqli_real_escape_string($connid, $data['user_ip']);
-      $data['registered'] = mysqli_real_escape_string($connid, $data['registered']);
-      if(is_null($data['category_selection'])) $data['category_selection'] = 'NULL'; else $data['category_selection'] = "'".mysqli_real_escape_string($connid, $data['category_selection'])."'";
+      $data['registered'] = !is_null($data['registered']) ? "'".mysqli_real_escape_string($connid, $data['registered'])."'" : 'NULL';
+      $data['category_selection'] = !is_null($data['category_selection']) ? "'".mysqli_real_escape_string($connid, $data['category_selection'])."'" : 'NULL';
       $data['language'] = mysqli_real_escape_string($connid, $data['language']);
       $data['time_zone'] = mysqli_real_escape_string($connid, $data['time_zone']);
       $data['theme'] = mysqli_real_escape_string($connid, $data['theme']);
@@ -1943,7 +1944,7 @@ function create_backup_file($mode=0)
       $data['auto_login_code'] = mysqli_real_escape_string($connid, $data['auto_login_code']);
       $data['pwf_code'] = mysqli_real_escape_string($connid, $data['pwf_code']);
       $data['activate_code'] = mysqli_real_escape_string($connid, $data['activate_code']);
-      $backup->assign("INSERT INTO ".$db_settings['userdata_table']." VALUES (".$data['user_id'].", ".$data['user_type'].", '".$data['user_name']."', '".$data['user_real_name']."', ".$data['gender'].", '".$data['birthday']."', '".$data['user_pw']."', '".$data['user_email']."', ".$data['email_contact'].", '".$data['user_hp']."', '".$data['user_location']."', '".$data['signature']."', '".$data['profile']."', ".$data['logins'].", '".$data['last_login']."', '".$data['last_logout']."', '".$data['user_ip']."', '".$data['registered']."', ".$data['category_selection'].", ".$data['thread_order'].", ".$data['user_view'].", ".$data['sidebar'].", ".$data['fold_threads'].", ".$data['thread_display'].", ".$data['new_posting_notification'].", ".$data['new_user_notification'].", ".$data['user_lock'].", '".$data['auto_login_code']."', '".$data['pwf_code']."', '".$data['activate_code']."', '".$data['language']."', '".$data['time_zone']."', ".$data['time_difference'].", '".$data['theme']."', '".$data['entries_read']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['userdata_table']." VALUES (".$data['user_id'].", ".$data['user_type'].", '".$data['user_name']."', '".$data['user_real_name']."', ".$data['gender'].", ".$data['birthday'].", '".$data['user_pw']."', '".$data['user_email']."', ".$data['email_contact'].", '".$data['user_hp']."', '".$data['user_location']."', '".$data['signature']."', '".$data['profile']."', ".$data['logins'].", ".$data['last_login'].", ".$data['last_logout'].", '".$data['user_ip']."', ".$data['registered'].", ".$data['category_selection'].", ".$data['thread_order'].", ".$data['user_view'].", ".$data['sidebar'].", ".$data['fold_threads'].", ".$data['thread_display'].", ".$data['new_posting_notification'].", ".$data['new_user_notification'].", ".$data['user_lock'].", '".$data['auto_login_code']."', '".$data['pwf_code']."', '".$data['activate_code']."', '".$data['language']."', '".$data['time_zone']."', ".$data['time_difference'].", '".$data['theme']."', '".$data['entries_read']."');\n");
      }
     mysqli_free_result($result);
    }
@@ -1960,10 +1961,10 @@ function create_backup_file($mode=0)
     while($data = mysqli_fetch_array($result))
      {
       $data['uniqid'] = mysqli_real_escape_string($connid, $data['uniqid']);
-      $data['time'] = mysqli_real_escape_string($connid, $data['time']);
-      $data['last_reply'] = mysqli_real_escape_string($connid, $data['last_reply']);
-      $data['edited'] = mysqli_real_escape_string($connid, $data['edited']);
-      if(is_null($data['edited_by'])) $data['edited_by'] = 'NULL'; else $data['edited_by'] = intval($data['edited_by']);
+      $data['time'] = !is_null($data['time']) ? "'".mysqli_real_escape_string($connid, $data['time'])."'" : 'NULL';
+      $data['last_reply'] = !is_null($data['last_reply']) ? "'".mysqli_real_escape_string($connid, $data['last_reply'])."'" : 'NULL';
+      $data['edited'] = !is_null($data['edited']) ? "'".mysqli_real_escape_string($connid, $data['edited'])."'" : 'NULL';
+      $data['edited_by'] = !is_null($data['edited_by']) ? intval($data['edited_by']) : 'NULL';
       $data['name'] = mysqli_real_escape_string($connid, $data['name']);
       $data['subject'] = mysqli_real_escape_string($connid, $data['subject']);
       $data['email'] = mysqli_real_escape_string($connid, $data['email']);
@@ -1975,7 +1976,7 @@ function create_backup_file($mode=0)
       $data['text'] = str_replace("\r", "\\r", $data['text']);
       $data['text'] = str_replace("\n",  "\\n", $data['text']);
       $data['edit_key'] = mysqli_real_escape_string($connid, $data['edit_key']);
-      $backup->assign("INSERT INTO ".$db_settings['forum_table']." VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', '".$data['time']."', '".$data['last_reply']."', '".$data['edited']."', ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', '".$data['tags']."', ".$data['show_signature'].", ".$data['email_notification'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", ".$data['spam'].", ".$data['spam_check_status'].", '".$data['edit_key']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['forum_table']." VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', ".$data['time'].", ".$data['last_reply'].", ".$data['edited'].", ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', '".$data['tags']."', ".$data['show_signature'].", ".$data['email_notification'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", ".$data['spam'].", ".$data['spam_check_status'].", '".$data['edit_key']."');\n");
      }
     mysqli_free_result($result);
    }
