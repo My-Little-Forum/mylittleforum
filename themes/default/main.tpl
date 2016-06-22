@@ -20,9 +20,9 @@
 {if $link_rel_prev}
 <link rel="prev" href="{$link_rel_prev}" />
 {/if}
-{if $link_rel_next}
+{* if $link_rel_next}
 <link rel="next" href="{$link_rel_next}" />
-{/if}
+{/if *}
 {if $link_rel_last}
 <link rel="last" href="{$link_rel_last}" />
 {/if}
