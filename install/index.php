@@ -172,7 +172,7 @@ if(isset($_POST['install_submit']))
   if(empty($errors))
    {
     $connid = @mysqli_connect($_POST['host'], $_POST['user'], $_POST['password']);
-    if(!$connid) $errors[] = $lang['error_db_connection']." (MySQL: ".mysqli_error($connid).")";
+    if(!$connid) $errors[] = $lang['error_db_connection']." (MySQL: ".mysqli_connect_error().")";
    }
 
   if(empty($errors))
