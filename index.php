@@ -89,7 +89,6 @@ if(isset($total_users_online))
 if(isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_name']))
  {
   $smarty->assign('user_id', $_SESSION[$settings['session_prefix'].'user_id']);
-  $smarty->assign('p_user_id', $_SESSION[$settings['session_prefix'].'user_id']);
   $smarty->assign('user', htmlspecialchars($_SESSION[$settings['session_prefix'].'user_name']));
   $smarty->assign('user_type', intval($_SESSION[$settings['session_prefix'].'user_type']));
  }
