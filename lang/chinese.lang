@@ -256,7 +256,7 @@ uncheck_all =                     全部不选
 delete_backup_confirm =           确认删除备份文件?
 delete_sel_backup_confirm =       确认删除所有选中的备份文件?
 drag_and_drop_title =             拖放以上下移动
-show_postings_link =              列出所有帖子
+show_all_postings_link =          列出所有帖子
  
 [entry]
 edited_by =                       编辑: [name], 时间: [time]

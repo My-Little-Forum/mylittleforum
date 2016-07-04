@@ -255,7 +255,7 @@ uncheck_all =                     keine auswählen
 delete_backup_confirm =           Sicher, dass die Backup-Datei gelöscht werden soll?
 delete_sel_backup_confirm =       Sicher, dass die ausgewählten Backup-Dateien gelöscht werden sollen?
 drag_and_drop_title =             Drag & Drop zum Verschieben
-show_postings_link =              Einträge anzeigen
+show_all_postings_link =          Einträge anzeigen
 
 [entry]
 edited_by =                       bearbeitet von [name], [time]

@@ -254,7 +254,7 @@ uncheck_all =                     non controllare tutti
 delete_backup_confirm =           Confermi l'eliminazione di questo file di backup?
 delete_sel_backup_confirm =       Confermi l'eliminazione dei files di backup selezionati?
 drag_and_drop_title =             drag & drop per spostare in alto o in basso
-show_postings_link =              visualizza messaggi
+show_all_postings_link =          visualizza messaggi
 
 [entry]
 edited_by =                       modificato da [name], [time]
