@@ -252,6 +252,7 @@ uncheck_all =                     அனைத்தையும் குறி
 delete_backup_confirm =           காத்து வைத்த கோப்பை அழிக்க வேண்டுமா?
 delete_sel_backup_confirm =       தேர்வு செய்த காத்து வைத்த கோப்பை அழிக்க வேண்டுமா?
 drag_and_drop_title =             மேலும் கீழும் நகர இழுத்து விடவும்
+show_postings_link =              போஸ்டிங்கை காண்பி
 
 [entry]
 edited_by =                       புதுப்பித்தவர் [name], [time]

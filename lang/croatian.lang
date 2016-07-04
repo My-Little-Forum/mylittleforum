@@ -253,6 +253,7 @@ uncheck_all =                     odznači sve
 delete_backup_confirm =           Jesi li siguran da želiš obrisati ovu pričuvnu kopiju?
 delete_sel_backup_confirm =       Jesi li siguran da želiš obrisati sve označene kopije?
 drag_and_drop_title =             Povuci gore ili dole za premještanje
+show_postings_link =              prikaži poruke
 
 [entry]
 edited_by =                       Ispravio [name], [time]

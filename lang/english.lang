@@ -263,6 +263,7 @@ uncheck_all =                     uncheck all
 delete_backup_confirm =           Are you sure you want to delete this backup file?
 delete_sel_backup_confirm =       Are you sure you want to delete all selected backup files?
 drag_and_drop_title =             Drag & drop to move up or down
+show_postings_link =              show postings
 
 [entry]
 edited_by =                       edited by [name], [time]
