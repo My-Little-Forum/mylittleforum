@@ -256,6 +256,7 @@ uncheck_all =                     Décocher tout
 delete_backup_confirm =           Etes-vous sûr de vouloir supprimer ce fichier de sauvegarde ?
 delete_sel_backup_confirm =       Etes-vous sûr de vouloir supprimer tous les fichiers de sauvegarde sélectionnés ?
 drag_and_drop_title =             déplacer et lâcher pour monter ou descendre
+show_all_postings_link =          montrer les messages
           
 [entry]
 edited_by =                       édité par [name], [time]

@@ -256,6 +256,7 @@ uncheck_all =                     desactivar todo
 delete_backup_confirm =           ¿Estas seguro que quieres eliminar este archivo de copia de seguridad?
 delete_sel_backup_confirm =       ¿Esta seguro que desea eliminar todos los archivos de copia de seguridad seleccionada?
 drag_and_drop_title =             Arrastras & soltar para mover hacia arriba o abajo
+show_all_postings_link =          mostrar mensajes 
 
 [entry]
 edited_by =                       editado por [name], [time]
