@@ -318,3 +318,9 @@ UPDATE mlf2_settings SET value = '2.3.4' WHERE name = 'version';
 /*
 UPDATE mlf2_settings SET value = '2.3.5 RC' WHERE name = 'version';
 */
+--------------------------------------------------------------------------------
+-- 2.3.5 to 2.3.6.1
+/*
+ALTER TABLE mlf2_userdata CHANGE last_login last_login timestamp NULL default CURRENT_TIMESTAMP;
+UPDATE mlf2_settings SET value = '2.3.6.1' WHERE name = 'version';
+*/

@@ -5,7 +5,7 @@
  *
  * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
  * @copyright 2006-2011 Mark Alexander Hoschek
- * @version 2.3.4 (2015-02-08)
+ * @version 2.3.6.1 (2016-08-04)
  * @link http://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
