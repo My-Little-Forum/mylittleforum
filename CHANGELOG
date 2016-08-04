@@ -1,6 +1,13 @@
 my little forum changelog
 -------------------------
 
+2.3.6.1 (2016-08-04)
+--------------------
+- Allow last_login to be NULL, NOT NULL caused errors when registering a user
+- Database error when one declared a erroneous database login credential during the installation
+- Several spelling and grammar errors in german.lang
+- Feature: A link to the list of the own postings of the logged in user
+
 2.3.5 (2016-06-02)
 ------------------
 - Smarty update (3.1.29)
