@@ -43,7 +43,7 @@ switch($action)
     }
   break;
   case 'register_submitted':
-   if($settings['register_mode']>1) die('No authorisation!');
+   if($settings['register_mode']>1 || !isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) die('No authorisation!');
    else
     {
      $new_user_name = trim($_POST['new_user_name']);
