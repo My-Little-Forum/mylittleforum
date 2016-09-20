@@ -9,7 +9,7 @@
 <meta name="robots" content="noindex" />
 {/if}
 <meta name="generator" content="my little forum {$settings.version}" />
-<link rel="stylesheet" type="text/css" href="{$THEMES_DIR}/{$theme}/style.min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/style.min.css" media="all" />
 {if $settings.rss_feed==1}<link rel="alternate" type="application/rss+xml" title="RSS" href="index.php?mode=rss" />{/if}
 {if !$top}
 <link rel="top" href="./" />
@@ -27,15 +27,15 @@
 <link rel="last" href="{$link_rel_last}" />
 {/if}
 <link rel="search" href="index.php?mode=search" />
-<link rel="shortcut icon" href="{$THEMES_DIR}/{$theme}/images/favicon.ico" />
+<link rel="shortcut icon" href="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/favicon.ico" />
 {if $mode=='entry'}<link rel="canonical" href="{$settings.forum_address}index.php?mode=thread&amp;id={$tid}" />{/if}
-<script src="index.php?mode=js_defaults&amp;t={$settings.last_changes}{if $user}&amp;user_type={$user_type}{/if}" type="text/javascript" charset="utf-8"></script>
-<script src="js/main.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="{$FORUM_ADDRESS}/index.php?mode=js_defaults&amp;t={$settings.last_changes}{if $user}&amp;user_type={$user_type}{/if}" type="text/javascript" charset="utf-8"></script>
+<script src="{$FORUM_ADDRESS}/js/main.min.js" type="text/javascript" charset="utf-8"></script>
 {if $mode=='posting'}
-<script src="js/posting.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="{$FORUM_ADDRESS}/js/posting.min.js" type="text/javascript" charset="utf-8"></script>
 {/if}
 {if $mode=='admin'}
-<script src="js/admin.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="{$FORUM_ADDRESS}/js/admin.min.js" type="text/javascript" charset="utf-8"></script>
 {/if}
 </head>
 
