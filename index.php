@@ -41,7 +41,7 @@ $smarty->assign('CSRF_TOKEN', $_SESSION['csrf_token']);
 $smarty->assign('FORUM_ADDRESS', rtrim($settings['forum_address'],"/")); 
 $smarty->compile_dir = 'templates_c';
 $smarty->config_dir = LANG_DIR;
-$smarty->config_overwrite = false;
+$smarty->config_overwrite = true;
 $smarty->config_booleanize = false;
 if(isset($_SESSION[$settings['session_prefix'].'usersettings']['language']) && file_exists(LANG_DIR.'/'.$_SESSION[$settings['session_prefix'].'usersettings']['language']))
  {
