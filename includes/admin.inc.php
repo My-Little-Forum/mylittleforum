@@ -135,7 +135,7 @@ if(isset($_GET['edit_user']))
   $action = 'edit_user';
  }
 
-if(isset($_POST['edit_user_submit']))
+if(isset($_POST['edit_user_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'])
  {
   // import posted data:
   $edit_user_id = intval($_POST['edit_user_id']);
@@ -1007,7 +1007,7 @@ if(isset($_POST['settings_submit']))
   exit;
  }
 
-if(isset($_POST['register_submit']))
+if(isset($_POST['register_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'])
  {
   $ar_username = $_POST['ar_username'];
   $ar_email = $_POST['ar_email'];

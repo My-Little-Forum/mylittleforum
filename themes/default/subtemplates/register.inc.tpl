@@ -13,6 +13,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="register" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {if $captcha}<input type="hidden" name="{$captcha.session_name}" value="{$captcha.session_id}" />{/if}
 <p><label for="new_user_name" class="main">{#register_username#}</label><br />
 <input id="new_user_name" class="login" type="text" size="30" name="new_user_name" value="{$new_user_name|default:''}" maxlength="{$settings.username_maxlength}" /></p>

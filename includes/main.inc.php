@@ -32,6 +32,11 @@ $settings = get_settings();
 // get read postings:
 $read = get_read();
 
+// CSRF protection token
+if (!isset($_SESSION['csrf_token'])) {
+	$_SESSION['csrf_token'] = $uniqid = uniqid('', true);
+}
+
 // auto login:
 if(!isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$settings['session_prefix'].'auto_login']) && isset($settings['autologin']) && $settings['autologin'] == 1)
  {
