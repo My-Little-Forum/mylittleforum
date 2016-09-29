@@ -1339,13 +1339,13 @@ switch($action)
    $i=0;
    while($row = mysqli_fetch_array($result))
     {
-     $userdata[$i]['user_id'] = $row['user_id'];
+     $userdata[$i]['user_id'] = intval($row['user_id']);
      $userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
      $userdata[$i]['user_email'] = htmlspecialchars($row['user_email']);
-     $userdata[$i]['user_type'] = $row['user_type'];
-     $userdata[$i]['registered_time'] = $row['registered_time'];
-     $userdata[$i]['logins'] = $row['logins'];
-     $userdata[$i]['last_login_time'] = $row['last_login_time'];
+     $userdata[$i]['user_type'] = intval($row['user_type']);
+     $userdata[$i]['registered_time'] = htmlspecialchars($row['registered_time']);
+     $userdata[$i]['logins'] = intval($row['logins']);
+     $userdata[$i]['last_login_time'] = htmlspecialchars($row['last_login_time']);
      $userdata[$i]['user_lock'] = $row['user_lock'];
      if($row['activate_code']!='') $userdata[$i]['inactive'] = true;
      $i++;
