@@ -1538,7 +1538,7 @@ switch($action)
    if (!$email_result) raise_error('database_error',mysqli_error($connid));
    while ($line = mysqli_fetch_array($email_result))
     {
-     $email_list[] = $line['user_email'];
+     $email_list[] = htmlspecialchars($line['user_email']);
     }
    mysqli_free_result($email_result);
    $breadcrumbs[0]['link'] = 'index.php?mode=admin';
