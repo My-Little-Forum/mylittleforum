@@ -1072,8 +1072,8 @@ if(isset($_POST['register_submit']) && isset($_POST['csrf_token']) && $_POST['cs
   else
    {
     $smarty->assign('errors',$errors);
-    $smarty->assign('ar_username',$ar_username);
-    $smarty->assign('ar_email',$ar_email);
+    $smarty->assign('ar_username', htmlspecialchars($ar_username));
+    $smarty->assign('ar_email', htmlspecialchars($ar_email));
     $action = 'register';
    }
   }
