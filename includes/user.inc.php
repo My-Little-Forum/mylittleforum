@@ -49,8 +49,8 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        $i=0;
        while($uid_field = mysqli_fetch_array($useronline_result))
         {
-         $useronline_array[] = $uid_field['user_id'];
-         $users_online[$i]['id'] = $uid_field['user_id'];
+         $useronline_array[] = intval($uid_field['user_id']);
+         $users_online[$i]['id'] = intval($uid_field['user_id']);
          $users_online[$i]['name'] = htmlspecialchars($uid_field['user_name']);
          ++$i;
         }
