@@ -104,21 +104,21 @@ if(isset($_GET['edit_user']))
     $smarty->assign('themes', $themes);
    }
 
-  $smarty->assign('edit_user_id', $edit_user_id);
+  $smarty->assign('edit_user_id',  intval($edit_user_id));
   $smarty->assign('edit_user_name', htmlspecialchars($field["user_name"]));
-  $smarty->assign('edit_user_type', $field["user_type"]);
-  $smarty->assign('user_email',$field["user_email"]);
-  $smarty->assign('email_contact',$field["email_contact"]);
-  $smarty->assign('user_real_name',$field["user_real_name"]);
-  $smarty->assign('user_gender', $field['gender']);
-  $smarty->assign('user_birthday', $user_birthday);
-  $smarty->assign('user_hp',htmlspecialchars($field["user_hp"]));
-  $smarty->assign('user_location',htmlspecialchars($field["user_location"]));
-  $smarty->assign('profile',htmlspecialchars($field["profile"]));
-  $smarty->assign('signature',htmlspecialchars($field["signature"]));
+  $smarty->assign('edit_user_type', intval($field["user_type"]));
+  $smarty->assign('user_email', htmlspecialchars($field["user_email"]));
+  $smarty->assign('email_contact',  intval($field["email_contact"]));
+  $smarty->assign('user_real_name', htmlspecialchars($field["user_real_name"]));
+  $smarty->assign('user_gender', intval($field['gender']));
+  $smarty->assign('user_birthday', htmlspecialchars($user_birthday));
+  $smarty->assign('user_hp', htmlspecialchars($field["user_hp"]));
+  $smarty->assign('user_location', htmlspecialchars($field["user_location"]));
+  $smarty->assign('profile', htmlspecialchars($field["profile"]));
+  $smarty->assign('signature', htmlspecialchars($field["signature"]));
   $smarty->assign('user_view',$field["user_view"]);
-  $smarty->assign('new_posting_notification',$field["new_posting_notification"]);
-  $smarty->assign('new_user_notification',$field["new_user_notification"]);
+  $smarty->assign('new_posting_notification', intval($field["new_posting_notification"]));
+  $smarty->assign('new_user_notification', intval($field["new_user_notification"]));
   if(trim($field['activate_code'])!='') $smarty->assign('inactive', true);
 
   if(file_exists('images/avatars/'.$edit_user_id.'.jpg')) $avatar['image'] = 'images/avatars/'.$edit_user_id.'.jpg';
@@ -1072,8 +1072,8 @@ if(isset($_POST['register_submit']) && isset($_POST['csrf_token']) && $_POST['cs
   else
    {
     $smarty->assign('errors',$errors);
-    $smarty->assign('ar_username',$ar_username);
-    $smarty->assign('ar_email',$ar_email);
+    $smarty->assign('ar_username', htmlspecialchars($ar_username));
+    $smarty->assign('ar_email', htmlspecialchars($ar_email));
     $action = 'register';
    }
   }
@@ -1339,13 +1339,13 @@ switch($action)
    $i=0;
    while($row = mysqli_fetch_array($result))
     {
-     $userdata[$i]['user_id'] = $row['user_id'];
+     $userdata[$i]['user_id'] = intval($row['user_id']);
      $userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
      $userdata[$i]['user_email'] = htmlspecialchars($row['user_email']);
-     $userdata[$i]['user_type'] = $row['user_type'];
-     $userdata[$i]['registered_time'] = $row['registered_time'];
-     $userdata[$i]['logins'] = $row['logins'];
-     $userdata[$i]['last_login_time'] = $row['last_login_time'];
+     $userdata[$i]['user_type'] = intval($row['user_type']);
+     $userdata[$i]['registered_time'] = htmlspecialchars($row['registered_time']);
+     $userdata[$i]['logins'] = intval($row['logins']);
+     $userdata[$i]['last_login_time'] = htmlspecialchars($row['last_login_time']);
      $userdata[$i]['user_lock'] = $row['user_lock'];
      if($row['activate_code']!='') $userdata[$i]['inactive'] = true;
      $i++;
@@ -1538,7 +1538,7 @@ switch($action)
    if (!$email_result) raise_error('database_error',mysqli_error($connid));
    while ($line = mysqli_fetch_array($email_result))
     {
-     $email_list[] = $line['user_email'];
+     $email_list[] = htmlspecialchars($line['user_email']);
     }
    mysqli_free_result($email_result);
    $breadcrumbs[0]['link'] = 'index.php?mode=admin';
