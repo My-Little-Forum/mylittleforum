@@ -112,7 +112,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
      $i=0;
      while($row = mysqli_fetch_array($result))
       {
-       $userdata[$i]['user_id'] = $row['user_id'];
+       $userdata[$i]['user_id'] = intval($row['user_id']);
        $userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
        #$userdata[$i]['user_email'] = htmlspecialchars($row['user_email']);
        #$userdata[$i]['email_contact'] = $row['email_contact'];
@@ -122,7 +122,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
         {
          $userdata[$i]['user_hp'] = add_http_if_no_protocol($userdata[$i]['user_hp']);
         }
-       $userdata[$i]['user_type'] = $row['user_type'];
+       $userdata[$i]['user_type'] = intval($row['user_type']);
        $userdata[$i]['user_lock'] = $row['user_lock'];
        // count postings:
        #if($categories==false) $count_result = @mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".intval($row['user_id']));
