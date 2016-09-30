@@ -210,8 +210,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        $last_posting = mysqli_fetch_array($result);
        mysqli_free_result($result);
 
-       $user_name = htmlspecialchars($row['user_name']);
-
        $year = my_substr($row['birthday'], 0, 4, $lang['charset']);
        $month = my_substr($row['birthday'], 5, 2, $lang['charset']);
        $day = my_substr($row['birthday'], 8, 2, $lang['charset']);
@@ -219,9 +217,9 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        $ystr = strrev(intval(strftime("%Y%m%d"))-intval($year.$month.$day));
        $years = intval(strrev(my_substr($ystr,4,my_strlen($ystr,$lang['charset']),$lang['charset'])));
 
-       $smarty->assign('p_user_id', $row['user_id']);
-       $smarty->assign('user_name', $user_name);
-       $smarty->assign('p_user_type', $row['user_type']);
+       $smarty->assign('p_user_id', intval($row['user_id']));
+       $smarty->assign('user_name', htmlspecialchars($row['user_name']));
+       $smarty->assign('p_user_type', intval($row['user_type']));
        $smarty->assign('user_real_name', htmlspecialchars($row['user_real_name']));
        $smarty->assign('gender', $row['gender']);
        if($day!=0&&$month!=0&&$year!=0)
@@ -244,12 +242,12 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        $smarty->assign('postings', $postings);
        if($postings>0) $smarty->assign('postings_percent', number_format($postings/$total_postings*100,1));
        else $smarty->assign('postings_percent', 0);
-       $smarty->assign('logins', $row['logins']);
+       $smarty->assign('logins', intval($row['logins']));
        $days_registered = (TIMESTAMP - $row['registered'])/86400;
        if($days_registered<1) $days_registered=1;
        $smarty->assign('logins_per_day',number_format($row['logins']/$days_registered,2));
        $smarty->assign('postings_per_day',number_format($postings/$days_registered,2));
-       $smarty->assign('last_posting_id',$last_posting['id']);
+       $smarty->assign('last_posting_id', intval($last_posting['id']));
        $smarty->assign('last_posting_time',$last_posting['disp_time']);
        $smarty->assign('last_posting_subject',htmlspecialchars($last_posting['subject']));
 
@@ -308,7 +306,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        $breadcrumbs[0]['linkname'] = 'subnav_userarea';
        $smarty->assign('breadcrumbs',$breadcrumbs);
        $smarty->assign('subnav_location','subnav_userarea_show_user');
-       $smarty->assign('subnav_location_var',$user_name);
+       $smarty->assign('subnav_location_var', htmlspecialchars($row['user_name']));
       }
      else
       {
