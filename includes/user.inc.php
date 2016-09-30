@@ -440,7 +440,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        $smarty->assign('user_time_difference', $user_time_difference);
 
        #$smarty->assign('default_forum_time', format_time($lang['time_format'],TIMESTAMP+intval($settings['time_difference'])*60));
-       if(isset($_GET['msg'])) $smarty->assign('msg',$_GET['msg']);
+       if(isset($_GET['msg'])) $smarty->assign('msg', htmlspecialchars($_GET['msg']));
        $smarty->assign('user_name', htmlspecialchars($row['user_name']));
        $smarty->assign('user_real_name', htmlspecialchars($row['user_real_name']));
        $smarty->assign('user_gender', $row['gender']);
