@@ -189,9 +189,9 @@ if($tags!='')
  }
 
 $category = $category;
-$smarty->assign('id',$entrydata['id']);
-$smarty->assign('tid',$entrydata['tid']);
-$smarty->assign('pid',$entrydata['pid']);
+$smarty->assign('id',intval($entrydata['id']));
+$smarty->assign('tid',intval($entrydata['tid']));
+$smarty->assign('pid',intval($entrydata['pid']));
 $smarty->assign('posting_user_id', intval($entrydata['user_id']));
 $smarty->assign('page_title',htmlspecialchars($entrydata['subject']));
 $smarty->assign('subject',htmlspecialchars($entrydata['subject']));

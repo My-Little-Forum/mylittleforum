@@ -116,7 +116,7 @@ if(isset($_GET['edit_user']))
   $smarty->assign('user_location', htmlspecialchars($field["user_location"]));
   $smarty->assign('profile', htmlspecialchars($field["profile"]));
   $smarty->assign('signature', htmlspecialchars($field["signature"]));
-  $smarty->assign('user_view',$field["user_view"]);
+  $smarty->assign('user_view',intval($field["user_view"]));
   $smarty->assign('new_posting_notification', intval($field["new_posting_notification"]));
   $smarty->assign('new_user_notification', intval($field["new_user_notification"]));
   if(trim($field['activate_code'])!='') $smarty->assign('inactive', true);

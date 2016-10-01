@@ -293,7 +293,7 @@ switch($action)
     {
      $_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP - 7; // 7 seconds credit (form already sent)
      $smarty->assign('errors',$errors);
-     if(isset($id)) $smarty->assign('id',$id);
+     if(isset($id)) $smarty->assign('id',intval($id));
      if(isset($user_id)) $smarty->assign('recipient_user_id',intval($user_id));
      if(isset($sender_email)) $smarty->assign('sender_email',htmlspecialchars($sender_email));
      if(isset($text)) $smarty->assign('text',htmlspecialchars($text));

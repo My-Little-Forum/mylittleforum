@@ -1389,9 +1389,6 @@ switch($action)
      $smarty->assign('spam',intval($field['spam']));
      $smarty->assign('spam_check_status',intval($field['spam_check_status']));
      $smarty->assign('back',$back);
-     #$smarty->assign('page',$page);
-     #$smarty->assign('order',$order);
-     #$smarty->assign('descasc',$descasc);
      $smarty->assign('category',$category);
      $smarty->assign('posting_mode',1);
     }
@@ -1478,13 +1475,10 @@ switch($action)
        $smarty->assign('pid', intval($field['pid']));
        $smarty->assign('name',htmlspecialchars($field['name']));
        $smarty->assign('subject',htmlspecialchars($field['subject']));
-       $smarty->assign('disp_time',$field['disp_time']);
+       $smarty->assign('disp_time',htmlspecialchars($field['disp_time']));
        $smarty->assign('spam',intval($field['spam']));
        $smarty->assign('spam_check_status',intval($field['spam_check_status']));
        $smarty->assign('back',$back);
-       #$smarty->assign('page',$page);
-       #$smarty->assign('order',$order);
-       #$smarty->assign('descasc',$descasc);
        $smarty->assign('category',$category);
        $smarty->assign('posting_mode',1);
       }
