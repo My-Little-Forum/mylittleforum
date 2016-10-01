@@ -262,7 +262,7 @@ function DragAndDropTable(table) {
 	};
 		
 	var add = function(row) {
-		row.style.cursor = "move";
+		row.classList.add("js-cursor-move");
 		row.title = lang["drag_and_drop_title"];
 		row.onmousedown = function(e){
 			isChanged = false;
@@ -299,8 +299,6 @@ function DragAndDropTable(table) {
 			}
 		}
 	};
-	
-	
 	
 	(function() {
 		for (var i=0; i<rows.length; i++){

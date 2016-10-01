@@ -179,7 +179,7 @@ function BBCodeColorChooserButton(el) {
 		cell.style.height = "15px";
 		cell.style.fontSize = "15px";
 		var link = document.createElementWithAttributes("a", {"href": "#", "extension": "="+colors[i], "onclick": function(e) { self.insertOptionCode(this); return false; } }, cell);
-		link.style.display = "block";
+		link.classList.add("js-display-block");
 		link.appendChild( document.createTextNode( String.fromCharCode(160) ) );
 		
 		if((i+1)%7==0)
@@ -412,7 +412,6 @@ function ButtonGroup(f) {
 		if (f.elements['name_required'] && f.elements['name'] && f.elements['name'].value.trim() == '') 
 			error_message += "- "+lang["error_no_name"]+"\n";
 		
-		//if (f.elements['subject_required'] && f.elements['subject'] && f.elements['subject'].value.trim() =='')
 		if (f.elements['subject'] && f.elements['subject'].value.trim() =='')
 			error_message += "- "+lang["error_no_subject"]+"\n";
 		
@@ -426,8 +425,9 @@ function ButtonGroup(f) {
 			window.alert(error_message);
 			return false;
 		}
-		if (document.getElementById('throbber-submit'))
-			document.getElementById('throbber-submit').style.visibility = 'visible';
+		if (document.getElementById('throbber-submit')) {
+			document.getElementById('throbber-submit').classList.remove('js-visibility-hidden'); //style.visibility = 'visible';
+		}
 		return true;
 	};
 	
@@ -622,8 +622,7 @@ function ButtonGroup(f) {
 	var createAdditionalOptionsWindow = function() {
 		var w = document.createElementWithAttributes("div", {"id": "bbcode-options"}, document.body);
 		var content = document.createElementWithAttributes("div", {}, w);
-		w.style.display = "none";
-		w.style.position = "absolute";
+		w.classList.add("js-display-none");
 		var timeout = null;
 		
 		w.onmouseover = function(e) {
@@ -655,7 +654,10 @@ function ButtonGroup(f) {
 				this.style.left = pos.left + "px"; 
 				this.style.top = pos.top + "px";
 			}
-			this.style.display = enable?"":"none";
+			if (enable)
+				this.classList.remove("js-display-none");
+			else
+				this.classList.add("js-display-none");
 		};
 		
 		var oldOnKeyPressFunc = window.document.onmousedown;
@@ -721,7 +723,7 @@ function ButtonGroup(f) {
 			}
 			if (label) {
 				label.appendChild( document.createTextNode( String.fromCharCode(160) ) );
-				var quoteLink = document.createElementWithAttributes("a", {"onclick": function(e) {textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; this.style.display = "none"; textarea.focus(); return false;}, "id": "insert-quote", "href": window.location.href, "title": lang["quote_title"] }, label);
+				var quoteLink = document.createElementWithAttributes("a", {"onclick": function(e) {textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; this.classList.add("js-display-none"); textarea.focus(); return false;}, "id": "insert-quote", "href": window.location.href, "title": lang["quote_title"] }, label);
 				quoteLink.appendChild( document.createTextNode(lang["quote_label"]) );
 			}
 		}
@@ -796,9 +798,9 @@ function ButtonGroup(f) {
 	 */
 	(function() {
 		if (document.getElementById("bbcode-instructions"))
-			document.getElementById("bbcode-instructions").style.display = "none";
+			document.getElementById("bbcode-instructions").classList.add("js-display-none");
 		if (document.getElementById("smiley-instructions"))
-			document.getElementById("smiley-instructions").style.display = "none";
+			document.getElementById("smiley-instructions").classList.add("js-display-none");
 		additionalOptionsWindow = createAdditionalOptionsWindow();
 		// Erzeuge Textarea
 		initTextArea();

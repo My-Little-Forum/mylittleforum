@@ -373,7 +373,7 @@ p.userdata               { margin:0; }
 #bbcodebutton-tex span   { padding:0 0 0 19px; background:url(images/bg_sprite_5.png) no-repeat 0 -299px; }
 #bbcodebutton-code span  { font-family:"courier new",courier; color:#000080; }
 
-#bbcode-options          {  }
+#bbcode-options          { position:absolute; }
 #bbcode-options div      { background:#efefef; border:1px solid #c0c0c0; padding:0; font-size:0.82em; }
 #bbcode-options ul       { list-style-type:none; margin:0; padding:0; }
 #bbcode-options ul a     { color:#000; display:block; text-decoration:none; padding:3px 5px; min-width:100px; }
@@ -585,14 +585,14 @@ img.right                { float:right; margin:0 0 10px 10px; }
 
 
 /* ajax preview: */
-#ajax-preview            { display:none; position:absolute; top:100px; left:100px; margin:13px 0 0 -3px; z-index:10; width:20px; }
+#ajax-preview            { position:absolute; top:100px; left:100px; margin:13px 0 0 -3px; z-index:10; width:20px; }
 #ajax-preview-top        { position:absolute; width:100%; top:0; height:16px; background:transparent url(images/bg_sprite_2.png) no-repeat 8px -40px; z-index:10; }
 #ajax-preview-main       { border-top:1px solid #c0c0c0; position:absolute; top:15px; right:0; width:500px; }                
 #ajax-preview-close      { float:right;	cursor:pointer; }
 #ajax-preview-body       { background:#ffc; margin:0; padding:0; border-left: 1px solid #c0c0c0; border-right:1px solid #c0c0c0; border-bottom:1px solid #c0c0c0; }
 #ajax-preview-content    { margin:0; padding:0 14px; max-height:350px; overflow:auto; clear:both; padding-bottom:16px; }
 #ajax-preview-replylink-wrapper
-                         { display:none; margin:0; padding:0; font-size:0.69em !important; }
+                         { margin:0; padding:0; font-size:0.69em !important; }
 #ajax-preview-replylink-wrapper:before
                          { content:"[ "; }
 #ajax-preview-replylink-wrapper:after
@@ -606,7 +606,7 @@ img.right                { float:right; margin:0 0 10px 10px; }
                          { font-size:1em; }
 
 #image-canvas            { position:absolute; top:0; left:0; width:100%; height:100%; background:url(images/canvas_bg.png); z-index:20; }
-#image-canvas img        { display:block; margin:2em auto 0 auto; border:1px solid #000; z-index:30; max-width:90%; }
+#image-canvas img        { margin:2em auto 0 auto; border:1px solid #000; z-index:30; max-width:90%; }
 
 /* IE: */
 #ie ul.reply             { width:100%; }
@@ -624,3 +624,11 @@ img.right                { float:right; margin:0 0 10px 10px; }
                          { margin-bottom:20px; }
 /* IE 7: */
 *+html #ie               {  }
+
+
+/* JS Classes */
+.js-display-none {display: none;}
+.js-display-block {display: block;}
+.js-visibility-hidden {visibility:hidden;}
+.js-cursor-pointer {cursor: pointer;}
+.js-cursor-move {cursor: move;}
