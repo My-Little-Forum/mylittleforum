@@ -2488,7 +2488,6 @@ function get_not_accepted_words($string)
     $not_accepted_words = explode("\n",$data['list']);
     foreach($not_accepted_words as $not_accepted_word)
      {
-      #if($not_accepted_word!='' && (preg_match("/".$not_accepted_word."/i",$name) || preg_match("/".$not_accepted_word."/i",$text) || preg_match("/".$not_accepted_word."/i",$subject) || preg_match("/".$not_accepted_word."/i",$email) || preg_match("/".$not_accepted_word."/i",$hp) || preg_match("/".$not_accepted_word."/i",$location)))
       if($not_accepted_word!='' && my_strpos($string, my_strtolower($not_accepted_word, CHARSET), 0, CHARSET)!==false)
        {
         $found_not_accepted_words[] = $not_accepted_word;
