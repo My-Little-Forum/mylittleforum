@@ -1470,7 +1470,6 @@ function emailNotification2ParentAuthor($id, $delayed=false)
         $emailbody = str_replace("[original_text]", $starter_text, $emailbody);
         $emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
         if($delayed==true) $emailbody = $emailbody . "\n\n" . $lang['email_text_delayed_addition'];
-        #$recipient = encode_mail_name($ts_data['name']).' <'.$ts_data['email'].'>';
         $recipient = $ts_data['email'];
         $subject = str_replace("[original_subject]",  $ts_data['subject'], $lang['email_subject']);
         my_mail($recipient, $subject, $emailbody);
@@ -1518,7 +1517,6 @@ function emailNotification2ModsAndAdmins($id, $delayed=false)
   while($admin_array = mysqli_fetch_array($recipient_result))
    {
     $ind_emailbody = str_replace("[admin]", $admin_array['user_name'], $emailbody);
-    #$recipient = encode_mail_name($admin_array['user_name']).' <'.$admin_array['user_email'].'>';
     $recipient = $admin_array['user_email'];
     my_mail($recipient, $lang['admin_email_subject'], $ind_emailbody);
    }
