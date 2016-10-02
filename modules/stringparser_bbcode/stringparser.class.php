@@ -6,11 +6,12 @@
  * memory structure. It would e.g. be possible to create an HTML parser based
  * upon this class.
  * 
- * Version: 0.3.3
+ * Version: 0.3.3 - Modified by Michael Loesler: Fix PHP7 issue for __construct
  *
  * @author Christian Seiler <spam@christian-seiler.de>
  * @copyright Christian Seiler 2004-2008
  * @package stringparser
+ *
  *
  * The MIT License
  *
@@ -193,13 +194,22 @@ class StringParser {
 	 * @var bool
 	 */
 	var $_recentlyReparsed = false;
-	 
+	
+
 	/**
-	 * Constructor
+	 * Constructor for StringParser (PHP7)
+	 *
+	 * @access public
+	 */
+	function __construct() {}
+	
+	/**
+	 * Constructor for StringParser
 	 *
 	 * @access public
 	 */
 	function StringParser () {
+		self::__construct();
 	}
 	
 	/**
@@ -899,8 +909,26 @@ class StringParser_Node {
 	 */
 	var $occurredAt = -1;
 	
+	
+	
 	/**
-	 * Constructor
+	 * Constructor for StringParser_Node (PHP7)
+	 *
+	 * Currently, the constructor only allocates a new ID for the node and
+	 * assigns it.
+	 *
+	 * @access public
+	 * @param int $occurredAt The position in the text where this node
+	 *                        occurred at. If not determinable, it is -1.
+	 * @global __STRINGPARSER_NODE_ID
+	 */
+	function __construct($occurredAt = -1) {
+		$this->_id = $GLOBALS['__STRINGPARSER_NODE_ID']++;
+		$this->occurredAt = $occurredAt;
+	}
+	
+	/**
+	 * Constructor for StringParser_Node
 	 *
 	 * Currently, the constructor only allocates a new ID for the node and
 	 * assigns it.
@@ -911,8 +939,7 @@ class StringParser_Node {
 	 * @global __STRINGPARSER_NODE_ID
 	 */
 	function StringParser_Node ($occurredAt = -1) {
-		$this->_id = $GLOBALS['__STRINGPARSER_NODE_ID']++;
-		$this->occurredAt = $occurredAt;
+		self::__construct($occurredAt);
 	}
 	
 	/**
@@ -1478,7 +1505,21 @@ class StringParser_Node_Text extends StringParser_Node {
 	var $content = '';
 	
 	/**
-	 * Constructor
+	 * Constructor for StringParser_Node_Text (PHP7)
+	 *
+	 * @access public
+	 * @param string $content The initial content of this element
+	 * @param int $occurredAt The position in the text where this node
+	 *                        occurred at. If not determinable, it is -1.
+	 * @see StringParser_Node_Text::content
+	 */
+	function __construct ($content, $occurredAt = -1) {
+		parent::StringParser_Node ($occurredAt);
+		$this->content = $content;
+	}
+	
+	/**
+	 * Constructor for StringParser_Node_Text
 	 *
 	 * @access public
 	 * @param string $content The initial content of this element
@@ -1487,8 +1528,7 @@ class StringParser_Node_Text extends StringParser_Node {
 	 * @see StringParser_Node_Text::content
 	 */
 	function StringParser_Node_Text ($content, $occurredAt = -1) {
-		parent::StringParser_Node ($occurredAt);
-		$this->content = $content;
+		self::__construct ($content, $occurredAt);
 	}
 	
 	/**
