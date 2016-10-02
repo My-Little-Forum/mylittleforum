@@ -441,7 +441,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        if($time_difference_minutes>0) $user_time_difference .= ':'.$time_difference_minutes;
        $smarty->assign('user_time_difference', $user_time_difference);
 
-       #$smarty->assign('default_forum_time', format_time($lang['time_format'],TIMESTAMP+intval($settings['time_difference'])*60));
        if(isset($_GET['msg'])) $smarty->assign('msg', htmlspecialchars($_GET['msg']));
        $smarty->assign('user_name', htmlspecialchars($row['user_name']));
        $smarty->assign('user_real_name', htmlspecialchars($row['user_real_name']));
