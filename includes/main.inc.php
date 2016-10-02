@@ -62,13 +62,11 @@ if($settings['access_permission_checks']==1 && !isset($_SESSION[$settings['sessi
   mysqli_free_result($ip_result);
   if(isset($ips) && trim($ips) != '')
    {
-    #$banned_ips = preg_split('/\015\012|\015|\012/',$ips);
     $banned_ips = explode("\n",$ips);
     if(is_ip_banned($_SERVER['REMOTE_ADDR'], $banned_ips)) raise_error('403');
    }
   if(isset($user_agents) && trim($user_agents) != '')
    {
-    #$banned_user_agents = preg_split('/\015\012|\015|\012/',$user_agents);
     $banned_user_agents = explode("\n",$user_agents);
     if(is_user_agent_banned($_SERVER['HTTP_USER_AGENT'], $banned_user_agents)) raise_error('403');
    }
