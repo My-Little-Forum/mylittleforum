@@ -640,7 +640,6 @@ if(isset($_REQUEST['restore_submit']))
       if(mysqli_num_rows($result)!=1) raise_error('database_error',mysqli_error($connid));
       $data = mysqli_fetch_array($result);
       if(!is_pw_correct($_POST['restore_password'],$data['user_pw'])) $errors[] = 'error_password_wrong';
-      #if(md5($_POST['restore_password'])!=$data['user_pw']) $errors[] = 'error_password_wrong';
       if(empty($errors))
        {
         if(!restore_backup('backup/'.$_POST['backup_file']))
@@ -712,7 +711,6 @@ if(isset($_POST['update_file_submit']))
       if(mysqli_num_rows($result)!=1) raise_error('database_error',mysqli_error($connid));
       $data = mysqli_fetch_array($result);
       if(!is_pw_correct($_POST['update_password'],$data['user_pw'])) $errors[] = 'error_password_wrong';
-      #if(md5($_POST['update_password'])!=$data['user_pw']) $errors[] = 'error_password_wrong';
       if(empty($errors))
        {
         include('update/'.$_POST['update_file_submit']);
@@ -899,7 +897,6 @@ if(isset($_POST['reset_forum_confirmed']) || isset($_POST['uninstall_forum_confi
     $field = mysqli_fetch_array($pw_result);
     mysqli_free_result($pw_result);
     if(!is_pw_correct($_POST['confirm_pw'],$field['user_pw'])) $errors[] = 'error_password_wrong';
-    #if($field['user_pw'] != md5($_POST['confirm_pw'])) $errors[] = 'error_password_wrong';
    }
 
   if(empty($errors))
