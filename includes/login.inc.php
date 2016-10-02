@@ -284,10 +284,6 @@ switch ($action)
       $lang['new_pw_email_txt'] = str_replace("[login_link]", $settings['forum_address'].basename($_SERVER['PHP_SELF'])."?mode=login&username=".urlencode($field['user_name'])."&userpw=".$new_pw, $lang['new_pw_email_txt']);
       $lang['new_pw_email_txt'] = $lang['new_pw_email_txt'];
 
-      #$header = "From: ".my_mb_encode_mimeheader($settings['forum_name'], CHARSET, "Q")." <".$settings['forum_email'].">". MAIL_HEADER_SEPARATOR;
-      #$header .= "Content-Type: text/plain; charset=" . CHARSET . MAIL_HEADER_SEPARATOR;
-      #$header .= "Content-transfer-encoding: 8bit". MAIL_HEADER_SEPARATOR;
-
       if(my_mail($field['user_email'], $lang['new_pw_email_sj'], $lang['new_pw_email_txt']))
        {
         header("location: index.php?mode=login&login_message=pw_sent");
