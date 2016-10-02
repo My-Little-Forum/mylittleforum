@@ -277,16 +277,11 @@ switch($action)
      // load e-mail strings from default language file:
      $smarty->configLoad($settings['language_file'], 'emails');
      $lang = $smarty->getConfigVars();
-     #if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
      if(isset($_SESSION[$settings['session_prefix'].'user_name'])) $emailbody = str_replace("[user]", $_SESSION[$settings['session_prefix'].'user_name'], $lang['contact_email_txt_user']);
      else $emailbody = $lang['contact_email_txt'];
      $emailbody = str_replace("[message]", $text, $emailbody);
      $emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
      if(!my_mail($recipient_email, $subject, $emailbody, $sender_email)) $errors[] = 'mail_error';
-     // reset user language:
-     #$smarty->configLoad($language_file);
-     #$lang = $smarty->getConfigVars();
-     #if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
     }
    if(isset($errors))
     {
