@@ -425,7 +425,6 @@ if(isset($_POST['edit_category_submit']))
   if(empty($errors))
    {
     mysqli_query($connid, "UPDATE ".$db_settings['category_table']." SET category='".mysqli_real_escape_string($connid, $category)."', accession=".$accession." WHERE id=".$id);
-    #mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category='".$_POST['edit_category_conf']."' WHERE category='".$_POST['old_category']."'");
     header("location: index.php?mode=admin&action=categories");
     die();
    }
