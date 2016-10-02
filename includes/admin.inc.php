@@ -1294,7 +1294,6 @@ switch($action)
 
    if(isset($search_user))
     {
-     #$result = @mysqli_query($connid, "SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." WHERE lower(user_name) LIKE '".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%' OR user_email LIKE '".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%' ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']);
      $result = @mysqli_query($connid, "SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." WHERE concat(lower(user_name),lower(user_email)) LIKE '%".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%' ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']);
     }
    else
