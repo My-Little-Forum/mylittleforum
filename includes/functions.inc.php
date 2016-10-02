@@ -2462,8 +2462,6 @@ function is_user_agent_banned($user_agent, $banned_user_agents)
  {
   foreach($banned_user_agents as $banned_user_agent)
    {
-    #if(strpos(strtolower($user_agent),strtolower($banned_user_agent))!==false)  // case insensitive
-    #if($banned_user_agent!='' && (preg_match("/".$banned_user_agent."/i",$user_agent))) // case insensitive
     if(strpos($user_agent,$banned_user_agent)!==false) // case sensitive, faster
      {
       return true;
