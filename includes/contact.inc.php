@@ -296,16 +296,6 @@ switch($action)
    else
     {
      $smarty->assign('sent',TRUE);
-     // e-mail to sender:
-     // disabled, see here: http://mylittleforum.net/forum/index.php?id=2485
-     /*
-     $emailsubject = str_replace("[subject]", $subject, $lang['contact_notification_sj']);
-     $emailbody = str_replace("[subject]", $subject, $lang['contact_notification_txt']);
-     $emailbody = str_replace("[message]", $text, $emailbody);
-     $emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
-     $emailbody = str_replace("[recipient]", $recipient_name, $emailbody);
-     my_mail($sender_email, $subject, $emailbody);
-     */
     }
   break;
  }
