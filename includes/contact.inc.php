@@ -171,7 +171,6 @@ switch($action)
        $sender_name = $mail_parts[0];
        $check_mail['author'] = $mail_parts[0];
        $check_mail['email'] = $sender_email;
-       #$check_mail['body'] = $subject."\n\n".$text;
        $check_mail['body'] = $text;
        $akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_mail);
        // test for errors
