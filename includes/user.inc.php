@@ -72,19 +72,10 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
      $ul = ($page-1) * $settings['users_per_page'];
 
     // get userdata:
-    #if($categories!=false) $category_query_add = ' AND '.$db_settings['forum_table'].'.category IN ('.$category_ids_query.')';
     $category_query_add = '';
 
     if(isset($search_user))
       {
-       /*
-       $result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name, user_type, user_email, email_contact, user_hp, user_lock, count(".$db_settings['forum_table'].".id) AS postings
-                               FROM ".$db_settings['userdata_table']."
-                               LEFT JOIN ".$db_settings['forum_table']." ON ".$db_settings['forum_table'].".user_id=".$db_settings['userdata_table'].".user_id
-                               WHERE activate_code=''".$category_query_add." AND lower(user_name) LIKE '%".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%'
-                               GROUP BY ".$db_settings['userdata_table'].".user_id
-                               ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']) or raise_error('database_error',mysqli_error($connid));
-       */
        $result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name, user_type, user_email, email_contact, user_hp, user_lock
                                FROM ".$db_settings['userdata_table']."
                                WHERE activate_code=''".$category_query_add." AND lower(user_name) LIKE '%".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%'
@@ -92,14 +83,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
       }
      else
       {
-       /*
-       $result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name, user_type, user_email, email_contact, user_hp, user_lock, count(".$db_settings['forum_table'].".id) AS postings
-                               FROM ".$db_settings['userdata_table']."
-                               LEFT JOIN ".$db_settings['forum_table']." ON ".$db_settings['forum_table'].".user_id=".$db_settings['userdata_table'].".user_id
-                               WHERE activate_code=''".$category_query_add."
-                               GROUP BY ".$db_settings['userdata_table'].".user_id
-                               ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']) or raise_error('database_error',mysqli_error($connid));
-        */
         $result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name, user_type, user_email, email_contact, user_hp, user_lock
                                FROM ".$db_settings['userdata_table']."
                                WHERE activate_code=''".$category_query_add."
@@ -120,19 +103,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
         }
        $userdata[$i]['user_type'] = intval($row['user_type']);
        $userdata[$i]['user_lock'] = $row['user_lock'];
-       // count postings:
-       #if($categories==false) $count_result = @mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".intval($row['user_id']));
-       #else $count_result = @mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".intval($row['user_id'])." AND category IN (".$category_ids_query.")");
-       #list($postings) = mysqli_fetch_row($count_result);
-       #mysqli_free_result($count_result);
-       #$userdata[$i]['postings'] = $postings;
-       #$userdata[$i]['postings'] = $row['postings'];
-       // is user online:
-       #if(isset($useronline_array) && in_array($row['user_id'], $useronline_array))
-       # {
-       #  $userdata[$i]['online'] = TRUE;
-       # }
-       #$userdata[$i]['online'] = $row['online'];
        $i++;
       }
      mysqli_free_result($result);
