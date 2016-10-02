@@ -112,8 +112,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
       {
        $userdata[$i]['user_id'] = intval($row['user_id']);
        $userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
-       #$userdata[$i]['user_email'] = htmlspecialchars($row['user_email']);
-       #$userdata[$i]['email_contact'] = $row['email_contact'];
        if($row['email_contact']==1) $userdata[$i]['user_email'] = TRUE;
        $userdata[$i]['user_hp'] = htmlspecialchars($row['user_hp']);
        if(trim($userdata[$i]['user_hp'])!='')
