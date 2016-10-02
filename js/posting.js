@@ -27,7 +27,8 @@
 * file do not have any effect unless it is loaded by the template      *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
 * The minimized version was created with the YUI Compressor            *
-* <http://developer.yahoo.com/yui/compressor/>.                        *
+* <http://developer.yahoo.com/yui/compressor/>, i.e.                   *
+* <http://ganquan.info/yui/>.                                          *
 ***********************************************************************/
 
 /**
