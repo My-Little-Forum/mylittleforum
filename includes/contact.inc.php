@@ -313,8 +313,6 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha
     $captcha_tpl['number_1'] = $_SESSION['captcha_session'][0];
     $captcha_tpl['number_2'] = $_SESSION['captcha_session'][1];
    }
-  #$captcha_tpl['session_name'] = session_name();
-  #$captcha_tpl['session_id'] = session_id();
   $captcha_tpl['type'] = $settings['captcha_email'];
   $smarty->assign('captcha',$captcha_tpl);
  }
