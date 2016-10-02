@@ -1062,7 +1062,6 @@ if(isset($_POST['register_submit']) && isset($_POST['csrf_token']) && $_POST['cs
       // load e-mail strings from language file:
       $smarty->configLoad($settings['language_file'], 'emails');
       $lang = $smarty->getConfigVars();
-      #if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
       $lang['admin_reg_user_email_text'] = str_replace("[name]", $ar_username, $lang['admin_reg_user_email_text']);
       $lang['admin_reg_user_email_text'] = str_replace("[password]", $ar_pw, $lang['admin_reg_user_email_text']);
       $lang['admin_reg_user_email_text'] = str_replace("[login_link]", $settings['forum_address']."index.php?mode=login&username=".urlencode($ar_username)."&userpw=".$ar_pw, $lang['admin_reg_user_email_text']);
