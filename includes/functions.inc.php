@@ -398,8 +398,6 @@ function parse_monospace($string)
  */
 function is_valid_url($url)
  {
-  #if((substr($url,0,7) == 'http://' || substr($url,0,8) == 'https://' || substr($url,0,6) == 'ftp://' || substr($url,0,9) == 'gopher://' || substr($url,0,7) == 'news://' ||  substr($url,0,7) == 'mailto:') && strpos($url, '.')) return true;
-  #else return false;
   if(!preg_match("/^.+\..+$/", $url))
    {
     return false;
@@ -533,7 +531,6 @@ function do_bbcode_tex($action, $attributes, $content, $params, $node_object)
   global $settings;
   if ($action == 'validate')
    {
-    #if(preg_match("/(\015\012|\015|\012)/", $content)) return false;
     return true;
    }
   else
@@ -739,7 +736,6 @@ function do_bbcode_tex_email($action, $attributes, $content, $params, $node_obje
   global $settings;
   if ($action == 'validate')
    {
-    #if(preg_match("/(\015\012|\015|\012)/", $content)) return false;
     return true;
    }
   else
@@ -2048,11 +2044,6 @@ function restore_backup($backup_file)
  */
 function check_filename($filename)
  {
-  #$file_name = trim($filename);
-  #$file_name = str_replace('/','',$file_name);
-  #$file_name = str_replace('\\','',$file_name);
-  #$file_name = str_replace('..','',$file_name);
-  #return $file_name;
   if(preg_match('/^[a-zA-Z0-9._\-]+$/', $filename)) return true;
   else return false;
  }
@@ -2329,7 +2320,6 @@ function my_quoted_printable_encode($input, $line_max=76, $space_conv = false )
 function get_mail_encoding($string)
  {
   if(preg_match('%^(?:[\x09\x0A\x0D\x20-\x7E])*$%xs', $string)) return 'US-ASCII';
-  #elseif(preg_match('/^([\x09\x0A\x0D\x20-\x7E\xA0-\xFF])*$/', $string)) return 'ISO-8859-1';
   else return strtoupper(CHARSET);
  }
 
