@@ -27,7 +27,8 @@
 * do not have any effect unless it is loaded by the template           *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
 * The minimized version was created with the YUI Compressor            *
-* <http://developer.yahoo.com/yui/compressor/>.                        *
+* <http://developer.yahoo.com/yui/compressor/>, i.e.                   *
+* <http://ganquan.info/yui/>.                                          *
 ***********************************************************************/
 
 /**
@@ -603,21 +604,23 @@ var ready = new (function () {
 		if (!main || !content || !icon)
 			return;
 			
-		this.setVisible = function(enable) {
-			if (enable) {
-				content.style.display = "";
+		this.setVisible = function(visible) {
+			if (visible) {
+				content.classList.remove("js-display-none");
 				icon.src = templatePath + settings["hide_sidebar_image"];
-				icon.className = "hide-sidebar";
+				icon.classList.remove("show-sidebar");
+				icon.classList.add("hide-sidebar");
 			}
 			else {
-				content.style.display = "none";
+				content.classList.add("js-display-none");
 				icon.src = templatePath + settings["show_sidebar_image"];
-				icon.className = "show-sidebar";
+				icon.classList.remove("hide-sidebar");
+				icon.classList.add("show-sidebar");
 			}
 		};
 		
 		this.isVisible = function() {
-			return content.style.display != "none";
+			return !content.classList.contains("js-display-none");
 		};
 		
 		var links = main.getElementsByTagName("a");
@@ -670,40 +673,49 @@ var ready = new (function () {
 		}
 		
 		this.isFold = function() {
-			return uls.length>0&&uls[0].style.display=="none";
+			return uls.length > 0 && uls[0].classList.contains("js-display-none");
 		};
 		
 		this.setFold = function(fold, changeCSS) {
 			changeCSS = changeCSS || false;
+			
 			if (fold) {
 				icon.src = templatePath + settings["expand_thread_image"];
-				icon.className = "expand-thread";
+				icon.classList.remove("fold-thread");
+				icon.classList.add("expand-thread");
 				icon.alt = "";
 				icon.onerror = function(e) { this.alt = "[+]"; };
 				icon.title = lang["expand_fold_thread_linktitle"]; 
 				
 				if (repliesInfo)
-					repliesInfo.style.display = "";
-
-				if (changeCSS)
-					ul.className = ul.className.replace("expanded", "folded");
+					repliesInfo.classList.remove("js-display-none");
+				
+				if (changeCSS) {
+					ul.classList.remove("expanded");
+					ul.classList.add("folded");
+				}
 			}
 			else {
 				icon.src = templatePath + settings["fold_thread_image"];
-				icon.className = "fold-thread";
+				icon.classList.remove("expand-thread");
+				icon.classList.add("fold-thread");
 				icon.alt = "";
 				icon.onerror = function(e) { this.alt = "[-]"; };
 				icon.title = lang["expand_fold_thread_linktitle"]; 
 				
 				if (repliesInfo)
-					repliesInfo.style.display = "none";
+					repliesInfo.classList.add("js-display-none");
 				
-				if (changeCSS)
-					ul.className = ul.className.replace("folded", "expanded");
+				if (changeCSS) {
+					ul.classList.remove("folded");
+					ul.classList.add("expanded");
+				}
 			}
-			var cssVal = fold?"none":"";
 			for (var i=0; i<uls.length; i++) {
-				uls[i].style.display = cssVal;
+				if (fold)
+					uls[i].classList.add("js-display-none");
+				else
+					uls[i].classList.remove("js-display-none");
 			}
 		};	
 		
@@ -744,21 +756,25 @@ var ready = new (function () {
 			return;
 			
 		var self = this;
-		try { pHeadline.style.cursor = "pointer"; } catch(e){ pHeadline.style.cursor = "hand"; }
+		pHeadline.classList.add("js-cursor-pointer");
 		pHeadline.title = lang["fold_posting_title"];
 		pHeadline.onclick = function(e) {
 			self.setFold(!self.isFold());
 		};
 		
 		this.isFold = function() {
-			return pContent.style.display == "none";
+			return pContent.classList.contains("js-display-none");
 		};
 		
 		this.setFold = function(fold) {
-			var cssValue = fold?"none":"";
-			pContent.style.display = cssValue;
-			pAvatar.style.display  = cssValue;
-			//pHeadline.title = fold?"Posting ausklappen":"Posting einklappen";
+			if (fold) {
+				pContent.classList.add("js-display-none");
+				pAvatar.classList.add("js-display-none");
+			}
+			else {
+				pContent.classList.remove("js-display-none");
+				pAvatar.classList.remove("js-display-none");
+			}
 		};
 		
 		this.setFold(this.isFold());
@@ -773,8 +789,11 @@ var ready = new (function () {
 		// http://aktuell.de.selfhtml.org/weblog/kompatibilitaetsmodus-im-internet-explorer-8
 		var isIELower8 = /*@cc_on!@*/false && !(document.documentMode && document.documentMode >= 8);
    		var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", {"id": "image-canvas"}, body);	
-   		imageCanvas.setVisible = function(enable) {
-			this.style.display = enable?"block":"none";
+   		imageCanvas.setVisible = function(visible) {
+			if (visible)
+				this.classList.remove("js-display-none");
+			else
+				this.classList.add("js-display-none");
 		};
 		var stopTrigger = function() {
 			if (hashTrigger) {
@@ -818,9 +837,6 @@ var ready = new (function () {
 						var scrollPos = document.getScrollPosition();
 						var winSize = document.getWindowSize();							
 						imageCanvas.style.height=winSize.pageHeight+"px";
-						//fullSizeImage.style.left = ((winSize.windowWidth-imgPoSi.width)/2)  + "px";
-						//fullSizeImage.style.left = ((winSize.windowWidth-fullSizeImage.width)/2)  + "px";  
-						//fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
 						fullSizeImage.style.marginTop = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
 						
 						hashTrigger = window.setInterval( 
@@ -851,7 +867,7 @@ var ready = new (function () {
 		var self = this;
 		if (!win) {
 			win = document.createElementWithAttributes("div", {"id": "ajax-preview"}, null);	
-			win.style.display = "none";
+			win.classList.add("js-display-none");
 			document.body.appendChild( win );
 		}
 		win.innerHTML = structure.stripslashes().trim();
@@ -863,7 +879,7 @@ var ready = new (function () {
 		var mainEl    = document.getElementById("ajax-preview-main");		
 		
 		if (!closeEl || !contentEl || !mainEl)
-			window.alert("fail");
+			console.log("main.js: Fail to init ajax-Elements!");
 		
 		
 		var oldOnMouseDownFunc = window.document.onmousedown;
@@ -887,10 +903,10 @@ var ready = new (function () {
 		var replylinkWrapper = document.createElementWithAttributes("p", {"id": "ajax-preview-replylink-wrapper"}, contentEl);
 		var replylinkLink = document.createElementWithAttributes("a", {"id": "ajax-preview-replylink", "href": "#"}, null);
 		replylinkLink.appendChild( document.createTextNode( lang["reply_link"] ));
-		replylinkWrapper.style.display = "none";
+		replylinkWrapper.classList.add("js-display-none");
 		this.closeByOutSideClick = function(e) {
 			var imgCanvas = document.getElementById("image-canvas");
-			if (self.isVisible() && imgCanvas && imgCanvas.style.display=="none") {
+			if (self.isVisible() && imgCanvas && imgCanvas.classList.contains("js-display-none")) {
 				var obj = document.getTarget(e);
 				if (obj && obj != self.getOpener().firstChild) {
 					var evtPos = document.getMousePos(e);
@@ -941,7 +957,7 @@ var ready = new (function () {
 		};
 		
 		this.isVisible = function() {
-			return win.style.display != "none";
+			return !win.classList.contains("js-display-none");
 		};
 		
 		this.getDocumentPosition = function() {
@@ -960,10 +976,12 @@ var ready = new (function () {
 
 		this.setVisible = function(visible) {
 			if (visible) {
-				win.style.display = "block";
+				win.classList.remove("js-display-none");
+				win.classList.add("js-display-block");
 			}
 			else {
-				win.style.display = "none";
+				win.classList.remove("js-display-block");
+				win.classList.add("js-display-none");
 			}
 		};
 		
@@ -986,10 +1004,12 @@ var ready = new (function () {
 		this.setURI = function(uri) {
 			if (!uri) {
 				replylinkLink.href = "#";
-				replylinkWrapper.style.display = "none";
+				replylinkWrapper.classList.remove("js-display-block");
+				replylinkWrapper.classList.add("js-display-none");
 			}
 			else {
-				replylinkWrapper.style.display = "block";
+				replylinkWrapper.classList.remove("js-display-none");
+				replylinkWrapper.classList.add("js-display-block");
 				replylinkLink.href = uri;
 			}
 		};
@@ -1052,7 +1072,7 @@ var ready = new (function () {
 		
 		/**
 		 * Erzeugt den Link zum Vorschaufenster
-		 * im Nutzerprofil einem Element hinzu
+		 * im Nutzerprofil, welches einem Element el hinzugefuegt wird
 		 * @param el
 		 */
 		var setPreviewBoxToProfil = function(el) {
@@ -1067,7 +1087,7 @@ var ready = new (function () {
 		
 		/**
 		 * Erzeugt den Link zum Vorschaufenster
-		 * auf der Antwortseite, welches einem Element hinzugefuegt wird
+		 * auf der Antwortseite, welches einem Element el hinzugefuegt wird
 		 * @param el
 		 */
 		var setPreviewBoxToReplyPage = function(el) {
@@ -1325,7 +1345,6 @@ var ready = new (function () {
 			var link = document.createElementWithAttributes("a", {"isExpand": true, "title": lang["fold_postings_title"],"href": "#", "className": "fold-postings"}, listEntry);
 			link.appendChild( document.createTextNode( lang["fold_postings"] ) );
 			link.onclick = function(e) {
-				//var isExpand = this.className.search(/expand/)!=-1;
 				this.isExpand = !this.isExpand;
 				expandAllPostings(this.isExpand);  
 				this.blur();

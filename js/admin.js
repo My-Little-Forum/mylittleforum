@@ -27,7 +27,8 @@
 * do not have any effect unless it is loaded by the template           *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
 * The minimized version was created with the YUI Compressor            *
-* <http://developer.yahoo.com/yui/compressor/>.                        *
+* <http://developer.yahoo.com/yui/compressor/>, i.e.                   *
+* <http://ganquan.info/yui/>.                                          *
 ***********************************************************************/
 
 /**
@@ -262,7 +263,7 @@ function DragAndDropTable(table) {
 	};
 		
 	var add = function(row) {
-		row.style.cursor = "move";
+		row.classList.add("js-cursor-move");
 		row.title = lang["drag_and_drop_title"];
 		row.onmousedown = function(e){
 			isChanged = false;
@@ -299,8 +300,6 @@ function DragAndDropTable(table) {
 			}
 		}
 	};
-	
-	
 	
 	(function() {
 		for (var i=0; i<rows.length; i++){
