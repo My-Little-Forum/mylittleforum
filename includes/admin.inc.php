@@ -239,10 +239,6 @@ if(isset($_POST['edit_user_submit']) && isset($_POST['csrf_token']) && $_POST['c
   if(mysqli_num_rows($name_result)>0) $errors[] = 'user_name_already_exists';
   mysqli_free_result($name_result);
 
-  /*$field = mysqli_fetch_array($name_result);
-  mysqli_free_result($name_result);
-  if($edit_user_id != $field['user_id'] && my_strtolower($field["user_name"], $lang['charset']) == my_strtolower($edit_user_name, $lang['charset'])) $errors[] = 'user_name_already_exists';
-  */
   if(my_strlen($edit_user_name, $lang['charset']) > $settings['username_maxlength']) $errors[] = 'error_username_too_long';
   if(my_strlen($user_real_name, $lang['charset']) > $settings['name_maxlength']) $errors[] = 'error_name_too_long';
   if(my_strlen($user_hp, $lang['charset']) > $settings['hp_maxlength']) $errors[] = 'error_hp_too_long';
