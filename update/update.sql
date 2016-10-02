@@ -324,3 +324,9 @@ UPDATE mlf2_settings SET value = '2.3.5 RC' WHERE name = 'version';
 ALTER TABLE mlf2_userdata CHANGE last_login last_login timestamp NULL default CURRENT_TIMESTAMP;
 UPDATE mlf2_settings SET value = '2.3.6.1' WHERE name = 'version';
 */
+--------------------------------------------------------------------------------
+-- 2.3.6.1 to 2.3.7
+/*
+UPDATE mlf2_settings SET value = 10 WHERE name = 'temp_block_ip_after_repeated_failed_logins' AND value > 0
+UPDATE mlf2_settings SET value = '2.3.7' WHERE name = 'version';
+*/
