@@ -550,9 +550,6 @@ if(isset($_GET['user_delete_all_entries']))
   if(!$user_result) raise_error('database_error',mysqli_error($connid));
   if(mysqli_num_rows($user_result)==1)
    {
-    #$count_postings_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".$user_id);
-    #list($user_delete_entries['number']) = mysqli_fetch_row($count_postings_result);
-    #mysqli_free_result($count_postings_result);
     $user = mysqli_fetch_array($user_result);
     mysqli_free_result($user_result);
     $user_delete_entries['id'] = $user_id;
