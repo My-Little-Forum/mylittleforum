@@ -189,10 +189,10 @@ if($tags!='')
  }
 
 $category = $category;
-$smarty->assign('id',$entrydata['id']);
-$smarty->assign('tid',$entrydata['tid']);
-$smarty->assign('pid',$entrydata['pid']);
-$smarty->assign('posting_user_id',$entrydata['user_id']);
+$smarty->assign('id',intval($entrydata['id']));
+$smarty->assign('tid',intval($entrydata['tid']));
+$smarty->assign('pid',intval($entrydata['pid']));
+$smarty->assign('posting_user_id', intval($entrydata['user_id']));
 $smarty->assign('page_title',htmlspecialchars($entrydata['subject']));
 $smarty->assign('subject',htmlspecialchars($entrydata['subject']));
 
@@ -205,10 +205,10 @@ else $name = htmlspecialchars($entrydata['name']);
 
 $smarty->assign('name',$name);
 
-$smarty->assign('user_type',$entrydata['user_type']);
-$smarty->assign('disp_time',$entrydata['disp_time']);
-$smarty->assign('formated_time',$entrydata['formated_time']);
-$smarty->assign('locked',$entrydata['locked']);
+$smarty->assign('user_type', htmlspecialchars($entrydata['user_type']));
+$smarty->assign('disp_time', htmlspecialchars($entrydata['disp_time']));
+$smarty->assign('formated_time', htmlspecialchars($entrydata['formated_time']));
+$smarty->assign('locked', htmlspecialchars($entrydata['locked']));
 
 $ago['days'] = floor((TIMESTAMP - $entrydata['time'])/86400);
 $ago['hours'] = floor(((TIMESTAMP - $entrydata['time'])/3600)-($ago['days']*24));
@@ -250,9 +250,9 @@ $subnav_link = array('mode'=>'index', 'name'=>'thread_entry_back_link', 'title'=
 if($entrydata["edited_diff"] > 0 && $entrydata["edited_diff"] > $entrydata["time"] && $settings['show_if_edited'] == 1)
  {
   $smarty->assign('edited',true);
-  $smarty->assign('edit_time',$entrydata['edit_time']);
+  $smarty->assign('edit_time', htmlspecialchars($entrydata['edit_time']));
   $entrydata['formated_edit_time'] = format_time($lang['time_format_full'],$entrydata['edit_time']);
-  $smarty->assign('formated_edit_time',$entrydata['formated_edit_time']);
+  $smarty->assign('formated_edit_time', htmlspecialchars($entrydata['formated_edit_time']));
 
   if($entrydata['user_id'] == $entrydata['edited_by']) $edited_by = $name;
   else

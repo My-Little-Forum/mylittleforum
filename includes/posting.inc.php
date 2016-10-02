@@ -972,7 +972,7 @@ switch($action)
         }
        else // posting of a not registed user edited
         {
-         @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=".$edited_query.", edited_by=".$edited_by_query.", name='".mysqli_real_escape_string($connid, $name)."', subject='".mysqli_real_escape_string($connid, $subject)."', category=".intval($p_category).", email='".mysqli_real_escape_string($connid, $email)."', hp='".mysqli_real_escape_string($connid, $hp)."', location='".mysqli_real_escape_string($connid, $location)."', text='".mysqli_real_escape_string($connid, $text)."', tags='".mysqli_real_escape_string($connid, $s_tags)."', email_notification='".intval($email_notification)."', show_signature='".intval($show_signature)."', locked=".$locked_query.", sticky=".intval($sticky).", spam=".intval($spam).", spam_check_status=".intval($spam_check_status)." WHERE id=".intval($id)) or die(mysqli_error($connid));
+         @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=".$edited_query.", edited_by=".intval($edited_by_query).", name='".mysqli_real_escape_string($connid, $name)."', subject='".mysqli_real_escape_string($connid, $subject)."', category=".intval($p_category).", email='".mysqli_real_escape_string($connid, $email)."', hp='".mysqli_real_escape_string($connid, $hp)."', location='".mysqli_real_escape_string($connid, $location)."', text='".mysqli_real_escape_string($connid, $text)."', tags='".mysqli_real_escape_string($connid, $s_tags)."', email_notification='".intval($email_notification)."', show_signature='".intval($show_signature)."', locked=".$locked_query.", sticky=".intval($sticky).", spam=".intval($spam).", spam_check_status=".intval($spam_check_status)." WHERE id=".intval($id)) or die(mysqli_error($connid));
         }
 
        $category_update_result = mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, category=".intval($p_category)." WHERE tid = ".intval($field['tid']));
@@ -1149,8 +1149,8 @@ switch($action)
        $smarty->assign('minutes_left_to_edit',$minutes_left_to_edit);
       }
 
-     $smarty->assign('id',$id);
-     $smarty->assign('pid',$field['pid']);
+     $smarty->assign('id', intval($id));
+     $smarty->assign('pid', intval($field['pid']));
      $smarty->assign('name',htmlspecialchars($field['name']));
      $smarty->assign('email',htmlspecialchars($field['email']));
      $smarty->assign('hp',htmlspecialchars($field['hp']));
@@ -1203,7 +1203,7 @@ switch($action)
    if($authorization['delete']==true)
     {
      $smarty->assign('id',intval($_REQUEST['delete_posting']));
-     $smarty->assign('pid',$field['pid']);
+     $smarty->assign('pid', intval($field['pid']));
      $smarty->assign('name',htmlspecialchars($field['name']));
      $smarty->assign('subject',htmlspecialchars($field['subject']));
      $smarty->assign('formated_time',format_time($lang['time_format_full'],$field['disp_time']));
@@ -1381,17 +1381,14 @@ switch($action)
     }
    else
     {
-     $smarty->assign('id',$id);
-     $smarty->assign('pid',$field['pid']);
+     $smarty->assign('id', intval($id));
+     $smarty->assign('pid', intval($field['pid']));
      $smarty->assign('name',htmlspecialchars($field['name']));
      $smarty->assign('subject',htmlspecialchars($field['subject']));
-     $smarty->assign('disp_time',$field['disp_time']);
+     $smarty->assign('disp_time', htmlspecialchars($field['disp_time']));
      $smarty->assign('spam',intval($field['spam']));
      $smarty->assign('spam_check_status',intval($field['spam_check_status']));
      $smarty->assign('back',$back);
-     #$smarty->assign('page',$page);
-     #$smarty->assign('order',$order);
-     #$smarty->assign('descasc',$descasc);
      $smarty->assign('category',$category);
      $smarty->assign('posting_mode',1);
     }
@@ -1474,17 +1471,14 @@ switch($action)
       }
      else
       {
-       $smarty->assign('id',$id);
-       $smarty->assign('pid',$field['pid']);
+       $smarty->assign('id', intval($id));
+       $smarty->assign('pid', intval($field['pid']));
        $smarty->assign('name',htmlspecialchars($field['name']));
        $smarty->assign('subject',htmlspecialchars($field['subject']));
-       $smarty->assign('disp_time',$field['disp_time']);
+       $smarty->assign('disp_time',htmlspecialchars($field['disp_time']));
        $smarty->assign('spam',intval($field['spam']));
        $smarty->assign('spam_check_status',intval($field['spam_check_status']));
        $smarty->assign('back',$back);
-       #$smarty->assign('page',$page);
-       #$smarty->assign('order',$order);
-       #$smarty->assign('descasc',$descasc);
        $smarty->assign('category',$category);
        $smarty->assign('posting_mode',1);
       }
