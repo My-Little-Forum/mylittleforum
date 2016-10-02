@@ -561,7 +561,6 @@ function do_bbcode_flash($action, $attributes, $content, $params, $node_object)
    }
   else
    {
-    #$html = '<p><object classid="CLSID:D27CDB6E-AE6D-11cf-96B8-444553540000" width="[width]" height="[height]"><param name="movie" value="'.htmlspecialchars($content).'" /><embed src="'.htmlspecialchars($content).'" width="[width]" height="[height]" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" /></object></p>';
     $html = '<!--[if IE]>
     <object type="application/x-shockwave-flash" data="'.htmlspecialchars($content).'" width="[width]" height="[height]">
     <param name="movie" value="'.htmlspecialchars($content).'" />
