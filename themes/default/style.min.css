@@ -239,7 +239,7 @@ p.userdata{margin:0}
 #postingform input.checkbox{margin-left:8em}
 #postingform #insert-quote{margin:0 0 0 .5em;font-weight:400;font-size:.82em;padding:0 0 0 14px;background:url(images/quote_message.png) no-repeat left center}
 #postingform #text{width:700px;height:400px;float:left}
-#postingform #format-bar{margin-left:710px}
+#postingform #format-bar{margin-left:720px}
 #postingform{font-size:.82em}
 #postingform .small,#postingform .xsmall{font-size:.82em}
 #delete_cookie{font-size:.82em}
@@ -414,3 +414,4 @@ img.right{float:right;margin:0 0 10px 10px}
 * html #ie #subnav #subnav-2{padding-top:.4em}
 * html #ie #footermenu li{margin-left:5px;padding-left:5px;background:none}
 * html #ie div.complete-thread{margin-bottom:20px}
+
