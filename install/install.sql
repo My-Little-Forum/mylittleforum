@@ -112,7 +112,7 @@ INSERT INTO mlf2_settings VALUES ('syntax_highlighter', '0');
 INSERT INTO mlf2_settings VALUES ('save_spam', '1');
 INSERT INTO mlf2_settings VALUES ('auto_delete_spam', '168');
 INSERT INTO mlf2_settings VALUES ('auto_lock', '0');
-INSERT INTO mlf2_settings VALUES ('temp_block_ip_after_repeated_failed_logins', '1');
+INSERT INTO mlf2_settings VALUES ('temp_block_ip_after_repeated_failed_logins', '10');
 INSERT INTO mlf2_settings VALUES ('flood_prevention_minutes', '2');
 INSERT INTO mlf2_settings VALUES ('fold_threads', '0');
 INSERT INTO mlf2_settings VALUES ('avatars', '0');
