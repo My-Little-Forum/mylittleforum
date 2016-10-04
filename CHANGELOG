@@ -1,6 +1,19 @@
 my little forum changelog
 -------------------------
 
+2.3.7 (2016-10-04)
+------------------
+- feature, time limit for blocking IP after three failed login attempts is now configurable (`temp_block_ip_after_repeated_failed_logins` > 0)
+- fixed security issue, CSRF-protection
+- fixed security issue, relative path overwrite protection
+- fixed security issue, context-sesitive-masking of strings in HTML
+- fixed error in the update function, update over several versions was not possible
+- fixed language config, multiple use of a keyword with different text in different blocks
+- fixed spelling error (English language)
+- use class constructor in the BBCodeClass, old behaviour is deprecated in actual PHP-versions
+- update Smarty (3.1.30)
+- update Bad Behaviour (2.2.19)
+
 2.3.6.1 (2016-08-04)
 --------------------
 - Allow last_login to be NULL, NOT NULL caused errors when registering a user
