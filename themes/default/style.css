@@ -348,7 +348,7 @@ p.userdata               { margin:0; }
                          { margin: 0 0 0 0.5em; font-weight:normal; font-size:0.82em; padding:0 0 0 14px; background:url(images/quote_message.png) no-repeat left center; }
 
 #postingform #text       { width:700px; height:400px; float:left; }
-#postingform #format-bar { margin-left:710px; }
+#postingform #format-bar { margin-left:720px; }
 
 #postingform             { font-size:0.82em }
 #postingform .small,
