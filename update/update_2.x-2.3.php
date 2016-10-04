@@ -1,7 +1,7 @@
 <?php
 /******************************************************************************
 * my little forum                                                             *
-* update file to update from version 2.* to version 2.3.5                     *
+* update file to update from version 2.* to version 2.3.6.1                   *
 *                                                                             *
 * Update instructions:                                                        *
 * - Load up this file into the directory "update"                             *
@@ -20,286 +20,314 @@ $update['new_version'] = '2.3.6.1';
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 #$update['message'] = '<p>HTML formated message...</p>';
 
-// changed files (folders followed by a slash like this: folder/):
-switch($settings['version'])
- {
-  case '2.3.5':
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'lang/';
-  break;
-  case '2.3.5 RC':
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'lang/';
-  break;
-  case '2.3.4':
-     $update['items'][] = 'js/';
-	 $update['items'][] = 'modules/smarty/';
-	 $update['items'][] = 'modules/bad-behavior/'; 
-     $update['items'][] = 'lang/german.lang';
-     $update['items'][] = 'themes/default/images/bg_sprite_1.png';
-     $update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
-     $update['items'][] = 'themes/default/style.css';
-     $update['items'][] = 'themes/default/style.mini.css';
-     $update['items'][] = 'includes/admin.inc.php';
-     $update['items'][] = 'includes/auto_login.inc.php';
-     $update['items'][] = 'includes/contact.inc.php';
-     $update['items'][] = 'includes/entry.inc.php';
-     $update['items'][] = 'includes/functions.inc.php';
-     $update['items'][] = 'includes/index.inc.php';
-     $update['items'][] = 'includes/login.inc.php';
-     $update['items'][] = 'includes/main.inc.php';
-     $update['items'][] = 'includes/page.inc.php';
-     $update['items'][] = 'includes/posting.inc.php';
-     $update['items'][] = 'includes/register.inc.php';
-     $update['items'][] = 'includes/rss.inc.php';
-     $update['items'][] = 'includes/search.inc.php';
-     $update['items'][] = 'includes/thread.inc.php';
-     $update['items'][] = 'includes/user.inc.php';
-     break;
-  case '2.3.3':
-     $update['items'][] = 'includes/admin.inc.php';
-     $update['items'][] = 'includes/functions.inc.php';
-     $update['items'][] = 'includes/posting.inc.php';
-     $update['items'][] = 'modules/smarty/';
-     break;
-  case '2.3.2':
-     $update['items'][] = 'includes/admin.inc.php';
-     $update['items'][] = 'includes/functions.inc.php';
-     $update['items'][] = 'includes/posting.inc.php';
-     $update['items'][] = 'js/posting.js';
-     $update['items'][] = 'js/posting.min.js';
-     $update['items'][] = 'lang/french.lang';
-     $update['items'][] = 'lang/spanish.lang';
-     $update['items'][] = 'modules/smarty/';
-     break;
-  case '2.3.1':
-     $update['items'][] = 'includes/js_defaults.inc.php';
-     $update['items'][] = 'includes/admin.inc.php';
-     $update['items'][] = 'includes/functions.inc.php';
-     $update['items'][] = 'includes/posting.inc.php';
-     $update['items'][] = 'js/posting.js';
-     $update['items'][] = 'js/posting.min.js';     
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/smarty/';
-     $update['items'][] = 'modules/bad-behavior/';    
-     break;
-  case '2.3':
-     $update['items'][] = 'includes/';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/';
-     $update['items'][] = 'themes/';
-     $update['items'][] = 'index.php';
-     break;
-  case '2.2.8':
-     $update['items'][] = 'includes/';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/bad-behavior/';
-     $update['items'][] = 'modules/geshi/';
-     $update['items'][] = 'modules/smarty/';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'themes/default/subtemplats/admin.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
-     $update['items'][] = 'index.php';
-     break;
-  case '2.2.7':
-     $update['items'][] = 'includes/';
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/bad-behavior/';
-     $update['items'][] = 'modules/geshi/';
-     $update['items'][] = 'modules/smarty/';
-     $update['items'][] = 'modules/stringparser_bbcode/';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';     
-     $update['items'][] = 'themes/default/upload_image.tpl';
-     break;
-  case '2.2.6':
-     $update['items'][] = 'includes/';     
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/bad-behavior/';
-     $update['items'][] = 'modules/geshi/';
-     $update['items'][] = 'modules/smarty/';   
-     $update['items'][] = 'modules/stringparser_bbcode/';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'themes/default/style.css';
-     $update['items'][] = 'themes/default/style.min.css';
-     $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
-     $update['items'][] = 'themes/default/upload_image.tpl';
-     break;
-  case '2.2.5':
-     $update['items'][] = 'includes/';     
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/bad-behavior/';
-     $update['items'][] = 'modules/geshi/';
-     $update['items'][] = 'modules/smarty/';   
-     $update['items'][] = 'modules/stringparser_bbcode/';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'themes/default/style.css';
-     $update['items'][] = 'themes/default/style.min.css';
-     $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
-     $update['items'][] = 'themes/default/upload_image.tpl';
-     break;
-  case '2.2.4':
-     $update['items'][] = 'includes/';     
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/bad-behavior/';
-     $update['items'][] = 'modules/geshi/';
-     $update['items'][] = 'modules/smarty/';   
-     $update['items'][] = 'modules/stringparser_bbcode/';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'themes/default/style.css';
-     $update['items'][] = 'themes/default/style.min.css';
-     $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
-     $update['items'][] = 'themes/default/upload_image.tpl';
-     break;
-  case '2.2.3':
-     $update['items'][] = 'includes/';     
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/bad-behavior/';
-     $update['items'][] = 'modules/geshi/';
-     $update['items'][] = 'modules/smarty/';   
-     $update['items'][] = 'modules/stringparser_bbcode/';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'themes/default/style.css';
-     $update['items'][] = 'themes/default/style.min.css';
-     $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
-     $update['items'][] = 'themes/default/upload_image.tpl';
-     break;
-  case '2.2.2':
-     $update['items'][] = 'includes/';     
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/bad-behavior/';
-     $update['items'][] = 'modules/geshi/';
-     $update['items'][] = 'modules/smarty/';   
-     $update['items'][] = 'modules/stringparser_bbcode/';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'themes/default/style.css';
-     $update['items'][] = 'themes/default/style.min.css';
-     $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
-     $update['items'][] = 'themes/default/upload_image.tpl';
-     break;
-  case '2.2.1':
-     $update['items'][] = 'includes/';     
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/bad-behavior/';
-     $update['items'][] = 'modules/geshi/';
-     $update['items'][] = 'modules/smarty/';   
-     $update['items'][] = 'modules/stringparser_bbcode/';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'themes/default/style.css';
-     $update['items'][] = 'themes/default/style.min.css';
-     $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
-     $update['items'][] = 'themes/default/upload_image.tpl';
-     break;
-  case '2.2':
-     $update['items'][] = 'includes/';     
-     $update['items'][] = 'index.php';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/bad-behavior/';
-     $update['items'][] = 'modules/geshi/';
-     $update['items'][] = 'modules/smarty/';   
-     $update['items'][] = 'modules/stringparser_bbcode/';
-     $update['items'][] = 'themes/default/main.tpl';
-     $update['items'][] = 'themes/default/style.css';
-     $update['items'][] = 'themes/default/style.min.css';
-     $update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
-     $update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
-     $update['items'][] = 'themes/default/upload_image.tpl';
-     break;
-  default:
-     $update['items'][] = 'includes/';
-     $update['items'][] = 'js/';
-     $update['items'][] = 'lang/';
-     $update['items'][] = 'modules/';
-     $update['items'][] = 'templates (not required anymore)/';
-     $update['items'][] = 'templates_c (clear)/';
-     $update['items'][] = 'themes/';
-     $update['items'][] = 'config/time_zones';
-     $update['items'][] = 'index.php';
- }
+// changed files at the *end of the list* (folders followed by a slash like this: folder/):
+// Note: Do *NOT* break a single case!!!
+switch($settings['version']) {
+	case '2.2':
+		$update['items'][] = 'includes/';     
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/bad-behavior/';
+		$update['items'][] = 'modules/geshi/';
+		$update['items'][] = 'modules/smarty/';   
+		$update['items'][] = 'modules/stringparser_bbcode/';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
+		$update['items'][] = 'themes/default/upload_image.tpl';
+
+	case '2.2.1':
+		$update['items'][] = 'includes/';     
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/bad-behavior/';
+		$update['items'][] = 'modules/geshi/';
+		$update['items'][] = 'modules/smarty/';   
+		$update['items'][] = 'modules/stringparser_bbcode/';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
+		$update['items'][] = 'themes/default/upload_image.tpl';		
+
+	case '2.2.2':
+		$update['items'][] = 'includes/';     
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/bad-behavior/';
+		$update['items'][] = 'modules/geshi/';
+		$update['items'][] = 'modules/smarty/';   
+		$update['items'][] = 'modules/stringparser_bbcode/';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
+		$update['items'][] = 'themes/default/upload_image.tpl';
+		
+	case '2.2.3':
+		$update['items'][] = 'includes/';     
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/bad-behavior/';
+		$update['items'][] = 'modules/geshi/';
+		$update['items'][] = 'modules/smarty/';   
+		$update['items'][] = 'modules/stringparser_bbcode/';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
+		$update['items'][] = 'themes/default/upload_image.tpl';
+		
+	case '2.2.4':
+		$update['items'][] = 'includes/';     
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/bad-behavior/';
+		$update['items'][] = 'modules/geshi/';
+		$update['items'][] = 'modules/smarty/';   
+		$update['items'][] = 'modules/stringparser_bbcode/';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
+		$update['items'][] = 'themes/default/upload_image.tpl';
+		
+	case '2.2.5':
+		$update['items'][] = 'includes/';     
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/bad-behavior/';
+		$update['items'][] = 'modules/geshi/';
+		$update['items'][] = 'modules/smarty/';   
+		$update['items'][] = 'modules/stringparser_bbcode/';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
+		$update['items'][] = 'themes/default/upload_image.tpl';
+		
+	case '2.2.6':
+		$update['items'][] = 'includes/';     
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/bad-behavior/';
+		$update['items'][] = 'modules/geshi/';
+		$update['items'][] = 'modules/smarty/';   
+		$update['items'][] = 'modules/stringparser_bbcode/';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
+		$update['items'][] = 'themes/default/upload_image.tpl';
+		
+	case '2.2.7':
+		$update['items'][] = 'includes/';
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/bad-behavior/';
+		$update['items'][] = 'modules/geshi/';
+		$update['items'][] = 'modules/smarty/';
+		$update['items'][] = 'modules/stringparser_bbcode/';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';     
+		$update['items'][] = 'themes/default/upload_image.tpl';
+		
+	case '2.2.8':
+		$update['items'][] = 'includes/';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/bad-behavior/';
+		$update['items'][] = 'modules/geshi/';
+		$update['items'][] = 'modules/smarty/';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/subtemplats/admin.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplats/user_profile.inc.tpl';
+		$update['items'][] = 'index.php';		
+		
+	case '2.3':
+		$update['items'][] = 'includes/';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/';
+		$update['items'][] = 'themes/';
+		$update['items'][] = 'index.php';
+		
+	case '2.3.1':
+		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'js/posting.js';
+		$update['items'][] = 'js/posting.min.js';     
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/smarty/';
+		$update['items'][] = 'modules/bad-behavior/';		
+		
+	case '2.3.2':
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'js/posting.js';
+		$update['items'][] = 'js/posting.min.js';
+		$update['items'][] = 'lang/french.lang';
+		$update['items'][] = 'lang/spanish.lang';
+		$update['items'][] = 'modules/smarty/';
+		
+	case '2.3.3':
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'modules/smarty/';
+		
+	case '2.3.4':
+		$update['items'][] = 'js/';
+		$update['items'][] = 'modules/smarty/';
+		$update['items'][] = 'modules/bad-behavior/'; 
+		$update['items'][] = 'lang/german.lang';
+		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.mini.css';
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/auto_login.inc.php';
+		$update['items'][] = 'includes/contact.inc.php';
+		$update['items'][] = 'includes/entry.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/index.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
+		$update['items'][] = 'includes/page.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
+		$update['items'][] = 'includes/rss.inc.php';
+		$update['items'][] = 'includes/search.inc.php';
+		$update['items'][] = 'includes/thread.inc.php';
+		$update['items'][] = 'includes/user.inc.php';		
+
+	case '2.3.5':
+	case '2.3.5 RC':
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'lang/';
+
+		$update['items'][] = 'index.php';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'lang/';
+
+		
+		
+		
+		// !!!Do *NOT* break a single case!!!
+		// This is the only break to avoid the use of the default-case!
+		break; 
+	default:
+		$update['items'][] = 'includes/';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/';
+		$update['items'][] = 'templates (not required anymore)/';
+		$update['items'][] = 'templates_c (clear)/';
+		$update['items'][] = 'themes/';
+		$update['items'][] = 'config/time_zones';
+		$update['items'][] = 'index.php';
+		break;
+}
+
+// Remove duplicate entries in array
+$update['items'] = array_unique($update['items']);
+
+// Look for unique folders
+$folders = array_unique(preg_grep("/\w+\/$/i", $update['items']));
+if (!empty($folders)) {
+	// Remove folders from list to keep the order (files, folders)
+	$update['items'] = array_diff($update['items'], $folders);
+
+	// Remove single files from list if and only if the complete folder is in list
+	foreach ($folders as $key=>$val) {
+		$files = preg_grep("/".preg_quote($val, "/").".+/i", $update['items']);
+		if (empty($files))
+			continue;
+		$update['items'] = array_diff($update['items'], $files);
+	}
+	
+	// Add folders at the end of the files list to keep the order (files, folders)
+	$update['items'] = array_merge($update['items'], $folders);
+}
  
 // check version:
 if(!in_array($settings['version'], $update['version']))
