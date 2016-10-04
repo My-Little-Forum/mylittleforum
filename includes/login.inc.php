@@ -35,9 +35,10 @@ elseif(empty($_SESSION[$settings['session_prefix'].'user_id']) && empty($action)
 if(isset($_GET['login_message'])) $smarty->assign('login_message',$_GET['login_message']);
 
 // clear failed logins and check if there are failed logins from this ip:
-if($settings['temp_block_ip_after_repeated_failed_logins']==1)
+// a value greater than zero is interpreted as time in minutes.
+if($settings['temp_block_ip_after_repeated_failed_logins'] > 0)
  {
-  @mysqli_query($connid, "DELETE FROM ".$db_settings['login_control_table']." WHERE time < (NOW()-INTERVAL 10 MINUTE)");
+  @mysqli_query($connid, "DELETE FROM ".$db_settings['login_control_table']." WHERE time < (NOW()-INTERVAL (SELECT CONVERT(`value`,UNSIGNED INTEGER) FROM ".$db_settings['settings_table']." WHERE `name` = 'temp_block_ip_after_repeated_failed_logins') MINUTE)");
   $failed_logins_result = @mysqli_query($connid, "SELECT logins FROM ".$db_settings['login_control_table']." WHERE ip='".mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"])."'");
   if(mysqli_num_rows($failed_logins_result)==1)
    {
