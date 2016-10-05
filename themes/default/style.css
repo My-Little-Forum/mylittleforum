@@ -44,8 +44,12 @@ img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -2
 #nav                     { margin:0; padding:7px 20px 7px 0; text-align:right; }
 
 #usermenu                { margin:0 0 1em 0; font-size:0.69em; list-style-type:none; }
-#usermenu li             { display:inline; margin-left:6px; padding-left:7px; background:url(images/bg_sprite_1.png) no-repeat 0 -1097px; }
-#usermenu li:first-child { margin-left:0; padding-left:0; background:none; }
+#usermenu li             { display:inline; margin-left:5px; }
+#usermenu li:first-child { margin-left:0; padding-left:0; }
+#usermenu li:before      { content: "|"; }
+#usermenu li:first-child:before
+                         { content: ""; }
+#usermenu li a           { padding-left: 4px; }
 
 #topsearch               { display:inline; }
 #topsearch div           { display:inline; font-size:0.82em; }
