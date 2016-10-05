@@ -199,7 +199,9 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
      if(mysqli_num_rows($result)==1)
       {
        $row = mysqli_fetch_array($result);
-       #mysqli_free_result($result);
+
+		$user_name = $row['user_name'];
+
        // count postings:
        $count_postings_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".$id);
        list($postings) = mysqli_fetch_row($count_postings_result);
@@ -218,7 +220,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        $years = intval(strrev(my_substr($ystr,4,my_strlen($ystr,$lang['charset']),$lang['charset'])));
 
        $smarty->assign('p_user_id', intval($row['user_id']));
-       $smarty->assign('user_name', htmlspecialchars($row['user_name']));
+       $smarty->assign('user_name', htmlspecialchars($user_name));
        $smarty->assign('p_user_type', intval($row['user_type']));
        $smarty->assign('user_real_name', htmlspecialchars($row['user_real_name']));
        $smarty->assign('gender', $row['gender']);
@@ -306,7 +308,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        $breadcrumbs[0]['linkname'] = 'subnav_userarea';
        $smarty->assign('breadcrumbs',$breadcrumbs);
        $smarty->assign('subnav_location','subnav_userarea_show_user');
-       $smarty->assign('subnav_location_var', htmlspecialchars($row['user_name']));
+       $smarty->assign('subnav_location_var', htmlspecialchars($user_name));
       }
      else
       {
@@ -323,6 +325,8 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
                             WHERE user_id = ".$id." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
      $row = mysqli_fetch_array($result);
      mysqli_free_result($result);
+
+	$user_name = $row['user_name'];
 
      // count postings:
      if($categories==false) $count_postings_result = @mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".$id);
@@ -347,7 +351,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
         {
          $user_postings_data[$i]['id'] = intval($row['id']);
          $user_postings_data[$i]['pid'] = intval($row['pid']);
-         $user_postings_data[$i]['name'] = htmlspecialchars($row['user_name']);
+         $user_postings_data[$i]['name'] = htmlspecialchars($user_name);
          $user_postings_data[$i]['subject'] = htmlspecialchars($row['subject']);
          $user_postings_data[$i]['disp_time'] = $row['disp_time'];
          if(isset($categories[$row['category']]) && $categories[$row['category']]!='')
@@ -368,7 +372,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
      $breadcrumbs[0]['linkname'] = 'subnav_userarea';
      $smarty->assign('breadcrumbs',$breadcrumbs);
      $smarty->assign('subnav_location','subnav_userarea_show_posts');
-     $smarty->assign('subnav_location_var', htmlspecialchars($row['user_name']));
+     $smarty->assign('subnav_location_var', htmlspecialchars($user_name));
      $smarty->assign('subtemplate','user_postings.inc.tpl');
      $template = 'main.tpl';
     break;
