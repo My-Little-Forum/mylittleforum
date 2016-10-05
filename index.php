@@ -4,8 +4,8 @@
  * the messages in classical threaded view
  *
  * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
- * @copyright 2006-2011 Mark Alexander Hoschek
- * @version 2.3.6.1 (2016-08-04)
+ * @copyright 2006-2016 Mark Alexander Hoschek
+ * @version 2.3.7 (2016-10-05)
  * @link http://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
