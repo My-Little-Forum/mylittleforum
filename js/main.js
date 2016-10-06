@@ -842,10 +842,10 @@ var ready = new (function () {
 	 * ein Vorschaufenster und haengt dieses im Dokument
 	 * ein
 	 * @param structure
-	 * @param templatePath
+	 * @param path2template
 	 */
-	function AjaxPreviewWindow(structure, templatePath) { 
-		var templatePath = templatePath?templatePath:"";
+	function AjaxPreviewWindow(structure, path2template) { 
+		var templatePath = path2template?path2template:"";
 		var hideURI = false;
 		var win = document.getElementById('ajax-preview');
 		var self = this;
