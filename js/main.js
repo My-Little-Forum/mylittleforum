@@ -270,7 +270,7 @@ document.getWindowSize = function() {
 };
 
 /**
- * Liefert den zum Tastedruck gehoerenden Event-Key
+ * Liefert den zum Tastendruck gehoerenden Event-Key
  * return keyCode
  */
 document.getKeyCode = function(ev) {
@@ -858,13 +858,12 @@ var ready = new (function () {
 		var opEl = null;
 		var xShift = 0;
 		
-		var closeEl = document.getElementById("ajax-preview-close");
+		var closeEl   = document.getElementById("ajax-preview-close");
 		var contentEl = document.getElementById("ajax-preview-content");
-		var mainEl    = document.getElementById("ajax-preview-main");		
+		var mainEl    = document.getElementById("ajax-preview-main");	
 		
 		if (!closeEl || !contentEl || !mainEl)
-			window.alert("fail");
-		
+			window.alert("AjaxPreviewWindow can not be initialized");
 		
 		var oldOnMouseDownFunc = window.document.onmousedown;
 		window.document.onmousedown = function(e) { 
@@ -888,11 +887,12 @@ var ready = new (function () {
 		var replylinkLink = document.createElementWithAttributes("a", {"id": "ajax-preview-replylink", "href": "#"}, null);
 		replylinkLink.appendChild( document.createTextNode( lang["reply_link"] ));
 		replylinkWrapper.style.display = "none";
+		
 		this.closeByOutSideClick = function(e) {
 			var imgCanvas = document.getElementById("image-canvas");
 			if (self.isVisible() && imgCanvas && imgCanvas.style.display=="none") {
 				var obj = document.getTarget(e);
-				if (obj && obj != self.getOpener().firstChild) {
+				if (obj && obj != self.getOpener().firstChild && obj != self.getContentElement() && obj != self.getMainElement()) {
 					var evtPos = document.getMousePos(e);
 					var posX = evtPos.left;
 					var posY = evtPos.top;
@@ -905,7 +905,15 @@ var ready = new (function () {
 					}
 				}
 			}
-		}
+		};
+		
+		this.getContentElement = function() {
+			return contentEl;
+		};
+		
+		this.getMainElement = function() {
+			return mainEl;
+		};
 		
 		this.hideURI = function(hide) {
 			hideURI = hide;
