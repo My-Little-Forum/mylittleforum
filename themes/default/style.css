@@ -192,6 +192,8 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
 .posting-footer .options { display:inline; font-size:0.69em !important; list-style-type:none; max-width:100% !important; padding:0; }
 .posting-footer .options li
                          { display:inline; margin:0 0 0 1em; }
+.posting-footer a.add-bookmark, .posting-footer a.delete-bookmark
+						 { padding-left:16px; background:url(images/bookmark_posting.png) no-repeat 0 0px; }
 .posting-footer a.edit   { padding-left:16px; background:url(images/bg_sprite_3.png) no-repeat 0 2px; }
 .posting-footer a.delete { padding-left:13px; background:url(images/bg_sprite_3.png) no-repeat 0 -47px; }
 .posting-footer a.move   { padding-left:13px; background:url(images/bg_sprite_4.png) no-repeat 0 2px; }

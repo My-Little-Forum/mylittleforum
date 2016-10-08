@@ -1,7 +1,7 @@
 ################################################################################
 # German language file for my little forum 2.3                                 #
 #------------------------------------------------------------------------------#
-# Translated by Alex < alex at mylittleforum dot net > 2011-09-01              #                                                     #
+# Translated by Alex < alex at mylittleforum dot net > 2011-09-01              #
 ################################################################################
 
 [default]
@@ -142,6 +142,8 @@ subnav_restore =                  Wiederherstellen
 subnav_locked =                   Benutzerkonto gesperrt
 subnav_delete_cookie =            Cookie
 subnav_disabled =                 Forum deaktiviert
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Bookmark löschen
 subnav_page_error =               Fehler
 subnav_page =                     [var]
 counter =                         [total_postings] Einträge in [total_threads] Threads, [registered_users] registrierte Benutzer
@@ -256,6 +258,12 @@ delete_backup_confirm =           Sicher, dass die Backup-Datei gelöscht werden
 delete_sel_backup_confirm =       Sicher, dass die ausgewählten Backup-Dateien gelöscht werden sollen?
 drag_and_drop_title =             Drag & Drop zum Verschieben
 show_all_postings_link =          Einträge anzeigen
+show_bookmarks_link =             Bookmarks
+
+[bookmark]
+delete_bookmark_submit =          OK - Bookmark löschen
+delete_bookmark_confirm =         Soll dieses Bookmark wirklich gelöscht werden?
+no_bookmarks =                    keine Bookmarks gefunden
 
 [entry]
 edited_by =                       bearbeitet von [name], [time]
@@ -263,8 +271,12 @@ tags_marking =                    Tags:
 one_view =                        ein View
 several_views =                   [views] Views
 complete_thread_marking =         gesamter Thread:
-branch_marking =                  Aktueller Diskussionszweig:
-direct_replies_marking =          Direkte Antworten auf diesen Eintrag:
+branch_marking =                  Current branch of thread:
+direct_replies_marking =          Direct replies to this posting:
+add_bookmark_message_linkname =   bookmark
+add_bookmark_message_linktitle =  Bookmark erzeugen
+delete_bookmark_message_linkname =unbookmark
+delete_bookmark_message_linktitle=Bookmark entfernen
 edit_message_linkname =           bearbeiten
 edit_message_linktitle =          Eintrag bearbeiten
 delete_message_linkname =         löschen
@@ -945,7 +957,7 @@ update_instructions =             Skript-Paket entpacken und die entsprechende U
 update_instructions =             diese Seite neu laden und die Update-Datei sollte unten erscheinen
 update_instructions =             Datei anklicken und den weiteren Anweisungen folgen 
 update_instructions =             nach dem Ausführen wird eine Liste mit den Dateien/Ordnern angezeigt, die hinzugefügt bzw. ersetzt werden müssen
-update_instructions =             nach dem Hinzufügen/Ersetzen der Dateien/Ordner muss das Verzeichnis <strong>templates_c</strong> geleert werden (alle in diesem Verzeichnis enthaltenen Dateien löschen)
+update_instructions =             nach dem Hinzufügen/Ersetzen der Dateien/Ordner muss das Verzeichnis <strong>templates_c</strong> geleert werden (alle in diesem Verzichnis enthaltenen Dateien löschen)
 update_available_files =          verfügbare Update-Datei(en)
 update_no_files_available =       keine Update-Dateien verfügbar
 update_file_title =               Update-Datei ausführen
@@ -998,6 +1010,14 @@ Direkter Link zum Einloggen:
 [login_link]
 
 Das Passwort kann nach dem Einloggen geändert werden."""
+
+admin_activate_user_email_subj =       Foren-Registrierung
+admin_activate_user_email_text =       """Hallo [name],
+willkommen im Forum!
+
+Direkter Link zum Einloggen:
+[login_link]
+"""
 
 new_user_email_sj =               Foren-Registrierung
 new_user_email_txt =              """Hallo [name],

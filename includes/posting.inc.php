@@ -93,6 +93,7 @@ if(isset($_POST['delete_spam_submit'])) $action = 'delete_spam_submit';
 if(isset($_POST['save_entry']) || isset($_POST['preview'])) $action = 'posting_submitted';
 if(isset($_REQUEST['mark'])) $action = 'mark';
 if(isset($_GET['move_posting'])) $action = 'move_posting';
+if(isset($_GET['bookmark'])) $action = 'bookmark_posting';
 
 // permission to upload images:
 if($settings['upload_images']==1 && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0) $smarty->assign('upload_images',true);
@@ -287,9 +288,29 @@ if(isset($_POST['lock_submit']) && isset($_SESSION[$settings['session_prefix'].'
   header('Location: index.php?mode=index');
   exit;
  }
+ 
+if(isset($_POST['bookmark_submit']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0) {
+ $action = 'bookmark_posting';
+ 
+}
 
 switch($action)
  {
+  case 'bookmark_posting':
+    if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+		$user_id = intval($_SESSION[$settings['session_prefix'].'user_id']);
+		$result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($user_id)." AND `pid` = ".intval($_GET['bookmark'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+		$exists = mysqli_fetch_row ($result);
+		mysqli_free_result($result);		
+		
+		if (isset($exists) && intval($exists) == 1)
+			@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE `user_id`= ".intval($user_id)." AND `pid` = ".intval($_GET['bookmark'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
+		else
+			@mysqli_query($connid, "INSERT INTO ".$db_settings['bookmark_table']."( `order_id`, `user_id`, `pid` ) SELECT MAX( `order_id` ) + 1, ".intval($user_id).", ".intval($_GET['bookmark'])." FROM ".$db_settings['bookmark_table']." WHERE `user_id`= ".intval($user_id)."") or raise_error('database_error',mysqli_error($connid));
+		
+		header('Location: index.php?id='.intval($_GET['bookmark']));
+	}
+  break;
   case 'mark':
    if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0)
     {

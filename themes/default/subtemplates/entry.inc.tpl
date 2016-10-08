@@ -47,6 +47,8 @@
 {if $views}<span class="views">{if $views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$views}{/if}</span>{else}&nbsp;{/if}
 {if $options}
 <ul class="options">
+{if $options.add_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$id}&amp;back=entry" class="add-bookmark" title="{#add_bookmark_message_linktitle#}">{#add_bookmark_message_linkname#}</a></li>{/if}
+{if $options.delete_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$id}&amp;back=entry" class="delete-bookmark" title="{#delete_bookmark_message_linktitle#}">{#delete_bookmark_message_linkname#}</a></li>{/if}
 {if $options.edit}<li><a href="index.php?mode=posting&amp;edit={$id}&amp;back=entry" class="edit" title="{#edit_message_linktitle#}">{#edit_message_linkname#}</a></li>{/if}
 {if $options.delete}<li><a href="index.php?mode=posting&amp;delete_posting={$id}&amp;back=entry" class="delete" title="{#delete_message_linktitle#}">{#delete_message_linkname#}</a></li>{/if}
 {if $options.move}<li><a href="index.php?mode=posting&amp;move_posting={$id}&amp;back=entry" class="move" title="{#move_posting_linktitle#}">{#move_posting_linkname#}</a></li>{/if}

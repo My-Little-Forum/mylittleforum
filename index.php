@@ -131,6 +131,9 @@ switch($mode)
   case 'admin':
      include('includes/admin.inc.php');
      break;
+  case 'bookmarks':
+     include('includes/bookmark.inc.php');
+     break;
   case 'contact':
      include('includes/contact.inc.php');
      break;
