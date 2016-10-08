@@ -847,6 +847,7 @@ var ready = new (function () {
 	function AjaxPreviewWindow(structure, path2template) { 
 		var templatePath = path2template?path2template:"";
 		var hideURI = false;
+		var pinned  = false;
 		var win = document.getElementById('ajax-preview');
 		var self = this;
 		if (!win) {
@@ -881,6 +882,15 @@ var ready = new (function () {
 			if (typeof oldOnKeyPressFunc == "function")
 				oldOnKeyPressFunc(e);
 		};
+		
+		var oldOnMouseOver = window.document.onmouseover;
+		window.document.onmouseover = function(e) {
+			if (!self.isPinned())
+				self.closeByOutSideClick(e);
+			if (typeof oldOnMouseOver == "function")
+				oldOnMouseOver(e);
+		};
+		
 		closeEl.onclick = function() { self.setVisible(false); return false; };
 		var throbberIcon = document.createElementWithAttributes("img", {"id": "ajax-preview-throbber", "src": templatePath + settings["ajax_preview_throbber_image"], "alt": "[*]"}, contentEl);
 		var replylinkWrapper = document.createElementWithAttributes("p", {"id": "ajax-preview-replylink-wrapper"}, contentEl);
@@ -905,6 +915,14 @@ var ready = new (function () {
 					}
 				}
 			}
+		};
+		
+		this.pin = function() {
+			pinned = !pinned;
+		};
+		
+		this.isPinned = function() {
+			return pinned;
 		};
 		
 		this.getContentElement = function() {
@@ -972,6 +990,7 @@ var ready = new (function () {
 			}
 			else {
 				win.style.display = "none";
+				pinned = false;
 			}
 		};
 		
@@ -1053,7 +1072,7 @@ var ready = new (function () {
 		 * @return link
 		 */
 		var createAjaxPreviewLink = function(id) {
-			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this); this.blur(); return false; } }, null);
+			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) {self.showAjaxPreviewWindow(this, false); this.blur(); return false; } }, null);
 			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "title": lang["ajax_preview_title"], "alt": "", "onload": function(e) { this.alt = "[…]"; }, "onerror": function(e) { this.alt = "[…]"; } }, link);
 			return link;
 		};
@@ -1381,7 +1400,7 @@ var ready = new (function () {
 				
 			if (isLocked) 
 				ajaxPreviewWindow.setURI(false);
-			else 
+			else if (ajaxPreviewWindow.getOpener() && ajaxPreviewWindow.getOpener().pid)
 				ajaxPreviewWindow.setURI("index.php?mode=posting&id=" + ajaxPreviewWindow.getOpener().pid);
   
 			if (content.trim() == "") 
@@ -1392,24 +1411,33 @@ var ready = new (function () {
 		
 		/**
 		 * Zeigt das Vorschaufenster an. Erwartet das Objekt, 
-		 * welches den Aufruf hervorgerufen hat (Opener)
+		 * welches den Aufruf hervorgerufen hat (Opener), und 
+		 * ob das Fesnster geoffnet bleiben soll (pin).
 		 * Schliesst das Fenster, wenn auf den selben Opener
-		 * erneut geklickt wird
+		 * erneut geklickt wird.
 		 * @param obj
+		 * @param pin
 		 */
-		this.showAjaxPreviewWindow = function(obj) {
+		this.showAjaxPreviewWindow = function(obj, pin) {
 			if (!obj || !ajaxPreviewWindow)
 				return;
-			if (obj == ajaxPreviewWindow.getOpener() && ajaxPreviewWindow.isVisible()) {
-				ajaxPreviewWindow.setVisible(false);
-				ajaxPreviewWindow.setOpener(null);
+			if (obj == ajaxPreviewWindow.getOpener() && ajaxPreviewWindow.isVisible() && pin) {
+				ajaxPreviewWindow.pin();
+				if (!ajaxPreviewWindow.isPinned()) {
+					ajaxPreviewWindow.setVisible(false);
+					ajaxPreviewWindow.setOpener(null);					
+				}
 			}
-			else {
+			else if (!ajaxPreviewWindow.isPinned()) {
+				if (pin && !ajaxPreviewWindow.isPinned())
+					ajaxPreviewWindow.pin();
+				
 				var elPos = document.getElementPoSi(obj);
 				ajaxPreviewWindow.setOpener(obj);
 				ajaxPreviewWindow.setText("");
 				ajaxPreviewWindow.setVisible(true);	
 				ajaxPreviewWindow.setPosition( elPos.left, elPos.top );
+				
 				var querys = [
 								new Query("mode", "entry"),
 								new Query("ajax_preview", "true"),
@@ -1417,7 +1445,6 @@ var ready = new (function () {
 				];
 				new Request(strURL, "POST", querys, this, "updateAjaxPreviewWindow", null, true);
 			}
-
 		};
 		
 		/**
