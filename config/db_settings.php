@@ -3,10 +3,10 @@
 $db_settings['host'] = 'localhost';
 
 // Database name:
-$db_settings['database'] = '';
+$db_settings['database'] = 'mylittleforum';
 
 // Database user name:
-$db_settings['user'] = '';
+$db_settings['user'] = 'root';
 
 // Database password:
 $db_settings['password'] = '';

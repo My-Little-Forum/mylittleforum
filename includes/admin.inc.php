@@ -825,7 +825,8 @@ if (isset($_POST['email_list'])) $action="email_list";
           @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, user_id=0, email_notification=0 WHERE user_id = ".intval($selected_confirmed[$x]));
 
           @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($selected_confirmed[$x]));
-          @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".intval($selected_confirmed[$x]));
+          @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id = ".intval($selected_confirmed[$x]));
+          @mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE user_id = ".intval($selected_confirmed[$x]));
          }
         @mysqli_free_result($delete_result);
 
@@ -924,6 +925,7 @@ if(isset($_POST['reset_forum_confirmed']) || isset($_POST['uninstall_forum_confi
         if(isset($_POST['delete_userdata']))
          {
           @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_table']." WHERE user_id != ".intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error',mysqli_error($connid));
+          @mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE user_id != ".intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error',mysqli_error($connid));
           @mysqli_query($connid, "TRUNCATE TABLE ".$db_settings['userdata_cache_table']) or raise_error('database_error',mysqli_error($connid));
          }
         header('Location: index.php?mode=admin');

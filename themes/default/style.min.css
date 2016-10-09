@@ -26,7 +26,7 @@ img.show-sidebar{background:url(images/bg_sprite_2.png) no-repeat 0 -22px}
 #logo .index{margin:0;padding:0;font-size:.82em}
 #nav{margin:0;padding:7px 20px 7px 0;text-align:right}
 #usermenu{margin:0 0 1em;font-size:.69em;list-style-type:none}
-#usermenu li{display:inline-block;margin-left:5px}
+#usermenu li{display:inline;margin-left:5px}
 #usermenu li:first-child{margin-left:0;padding-left:0}
 #usermenu li:before{content:"|"}
 #usermenu li:first-child:before{content:""}
@@ -136,6 +136,8 @@ blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 .posting-footer .options li{display:inline;margin:0 0 0 1em}
 .posting-footer a.edit{padding-left:16px;background:url(images/bg_sprite_3.png) no-repeat 0 2px}
 .posting-footer a.delete{padding-left:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -47px}
+.posting-footer a.add-bookmark{padding-left:14px;background:url(images/bg_sprite_3.png) no-repeat 0 -97px}
+.posting-footer a.delete-bookmark{padding-left:14px;background:url(images/bg_sprite_3.png) no-repeat 0 -147px}
 .posting-footer a.move{padding-left:13px;background:url(images/bg_sprite_4.png) no-repeat 0 2px}
 .posting-footer a.report{padding-left:14px;background:url(images/bg_sprite_4.png) no-repeat 0 -48px}
 .posting-footer a.lock{padding-left:16px;background:url(images/bg_sprite_4.png) no-repeat 0 -99px}
@@ -261,6 +263,7 @@ p.userdata{margin:0}
 #bbcodebutton-flash span{padding:0 0 0 17px;background:url(images/bg_sprite_5.png) no-repeat 0 -248px}
 #bbcodebutton-tex span{padding:0 0 0 19px;background:url(images/bg_sprite_5.png) no-repeat 0 -299px}
 #bbcodebutton-code span{font-family:"courier new",courier;color:navy}
+#bbcode-options{position:absolute}
 #bbcode-options div{background:#efefef;border:1px solid silver;padding:0;font-size:.82em}
 #bbcode-options ul{list-style-type:none;margin:0;padding:0}
 #bbcode-options ul a{color:#000;display:block;text-decoration:none;padding:3px 5px;min-width:100px}
@@ -393,13 +396,13 @@ a:visited img.thumbnail{color:#00f;border:1px solid silver}
 a:hover img.thumbnail{color:#00f;border:1px solid #000}
 img.left{display:block;float:left;margin:0 10px 10px 0}
 img.right{float:right;margin:0 0 10px 10px}
-#ajax-preview{display:none;position:absolute;top:100px;left:100px;margin:13px 0 0 -3px;z-index:10;width:20px}
+#ajax-preview{position:absolute;top:100px;left:100px;margin:13px 0 0 -3px;z-index:10;width:20px}
 #ajax-preview-top{position:absolute;width:100%;top:0;height:16px;background:transparent url(images/bg_sprite_2.png) no-repeat 8px -40px;z-index:10}
 #ajax-preview-main{border-top:1px solid silver;position:absolute;top:15px;right:0;width:500px}
 #ajax-preview-close{float:right;cursor:pointer}
 #ajax-preview-body{background:#ffc;margin:0;padding:0;border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver}
 #ajax-preview-content{margin:0;padding:0 14px;max-height:350px;overflow:auto;clear:both;padding-bottom:16px}
-#ajax-preview-replylink-wrapper{display:none;margin:0;padding:0;font-size:.69em!important}
+#ajax-preview-replylink-wrapper{margin:0;padding:0;font-size:.69em!important}
 #ajax-preview-replylink-wrapper:before{content:"[ "}
 #ajax-preview-replylink-wrapper:after{content:" ]"}
 #ajax-preview-replylink{margin:0;padding:0}
@@ -407,7 +410,7 @@ img.right{float:right;margin:0 0 10px 10px}
 #ajax-preview-content p,#ajax-preview-content ul{font-size:.82em;line-height:1.5em}
 #ajax-preview-content li,#ajax-preview-content ul ul{font-size:1em}
 #image-canvas{position:absolute;top:0;left:0;width:100%;height:100%;background:url(images/canvas_bg.png);z-index:20}
-#image-canvas img{display:block;margin:2em auto 0;border:1px solid #000;z-index:30;max-width:90%}
+#image-canvas img{margin:2em auto 0;border:1px solid #000;z-index:30;max-width:90%}
 #ie ul.reply{width:100%}
 #ie ul.reply ul{background:none}
 #ie ul.thread li{height:100%}
@@ -417,4 +420,8 @@ img.right{float:right;margin:0 0 10px 10px}
 * html #ie #subnav #subnav-2{padding-top:.4em}
 * html #ie #footermenu li{margin-left:5px;padding-left:5px;background:none}
 * html #ie div.complete-thread{margin-bottom:20px}
-
+.js-display-none{display:none}
+.js-display-block{display:block}
+.js-visibility-hidden{visibility:hidden}
+.js-cursor-pointer{cursor:pointer}
+.js-cursor-move{cursor:move}

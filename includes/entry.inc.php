@@ -47,7 +47,7 @@ if(isset($id) && $id > 0)
 
 	 if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		 $user_id  = $_SESSION[$settings['session_prefix'].'user_id'];
-		 $result   = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($user_id)." AND `pid` = ".intval($id)."");
+		 $result   = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($user_id)." AND `posting_id` = ".intval($id)."") or raise_error('database_error',mysqli_error($connid));
 		 $bookmark = mysqli_fetch_row($result);
 		 mysqli_free_result($result);
 		 if (isset($bookmark) && intval($bookmark) == 1)
@@ -311,10 +311,12 @@ if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$setti
 	$options['move'] = true;
 	$options['lock'] = true;
 }
-if (isset($entrydata['bookmarkedby']))
-	$options['delete_bookmark'] = true;
-else
-	$options['add_bookmark'] = true;
+if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+	if (isset($entrydata['bookmarkedby']))
+		$options['delete_bookmark'] = true;
+	else
+		$options['add_bookmark'] = true;
+}
 if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $settings['akismet_key']!='' && $settings['akismet_entry_check']==1 && $entrydata['spam']==0 && $entrydata['spam_check_status']>0) $options['report_spam'] = true;
 if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $entrydata['spam']==1) $options['flag_ham'] = true;
 if(isset($options)) $smarty->assign('options', $options);
