@@ -1,7 +1,15 @@
 my little forum changelog
 -------------------------
 
-2.3.7 (2016-10-04)
+2.3.7 (2016-10-10)
+------------------
+- fixed further spelling error (German language)
+- fixed max-width for images in the ajax-preview
+- fixed a warning about variable name, that was used as function parameter and afterwards redeclared as new variable
+- fixed unintended closing the ajax-preview by clicking the horizontal scrollbar of the preview 
+- added translation for two untranslated strings in the German language file
+
+2.3.7beta (1 and 2) (2016-10-04, 2016-10-05)
 ------------------
 - feature, time limit for blocking IP after three failed login attempts is now configurable (`temp_block_ip_after_repeated_failed_logins` > 0)
 - fixed security issue, CSRF-protection
