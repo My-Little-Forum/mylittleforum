@@ -304,7 +304,10 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/main.tpl';
 		$update['items'][] = 'themes/default/style.css';
 		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'js/main.js';
+		$update['items'][] = 'js/main.min.js';
 		$update['items'][] = 'lang/english.lang';
+		$update['items'][] = 'lang/german.lang';
 		$update['items'][] = 'modules/bad-behaviour/bad-behaviour/blacklist.inc.php';
 		$update['items'][] = 'modules/bad-behaviour/bad-behaviour/core.inc.php';
 		$update['items'][] = 'modules/smarty/';
