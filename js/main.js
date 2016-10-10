@@ -1027,10 +1027,10 @@ var ready = new (function () {
 	 * ein Vorschaufenster und haengt dieses im Dokument
 	 * ein
 	 * @param structure
-	 * @param path2template
+	 * @param templatePath
 	 */
-	function AjaxPreviewWindow(structure, path2template) { 
-		var templatePath = path2template?path2template:"";
+	function AjaxPreviewWindow(structure, templatePath) { 
+		templatePath = templatePath?templatePath:"";
 		var hideURI = false;
 		var pinned  = false;
 		var win = document.getElementById('ajax-preview');
@@ -1392,8 +1392,9 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Erzeugt die Links zum Vorschaufenster
-		 * auf der Forenhauptseite an den gewuenschten Elementen
+		 * Erzeugt die Links (Sprechblase) zum Vorschaufenster
+		 * auf der Forenhauptseite an den gewuenschten Elementen,
+		 * sofern das Posting Inhalt besitzt.
 		 * @param els
 		 */
 		var setPreviewBoxToMainPage = function(els) {
@@ -1406,6 +1407,7 @@ var ready = new (function () {
 				var el = els[i];
 				var li = el.parentNode;
 				var pLink = document.getFirstChildByElement(li, "a", ["ap", "reply", "thread", "replynew", "threadnew", "thread-sticky", "threadnew-sticky", "reply-search", "thread-search"]);
+				var pEmpty = !!document.getFirstChildByElement(li, "img", ["no-text"]);
 				var pid = parseInt( el.id.substring(1) );
 				if (!pid) 
 					continue;
@@ -1432,7 +1434,7 @@ var ready = new (function () {
 						}				
 					}			
 				}
-				if (pLink && ajaxPreviewWindow) {
+				if (!pEmpty && pLink && ajaxPreviewWindow) {
 					if (links.length >= 1) {
 						var link = links[0];
 						el.insertBefore(createAjaxPreviewLink(pid), link);
