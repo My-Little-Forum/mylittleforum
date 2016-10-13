@@ -64,7 +64,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
      if($page < 1) $page = 1;
 
      if(isset($_GET['order'])) $order = $_GET['order']; else $order='user_name';
-     #if($order!='user_id' && $order!='user_name' && $order!='user_email' && $order!='user_type' && $order!='registered' && $order!='logins' && $order!='last_login' && $order!='user_lock' && $order!='postings' && $order!='user_hp' && $order!='email_contact' && $order!='online') $order='user_name';
      if($order!='user_id' && $order!='user_name' && $order!='user_email' && $order!='user_type' && $order!='registered' && $order!='logins' && $order!='last_login' && $order!='user_lock' && $order!='user_hp' && $order!='email_contact' && $order!='online') $order='user_name';
      if($order=='user_lock' && (empty($_SESSION[$settings['session_prefix'].'user_type']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']<1)) $order='user_name';
      if(isset($_GET['descasc'])) $descasc = $_GET['descasc']; else $descasc = "ASC";
@@ -107,7 +106,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
                                ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']) or raise_error('database_error',mysqli_error($connid));
 
       }
-     #$result_count = mysqli_num_rows($result);
 
      $i=0;
      while($row = mysqli_fetch_array($result))
@@ -200,7 +198,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
       {
        $row = mysqli_fetch_array($result);
 
-		$user_name = $row['user_name'];
+       $user_name = $row['user_name'];
 
        // count postings:
        $count_postings_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".$id);
@@ -853,7 +851,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
       {
        $smarty->configLoad($settings['language_file'], 'emails');
        $lang = $smarty->getConfigVars();
-       #if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
        $activate_code = random_string(20);
        $activate_code_hash = generate_pw_hash($activate_code);
        // send mail with activation key:
