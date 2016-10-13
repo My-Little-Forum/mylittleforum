@@ -59,8 +59,6 @@ if($settings['avatars']>0 && isset($_SESSION[$settings['session_prefix'].'user_i
             $new_height = $settings['avatar_max_height'];
             $new_width = intval($width*$new_height/$height);
            }
-          #$new_width = $settings['avatar_max_width'];
-          #$new_height = $settings['avatar_max_height'];
          }
         else
          {

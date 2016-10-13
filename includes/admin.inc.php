@@ -10,12 +10,6 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$s
 // remove not activated user accounts:
 @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_table']." WHERE registered < (NOW() - INTERVAL 24 HOUR) AND activate_code != '' AND logins=0");
 
-#$result = mysqli_query($connid, "SELECT id, subject, text FROM ".$db_settings['forum_table']);
-#while($data = mysqli_fetch_array($result))
-# {
-#  mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET subject = '".mysqli_real_escape_string($connid, utf8_encode($data['subject']))."', text = '".mysqli_real_escape_string($connid, utf8_encode($data['text']))."' WHERE id=".intval($data['id']));
-# }
-
 unset($errors);
 if(isset($_REQUEST['action'])) $action = $_REQUEST['action'];
 
@@ -239,10 +233,6 @@ if(isset($_POST['edit_user_submit']) && isset($_POST['csrf_token']) && $_POST['c
   if(mysqli_num_rows($name_result)>0) $errors[] = 'user_name_already_exists';
   mysqli_free_result($name_result);
 
-  /*$field = mysqli_fetch_array($name_result);
-  mysqli_free_result($name_result);
-  if($edit_user_id != $field['user_id'] && my_strtolower($field["user_name"], $lang['charset']) == my_strtolower($edit_user_name, $lang['charset'])) $errors[] = 'user_name_already_exists';
-  */
   if(my_strlen($edit_user_name, $lang['charset']) > $settings['username_maxlength']) $errors[] = 'error_username_too_long';
   if(my_strlen($user_real_name, $lang['charset']) > $settings['name_maxlength']) $errors[] = 'error_name_too_long';
   if(my_strlen($user_hp, $lang['charset']) > $settings['hp_maxlength']) $errors[] = 'error_hp_too_long';
@@ -297,8 +287,6 @@ if(isset($_POST['edit_user_submit']) && isset($_POST['csrf_token']) && $_POST['c
   if(empty($errors))
    {
     @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_name='".mysqli_real_escape_string($connid, $edit_user_name)."', user_type='".intval($edit_user_type)."', user_email='".mysqli_real_escape_string($connid, $user_email)."', user_real_name='".mysqli_real_escape_string($connid, $user_real_name)."', gender=".intval($gender).", birthday='".mysqli_real_escape_string($connid, $birthday)."', email_contact=".intval($email_contact).", user_hp='".mysqli_real_escape_string($connid, $user_hp)."', user_location='".mysqli_real_escape_string($connid, $user_location)."', profile='".mysqli_real_escape_string($connid, $profile)."', signature='".mysqli_real_escape_string($connid, $signature)."', last_login=last_login, registered=registered, new_posting_notification=".intval($new_posting_notification).", new_user_notification=".intval($new_user_notification).", language='".mysqli_real_escape_string($connid, $user_language)."', time_zone='".mysqli_real_escape_string($connid, $user_time_zone)."', time_difference=".intval($time_difference).", theme='".mysqli_real_escape_string($connid, $user_theme)."' WHERE user_id=".$edit_user_id) or raise_error('database_error',mysqli_error($connid));
-    #@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, name='".mysqli_real_escape_string($connid, $edit_user_name)."' WHERE user_id=".intval($edit_user_id));
-    #@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, edited_by='".mysqli_real_escape_string($connid, $edit_user_name)."' WHERE edited_by='".mysqli_real_escape_string($connid, $old_user_name)."'");
     @mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id=".$edit_user_id);
 
     if(isset($_POST['delete_avatar']))
@@ -425,7 +413,6 @@ if(isset($_POST['edit_category_submit']))
   if(empty($errors))
    {
     mysqli_query($connid, "UPDATE ".$db_settings['category_table']." SET category='".mysqli_real_escape_string($connid, $category)."', accession=".$accession." WHERE id=".$id);
-    #mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, category='".$_POST['edit_category_conf']."' WHERE category='".$_POST['old_category']."'");
     header("location: index.php?mode=admin&action=categories");
     die();
    }
@@ -555,9 +542,6 @@ if(isset($_GET['user_delete_all_entries']))
   if(!$user_result) raise_error('database_error',mysqli_error($connid));
   if(mysqli_num_rows($user_result)==1)
    {
-    #$count_postings_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE user_id = ".$user_id);
-    #list($user_delete_entries['number']) = mysqli_fetch_row($count_postings_result);
-    #mysqli_free_result($count_postings_result);
     $user = mysqli_fetch_array($user_result);
     mysqli_free_result($user_result);
     $user_delete_entries['id'] = $user_id;
@@ -648,7 +632,6 @@ if(isset($_REQUEST['restore_submit']))
       if(mysqli_num_rows($result)!=1) raise_error('database_error',mysqli_error($connid));
       $data = mysqli_fetch_array($result);
       if(!is_pw_correct($_POST['restore_password'],$data['user_pw'])) $errors[] = 'error_password_wrong';
-      #if(md5($_POST['restore_password'])!=$data['user_pw']) $errors[] = 'error_password_wrong';
       if(empty($errors))
        {
         if(!restore_backup('backup/'.$_POST['backup_file']))
@@ -720,7 +703,6 @@ if(isset($_POST['update_file_submit']))
       if(mysqli_num_rows($result)!=1) raise_error('database_error',mysqli_error($connid));
       $data = mysqli_fetch_array($result);
       if(!is_pw_correct($_POST['update_password'],$data['user_pw'])) $errors[] = 'error_password_wrong';
-      #if(md5($_POST['update_password'])!=$data['user_pw']) $errors[] = 'error_password_wrong';
       if(empty($errors))
        {
         include('update/'.$_POST['update_file_submit']);
@@ -907,7 +889,6 @@ if(isset($_POST['reset_forum_confirmed']) || isset($_POST['uninstall_forum_confi
     $field = mysqli_fetch_array($pw_result);
     mysqli_free_result($pw_result);
     if(!is_pw_correct($_POST['confirm_pw'],$field['user_pw'])) $errors[] = 'error_password_wrong';
-    #if($field['user_pw'] != md5($_POST['confirm_pw'])) $errors[] = 'error_password_wrong';
    }
 
   if(empty($errors))
@@ -1073,7 +1054,6 @@ if(isset($_POST['register_submit']) && isset($_POST['csrf_token']) && $_POST['cs
       // load e-mail strings from language file:
       $smarty->configLoad($settings['language_file'], 'emails');
       $lang = $smarty->getConfigVars();
-      #if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
       $lang['admin_reg_user_email_text'] = str_replace("[name]", $ar_username, $lang['admin_reg_user_email_text']);
       $lang['admin_reg_user_email_text'] = str_replace("[password]", $ar_pw, $lang['admin_reg_user_email_text']);
       $lang['admin_reg_user_email_text'] = str_replace("[login_link]", $settings['forum_address']."index.php?mode=login&username=".urlencode($ar_username)."&userpw=".$ar_pw, $lang['admin_reg_user_email_text']);
@@ -1306,7 +1286,6 @@ switch($action)
 
    if(isset($search_user))
     {
-     #$result = @mysqli_query($connid, "SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." WHERE lower(user_name) LIKE '".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%' OR user_email LIKE '".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%' ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']);
      $result = @mysqli_query($connid, "SELECT user_id, user_name, user_type, user_email, logins, UNIX_TIMESTAMP(last_login + INTERVAL ".$time_difference." MINUTE) AS last_login_time, UNIX_TIMESTAMP(registered + INTERVAL ".$time_difference." MINUTE) AS registered_time, user_lock, activate_code FROM ".$db_settings['userdata_table']." WHERE concat(lower(user_name),lower(user_email)) LIKE '%".mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset']))."%' ORDER BY ".$order." ".$descasc." LIMIT ".$ul.", ".$settings['users_per_page']);
     }
    else

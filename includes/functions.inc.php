@@ -341,7 +341,6 @@ function make_link($string)
   $string = ' ' . $string;
   $string = preg_replace_callback("#(^|[\n ])([\w]+?://.*?[^ \"\n\r\t<]*)#is", "shorten_link", $string);
   $string = preg_replace("#(^|[\n ])((www|ftp)\.[\w\-]+\.[\w\-.\~]+(?:/[^ \"\t\n\r<]*)?)#is", "$1<a href=\"http://$2\">$2</a>", $string);
-  #$string = preg_replace("#(^|[\n ])([a-z0-9&\-_.]+?)@([\w\-]+\.([\w\-\.]+\.)*[\w]+)#i", "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>", $string);
   $string = my_substr($string, 1, my_strlen($string, CHARSET), CHARSET);
   return $string;
  }
@@ -398,8 +397,6 @@ function parse_monospace($string)
  */
 function is_valid_url($url)
  {
-  #if((substr($url,0,7) == 'http://' || substr($url,0,8) == 'https://' || substr($url,0,6) == 'ftp://' || substr($url,0,9) == 'gopher://' || substr($url,0,7) == 'news://' ||  substr($url,0,7) == 'mailto:') && strpos($url, '.')) return true;
-  #else return false;
   if(!preg_match("/^.+\..+$/", $url))
    {
     return false;
@@ -533,7 +530,6 @@ function do_bbcode_tex($action, $attributes, $content, $params, $node_object)
   global $settings;
   if ($action == 'validate')
    {
-    #if(preg_match("/(\015\012|\015|\012)/", $content)) return false;
     return true;
    }
   else
@@ -565,7 +561,6 @@ function do_bbcode_flash($action, $attributes, $content, $params, $node_object)
    }
   else
    {
-    #$html = '<p><object classid="CLSID:D27CDB6E-AE6D-11cf-96B8-444553540000" width="[width]" height="[height]"><param name="movie" value="'.htmlspecialchars($content).'" /><embed src="'.htmlspecialchars($content).'" width="[width]" height="[height]" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" /></object></p>';
     $html = '<!--[if IE]>
     <object type="application/x-shockwave-flash" data="'.htmlspecialchars($content).'" width="[width]" height="[height]">
     <param name="movie" value="'.htmlspecialchars($content).'" />
@@ -739,12 +734,10 @@ function do_bbcode_tex_email($action, $attributes, $content, $params, $node_obje
   global $settings;
   if ($action == 'validate')
    {
-    #if(preg_match("/(\015\012|\015|\012)/", $content)) return false;
     return true;
    }
   else
    {
-    #return '['.$settings['bbcode_tex'].urlencode($content).']';
     return $content;
    }
  }
@@ -1475,7 +1468,6 @@ function emailNotification2ParentAuthor($id, $delayed=false)
         $emailbody = str_replace("[original_text]", $starter_text, $emailbody);
         $emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
         if($delayed==true) $emailbody = $emailbody . "\n\n" . $lang['email_text_delayed_addition'];
-        #$recipient = encode_mail_name($ts_data['name']).' <'.$ts_data['email'].'>';
         $recipient = $ts_data['email'];
         $subject = str_replace("[original_subject]",  $ts_data['subject'], $lang['email_subject']);
         my_mail($recipient, $subject, $emailbody);
@@ -1523,7 +1515,6 @@ function emailNotification2ModsAndAdmins($id, $delayed=false)
   while($admin_array = mysqli_fetch_array($recipient_result))
    {
     $ind_emailbody = str_replace("[admin]", $admin_array['user_name'], $emailbody);
-    #$recipient = encode_mail_name($admin_array['user_name']).' <'.$admin_array['user_email'].'>';
     $recipient = $admin_array['user_email'];
     my_mail($recipient, $lang['admin_email_subject'], $ind_emailbody);
    }
@@ -2048,11 +2039,6 @@ function restore_backup($backup_file)
  */
 function check_filename($filename)
  {
-  #$file_name = trim($filename);
-  #$file_name = str_replace('/','',$file_name);
-  #$file_name = str_replace('\\','',$file_name);
-  #$file_name = str_replace('..','',$file_name);
-  #return $file_name;
   if(preg_match('/^[a-zA-Z0-9._\-]+$/', $filename)) return true;
   else return false;
  }
@@ -2329,7 +2315,6 @@ function my_quoted_printable_encode($input, $line_max=76, $space_conv = false )
 function get_mail_encoding($string)
  {
   if(preg_match('%^(?:[\x09\x0A\x0D\x20-\x7E])*$%xs', $string)) return 'US-ASCII';
-  #elseif(preg_match('/^([\x09\x0A\x0D\x20-\x7E\xA0-\xFF])*$/', $string)) return 'ISO-8859-1';
   else return strtoupper(CHARSET);
  }
 
@@ -2475,8 +2460,6 @@ function is_user_agent_banned($user_agent, $banned_user_agents)
  {
   foreach($banned_user_agents as $banned_user_agent)
    {
-    #if(strpos(strtolower($user_agent),strtolower($banned_user_agent))!==false)  // case insensitive
-    #if($banned_user_agent!='' && (preg_match("/".$banned_user_agent."/i",$user_agent))) // case insensitive
     if(strpos($user_agent,$banned_user_agent)!==false) // case sensitive, faster
      {
       return true;
@@ -2504,7 +2487,6 @@ function get_not_accepted_words($string)
     $not_accepted_words = explode("\n",$data['list']);
     foreach($not_accepted_words as $not_accepted_word)
      {
-      #if($not_accepted_word!='' && (preg_match("/".$not_accepted_word."/i",$name) || preg_match("/".$not_accepted_word."/i",$text) || preg_match("/".$not_accepted_word."/i",$subject) || preg_match("/".$not_accepted_word."/i",$email) || preg_match("/".$not_accepted_word."/i",$hp) || preg_match("/".$not_accepted_word."/i",$location)))
       if($not_accepted_word!='' && my_strpos($string, my_strtolower($not_accepted_word, CHARSET), 0, CHARSET)!==false)
        {
         $found_not_accepted_words[] = $not_accepted_word;

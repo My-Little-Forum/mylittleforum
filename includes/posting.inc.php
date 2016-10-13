@@ -208,7 +208,6 @@ if(isset($_POST['move_posting_submit']) && isset($_POST['move_posting']) && isse
          $smilies[$i]['id'] = $row['id'];
          $smilies[$i]['file'] = $row['file'];
          $smilies[$i]['code'] = $row['code_1'];
-         //$smilies[$i]['code_encoded'] = 'smiley-' . str_replace('%',':',rawurlencode($row['code_1']));
          $smilies[$i]['title'] = $row['title'];
          $i++;
         }
@@ -987,7 +986,6 @@ switch($action)
        if($field['user_id']>0) // posting of a registered user edited
         {
          @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=".$edited_query.", edited_by=".$edited_by_query.", subject='".mysqli_real_escape_string($connid, $subject)."', category=".intval($p_category).", email='".mysqli_real_escape_string($connid, $email)."', hp='".mysqli_real_escape_string($connid, $hp)."', location='".mysqli_real_escape_string($connid, $location)."', text='".mysqli_real_escape_string($connid, $text)."', tags='".mysqli_real_escape_string($connid, $s_tags)."', email_notification='".intval($email_notification)."', show_signature='".intval($show_signature)."' ". ((isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] > 0) ? ", sticky=".intval($sticky) : "") ." WHERE id=".intval($id));
-         //@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=".$edited_query.", edited_by=".$edited_by_query.", subject='".mysqli_real_escape_string($connid, $subject)."', category=".intval($p_category).", email='".mysqli_real_escape_string($connid, $email)."', hp='".mysqli_real_escape_string($connid, $hp)."', location='".mysqli_real_escape_string($connid, $location)."', text='".mysqli_real_escape_string($connid, $text)."', tags='".mysqli_real_escape_string($connid, $s_tags)."', email_notification='".intval($email_notification)."', show_signature='".intval($show_signature)."', sticky=".intval($sticky)." WHERE id=".intval($id));
         }
        else // posting of a not registed user edited
         {
@@ -1138,7 +1136,6 @@ switch($action)
    if($authorization['edit']!=true)
     {
      $smarty->assign('no_authorisation','no_authorization_edit');
-     #$smarty->assign('minutes',$settings['edit_max_time_period']);
     }
    elseif($authorization['edit']==true)
     {
@@ -1582,9 +1579,6 @@ switch($action)
      mysqli_free_result($lock_result);
      if ($field['locked']==0) mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, locked=1 WHERE id = ".intval($id));
      else mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, locked=0 WHERE id = ".intval($id));
-     #if (empty($page)) $page = 0;
-     #if (empty($order)) $order = "time";
-     #if (empty($descasc)) $descasc = "DESC";
     }
    header("location: index.php?mode=".$back."&id=".$id);
    exit;
@@ -1633,8 +1627,6 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha
     $captcha_tpl['number_1'] = $_SESSION['captcha_session'][0];
     $captcha_tpl['number_2'] = $_SESSION['captcha_session'][1];
    }
-  #$captcha_tpl['session_name'] = session_name();
-  #$captcha_tpl['session_id'] = session_id();
   $captcha_tpl['type'] = $settings['captcha_posting'];
   $smarty->assign('captcha',$captcha_tpl);
  }

@@ -7,9 +7,6 @@ if(!defined('IN_INDEX'))
 
 if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$settings['session_prefix'].'auto_login']) && isset($settings['autologin']) && $settings['autologin'] == 1)
  {
-  // clear up expired auto_login_codes:
-  #if($settings['autologin']==1) @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET auto_login_code='' WHERE auto_login_code != '' AND last_login < (NOW() - INTERVAL ".$settings['cookie_validity_days']." DAY)");
-
   $auto_login_code = substr($_COOKIE[$settings['session_prefix'].'auto_login'],0,50);
   $auto_login_id = intval(substr($_COOKIE[$settings['session_prefix'].'auto_login'],50));
   if(isset($auto_login_id) && $auto_login_id>0 && isset($auto_login_code) && trim($auto_login_code)!='')
@@ -78,15 +75,12 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
 
         if(!empty($feld['time_difference'])) $usersettings['time_difference'] = $feld['time_difference'];
 
-        #if(isset($read)) $read_before_logged_in = $read; // get read postings from cookie (read before logged in)
-
         $_SESSION[$settings['session_prefix'].'user_id'] = $user_id;
         $_SESSION[$settings['session_prefix'].'user_name'] = $user_name;
         $_SESSION[$settings['session_prefix'].'user_type'] = $user_type;
         $_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
 
         $read = set_read($usersettings['read']);
-        #if(isset($read_before_logged_in)) $read = set_read($read_before_logged_in); // get read postings from cookie (read before logged in)
         save_read(false);
 
         @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR'])."', pwf_code='', language='".mysqli_real_escape_string($connid, $language_update)."', time_zone='".mysqli_real_escape_string($connid, $time_zone_update)."', theme='".mysqli_real_escape_string($connid, $theme_update)."' WHERE user_id=".intval($user_id));

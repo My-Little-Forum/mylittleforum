@@ -171,7 +171,6 @@ switch($action)
        $sender_name = $mail_parts[0];
        $check_mail['author'] = $mail_parts[0];
        $check_mail['email'] = $sender_email;
-       #$check_mail['body'] = $subject."\n\n".$text;
        $check_mail['body'] = $text;
        $akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_mail);
        // test for errors
@@ -278,16 +277,11 @@ switch($action)
      // load e-mail strings from default language file:
      $smarty->configLoad($settings['language_file'], 'emails');
      $lang = $smarty->getConfigVars();
-     #if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
      if(isset($_SESSION[$settings['session_prefix'].'user_name'])) $emailbody = str_replace("[user]", $_SESSION[$settings['session_prefix'].'user_name'], $lang['contact_email_txt_user']);
      else $emailbody = $lang['contact_email_txt'];
      $emailbody = str_replace("[message]", $text, $emailbody);
      $emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
      if(!my_mail($recipient_email, $subject, $emailbody, $sender_email)) $errors[] = 'mail_error';
-     // reset user language:
-     #$smarty->configLoad($language_file);
-     #$lang = $smarty->getConfigVars();
-     #if($language_file != $settings['language_file']) setlocale(LC_ALL, $lang['locale']);
     }
    if(isset($errors))
     {
@@ -302,16 +296,6 @@ switch($action)
    else
     {
      $smarty->assign('sent',TRUE);
-     // e-mail to sender:
-     // disabled, see here: http://mylittleforum.net/forum/index.php?id=2485
-     /*
-     $emailsubject = str_replace("[subject]", $subject, $lang['contact_notification_sj']);
-     $emailbody = str_replace("[subject]", $subject, $lang['contact_notification_txt']);
-     $emailbody = str_replace("[message]", $text, $emailbody);
-     $emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
-     $emailbody = str_replace("[recipient]", $recipient_name, $emailbody);
-     my_mail($sender_email, $subject, $emailbody);
-     */
     }
   break;
  }
@@ -329,8 +313,6 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha
     $captcha_tpl['number_1'] = $_SESSION['captcha_session'][0];
     $captcha_tpl['number_2'] = $_SESSION['captcha_session'][1];
    }
-  #$captcha_tpl['session_name'] = session_name();
-  #$captcha_tpl['session_id'] = session_id();
   $captcha_tpl['type'] = $settings['captcha_email'];
   $smarty->assign('captcha',$captcha_tpl);
  }

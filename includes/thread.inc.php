@@ -178,9 +178,6 @@ else $order = 'time';
         $data['posting'] = $data['cache_text'];
        }
 
-      #if(isset($data['signature']) && $data['signature'] != '' && $data["show_signature"]==1) $data['signature'] = signature_format($data['signature']);
-      #else unset($data['signature']);
-
       if(isset($data['signature']) && $data['signature'] != '' && $data["show_signature"]==1)
        {
         // user has a signature and wants it to be displaed in this posting. Check if it's already cached:
