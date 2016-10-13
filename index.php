@@ -5,7 +5,7 @@
  *
  * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
  * @copyright 2006-2016 Mark Alexander Hoschek
- * @version 2.3.7 (2016-10-10)
+ * @version 2.4.0 (2016-10-09)
  * @link http://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
@@ -130,6 +130,9 @@ switch($mode)
      break;
   case 'admin':
      include('includes/admin.inc.php');
+     break;
+  case 'bookmarks':
+     include('includes/bookmark.inc.php');
      break;
   case 'contact':
      include('includes/contact.inc.php');

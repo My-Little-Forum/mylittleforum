@@ -45,6 +45,9 @@ lang["expand_fold_thread_linktitle"] =     "<?php echo addslashes($lang['expand_
 lang["fold_posting_title"] =               "<?php echo addslashes($lang['fold_posting_title']); ?>";
 lang["fold_postings"] =                    "<?php echo addslashes($lang['fold_postings']); ?>";
 lang["fold_postings_title"] =              "<?php echo addslashes($lang['fold_postings_title']); ?>";
+<?php if(isset($user_type) && $user_type >= 0): ?>
+lang["drag_and_drop_title"] =              "<?php echo addslashes($lang['drag_and_drop_title']); ?>";
+<?php endif; ?>
 <?php if($settings['entries_by_users_only']==0 || isset($user_type)): ?>
 lang["quote_label"] =                      "<?php echo addslashes($lang['quote_label']); ?>";
 lang["quote_title"] =                      "<?php echo addslashes($lang['quote_title']); ?>";
@@ -79,7 +82,6 @@ lang["check_all"] =                        "<?php echo addslashes($lang['check_a
 lang["uncheck_all"] =                      "<?php echo addslashes($lang['uncheck_all']); ?>";
 lang["delete_backup_confirm"] =            "<?php echo addslashes($lang['delete_backup_confirm']); ?>";
 lang["delete_sel_backup_confirm"] =        "<?php echo addslashes($lang['delete_sel_backup_confirm']); ?>";
-lang["drag_and_drop_title"] =              "<?php echo addslashes($lang['drag_and_drop_title']); ?>";
 <?php endif; ?>
 
 var settings = new Array();
@@ -97,6 +99,7 @@ settings["terms_of_use_popup_height"] =    <?php echo $theme_config['terms_of_us
 settings["ajaxPreviewStructure"] =         "<?php echo $ajax_preview_structure; ?>";
 settings["ajax_preview_image"] =           "<?php echo $theme_config['ajax_preview_image']; ?>";
 settings["ajax_preview_throbber_image"] =  "<?php echo $theme_config['ajax_preview_throbber_image']; ?>";
+settings["ajax_preview_onmouseover"] =     <?php echo ($settings['ajax_preview'] > 1 ? 'true':'false'); ?>;
 <?php endif; ?>
 <?php if(isset($user_type) && $user_type>0 && $settings['upload_images'] > 0 || isset($user_type) && $settings['upload_images'] > 1 || $settings['upload_images']>2): ?>
 settings["upload_popup_width"] =           <?php echo $theme_config['upload_popup_width']; ?>;

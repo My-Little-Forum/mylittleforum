@@ -230,7 +230,7 @@ else $order = 'time';
       if($data['location'] != '') $data['location']=htmlspecialchars($data['location']);
       if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0)
        {
-        $data['options']['move']=true;
+        $data['options']['move'] = true;
         $data['options']['lock'] = true;
        }
       if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0 && $settings['akismet_key']!='' && $settings['akismet_entry_check']==1 && $data['spam']==0 && $data['spam_check_status']>0) $data['options']['report_spam']=true;
@@ -244,7 +244,19 @@ else $order = 'time';
        }
       else $data['views']=0;
 
-      $data_array[$data["id"]] = $data;
+		if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			$bookmark_result = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($_SESSION[$settings['session_prefix'].'user_id'])." AND `posting_id` = ".intval($data['id'])."") or raise_error('database_error',mysqli_error($connid));
+			$bookmark = mysqli_fetch_row($bookmark_result);
+			mysqli_free_result($bookmark_result);
+			if (isset($bookmark) && intval($bookmark) == 1) {
+				$data['bookmarkedby'] = intval($_SESSION[$settings['session_prefix'].'user_id']);
+				$data['options']['delete_bookmark'] = true;
+			}
+			else
+				$data['options']['add_bookmark'] = true;
+		} 
+	  
+	  $data_array[$data["id"]] = $data;
       $child_array[$data["pid"]][] =  $data["id"];
      }
     mysqli_free_result($result);

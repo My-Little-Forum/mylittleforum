@@ -1,7 +1,7 @@
 ################################################################################
 # German language file for my little forum 2.3                                 #
 #------------------------------------------------------------------------------#
-# Translated by Alex < alex at mylittleforum dot net > 2011-09-01              #                                                     #
+# Translated by Alex < alex at mylittleforum dot net > 2011-09-01              #
 ################################################################################
 
 [default]
@@ -142,6 +142,9 @@ subnav_restore =                  Wiederherstellen
 subnav_locked =                   Benutzerkonto gesperrt
 subnav_delete_cookie =            Cookie
 subnav_disabled =                 Forum deaktiviert
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Bookmark löschen
+subnav_edit_bookmark =            Bookmark bearbeiten
 subnav_page_error =               Fehler
 subnav_page =                     [var]
 counter =                         [total_postings] Einträge in [total_threads] Threads, [registered_users] registrierte Benutzer
@@ -256,6 +259,18 @@ delete_backup_confirm =           Sicher, dass die Backup-Datei gelöscht werden
 delete_sel_backup_confirm =       Sicher, dass die ausgewählten Backup-Dateien gelöscht werden sollen?
 drag_and_drop_title =             Drag & Drop zum Verschieben
 show_all_postings_link =          Einträge anzeigen
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Nutzerdaten von [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Bookmark löschen
+delete_bookmark_confirm =         Soll dieses Bookmark wirklich gelöscht werden?
+no_bookmarks =                    keine Bookmarks gefunden
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Bookmarkname
+bookmark_user_name =              Benutzer
+bookmark_creation_time =          Bookmark erstellt am
+bookmark_posting_time =           Posting erstellt am
 
 [entry]
 edited_by =                       bearbeitet von [name], [time]
@@ -265,6 +280,10 @@ several_views =                   [views] Views
 complete_thread_marking =         gesamter Thread:
 branch_marking =                  Aktueller Diskussionszweig:
 direct_replies_marking =          Direkte Antworten auf diesen Eintrag:
+add_bookmark_message_linkname =   Bookmark hinzufügen
+add_bookmark_message_linktitle =  Diesen Eintrag den eigenen Bookmarks hinzufügen
+delete_bookmark_message_linkname =Bookmark löschen
+delete_bookmark_message_linktitle=Diesen Eintrag aus den eigenen Bookmarks entfernen
 edit_message_linkname =           bearbeiten
 edit_message_linktitle =          Eintrag bearbeiten
 delete_message_linkname =         löschen
@@ -998,6 +1017,14 @@ Direkter Link zum Einloggen:
 [login_link]
 
 Das Passwort kann nach dem Einloggen geändert werden."""
+
+admin_activate_user_email_subj =       Foren-Registrierung
+admin_activate_user_email_text =       """Hallo [name],
+willkommen im Forum!
+
+Direkter Link zum Einloggen:
+[login_link]
+"""
 
 new_user_email_sj =               Foren-Registrierung
 new_user_email_txt =              """Hallo [name],

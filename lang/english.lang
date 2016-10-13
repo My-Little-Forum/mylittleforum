@@ -150,6 +150,9 @@ subnav_restore =                  Restore
 subnav_locked =                   Account locked
 subnav_delete_cookie =            Delete cookie
 subnav_disabled =                 Forum disabled
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Delete bookmark
+subnav_edit_bookmark =            Edit bookmark
 subnav_page_error =               Error
 subnav_page =                     [var]
 counter =                         [total_postings] Postings in [total_threads] Threads, [registered_users] registered users
@@ -264,6 +267,18 @@ delete_backup_confirm =           Are you sure you want to delete this backup fi
 delete_sel_backup_confirm =       Are you sure you want to delete all selected backup files?
 drag_and_drop_title =             Drag & drop to move up or down
 show_all_postings_link =          show postings
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Visit profil of [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Delete Bookmark
+delete_bookmark_confirm =         Do you really want to delete this bookmark?
+no_bookmarks =                    No bookmarks specified.
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Name of bookmark
+bookmark_user_name =              User name
+bookmark_creation_time =          Bookmark creation
+bookmark_posting_time =           Posting creation
 
 [entry]
 edited_by =                       edited by [name], [time]
@@ -273,6 +288,10 @@ several_views =                   [views] views
 complete_thread_marking =         Complete thread:
 branch_marking =                  Current branch of thread:
 direct_replies_marking =          Direct replies to this posting:
+add_bookmark_message_linkname =   add bookmark
+add_bookmark_message_linktitle =  Add this posting to your personal bookmark list
+delete_bookmark_message_linkname =delete bookmark
+delete_bookmark_message_linktitle=Remove this posting from your personal bookmark list
 edit_message_linkname =           edit
 edit_message_linktitle =          edit posting
 delete_message_linkname =         delete
@@ -1006,6 +1025,14 @@ Link to log in directly:
 [login_link]
 
 The password can be changed after logging in."""
+
+admin_activate_user_email_subj =       Forum registration
+admin_activate_user_email_text =       """Hi [name],
+welcome to the forum!
+
+Link to log in directly:
+[login_link]
+"""
 
 new_user_email_sj =               Forum registration
 new_user_email_txt =              """Hi [name],

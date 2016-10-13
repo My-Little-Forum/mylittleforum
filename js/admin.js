@@ -27,7 +27,8 @@
 * do not have any effect unless it is loaded by the template           *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
 * The minimized version was created with the YUI Compressor            *
-* <http://developer.yahoo.com/yui/compressor/>.                        *
+* <http://developer.yahoo.com/yui/compressor/>, i.e.                   *
+* <http://ganquan.info/yui/>.                                          *
 ***********************************************************************/
 
 /**
@@ -70,7 +71,6 @@ function MyLittleAdmin() {
 				};
 			}
 		}
-		
 	};
 
 	/**
@@ -118,7 +118,7 @@ function MyLittleAdmin() {
 			if (c && this.elements["delete_backup_files_confirm"])
 				this.elements["delete_backup_files_confirm"].value = true;
 			return c;
-		}
+		};
 		
 		var wrapperEl = document.createElementWithAttributes("span", {"className": "checkall"}, el);
 		var checkAll  = document.createElementWithAttributes("a", {"onclick": function(e) {selectAll(this.setSelect); return false;}, "href": "#", "setSelect": true}, wrapperEl);
@@ -126,9 +126,7 @@ function MyLittleAdmin() {
 		var checkNone = document.createElementWithAttributes("a", {"onclick": function(e) {selectAll(this.setSelect); return false;}, "href": "#", "setSelect": false}, wrapperEl);
 		checkAll.appendChild( document.createTextNode( lang["check_all"] ));
 		checkNone.appendChild( document.createTextNode( lang["uncheck_all"] ));
-
 	};
-	
 	
 	/**
 	 * Initialisiert die moeglichen Admin-Funktionen
@@ -139,177 +137,7 @@ function MyLittleAdmin() {
 	}());
 }
 
-/**
- * DragAndDropTable ermoeglicht das Tauschen von 
- * Zeilen (TR) innerhalb von TBODY
- *
- * @param table
- * @see http://www.isocra.com/2007/07/dragging-and-dropping-table-rows-in-javascript/
- */
-function DragAndDropTable(table) {
-	if (!table)
-		return;
-	var isChanged = false;
-	var rows = table.tBodies[0].rows;
-	var dragObject = null;
-	var oldOnMouseUpFunc   = window.document.onmouseup;
-	var oldOnMouseMoveFunc = window.document.onmousemove;
-	var tableTop = 0;
-	var rowList = [];
-	var getLocationQueryByParameter = function(par) {
-		var q = window.document.location.search.substring(1).split('&');
-		if(!q.length) 
-			return false;
-		for(var i=0; i<q.length; i++){
-			var v = q[i].split('=');
-			if (decodeURIComponent(v[0]) == par)
-				return v.length>1?decodeURIComponent(v[1]):"";
-		}
-	};
-	
-	var saveNewOrder = function() {
-		if (!isChanged)
-			return;
-		var page  = getLocationQueryByParameter("action");
-		var order = getRowOrder();
-		if (!page || !order)
-			return;
-		var querys = [
-				new Query("mode",   "admin"),
-				new Query("action", "reorder"),
-				new Query(page,   order)
-		];
-		new Request("index.php", "POST", querys);
-	};
-	
-	var updateClasses = function() {
-		for (var i=0; i<rows.length; i++)
-			rows[i].className = (i%2==0)?"a":"b";
-	};
-	
-	var getRowOrder = function() {
-		var order = "";
-		for (var i=0; i<rows.length; i++)
-			if (rows[i].id.length > 3)
-				order += rows[i].id.substring(3) + ",";
-		return order.substr(0, order.length-1);
-	};
-	
-	var ondrag = function(row) {
-		if (!row)
-			return;
-    };
-	
-	var ondrop = function(row) {
-		if (!row)
-			return;
-		updateClasses();
-		saveNewOrder();
-    };
-	
-	var start = function() {
-		window.document.onmousemove = function(e) {
-			if (typeof oldOnMouseMoveFunc == "function")
-				oldOnMouseMoveFunc(e);
-			if (!dragObject)
-				return;
-			var mPos = document.getMousePos(e);
-			var currentTop = mPos.top - dragObject.handlePos.top + dragObject.elementPos.top;
-            var currentRow = findDropTargetRow( currentTop );
-            if (tableTop != currentTop && currentRow && dragObject != currentRow) {
-				var movingDown = currentTop > tableTop;
-				tableTop = currentTop;
-                
-				if (movingDown)
-					currentRow = currentRow.nextSibling;
-				dragObject.parentNode.insertBefore(dragObject, currentRow);
-				isChanged = true;
-				ondrag(dragObject);
-            }
-			
-			if(e && e.preventDefault) 
-				e.preventDefault();
-			return false;
-		};
-		
-		window.document.onmouseup = function (e) {
-			window.document.onmouseup = window.document.onmousemove = null;
-			if (typeof oldOnMouseUpFunc == "function")
-				oldOnMouseUpFunc(e);
-			if (typeof oldOnMouseMoveFunc == "function")
-				window.document.onmousemove = oldOnMouseMoveFunc;
-			ondrop(dragObject);
-			dragObject = null;
-			isChanged = false;
-			return false;
-		};
-	};
-	
-	var findDropTargetRow = function(top) {
-        for (var i=0; i<rows.length; i++) {
-			var rowPoSi = document.getElementPoSi(rows[i]);
-			var h = rowPoSi.height;
-			if (h == 0 && row[i].firstChild) {
-				rowPoSi = document.getElementPoSi(row[i].firstChild);
-				h = row[i].firstChild.offsetHeight;
-			}
-			h /= 2;
-			if ((top >= (rowPoSi.top - h)) && (top < (rowPoSi.top + h))) {
-				return rows[i];
-			}
-		}
-		return null;
-	};
-		
-	var add = function(row) {
-		row.style.cursor = "move";
-		row.title = lang["drag_and_drop_title"];
-		row.onmousedown = function(e){
-			isChanged = false;
-			var obj = document.getTarget(e);
-			if (obj && obj.className.search(/control/) != -1)
-				return false;
-			this.className = "drag";
-			this.elementPos = document.getElementPoSi(this);
-			this.handlePos  = document.getMousePos(e);
-			dragObject = this; 
-			start();
-			return false;  
-		};	
-		
-		var links = row.cells[row.cells.length-1].getElementsByTagName("a");
-		if (links && links.length > 0) {
-			for (var i=0; i<links.length; i++) {
-				if (links[i].href.search(/move_up/) != -1) 
-					links[i].onclick = function(e) {
-						row.parentNode.insertBefore(row, rows[Math.max(row.rowIndex-2,0)]);
-						isChanged = true;
-						updateClasses();
-						saveNewOrder();
-						return false;
-					};
-				else if (links[i].href.search(/move_down/) != -1)
-					links[i].onclick = function(e) {
-						row.parentNode.insertBefore(row, rows[Math.min(row.rowIndex+1, rows.length)]);
-						updateClasses();
-						isChanged = true;
-						saveNewOrder();
-						return false;
-					};
-			}
-		}
-	};
-	
-	
-	
-	(function() {
-		for (var i=0; i<rows.length; i++){
-			add(rows[i]);
-		}
-	}());
-}
-
 window.ready.push(function() {
 	new MyLittleAdmin();
-	new DragAndDropTable(document.getElementById("sortable"));
+	new DragAndDropTable(document.getElementById("sortable"), "admin", "action");
 });

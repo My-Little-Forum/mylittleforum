@@ -27,7 +27,8 @@
 * do not have any effect unless it is loaded by the template           *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
 * The minimized version was created with the YUI Compressor            *
-* <http://developer.yahoo.com/yui/compressor/>.                        *
+* <http://developer.yahoo.com/yui/compressor/>, i.e.                   *
+* <http://ganquan.info/yui/>.                                          *
 ***********************************************************************/
 
 /**
@@ -388,6 +389,174 @@ String.prototype.stripslashes = function() {
 };
 
 /**
+ * DragAndDropTable ermoeglicht das Tauschen von 
+ * Zeilen (TR) innerhalb von TBODY
+ *
+ * @param table
+ * @see http://www.isocra.com/2007/07/dragging-and-dropping-table-rows-in-javascript/
+ */
+function DragAndDropTable(table,mode,queryKey) {
+	if (!table)
+		return;
+	var isChanged = false;
+	var rows = table.tBodies[0].rows;
+	var dragObject = null;
+	var oldOnMouseUpFunc   = window.document.onmouseup;
+	var oldOnMouseMoveFunc = window.document.onmousemove;
+	var tableTop = 0;
+	var rowList = [];
+	var getLocationQueryByParameter = function(par) {
+		var q = window.document.location.search.substring(1).split('&');
+		if(!q.length) 
+			return false;
+		for(var i=0; i<q.length; i++){
+			var v = q[i].split('=');
+			if (decodeURIComponent(v[0]) == par)
+				return v.length>1?decodeURIComponent(v[1]):"";
+		}
+	};
+	
+	var saveNewOrder = function() {
+		if (!isChanged)
+			return;
+		var page  = getLocationQueryByParameter(queryKey);
+		var order = getRowOrder();
+		if (!page || !order)
+			return;
+		var querys = [
+				new Query("mode", mode),
+				new Query("action", "reorder"),
+				new Query(page,   order)
+		];
+		new Request("index.php", "POST", querys);
+	};
+	
+	var updateClasses = function() {
+		for (var i=0; i<rows.length; i++)
+			rows[i].className = (i%2==0)?"a":"b";
+	};
+	
+	var getRowOrder = function() {
+		var order = "";
+		for (var i=0; i<rows.length; i++)
+			if (rows[i].id.length > 3)
+				order += rows[i].id.substring(3) + ",";
+		return order.substr(0, order.length-1);
+	};
+	
+	var ondrag = function(row) {
+		if (!row)
+			return;
+    };
+	
+	var ondrop = function(row) {
+		if (!row)
+			return;
+		updateClasses();
+		saveNewOrder();
+    };
+	
+	var start = function() {
+		window.document.onmousemove = function(e) {
+			if (typeof oldOnMouseMoveFunc == "function")
+				oldOnMouseMoveFunc(e);
+			if (!dragObject)
+				return;
+			var mPos = document.getMousePos(e);
+			var currentTop = mPos.top - dragObject.handlePos.top + dragObject.elementPos.top;
+            var currentRow = findDropTargetRow( currentTop );
+            if (tableTop != currentTop && currentRow && dragObject != currentRow) {
+				var movingDown = currentTop > tableTop;
+				tableTop = currentTop;
+                
+				if (movingDown)
+					currentRow = currentRow.nextSibling;
+				dragObject.parentNode.insertBefore(dragObject, currentRow);
+				isChanged = true;
+				ondrag(dragObject);
+            }
+			
+			if(e && e.preventDefault) 
+				e.preventDefault();
+			return false;
+		};
+		
+		window.document.onmouseup = function (e) {
+			window.document.onmouseup = window.document.onmousemove = null;
+			if (typeof oldOnMouseUpFunc == "function")
+				oldOnMouseUpFunc(e);
+			if (typeof oldOnMouseMoveFunc == "function")
+				window.document.onmousemove = oldOnMouseMoveFunc;
+			ondrop(dragObject);
+			dragObject = null;
+			isChanged = false;
+			return false;
+		};
+	};
+	
+	var findDropTargetRow = function(top) {
+        for (var i=0; i<rows.length; i++) {
+			var rowPoSi = document.getElementPoSi(rows[i]);
+			var h = rowPoSi.height;
+			if (h == 0 && row[i].firstChild) {
+				rowPoSi = document.getElementPoSi(row[i].firstChild);
+				h = row[i].firstChild.offsetHeight;
+			}
+			h /= 2;
+			if ((top >= (rowPoSi.top - h)) && (top < (rowPoSi.top + h))) {
+				return rows[i];
+			}
+		}
+		return null;
+	};
+		
+	var add = function(row) {
+		row.classList.add("js-cursor-move");
+		row.title = lang["drag_and_drop_title"];
+		row.onmousedown = function(e){
+			isChanged = false;
+			var obj = document.getTarget(e);
+			if (obj && obj.className.search(/control/) != -1)
+				return false;
+			this.className = "drag";
+			this.elementPos = document.getElementPoSi(this);
+			this.handlePos  = document.getMousePos(e);
+			dragObject = this; 
+			start();
+			return false;  
+		};	
+		
+		var links = row.cells[row.cells.length-1].getElementsByTagName("a");
+		if (links && links.length > 0) {
+			for (var i=0; i<links.length; i++) {
+				if (links[i].href.search(/move_up/) != -1) 
+					links[i].onclick = function(e) {
+						row.parentNode.insertBefore(row, rows[Math.max(row.rowIndex-2,0)]);
+						isChanged = true;
+						updateClasses();
+						saveNewOrder();
+						return false;
+					};
+				else if (links[i].href.search(/move_down/) != -1)
+					links[i].onclick = function(e) {
+						row.parentNode.insertBefore(row, rows[Math.min(row.rowIndex+1, rows.length)]);
+						updateClasses();
+						isChanged = true;
+						saveNewOrder();
+						return false;
+					};
+			}
+		}
+	};
+
+	(function() {
+		for (var i=0; i<rows.length; i++){
+			add(rows[i]);
+		}
+	}());
+};
+
+/**
  *
  * Author: Torben Brodt
  * Summary: Cross-browser wrapper for DOMContentLoaded
@@ -518,7 +687,7 @@ var ready = new (function () {
 		this.toString = function(){
 			return key + "=" + value + "&";
 		};
-	}	
+	};
 
 	/**
 	 * Erzeugt eine Anfrage und uebergibt die Antwort an eine Funktion
@@ -570,6 +739,7 @@ var ready = new (function () {
 			for (var i=0; i<q.length; i++)
 				qStr += q[i].toString();
 		qStr +=	new Date().getTime();
+		
 		httpRequest.abort();
 		httpRequest.onreadystatechange = function() {
 			if (httpRequest.readyState == 4) { 
@@ -588,7 +758,7 @@ var ready = new (function () {
 			httpRequest.open("GET", uri+"?"+qStr, true);
 			httpRequest.send(null);
 		}
-	}
+	};
 	
 	/**
 	 * Sidebar-Objekt
@@ -603,21 +773,23 @@ var ready = new (function () {
 		if (!main || !content || !icon)
 			return;
 			
-		this.setVisible = function(enable) {
-			if (enable) {
-				content.style.display = "";
+		this.setVisible = function(visible) {
+			if (visible) {
+				content.classList.remove("js-display-none");
 				icon.src = templatePath + settings["hide_sidebar_image"];
-				icon.className = "hide-sidebar";
+				icon.classList.remove("show-sidebar");
+				icon.classList.add("hide-sidebar");
 			}
 			else {
-				content.style.display = "none";
+				content.classList.add("js-display-none");
 				icon.src = templatePath + settings["show_sidebar_image"];
-				icon.className = "show-sidebar";
+				icon.classList.remove("hide-sidebar");
+				icon.classList.add("show-sidebar");
 			}
 		};
 		
 		this.isVisible = function() {
-			return content.style.display != "none";
+			return !content.classList.contains("js-display-none");
 		};
 		
 		var links = main.getElementsByTagName("a");
@@ -630,7 +802,7 @@ var ready = new (function () {
 				}
 			}
 		}
-	}
+	};
 		
 	/**
 	 * Erzeugt aus einem UL oder dessen ID ein Thread-Objekt,
@@ -670,42 +842,51 @@ var ready = new (function () {
 		}
 		
 		this.isFold = function() {
-			return uls.length>0&&uls[0].style.display=="none";
+			return uls.length > 0 && uls[0].classList.contains("js-display-none");
 		};
 		
 		this.setFold = function(fold, changeCSS) {
 			changeCSS = changeCSS || false;
+			
 			if (fold) {
 				icon.src = templatePath + settings["expand_thread_image"];
-				icon.className = "expand-thread";
+				icon.classList.remove("fold-thread");
+				icon.classList.add("expand-thread");
 				icon.alt = "";
 				icon.onerror = function(e) { this.alt = "[+]"; };
 				icon.title = lang["expand_fold_thread_linktitle"]; 
 				
 				if (repliesInfo)
-					repliesInfo.style.display = "";
-
-				if (changeCSS)
-					ul.className = ul.className.replace("expanded", "folded");
+					repliesInfo.classList.remove("js-display-none");
+				
+				if (changeCSS) {
+					ul.classList.remove("expanded");
+					ul.classList.add("folded");
+				}
 			}
 			else {
 				icon.src = templatePath + settings["fold_thread_image"];
-				icon.className = "fold-thread";
+				icon.classList.remove("expand-thread");
+				icon.classList.add("fold-thread");
 				icon.alt = "";
 				icon.onerror = function(e) { this.alt = "[-]"; };
 				icon.title = lang["expand_fold_thread_linktitle"]; 
 				
 				if (repliesInfo)
-					repliesInfo.style.display = "none";
+					repliesInfo.classList.add("js-display-none");
 				
-				if (changeCSS)
-					ul.className = ul.className.replace("folded", "expanded");
+				if (changeCSS) {
+					ul.classList.remove("folded");
+					ul.classList.add("expanded");
+				}
 			}
-			var cssVal = fold?"none":"";
 			for (var i=0; i<uls.length; i++) {
-				uls[i].style.display = cssVal;
+				if (fold)
+					uls[i].classList.add("js-display-none");
+				else
+					uls[i].classList.remove("js-display-none");
 			}
-		};	
+		};
 		
 		var setIcon = function(el) {
 			if (!el)
@@ -728,7 +909,7 @@ var ready = new (function () {
 			link.appendChild(icon);
 			setIcon(foldExpandWrapper);
 		}
-	}
+	};
 	
 	/**
 	 * Erzeugt aus einer ID ein Posting, welches ein- und ausgeklappt werden kann
@@ -744,25 +925,29 @@ var ready = new (function () {
 			return;
 			
 		var self = this;
-		try { pHeadline.style.cursor = "pointer"; } catch(e){ pHeadline.style.cursor = "hand"; }
+		pHeadline.classList.add("js-cursor-pointer");
 		pHeadline.title = lang["fold_posting_title"];
 		pHeadline.onclick = function(e) {
 			self.setFold(!self.isFold());
 		};
 		
 		this.isFold = function() {
-			return pContent.style.display == "none";
+			return pContent.classList.contains("js-display-none");
 		};
 		
 		this.setFold = function(fold) {
-			var cssValue = fold?"none":"";
-			pContent.style.display = cssValue;
-			pAvatar.style.display  = cssValue;
-			//pHeadline.title = fold?"Posting ausklappen":"Posting einklappen";
+			if (fold) {
+				pContent.classList.add("js-display-none");
+				pAvatar.classList.add("js-display-none");
+			}
+			else {
+				pContent.classList.remove("js-display-none");
+				pAvatar.classList.remove("js-display-none");
+			}
 		};
 		
 		this.setFold(this.isFold());
-	}
+	};
 	
 	
 	function FullSizeImage(els) {
@@ -773,8 +958,11 @@ var ready = new (function () {
 		// http://aktuell.de.selfhtml.org/weblog/kompatibilitaetsmodus-im-internet-explorer-8
 		var isIELower8 = /*@cc_on!@*/false && !(document.documentMode && document.documentMode >= 8);
    		var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", {"id": "image-canvas"}, body);	
-   		imageCanvas.setVisible = function(enable) {
-			this.style.display = enable?"block":"none";
+		imageCanvas.setVisible = function(visible) {
+			if (visible)
+				this.classList.remove("js-display-none");
+			else
+				this.classList.add("js-display-none");
 		};
 		var stopTrigger = function() {
 			if (hashTrigger) {
@@ -818,9 +1006,6 @@ var ready = new (function () {
 						var scrollPos = document.getScrollPosition();
 						var winSize = document.getWindowSize();							
 						imageCanvas.style.height=winSize.pageHeight+"px";
-						//fullSizeImage.style.left = ((winSize.windowWidth-imgPoSi.width)/2)  + "px";
-						//fullSizeImage.style.left = ((winSize.windowWidth-fullSizeImage.width)/2)  + "px";  
-						//fullSizeImage.style.top = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
 						fullSizeImage.style.marginTop = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
 						
 						hashTrigger = window.setInterval( 
@@ -842,16 +1027,17 @@ var ready = new (function () {
 	 * ein Vorschaufenster und haengt dieses im Dokument
 	 * ein
 	 * @param structure
-	 * @param path2template
+	 * @param templatePath
 	 */
-	function AjaxPreviewWindow(structure, path2template) { 
-		var templatePath = path2template?path2template:"";
+	function AjaxPreviewWindow(structure, templatePath) { 
+		templatePath = templatePath?templatePath:"";
 		var hideURI = false;
+		var pinned  = false;
 		var win = document.getElementById('ajax-preview');
 		var self = this;
 		if (!win) {
 			win = document.createElementWithAttributes("div", {"id": "ajax-preview"}, null);	
-			win.style.display = "none";
+			win.classList.add("js-display-none");
 			document.body.appendChild( win );
 		}
 		win.innerHTML = structure.stripslashes().trim();
@@ -863,7 +1049,7 @@ var ready = new (function () {
 		var mainEl    = document.getElementById("ajax-preview-main");	
 		
 		if (!closeEl || !contentEl || !mainEl)
-			window.alert("AjaxPreviewWindow can not be initialized");
+			console.log("main.js: Fail to init ajax-Elements!");
 		
 		var oldOnMouseDownFunc = window.document.onmousedown;
 		window.document.onmousedown = function(e) { 
@@ -881,16 +1067,27 @@ var ready = new (function () {
 			if (typeof oldOnKeyPressFunc == "function")
 				oldOnKeyPressFunc(e);
 		};
+		
+		if (settings["ajax_preview_onmouseover"]) {
+			var oldOnMouseOver = window.document.onmouseover;
+			window.document.onmouseover = function(e) {
+				if (!self.isPinned())
+					self.closeByOutSideClick(e);
+				if (typeof oldOnMouseOver == "function")
+					oldOnMouseOver(e);
+			};
+		}
+		
 		closeEl.onclick = function() { self.setVisible(false); return false; };
 		var throbberIcon = document.createElementWithAttributes("img", {"id": "ajax-preview-throbber", "src": templatePath + settings["ajax_preview_throbber_image"], "alt": "[*]"}, contentEl);
 		var replylinkWrapper = document.createElementWithAttributes("p", {"id": "ajax-preview-replylink-wrapper"}, contentEl);
 		var replylinkLink = document.createElementWithAttributes("a", {"id": "ajax-preview-replylink", "href": "#"}, null);
 		replylinkLink.appendChild( document.createTextNode( lang["reply_link"] ));
-		replylinkWrapper.style.display = "none";
+		replylinkWrapper.classList.add("js-display-none");
 		
 		this.closeByOutSideClick = function(e) {
 			var imgCanvas = document.getElementById("image-canvas");
-			if (self.isVisible() && imgCanvas && imgCanvas.style.display=="none") {
+			if (self.isVisible() && imgCanvas && imgCanvas.classList.contains("js-display-none")) {
 				var obj = document.getTarget(e);
 				if (obj && obj != self.getOpener().firstChild && obj != self.getContentElement() && obj != self.getMainElement()) {
 					var evtPos = document.getMousePos(e);
@@ -905,6 +1102,14 @@ var ready = new (function () {
 					}
 				}
 			}
+		};
+		
+		this.pin = function() {
+			pinned = !pinned;
+		};
+		
+		this.isPinned = function() {
+			return pinned;
 		};
 		
 		this.getContentElement = function() {
@@ -949,7 +1154,7 @@ var ready = new (function () {
 		};
 		
 		this.isVisible = function() {
-			return win.style.display != "none";
+			return !win.classList.contains("js-display-none");
 		};
 		
 		this.getDocumentPosition = function() {
@@ -968,10 +1173,13 @@ var ready = new (function () {
 
 		this.setVisible = function(visible) {
 			if (visible) {
-				win.style.display = "block";
+				win.classList.remove("js-display-none");
+				win.classList.add("js-display-block");
 			}
 			else {
-				win.style.display = "none";
+				win.classList.remove("js-display-block");
+				win.classList.add("js-display-none");
+				pinned = false;
 			}
 		};
 		
@@ -994,10 +1202,12 @@ var ready = new (function () {
 		this.setURI = function(uri) {
 			if (!uri) {
 				replylinkLink.href = "#";
-				replylinkWrapper.style.display = "none";
+				replylinkWrapper.classList.remove("js-display-block");
+				replylinkWrapper.classList.add("js-display-none");
 			}
 			else {
-				replylinkWrapper.style.display = "block";
+				replylinkWrapper.classList.remove("js-display-none");
+				replylinkWrapper.classList.add("js-display-block");
 				replylinkLink.href = uri;
 			}
 		};
@@ -1053,14 +1263,14 @@ var ready = new (function () {
 		 * @return link
 		 */
 		var createAjaxPreviewLink = function(id) {
-			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this); this.blur(); return false; } }, null);
+			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) { if (settings["ajax_preview_onmouseover"]) {self.showAjaxPreviewWindow(this, false); this.blur(); return false; } } }, null);
 			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "title": lang["ajax_preview_title"], "alt": "", "onload": function(e) { this.alt = "[…]"; }, "onerror": function(e) { this.alt = "[…]"; } }, link);
 			return link;
 		};
 		
 		/**
 		 * Erzeugt den Link zum Vorschaufenster
-		 * im Nutzerprofil einem Element hinzu
+		 * im Nutzerprofil, welches einem Element el hinzugefuegt wird
 		 * @param el
 		 */
 		var setPreviewBoxToProfil = function(el) {
@@ -1075,7 +1285,7 @@ var ready = new (function () {
 		
 		/**
 		 * Erzeugt den Link zum Vorschaufenster
-		 * auf der Antwortseite, welches einem Element hinzugefuegt wird
+		 * auf der Antwortseite, welches einem Element el hinzugefuegt wird
 		 * @param el
 		 */
 		var setPreviewBoxToReplyPage = function(el) {
@@ -1182,8 +1392,9 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Erzeugt die Links zum Vorschaufenster
-		 * auf der Forenhauptseite an den gewuenschten Elementen
+		 * Erzeugt die Links (Sprechblase) zum Vorschaufenster
+		 * auf der Forenhauptseite an den gewuenschten Elementen,
+		 * sofern das Posting Inhalt besitzt.
 		 * @param els
 		 */
 		var setPreviewBoxToMainPage = function(els) {
@@ -1196,6 +1407,7 @@ var ready = new (function () {
 				var el = els[i];
 				var li = el.parentNode;
 				var pLink = document.getFirstChildByElement(li, "a", ["ap", "reply", "thread", "replynew", "threadnew", "thread-sticky", "threadnew-sticky", "reply-search", "thread-search"]);
+				var pEmpty = !!document.getFirstChildByElement(li, "img", ["no-text"]);
 				var pid = parseInt( el.id.substring(1) );
 				if (!pid) 
 					continue;
@@ -1222,7 +1434,7 @@ var ready = new (function () {
 						}				
 					}			
 				}
-				if (pLink && ajaxPreviewWindow) {
+				if (!pEmpty && pLink && ajaxPreviewWindow) {
 					if (links.length >= 1) {
 						var link = links[0];
 						el.insertBefore(createAjaxPreviewLink(pid), link);
@@ -1333,7 +1545,6 @@ var ready = new (function () {
 			var link = document.createElementWithAttributes("a", {"isExpand": true, "title": lang["fold_postings_title"],"href": "#", "className": "fold-postings"}, listEntry);
 			link.appendChild( document.createTextNode( lang["fold_postings"] ) );
 			link.onclick = function(e) {
-				//var isExpand = this.className.search(/expand/)!=-1;
 				this.isExpand = !this.isExpand;
 				expandAllPostings(this.isExpand);  
 				this.blur();
@@ -1381,7 +1592,8 @@ var ready = new (function () {
 				
 			if (isLocked) 
 				ajaxPreviewWindow.setURI(false);
-			else 
+
+			else if (ajaxPreviewWindow.getOpener() && ajaxPreviewWindow.getOpener().pid)
 				ajaxPreviewWindow.setURI("index.php?mode=posting&id=" + ajaxPreviewWindow.getOpener().pid);
   
 			if (content.trim() == "") 
@@ -1392,19 +1604,28 @@ var ready = new (function () {
 		
 		/**
 		 * Zeigt das Vorschaufenster an. Erwartet das Objekt, 
-		 * welches den Aufruf hervorgerufen hat (Opener)
+		 * welches den Aufruf hervorgerufen hat (Opener), und 
+		 * ob das Fesnster geoffnet bleiben soll (pin).
 		 * Schliesst das Fenster, wenn auf den selben Opener
-		 * erneut geklickt wird
+		 * erneut geklickt wird.
 		 * @param obj
+		 * @param pin
 		 */
-		this.showAjaxPreviewWindow = function(obj) {
+		this.showAjaxPreviewWindow = function(obj, pin) {
 			if (!obj || !ajaxPreviewWindow)
 				return;
-			if (obj == ajaxPreviewWindow.getOpener() && ajaxPreviewWindow.isVisible()) {
-				ajaxPreviewWindow.setVisible(false);
-				ajaxPreviewWindow.setOpener(null);
+
+			if (obj == ajaxPreviewWindow.getOpener() && ajaxPreviewWindow.isVisible() && pin) {
+				ajaxPreviewWindow.pin();
+				if (!ajaxPreviewWindow.isPinned()) {
+					ajaxPreviewWindow.setVisible(false);
+					ajaxPreviewWindow.setOpener(null);					
+				}
 			}
-			else {
+			else if (!ajaxPreviewWindow.isPinned()) {
+				if (pin && !ajaxPreviewWindow.isPinned())
+					ajaxPreviewWindow.pin();
+				
 				var elPos = document.getElementPoSi(obj);
 				ajaxPreviewWindow.setOpener(obj);
 				ajaxPreviewWindow.setText("");
@@ -1417,7 +1638,6 @@ var ready = new (function () {
 				];
 				new Request(strURL, "POST", querys, this, "updateAjaxPreviewWindow", null, true);
 			}
-
 		};
 		
 		/**
@@ -1479,4 +1699,5 @@ var ready = new (function () {
 		var ajaxPreviewStructure = typeof settings != "undefined" && typeof settings["ajaxPreviewStructure"] == "string"?settings["ajaxPreviewStructure"]:false;
 		if (mlf && typeof lang == "object") 
 			mlf.init(ajaxPreviewStructure);
+		new DragAndDropTable(document.getElementById("sortable"), "bookmarks", "mode");
 	});
