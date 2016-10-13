@@ -23,7 +23,6 @@ if(($settings['upload_images']==1 && isset($_SESSION[$settings['session_prefix']
      {
       if($_FILES['probe']['size'] > $settings['upload_max_img_size']*1000 || $image_info[0] > $settings['upload_max_img_width'] || $image_info[1] > $settings['upload_max_img_height'])
        {
-        #$compression = 10;
         $width=$image_info[0];
         $height=$image_info[1];
 

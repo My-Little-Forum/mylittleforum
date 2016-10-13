@@ -368,7 +368,6 @@ mysqli_free_result($count_result);
 if(isset($settings['time_difference'])) $time_difference = intval($settings['time_difference']);
 else $time_difference = 0;
 if(isset($_SESSION[$settings['session_prefix'].'usersettings']['time_difference'])) $time_difference = $_SESSION[$settings['session_prefix'].'usersettings']['time_difference']+$time_difference;
-#elseif (isset($_COOKIE['user_time_difference'])) $time_difference = $_COOKIE['user_time_difference']+$time_difference;
 
 // page menu:
 if(isset($_SESSION[$settings['session_prefix'].'user_id'])) $menu_result = @mysqli_query($connid, "SELECT id, menu_linkname FROM ".$db_settings['pages_table']." WHERE menu_linkname!='' ORDER BY order_id ASC") or raise_error('database_error',mysqli_error($connid));
