@@ -192,8 +192,6 @@ switch ($action)
        else
         {
          if($settings['temp_block_ip_after_repeated_failed_logins']==1) count_failed_logins();
-         #header("location: index.php?mode=login&login_message=login_failed");
-         #exit;
          $action = 'login';
          $login_message='login_failed';
         }
@@ -201,8 +199,6 @@ switch ($action)
     else
      {
       if($settings['temp_block_ip_after_repeated_failed_logins']==1) count_failed_logins();
-      #header("location: index.php?mode=login&login_message=login_failed");
-      #exit;
       $action = 'login';
       $login_message='login_failed';
      }
@@ -210,8 +206,6 @@ switch ($action)
    else
     {
      if($settings['temp_block_ip_after_repeated_failed_logins']==1) count_failed_logins();
-     #header("location: index.php?mode=login&login_message=login_failed");
-     #exit;
      $action = 'login';
      $login_message='login_failed';
     }
