@@ -201,6 +201,7 @@ if(isset($_POST['install_submit']))
     $db_settings['login_control_table'] = $_POST['table_prefix'].'logincontrol';
     $db_settings['entry_cache_table'] = $_POST['table_prefix'].'entries_cache';
     $db_settings['userdata_cache_table'] = $_POST['table_prefix'].'userdata_cache';
+	$db_settings['bookmark_table'] = $_POST['table_prefix'].'bookmarks';
 
     $db_settings_file = @fopen("../config/db_settings.php", "w") or $errors[] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
     if(empty($errors))
@@ -222,6 +223,7 @@ if(isset($_POST['install_submit']))
       fwrite($db_settings_file, "\$db_settings['login_control_table'] = '".$db_settings['login_control_table']."';\n");
       fwrite($db_settings_file, "\$db_settings['entry_cache_table'] = '".$db_settings['entry_cache_table']."';\n");
       fwrite($db_settings_file, "\$db_settings['userdata_cache_table'] = '".$db_settings['userdata_cache_table']."';\n");
+	  fwrite($db_settings_file, "\$db_settings['bookmark_table'] = '".$db_settings['bookmark_table']."';\n");
       fwrite($db_settings_file, "?".">\n");
       flock($db_settings_file, 3);
       fclose($db_settings_file);
