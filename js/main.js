@@ -1036,8 +1036,7 @@ var ready = new (function () {
 		var win = document.getElementById('ajax-preview');
 		var self = this;
 		if (!win) {
-			win = document.createElementWithAttributes("div", {"id": "ajax-preview"}, null);	
-			win.classList.add("js-display-none");
+			win = document.createElementWithAttributes("div", {"id": "ajax-preview", "className": "js-display-none"}, null);	
 			document.body.appendChild( win );
 		}
 		win.innerHTML = structure.stripslashes().trim();
@@ -1080,10 +1079,9 @@ var ready = new (function () {
 		
 		closeEl.onclick = function() { self.setVisible(false); return false; };
 		var throbberIcon = document.createElementWithAttributes("img", {"id": "ajax-preview-throbber", "src": templatePath + settings["ajax_preview_throbber_image"], "alt": "[*]"}, contentEl);
-		var replylinkWrapper = document.createElementWithAttributes("p", {"id": "ajax-preview-replylink-wrapper"}, contentEl);
+		var replylinkWrapper = document.createElementWithAttributes("p", {"id": "ajax-preview-replylink-wrapper", "className": "js-display-none"}, contentEl);
 		var replylinkLink = document.createElementWithAttributes("a", {"id": "ajax-preview-replylink", "href": "#"}, null);
 		replylinkLink.appendChild( document.createTextNode( lang["reply_link"] ));
-		replylinkWrapper.classList.add("js-display-none");
 		
 		this.closeByOutSideClick = function(e) {
 			var imgCanvas = document.getElementById("image-canvas");
@@ -1093,11 +1091,11 @@ var ready = new (function () {
 					var evtPos = document.getMousePos(e);
 					var posX = evtPos.left;
 					var posY = evtPos.top;
-					var boxX = self.getDocumentPosition().left; 
-					var boxY = self.getDocumentPosition().top; 
-					var boxWidth  = self.getWidth();  
-					var boxHeight = self.getHeight(); 
-					if ((posX < boxX || posX > (boxX+boxWidth) || posY < boxY || posY > (boxY+boxHeight)) && obj.className!='ap') {
+					var boxX = self.getDocumentPosition().left;
+					var boxY = self.getDocumentPosition().top;
+					var boxWidth  = self.getWidth();
+					var boxHeight = self.getHeight();
+					if ((posX < boxX || posX > (boxX+boxWidth) || posY < boxY || posY > (boxY+boxHeight)) && obj.className != 'ap') {
 						self.setVisible(false);
 					}
 				}
@@ -1263,7 +1261,7 @@ var ready = new (function () {
 		 * @return link
 		 */
 		var createAjaxPreviewLink = function(id) {
-			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) { if (settings["ajax_preview_onmouseover"]) {self.showAjaxPreviewWindow(this, false); this.blur(); return false; } } }, null);
+			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) { if (settings["ajax_preview_onmouseover"]) {self.showAjaxPreviewWindow(this, false); this.blur(); } return false; }, "tabIndex": -1 }, null);
 			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "title": lang["ajax_preview_title"], "alt": "", "onload": function(e) { this.alt = "[…]"; }, "onerror": function(e) { this.alt = "[…]"; } }, link);
 			return link;
 		};

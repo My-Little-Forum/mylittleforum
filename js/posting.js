@@ -548,7 +548,7 @@ function ButtonGroup(f) {
 	 * @param buttonBar
 	 */
 	var createSingleButton = function(obj, buttonBar) {
-		var par = {"className": obj.classes, "name": obj.code, "type": "button", "title": obj.title};
+		var par = {"className": obj.classes, "name": obj.code, "type": "button", "title": obj.title, "tabIndex": -1};
 		var id = obj.code.trim() == ""?"bbcodebutton":"bbcodebutton-"+obj.code;
 		if (obj.isSmilie)
 			par["isSmilie"] = obj.isSmilie;
@@ -572,48 +572,48 @@ function ButtonGroup(f) {
 	 * @param list
 	 * @return button
 	 */
-         var createBBCodeButton = function(button, list) {
-         	var bbCodeButton = null;
-         	var bname=button&&button.name?button.name.toLowerCase():"";
-         	//switch(button.name.toLowerCase()) {
-         	switch(bname) {
-         	case "link":
-         	bbCodeButton = new BBCodeLinkButton( button );
-         	break;
-         	case "img":
-         	if (list && list.length > 1)
-         	bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "http://" );
-         	else
-         	bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); 
-         	break;
-         	case "color":
-         	bbCodeButton = new BBCodeColorChooserButton( button );
-         	break;
-         	case "list":
-         	bbCodeButton = new BBCodeListButton( button );
-         	break;
-         	case "flash":
-         	bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=insert_flash", settings["flash_popup_width"], settings["flash_popup_height"]);
-         	break;
-         	case "upload":
-         	bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=upload_image", settings["upload_popup_width"], settings["upload_popup_height"]); 
-         	break;
-         	case "tex":
-         	bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); 
-         	break;
-         	default:
-         	if (button.isSmilie && list && list.length > 0)
-         	bbCodeButton = new BBCodeSmilieButton( button, list );
-         	else if (button.isSmilie)
-         	bbCodeButton = new BBCodeSingleSmilieButton( button );
-         	else if (list && list.length > 1) 
-         	bbCodeButton = new BBCodeOptionButton( button, list );
-         	else
-         	bbCodeButton = new BBCodeButton( button );
-         	break;
-         	}
-         	return bbCodeButton;
-         };
+	var createBBCodeButton = function(button, list) {
+		var bbCodeButton = null;
+		var bname=button&&button.name?button.name.toLowerCase():"";
+		//switch(button.name.toLowerCase()) {
+		switch(bname) {
+		case "link":
+		bbCodeButton = new BBCodeLinkButton( button );
+		break;
+		case "img":
+		if (list && list.length > 1)
+		bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "http://" );
+		else
+		bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); 
+		break;
+		case "color":
+		bbCodeButton = new BBCodeColorChooserButton( button );
+		break;
+		case "list":
+		bbCodeButton = new BBCodeListButton( button );
+		break;
+		case "flash":
+		bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=insert_flash", settings["flash_popup_width"], settings["flash_popup_height"]);
+		break;
+		case "upload":
+		bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=upload_image", settings["upload_popup_width"], settings["upload_popup_height"]); 
+		break;
+		case "tex":
+		bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); 
+		break;
+		default:
+		if (button.isSmilie && list && list.length > 0)
+		bbCodeButton = new BBCodeSmilieButton( button, list );
+		else if (button.isSmilie)
+		bbCodeButton = new BBCodeSingleSmilieButton( button );
+		else if (list && list.length > 1) 
+		bbCodeButton = new BBCodeOptionButton( button, list );
+		else
+		bbCodeButton = new BBCodeButton( button );
+		break;
+		}
+		return bbCodeButton;
+	};
 		
 	/** 
 	 * Erzeugt ein Fenster, in dem die Zusatzoptionen
@@ -724,7 +724,7 @@ function ButtonGroup(f) {
 			}
 			if (label) {
 				label.appendChild( document.createTextNode( String.fromCharCode(160) ) );
-				var quoteLink = document.createElementWithAttributes("a", {"onclick": function(e) {textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; this.classList.add("js-display-none"); textarea.focus(); return false;}, "id": "insert-quote", "href": window.location.href, "title": lang["quote_title"] }, label);
+				var quoteLink = document.createElementWithAttributes("a", {"onclick": function(e) {textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; this.classList.add("js-display-none"); textarea.focus(); return false;}, "id": "insert-quote", "href": window.location.href, "title": lang["quote_title"], "tabIndex": -1 }, label);
 				quoteLink.appendChild( document.createTextNode(lang["quote_label"]) );
 			}
 		}
