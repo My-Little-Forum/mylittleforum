@@ -89,17 +89,23 @@ if($result_count > 0)
                                    LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
                                    WHERE tid = ".$zeile['tid'].$display_spam_query_and."
                                    ORDER BY time ASC") or raise_error('database_error',mysqli_error($connid));
-    // put result into arrays:
+
+	// put result into arrays:
     while($data = mysqli_fetch_array($thread_result))
      {
       // count replies:
       if(!isset($replies[$data['tid']])) $replies[$data['tid']] = 0;
       else ++$replies[$data['tid']];
       
-      if($settings['count_views'] != 0)
-       {
-        $data['views'] = $data['views']-1; // this subtracts the first view by the author after posting
-        if($data['views']<0) $data['views']=0; // prevents negative number of views
+	  // count number of views of single posting, if option is enabled
+      if($settings['count_views'] != 0) {
+        $data['views'] = max($data['views']-1, 0); // this subtracts the first view by the author after posting and prevents negative number of views
+		
+		// count total number of views of thread
+	    if(!isset($total_views[$data['tid']])) 
+			$total_views[$data['tid']] = 0;
+		$total_views[$data['tid']] += $data['views'];
+		
        }
 
       if($data['user_id']>0)
@@ -215,6 +221,7 @@ if(isset($threads))
  {
   $smarty->assign("threads",$threads);
   $smarty->assign('replies',$replies);
+  $smarty->assign('total_views',$total_views);
  }
 if(isset($child_array)) $smarty->assign("child_array",$child_array);
 
