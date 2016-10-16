@@ -22,6 +22,5 @@ $db_settings['banlists_table'] =       'mlf2_banlists';
 $db_settings['useronline_table'] =     'mlf2_useronline';
 $db_settings['login_control_table'] =  'mlf2_logincontrol';
 $db_settings['entry_cache_table'] =    'mlf2_entries_cache';
-$db_settings['userdata_cache_table'] = 'mlf2_userdata_cache';
 $db_settings['bookmark_table'] =       'mlf2_bookmarks';
 ?>

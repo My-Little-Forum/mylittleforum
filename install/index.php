@@ -262,7 +262,6 @@ if(isset($_POST['install_submit']))
       if(!@mysqli_query($connid, $line))
        {
         $errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
-        #break;
       }
      }
     @mysqli_query($connid, "COMMIT");
@@ -299,6 +298,7 @@ header('Content-Type: text/html; charset='.$lang['charset']);
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang['language']; ?>">
 <head>
 <title>my little forum - <?php echo $lang['installation_title']; ?></title>
+<link rel="shortcut icon" href="../themes/default/images/favicon.ico" />
 <meta http-equiv="content-type" content="text/html; charset=<?php echo $lang['charset']; ?>" />
 <style type="text/css">
 <!--
