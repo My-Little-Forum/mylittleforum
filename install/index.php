@@ -180,55 +180,52 @@ if(isset($_POST['install_submit']))
     if(!file_exists('install.sql')) $errors[] = $lang['error_sql_file_doesnt_exist'];
    }
 
-  // overwrite database settings file:
-  if(empty($errors) && empty($_POST['dont_overwrite_settings']))
-   {
-    clearstatcache();
-    $chmod = decoct(fileperms("../config/db_settings.php"));
+	// overwrite database settings file:
+	if(empty($errors) && empty($_POST['dont_overwrite_settings'])) {
+		// Keys of database array
+		$db_connection_keys = array('host', 'user', 'password', 'database');
+		$db_setting_keys = array(
+								'settings_table'       => 'settings', 
+								'forum_table'          => 'entries',
+								'category_table'       => 'categories',
+								'userdata_table'       => 'userdata',
+								'smilies_table'        => 'smilies', 
+								'pages_table'          => 'pages',
+								'banlists_table'       => 'banlists',
+								'useronline_table'     => 'useronline',
+								'login_control_table'  => 'logincontrol',
+								'entry_cache_table'    => 'entries_cache',
+								'userdata_cache_table' => 'userdata_cache',
+								'bookmark_table'       => 'bookmarks'
+							);
 
-    $db_settings['host'] = $_POST['host'];
-    $db_settings['user'] = $_POST['user'];
-    $db_settings['password'] = $_POST['password'];
-    $db_settings['database'] = $_POST['database'];
-    $db_settings['settings_table'] = $_POST['table_prefix'].'settings';
-    $db_settings['forum_table'] = $_POST['table_prefix'].'entries';
-    $db_settings['category_table'] = $_POST['table_prefix'].'categories';
-    $db_settings['userdata_table'] = $_POST['table_prefix'].'userdata';
-    $db_settings['smilies_table'] = $_POST['table_prefix'].'smilies';
-    $db_settings['pages_table'] = $_POST['table_prefix'].'pages';
-    $db_settings['banlists_table'] = $_POST['table_prefix'].'banlists';
-    $db_settings['useronline_table'] = $_POST['table_prefix'].'useronline';
-    $db_settings['login_control_table'] = $_POST['table_prefix'].'logincontrol';
-    $db_settings['entry_cache_table'] = $_POST['table_prefix'].'entries_cache';
-    $db_settings['userdata_cache_table'] = $_POST['table_prefix'].'userdata_cache';
-	$db_settings['bookmark_table'] = $_POST['table_prefix'].'bookmarks';
+		clearstatcache();
+		$chmod = decoct(fileperms("../config/db_settings.php"));
+		
+		foreach ($db_connection_keys as $key) {
+			// Check POST-data and reject data that contains html or php code like <?php
+			if (!isset($_POST[$key]) || $_POST[$key] != strip_tags($_POST[$key])) {
+				$errors[] = $lang['error_form_uncomplete'];
+				break;
+			}
+			$db_settings[$key] = $_POST[$key];
+		}
 
-    $db_settings_file = @fopen("../config/db_settings.php", "w") or $errors[] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
-    if(empty($errors))
-     {
-      flock($db_settings_file, 2);
-      fwrite($db_settings_file, "<?php\n");
-      fwrite($db_settings_file, "\$db_settings['host'] = '".$db_settings['host']."';\n");
-      fwrite($db_settings_file, "\$db_settings['user'] = '".$db_settings['user']."';\n");
-      fwrite($db_settings_file, "\$db_settings['password'] = '".$db_settings['password']."';\n");
-      fwrite($db_settings_file, "\$db_settings['database'] = '".$db_settings['database']."';\n");
-      fwrite($db_settings_file, "\$db_settings['settings_table'] = '".$db_settings['settings_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['forum_table'] = '".$db_settings['forum_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['category_table'] = '".$db_settings['category_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['userdata_table'] = '".$db_settings['userdata_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['smilies_table'] = '".$db_settings['smilies_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['pages_table'] = '".$db_settings['pages_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['banlists_table'] = '".$db_settings['banlists_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['useronline_table'] = '".$db_settings['useronline_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['login_control_table'] = '".$db_settings['login_control_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['entry_cache_table'] = '".$db_settings['entry_cache_table']."';\n");
-      fwrite($db_settings_file, "\$db_settings['userdata_cache_table'] = '".$db_settings['userdata_cache_table']."';\n");
-	  fwrite($db_settings_file, "\$db_settings['bookmark_table'] = '".$db_settings['bookmark_table']."';\n");
-      fwrite($db_settings_file, "?".">\n");
-      flock($db_settings_file, 3);
-      fclose($db_settings_file);
-     }
-   }
+		$db_settings_file = @fopen("../config/db_settings.php", "w") or $errors[] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
+		if(empty($errors) && isset($_POST['table_prefix']) && $_POST['table_prefix'] == strip_tags($_POST['table_prefix'])) {
+			flock($db_settings_file, 2);
+			fwrite($db_settings_file, "<?php\n");
+			foreach ($db_connection_keys as $key) {
+				fwrite($db_settings_file, "\$db_settings['".$key."'] = '".addslashes($db_settings[$key])."';\n");
+			}
+			foreach ($db_setting_keys as $key => $value) {
+				fwrite($db_settings_file, "\$db_settings['".$key."'] = '".addslashes($_POST['table_prefix'] . $value)."';\n");
+			}
+			fwrite($db_settings_file, "?".">\n");
+			flock($db_settings_file, 3);
+			fclose($db_settings_file);
+		}
+	}
 
   if(empty($errors) && isset($_POST['create_database']))
    {
