@@ -426,3 +426,4 @@ img.right{float:right;margin:0 0 10px 10px}
 .js-visibility-hidden{visibility:hidden}
 .js-cursor-pointer{cursor:pointer}
 .js-cursor-move{cursor:move}
+div.warning{border:5px solid red;padding:15px;font-size:1.3em}

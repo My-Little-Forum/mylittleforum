@@ -1,4 +1,7 @@
 {config_load file=$language_file section="admin"}
+{if $install_script_exists}
+<div class='warning'>{#warning_install_script_exists#}</div>
+{/if}
 {if $action=='settings'}
 {if $saved}<p class="ok">{#settings_saved#}</p>{/if}
 <form id="settings" action="index.php" method="post" accept-charset="{#charset#}">

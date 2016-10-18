@@ -240,29 +240,32 @@ if(isset($_POST['install_submit']))
     @mysqli_query($connid, 'SET NAMES utf8');
    }
 
-  // run installation sql file:
-  if(empty($errors))
-   {
-    $lines = file('install.sql');
-    $cleared_lines = array();
-    foreach($lines as $line)
-     {
-      $line = str_replace(' mlf2_', ' '.$_POST['table_prefix'], $line);
-      $line = trim($line);
-      if(my_substr($line, -1, my_strlen($line,$lang['charset']), $lang['charset'])==';') $line = my_substr($line,0,-1,$lang['charset']);
-      if($line != '' && my_substr($line,0,1,$lang['charset'])!='#') $cleared_lines[] = $line;
-     }
-
-    @mysqli_query($connid, "START TRANSACTION") or die(mysqli_error($connid));
-    foreach($cleared_lines as $line)
-     {
-      if(!@mysqli_query($connid, $line))
-       {
-        $errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
-      }
-     }
-    @mysqli_query($connid, "COMMIT");
-   }
+	// run installation sql file:
+	if(empty($errors)) {
+		if (!isset($_POST['table_prefix']) || $_POST['table_prefix'] != strip_tags($_POST['table_prefix'])) {
+			$errors[] = $lang['error_form_uncomplete'];
+		}
+		else {
+			$lines = file('install.sql');
+			$cleared_lines = array();
+			foreach($lines as $line) {
+				$line = str_replace(' mlf2_', ' '.$_POST['table_prefix'], $line);
+				$line = trim($line);
+				if(my_substr($line, -1, my_strlen($line,$lang['charset']), $lang['charset'])==';') 
+					$line = my_substr($line,0,-1,$lang['charset']);
+				if($line != '' && my_substr($line,0,1,$lang['charset'])!='#') 
+					$cleared_lines[] = $line;
+			}
+			
+			@mysqli_query($connid, "START TRANSACTION") or die(mysqli_error($connid));
+			foreach($cleared_lines as $line) {
+				if(!@mysqli_query($connid, $line)) {
+					$errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
+				}
+			}
+			@mysqli_query($connid, "COMMIT");
+		}
+	}
 
    // insert admin in userdata table:
    if(empty($errors))

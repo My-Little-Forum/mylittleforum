@@ -1994,7 +1994,8 @@ switch($action)
    exit;
   break;
  }
-
+// Prueft, ob die Datei install/index.php noch existiert
+$smarty->assign('install_script_exists', file_exists('./install/index.php'));
 $smarty->assign('subtemplate','admin.inc.tpl');
 $template = 'main.tpl';
 

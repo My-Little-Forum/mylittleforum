@@ -671,6 +671,7 @@ folder_alt =                      Ordner
 file_alt =                        Datei
 admin_confirm_password =          Administrator-Passwort:
 error_password_wrong =            Passwort falsch
+warning_install_script_exists =   <h1>Warnung!</h1><p>Die Datei <code>install/index.php</code> sollte aus Sicherheitsgründen gelöscht (oder zumindest umbenannt) werden!</p>
 
 # Admin-Menü:
 forum_settings_link =             Einstellungen
