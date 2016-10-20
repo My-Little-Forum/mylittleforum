@@ -690,6 +690,8 @@ spam_protection_link =            Spam protection
 backup_restore_link =             Backup
 update_link =                     Update
 reset_uninstall_link =            Reset or uninstall forum
+releases_info_header =            Actual release
+releases_list_link =              Check the releases list for the actual version.
 
 # forum settings:
 clear_chache =                    Clear chache to apply the changes to yet existing entries
