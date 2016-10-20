@@ -105,21 +105,29 @@ switch($settings['version']) {
 		break;
 }
 
-// Remove duplicate entries in array
 $update['items'] = array_unique($update['items']);
-
 // Look for unique folders
 $folders = array_unique(preg_grep("/\w+\/$/i", $update['items']));
 if (!empty($folders)) {
 	// Remove folders from list to keep the order (files, folders)
 	$update['items'] = array_diff($update['items'], $folders);
-
-	// Remove single files from list if and only if the complete folder is in list
-	foreach ($folders as $key=>$val) {
-		$files = preg_grep("/".preg_quote($val, "/").".+/i", $update['items']);
-		if (empty($files))
+	
+	// Remove sub-folders from folder list
+	$tmp = $folders;
+	foreach ($folders as $folder) {
+	    $removeFolders = preg_grep("/^".preg_quote($folder, "/").".+/i", $folders);
+		if (empty($removeFolders))
 			continue;
-		$update['items'] = array_diff($update['items'], $files);
+		$tmp = array_diff($tmp, $removeFolders);
+	}
+	$folders = $tmp;
+	
+	// Remove single files from list if and only if the complete folder is in list
+	foreach ($folders as $folder) {
+		$removeFiles = preg_grep("/^".preg_quote($folder, "/").".+/i", $update['items']);
+		if (empty($removeFiles))
+			continue;
+		$update['items'] = array_diff($update['items'], $removeFiles);
 	}
 	
 	// Add folders at the end of the files list to keep the order (files, folders)
