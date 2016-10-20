@@ -105,6 +105,7 @@ switch($settings['version']) {
 		break;
 }
 
+// Remove duplicate entries in array
 $update['items'] = array_unique($update['items']);
 // Look for unique folders
 $folders = array_unique(preg_grep("/\w+\/$/i", $update['items']));
