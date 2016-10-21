@@ -313,6 +313,10 @@ ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:1
 #codepicker ul{list-style-type:none;margin:0;padding:0}
 #codepicker ul a{color:#000;display:block;text-decoration:none;padding:1px 5px}
 #codepicker ul a:hover{background:#e0e0e0}
+.additional-admin-info{float:right}
+.additional-admin-info div{background:#f9f9f9;border:1px solid #bacbdf;margin:0 0 20px 0;padding:0;width:13em}
+.additional-admin-info h3{margin:0;padding:0 5px;font-size:0.69em;line-height:1.7em;background:#d2ddea url("images/bg_gradient_x.png") repeat-x scroll 0 -150px}
+.additional-admin-info p{font-size:0.69em;line-height:1.5em;margin:0;padding:5px}
 .adminmenu{list-style-type:none;padding-left:0;margin-left:0;font-size:.82em;line-height:1.7em!important}
 .adminmenu a{text-decoration:none}
 .adminmenu a:hover span{text-decoration:underline}
