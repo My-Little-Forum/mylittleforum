@@ -317,6 +317,8 @@ ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:1
 .additional-admin-info div{background:#f9f9f9;border:1px solid #bacbdf;margin:0 0 20px 0;padding:0;width:13em}
 .additional-admin-info h3{margin:0;padding:0 5px;font-size:0.69em;line-height:1.7em;background:#d2ddea url("images/bg_gradient_x.png") repeat-x scroll 0 -150px}
 .additional-admin-info p{font-size:0.69em;line-height:1.5em;margin:0;padding:5px}
+#admin-info-install_script_exists h3{color: red;}
+#admin-info-install_script_exists h3::before{content: url("images/caution.png"); padding-right: 5px;}
 .adminmenu{list-style-type:none;padding-left:0;margin-left:0;font-size:.82em;line-height:1.7em!important}
 .adminmenu a{text-decoration:none}
 .adminmenu a:hover span{text-decoration:underline}
@@ -430,4 +432,3 @@ img.right{float:right;margin:0 0 10px 10px}
 .js-visibility-hidden{visibility:hidden}
 .js-cursor-pointer{cursor:pointer}
 .js-cursor-move{cursor:move}
-div.warning{border:5px solid red;padding:15px;font-size:1.3em}

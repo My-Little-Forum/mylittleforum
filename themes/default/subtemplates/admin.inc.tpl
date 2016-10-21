@@ -1,7 +1,4 @@
 {config_load file=$language_file section="admin"}
-{if $install_script_exists}
-<div class='warning'>{#warning_install_script_exists#}</div>
-{/if}
 {if $action=='settings'}
 {if $saved}<p class="ok">{#settings_saved#}</p>{/if}
 <form id="settings" action="index.php" method="post" accept-charset="{#charset#}">
@@ -1081,10 +1078,16 @@
 {/if}
 {else}
 <div class="additional-admin-info">
-<div id="admin-info-releases">
-<h3>{#releases_info_header#}</h3>
-<p><a href="https://github.com/ilosuna/mylittleforum/releases/latest">{#releases_list_link#}</a></p>
-</div>
+	{if $install_script_exists}
+	<div id="admin-info-install_script_exists">
+		<h3>{#warning_header#}</h3>
+		<p>{#warning_install_script_exists#}</p>
+	</div>
+	{/if}
+	<div id="admin-info-releases">
+		<h3>{#releases_info_header#}</h3>
+		<p><a href="https://github.com/ilosuna/mylittleforum/releases/latest">{#releases_list_link#}</a></p>
+	</div>
 </div>
 <ul class="adminmenu">
 <li><a href="index.php?mode=admin&amp;action=settings"><img src="{$THEMES_DIR}/{$theme}/images/settings.png" alt="" width="16" height="16" /><span>{#forum_settings_link#}</span></a></li>
