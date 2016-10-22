@@ -2510,35 +2510,50 @@ function get_not_accepted_words($string)
  * @param String $email
  * @return boolean $isInfamous
  */
-function isInfamousEmail($email)
- {
-  $url = "http://www.stopforumspam.com/api?email=" . urlencode(iconv('GBK', 'UTF-8', $email));
-  $url_parsed = @parse_url($url);
-  if($url_parsed === false) return false; //echo "Could not parse URI " . $url_parsed . "\n";
-  $host = $url_parsed["host"];
-  if(isset($url_parsed["port"])) $port = $url_parsed["port"];
-  $path = $url_parsed["path"];
-  if(empty($port)) $port = 80;
-  if($url_parsed["query"] != "") $path .= "?".$url_parsed["query"];
-  $out = "GET $path HTTP/1.0\r\nHost: $host\r\n\r\n";
-  $fp = @fsockopen($host, $port, $errno, $errstr, 15);
-  if(!$fp) return false;
-  @fwrite($fp, $out);
-  $body = false;
-  $xml_string = "";
-  while (!feof($fp))
-   {
-    $str = fgets($fp, 1024);
-    if($body) $xml_string .= $str;
-    if($str == "\r\n") $body = true;
-   }
-  @fclose($fp);
-  if ($xml_string != "")
-   {
-    $xml = new SimpleXMLElement($xml_string);
-    return $xml->appears == 'yes';
-   }
-  return false;
+function isInfamousEmail($email) {
+	$url = "http://www.stopforumspam.com/api?email=" . urlencode(iconv('GBK', 'UTF-8', $email));
+	$url_parsed = @parse_url($url);
+
+	if ($url_parsed === false || !isset($url_parsed["host"]))
+		return false;
+	
+	switch ($url_parsed['scheme']) {
+		case 'https':
+			$scheme = 'ssl://';
+			$port = 443;
+			break;
+		case 'http':
+		default:
+			$scheme = '';
+			$port = 80;
+		break;
+	}
+	
+	$host = $url_parsed["host"];
+	$path = isset($url_parsed["path"])  && !empty($url_parsed["path"])  ? $url_parsed["path"] : "/";
+	$port = isset($url_parsed["port"])  && !empty($url_parsed["port"])  ? $url_parsed["port"] : $port;
+	$path = isset($url_parsed["query"]) && !empty($url_parsed["query"]) ? $path . "?" . $url_parsed["query"] : $path;
+
+	$out = "GET " . $path . " HTTP/1.0\r\nHost: " . $host . "\r\nConnection: Close\r\n\r\n";
+	$fp = @fsockopen($host, $port, $errno, $errstr, 15);
+	if (!$fp)
+		return false;
+	@fwrite($fp, $out);
+	$body = false;
+	$xml_string = "";
+	while (!feof($fp)) {
+		$str = fgets($fp, 1024);
+		if($body) 
+			$xml_string .= $str;
+		if($str == "\r\n") 
+			$body = true;
+	}
+	@fclose($fp);
+	if ($xml_string != "") {
+		$xml = new SimpleXMLElement($xml_string);
+		return $xml->appears == 'yes';
+	}
+	return false;
 }
 
 /**
