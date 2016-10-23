@@ -2507,6 +2507,7 @@ function get_not_accepted_words($string)
  * Returns the content of an external page
  * Using curl, file_get_contents and fsockopen
  *
+ * If connection failed or the content is empty,
  * this function returns false
  *
  * @param string $url
