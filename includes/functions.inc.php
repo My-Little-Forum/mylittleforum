@@ -2537,11 +2537,13 @@ function getExternalResource($url) {
 		if(curl_errno($ch)) 
 			$content = false;
 		curl_close($ch);
+		return $content;
 	}
 	
 	// file_get_content
 	if (empty($content) && @file_get_contents(__FILE__) && ini_get('allow_url_fopen')) {
 		$content = @file_get_contents($url);
+		return empty($content) ? false : $content;
 	}
 	
 	// fsockopen
@@ -2585,11 +2587,9 @@ function getExternalResource($url) {
 			}
 			@fclose($fp);
 		}
+		return $content;
 	}
-	
-	if (empty($content))
-		return false;
-	return $content;
+	return false;
 } 
 
 /**
