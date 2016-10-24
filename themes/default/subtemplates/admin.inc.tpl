@@ -1078,10 +1078,16 @@
 {/if}
 {else}
 <div class="additional-admin-info">
-<div id="admin-info-releases">
-<h3>{#releases_info_header#}</h3>
-<p><a href="https://github.com/ilosuna/mylittleforum/releases/latest">{#releases_list_link#}</a></p>
-</div>
+	<div id="admin-info-releases">
+	{if $latest_release_title}
+		<h3>{$latest_release_title}</h3>
+		<!--<p>{$latest_release_content}</p>-->
+		<p><a href="https://github.com/ilosuna/mylittleforum/releases/latest">Download: {$latest_release_version}</a></p>
+	{else}
+		<h3>{#releases_info_header#}</h3>
+		<p><a href="https://github.com/ilosuna/mylittleforum/releases/latest">{#releases_list_link#}</a></p>
+	{/if}
+	</div>
 </div>
 <ul class="adminmenu">
 <li><a href="index.php?mode=admin&amp;action=settings"><img src="{$THEMES_DIR}/{$theme}/images/settings.png" alt="" width="16" height="16" /><span>{#forum_settings_link#}</span></a></li>

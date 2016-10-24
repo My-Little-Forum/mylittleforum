@@ -2502,56 +2502,154 @@ function get_not_accepted_words($string)
     return false;
    }
  }
+ 
+/**
+ * Returns the content of an external page
+ * Using curl, file_get_contents and fsockopen
+ *
+ * If connection failed or the content is empty,
+ * this function returns false
+ *
+ * @param string $url
+ * @return mix $content
+ */ 
+function getExternalResource($url) {
+	$content = false;
+	// curl
+	if (function_exists('curl_init')) {
+		$options = array(
+			CURLOPT_RETURNTRANSFER => true,     		// return web page
+			CURLOPT_HEADER         => false,    		// no headers
+			CURLOPT_FOLLOWLOCATION => true,     		// follow redirects
+			CURLOPT_ENCODING       => "",       		// handle all encodings
+			CURLOPT_USERAGENT      => "mylittleforum",	// user agent
+			CURLOPT_AUTOREFERER    => false,    		// no redirect referer
+			CURLOPT_CONNECTTIMEOUT => 15,       		// timeout on connect
+			CURLOPT_TIMEOUT        => 15,       		// timeout on response
+			CURLOPT_MAXREDIRS      =>  2,       		// allow max two redirects
+			CURLOPT_SSL_VERIFYPEER => false,    		// Disabled SSL Cert checks
+			CURLOPT_URL => $url                 		// URL to page
+		);
+
+		$ch = curl_init();
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		if(curl_errno($ch)) 
+			$content = false;
+		curl_close($ch);
+	}
+	
+	// file_get_content
+	if (empty($content) && @file_get_contents(__FILE__) && ini_get('allow_url_fopen')) {
+		$content = @file_get_contents($url);
+	}
+	
+	// fsockopen
+	if (empty($content)) {
+		$url_parsed = @parse_url($url);
+	
+		if ($url_parsed === false || !isset($url_parsed["host"]))
+			return false;
+		
+		switch ($url_parsed['scheme']) {
+			case 'https':
+				$scheme = 'ssl://';
+				$port = 443;
+				break;
+			case 'http':
+			default:
+				$scheme = '';
+				$port = 80;
+			break;
+		}
+	
+		$host = $url_parsed["host"];
+		$path = isset($url_parsed["path"])  && !empty($url_parsed["path"])  ? $url_parsed["path"] : "/";
+		$port = isset($url_parsed["port"])  && !empty($url_parsed["port"])  ? $url_parsed["port"] : $port;
+		$path = isset($url_parsed["query"]) && !empty($url_parsed["query"]) ? $path . "?" . $url_parsed["query"] : $path;
+	
+		$out = "GET " . $path . " HTTP/1.0\r\nHost: " . $host . "\r\nConnection: Close\r\n\r\n";
+		$fp = @fsockopen($scheme . $host, $port, $errno, $errstr, 15);
+		if (!$fp)
+			$content = false;
+		else {
+			@fwrite($fp, $out);
+			$body = false;
+			$content = "";
+			while (!feof($fp)) {
+				$str = fgets($fp, 1024);
+				if($body) 
+					$content .= $str;
+				if($str == "\r\n") 
+					$body = true;
+			}
+			@fclose($fp);
+		}
+	}
+	
+	if (empty($content))
+		return false;
+	return $content;
+} 
 
 /**
- * Check email via stopforumspam.com and returns true, if the adress is infamous.
- * In any other case, this function returns false
+ * Check email via http://www.stopforumspam.com and returns true, 
+ * if the adress is infamous otherwise false
  *
  * @param String $email
  * @return boolean $isInfamous
  */
 function isInfamousEmail($email) {
 	$url = "http://www.stopforumspam.com/api?email=" . urlencode(iconv('GBK', 'UTF-8', $email));
-	$url_parsed = @parse_url($url);
-
-	if ($url_parsed === false || !isset($url_parsed["host"]))
-		return false;
-	
-	switch ($url_parsed['scheme']) {
-		case 'https':
-			$scheme = 'ssl://';
-			$port = 443;
-			break;
-		case 'http':
-		default:
-			$scheme = '';
-			$port = 80;
-		break;
-	}
-	
-	$host = $url_parsed["host"];
-	$path = isset($url_parsed["path"])  && !empty($url_parsed["path"])  ? $url_parsed["path"] : "/";
-	$port = isset($url_parsed["port"])  && !empty($url_parsed["port"])  ? $url_parsed["port"] : $port;
-	$path = isset($url_parsed["query"]) && !empty($url_parsed["query"]) ? $path . "?" . $url_parsed["query"] : $path;
-
-	$out = "GET " . $path . " HTTP/1.0\r\nHost: " . $host . "\r\nConnection: Close\r\n\r\n";
-	$fp = @fsockopen($host, $port, $errno, $errstr, 15);
-	if (!$fp)
-		return false;
-	@fwrite($fp, $out);
-	$body = false;
-	$xml_string = "";
-	while (!feof($fp)) {
-		$str = fgets($fp, 1024);
-		if($body) 
-			$xml_string .= $str;
-		if($str == "\r\n") 
-			$body = true;
-	}
-	@fclose($fp);
-	if ($xml_string != "") {
-		$xml = new SimpleXMLElement($xml_string);
+	$resource = getExternalResource($url);
+	if ($resource) {
+		$xml = new SimpleXMLElement($resource);
 		return $xml->appears == 'yes';
+	}
+	return false;
+}
+
+/**
+ * Check for new version of mylittleforum via ATOM-feed
+ * https://github.com/ilosuna/mylittleforum/releases.atom
+ *
+ * returns the description of the latest version, if the current
+ * version is not the latest one otherwise false
+ *
+ * @return String $currentVersion
+ * @return mix $releaseInfo
+ */
+function checkUpdate($currentVersion = '0.0') {
+	$url = "https://github.com/ilosuna/mylittleforum/releases.atom";
+	$resource = getExternalResource($url);
+	if ($resource) {
+		$xml = new SimpleXMLElement($resource);
+		$len = count($xml->entry);
+		if ($len <= 0)
+			return false;
+		$xml->registerXPathNamespace('atom', 'http://www.w3.org/2005/Atom');
+		$updateDateOfActualVersion    = $xml->xpath("//atom:entry[1]/atom:updated");
+		$lastVersion                  = $xml->xpath("//atom:entry[1]/atom:id");
+		$updateDateOfInstalledVersion = $xml->xpath("//atom:entry/atom:id[substring(text(), string-length(text()) - string-length('" . htmlspecialchars($currentVersion) . "') + 1) = '" . htmlspecialchars($currentVersion) . "']/../atom:updated");
+		
+		$updateDateOfActualVersion = strtotime($updateDateOfActualVersion[0]);
+		$lastVersion = preg_replace ("/.+\/v/u", "", $lastVersion[0]);
+		if (empty($updateDateOfInstalledVersion ))
+			$updateDateOfInstalledVersion = 0;
+		else
+			$updateDateOfInstalledVersion = strtotime($updateDateOfInstalledVersion[0]);
+		
+		if ($lastVersion != $currentVersion && $updateDateOfActualVersion > $updateDateOfInstalledVersion) {
+			$title   = $xml->xpath("//atom:entry[1]/atom:title/text()");
+			$content = $xml->xpath("//atom:entry[1]/atom:content/text()");
+			
+			$release = (object) [
+				'title'   => (string)$title[0],
+				'content' => (string)$content[0],
+				'version' => (string)$lastVersion,
+			];
+			return $release;
+		}
 	}
 	return false;
 }
