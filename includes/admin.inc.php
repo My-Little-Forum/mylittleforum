@@ -1994,8 +1994,21 @@ switch($action)
    exit;
   break;
  }
+
 // Prueft, ob die Datei install/index.php noch existiert
 $smarty->assign('install_script_exists', file_exists('./install/index.php'));
+
+// Pruefe, ob eine neue Version zur Verfuegung steht 
+if (isset($settings) && isset($settings['version'])) {
+	$latestRelease = checkUpdate($settings['version']);
+	//$latestRelease = checkUpdate('2.3.5');
+	if ($latestRelease !== false) {
+		$smarty->assign('latest_release_title',   $latestRelease->title);
+		$smarty->assign('latest_release_content', $latestRelease->content);
+		$smarty->assign('latest_release_version', $latestRelease->version);
+	}
+}
+
 $smarty->assign('subtemplate','admin.inc.tpl');
 $template = 'main.tpl';
 
