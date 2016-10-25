@@ -1078,6 +1078,12 @@
 {/if}
 {else}
 <div class="additional-admin-info">
+	{if $install_script_exists}
+	<div id="admin-info-install_script_exists">
+		<h3>{#warning_header#}</h3>
+		<p>{#warning_install_script_exists#}</p>
+	</div>
+	{/if}
 	<div id="admin-info-releases">
 	{if $latest_release_title}
 		<h3>{$latest_release_title}</h3>

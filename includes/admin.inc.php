@@ -1994,6 +1994,10 @@ switch($action)
    exit;
   break;
  }
+
+// Prueft, ob die Datei install/index.php noch existiert
+$smarty->assign('install_script_exists', file_exists('./install/index.php'));
+
 // Pruefe, ob eine neue Version zur Verfuegung steht 
 if (isset($settings) && isset($settings['version'])) {
 	$latestRelease = checkUpdate($settings['version']);
@@ -2004,6 +2008,7 @@ if (isset($settings) && isset($settings['version'])) {
 		$smarty->assign('latest_release_version', $latestRelease->version);
 	}
 }
+
 $smarty->assign('subtemplate','admin.inc.tpl');
 $template = 'main.tpl';
 
