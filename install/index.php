@@ -210,16 +210,22 @@ if(isset($_POST['install_submit']))
 			}
 			$db_settings[$key] = $_POST[$key];
 		}
+		
+		// check table_prefix
+		if (!isset($_POST['table_prefix']) || $_POST['table_prefix'] != strip_tags($_POST['table_prefix'])) {
+			$errors[] = $lang['error_form_uncomplete'];
+		}
 
-		$db_settings_file = @fopen("../config/db_settings.php", "w") or $errors[] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
-		if(empty($errors) && isset($_POST['table_prefix']) && $_POST['table_prefix'] == strip_tags($_POST['table_prefix'])) {
+		if (empty($errors)) {
+			$db_settings_file = @fopen("../config/db_settings.php", "w") or $errors[] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
 			flock($db_settings_file, 2);
 			fwrite($db_settings_file, "<?php\n");
 			foreach ($db_connection_keys as $key) {
 				fwrite($db_settings_file, "\$db_settings['".$key."'] = '".addslashes($db_settings[$key])."';\n");
 			}
 			foreach ($db_setting_keys as $key => $value) {
-				fwrite($db_settings_file, "\$db_settings['".$key."'] = '".addslashes($_POST['table_prefix'] . $value)."';\n");
+				$db_settings[$key] = $_POST['table_prefix'] . $value;
+				fwrite($db_settings_file, "\$db_settings['".$key."'] = '".addslashes($db_settings[$key])."';\n");
 			}
 			fwrite($db_settings_file, "?".">\n");
 			flock($db_settings_file, 3);
@@ -267,12 +273,11 @@ if(isset($_POST['install_submit']))
 		}
 	}
 
-   // insert admin in userdata table:
-   if(empty($errors))
-    {
-     $pw_hash = generate_pw_hash($_POST['admin_pw']);
-     @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_name='".mysqli_real_escape_string($connid, $_POST['admin_name'])."', user_pw = '".mysqli_real_escape_string($connid, $pw_hash)."', user_email = '".mysqli_real_escape_string($connid, $_POST['admin_email'])."' WHERE user_id=1") or $errors[] = $lang['error_create_admin']." (MySQL: ".mysqli_error($connid).")";
-    }
+	// insert admin in userdata table:
+	if(empty($errors)) {
+		$pw_hash = generate_pw_hash($_POST['admin_pw']);
+		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_name='".mysqli_real_escape_string($connid, $_POST['admin_name'])."', user_pw = '".mysqli_real_escape_string($connid, $pw_hash)."', user_email = '".mysqli_real_escape_string($connid, $_POST['admin_email'])."' WHERE user_id=1") or $errors[] = $lang['error_create_admin']." (MySQL: ".mysqli_error($connid).")";
+	}
 
    // set forum name, address and email address:
    if(empty($errors))
