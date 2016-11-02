@@ -96,6 +96,7 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #mod-options a.manage{padding-left:13px;background:url(images/bg_sprite_4.png) no-repeat 0 -347px}
 #mod-options a.report{padding-left:13px;background:url(images/bg_sprite_4.png) no-repeat 0 -48px}
 #mod-options a.delete-spam{padding-left:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -47px}
+#mod-options a.unlocked_users{padding-left:13px; background:url(images/bg_sprite_4.png) no-repeat 0 -48px;}
 #bottombar{position:relative;margin:20px 0 -20px}
 #bottombar h3.sidebar{position:relative;float:right;font-size:.69em;line-height:1.6em;font-weight:400;margin:0 0 20px;padding:0 17px 0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px;border:1px solid #bacbdf}
 #bottombar h3.sidebar a{color:#000;text-decoration:none}
