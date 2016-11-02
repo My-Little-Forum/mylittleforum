@@ -211,7 +211,7 @@ if($settings['latest_postings']>0)
 // Check for unlock users
 if(isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] >= 1) {
 	// Pruefe, ob es registrierte aber bisher nicht freigeschaltete Accounts gibt (Anz. der Logins == 0 && Lock-Status == TRUE)
-	$unlocked_user_result = mysqli_query($connid, "SELECT count(*) AS 'unlocked_users' FROM ".$db_settings['userdata_table']." WHERE `logins` = 0 AND `user_lock` = 1") or raise_error('database_error',mysqli_error($connid));
+	$unlocked_user_result = mysqli_query($connid, "SELECT count(*) AS 'unlocked_users' FROM ".$db_settings['userdata_table']." WHERE `logins` = 0 AND `user_lock` = 1 AND (SELECT TRUE FROM ".$db_settings['settings_table']." WHERE `name` = 'register_mode' AND `value` = 1) = TRUE") or raise_error('database_error',mysqli_error($connid));
 	if(mysqli_num_rows($unlocked_user_result) > 0 && $row = mysqli_fetch_assoc($unlocked_user_result)) {
 		$smarty->assign('number_of_unlocked_users', intval($row['unlocked_users']));
 	}
