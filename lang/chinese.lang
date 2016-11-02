@@ -143,6 +143,9 @@ subnav_restore =                  导入
 subnav_locked =                   帐户已锁定
 subnav_delete_cookie =            删除cookie
 subnav_disabled =                 论坛已关闭
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Delete bookmark
+subnav_edit_bookmark =            Edit bookmark
 subnav_page_error =               错误
 subnav_page =                     [var]
 counter =                         帖子总数: [total_postings]; 主题总数: [total_threads]; 注册用户: [registered_users]
@@ -257,7 +260,19 @@ delete_backup_confirm =           确认删除备份文件?
 delete_sel_backup_confirm =       确认删除所有选中的备份文件?
 drag_and_drop_title =             拖放以上下移动
 show_all_postings_link =          列出所有帖子
- 
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Visit profil of [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Delete Bookmark
+delete_bookmark_confirm =         Do you really want to delete this bookmark?
+no_bookmarks =                    No bookmarks specified.
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Name of bookmark
+bookmark_user_name =              User name
+bookmark_creation_time =          Bookmark creation
+bookmark_posting_time =           Posting creation
+
 [entry]
 edited_by =                       编辑: [name], 时间: [time]
 tags_marking =                    标签:
@@ -266,6 +281,10 @@ several_views =                   [views]次阅读
 complete_thread_marking =         完整帖子:
 branch_marking =                  当前帖子:
 direct_replies_marking =          直接回复此帖:
+add_bookmark_message_linkname =   add bookmark
+add_bookmark_message_linktitle =  Add this posting to your personal bookmark list
+delete_bookmark_message_linkname =delete bookmark
+delete_bookmark_message_linktitle=Remove this posting from your personal bookmark list
 edit_message_linkname =           编辑
 edit_message_linktitle =          编辑帖子
 delete_message_linkname =         删除
@@ -664,6 +683,10 @@ spam_protection_link =            防垃圾保护
 backup_restore_link =             备份
 update_link =                     升级
 reset_uninstall_link =            重设或卸载
+releases_info_header =            Actual release
+releases_list_link =              Check the releases list for the actual version.
+warning_header =                  Warning
+warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
  
 # forum settings:
 clear_chache =                    清除缓存
@@ -999,6 +1022,14 @@ admin_reg_user_email_text =       """您好 [name],
 [login_link]
  
 登陆后可更改密码."""
+
+admin_activate_user_email_subj =       Forum registration
+admin_activate_user_email_text =       """Hi [name],
+welcome to the forum!
+
+Link to log in directly:
+[login_link]
+"""
  
 new_user_email_sj =               论坛注册
 new_user_email_txt =              """您好 [name],
