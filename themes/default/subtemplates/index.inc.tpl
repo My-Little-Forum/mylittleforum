@@ -24,7 +24,7 @@
 <div id="modmenu">
 	<h3>{#options#}</h3>
 	<ul id="mod-options">
-		{if $number_of_unlocked_users}<li><a href="index.php?mode=user" class="unlocked_users">{#unlocked_users_link#|replace:'[counter]':$number_of_unlocked_users}</a></li>{/if}
+		{if $number_of_non_activated_users}<li><a href="index.php?mode=user" class="non-activated-users">{#non_activated_users_link#|replace:'[counter]':$number_of_non_activated_users}</a></li>{/if}
 		<li><a href="index.php?mode=posting&amp;delete_marked=true" class="delete-marked">{#delete_marked_link#}</a></li>
 		<li><a href="index.php?mode=posting&amp;manage_postings=true" class="manage">{#manage_postings_link#}</a></li>
 		{if $show_spam_link}<li><a href="index.php?show_spam=true" class="report">{$smarty.config.show_spam_link|replace:"[number]":$total_spam}</a></li>{/if}
