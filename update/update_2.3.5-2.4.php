@@ -59,24 +59,25 @@ switch($settings['version']) {
 
 		$update['items'][] = 'js/';													// #39, #47
 
-		$update['items'][] = 'includes/';											// #39, #42, #50, #54, #57
+		$update['items'][] = 'includes/';											// #39, #42, #50, #54, #57, #64
 		
 		$update['items'][] = 'themes/default/main.tpl';								// #39
-		$update['items'][] = 'themes/default/style.css';							// #39, #41, #56
-		$update['items'][] = 'themes/default/style.min.css';						// #39, #41, #56
+		$update['items'][] = 'themes/default/style.css';							// #39, #41, #56, #64
+		$update['items'][] = 'themes/default/style.min.css';						// #39, #41, #56, #64
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';			// #56
 		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';			// #39, #47
-		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';		// #39, #50
-		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';			// #39
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';		// #39, #50, #64
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';			// #39, #64
 		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';			// #39
 		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';			// #39
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';			// #39
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';	// #39
 		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl';		// #39
 		$update['items'][] = 'themes/default/images/bg_sprite_3.png';				// #39
+		$update['items'][] = 'themes/default/images/bg_sprite_4.png';				// #64
 		
-		$update['items'][] = 'lang/english.lang';									// #39, #56
-		$update['items'][] = 'lang/german.lang';									// #39, #56
+		$update['items'][] = 'lang/english.lang';									// #39, #56, #64
+		$update['items'][] = 'lang/german.lang';									// #39, #56, #64
 	
 	
 		// !!!Do *NOT* add 'break;' to a single case!!!
