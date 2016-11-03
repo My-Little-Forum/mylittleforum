@@ -2663,7 +2663,7 @@ function checkUpdate($currentVersion = '0.0') {
 function contains_special_characters($string)
  {
   #if(!preg_match("/^[a-zA-Z0-9_\- ]+$/", $string)) return true; // only alphanumeric characters, "-", "_" and " " allowed
-  if(preg_match("/([[:cntrl:]]|\255)/u", $string)) return true; // control characters and soft hyphen
+  if(preg_match("/([[:cntrl:]]|\p{Cf})/u", $string)) return true; // control characters and soft hyphen
   if(preg_match("/(\x{200b})/u", $string)) return true; // zero width space
   return false;
  }
