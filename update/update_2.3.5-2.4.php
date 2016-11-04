@@ -134,7 +134,7 @@ if (empty($update['errors'])) {
 	if ($newVersion <= $settings['version']) {
 		$update['errors'][] = 'Error in line '.__LINE__.': The version you want to install (see string in config/VERSION) must be greater than the current installed version. Current version: '. htmlspecialchars($settings['version']) .', version you want to install: '.  htmlspecialchars($newVersion) .'.';
 	}
-	if(!in_array($settings['version'], $newVersion)) {
+	if(!in_array($settings['version'], $update['version'])) {
 		$update['errors'][] = 'Error in line '.__LINE__.': This update file doesn\'t work with the current version.';
 	}
 }
