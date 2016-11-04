@@ -16,7 +16,6 @@ if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
 $update['version'] = array('2.3.5','2.3.6','2.3.6.1','2.3.7');
-$update['new_version'] = '2.4.0';
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -197,7 +196,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 }
 
 if(empty($update['errors'])) {
-	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".$update['new_version']."' WHERE name = 'version'")) {
+	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
