@@ -129,12 +129,14 @@ if (!empty($folders)) {
 if(!file_exists('../config/VERSION')) {
 	$update['errors'][] = 'Error in line '.__LINE__.': Missing the file config/VERSION.';
 }
-$newVersion = trim(file_get_contents('../config/VERSION'));
-if ($newVersion < $settings['version']) {
-	$update['errors'][] = 'Error in line '.__LINE__.': The version you want to install (see string in config/VERSION) must be greater than the current installed version. Current version: '. htmlspecialchars($settings['version']) .', version you want to install: '.  htmlspecialchars($newVersion) .'.';
-}
-if(!in_array($settings['version'], $newVersion)) {
-	$update['errors'][] = 'Error in line '.__LINE__.': This update file doesn\'t work with the current version.';
+if (empty($update['errors'])) {
+	$newVersion = trim(file_get_contents('../config/VERSION'));
+	if ($newVersion < $settings['version']) {
+		$update['errors'][] = 'Error in line '.__LINE__.': The version you want to install (see string in config/VERSION) must be greater than the current installed version. Current version: '. htmlspecialchars($settings['version']) .', version you want to install: '.  htmlspecialchars($newVersion) .'.';
+	}
+	if(!in_array($settings['version'], $newVersion)) {
+		$update['errors'][] = 'Error in line '.__LINE__.': This update file doesn\'t work with the current version.';
+	}
 }
 
 if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3'))) {
