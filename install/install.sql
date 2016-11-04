@@ -134,7 +134,6 @@ INSERT INTO mlf2_settings VALUES ('max_read_items', '200');
 INSERT INTO mlf2_settings VALUES ('delete_ips', '0');
 INSERT INTO mlf2_settings VALUES ('last_changes', '0');
 INSERT INTO mlf2_settings VALUES ('ajax_preview', '1');
-INSERT INTO mlf2_settings VALUES ('version', '2.4.0');
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (2, 2, 'wink.png', ';-)', '', '', '', '', '');

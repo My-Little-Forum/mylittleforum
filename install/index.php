@@ -53,6 +53,13 @@ function table_exists($table)
   return false;
  }
 
+// check version:
+if(!file_exists('../config/VERSION')) {
+	$errors[] = 'Error in line '.__LINE__.': Missing the file config/VERSION.';
+	break;
+}
+$newVersion = trim(file_get_contents('../config/VERSION'));
+
 if(isset($_POST['language_file'])) $language_file = $_POST['language_file'];
 
 // try to connect to the database...
@@ -262,6 +269,9 @@ if(isset($_POST['install_submit']))
 				if(!@mysqli_query($connid, $line)) {
 					$errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
 				}
+			}
+			if(!@mysqli_query($connid, "INSERT INTO mlf2_settings VALUES ('version', '". mysqli_real_escape_string($connid, $newVersion) ."');")) {
+				$errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
 			}
 			@mysqli_query($connid, "COMMIT");
 		}
