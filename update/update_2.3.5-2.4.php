@@ -16,7 +16,6 @@ if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
 $update['version'] = array('2.3.5','2.3.6','2.3.6.1','2.3.7');
-$update['new_version'] = '2.4.0';
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -125,10 +124,19 @@ if (!empty($folders)) {
 	// Add folders at the end of the files list to keep the order (files, folders)
 	$update['items'] = array_merge($update['items'], $folders);
 }
- 
+
 // check version:
-if(!in_array($settings['version'], $update['version'])) {
-	$update['errors'][] = 'Error in line '.__LINE__.': This update file doesn\'t work with the current version.';
+if(!file_exists('config/VERSION')) {
+	$update['errors'][] = 'Error in line '.__LINE__.': Missing the file config/VERSION.';
+}
+if (empty($update['errors'])) {
+	$newVersion = trim(file_get_contents('config/VERSION'));
+	if ($newVersion <= $settings['version']) {
+		$update['errors'][] = 'Error in line '.__LINE__.': The version you want to install (see string in config/VERSION) must be greater than the current installed version. Current version: '. htmlspecialchars($settings['version']) .', version you want to install: '.  htmlspecialchars($newVersion) .'.';
+	}
+	if(!in_array($settings['version'], $update['version'])) {
+		$update['errors'][] = 'Error in line '.__LINE__.': This update file doesn\'t work with the current version.';
+	}
 }
 
 if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3'))) {
@@ -189,7 +197,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 }
 
 if(empty($update['errors'])) {
-	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".$update['new_version']."' WHERE name = 'version'")) {
+	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
