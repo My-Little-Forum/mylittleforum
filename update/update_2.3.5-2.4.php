@@ -75,8 +75,7 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/images/bg_sprite_3.png';				// #39
 		$update['items'][] = 'themes/default/images/bg_sprite_4.png';				// #64
 		
-		$update['items'][] = 'lang/english.lang';									// #39, #56, #64
-		$update['items'][] = 'lang/german.lang';									// #39, #56, #64
+		$update['items'][] = 'lang/';												// #39, #56, #64, #68
 	
 	
 		// !!!Do *NOT* add 'break;' to a single case!!!
