@@ -181,6 +181,7 @@ mark_linktitle =                  Označi poruke
 unmark_linktitle =                Odznači poruke
 delete_marked_link =              Obriši označene poruke
 manage_postings_link =            Upravljanje porukama
+non_activated_users_link =        [counter] non-activated user(s)
 show_spam_link =                  Prikaži spam ([number])
 hide_spam_link =                  Sakrij spam
 delete_spam_link =                Obriši spam

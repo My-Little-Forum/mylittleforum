@@ -184,6 +184,7 @@ mark_linktitle =                  加标记
 unmark_linktitle =                去除标记
 delete_marked_link =              删除已标记的帖子
 manage_postings_link =            管理帖子
+non_activated_users_link =        [counter] non-activated user(s)
 show_spam_link =                  显示垃圾帖 ([number])
 hide_spam_link =                  隐藏垃圾帖
 delete_spam_link =                删除垃圾帖

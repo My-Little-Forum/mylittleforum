@@ -143,6 +143,9 @@ subnav_restore =                  Restaurer
 subnav_locked =                   Compte verrouillé
 subnav_delete_cookie =            Supprimer le cookie
 subnav_disabled =                 Forum désactivé
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Delete bookmark
+subnav_edit_bookmark =            Edit bookmark
 subnav_page_error =               Erreur
 subnav_page =                     [var]
 counter =                         [total_postings] messages dans [total_threads] fils de discussion, [registered_users] utilisateurs enregistrés
@@ -181,6 +184,7 @@ mark_linktitle =                  Sélectionner le message
 unmark_linktitle =                Déselectionner le message
 delete_marked_link =              Supprimer les messages sélectionnés
 manage_postings_link =            Gérer les messages
+non_activated_users_link =        [counter] non-activated user(s)
 show_spam_link =                  Montrer les spams ([number])
 hide_spam_link =                  Cacher les spams
 delete_spam_link =                Supprimer les spams
@@ -257,7 +261,19 @@ delete_backup_confirm =           Etes-vous sûr de vouloir supprimer ce fichier
 delete_sel_backup_confirm =       Etes-vous sûr de vouloir supprimer tous les fichiers de sauvegarde sélectionnés ?
 drag_and_drop_title =             déplacer et lâcher pour monter ou descendre
 show_all_postings_link =          montrer les messages
-          
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Visit profil of [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Delete Bookmark
+delete_bookmark_confirm =         Do you really want to delete this bookmark?
+no_bookmarks =                    No bookmarks specified.
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Name of bookmark
+bookmark_user_name =              User name
+bookmark_creation_time =          Bookmark creation
+bookmark_posting_time =           Posting creation
+
 [entry]
 edited_by =                       édité par [name], [time]
 tags_marking =                    Mots-clés:
@@ -266,6 +282,10 @@ several_views =                   [views] vues
 complete_thread_marking =         Fil complet:
 branch_marking =                  Branche courante du fil :
 direct_replies_marking =          Réponses liées à ce message:
+add_bookmark_message_linkname =   add bookmark
+add_bookmark_message_linktitle =  Add this posting to your personal bookmark list
+delete_bookmark_message_linkname =delete bookmark
+delete_bookmark_message_linktitle=Remove this posting from your personal bookmark list
 edit_message_linkname =           éditer
 edit_message_linktitle =          éditer le message
 delete_message_linkname =         Supprimer
@@ -664,6 +684,10 @@ spam_protection_link =            Protection contre le Spam
 backup_restore_link =             Sauvegarde
 update_link =                     Mise à jour
 reset_uninstall_link =            Réinitialiser ou désinstaller le forum
+releases_info_header =            Actual release
+releases_list_link =              Check the releases list for the actual version.
+warning_header =                  Warning
+warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
 
 # forum settings:
 clear_chache =                    Effacer les réglages et appliquer les changements aux entrées existantes
@@ -999,6 +1023,14 @@ Lien pour se connecter directement:
 [login_link]
 
 Le mot de passe peut être changé après s'être connecté."""
+
+admin_activate_user_email_subj =       Forum registration
+admin_activate_user_email_text =       """Hi [name],
+welcome to the forum!
+
+Link to log in directly:
+[login_link]
+"""
 
 new_user_email_sj =               Enregistrement sur le forum
 new_user_email_txt =              """Bonjour [name],

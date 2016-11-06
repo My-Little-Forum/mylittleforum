@@ -154,6 +154,9 @@ subnav_restore =                  Восстановление
 subnav_locked =                   Блокировка учетной записи
 subnav_delete_cookie =            Удалить куки
 subnav_disabled =                 Форум отключен
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Delete bookmark
+subnav_edit_bookmark =            Edit bookmark
 subnav_page_error =               Ошибочка
 subnav_page =                     [var]
 counter =                         [total_postings] сообщений в [total_threads] темах, [registered_users] зарегистрированных пользователей
@@ -192,6 +195,7 @@ mark_linktitle =                  Отметить сообщение
 unmark_linktitle =                Снять отметку
 delete_marked_link =              Удалить отмеченные
 manage_postings_link =            Управление сообщениями
+non_activated_users_link =        [counter] non-activated user(s)
 show_spam_link =                  Показать спам ([number])
 hide_spam_link =                  Скрыть спам
 delete_spam_link =                Удалить спам
@@ -205,7 +209,7 @@ close =                           закрыть
 no_postings_user =                Нет сообщений.
 search_submit_button =            Поиск
 search_fulltext =                 весь текст
-search_fulltext_or =              весь текст (или)
+#search_fulltext_or =              весь текст (или)
 search_tags =                     тэги
 no_postings_found =               Сообщений не найдено.
 one_posting_found =               найдено 1 сообщение:
@@ -215,6 +219,7 @@ one_posting_by_user =             1 сообщение:
 several_postings_by_user =        [number] сообщений:
 rss_posting_by =                  Сообщения по [name], [time]:
 rss_reply_by =                    Ответы по [name], [time]:
+rss_reply_marking =               (reply)
 move_up =                         вверх
 move_down =                       вниз
 delete_posting_title =            Удалить сообщение
@@ -268,6 +273,18 @@ delete_backup_confirm =           Вы уверены, что хотите уд�
 delete_sel_backup_confirm =       Вы уверены, что хотите удалить все файлы резервных копий?
 drag_and_drop_title =             перетащите мышкой чтобы переместиться вверх или вниз        
 show_all_postings_link =          показать сообщения
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Visit profil of [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Delete Bookmark
+delete_bookmark_confirm =         Do you really want to delete this bookmark?
+no_bookmarks =                    No bookmarks specified.
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Name of bookmark
+bookmark_user_name =              User name
+bookmark_creation_time =          Bookmark creation
+bookmark_posting_time =           Posting creation
 
 [entry]
 edited_by =                       исправил [name], в [time]
@@ -277,6 +294,10 @@ several_views =                   [views] просмотров
 complete_thread_marking =         Тема полностью:
 branch_marking =                  Данная ветка темы:
 direct_replies_marking =          Прямые ответы на данное сообщение:
+add_bookmark_message_linkname =   add bookmark
+add_bookmark_message_linktitle =  Add this posting to your personal bookmark list
+delete_bookmark_message_linkname =delete bookmark
+delete_bookmark_message_linktitle=Remove this posting from your personal bookmark list
 edit_message_linkname =           править
 edit_message_linktitle =          править сообщение
 delete_message_linkname =         удалить
@@ -369,7 +390,7 @@ bbcode_tex_instruction =          [tex]код в формате TeX[/tex]
 bbcode_code_label =               коды
 bbcode_code_title =               Вставить код
 bbcode_code_label_inline =        Код в виде строки в тексте
-bbcode_code_instruction_inline =  [inlinecode]code[/inlinecode]
+bbcode_code_instruction_inline =  [inlinecode]код[/inlinecode]
 bbcode_code_label_general =       Код в виде текстового блока
 bbcode_code_instruction_general = [code]код[/code]
 bbcode_code_label_specific =      Код в виде текстового блока [language]
@@ -531,6 +552,7 @@ online =                          на сайте
 lock_title =                      блокировать пользователя
 unlocked =                        разблокирован
 unlock_title =                    разблокировать пользователя
+currently_online =                Currently online
 
 [user_show]
 user_name =                       Пользователь:
@@ -587,7 +609,7 @@ edit_user_location =              Местоположение:
 edit_user_profile =               Профиль:
 edit_user_signature =             Подпись:
 edit_user_cat_selection =         Мои избранные категории:
-edit_user_cat_sel_note =          Можно выбрать несколько категорий, удерживая нажатой клавишу [Ctrl]
+#edit_user_cat_sel_note =          Можно выбрать несколько категорий, удерживая нажатой клавишу [Ctrl]
 edit_user_time_zone =             Часовой пояс:
 edit_user_time_difference =       Дополнительная разница во времени в часах (например, +3 или -5:30):
 edit_user_default_time_zone_svr = По умолчанию (время сервера)
@@ -624,7 +646,7 @@ error_email_too_long =            Адрес e-mail слишком длинны�
 error_identic_email =             Новый адрес e-mail совпадает со старым
 error_email_invalid =             Неправильный адрес e-mail
 pw_wrong =                        Пароль указан неверно
-error_meilserver =                Невозможно подключиться к почтовому серверу - повторите попытку позже
+#error_meilserver =                Невозможно подключиться к почтовому серверу - повторите попытку позже
 
 [register]
 register_exp =                    Выберите желаемое имя пользователя, задайте пароль и укажите действующий адрес e-mail. На указанный адрес будет отправлен ключ активации. Учётная запись должна быть активирована в течение суток.
@@ -654,11 +676,11 @@ error_no_text =                   Текст сообщения отсутств
 error_no_email =                  Не указан адрес e-mail отправителя
 error_no_subject =                Не указан заголовок
 error_email_invalid =             Адрес e-mail неправильный
-error_not_accepted_word =         Письмо содержит как минимум одно неприемлемое слово
+#error_not_accepted_word =         Письмо содержит как минимум одно неприемлемое слово
 error_email_subject_too_long =    Заголовок письма слишком длинный
 error_email_text_too_long =       Текст письма слишком длинный ([text_length] символов - разрешено только [text_maxlength] символов)
 error_spam_suspicion =            Подозрение на спам! Пожалуйста, измените текст письма (например, удалите ссылки)
-error_mailserver =                Попытка отправить письмо не удалась!
+#error_mailserver =                Попытка отправить письмо не удалась!
 
 [admin]
 enabled =                         включен
@@ -678,6 +700,10 @@ spam_protection_link =            Защита от спама
 backup_restore_link =             Резервное копирование
 update_link =                     Обновление
 reset_uninstall_link =            Очистка или удаление форума
+releases_info_header =            Actual release
+releases_list_link =              Check the releases list for the actual version.
+warning_header =                  Warning
+warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
 
 # настройки форума:
 clear_chache =                    Очистка кэша для внесения изменений в уже существующие записи
@@ -859,6 +885,7 @@ delete_avatar =                   Удалить аватар
 delete_user_confirmation =        Вы уверены, что хотите удалить этого пользователя?
 delete_users_confirmation =       Вы уверены, что хотите удалить следующих пользователей?
 delete_entries_of_user_confirm =  <!-- TODO -->Are you sure you want to delete all postings of <strong>[user]</strong>? Replies by other users will also be deleted!
+delete_submit =                   OK - Delete
 register_exp =                    Вы можете оставить поля для ввода пароля пустыми, при этом должен быть сгенерирован случайный пароль. В этом случае пользовательские данные должны быть отправлены на указанный адрес электронной почты.
 delete_submit =                   Да, удалить
 register_username =               Имя пользователя:
@@ -907,6 +934,9 @@ banned_user_agents_desc =         Строки в user-агентах, кото�
 not_accepted_words =              Неприемлемые слова
 not_accepted_words_desc =         Имена или домены, которые недопустимо использовать в вводимых данных и адресах e-mail. Чтобы указать несколько слов, разделите их запятыми.
 spam_protection_submit =          Да, сохранить
+error_own_ip_banned =             You banned your own IP!
+error_own_user_agent_banned =     You banned your own user agent!
+spam_protection_saved =           Saved
 
 # Сброс / Удаление:
 reset_forum =                     Сбросить форум
@@ -1010,6 +1040,14 @@ admin_reg_user_email_text =       """Здравствуйте, [name]!
 [login_link]
 
 После входа пароль можно будет изменить."""
+
+admin_activate_user_email_subj =       Forum registration
+admin_activate_user_email_text =       """Hi [name],
+welcome to the forum!
+
+Link to log in directly:
+[login_link]
+"""
 
 new_user_email_sj =               Регистрация на форуме
 new_user_email_txt =              """Здравствуйте, [name]!

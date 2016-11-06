@@ -183,6 +183,7 @@ mark_linktitle =                  Eintrag markieren
 unmark_linktitle =                Markierung entfernen
 delete_marked_link =              markierte Einträge löschen
 manage_postings_link =            Einträge verwalten
+non_activated_users_link =        [counter] freizuschaltende(r) Benutzer
 show_spam_link =                  Spam anzeigen ([number])
 hide_spam_link =                  Spam ausblenden
 delete_spam_link =                Spam löschen
