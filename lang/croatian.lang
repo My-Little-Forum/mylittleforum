@@ -140,6 +140,9 @@ subnav_restore =                  Vrati iz sigurnosne kopije
 subnav_locked =                   Korisnički račun je zaključan
 subnav_delete_cookie =            Obriši cookie
 subnav_disabled =                 Forum je zatvoren
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Delete bookmark
+subnav_edit_bookmark =            Edit bookmark
 subnav_page_error =               Greška
 subnav_page =                     [var]
 counter =                         [total_postings] poruka u [total_threads] tema, [registered_users] registriranih korisnika
@@ -178,6 +181,7 @@ mark_linktitle =                  Označi poruke
 unmark_linktitle =                Odznači poruke
 delete_marked_link =              Obriši označene poruke
 manage_postings_link =            Upravljanje porukama
+non_activated_users_link =        [counter] non-activated user(s)
 show_spam_link =                  Prikaži spam ([number])
 hide_spam_link =                  Sakrij spam
 delete_spam_link =                Obriši spam
@@ -254,6 +258,18 @@ delete_backup_confirm =           Jesi li siguran da želiš obrisati ovu priču
 delete_sel_backup_confirm =       Jesi li siguran da želiš obrisati sve označene kopije?
 drag_and_drop_title =             Povuci gore ili dole za premještanje
 show_all_postings_link =          prikaži poruke
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Visit profil of [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Delete Bookmark
+delete_bookmark_confirm =         Do you really want to delete this bookmark?
+no_bookmarks =                    No bookmarks specified.
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Name of bookmark
+bookmark_user_name =              User name
+bookmark_creation_time =          Bookmark creation
+bookmark_posting_time =           Posting creation
 
 [entry]
 edited_by =                       Ispravio [name], [time]
@@ -263,6 +279,10 @@ several_views =                   [views] otvaranja
 complete_thread_marking =         Čitava tema:
 branch_marking =                  Tekući ogranak teme:
 direct_replies_marking =          Izravni odgovori na ovu poruku:
+add_bookmark_message_linkname =   add bookmark
+add_bookmark_message_linktitle =  Add this posting to your personal bookmark list
+delete_bookmark_message_linkname =delete bookmark
+delete_bookmark_message_linktitle=Remove this posting from your personal bookmark list
 edit_message_linkname =           ispravi
 edit_message_linktitle =          ispravi poruku
 delete_message_linkname =         obriši
@@ -661,6 +681,10 @@ spam_protection_link =            Zaštita od spama
 backup_restore_link =             Sigurnosna kopija
 update_link =                     Unaprijedi verziju
 reset_uninstall_link =            Isprazni ili ukloni forum
+releases_info_header =            Actual release
+releases_list_link =              Check the releases list for the actual version.
+warning_header =                  Warning
+warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
 
 # forum settings:
 clear_chache =                    Obriši pričuvnu memoriju kako bi tekuće postavke postale važeće za postojeći sadržaj
@@ -996,6 +1020,14 @@ Link za prijavu:
 [login_link]
 
 Lozinku je moguće izmijeniti nakon prijave."""
+
+admin_activate_user_email_subj =       Forum registration
+admin_activate_user_email_text =       """Hi [name],
+welcome to the forum!
+
+Link to log in directly:
+[login_link]
+"""
 
 new_user_email_sj =             Registracija na forum
 new_user_email_txt =            """Pozdrav [name],

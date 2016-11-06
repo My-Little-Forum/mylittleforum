@@ -146,6 +146,9 @@ subnav_restore =                  Geri getir
 subnav_locked =                   Hesap kilitli
 subnav_delete_cookie =            Çerez sil
 subnav_disabled =                 Forum kapalı
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Delete bookmark
+subnav_edit_bookmark =            Edit bookmark
 subnav_page_error =               Hata
 subnav_page =                     [var]
 counter =                         Forumumuzda toplam [total_threads] adet konu içerisinde [total_postings] adet mesaj ve [registered_users] adet kayıtlı kullanıcı
@@ -184,6 +187,7 @@ mark_linktitle =                  Mesajı işaretle
 unmark_linktitle =                Mesaj işaretini kaldır
 delete_marked_link =              İşaretli mesajları sil
 manage_postings_link =            Mesajları düzenle
+non_activated_users_link =        [counter] non-activated user(s)
 show_spam_link =                  Spam göster ([number])
 hide_spam_link =                  Spam gizle
 delete_spam_link =                Spam sil
@@ -260,6 +264,18 @@ delete_backup_confirm =           Seçili bu yedekleme dosyasını silmek istedi
 delete_sel_backup_confirm =       Seçili tüm yedekleme dosyalarını silmek istediğinizden emin misiniz?
 drag_and_drop_title =             aşağı / yukarı taşımak için sürükle & bırak
 show_all_postings_link =          iletileri göster
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Visit profil of [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Delete Bookmark
+delete_bookmark_confirm =         Do you really want to delete this bookmark?
+no_bookmarks =                    No bookmarks specified.
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Name of bookmark
+bookmark_user_name =              User name
+bookmark_creation_time =          Bookmark creation
+bookmark_posting_time =           Posting creation
 
 [entry]
 edited_by =                       [name] tarafından, [time] tarihinde düzenlendi
@@ -269,6 +285,10 @@ several_views =                   [views] kez okundu
 complete_thread_marking =         Tüm başlık:
 branch_marking =                  Başlığın mevcut listesi:
 direct_replies_marking =          Bu iletiye gelen direkt yanıtlar:
+add_bookmark_message_linkname =   add bookmark
+add_bookmark_message_linktitle =  Add this posting to your personal bookmark list
+delete_bookmark_message_linkname =delete bookmark
+delete_bookmark_message_linktitle=Remove this posting from your personal bookmark list
 edit_message_linkname =           düzenle
 edit_message_linktitle =          iletiyi düzenle
 delete_message_linkname =         sil
@@ -667,6 +687,10 @@ spam_protection_link =            Spam koruma
 backup_restore_link =             Yedekleme
 update_link =                     Güncelleme
 reset_uninstall_link =            Forumu sıfırla veya kaldır
+releases_info_header =            Actual release
+releases_list_link =              Check the releases list for the actual version.
+warning_header =                  Warning
+warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
 
 # forum settings:
 clear_chache =                    Değişiklikleri yeni oluşturulan iletilere uygulamak için önbelleği temizle
@@ -720,8 +744,8 @@ terms_of_use_settings =           Kullanım şartı
 terms_of_use_settings_desc =      Kayıtsız kullanıcıların yeni mesaj gönderirken veya kayıt olurken kullanım şartını kabul etmeleri zorunludur
 terms_of_use_settings_enabled =   Kullanım şartı aktif
 terms_of_use_url =                Kullanım şartı URL adresi:
-edit_postings =                               İletileri düzenle
-edit_postings_desc =                       İleti düzenlemesi
+edit_postings =                   İletileri düzenle
+edit_postings_desc =              İleti düzenlemesi
 edit_own_postings =               Kullanıcıların kendi iletilerini düzenlemesi:
 edit_own_postings_all =           tüm kullanıcılar kendi iletilerini düzenleyebilirler
 edit_own_postings_users =         sadece kayıtlı kullanıcılar kendi iletilerini düzenleyebilirler
@@ -1002,6 +1026,14 @@ Direkt giriş bağlantısı:
 [login_link]
 
 Parolanızı giriş yaptıktan sonra değiştirebilirsiniz."""
+
+admin_activate_user_email_subj =       Forum registration
+admin_activate_user_email_text =       """Hi [name],
+welcome to the forum!
+
+Link to log in directly:
+[login_link]
+"""
 
 new_user_email_sj =               Forum kaydı
 new_user_email_txt =              """Merhaba [name],

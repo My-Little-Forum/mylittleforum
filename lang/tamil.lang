@@ -139,6 +139,9 @@ subnav_restore =                  திரும்பப்பெரு
 subnav_locked =                   கணக்கு முடப்பட்டுவிட்டது
 subnav_delete_cookie =            குக்கிகளை அழிக்க
 subnav_disabled =                 பொது மன்றம் முடக்கப்பட்டிருக்கிறது
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Delete bookmark
+subnav_edit_bookmark =            Edit bookmark
 subnav_page_error =               தவரு
 subnav_page =                     [var]
 counter =                         [total_postings] போஸ்டிங்  [total_threads] திரட்ஸ், [registered_users] பதிவு செய்தவர்கள்
@@ -177,6 +180,7 @@ mark_linktitle =                  குறியிடபட்ட போஸ்
 unmark_linktitle =                குறியிடபடாத போஸ்டிங்ஸ்
 delete_marked_link =              குறியிடபட்ட போஸ்டிங்ஸ் அழிக்க
 manage_postings_link =            போஸ்டிங்கை மேற்பார்வையிடு
+non_activated_users_link =        [counter] non-activated user(s)
 show_spam_link =                  நம்பத்தகாதவரை காண்பி ([number])
 hide_spam_link =                  நம்பத்தகாததை மரை
 delete_spam_link =                நம்பத்தகாததை அழி
@@ -253,6 +257,18 @@ delete_backup_confirm =           காத்து வைத்த கோப�
 delete_sel_backup_confirm =       தேர்வு செய்த காத்து வைத்த கோப்பை அழிக்க வேண்டுமா?
 drag_and_drop_title =             மேலும் கீழும் நகர இழுத்து விடவும்
 show_all_postings_link =          போஸ்டிங்கை காண்பி
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Visit profil of [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Delete Bookmark
+delete_bookmark_confirm =         Do you really want to delete this bookmark?
+no_bookmarks =                    No bookmarks specified.
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Name of bookmark
+bookmark_user_name =              User name
+bookmark_creation_time =          Bookmark creation
+bookmark_posting_time =           Posting creation
 
 [entry]
 edited_by =                       புதுப்பித்தவர் [name], [time]
@@ -262,6 +278,10 @@ several_views =                   [views] காட்ச்சிகள்
 complete_thread_marking =         முழுமையான திரட்:
 branch_marking =                  நிகழும் திரட்டின் கிளை:
 direct_replies_marking =          போஸ்டின் நேரடி பதில்:
+add_bookmark_message_linkname =   add bookmark
+add_bookmark_message_linktitle =  Add this posting to your personal bookmark list
+delete_bookmark_message_linkname =delete bookmark
+delete_bookmark_message_linktitle=Remove this posting from your personal bookmark list
 edit_message_linkname =           புதுபிக்கவும்
 edit_message_linktitle =          போஸ்டிங்கை புதுபிக்கவும்
 delete_message_linkname =         அழிக்க
@@ -660,6 +680,10 @@ spam_protection_link =            ஸ்பேம் காப்பு
 backup_restore_link =             காப்பீடு செய்
 update_link =                     புதுப்பிக்க
 reset_uninstall_link =            நிலையை மீட்டு அல்லது பொது மன்றத்தை நீக்குக
+releases_info_header =            Actual release
+releases_list_link =              Check the releases list for the actual version.
+warning_header =                  Warning
+warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
 
 # forum settings:
 clear_chache =                    பழையதை நீக்குக
@@ -720,6 +744,7 @@ edit_own_postings_all =           அனைத்து பயன் படு�
 edit_own_postings_users =         பதிவு செய்தவர்கள் மட்டும் சொந்த போஸ்டிங்கை  மாற்றலாம்
 edit_own_postings_disabled =      முடக்கப்பட்டிருக்கிறது(நிர்வாகி மற்றும் துணை நிர்வாகி மட்டும்  போஸ்டிங்கை  மாற்றலாம்)
 user_edit_if_no_replies =         போஸ்டிங்கின் பதிலை [minutes] நிமிடங்களுக்குள் மட்டும்தான் மாற்றலாம் (0 =       பதிலை வந்துவிட்டால் மாற்ற இயலாது )
+edit_max_time_period =            Maximum period of time own postings can be edited: [minutes] minutes (0 =       unlimited)
 show_if_edited =                  போஸ்ட் செய்த பின், [minutes] நிமிடங்களுக்கு பிறகு மாற்றப்பட்ட போஸ்டிங்கை காண்பிக்க
 dont_show_edit_by_admin =         நிர்வாகியால் மாற்றப்பட்ட போஸ்டிங்கை காண்பிக்கவேண்டாம்
 dont_show_edit_by_mod =           துணை நிர்வாகியால் மாற்றப்பட்ட போஸ்டிங்கை காண்பிக்கவேண்டாம்
@@ -994,6 +1019,14 @@ admin_reg_user_email_text =       """வணக்கம் [name],
 [login_link]
 
 மறைவு சொல்லை பொது மன்றத்தினுள் செந்றபின் மாற்றிக்கொள்ளலாம்."""
+
+admin_activate_user_email_subj =       Forum registration
+admin_activate_user_email_text =       """Hi [name],
+welcome to the forum!
+
+Link to log in directly:
+[login_link]
+"""
 
 new_user_email_sj =               பொது மன்றத்தின் விண்ணப்ப படிவம்
 new_user_email_txt =              """வணக்கம் [name],

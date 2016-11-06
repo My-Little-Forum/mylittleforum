@@ -143,6 +143,9 @@ subnav_restore =                  Restaurar
 subnav_locked =                   Cuenta bloqueada
 subnav_delete_cookie =            Borrar cookie
 subnav_disabled =                 Eliminar cookies
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Delete bookmark
+subnav_edit_bookmark =            Edit bookmark
 subnav_page_error =               Error
 subnav_page =                     [var]
 counter =                         [total_postings] Mensajes en [total_threads] Hilos, [registered_users] Usuarios registrados
@@ -181,6 +184,7 @@ mark_linktitle =                  Selecionar mensaje
 unmark_linktitle =                Deselecionar mensaje
 delete_marked_link =              Eliminar mensajes marcados
 manage_postings_link =            Administrar anuncios
+non_activated_users_link =        [counter] non-activated user(s)
 show_spam_link =                  Mostrar spam ([number])
 hide_spam_link =                  Ocultar spam
 delete_spam_link =                Eliminar spam
@@ -256,7 +260,19 @@ uncheck_all =                     desactivar todo
 delete_backup_confirm =           ¿Estas seguro que quieres eliminar este archivo de copia de seguridad?
 delete_sel_backup_confirm =       ¿Esta seguro que desea eliminar todos los archivos de copia de seguridad seleccionada?
 drag_and_drop_title =             Arrastras & soltar para mover hacia arriba o abajo
-show_all_postings_link =          mostrar mensajes 
+show_all_postings_link =          mostrar mensajes
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Visit profil of [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Delete Bookmark
+delete_bookmark_confirm =         Do you really want to delete this bookmark?
+no_bookmarks =                    No bookmarks specified.
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Name of bookmark
+bookmark_user_name =              User name
+bookmark_creation_time =          Bookmark creation
+bookmark_posting_time =           Posting creation
 
 [entry]
 edited_by =                       editado por [name], [time]
@@ -266,6 +282,10 @@ several_views =                   [views] vistas
 complete_thread_marking =         Hilo completo:
 branch_marking =                  Respuesta reciente:
 direct_replies_marking =          Respuestas directas a este anuncio:
+add_bookmark_message_linkname =   add bookmark
+add_bookmark_message_linktitle =  Add this posting to your personal bookmark list
+delete_bookmark_message_linkname =delete bookmark
+delete_bookmark_message_linktitle=Remove this posting from your personal bookmark list
 edit_message_linkname =           editar
 edit_message_linktitle =          editar mensaje
 delete_message_linkname =         suprimir
@@ -577,6 +597,7 @@ edit_user_location =              Localizacon:
 edit_user_profile =               Perfil:
 edit_user_signature =             Firma:
 edit_user_cat_selection =         Mi seleccion de categoria:
+edit_user_time_zone =             Time zone:
 edit_user_time_difference =       Diferencia de tiempo adicional (e.g. +3 or -5:30):
 edit_user_default_time_zone_svr = Default (server time)
 edit_user_default_time_zone =     Default ([default_time_zone])
@@ -663,6 +684,10 @@ spam_protection_link =            Spam protecion
 backup_restore_link =             Copia de seguridad
 update_link =                     Actualizar
 reset_uninstall_link =            Reset o desinstalar foro
+releases_info_header =            Actual release
+releases_list_link =              Check the releases list for the actual version.
+warning_header =                  Warning
+warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
 
 # forum settings:
 clear_chache =                    Borre la cache para aplicar los cambios a las entradas ya existentes
@@ -681,16 +706,23 @@ home_link =                       Enlace al inicio
 home_link_desc =                  Enlace a su pagina de inicio, p.ej. http://www.domain.tld/ o ../index.html (opcional)
 home_link_name =                  Nombre de enlace Inicio
 home_link_name_desc =             Nombre del link de inicio , p.ej. &quot;Back to homepage&quot;
-template =                        Tema
-template_desc =                   Tema para el diseño de la pagina
-language_file =                   Lenguaje
-language_file_desc =              Lenguaje del Foro
+#template =                        Tema
+#template_desc =                   Tema para el diseño de la pagina
+#language_file =                   Lenguaje
+#language_file_desc =              Lenguaje del Foro
+default_language =                Language
+default_language_desc =           Default language of the forum
+default_time_zone =               Time zone
+default_time_zone_desc =          Default time zone
+default_time_difference =         Time zone setting not available. Alternatively the time difference between server and forum time can be specified (in minutes, e.g. 240 or -360):
+default_theme =                   Theme
+default_theme_desc =              Default forum layout theme
 threads_per_page =                Hilos por pagina
 threads_per_page_desc =           Cuantos hilos deberian ser mostrados por pagina?
 auto_lock_old_threads =           Bloqueo automatico de hilos antiguos
 auto_lock_old_threads_desc =      Automaticamente se bloquearan los hilos y sus respuestas mayores a dias? (0=desactivado)
-time_difference =                 Diferencia horaria:
-time_difference_desc =            Diferencia de tiempo entre el servidor y el tiempo de foro en minutos
+#time_difference =                 Diferencia horaria:
+#time_difference_desc =            Diferencia de tiempo entre el servidor y el tiempo de foro en minutos
 accession =                       Permiso de acceso
 accession_desc =                  Quien tiene el acceso al foro?
 post_permission =                 Permiso de postear
@@ -997,6 +1029,14 @@ Direccion para acceder:
 [login_link]
 
 Puedes cambiar la contrasena despues de entrar."""
+
+admin_activate_user_email_subj =       Forum registration
+admin_activate_user_email_text =       """Hi [name],
+welcome to the forum!
+
+Link to log in directly:
+[login_link]
+"""
 
 new_user_email_sj =               Registro en el foro
 new_user_email_txt =              """Hola [name],

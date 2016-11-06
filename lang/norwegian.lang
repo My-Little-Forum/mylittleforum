@@ -140,6 +140,9 @@ subnav_restore =                  Gjenopprett
 subnav_locked =                   Konto låst
 subnav_delete_cookie =            Slett informasjonskapsel (cookie)
 subnav_disabled =                 Forumet er ute av drift
+subnav_bookmarks =                Bookmarks
+subnav_delete_bookmark =          Delete bookmark
+subnav_edit_bookmark =            Edit bookmark
 subnav_page_error =               Feil
 subnav_page =                     [var]
 counter =                         [total_postings] innlegg i [total_threads] tråder. Forumet har [registered_users] registrerte brukere.
@@ -178,6 +181,7 @@ mark_linktitle =                  Marker innlegg
 unmark_linktitle =                Fjern markering
 delete_marked_link =              Slett markerte innlegg
 manage_postings_link =            Administrer innlegg
+non_activated_users_link =        [counter] non-activated user(s)
 show_spam_link =                  Vis spam ([number])
 hide_spam_link =                  Skjul spam
 delete_spam_link =                Slett spam
@@ -254,6 +258,18 @@ delete_backup_confirm =           Er du sikker på at du vil slette denne backup
 delete_sel_backup_confirm =       Er du sikker på at du vil slette alle markerte backup-filer?
 drag_and_drop_title =             dra og slipp for å gå opp eller ned
 show_all_postings_link =          vis innlegg
+show_bookmarks_link =             Bookmarks
+show_userdata_linktitle =         Visit profil of [user]
+
+[bookmark]
+delete_bookmark_submit =          OK - Delete Bookmark
+delete_bookmark_confirm =         Do you really want to delete this bookmark?
+no_bookmarks =                    No bookmarks specified.
+edit_bookmark =                   Bookmark:
+bookmark_title =                  Name of bookmark
+bookmark_user_name =              User name
+bookmark_creation_time =          Bookmark creation
+bookmark_posting_time =           Posting creation
 
 [entry]
 edited_by =                       redigert av [name], [time]
@@ -263,6 +279,10 @@ several_views =                   [views] visninger
 complete_thread_marking =         Hele tråden:
 branch_marking =                  Foreløpig trådgren:
 direct_replies_marking =          Direkte svar på dette innlegget:
+add_bookmark_message_linkname =   add bookmark
+add_bookmark_message_linktitle =  Add this posting to your personal bookmark list
+delete_bookmark_message_linkname =delete bookmark
+delete_bookmark_message_linktitle=Remove this posting from your personal bookmark list
 edit_message_linkname =           rediger
 edit_message_linktitle =          rediger innlegg
 delete_message_linkname =         slett
@@ -639,11 +659,11 @@ error_no_text =                   Du har ikke skrevet inn tekst i meldingsfeltet
 error_no_email =                  Du har ikke skrevet inn en avsender-e-post
 error_no_subject =                Du har ikke skrevet inn emne
 error_email_invalid =             E-postadressen er ugyldig
-error_not_accepted_word =         Meldingen inneholder minst et ord som ikke er akseptert
+#error_not_accepted_word =         Meldingen inneholder minst et ord som ikke er akseptert
 error_email_subject_too_long =    Emnet er for langt
 error_email_text_too_long =       Meldingen er for lang ([text_length] tegn - maksimum antall tegn er [text_maxlength])
 error_spam_suspicion =            Mistanke om spam! Prøv å redigere meldingen din (f.eks. fjern lenker)
-error_mailserver =                Kunne ikke sende e-posten!
+#error_mailserver =                Kunne ikke sende e-posten!
 
 [admin]
 enabled =                         aktivert
@@ -663,6 +683,10 @@ spam_protection_link =            Spambeskyttelse
 backup_restore_link =             Backup
 update_link =                     Oppdater
 reset_uninstall_link =            Tilbakestill eller avinstaller forum
+releases_info_header =            Actual release
+releases_list_link =              Check the releases list for the actual version.
+warning_header =                  Warning
+warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
 
 # forum settings:
 clear_chache =                    Tøm cache (bufferfil) for å gjøre endringene gjeldende for eksisterende innlegg
@@ -839,8 +863,8 @@ delete_selected_users =           Slett valgt
 add_user =                        Legg til bruker
 email_list =                      Liste med e-postadressene til registrerte brukere
 clear_userdata =                  Slett brukerdata
-edit_user_name =                  Brukernavn:
-edit_user_avatar =                Personlig bilde:
+#edit_user_name =                  Brukernavn:
+#edit_user_avatar =                Personlig bilde:
 delete_avatar =                   Slett personlig bilde
 delete_user_confirmation =        Er du sikker på at du vil slette denne brukeren?
 delete_users_confirmation =       Er du sikker på at du vil slette følgende brukere?
@@ -893,6 +917,9 @@ banned_user_agents_desc =         Streng i user agents som ikke skal ha tilgang.
 not_accepted_words =              Bannlyste ord
 not_accepted_words_desc =         Ord eller domener som ikke vil bli akseptert i innlegg og e-poster. For å spesifisere flere ord, skill dem med komma.
 spam_protection_submit =          OK - Lagre
+error_own_ip_banned =             You banned your own IP!
+error_own_user_agent_banned =     You banned your own user agent!
+spam_protection_saved =           Saved
 
 # Reset / Uninstall:
 reset_forum =                     Tilbakestill forum
@@ -996,6 +1023,14 @@ Lenke for direkte innlogging:
 [login_link]
 
 Passordet kan endres etter at du har logget inn."""
+
+admin_activate_user_email_subj =       Forum registration
+admin_activate_user_email_text =       """Hi [name],
+welcome to the forum!
+
+Link to log in directly:
+[login_link]
+"""
 
 new_user_email_sj =               Forumregistrering
 new_user_email_txt =              """Hei [name],

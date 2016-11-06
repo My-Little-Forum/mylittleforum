@@ -186,8 +186,8 @@ manage_postings_link =            Einträge verwalten
 non_activated_users_link =        [counter] freizuschaltende(r) Benutzer
 show_spam_link =                  Spam anzeigen ([number])
 hide_spam_link =                  Spam ausblenden
-list_spam_link =                  Spam auflisten
 delete_spam_link =                Spam löschen
+list_spam_link =                  Spam auflisten
 no_replies =                      keine Antworten
 one_reply =                       eine Antwort
 several_replies =                 [replies] Antworten
@@ -821,9 +821,10 @@ disable_smilies =                 Smilies deaktivieren
 enable_smilies =                  Smilies aktivieren
 add_smiley =                      Smiley hinzufügen:
 add_smiley_code =                 Code:
+smilies_disabled =                Smilies sind deaktiviert.
 
 # Seiten:
-page_title =                      Titel 
+page_title =                      Titel
 page_content =                    Inhalt
 page_content_desc =               zur Formatierung kann HTML verwendet werden
 page_menu_linkname =              Menü-Linkname
