@@ -161,6 +161,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 	// add new database table
 	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
 		$db_settings['bookmark_table'] = $table_prefix . 'bookmarks';
+		$db_settings['read_status_table'] = $table_prefix . 'read_entries';
 		$db_settings_file = @fopen("./config/db_settings.php", "w") or $update['errors'][] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
 		if(empty($update['errors'])) {
 			flock($db_settings_file, 2);
