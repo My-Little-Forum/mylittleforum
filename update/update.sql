@@ -334,5 +334,6 @@ UPDATE mlf2_settings SET value = '2.3.7' WHERE name = 'version';
 -- 2.3.7 to 2.4.0
 /*
 CREATE TABLE mlf2_bookmarks (id int(11) NOT NULL AUTO_INCREMENT,user_id int(11) NOT NULL,posting_id int(11) NOT NULL,time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,subject varchar(255) NOT NULL,order_id int(11) NOT NULL DEFAULT '0',PRIMARY KEY (id),UNIQUE KEY UNIQUE_uid_pid (user_id,posting_id));
+CREATE TABLE mlf2_read_entries (id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, user_id int(11) UNSIGNED NOT NULL, posting_id int(11) UNSIGNED NOT NULL, time timestamp NOT NULL, PRIMARY KEY (id), UNIQUE KEY read_per_user (user_id, posting_id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 UPDATE mlf2_settings SET value = '2.4.0' WHERE name = 'version';
 */
