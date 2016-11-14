@@ -1288,6 +1288,7 @@ function delete_posting_recursive($id)
          {
           @mysqli_query($connid, "DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id=".intval($ids_data['id']));
 		  @mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE posting_id=".intval($ids_data['id']));
+		  @mysqli_query($connid, "DELETE FROM ".$db_settings['read_status_table']." WHERE posting_id=".intval($ids_data['id']));
          }
         mysqli_free_result($ids_result);
         // end clear cache
@@ -1300,6 +1301,7 @@ function delete_posting_recursive($id)
     @mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE id = ".intval($id));
     @mysqli_query($connid, "DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id = ".intval($id));
 	@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE posting_id = ".intval($id));
+	@mysqli_query($connid, "DELETE FROM ".$db_settings['read_status_table']." WHERE posting_id = ".intval($id));
     if(isset($child_ids) && is_array($child_ids))
      {
       foreach($child_ids as $child_id)
@@ -1307,6 +1309,7 @@ function delete_posting_recursive($id)
         @mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE id = ".intval($child_id));
         @mysqli_query($connid, "DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id = ".intval($child_id));
 		@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE posting_id = ".intval($child_id));
+		@mysqli_query($connid, "DELETE FROM ".$db_settings['read_status_table']." WHERE posting_id = ".intval($child_id));
        }
      }
     // set last reply time:
