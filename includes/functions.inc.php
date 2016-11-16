@@ -262,6 +262,24 @@ function save_read($save_db=true)
  }
 
 /**
+ * saves the status "entry read" to the database table "mlf2_read_entries"
+ *
+ * @param int $entry, ID of the entry itself
+ * @param resource $connid, ID of the database connection
+ * @return boolean $ret, success: true, else: false
+ */
+function save_read_status($entry = 0, $connid) {
+	global $settings, $db_settings;
+	$ret = false;
+	$entry = intval($entry);
+	if (!is_numeric($entry)) return false;
+	if (isset($_SESSION[$settings['session_prefix'].'user_id']) and $entry > 0) {
+		$ret = @mysqli_query($connid, "INSERT INTO ". $db_settings['read_status_table'] ." (user_id, posting_id, time) VALUES (". intval($_SESSION[$settings['session_prefix'].'user_id']) .", ". $entry .", NOW()) ON DUPLICATE KEY UPDATE time = NOW()");
+	}
+	return $ret;
+}
+
+/**
  * generates an array of thread items for the navigation within a thread
  *
  * @param array $child_array
