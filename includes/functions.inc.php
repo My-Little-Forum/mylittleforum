@@ -264,17 +264,20 @@ function save_read($save_db=true)
 /**
  * saves the status "entry read" to the database table "mlf2_read_entries"
  *
- * @param int $entry, ID of the entry itself
  * @param resource $connid, ID of the database connection
+ * @param int $user_id, ID of the registered, actually acting user
+ * @param int $entry, ID of the entry itself
+ *
  * @return boolean $ret, success: true, else: false
  */
-function save_read_status($entry = 0, $connid) {
+function save_read_status($connid, $user_id, $entry_id) {
 	global $settings, $db_settings;
 	$ret = false;
 	$entry = intval($entry);
-	if (!is_numeric($entry)) return false;
-	if (isset($_SESSION[$settings['session_prefix'].'user_id']) and $entry > 0) {
-		$ret = @mysqli_query($connid, "INSERT INTO ". $db_settings['read_status_table'] ." (user_id, posting_id, time) VALUES (". intval($_SESSION[$settings['session_prefix'].'user_id']) .", ". $entry .", NOW()) ON DUPLICATE KEY UPDATE time = NOW()");
+	$user_id = intval($user_id)
+;	if (!is_numeric($entry)) return false;
+	if ($_SESSION[$settings['session_prefix'].'user_id'] === $user_id and $entry > 0) {
+		$ret = @mysqli_query($connid, "INSERT INTO ". $db_settings['read_status_table'] ." (user_id, posting_id, time) VALUES (". $user_id .", ". $entry .", NOW()) ON DUPLICATE KEY UPDATE time = NOW()");
 	}
 	return $ret;
 }
