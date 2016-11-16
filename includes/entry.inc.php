@@ -48,9 +48,9 @@ if(isset($id) && $id > 0)
 	 if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		 // bookmark handling
 		 $user_id  = $_SESSION[$settings['session_prefix'].'user_id'];
-		 $result   = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($user_id)." AND `posting_id` = ".intval($id)."") or raise_error('database_error',mysqli_error($connid));
-		 $bookmark = mysqli_fetch_row($result);
-		 mysqli_free_result($result);
+		 $bookmark_result = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($user_id)." AND `posting_id` = ".intval($id)."") or raise_error('database_error',mysqli_error($connid));
+		 $bookmark = mysqli_fetch_row($bookmark_result);
+		 mysqli_free_result($bookmark_result);
 		 if (isset($bookmark) && intval($bookmark) == 1)
 				$entrydata['bookmarkedby'] = intval($user_id);
 		 // read-status handling

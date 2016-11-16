@@ -242,17 +242,19 @@ else $order = 'time';
       else $data['views']=0;
 
 		if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-			$bookmark_result = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($_SESSION[$settings['session_prefix'].'user_id'])." AND `posting_id` = ".intval($data['id'])."") or raise_error('database_error',mysqli_error($connid));
+			// bookmark handling
+			$user_id  = $_SESSION[$settings['session_prefix'].'user_id'];
+			$bookmark_result = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($user_id)." AND `posting_id` = ".intval($data['id'])."") or raise_error('database_error',mysqli_error($connid));
 			$bookmark = mysqli_fetch_row($bookmark_result);
 			mysqli_free_result($bookmark_result);
 			if (isset($bookmark) && intval($bookmark) == 1) {
-				$data['bookmarkedby'] = intval($_SESSION[$settings['session_prefix'].'user_id']);
+				$data['bookmarkedby'] = intval($user_id);
 				$data['options']['delete_bookmark'] = true;
 			}
 			else
 				$data['options']['add_bookmark'] = true;
-		} 
-	  
+		}
+
 	  $data_array[$data["id"]] = $data;
       $child_array[$data["pid"]][] =  $data["id"];
      }
