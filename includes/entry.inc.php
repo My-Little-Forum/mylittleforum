@@ -46,17 +46,18 @@ if(isset($id) && $id > 0)
       }
 
 	 if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+		 // bookmark handling
 		 $user_id  = $_SESSION[$settings['session_prefix'].'user_id'];
 		 $result   = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($user_id)." AND `posting_id` = ".intval($id)."") or raise_error('database_error',mysqli_error($connid));
 		 $bookmark = mysqli_fetch_row($result);
 		 mysqli_free_result($result);
 		 if (isset($bookmark) && intval($bookmark) == 1)
-			 $entrydata['bookmarkedby'] = intval($user_id);
-	 } 
-	  
-     if(isset($settings['count_views']) && $settings['count_views'] == 1) mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, views=views+1 WHERE id=".$id);
+				$entrydata['bookmarkedby'] = intval($user_id);
+		 // read-status handling
+		 $rstatus = save_read_status($connid, $user_id, $id);
+	 }
 
-     save_read(set_read($id));
+     if(isset($settings['count_views']) && $settings['count_views'] == 1) mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, views=views+1 WHERE id=".$id);
 
      if($entrydata['user_id'] > 0)
       {
