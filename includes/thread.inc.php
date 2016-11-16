@@ -253,6 +253,8 @@ else $order = 'time';
 			}
 			else
 				$data['options']['add_bookmark'] = true;
+			// read-status handling
+			$rstatus = save_read_status($connid, $user_id, $data['id']);
 		}
 
 	  $data_array[$data["id"]] = $data;
@@ -260,7 +262,6 @@ else $order = 'time';
      }
     mysqli_free_result($result);
 
-    save_read(set_read($new_read));
     }
     else
      {
