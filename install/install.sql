@@ -12,7 +12,7 @@ CREATE TABLE mlf2_logincontrol (time timestamp NOT NULL default CURRENT_TIMESTAM
 CREATE TABLE mlf2_entries_cache (cache_id int(11) NOT NULL, cache_text mediumtext NOT NULL, PRIMARY KEY (cache_id)) CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_userdata_cache (cache_id int(11) NOT NULL, cache_signature text NOT NULL, cache_profile text NOT NULL, PRIMARY KEY (cache_id)) CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_bookmarks (id int(11) NOT NULL AUTO_INCREMENT, user_id int(11) NOT NULL, posting_id int(11) NOT NULL, time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, subject varchar(255) NOT NULL, order_id int(11) NOT NULL DEFAULT '0', PRIMARY KEY (id), UNIQUE KEY UNIQUE_uid_pid (user_id,posting_id)) CHARSET=utf8 COLLATE=utf8_general_ci;
-CREATE TABLE mlf2_read_entries (id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, user_id int(11) UNSIGNED NOT NULL, posting_id int(11) UNSIGNED NOT NULL, time timestamp NOT NULL, PRIMARY KEY (id), UNIQUE KEY read_per_user (user_id, posting_id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE mlf2_read_entries (user_id int(11) UNSIGNED NOT NULL, posting_id int(11) UNSIGNED NOT NULL, time timestamp NOT NULL, UNIQUE KEY read_per_user (user_id, posting_id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 INSERT INTO mlf2_banlists VALUES ('user_agents', '');
