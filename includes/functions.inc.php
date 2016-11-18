@@ -80,45 +80,43 @@ function get_settings()
  *
  * @param int $current_time
  */
-function daily_actions($current_time=0)
- {
-  global $settings, $db_settings, $connid;
-  if($current_time==0) $current_time = TIMESTAMP;
-  if($current_time > $settings['next_daily_actions'])
-   {
-    // clear up expired auto_login_codes:
-    if($settings['autologin']==1)
-     {
-      @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET auto_login_code='' WHERE auto_login_code != '' AND last_login < (NOW() - INTERVAL ".$settings['cookie_validity_days']." DAY)");
-     }
-    // lock old threads:
-    if($settings['auto_lock_old_threads']>0)
-     {
-      @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET locked=1 WHERE locked=0 AND last_reply < (NOW() - INTERVAL ".intval($settings['auto_lock_old_threads'])." DAY)");
-     }
-    // delete IPs in old entries and user accounts:
-    if($settings['delete_ips']>0)
-     {
-      @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET ip='' WHERE ip!='' AND time < (NOW() - INTERVAL ".intval($settings['delete_ips'])." HOUR)");
-      @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_ip='' WHERE user_ip!='' AND last_login < (NOW() - INTERVAL ".intval($settings['delete_ips'])." HOUR)");
-     }    
-    
-    // set time of next daily actions:
-    if($today_beginning = mktime(0,0,0, date("n"), date("j"), date("Y")))
-     {
-      $time_parts = explode(':',$settings['daily_actions_time']);
-      $hours = intval($time_parts[0]);
-      if(isset($time_parts[1])) $minutes = intval($time_parts[1]);
-      else $minutes = 0;
-      $delay = $hours * 3600 + $minutes * 60;
-      $next_daily_actions = $today_beginning + $delay + 86400;
-     }
-    else
-     {
-      $next_daily_actions = $current_time + 86400;
-     }
-    @mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($next_daily_actions)."' WHERE name='next_daily_actions'");
-   }
+function daily_actions($current_time=0) {
+	global $settings, $db_settings, $connid;
+	if($current_time==0) 
+		$current_time = TIMESTAMP;
+	if($current_time > $settings['next_daily_actions']) {
+		// clear up expired auto_login_codes:
+		if($settings['autologin'] == 1) {
+			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET auto_login_code='' WHERE auto_login_code != '' AND last_login < (NOW() - INTERVAL ".$settings['cookie_validity_days']." DAY)");
+		}
+		// remove read state on-lock and lock old threads:
+		if($settings['auto_lock_old_threads'] > 0) {
+			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `posting_id` IN (SELECT `id` FROM `".$db_settings['forum_table']."` WHERE `last_reply` < (NOW() - INTERVAL ".intval($settings['auto_lock_old_threads'])." DAY))");
+			@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET locked=1 WHERE locked=0 AND last_reply < (NOW() - INTERVAL ".intval($settings['auto_lock_old_threads'])." DAY)");
+		}
+		// delete IPs in old entries and user accounts:
+		if($settings['delete_ips'] > 0) {
+			@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET ip='' WHERE ip!='' AND time < (NOW() - INTERVAL ".intval($settings['delete_ips'])." HOUR)");
+			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_ip='' WHERE user_ip!='' AND last_login < (NOW() - INTERVAL ".intval($settings['delete_ips'])." HOUR)");
+		}
+		// remove read state by time:
+		if($settings['read_state_expiration_date'] > 0) {		
+			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ".intval($settings['read_state_expiration_date'])." DAY)");
+		}
+		// set time of next daily actions:
+		if($today_beginning = mktime(0,0,0, date("n"), date("j"), date("Y"))) {
+			$time_parts = explode(':',$settings['daily_actions_time']);
+			$hours = intval($time_parts[0]);
+			if(isset($time_parts[1])) $minutes = intval($time_parts[1]);
+			else $minutes = 0;
+			$delay = $hours * 3600 + $minutes * 60;
+			$next_daily_actions = $today_beginning + $delay + 86400;
+		}
+		else {
+			$next_daily_actions = $current_time + 86400;
+		}
+		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($next_daily_actions)."' WHERE name='next_daily_actions'");
+	}
  }
 
 /**
