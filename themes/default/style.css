@@ -479,67 +479,83 @@ ul.pagination-index-table
 /* thread links: */
 a.thread,
 a.thread:link            { padding-left:18px; color:#0000cc; text-decoration:none; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
-a.thread:visited         { /*color:#800080;*/ }
+a.thread:visited         { color:#007; }
+a.thread:focus,
 a.thread:hover           { color:#0000ff; text-decoration:underline; }
 a.thread:active          { color:#ff0000; }
 /* sticky threads: */
 a.thread-sticky,
 a.thread-sticky:link     { padding-left:18px; color:#0000cc; text-decoration:none; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -250px; }
-a.thread-sticky:visited  { /*color:#800080;*/ }
+a.thread-sticky:visited  { color:#007; }
+a.thread-sticky:focus,
 a.thread-sticky:hover    { color:#0000ff; text-decoration:underline; }
 a.thread-sticky:active   { color:#ff0000; }
 /* sticky and locked threads: */
 a.thread-sticky-locked,
 a.thread-sticky-locked:link     { padding-left:18px; color:#0000cc; text-decoration:none; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -1210px; }
-a.thread-sticky-locked:visited  { /*color:#800080;*/ }
+a.thread-sticky-locked:visited  { color:#007; }
+a.thread-sticky-locked:focus,
 a.thread-sticky-locked:hover    { color:#0000ff; text-decoration:underline; }
 a.thread-sticky-locked:active   { color:#ff0000; }
 /* locked threads: */
 a.thread-locked,
 a.thread-locked:link     { padding-left:18px; color:#0000cc; text-decoration:none; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -1110px; }
-a.thread-locked:visited  { /*color:#800080;*/ }
+a.thread-locked:visited  { color:#007; }
+a.thread-locked:focus,
 a.thread-locked:hover    { color:#0000ff; text-decoration:underline; }
 a.thread-locked:active   { color:#ff0000; }
 /* new threads: */
 a.threadnew-sticky,
 a.threadnew-sticky:link  { padding-left:18px; color:#0000cc; text-decoration:none; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -300px; }
 a.threadnew-sticky:visited
-                         { /*color:#800080;*/ }
+                         { color:#007; }
+a.threadnew-sticky:focus,
 a.threadnew-sticky:hover { color:#0000ff; text-decoration:underline; }
 a.threadnew-sticky:active
                          { color:#ff0000; }
 /* new sticky and locked threads: */
 a.threadnew-sticky-locked,
 a.threadnew-sticky-locked:link    { padding-left:18px; color:#0000cc; text-decoration:none; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -1260px; }
-a.threadnew-sticky-locked:visited { /*color:#800080;*/ }
+a.threadnew-sticky-locked:visited { color:#007; }
+a.threadnew-sticky-locked:focus,
 a.threadnew-sticky-locked:hover   { color:#0000ff; text-decoration:underline; }
 a.threadnew-sticky-locked:active  { color:#ff0000; }
 /* new locked threads: */
 a.threadnew-locked,
 a.threadnew-locked:link    { padding-left:18px; color:#0000cc; text-decoration:none; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -1160px; }
-a.threadnew-locked:visited { /*color:#800080;*/ }
+a.threadnew-locked:visited { color:#007; }
+a.threadnew-locked:focus,
 a.threadnew-locked:hover   { color:#0000ff; text-decoration:underline; }
 a.threadnew-locked:active  { color:#ff0000; }
 /* new threads: */
 a.threadnew,
 a.threadnew:link         { padding-left:18px; color:#0000cc; text-decoration:none; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -198px; }
-a.threadnew:visited      { /*color:#800080;*/ }
+a.threadnew:visited      { color:#007; }
+a.threadnew:focus,
 a.threadnew:hover        { color:#0000ff; text-decoration:underline; }
 a.threadnew:active       { color:#ff0000; }
 /* replies: */
 a.reply,
 a.reply:link             { padding-left:16px; color:#0000cc; text-decoration:none; font-weight:normal; background:url(images/bg_sprite_1.png) no-repeat 0 -348px; }
-a.reply:visited          { /*color:#800080;*/ }
+a.reply:visited          { color:#007; }
+a.reply:focus,
 a.reply:hover            { color:#0000ff; text-decoration:underline; }
 a.reply:active           { color:#ff0000; }
 a.replynew,
 a.replynew:link          { padding-left:16px; color:#0000cc; text-decoration:none; font-weight:normal; background:url(images/bg_sprite_1.png) no-repeat 0 -398px; }
-a.replynew:visited       { /*color:#800080;*/ }
+a.replynew:visited       { color:#007; }
+a.replynew:focus,
 a.replynew:hover         { color:#0000ff; text-decoration:underline; }
 a.replynew:active        { color:#ff0000; }
 
-.read                    { color:#800080 !important; }
-a.read:active            { color:#ff0000 !important; }
+.read,
+a.read:link,
+a.read:visited,
+#latest-postings li a span.read
+                         { color:#007; }
+a.read:focus,
+a.read:hover             { color:#00f; }
+a.read:active            { color:#f00; }
 
 .currentthread           { padding-left:18px; color:#ff0000; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
 .currentthreadnew        { padding-left:18px; color:#ff0000; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -198px; }
