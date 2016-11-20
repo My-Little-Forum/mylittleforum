@@ -29,7 +29,7 @@ if(isset($id) && $id > 0)
    $result=@mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL ".$time_difference." MINUTE) AS disp_time,
                          UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL ".$time_difference." MINUTE) AS edit_time,
                          UNIX_TIMESTAMP(edited - INTERVAL ".$settings['edit_delay']." MINUTE) AS edited_diff, edited_by, name, email,
-                         subject, hp, location, ip, text, cache_text, tags, show_signature, category, locked, ip, views, spam, spam_check_status, edit_key,
+                         subject, hp, location, ip, text, cache_text, tags, show_signature, category, locked, views, spam, spam_check_status, edit_key,
                          user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, rst.user_id AS req_user
                          FROM ".$db_settings['forum_table']." AS ft
                          LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=ft.id
