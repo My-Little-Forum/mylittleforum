@@ -22,7 +22,7 @@
 {assign var=name value="$name"}
 {/if}
 {if $posting_user_id>0 && ($user || $settings.user_area_public==1)}{assign var=name value="<a href=\"index.php?mode=user&amp;show_user=$posting_user_id\">$name</a>"}{/if}
-<div class="posting">{if $spam}<p class="spam-note">{#spam_note#}</p>{/if}
+<div class="posting{if $is_read} read{/if}">{if $spam}<p class="spam-note">{#spam_note#}</p>{/if}
 {if $avatar}<img class="avatar" src="{$avatar.image}" alt="{#avatar_img_alt#}" width="{$avatar.width}" height="{$avatar.height}" />{/if}
 <h1>{$subject}{if $category_name} <span class="category">({$category_name})</span>{/if}</h1>
 <p class="author">{*{assign var=formated_time value=$disp_time|date_format:#time_format_full#}*}{if $location}{#posted_by_location#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[location]":$location|replace:"[time]":$formated_time}{else}{#posted_by#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[time]":$formated_time}{/if} <span class="ago">({if $ago.days>1}{#posting_several_days_ago#|replace:"[days]":$ago.days_rounded}{else}{if $ago.days==0 && $ago.hours==0}{#posting_minutes_ago#|replace:"[minutes]":$ago.minutes}{elseif $ago.days==0 && $ago.hours!=0}{#posting_hours_ago#|replace:"[hours]":$ago.hours|replace:"[minutes]":$ago.minutes}{else}{#posting_one_day_ago#|replace:"[hours]":$ago.hours|replace:"[minutes]":$ago.minutes}{/if}{/if})</span>{if $admin && $ip} <span class="ip">({$ip})</span>{/if}{if $pid!=0} <span class="op-link"><a href="index.php?id={$pid}" title="{#original_posting_linktitle#|replace:"[name]":$data.$pid.name}">@ {$data.$pid.name}</a></span>{/if}{if $edited}{*{assign var=formated_edit_time value=$edit_time|date_format:#time_format_full#}*}<br />
@@ -69,7 +69,7 @@
 
 <ul class="thread openthread">
 {function name=tree level=0}
-<li>{if $data.$element.id!=$id}<a class="{if $data.$element.pid==0&&$data.$element.new}threadnew{elseif $data.$element.pid==0}thread{elseif $data.$element.pid!=0&&$data.$element.new}replynew{else}reply{/if}{if $read && in_array($data.$element.id,$read)} read{/if}" href="index.php?id={$data.$element.id}">{$data.$element.subject}</a>{else}<span class="{if $data.$element.pid==0}{if $data.$element.new}currentthreadnew{else}currentthread{/if}{else}{if $data.$element.new}currentreplynew{else}currentreply{/if}{/if}">{$data.$element.subject}</span>{/if}{if $data.$element.no_text} <img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="[ {#no_text_alt#} ]" width="11" height="9" />{/if} - 
+<li>{if $data.$element.id!=$id}<a class="{if $data.$element.pid==0&&$data.$element.new}threadnew{elseif $data.$element.pid==0}thread{elseif $data.$element.pid!=0&&$data.$element.new}replynew{else}reply{/if}{if $data.$element.is_read} read{/if}" href="index.php?id={$data.$element.id}">{$data.$element.subject}</a>{else}<span class="{if $data.$element.pid==0}{if $data.$element.new}currentthreadnew{else}currentthread{/if}{else}{if $data.$element.new}currentreplynew{else}currentreply{/if}{/if}">{$data.$element.subject}</span>{/if}{if $data.$element.no_text} <img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="[ {#no_text_alt#} ]" width="11" height="9" />{/if} - 
 
 {if $data.$element.user_id>0}
 <strong class="registered_user">{$data.$element.name}</strong>, 

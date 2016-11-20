@@ -16,6 +16,12 @@ if(empty($id))
   exit;
  }
 
+if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+	$tmp_user_id = $_SESSION[$settings['session_prefix'].'user_id'];
+} else {
+	$tmp_user_id = 0;
+}
+
 if(isset($_SESSION[$settings['session_prefix'].'usersettings']['thread_display'])) $thread_display = $_SESSION[$settings['session_prefix'].'usersettings']['thread_display'];
 else $thread_display = 0;
 
@@ -61,16 +67,17 @@ else $order = 'time';
     $smarty->assign('category_name',$categories[$data["category"]]);
 
     // get all postings of thread:
-    $result = mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS disp_time,
-                           UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(edited + INTERVAL ".intval($time_difference)." MINUTE) AS e_time,
+    $result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS disp_time,
+                           UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL ".intval($time_difference)." MINUTE) AS e_time,
                            UNIX_TIMESTAMP(edited - INTERVAL ".$settings['edit_delay']." MINUTE) AS edited_diff, edited_by, name, email,
                            subject, hp, location, ip, text, cache_text, tags, show_signature, views, spam, spam_check_status, category, locked, ip,
-                           user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key
-                           FROM ".$db_settings['forum_table']."
-                           LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=id
-                           LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+                           user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, rst.user_id AS req_user
+                           FROM ".$db_settings['forum_table']." AS ft
+                           LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=ft.id
+                           LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
                            LEFT JOIN ".$db_settings['userdata_cache_table']." ON ".$db_settings['userdata_cache_table'].".cache_id=".$db_settings['userdata_table'].".user_id
-                           WHERE tid = ".$tid.$display_spam_query_and." ORDER BY time ASC") or raise_error('database_error',mysqli_error($connid));
+                           LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
+                           WHERE tid = ".$tid.$display_spam_query_and." ORDER BY ft.time ASC") or raise_error('database_error',mysqli_error($connid));
 
     if(mysqli_num_rows($result) > 0)
      {
@@ -256,6 +263,11 @@ else $order = 'time';
 			// read-status handling
 			$rstatus = save_read_status($connid, $user_id, $data['id']);
 		}
+     if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
+       $data['is_read'] = true;
+     } else {
+       $data['is_read'] = false;
+     }
 
 	  $data_array[$data["id"]] = $data;
       $child_array[$data["pid"]][] =  $data["id"];
