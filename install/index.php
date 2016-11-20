@@ -203,8 +203,8 @@ if(isset($_POST['install_submit']))
 								'login_control_table'  => 'logincontrol',
 								'entry_cache_table'    => 'entries_cache',
 								'userdata_cache_table' => 'userdata_cache',
-								'bookmark_table'       => 'bookmarks'
-								'read_status_table'    => 'read_entries';
+								'bookmark_table'       => 'bookmarks',
+								'read_status_table'    => 'read_entries'
 							);
 
 		clearstatcache();
