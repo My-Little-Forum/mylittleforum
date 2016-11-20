@@ -11,7 +11,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
   $auto_login_id = intval(substr($_COOKIE[$settings['session_prefix'].'auto_login'],50));
   if(isset($auto_login_id) && $auto_login_id>0 && isset($auto_login_code) && trim($auto_login_code)!='')
    {
-    $result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, entries_read FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($auto_login_id)) or raise_error('database_error',mysqli_error($connid));
+    $result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($auto_login_id)) or raise_error('database_error',mysqli_error($connid));
     if(mysqli_num_rows($result)==1)
      {
       $feld = mysqli_fetch_array($result);
@@ -29,8 +29,6 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
         $usersettings['page'] = 1;
         $usersettings['category'] = 0;
         $usersettings['latest_postings'] = 1;
-        if(empty($feld['entries_read'])) $usersettings['read'] = array();
-        else $usersettings['read'] = explode(',',$feld['entries_read']);
 
         if(!is_null($feld['category_selection']))
          {
@@ -79,9 +77,6 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
         $_SESSION[$settings['session_prefix'].'user_name'] = $user_name;
         $_SESSION[$settings['session_prefix'].'user_type'] = $user_type;
         $_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
-
-        $read = set_read($usersettings['read']);
-        save_read(false);
 
         @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR'])."', pwf_code='', language='".mysqli_real_escape_string($connid, $language_update)."', time_zone='".mysqli_real_escape_string($connid, $time_zone_update)."', theme='".mysqli_real_escape_string($connid, $theme_update)."' WHERE user_id=".intval($user_id));
 

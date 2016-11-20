@@ -195,71 +195,6 @@ function filter_category_selection($categories, $allowed_categories)
  }
 
 /**
- * returns an array of read postigs
- *
- * @return array
- */
-function get_read()
- {
-  global $settings;
-  if(isset($_SESSION[$settings['session_prefix'].'usersettings']['read']))
-   {
-    return $_SESSION[$settings['session_prefix'].'usersettings']['read'];
-   }
-  elseif(isset($_COOKIE[$settings['session_prefix'].'read']))
-   {
-    $read_cookie = explode('.',$_COOKIE[$settings['session_prefix'].'read']);
-    foreach($read_cookie as $item)
-     {
-      if(intval($item)>0) $read[] = intval($item);
-     }
-    if(isset($read)) return $read;
-    else return array();
-   }
-  return array();
- }
-
-function set_read($ids)
- {
-  global $settings, $read;
-  if(is_array($ids))
-   {
-    foreach($ids as $id)
-     {
-      $read[] = $id;
-     }
-   }
-  else
-   {
-    $read[] = $ids;
-   }
-  $read = array_reverse($read);
-  $read = array_unique($read);
-  $read = array_reverse($read);
-  $read_items = count($read);
-  if($read_items > $settings['max_read_items'])
-   {
-    $too_much_items = $read_items - $settings['max_read_items'];
-    for($i=0;$i<$too_much_items;$i++)
-     {
-      unset($read[$i]);
-     }
-   }
-  return $read;
- }
-
-function save_read($save_db=true)
- {
-  global $settings, $read, $db_settings, $connid;
-  setcookie($settings['session_prefix'].'read',implode('.',$read),TIMESTAMP+(3600*24*30));
-  if(isset($_SESSION[$settings['session_prefix'].'user_id']))
-   {
-    $_SESSION[$settings['session_prefix'].'usersettings']['read'] = $read;
-    if($save_db) @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET entries_read = '".mysqli_real_escape_string($connid, implode(',',$read))."' WHERE user_id=".intval($_SESSION[$settings['session_prefix'].'user_id']));
-   }
- }
-
-/**
  * saves the status "entry read" to the database table "mlf2_read_entries"
  *
  * @param resource $connid, ID of the database connection
@@ -1931,7 +1866,7 @@ function create_backup_file($mode=0)
     $backup->assign("#\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['userdata_table'].";\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['userdata_cache_table'].";\n");
-    $result = @mysqli_query($connid, "SELECT user_id, user_type, user_name, user_real_name, gender, birthday, user_pw, user_email, email_contact, user_hp, user_location, signature, profile, logins, last_login, last_logout, user_ip, registered, category_selection, thread_order, user_view, sidebar, fold_threads, thread_display, new_posting_notification, new_user_notification, user_lock, auto_login_code, pwf_code, activate_code, language, time_zone, time_difference, theme, entries_read FROM ".$db_settings['userdata_table']) or $error=true;
+    $result = @mysqli_query($connid, "SELECT user_id, user_type, user_name, user_real_name, gender, birthday, user_pw, user_email, email_contact, user_hp, user_location, signature, profile, logins, last_login, last_logout, user_ip, registered, category_selection, thread_order, user_view, sidebar, fold_threads, thread_display, new_posting_notification, new_user_notification, user_lock, auto_login_code, pwf_code, activate_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']) or $error=true;
     $time_start = TIMESTAMP;
     while($data = mysqli_fetch_array($result))
      {
@@ -1956,11 +1891,10 @@ function create_backup_file($mode=0)
       $data['language'] = mysqli_real_escape_string($connid, $data['language']);
       $data['time_zone'] = mysqli_real_escape_string($connid, $data['time_zone']);
       $data['theme'] = mysqli_real_escape_string($connid, $data['theme']);
-      $data['entries_read'] = mysqli_real_escape_string($connid, $data['entries_read']);
       $data['auto_login_code'] = mysqli_real_escape_string($connid, $data['auto_login_code']);
       $data['pwf_code'] = mysqli_real_escape_string($connid, $data['pwf_code']);
       $data['activate_code'] = mysqli_real_escape_string($connid, $data['activate_code']);
-      $backup->assign("INSERT INTO ".$db_settings['userdata_table']." VALUES (".$data['user_id'].", ".$data['user_type'].", '".$data['user_name']."', '".$data['user_real_name']."', ".$data['gender'].", ".$data['birthday'].", '".$data['user_pw']."', '".$data['user_email']."', ".$data['email_contact'].", '".$data['user_hp']."', '".$data['user_location']."', '".$data['signature']."', '".$data['profile']."', ".$data['logins'].", ".$data['last_login'].", ".$data['last_logout'].", '".$data['user_ip']."', ".$data['registered'].", ".$data['category_selection'].", ".$data['thread_order'].", ".$data['user_view'].", ".$data['sidebar'].", ".$data['fold_threads'].", ".$data['thread_display'].", ".$data['new_posting_notification'].", ".$data['new_user_notification'].", ".$data['user_lock'].", '".$data['auto_login_code']."', '".$data['pwf_code']."', '".$data['activate_code']."', '".$data['language']."', '".$data['time_zone']."', ".$data['time_difference'].", '".$data['theme']."', '".$data['entries_read']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['userdata_table']." VALUES (".$data['user_id'].", ".$data['user_type'].", '".$data['user_name']."', '".$data['user_real_name']."', ".$data['gender'].", ".$data['birthday'].", '".$data['user_pw']."', '".$data['user_email']."', ".$data['email_contact'].", '".$data['user_hp']."', '".$data['user_location']."', '".$data['signature']."', '".$data['profile']."', ".$data['logins'].", ".$data['last_login'].", ".$data['last_logout'].", '".$data['user_ip']."', ".$data['registered'].", ".$data['category_selection'].", ".$data['thread_order'].", ".$data['user_view'].", ".$data['sidebar'].", ".$data['fold_threads'].", ".$data['thread_display'].", ".$data['new_posting_notification'].", ".$data['new_user_notification'].", ".$data['user_lock'].", '".$data['auto_login_code']."', '".$data['pwf_code']."', '".$data['activate_code']."', '".$data['language']."', '".$data['time_zone']."', ".$data['time_difference'].", '".$data['theme']."');\n");
      }
     mysqli_free_result($result);
    }

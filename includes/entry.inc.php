@@ -29,7 +29,7 @@ if(isset($id) && $id > 0)
    $result=@mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL ".$time_difference." MINUTE) AS disp_time,
                          UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL ".$time_difference." MINUTE) AS edit_time,
                          UNIX_TIMESTAMP(edited - INTERVAL ".$settings['edit_delay']." MINUTE) AS edited_diff, edited_by, name, email,
-                         subject, hp, location, ip, text, cache_text, tags, show_signature, category, locked, ip, views, spam, spam_check_status, edit_key,
+                         subject, hp, location, ip, text, cache_text, tags, show_signature, category, locked, views, spam, spam_check_status, edit_key,
                          user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, rst.user_id AS req_user
                          FROM ".$db_settings['forum_table']." AS ft
                          LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=ft.id
@@ -149,7 +149,6 @@ if(isset($id) && $id > 0)
    else $data['name'] = htmlspecialchars($data['name']);
    $data['subject'] = htmlspecialchars($data['subject']);
    $data['formated_time'] = format_time($lang['time_format'],$data['disp_time']);
-   
    if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
        $data['is_read'] = true;
       } else {
@@ -298,7 +297,7 @@ if($entrydata["edited_diff"] > 0 && $entrydata["edited_diff"] > $entrydata["time
 
 if(isset($entrydata['signature']) && $entrydata['signature'] != '' && $entrydata["show_signature"]==1)
  {
-  // user has a signature and wants it to be displaed in this posting. Check if it's already cached:
+  // user has a signature and wants it to be displayed in this posting. Check if it's already cached:
   if($entrydata['cache_signature']!='')
   {
    $smarty->assign('signature',$entrydata['cache_signature']);

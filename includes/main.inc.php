@@ -29,9 +29,6 @@ define('TIMESTAMP', $timestamp);
 // get settings:
 $settings = get_settings();
 
-// get read postings:
-$read = get_read();
-
 // CSRF protection token
 if (!isset($_SESSION['csrf_token'])) {
 	$_SESSION['csrf_token'] = $uniqid = uniqid('', true);
@@ -266,8 +263,8 @@ if(isset($_GET['refresh']))
   if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']))
    {
     $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] = TIMESTAMP;
-    $_SESSION[$settings['session_prefix'].'usersettings']['read'] = array();
-    @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_logout=NOW(), entries_read='' WHERE user_id='".intval($_SESSION[$settings['session_prefix'].'user_id'])."'");
+    #$_SESSION[$settings['session_prefix'].'usersettings']['read'] = array();
+    #@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_logout=NOW(), entries_read='' WHERE user_id='".intval($_SESSION[$settings['session_prefix'].'user_id'])."'");
    }
   setcookie($settings['session_prefix'].'last_visit',TIMESTAMP.".".TIMESTAMP,TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
   setcookie($settings['session_prefix'].'read','',0);
