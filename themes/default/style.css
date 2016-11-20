@@ -548,7 +548,6 @@ a.replynew:focus,
 a.replynew:hover         { color:#0000ff; text-decoration:underline; }
 a.replynew:active        { color:#ff0000; }
 
-a.read:active            { color:#ff0000 !important; }
 .read,
 a.read:link,
 a.read:visited,
@@ -556,6 +555,7 @@ a.read:visited,
                          { color:#007; }
 a.read:focus,
 a.read:hover             { color:#00f; }
+a.read:active            { color:#f00; }
 
 .currentthread           { padding-left:18px; color:#ff0000; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
 .currentthreadnew        { padding-left:18px; color:#ff0000; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -198px; }
