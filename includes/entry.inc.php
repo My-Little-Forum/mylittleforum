@@ -149,7 +149,6 @@ if(isset($id) && $id > 0)
    else $data['name'] = htmlspecialchars($data['name']);
    $data['subject'] = htmlspecialchars($data['subject']);
    $data['formated_time'] = format_time($lang['time_format'],$data['disp_time']);
-   
    if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
        $data['is_read'] = true;
       } else {
@@ -298,7 +297,7 @@ if($entrydata["edited_diff"] > 0 && $entrydata["edited_diff"] > $entrydata["time
 
 if(isset($entrydata['signature']) && $entrydata['signature'] != '' && $entrydata["show_signature"]==1)
  {
-  // user has a signature and wants it to be displaed in this posting. Check if it's already cached:
+  // user has a signature and wants it to be displayed in this posting. Check if it's already cached:
   if($entrydata['cache_signature']!='')
   {
    $smarty->assign('signature',$entrydata['cache_signature']);
