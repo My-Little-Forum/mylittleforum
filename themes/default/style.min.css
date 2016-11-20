@@ -330,36 +330,46 @@ ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:1
 .manage-postings legend{font-size:.82em;font-weight:700}
 a.thread,a.thread:link{padding-left:18px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
 a.thread:hover{color:#00f;text-decoration:underline}
+a.thread:visited{color:#007}
 a.thread:active{color:red}
 a.thread-sticky,a.thread-sticky:link{padding-left:18px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -250px}
 a.thread-sticky:hover{color:#00f;text-decoration:underline}
+a.thread-sticky:visited{color:#007}
 a.thread-sticky:active{color:red}
 a.thread-sticky-locked,a.thread-sticky-locked:link{padding-left:18px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -1210px}
 a.thread-sticky-locked:hover{color:#00f;text-decoration:underline}
+a.thread-sticky-locked:visited{color:#007}
 a.thread-sticky-locked:active{color:red}
 a.thread-locked,a.thread-locked:link{padding-left:18px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -1110px}
 a.thread-locked:hover{color:#00f;text-decoration:underline}
+a.thread-locked:visited{color:#007}
 a.thread-locked:active{color:red}
 a.threadnew-sticky,a.threadnew-sticky:link{padding-left:18px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -300px}
 a.threadnew-sticky:hover{color:#00f;text-decoration:underline}
+a.threadnew-sticky:visited{color:#007}
 a.threadnew-sticky:active{color:red}
 a.threadnew-sticky-locked,a.threadnew-sticky-locked:link{padding-left:18px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -1260px}
 a.threadnew-sticky-locked:hover{color:#00f;text-decoration:underline}
+a.threadnew-sticky-locked:visited{color:#007}
 a.threadnew-sticky-locked:active{color:red}
 a.threadnew-locked,a.threadnew-locked:link{padding-left:18px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -1160px}
 a.threadnew-locked:hover{color:#00f;text-decoration:underline}
+a.threadnew-locked:visited{color:#007}
 a.threadnew-locked:active{color:red}
 a.threadnew,a.threadnew:link{padding-left:18px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -198px}
 a.threadnew:hover{color:#00f;text-decoration:underline}
+a.threadnew:visited{color:#007}
 a.threadnew:active{color:red}
 a.reply,a.reply:link{padding-left:16px;color:#00c;text-decoration:none;font-weight:400;background:url(images/bg_sprite_1.png) no-repeat 0 -348px}
 a.reply:hover{color:#00f;text-decoration:underline}
+a.reply:visited{color:#007}
 a.reply:active{color:red}
 a.replynew,a.replynew:link{padding-left:16px;color:#00c;text-decoration:none;font-weight:400;background:url(images/bg_sprite_1.png) no-repeat 0 -398px}
 a.replynew:hover{color:#00f;text-decoration:underline}
+a.replynew:visited{color:#007}
 a.replynew:active{color:red}
-.read{color:purple!important}
 a.read:active{color:red!important}
+a.read,a.read:link,a.read:visited,#latest-postings li a span.read{color:#007}
 .currentthread{padding-left:18px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
 .currentthreadnew{padding-left:18px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -198px}
 .currentreply{padding-left:16px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -348px}
