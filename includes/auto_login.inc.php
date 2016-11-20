@@ -29,8 +29,6 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
         $usersettings['page'] = 1;
         $usersettings['category'] = 0;
         $usersettings['latest_postings'] = 1;
-        if(empty($feld['entries_read'])) $usersettings['read'] = array();
-        else $usersettings['read'] = explode(',',$feld['entries_read']);
 
         if(!is_null($feld['category_selection']))
          {
@@ -79,9 +77,6 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
         $_SESSION[$settings['session_prefix'].'user_name'] = $user_name;
         $_SESSION[$settings['session_prefix'].'user_type'] = $user_type;
         $_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
-
-        $read = set_read($usersettings['read']);
-        save_read(false);
 
         @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR'])."', pwf_code='', language='".mysqli_real_escape_string($connid, $language_update)."', time_zone='".mysqli_real_escape_string($connid, $time_zone_update)."', theme='".mysqli_real_escape_string($connid, $theme_update)."' WHERE user_id=".intval($user_id));
 

@@ -97,8 +97,6 @@ switch ($action)
          $usersettings['page'] = 1;
          $usersettings['category'] = 0;
          $usersettings['latest_postings'] = 1;
-         if(empty($feld['entries_read'])) $usersettings['read'] = array();
-         else $usersettings['read'] = explode(',',$feld['entries_read']);
          if(!is_null($feld['category_selection']))
           {
            $category_selection = explode(',',$feld['category_selection']);
@@ -147,10 +145,6 @@ switch ($action)
          $_SESSION[$settings['session_prefix'].'user_name'] = $user_name;
          $_SESSION[$settings['session_prefix'].'user_type'] = $user_type;
          $_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
-
-         $read = set_read($usersettings['read']);
-         if(isset($read_before_logged_in)) $read = set_read($read_before_logged_in); // get read postings from cookie (read before logged in)
-         save_read(false);
 
          if(isset($save_auto_login))
           {
