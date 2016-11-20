@@ -18,17 +18,24 @@ else $page = 1;
 if(isset($_GET['order']) && $_GET['order']=='last_reply') $order = 'last_reply';
 else $order = 'time';
 
+if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+	$tmp_user_id = $_SESSION[$settings['session_prefix'].'user_id'];
+} else {
+	$tmp_user_id = 0;
+}
+
 if(isset($id) && $id > 0)
   {
-   $result=@mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time,
-                         UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(edited + INTERVAL ".$time_difference." MINUTE) AS edit_time,
+   $result=@mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL ".$time_difference." MINUTE) AS disp_time,
+                         UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL ".$time_difference." MINUTE) AS edit_time,
                          UNIX_TIMESTAMP(edited - INTERVAL ".$settings['edit_delay']." MINUTE) AS edited_diff, edited_by, name, email,
                          subject, hp, location, ip, text, cache_text, tags, show_signature, category, locked, ip, views, spam, spam_check_status, edit_key,
-                         user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature
-                         FROM ".$db_settings['forum_table']."
-                         LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=id
-                         LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+                         user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, rst.user_id AS req_user
+                         FROM ".$db_settings['forum_table']." AS ft
+                         LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id=ft.id
+                         LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
                          LEFT JOIN ".$db_settings['userdata_cache_table']." ON ".$db_settings['userdata_cache_table'].".cache_id=".$db_settings['userdata_table'].".user_id
+                         LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                          WHERE id = ".$id) or raise_error('database_error',mysqli_error($connid));
 
    if(mysqli_num_rows($result) == 1)
@@ -56,6 +63,13 @@ if(isset($id) && $id > 0)
 		 // read-status handling
 		 $rstatus = save_read_status($connid, $user_id, $id);
 	 }
+
+     if ($entrydata['req_user'] !== NULL and is_numeric($entrydata['req_user'])) {
+      $entrydata['is_read'] = true;
+     } else {
+      $entrydata['is_read'] = false;
+     }
+     $smarty->assign('is_read', $entrydata['is_read']);
 
      if(isset($settings['count_views']) && $settings['count_views'] == 1) mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, views=views+1 WHERE id=".$id);
 
@@ -118,9 +132,10 @@ if(isset($id) && $id > 0)
  // thread-data:
  $thread = $entrydata['tid'];
  if($entrydata['spam']==1) $display_spam_query_and='';
- $result = mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time,
-                        UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, category, marked, text, spam FROM ".$db_settings['forum_table']."
-                        LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+ $result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".$time_difference." MINUTE) AS disp_time,
+                        UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, category, marked, text, spam, rst.user_id AS req_user FROM ".$db_settings['forum_table']." AS ft
+                        LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
+                        LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                         WHERE tid = ".$thread.$display_spam_query_and." ORDER BY time ASC");
  if(!$result) raise_error('database_error',mysqli_error($connid));
 
@@ -135,6 +150,11 @@ if(isset($id) && $id > 0)
    $data['subject'] = htmlspecialchars($data['subject']);
    $data['formated_time'] = format_time($lang['time_format'],$data['disp_time']);
    
+   if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
+       $data['is_read'] = true;
+      } else {
+       $data['is_read'] = false;
+      }
    if($data['pid']==0)
     {
      if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['last_reply'] || $last_visit && $data['last_reply'] > $last_visit) $data['new'] = true;

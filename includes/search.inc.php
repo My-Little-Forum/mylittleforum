@@ -5,6 +5,12 @@ if(!defined('IN_INDEX'))
   exit;
  }
 
+if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+	$tmp_user_id = $_SESSION[$settings['session_prefix'].'user_id'];
+} else {
+	$tmp_user_id = 0;
+}
+
 if(isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']>0)
  {
   // list spam postings:
@@ -158,19 +164,21 @@ elseif(isset($_GET['search']))
    {
     if($categories!=false)
      {
-      $result = @mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky
-                              FROM ".$db_settings['forum_table']."
-                              LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+      $result = @mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky, rst.user_id AS req_user
+                              FROM ".$db_settings['forum_table']." AS ft
+                              LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
+                              LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                               WHERE ".$search_string." AND category IN (".$category_ids_query.")
-                              ORDER BY tid DESC, time ASC LIMIT ".$ul.", ".$settings['search_results_per_page']) or die(mysqli_error($connid));
+                              ORDER BY tid DESC, ft.time ASC LIMIT ".$ul.", ".$settings['search_results_per_page']) or die(mysqli_error($connid));
      }
     else
      {
-      $result = @mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky
-                              FROM ".$db_settings['forum_table']."
-                              LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+      $result = @mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky, rst.user_id AS req_user
+                              FROM ".$db_settings['forum_table']." AS ft
+                              LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
+                              LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                               WHERE ".$search_string."
-                              ORDER BY tid DESC, time ASC LIMIT ".$ul.", ".$settings['search_results_per_page']) or die(mysqli_error($connid));
+                              ORDER BY tid DESC, ft.time ASC LIMIT ".$ul.", ".$settings['search_results_per_page']) or die(mysqli_error($connid));
      }
     $i=0;
     while($row = mysqli_fetch_array($result))
@@ -194,6 +202,11 @@ elseif(isset($_GET['search']))
         $search_results[$i]['category']=$row["category"];
         $search_results[$i]['category_name']=$categories[$row["category"]];
        }
+      if ($row['req_user'] !== NULL and is_numeric($row['req_user'])) {
+       $search_results[$i]['is_read'] = true;
+      } else {
+       $search_results[$i]['is_read'] = false;
+      }
       $i++;
      }
     mysqli_free_result($result);

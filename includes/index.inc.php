@@ -5,6 +5,12 @@ if(!defined('IN_INDEX'))
   exit;
  }
 
+if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+	$tmp_user_id = $_SESSION[$settings['session_prefix'].'user_id'];
+} else {
+	$tmp_user_id = 0;
+}
+
 if(isset($_SESSION[$settings['session_prefix'].'usersettings']['user_view'])) $user_view = $_SESSION[$settings['session_prefix'].'usersettings']['user_view'];
 else $user_view = $settings['default_view'];
 
@@ -84,11 +90,12 @@ if($result_count > 0)
  {
   while($zeile = mysqli_fetch_array($result))
    {
-    $thread_result = @mysqli_query($connid, "SELECT id, pid, tid, ".$db_settings['forum_table'].".user_id, user_type, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, spam
-                                   FROM ".$db_settings['forum_table']."
-                                   LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+    $thread_result = @mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, user_type, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, spam, rst.user_id AS req_user
+                                   FROM ".$db_settings['forum_table']." AS ft
+                                   LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
+                                   LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                                    WHERE tid = ".$zeile['tid'].$display_spam_query_and."
-                                   ORDER BY time ASC") or raise_error('database_error',mysqli_error($connid));
+                                   ORDER BY ft.time ASC") or raise_error('database_error',mysqli_error($connid));
 
 	// put result into arrays:
     while($data = mysqli_fetch_array($thread_result))
@@ -131,6 +138,11 @@ if($result_count > 0)
         if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['time'] || $last_visit && $data['time'] > $last_visit) $data['new'] = true;
         else $data['new'] = false;
        }
+      if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
+       $data['is_read'] = true;
+      } else {
+       $data['is_read'] = false;
+      }
 
       if($data['pid']==0) $threads[] = $data['id'];
       $data_array[$data['id']] = $data;
@@ -146,29 +158,32 @@ if($settings['latest_postings']>0)
  {
   if($categories == false)
    {
-    $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category
-                                            FROM ".$db_settings['forum_table']."
-                                            LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+    $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, rst.user_id AS req_user
+                                            FROM ".$db_settings['forum_table']." AS ft
+                                            LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
+                                            LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                                             WHERE spam=0
-                                            ORDER BY time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
+                                            ORDER BY ft.time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
    }
   else
    {
     if($category>0)
      {
-      $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category
-                                              FROM ".$db_settings['forum_table']."
-                                              LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+      $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, rst.user_id AS req_user
+                                              FROM ".$db_settings['forum_table']." AS ft
+                                              LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
+                                              LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                                               WHERE spam=0 AND category = ".intval($category)."
-                                              ORDER BY time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
+                                              ORDER BY ft.time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
      }
     else
      {
-      $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category
-                                              FROM ".$db_settings['forum_table']."
-                                              LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+      $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, rst.user_id AS req_user
+                                              FROM ".$db_settings['forum_table']." AS ft
+                                              LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
+                                              LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                                               WHERE spam=0 AND category IN (".$category_ids_query.")
-                                              ORDER BY time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
+                                              ORDER BY ft.time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
      }
    }
   if(mysqli_num_rows($latest_postings_result)>0)
@@ -190,6 +205,11 @@ if($settings['latest_postings']>0)
        {
         $latest_postings[$i]['name'] = htmlspecialchars($latest_postings_data['name']);
        }
+      if ($latest_postings_data['req_user'] !== NULL and is_numeric($latest_postings_data['req_user'])) {
+       $latest_postings[$i]['is_read'] = true;
+      } else {
+       $latest_postings[$i]['is_read'] = false;
+      }
 
       $latest_postings[$i]['timestamp'] = $latest_postings_data['timestamp'];
       $latest_postings[$i]['formated_time'] = format_time($lang['time_format'],$latest_postings_data['timestamp']);
