@@ -11,7 +11,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
   $auto_login_id = intval(substr($_COOKIE[$settings['session_prefix'].'auto_login'],50));
   if(isset($auto_login_id) && $auto_login_id>0 && isset($auto_login_code) && trim($auto_login_code)!='')
    {
-    $result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, entries_read FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($auto_login_id)) or raise_error('database_error',mysqli_error($connid));
+    $result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($auto_login_id)) or raise_error('database_error',mysqli_error($connid));
     if(mysqli_num_rows($result)==1)
      {
       $feld = mysqli_fetch_array($result);

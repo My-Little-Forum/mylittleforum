@@ -53,7 +53,7 @@ switch ($action)
   case "do_login":
    if(isset($request_username) && isset($request_userpw))
     {
-     $result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, entries_read FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysqli_real_escape_string($connid, my_strtolower($request_username, $lang['charset']))."'") or raise_error('database_error',mysqli_error($connid));
+     $result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '".mysqli_real_escape_string($connid, my_strtolower($request_username, $lang['charset']))."'") or raise_error('database_error',mysqli_error($connid));
      if (mysqli_num_rows($result) == 1)
       {
        $feld = mysqli_fetch_array($result);
@@ -154,11 +154,11 @@ switch ($action)
 
          if(isset($save_auto_login))
           {
-           @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR'])."', auto_login_code='".mysqli_real_escape_string($connid, $auto_login_code)."', pwf_code='', language='".mysqli_real_escape_string($connid, $language_update)."', time_zone='".mysqli_real_escape_string($connid, $time_zone_update)."', theme='".mysqli_real_escape_string($connid, $theme_update)."', entries_read='".mysqli_real_escape_string($connid, implode(',',$read))."' WHERE user_id=".intval($user_id));
+           @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR'])."', auto_login_code='".mysqli_real_escape_string($connid, $auto_login_code)."', pwf_code='', language='".mysqli_real_escape_string($connid, $language_update)."', time_zone='".mysqli_real_escape_string($connid, $time_zone_update)."', theme='".mysqli_real_escape_string($connid, $theme_update)."' WHERE user_id=".intval($user_id));
           }
          else
           {
-           @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR'])."', pwf_code='', language='".mysqli_real_escape_string($connid, $language_update)."', time_zone='".mysqli_real_escape_string($connid, $time_zone_update)."', theme='".mysqli_real_escape_string($connid, $theme_update)."', entries_read='".mysqli_real_escape_string($connid, implode(',',$read))."' WHERE user_id=".intval($user_id));
+           @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='".mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR'])."', pwf_code='', language='".mysqli_real_escape_string($connid, $language_update)."', time_zone='".mysqli_real_escape_string($connid, $time_zone_update)."', theme='".mysqli_real_escape_string($connid, $theme_update)."' WHERE user_id=".intval($user_id));
           }
 
          // auto delete spam:
