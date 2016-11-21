@@ -167,7 +167,7 @@ elseif(isset($_GET['search']))
       $result = @mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky, rst.user_id AS req_user
                               FROM ".$db_settings['forum_table']." AS ft
                               LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
-                              LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
+                              LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                               WHERE ".$search_string." AND category IN (".$category_ids_query.")
                               ORDER BY tid DESC, ft.time ASC LIMIT ".$ul.", ".$settings['search_results_per_page']) or die(mysqli_error($connid));
      }
@@ -176,7 +176,7 @@ elseif(isset($_GET['search']))
       $result = @mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky, rst.user_id AS req_user
                               FROM ".$db_settings['forum_table']." AS ft
                               LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
-                              LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
+                              LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                               WHERE ".$search_string."
                               ORDER BY tid DESC, ft.time ASC LIMIT ".$ul.", ".$settings['search_results_per_page']) or die(mysqli_error($connid));
      }

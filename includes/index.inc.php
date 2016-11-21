@@ -93,7 +93,7 @@ if($result_count > 0)
     $thread_result = @mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, user_type, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, spam, rst.user_id AS req_user
                                    FROM ".$db_settings['forum_table']." AS ft
                                    LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
-                                   LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
+                                   LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                                    WHERE tid = ".$zeile['tid'].$display_spam_query_and."
                                    ORDER BY ft.time ASC") or raise_error('database_error',mysqli_error($connid));
 
@@ -161,7 +161,7 @@ if($settings['latest_postings']>0)
     $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, rst.user_id AS req_user
                                             FROM ".$db_settings['forum_table']." AS ft
                                             LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
-                                            LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
+                                            LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                                             WHERE spam=0
                                             ORDER BY ft.time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
    }
@@ -172,7 +172,7 @@ if($settings['latest_postings']>0)
       $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, rst.user_id AS req_user
                                               FROM ".$db_settings['forum_table']." AS ft
                                               LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
-                                              LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
+                                              LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                                               WHERE spam=0 AND category = ".intval($category)."
                                               ORDER BY ft.time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
      }
@@ -181,7 +181,7 @@ if($settings['latest_postings']>0)
       $latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, rst.user_id AS req_user
                                               FROM ".$db_settings['forum_table']." AS ft
                                               LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=ft.user_id
-                                              LEFT JOIN mlf2_read_entries AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
+                                              LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
                                               WHERE spam=0 AND category IN (".$category_ids_query.")
                                               ORDER BY ft.time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error',mysqli_error($connid));
      }
