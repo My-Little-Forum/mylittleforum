@@ -185,21 +185,21 @@ switch ($action)
         }
        else
         {
-         if($settings['temp_block_ip_after_repeated_failed_logins']==1) count_failed_logins();
+         if($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
          $action = 'login';
          $login_message='login_failed';
         }
      }
     else
      {
-      if($settings['temp_block_ip_after_repeated_failed_logins']==1) count_failed_logins();
+      if($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
       $action = 'login';
       $login_message='login_failed';
      }
     }
    else
     {
-     if($settings['temp_block_ip_after_repeated_failed_logins']==1) count_failed_logins();
+     if($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
      $action = 'login';
      $login_message='login_failed';
     }

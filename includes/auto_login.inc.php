@@ -90,19 +90,19 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$se
        }
       else
        {
-        if($settings['temp_block_ip_after_repeated_failed_logins']==1) count_failed_logins();
+        if($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
         setcookie($settings['session_prefix'].'auto_login','',0);
        }
      }
     else
      {
-      if($settings['temp_block_ip_after_repeated_failed_logins']==1) count_failed_logins();
+      if($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
       setcookie($settings['session_prefix'].'auto_login','',0);
      }
     }
    else
     {
-     if($settings['temp_block_ip_after_repeated_failed_logins']==1) count_failed_logins();
+     if($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
      setcookie($settings['session_prefix'].'auto_login','',0);
     }
  }
