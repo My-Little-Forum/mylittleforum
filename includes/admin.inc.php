@@ -998,8 +998,11 @@ if(isset($_POST['settings_submit']))
    {
     mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET auto_login_code=''");
    }
-
-  header("Location: index.php?mode=admin&action=settings&saved=true");
+  if (isset($_POST['return_to']) and $_POST['return_to'] === 'advanced_settings') {
+    header("Location: index.php?mode=admin&action=advanced_settings&saved=true");
+  } else {
+    header("Location: index.php?mode=admin&action=settings&saved=true");
+  }
   exit;
  }
 
@@ -1391,6 +1394,7 @@ switch($action)
    $breadcrumbs[1]['linkname'] = 'subnav_settings';
    $smarty->assign('breadcrumbs',$breadcrumbs);
    $smarty->assign('subnav_location','subnav_advanced_settings');
+   if(isset($_GET['saved'])) $smarty->assign('saved',true);
 
    $settings_sorted = $settings;
    ksort($settings_sorted);
