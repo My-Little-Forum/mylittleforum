@@ -209,6 +209,9 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 			if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` DROP COLUMN `entries_read`;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
+			if(!@mysqli_query($connid, "DELETE FROM `".$db_settings['settings_table']."` WHERE `name` = 'auto_lock_old_threads' LIMIT 1;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
 			
 		}
 	}
