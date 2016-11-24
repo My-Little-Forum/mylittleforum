@@ -1201,24 +1201,27 @@ function user_online($user_online_period=10)
 
 /**
  * checks strings for too long words
+ * @param String $text
+ * @param int $word_maxlength (No check if <= 0)
  */
-function too_long_word($text,$word_maxlength)
- {
-  $text = preg_replace("/\015\012|\015|\012/", "\n", $text);
-  $text = str_replace("\n", ' ', $text);
-  $words = explode(' ',$text);
-  foreach($words as $word)
-   {
-    $length = my_strlen(trim($word), CHARSET);
-    if($length > $word_maxlength)
-     {
-      $too_long_word = htmlspecialchars(my_substr($word,0,$word_maxlength, CHARSET))."...";
-      break;
-     }
-   }
-  if(isset($too_long_word)) return $too_long_word;
-  else return false;
- }
+function too_long_word($text,$word_maxlength) {
+	if ($word_maxlength <= 0)
+		return false;
+	$text = preg_replace("/\015\012|\015|\012/", "\n", $text);
+	$text = str_replace("\n", ' ', $text);
+	$words = explode(' ',$text);
+	foreach($words as $word) {
+		$length = my_strlen(trim($word), CHARSET);
+		if($length > $word_maxlength) {
+			$too_long_word = htmlspecialchars(my_substr($word,0,$word_maxlength, CHARSET))."...";
+			break;
+		}
+	}
+	if(isset($too_long_word)) 
+		return $too_long_word;
+	else
+		return false;
+}
 
 /**
  * deletes a posting and all its replies
