@@ -213,9 +213,11 @@
 </form>
 <p style="margin-top:10px;"><a class="stronglink" href="index.php?mode=admin&amp;action=advanced_settings">{#advanced_settings_link#}</a></p>
 {elseif $action=='advanced_settings'}
+{if $saved}<p class="ok">{#settings_saved#}</p>{/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="return_to" value="advanced_settings" />
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
 {section name=nr loop=$settings_sorted}
 <tr>
