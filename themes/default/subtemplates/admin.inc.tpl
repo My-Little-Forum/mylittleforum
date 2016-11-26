@@ -617,6 +617,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <p><label for="ar_username" class="main">{#register_username#}</label><br />
 <input id="ar_username" type="text" size="25" name="ar_username" value="{$ar_username|default:''}" maxlength="{$settings.name_maxlength}" /></p>
 <p><label for="ar_email" class="main">{#register_email#}</label><br />
