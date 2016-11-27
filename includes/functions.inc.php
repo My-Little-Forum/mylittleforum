@@ -2735,13 +2735,13 @@ function get_themes($titles=false)
 function getAvatar($user_id) {
 	$avatar_images_path = 'images/avatars/';
 	$fileIterator = new FilesystemIterator($avatar_images_path);
-	$regexFileFilterIterator = new RegexIterator($fileIterator, "/".preg_quote(intval($user_id), '/')."(_\d+)?\.(jpg|gif|png|jpeg)$/i", RegexIterator::GET_MATCH);
+	$regexFileFilterIterator = new RegexIterator($fileIterator, "/\D+(".preg_quote(intval($user_id), '/')."(_\d+)?\.(jpg|gif|png|jpeg)$)/i", RegexIterator::GET_MATCH);
 	$regexFileFilterIterator->rewind();
-	$filename = ($regexFileFilterIterator->valid() && count($regexFileFilterIterator->current()) > 0) ? $regexFileFilterIterator->current()[0] : false;
-	if ($filename === false)
+	$filename = ($regexFileFilterIterator->valid() && isset($regexFileFilterIterator->current()) && count($regexFileFilterIterator->current()) > 1) ? $regexFileFilterIterator->current()[1] : false;
+	if ($filename === false || !file_exists($avatar_images_path.$filename))
 		return false;
 	return array($avatar_images_path, $filename, $avatar_images_path.$filename);
-} 
+}
 
 /**
  * sends a status code, displays an error message and halts the script
