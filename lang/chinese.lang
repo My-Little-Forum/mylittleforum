@@ -13,6 +13,7 @@ locale =                          zh_CN
 locale =                          zh
 locale =                          zh
 locale_charset =                  utf-8
+word_delimiters =                 ，。；“”！
 dir =                             ltr
 time_format =                     %Y-%m-%d, %H:%M
 time_format_full =                %A, %B %d, %Y, %H:%M

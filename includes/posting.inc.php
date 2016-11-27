@@ -652,7 +652,7 @@ switch($action)
         }
       }
     }
-
+	
    // check data:
    if(isset($_POST['tags']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && ($_SESSION[$settings['session_prefix'].'user_type']>0))
     {
@@ -668,7 +668,7 @@ switch($action)
        foreach($s_tags_array as $tag)
         {
          unset($too_long_word);
-         $too_long_word = too_long_word($tag,$settings['text_word_maxlength']);
+         $too_long_word = too_long_word($tag,$settings['text_word_maxlength'],$lang['word_delimiters']);
          if($too_long_word) { $errors[] = 'error_word_too_long'; break; }
          $s_tags .= trim($tag).';';
         }
@@ -766,17 +766,17 @@ switch($action)
      // check for too long words:
      if(empty($too_long_word) && empty($_SESSION[$settings['session_prefix'].'user_id']))
       {
-       $too_long_word = too_long_word($name,$settings['name_word_maxlength']);
+       $too_long_word = too_long_word($name,$settings['name_word_maxlength'],$lang['word_delimiters']);
        if($too_long_word) $errors[] = 'error_word_too_long';
       }
      if(empty($too_long_word) && empty($_SESSION[$settings['session_prefix'].'user_id']))
       {
-       $too_long_word = too_long_word($location,$settings['location_word_maxlength']);
+       $too_long_word = too_long_word($location,$settings['location_word_maxlength'],$lang['word_delimiters']);
        if($too_long_word) $errors[] = 'error_word_too_long';
       }
      if(empty($too_long_word))
       {
-       $too_long_word = too_long_word($subject,$settings['subject_word_maxlength']);
+       $too_long_word = too_long_word($subject,$settings['subject_word_maxlength'],$lang['word_delimiters']);
        if($too_long_word) $errors[] = 'error_word_too_long';
       }
 
@@ -788,7 +788,7 @@ switch($action)
 
      if(empty($too_long_word))
       {
-       $too_long_word = too_long_word($check_text,$settings['text_word_maxlength']);
+       $too_long_word = too_long_word($check_text,$settings['text_word_maxlength'],$lang['word_delimiters']);
        if($too_long_word) $errors[] = 'error_word_too_long';
       }
      if(empty($_SESSION[$settings['session_prefix'].'user_id']))

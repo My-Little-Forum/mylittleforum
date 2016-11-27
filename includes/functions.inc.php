@@ -1203,15 +1203,16 @@ function user_online($user_online_period=10)
  * checks strings for too long words
  * @param String $text
  * @param int $word_maxlength (No check if <= 0)
- * @param string $delimiters
+ * @param string $delimiters (single character list e.g. ".?!;,", ctrl chars like \n will ignored because of preg_quote-function)
  */
-function too_long_word($text,$word_maxlength,$delimiters = '\n') {
+function too_long_word($text,$word_maxlength,$delimiters = ' ') {
 	if ($word_maxlength <= 0)
 		return false;
-	$text = preg_replace("/\015\012|\015|\012/", "\n", $text);
-	$text = preg_replace("/[".preg_quote($delimiters, '/')."]/", "\n", $text);
-		var_dump($text);
-	$words = explode(' ',$text);
+	$delimiters .= " \n";
+	$text = preg_replace("/\015\012|\015|\012/", " ", $text);
+	$text = preg_replace("/[".preg_quote($delimiters, '/')."]/", " ", $text);
+	$words = preg_split('/\s+/',$text);
+
 	foreach($words as $word) {
 		$length = my_strlen(trim($word), CHARSET);
 		if($length > $word_maxlength) {
