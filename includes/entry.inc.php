@@ -73,28 +73,26 @@ if(isset($id) && $id > 0)
 
      if(isset($settings['count_views']) && $settings['count_views'] == 1) mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply=last_reply, edited=edited, views=views+1 WHERE id=".$id);
 
-     if($entrydata['user_id'] > 0)
-      {
-       if($settings['avatars']==2)
-        {
-         if(file_exists('images/avatars/'.$entrydata['user_id'].'.jpg')) $avatar['image'] = 'images/avatars/'.$entrydata['user_id'].'.jpg';
-         elseif(file_exists('images/avatars/'.$entrydata['user_id'].'.png')) $avatar['image'] = 'images/avatars/'.$entrydata['user_id'].'.png';
-         elseif(file_exists('images/avatars/'.$entrydata['user_id'].'.gif')) $avatar['image'] = 'images/avatars/'.$entrydata['user_id'].'.gif';
-         if(isset($avatar))
-          {
-           $image_info = getimagesize($avatar['image']);
-           $avatar['width'] = $image_info[0];
-           $avatar['height'] = $image_info[1];
-           $smarty->assign('avatar', $avatar);
-          }
-        }
+		if($entrydata['user_id'] > 0) {
+			if($settings['avatars']==2) {
+				$avatarInfo = getAvatar($entrydata['user_id']);
+				$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
 
-      $entrydata['email'] = $entrydata['user_email'];
-      #$entrydata['email_contact'] = $userdata['email_contact'];
-      $entrydata['location'] = $entrydata['user_location'];
-      $entrydata['hp'] = $entrydata['user_hp'];
-     }
-     else $entrydata['email_contact']=1;
+				if(isset($avatar) && $avatar['image'] !== false) {
+					$image_info = getimagesize($avatar['image']);
+					$avatar['width']  = $image_info[0];
+					$avatar['height'] = $image_info[1];
+					$smarty->assign('avatar', $avatar);
+				}
+			}
+
+			$entrydata['email'] = $entrydata['user_email'];
+			#$entrydata['email_contact'] = $userdata['email_contact'];
+			$entrydata['location'] = $entrydata['user_location'];
+			$entrydata['hp'] = $entrydata['user_hp'];
+		}
+		else 
+			$entrydata['email_contact']=1;
    }
    else
     {
