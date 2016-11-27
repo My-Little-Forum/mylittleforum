@@ -132,30 +132,26 @@ else $order = 'time';
       if($authorization['edit']==true) $data['options']['edit']=true;
       if($authorization['delete']==true) $data['options']['delete']=true;
 
-      if($data['user_id'] > 0)
-       {
-        $data['email'] = $data['user_email'];
-        $data['location'] = $data['user_location'];
-        $data['hp'] = $data['user_hp'];
-        if($settings['avatars']==2)
-         {
-          if(file_exists('images/avatars/'.$data['user_id'].'.jpg')) $avatar['image'] = 'images/avatars/'.$data['user_id'].'.jpg';
-          elseif(file_exists('images/avatars/'.$data['user_id'].'.png')) $avatar['image'] = 'images/avatars/'.$data['user_id'].'.png';
-          elseif(file_exists('images/avatars/'.$data['user_id'].'.gif')) $avatar['image'] = 'images/avatars/'.$data['user_id'].'.gif';
-          if(isset($avatar))
-           {
-            $image_info = getimagesize($avatar['image']);
-            $avatar['width'] = $image_info[0];
-            $avatar['height'] = $image_info[1];
-            $data['avatar'] = $avatar;
-            unset($avatar);
-           }
-         }
-       }
-      else
-       {
-        $data["email_contact"]=1;
-       }
+		if($data['user_id'] > 0) {
+			$data['email'] = $data['user_email'];
+			$data['location'] = $data['user_location'];
+			$data['hp'] = $data['user_hp'];
+			
+			if($settings['avatars']==2){
+				$avatarInfo = getAvatar($data['user_id']);
+				$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
+				if(isset($avatar) && $avatar['image'] !== false) {
+					$image_info = getimagesize($avatar['image']);
+					$avatar['width']  = $image_info[0];
+					$avatar['height'] = $image_info[1];
+					$data['avatar']   = $avatar;
+					unset($avatar);
+				}
+			}
+		}
+		else {
+			$data["email_contact"]=1;
+		}
 
       if($data['edited_diff'] > 0 && $data["edited_diff"] > $data["time"] && $settings['show_if_edited'] == 1)
        {

@@ -219,19 +219,17 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        $smarty->assign('last_posting_time',$last_posting['disp_time']);
        $smarty->assign('last_posting_subject',htmlspecialchars($last_posting['subject']));
 
-       if($settings['avatars']>0)
-        {
-         if(file_exists('images/avatars/'.$id.'.jpg')) $avatar['image'] = 'images/avatars/'.$id.'.jpg';
-         elseif(file_exists('images/avatars/'.$id.'.png')) $avatar['image'] = 'images/avatars/'.$id.'.png';
-         elseif(file_exists('images/avatars/'.$id.'.gif')) $avatar['image'] = 'images/avatars/'.$id.'.gif';
-         if(isset($avatar))
-          {
-           $image_info = getimagesize($avatar['image']);
-           $avatar['width'] = $image_info[0];
-           $avatar['height'] = $image_info[1];
-           $smarty->assign('avatar', $avatar);
-          }
-        }
+		if($settings['avatars']>0) {
+			$avatarInfo = getAvatar($id);
+			$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
+
+			if(isset($avatar) && $avatar['image'] !== false) {
+				$image_info = getimagesize($avatar['image']);
+				$avatar['width']  = $image_info[0];
+				$avatar['height'] = $image_info[1];
+				$smarty->assign('avatar', $avatar);
+			}
+		}
 
        if($row['profile']!='' && $row['cache_profile']=='')
         {
@@ -424,20 +422,17 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        if($row['auto_login_code']!='') $smarty->assign('auto_login', 1);
        else $smarty->assign('auto_login', 0);
 
-       if($settings['avatars']>0)
-        {
-         if(file_exists('images/avatars/'.$_SESSION[$settings['session_prefix'].'user_id'].'.jpg')) $avatar['image'] = 'images/avatars/'.$_SESSION[$settings['session_prefix'].'user_id'].'.jpg';
-         elseif(file_exists('images/avatars/'.$_SESSION[$settings['session_prefix'].'user_id'].'.png')) $avatar['image'] = 'images/avatars/'.$_SESSION[$settings['session_prefix'].'user_id'].'.png';
-         elseif(file_exists('images/avatars/'.$_SESSION[$settings['session_prefix'].'user_id'].'.gif')) $avatar['image'] = 'images/avatars/'.$_SESSION[$settings['session_prefix'].'user_id'].'.gif';
+		if($settings['avatars']>0) {
+			$avatarInfo = getAvatar($_SESSION[$settings['session_prefix'].'user_id']);
+			$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
 
-         if(isset($avatar))
-          {
-           $image_info = getimagesize($avatar['image']);
-           $avatar['width'] = $image_info[0];
-           $avatar['height'] = $image_info[1];
-           $smarty->assign('avatar', $avatar);
-          }
-        }
+			if(isset($avatar) && $avatar['image'] !== false) {
+				$image_info = getimagesize($avatar['image']);
+				$avatar['width'] = $image_info[0];
+				$avatar['height'] = $image_info[1];
+				$smarty->assign('avatar', $avatar);
+			}
+		}
 
        if($_SESSION[$settings['session_prefix'].'user_type']==1||$_SESSION[$settings['session_prefix'].'user_type']==2)
         {
