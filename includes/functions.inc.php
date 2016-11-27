@@ -2737,7 +2737,7 @@ function getAvatar($user_id) {
 	$fileIterator = new FilesystemIterator($avatar_images_path);
 	$regexFileFilterIterator = new RegexIterator($fileIterator, "/\D+(".preg_quote(intval($user_id), '/')."(_\d+)?\.(jpg|gif|png|jpeg)$)/i", RegexIterator::GET_MATCH);
 	$regexFileFilterIterator->rewind();
-	$filename = ($regexFileFilterIterator->valid() && isset($regexFileFilterIterator->current()) && count($regexFileFilterIterator->current()) > 1) ? $regexFileFilterIterator->current()[1] : false;
+	$filename = ($regexFileFilterIterator->valid() && count($regexFileFilterIterator->current()) > 1) ? $regexFileFilterIterator->current()[1] : false;
 	if ($filename === false || !file_exists($avatar_images_path.$filename))
 		return false;
 	return array($avatar_images_path, $filename, $avatar_images_path.$filename);
