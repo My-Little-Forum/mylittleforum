@@ -197,18 +197,25 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 
-			$numberOfStoredEntries = 300; // Maximum number of stored entries of a single user
-			$transferReadStateSQL = "INSERT INTO `".$db_settings['read_status_table']."` (`user_id`, `posting_id`, `time`) SELECT `user_id`, SUBSTRING_INDEX(SUBSTRING_INDEX(`entries_read`, ',', `numbers`.`n`), ',', -1) AS `posting_id`, CURRENT_TIMESTAMP AS `timestamp` FROM (SELECT 1 AS `n` ";
-			for ($n = 2; $n <= $numberOfStoredEntries; $n++) {
-				$transferReadStateSQL .= " UNION ALL SELECT ".$n;
+			$numberOfStoredEntriesResult = @mysqli_query($connid, "SELECT `value` FROM `".$db_settings['settings_table']."` WHERE `name` = 'max_read_items' LIMIT 1");
+			if(mysqli_num_rows($numberOfStoredEntriesResult) == 1) {
+				$numberOfStoredEntriesValues = mysqli_fetch_array($numberOfStoredEntriesResult);
+				mysqli_free_result($numberOfStoredEntriesResult);
+				
+				$numberOfStoredEntries = max(200, $numberOfStoredEntriesValues['value']); // Maximum number of stored entries of a single user
+				$transferReadStateSQL = "INSERT INTO `".$db_settings['read_status_table']."` (`user_id`, `posting_id`, `time`) SELECT `user_id`, SUBSTRING_INDEX(SUBSTRING_INDEX(`entries_read`, ',', `numbers`.`n`), ',', -1) AS `posting_id`, CURRENT_TIMESTAMP AS `timestamp` FROM (SELECT 1 AS `n` ";
+				for ($n = 2; $n <= $numberOfStoredEntries; $n++) {
+					$transferReadStateSQL .= " UNION ALL SELECT ".$n;
+				}
+				$transferReadStateSQL .= " ) `numbers` INNER JOIN `".$db_settings['userdata_table']."` ON CHAR_LENGTH(`entries_read`)-CHAR_LENGTH(REPLACE(`entries_read`, ',', '')) >= `numbers`.`n`-1 WHERE `entries_read` <> '' ORDER BY `user_id`, `n`;";
+				if(!@mysqli_query($connid, $transferReadStateSQL)) {
+					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+				}
+				if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` DROP COLUMN `entries_read`;")) {
+					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+				}
 			}
-			$transferReadStateSQL .= " ) `numbers` INNER JOIN `".$db_settings['userdata_table']."` ON CHAR_LENGTH(`entries_read`)-CHAR_LENGTH(REPLACE(`entries_read`, ',', '')) >= `numbers`.`n`-1 WHERE `entries_read` <> '' ORDER BY `user_id`, `n`;";
-			if(!@mysqli_query($connid, $transferReadStateSQL)) {
-				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			}
-			if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` DROP COLUMN `entries_read`;")) {
-				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			}
+
 			if(!@mysqli_multi_query($connid, "UPDATE `".$db_settings['settings_table']."` SET `name`= 'auto_lock_old_threads_tmp' WHERE `name`= 'auto_lock_old_threads' LIMIT 1;DELETE FROM `".$db_settings['settings_table']."` WHERE `name` = 'auto_lock_old_threads';UPDATE `".$db_settings['settings_table']."` SET `name`= 'auto_lock_old_threads' WHERE `name`= 'auto_lock_old_threads_tmp' LIMIT 1;ALTER TABLE `".$db_settings['settings_table']."` ADD PRIMARY KEY (`name`)")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}

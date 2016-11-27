@@ -2725,6 +2725,23 @@ function get_themes($titles=false)
    }
   else return false;
  }
+ 
+/**
+ * Returns the avatar image by user id
+ *
+ * @param int user_id
+ * @return array [path, filename, path/filename] or false if not exists
+ */ 
+function getAvatar($user_id) {
+	$avatar_images_path = 'images/avatars/';
+	$fileIterator = new FilesystemIterator($avatar_images_path);
+	$regexFileFilterIterator = new RegexIterator($fileIterator, "/".preg_quote(intval($user_id), '/')."(_\d+)?\.(jpg|gif|png|jpeg)$/i", RegexIterator::GET_MATCH);
+	$regexFileFilterIterator->rewind();
+	$filename = ($regexFileFilterIterator->valid() && count($regexFileFilterIterator->current()) > 0) ? $regexFileFilterIterator->current()[0] : false;
+	if ($filename === false)
+		return false;
+	return array($avatar_images_path, $filename, $avatar_images_path.$filename);
+} 
 
 /**
  * sends a status code, displays an error message and halts the script
