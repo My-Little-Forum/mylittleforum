@@ -209,6 +209,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 			if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` DROP COLUMN `entries_read`;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
+			if(!@mysqli_multi_query($connid, "UPDATE `".$db_settings['settings_table']."` SET `name`= 'auto_lock_old_threads_tmp' WHERE `name`= 'auto_lock_old_threads' LIMIT 1;DELETE FROM `".$db_settings['settings_table']."` WHERE `name` = 'auto_lock_old_threads';UPDATE `".$db_settings['settings_table']."` SET `name`= 'auto_lock_old_threads' WHERE `name`= 'auto_lock_old_threads_tmp' LIMIT 1;ALTER TABLE `".$db_settings['settings_table']."` ADD PRIMARY KEY (`name`)")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			
