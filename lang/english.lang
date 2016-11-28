@@ -20,6 +20,7 @@ locale =                          en_US.utf8
 locale =                          en_US
 locale =                          en
 locale_charset =                  utf-8
+word_delimiters =                 
 dir =                             ltr
 time_format =                     %Y-%m-%d, %H:%M
 time_format_full =                %A, %B %d, %Y, %H:%M

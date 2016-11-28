@@ -12,6 +12,7 @@ locale =                          de_DE
 locale =                          de_DE@euro
 locale =                          de
 locale_charset =                  iso-8859-1
+word_delimiters =                 
 dir =                             ltr
 time_format =                     %d.%m.%Y, %H:%M
 time_format_full =                %A, %d. %B %Y, %H:%M
