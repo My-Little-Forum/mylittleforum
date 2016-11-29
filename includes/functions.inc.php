@@ -2734,13 +2734,18 @@ function get_themes($titles=false)
  */ 
 function getAvatar($user_id) {
 	$avatar_images_path = 'images/avatars/';
-	$fileIterator = new FilesystemIterator($avatar_images_path);
-	$regexFileFilterIterator = new RegexIterator($fileIterator, "/\D+(".preg_quote(intval($user_id), '/')."(_\d+)?\.(jpg|gif|png|jpeg)$)/i", RegexIterator::GET_MATCH);
-	$regexFileFilterIterator->rewind();
-	$filename = ($regexFileFilterIterator->valid() && count($regexFileFilterIterator->current()) > 1) ? $regexFileFilterIterator->current()[1] : false;
-	if ($filename === false || !file_exists($avatar_images_path.$filename))
-		return false;
-	return array($avatar_images_path, $filename, $avatar_images_path.$filename);
+	$fileList = glob( $avatar_images_path . intval($user_id) . "[_.]*{png,jpg,jpeg,gif,bmp}" , GLOB_BRACE);
+	if (isset($fileList) && count($fileList) > 0) {
+		foreach ($fileList as $file) {
+			if (preg_match("/^(" . preg_quote($avatar_images_path, '/') . ")(" . preg_quote(intval($user_id)) . "(_\d+)?\.(jpg|gif|png|jpeg,bmp))$/", $file, $matches)) {
+			//var_dump($matches);
+				$filename = $matches[2];
+				if (file_exists($avatar_images_path.$filename))
+					return array($avatar_images_path, $filename, $avatar_images_path.$filename);
+			}
+		}
+	}
+	return false;
 }
 
 /**
