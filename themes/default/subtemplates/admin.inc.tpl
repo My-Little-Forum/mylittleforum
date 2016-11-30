@@ -149,11 +149,11 @@
 <input id="avatars_disabled" type="radio" name="avatars" value="0"{if $settings.avatars==0} checked="checked"{/if} /><label id="avatars_disabled_label" for="avatars_disabled" class="{if $settings.avatars==0}active{else}inactive{/if}">{#disabled#}</label></p>
 
 {assign var="settings_avatar_max_width" value=$settings.avatar_max_width}
-{assign var="input_avatar_max_width" value="<input id=\"avatar_max_width\" type=\"text\" name=\"avatar_max_width\" value=\"$settings_avatar_max_width\" size=\"3\" />"}
+{assign var="input_avatar_max_width" value="<input id=\"avatar_max_width\" type=\"text\" name=\"avatar_max_width\" value=\"$settings_avatar_max_width\" size=\"5\" />"}
 {assign var="settings_avatar_max_height" value=$settings.avatar_max_height}
-{assign var="input_avatar_max_height" value="<input type=\"text\" name=\"avatar_max_height\" value=\"$settings_avatar_max_height\" size=\"3\" />"}
+{assign var="input_avatar_max_height" value="<input type=\"text\" name=\"avatar_max_height\" value=\"$settings_avatar_max_height\" size=\"5\" />"}
 {assign var="settings_avatar_max_filesize" value=$settings.avatar_max_filesize}
-{assign var="input_avatar_max_filesize" value="<input type=\"text\" name=\"avatar_max_filesize\" value=\"$settings_avatar_max_filesize\" size=\"3\" />"}
+{assign var="input_avatar_max_filesize" value="<input type=\"text\" name=\"avatar_max_filesize\" value=\"$settings_avatar_max_filesize\" size=\"5\" />"}
 <p><label id="max_avatar_size_label" for="avatar_max_width" class="{if $settings.avatars==0}inactive{else}active{/if}">{#max_avatar_size#|replace:"[width]":$input_avatar_max_width|replace:"[height]":$input_avatar_max_height|replace:"[filesize]":$input_avatar_max_filesize}</label></p></td>
 </tr>
 <tr>
