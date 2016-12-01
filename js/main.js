@@ -916,36 +916,29 @@ var ready = new (function () {
 	 * @param pid
 	 */
 	function Posting(pid) {
-		if (!pid) 
+		if (!pid)
 			return;
+		var pWrapper  = document.getElementById("p" + pid);
 		var pHeadline = document.getElementById("headline-" + pid);
-		var pContent = document.getElementById("posting-" + pid);
-		var pAvatar = document.getElementById("avatar-" + pid) || new Image();
-		if (!pHeadline || !pContent)
+		if (!pWrapper || !pHeadline)
 			return;
-			
 		var self = this;
 		pHeadline.classList.add("js-cursor-pointer");
 		pHeadline.title = lang["fold_posting_title"];
 		pHeadline.onclick = function(e) {
 			self.setFold(!self.isFold());
 		};
-		
 		this.isFold = function() {
-			return pContent.classList.contains("js-display-none");
+			return pWrapper.classList.contains("js-display-fold");
 		};
-		
 		this.setFold = function(fold) {
 			if (fold) {
-				pContent.classList.add("js-display-none");
-				pAvatar.classList.add("js-display-none");
+				pWrapper.classList.add("js-display-fold");
 			}
 			else {
-				pContent.classList.remove("js-display-none");
-				pAvatar.classList.remove("js-display-none");
+				pWrapper.classList.remove("js-display-fold");
 			}
 		};
-		
 		this.setFold(this.isFold());
 	};
 	
