@@ -210,7 +210,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 				}
 			}
 			// add a new setting for the duration an entry will be marked as read
-			if(!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('read_state_expiration_date', '150');")) {
+			if(!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('read_state_expiration_date', '150') ON DUPLICATE KEY UPDATE `value` = `value`")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 
