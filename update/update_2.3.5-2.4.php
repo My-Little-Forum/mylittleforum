@@ -193,28 +193,23 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 			if(!@mysqli_query($connid, "CREATE TABLE ".$db_settings['read_status_table']." (user_id int(11) UNSIGNED NOT NULL, posting_id int(11) UNSIGNED NOT NULL, time timestamp NOT NULL, PRIMARY KEY (user_id, posting_id)) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			// read a temporary set of settings
-			$tempSettingsResult = @mysqli_query($connid, "SELECT name, value FROM `".$db_settings['settings_table']."`";
-			if ($tempSettingsResult !== false) {
+			// rework the settings table, add primary key, restore the settings
+			$newSettingsResult = false;
+			$tempTableName = $db_settings['settings_table'] ."_tmp";
+			if(!@mysqli_query($connid, "ALTER TABLE `". $db_settings['settings_table'] ."` RENAME `". $tempTableName ."`;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			} else {
-				// store the temporary set in an array
-				// a second row with an existing name will overwrite the first row
-				while ($row = mysqli_fetch_assoc($tempSettingsResult)) {
-					$tempSettings[$row['name']] = $row['value'];
-				}
-				$queryAlterSettingsTable = "TRUNCATE TABLE `".$db_settings['settings_table']."`; ALTER TABLE `".$db_settings['settings_table']."` ENGINE = InnoDB, ADD PRIMARY KEY (`name`);";
-				// empty the settings table and alter it's structure
-				if(!@mysqli_query($connid, $queryAlterSettingsTable)) {
-					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				} else {
-					foreach ($tempSettings as $tempSettingKey => $tempSettingValue) {
-						if(!@mysqli_query($connid, "INSERT INTO ".$db_settings['settings_table']." VALUES ('". mysqli_real_escape_string($connid, $tempSettingKey) ."', '". mysqli_real_escape_string($connid, $tempSettingValue) ."');")) {
-							$errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
-						}
+				$newSettingsResult = @mysqli_query($connid, "CREATE TABLE `". $db_settings['settings_table'] ."` (`name` varchar(255) NOT NULL, `value` varchar(255) NOT NULL default '', PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;");
+				if ($newSettingsResult !== false) {
+					$newSettingsResult = @mysqli_query($connid, "INSERT INTO `". $db_settings['settings_table'] ."` (`name`, `value`) SELECT t.`name`, t.`value` FROM `". $tempTableName ."` AS t ON DUPLICATE KEY UPDATE `value` = t.`value`");
+					if(!@mysqli_query($connid, "DROP TABLE `". $tempTableName ."`;")) {
+						$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 					}
+				} else {
+					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 				}
 			}
+			// add a new setting for the duration an entry will be marked as read
 			if(!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('read_state_expiration_date', '150');")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
