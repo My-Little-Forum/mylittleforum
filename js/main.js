@@ -767,31 +767,27 @@ var ready = new (function () {
 	function Sidebar(templatePath) {
 		templatePath = templatePath || "";
 		var main    = document.getElementById("sidebar") || document.getElementById("bottombar") || false;
-		var content = document.getElementById("sidebarcontent");
 		var icon    = document.getElementById("sidebartoggle");
 		var self    = this;
-		if (!main || !content || !icon)
+		if (!main || !icon)
 			return;
-			
 		this.setVisible = function(visible) {
 			if (visible) {
-				content.classList.remove("js-display-none");
+				main.classList.remove("js-display-fold");
 				icon.src = templatePath + settings["hide_sidebar_image"];
 				icon.classList.remove("show-sidebar");
 				icon.classList.add("hide-sidebar");
 			}
 			else {
-				content.classList.add("js-display-none");
+				main.classList.add("js-display-fold");
 				icon.src = templatePath + settings["show_sidebar_image"];
 				icon.classList.remove("hide-sidebar");
 				icon.classList.add("show-sidebar");
 			}
 		};
-		
 		this.isVisible = function() {
-			return !content.classList.contains("js-display-none");
+			return !main.classList.contains("js-display-fold");
 		};
-		
 		var links = main.getElementsByTagName("a");
 		for (var i=0; i<links.length; i++) {
 			if (links[i].href.search(/toggle_sidebar/) != -1) {
