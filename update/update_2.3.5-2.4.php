@@ -186,7 +186,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 			fwrite($db_settings_file, "?".">\n");
 			flock($db_settings_file, 3);
 			fclose($db_settings_file);
-			
+			// new tables
 			if(!@mysqli_query($connid, "CREATE TABLE ".$db_settings['bookmark_table']." (id int(11) NOT NULL AUTO_INCREMENT,user_id int(11) NOT NULL,posting_id int(11) NOT NULL,time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,subject varchar(255) NOT NULL,order_id int(11) NOT NULL DEFAULT '0',PRIMARY KEY (id),UNIQUE KEY UNIQUE_uid_pid (user_id,posting_id)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
@@ -213,7 +213,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 			if(!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('read_state_expiration_date', '150') ON DUPLICATE KEY UPDATE `value` = `value`")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-
+			// transfer the IDs of the read entries from the user data to the new read status table
 			$numberOfStoredEntriesResult = @mysqli_query($connid, "SELECT `value` FROM `".$db_settings['settings_table']."` WHERE `name` = 'max_read_items' LIMIT 1");
 			if(mysqli_num_rows($numberOfStoredEntriesResult) == 1) {
 				$numberOfStoredEntriesValues = mysqli_fetch_array($numberOfStoredEntriesResult);
