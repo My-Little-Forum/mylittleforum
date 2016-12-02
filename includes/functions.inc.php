@@ -196,6 +196,7 @@ function filter_category_selection($categories, $allowed_categories)
 
 /**
  * saves the status "entry read" to the database table "mlf2_read_entries"
+ * restrict the number of saved entires, if "max_read_items" > 0
  *
  * @param resource $connid, ID of the database connection
  * @param int $user_id, ID of the registered, actually acting user
@@ -212,8 +213,8 @@ function save_read_status($connid, $user_id, $entry_id) {
 		return false;
 	if (intval($_SESSION[$settings['session_prefix'].'user_id']) === $user_id and $entry_id > 0) {
 		$ret = @mysqli_query($connid, "INSERT INTO ". $db_settings['read_status_table'] ." (user_id, posting_id, time) VALUES (". $user_id .", ". $entry_id .", NOW()) ON DUPLICATE KEY UPDATE time = NOW()");
-		if ($ret && $settings['max_read_items'] > 0) {
-			@mysqli_query($connid, "DELETE FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". intval($user_id) ." AND `posting_id` NOT IN (SELECT `posting_id` FROM (SELECT `posting_id` FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". intval($user_id) ." ORDER BY `time` DESC LIMIT 0," . intval($settings['max_read_items']). ") AS `dummy`)");
+		if ($ret && intval($settings['max_read_items']) > 0) {
+			@mysqli_query($connid, "DELETE FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". $user_id ." AND `posting_id` NOT IN (SELECT `posting_id` FROM (SELECT `posting_id` FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". $user_id ." ORDER BY `time` DESC LIMIT 0," . intval($settings['max_read_items']). ") AS `dummy`)");
 		}
 	}
 	return $ret;
