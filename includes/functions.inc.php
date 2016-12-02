@@ -208,9 +208,13 @@ function save_read_status($connid, $user_id, $entry_id) {
 	$ret = false;
 	$entry_id = intval($entry_id);
 	$user_id = intval($user_id);
-	if (!is_numeric($entry_id)) return false;
+	if (!is_numeric($entry_id))
+		return false;
 	if (intval($_SESSION[$settings['session_prefix'].'user_id']) === $user_id and $entry_id > 0) {
 		$ret = @mysqli_query($connid, "INSERT INTO ". $db_settings['read_status_table'] ." (user_id, posting_id, time) VALUES (". $user_id .", ". $entry_id .", NOW()) ON DUPLICATE KEY UPDATE time = NOW()");
+		if ($ret && $settings['max_read_items'] > 0) {
+			@mysqli_query($connid, "DELETE FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". intval($user_id) ." AND `posting_id` NOT IN (SELECT `posting_id` FROM (SELECT `posting_id` FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". intval($user_id) ." ORDER BY `time` DESC LIMIT 0," . intval($settings['max_read_items']). ") AS `dummy`)");
+		}
 	}
 	return $ret;
 }
