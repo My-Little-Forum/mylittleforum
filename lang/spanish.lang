@@ -684,10 +684,12 @@ spam_protection_link =            Spam protecion
 backup_restore_link =             Copia de seguridad
 update_link =                     Actualizar
 reset_uninstall_link =            Reset o desinstalar foro
-releases_info_header =            Actual release
-releases_list_link =              Check the releases list for the actual version.
+releases_info_header =            Actual available release
+releases_list_link =              Check the releases list for the actual available version.
 warning_header =                  Warning
 warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
+actual_installed_version_header = Actual installed version
+actual_installed_version =        The version number of your installation: <strong>[current_version_string]</strong>
 
 # forum settings:
 clear_chache =                    Borre la cache para aplicar los cambios a las entradas ya existentes

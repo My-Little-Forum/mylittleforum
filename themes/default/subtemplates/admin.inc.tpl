@@ -1081,6 +1081,10 @@
 {/if}
 {else}
 <div class="additional-admin-info">
+	<div id="admin-info-current-version">
+		<h3>{$installed_version_header}</h3>
+		<p>{$installed_version_info_content}</p>
+	</div>
 	{if $install_script_exists}
 	<div id="admin-info-install_script_exists">
 		<h3>{#warning_header#}</h3>

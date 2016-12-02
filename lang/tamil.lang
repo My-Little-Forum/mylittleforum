@@ -680,10 +680,12 @@ spam_protection_link =            ஸ்பேம் காப்பு
 backup_restore_link =             காப்பீடு செய்
 update_link =                     புதுப்பிக்க
 reset_uninstall_link =            நிலையை மீட்டு அல்லது பொது மன்றத்தை நீக்குக
-releases_info_header =            Actual release
-releases_list_link =              Check the releases list for the actual version.
+releases_info_header =            Actual available release
+releases_list_link =              Check the releases list for the actual available version.
 warning_header =                  Warning
 warning_install_script_exists =   For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!
+actual_installed_version_header = Actual installed version
+actual_installed_version =        The version number of your installation: <strong>[current_version_string]</strong>
 
 # forum settings:
 clear_chache =                    பழையதை நீக்குக
