@@ -2012,14 +2012,15 @@ if (isset($settings) && isset($settings['version'])) {
 // Prueft, ob die Datei install/index.php noch existiert
 $smarty->assign('install_script_exists', file_exists('./install/index.php'));
 
-// Pruefe, ob eine neue Version zur Verfuegung steht 
-if (isset($settings) && isset($settings['version'])) {
-	$latestRelease = checkUpdate($settings['version']);
-	//$latestRelease = checkUpdate('2.3.5');
-	if ($latestRelease !== false) {
-		$smarty->assign('latest_release_title',   $latestRelease->title);
-		$smarty->assign('latest_release_content', $latestRelease->content);
-		$smarty->assign('latest_release_version', $latestRelease->version);
+// Pruefe, ob eine neue Version zur Verfuegung steht
+$lastVersionCheck = false;
+$lastVersionCheck = @mysqli_query($connid, "SELECT value AS version FROM ".$db_settings['temp_infos_table']." WHERE name = 'last_version_check'");
+
+if (($lastVersionCheck !== false and mysqli_num_rows($lastVersionCheck) == 1) and (isset($settings) && isset($settings['version']))) {
+	$lastVC = mysqli_fetch_assoc($lastVersionCheck);
+	mysqli_free_result($lastVersionCheck);
+	if ($lastVC !== NULL) {
+		$smarty->assign('latest_release_version', htmlspecialchars($lastVC['version']));
 	}
 }
 
