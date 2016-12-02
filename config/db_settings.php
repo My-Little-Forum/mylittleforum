@@ -25,4 +25,5 @@ $db_settings['entry_cache_table'] =    'mlf2_entries_cache';
 $db_settings['userdata_cache_table'] = 'mlf2_userdata_cache';
 $db_settings['bookmark_table'] =       'mlf2_bookmarks';
 $db_settings['read_status_table'] =    'mlf2_read_entries';
+$db_settings['temp_infos_table'] =     'mlf2_temp_infos';
 ?>

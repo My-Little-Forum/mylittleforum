@@ -162,6 +162,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
 		$db_settings['bookmark_table'] = $table_prefix . 'bookmarks';
 		$db_settings['read_status_table'] = $table_prefix . 'read_entries';
+		$db_settings['temp_infos_table'] = $table_prefix . 'temp_infos';
 		$db_settings_file = @fopen("./config/db_settings.php", "w") or $update['errors'][] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
 		if(empty($update['errors'])) {
 			flock($db_settings_file, 2);
@@ -183,6 +184,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 			fwrite($db_settings_file, "\$db_settings['userdata_cache_table'] = '". addslashes($db_settings['userdata_cache_table']) ."';\n");
 			fwrite($db_settings_file, "\$db_settings['bookmark_table']       = '". addslashes($db_settings['bookmark_table']) ."';\n");
 			fwrite($db_settings_file, "\$db_settings['read_status_table']    = '". addslashes($db_settings['read_status_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['temp_infos_table']     = '". addslashes($db_settings['temp_infos_table']) ."';\n");
 			fwrite($db_settings_file, "?".">\n");
 			flock($db_settings_file, 3);
 			fclose($db_settings_file);
@@ -191,6 +193,9 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			if(!@mysqli_query($connid, "CREATE TABLE ".$db_settings['read_status_table']." (user_id int(11) UNSIGNED NOT NULL, posting_id int(11) UNSIGNED NOT NULL, time timestamp NOT NULL, PRIMARY KEY (user_id, posting_id)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "CREATE TABLE ".$db_settings['temp_infos_table']." (name varchar(50) NOT NULL, value varchar(255) NOT NULL, time timestamp NULL DEFAULT NULL, PRIMARY KEY (name)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			// rework the settings table, add primary key, restore the settings
