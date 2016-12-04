@@ -950,6 +950,15 @@ if(isset($_POST['reset_forum_confirmed']) || isset($_POST['uninstall_forum_confi
       echo '<br />';
       echo 'Deleting table <strong>'.$db_settings['userdata_cache_table'].'</strong>... ';
       if(@mysqli_query($connid, "DROP TABLE ".$db_settings['userdata_cache_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
+      echo '<br />';
+      echo 'Deleting table <strong>'.$db_settings['bookmark_table'].'</strong>... ';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['bookmark_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
+      echo '<br />';
+      echo 'Deleting table <strong>'.$db_settings['read_status_table'].'</strong>... ';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['read_status_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
+      echo '<br />';
+      echo 'Deleting table <strong>'.$db_settings['temp_infos_table'].'</strong>... ';
+      if(@mysqli_query($connid, "DROP TABLE ".$db_settings['temp_infos_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('.mysqli_error($connid).')';
 
       echo '</pre>';
       exit;
