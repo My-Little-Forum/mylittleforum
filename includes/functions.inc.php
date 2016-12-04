@@ -1782,6 +1782,9 @@ function create_backup_file($mode=0)
     case 5: $filename = 'mlf_backup_pages_'.gmdate("YmdHis").'.sql'; break;
     case 6: $filename = 'mlf_backup_smilies_'.gmdate("YmdHis").'.sql'; break;
     case 7: $filename = 'mlf_backup_banlists_'.gmdate("YmdHis").'.sql'; break;
+    case 8: $filename = 'mlf_backup_bookmarks_'.gmdate("YmdHis").'.sql'; break;
+    case 9: $filename = 'mlf_backup_read_status_'.gmdate("YmdHis").'.sql'; break;
+    case 10: $filename = 'mlf_backup_temp_infos_'.gmdate("YmdHis").'.sql'; break;
    }
 
   $backup->set_file('backup/'.$filename);
@@ -1874,6 +1877,54 @@ function create_backup_file($mode=0)
       $data['name'] = mysqli_real_escape_string($connid, $data['name']);
       $data['list'] = mysqli_real_escape_string($connid, $data['list']);
       $backup->assign("INSERT INTO ".$db_settings['banlists_table']." VALUES ('".$data['name']."', '".$data['list']."');\n");
+     }
+    mysqli_free_result($result);
+   }
+
+  if($mode==0 || $mode==8) // bookmarks
+   {
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['bookmark_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['bookmark_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT id, user_id, posting_id, time, subject, order_id FROM ".$db_settings['bookmark_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+      $data['time'] = mysqli_real_escape_string($connid, $data['time']);
+      $data['subject'] = mysqli_real_escape_string($connid, $data['subject']);
+      $backup->assign("INSERT INTO ".$db_settings['bookmark_table']." VALUES (".$data['id'].", ".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."', '".$data['subject']."', ".$data['order_id'].");\n");
+     }
+    mysqli_free_result($result);
+   }
+
+  if($mode==0 || $mode==9) // read status
+   {
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['read_status_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['read_status_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT user_id, posting_id, time FROM ".$db_settings['read_status_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+      $data['time'] = mysqli_real_escape_string($connid, $data['time']);
+      $backup->assign("INSERT INTO ".$db_settings['read_status_table']." VALUES (".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."');\n");
+     }
+    mysqli_free_result($result);
+   }
+
+  if($mode==0 || $mode==10) // temporary informations
+   {
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['temp_infos_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['temp_infos_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT name, value, time FROM ".$db_settings['temp_infos_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+      $data['name'] = mysqli_real_escape_string($connid, $data['name']);
+      $data['value'] = mysqli_real_escape_string($connid, $data['value']);
+      $data['time'] = mysqli_real_escape_string($connid, $data['time']);
+      $backup->assign("INSERT INTO ".$db_settings['temp_infos_table']." VALUES ('".$data['name']."', '".$data['value']."', '".$data['time']."');\n");
      }
     mysqli_free_result($result);
    }
