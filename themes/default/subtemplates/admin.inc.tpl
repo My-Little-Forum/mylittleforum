@@ -1081,6 +1081,10 @@
 {/if}
 {else}
 <div class="additional-admin-info">
+	<div id="admin-info-current-version">
+		<h3>{$installed_version_header}</h3>
+		<p>{$installed_version_info_content}</p>
+	</div>
 	{if $install_script_exists}
 	<div id="admin-info-install_script_exists">
 		<h3>{#warning_header#}</h3>
@@ -1088,10 +1092,9 @@
 	</div>
 	{/if}
 	<div id="admin-info-releases">
-	{if $latest_release_title}
-		<h3>{$latest_release_title}</h3>
-		<!--<p>{$latest_release_content}</p>-->
-		<p><a href="https://github.com/ilosuna/mylittleforum/releases/latest">Download: {$latest_release_version}</a></p>
+	{if $latest_release_version}
+		<h3>{#releases_info_header#}</h3>
+		<p><a href="https://github.com/ilosuna/mylittleforum/releases/latest">Download {$latest_release_version}</a></p>
 	{else}
 		<h3>{#releases_info_header#}</h3>
 		<p><a href="https://github.com/ilosuna/mylittleforum/releases/latest">{#releases_list_link#}</a></p>

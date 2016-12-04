@@ -204,7 +204,8 @@ if(isset($_POST['install_submit']))
 								'entry_cache_table'    => 'entries_cache',
 								'userdata_cache_table' => 'userdata_cache',
 								'bookmark_table'       => 'bookmarks',
-								'read_status_table'    => 'read_entries'
+								'read_status_table'    => 'read_entries',
+								'temp_infos_table'     => 'temp_infos'
 							);
 
 		clearstatcache();

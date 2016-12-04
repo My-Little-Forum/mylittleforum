@@ -100,9 +100,17 @@ function daily_actions($current_time=0) {
 			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_ip='' WHERE user_ip!='' AND last_login < (NOW() - INTERVAL ".intval($settings['delete_ips'])." HOUR)");
 		}
 		// remove read state by time:
-		if($settings['read_state_expiration_date'] > 0) {		
+		if($settings['read_state_expiration_date'] > 0) {
 			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ".intval($settings['read_state_expiration_date'])." DAY)");
 		}
+		// if possible, load new version info from Github
+		if (isset($settings) && isset($settings['version'])) {
+			$latestRelease = checkUpdate($settings['version']);
+			if ($latestRelease !== false) {
+				@mysqli_query($connid, "INSERT INTO ".$db_settings['temp_infos_table']." (name, value, time) VALUES ('last_version_check', '". mysqli_real_escape_string($connid, $latestRelease->version) ."', NOW()) ON DUPLICATE KEY UPDATE value = '". mysqli_real_escape_string($connid, $latestRelease->version) ."', time = NOW();");
+			}
+		}
+	}
 		// set time of next daily actions:
 		if($today_beginning = mktime(0,0,0, date("n"), date("j"), date("Y"))) {
 			$time_parts = explode(':',$settings['daily_actions_time']);
