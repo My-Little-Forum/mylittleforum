@@ -53,7 +53,7 @@ switch($settings['version']) {
 		$update['items'][] = 'modules/smarty/';
 		$update['items'][] = 'modules/stringparser_bbcode/';
 
-	case '2.4.0':
+	case '2.3.7':
 		$update['items'][] = 'index.php';											// #39
 
 		$update['items'][] = 'js/';													// #39, #47
@@ -156,7 +156,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 	}
 }
 
-if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3','2.3.1','2.3.2','2.3.3','2.3.4','2.3.5 RC','2.3.5','2.3.6','2.3.6.1','2.4.0'))) {
+if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3','2.3.1','2.3.2','2.3.3','2.3.4','2.3.5 RC','2.3.5','2.3.6','2.3.6.1','2.3.7'))) {
 	$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
 	// add new database table
 	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
