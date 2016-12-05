@@ -247,12 +247,12 @@ $subnav_link = array('mode'=>'posting', 'title'=>'new_topic_link_title', 'name'=
 
 if(isset($data_array)) $smarty->assign('data',$data_array);
 #if(isset($tree)) $smarty->assign("tree",$tree);
-if(isset($threads))
- {
-  $smarty->assign("threads",$threads);
-  $smarty->assign('replies',$replies);
-  $smarty->assign('total_views',$total_views);
- }
+if(isset($threads)) {
+	$smarty->assign("threads",$threads);
+	$smarty->assign('replies',$replies);
+	if (isset($total_views))
+		$smarty->assign('total_views',$total_views);
+}
 if(isset($child_array)) $smarty->assign("child_array",$child_array);
 
 $smarty->assign("page",$page);
