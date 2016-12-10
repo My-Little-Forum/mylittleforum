@@ -863,8 +863,8 @@ if(isset($_GET['user_lock']))
  }
 
 if (isset($_GET['activate'])) {
-  // Active user
-  mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, activate_code='' WHERE user_id=".intval($_GET['activate'])." LIMIT 1");
+  // Active and unlock user
+  mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, activate_code='', user_lock=0 WHERE user_id=".intval($_GET['activate'])." LIMIT 1");
 
   // Send notification to user
   $user_result = mysqli_query($connid, "SELECT user_name, user_email ".$db_settings['userdata_table']." SET last_login=last_login, registered=registered, activate_code='' WHERE user_id=".intval($_GET['activate'])." LIMIT 1");
