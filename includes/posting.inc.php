@@ -963,7 +963,7 @@ switch($action)
          $p_category = intval($field['category']);
         }
 
-       if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==2 && $settings['dont_reg_edit_by_admin']==1 || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==1 && $settings['dont_reg_edit_by_mod']==1 || ($field['text']==$text && $field['subject']==$subject && ($field['user_id']>0 || $field['name']==$name && $field['location']==$location) && isset($_SESSION[$settings['session_prefix'].'user_type']) && ($_SESSION[$settings['session_prefix'].'user_type']==2 || $_SESSION[$settings['session_prefix'].'user_type']==1)))
+       if(isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==2 && $settings['dont_reg_edit_by_admin']==1 || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type']==1 && $settings['dont_reg_edit_by_mod']==1 || ($field['text']==$text && $field['subject']==$subject && ($field['user_id']>0 || $field['name']==$name && $field['location']==$location) && isset($_SESSION[$settings['session_prefix'].'user_type']) && ($_SESSION[$settings['session_prefix'].'user_type']==2 && $settings['dont_reg_edit_by_admin']==1 || $_SESSION[$settings['session_prefix'].'user_type']==1 && $settings['dont_reg_edit_by_mod']==1)))
         {
          // unnoticed editing for admins and mods
          $edited_query = 'edited';
