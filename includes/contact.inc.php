@@ -117,10 +117,10 @@ switch($action)
 
    if(empty($errors))
     {
-     if(empty($sender_email) || $sender_email=='') $errors[] = 'error_no_email';
+     if(empty($sender_email) || $sender_email=='') $errors[] = 'error_message_no_email';
      elseif(!is_valid_email($sender_email)) $errors[] = 'error_email_invalid';
-     if(empty($subject) || $subject=='') $errors[] = 'error_no_subject';
-     if(empty($text) || $text=='') $errors[] = 'error_no_text';
+     if(empty($subject) || $subject=='') $errors[] = 'error_message_no_subject';
+     if(empty($text) || $text=='') $errors[] = 'error_message_no_text';
      if(my_strlen($subject,$lang['charset']) > $settings['email_subject_maxlength']) $errors[] = 'error_email_subject_too_long';
      if(my_strlen($text,$lang['charset']) > $settings['email_text_maxlength']) $errors[] = 'error_email_text_too_long';
      $smarty->assign('text_length',my_strlen($text,$lang['charset']));

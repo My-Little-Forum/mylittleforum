@@ -672,15 +672,15 @@ subject_caption =                 Заголовок:
 message_caption =                 Сообщение:
 message_submit_caption =          Да, отправить
 email_sent =                      Письмо успешно отправлено.
-error_no_text =                   Текст сообщения отсутствует
-error_no_email =                  Не указан адрес e-mail отправителя
-error_no_subject =                Не указан заголовок
+error_message_no_text =           Текст сообщения отсутствует
+error_message_no_email =          Не указан адрес e-mail отправителя
+error_message_no_subject =        Не указан заголовок
 error_email_invalid =             Адрес e-mail неправильный
-#error_not_accepted_word =         Письмо содержит как минимум одно неприемлемое слово
+#error_not_accepted_word =        Письмо содержит как минимум одно неприемлемое слово
 error_email_subject_too_long =    Заголовок письма слишком длинный
 error_email_text_too_long =       Текст письма слишком длинный ([text_length] символов - разрешено только [text_maxlength] символов)
 error_spam_suspicion =            Подозрение на спам! Пожалуйста, измените текст письма (например, удалите ссылки)
-#error_mailserver =                Попытка отправить письмо не удалась!
+#error_mailserver =               Попытка отправить письмо не удалась!
 
 [admin]
 enabled =                         включен
