@@ -107,10 +107,6 @@ else $order = 'time';
        }
 
       $data['formated_time'] = format_time($lang['time_format_full'],$data['disp_time']);
-      
-      if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['time'] || $last_visit && $data['time'] > $last_visit) $data['new'] = true;
-      else $data['new'] = false;
-      
       $ago['days'] = floor((TIMESTAMP - $data['time'])/86400);
       $ago['hours'] = floor(((TIMESTAMP - $data['time'])/3600)-($ago['days']*24));
       $ago['minutes'] = floor(((TIMESTAMP - $data['time'])/60)-($ago['hours']*60+$ago['days']*1440));
@@ -259,11 +255,23 @@ else $order = 'time';
 			// read-status handling
 			$rstatus = save_read_status($connid, $user_id, $data['id']);
 		}
-     if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
-       $data['is_read'] = true;
-     } else {
-       $data['is_read'] = false;
-     }
+			if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
+				$data['is_read'] = true;
+				$data['new'] = false;
+			} else {
+				if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+					$data['is_read'] = false;
+					$data['new'] = true;
+				} else {
+					if (isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time'] || ($last_visit && ($data['last_reply'] > $last_visit or $data['time'] > $last_visit))) {
+						$data['is_read'] = false;
+						$data['new'] = true;
+					} else {
+						$data['is_read'] = true;
+						$data['new'] = false;
+					}
+				}
+			}
 
 	  $data_array[$data["id"]] = $data;
       $child_array[$data["pid"]][] =  $data["id"];

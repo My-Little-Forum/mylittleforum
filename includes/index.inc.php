@@ -128,21 +128,6 @@ if($result_count > 0)
       // convert formated time to a utf-8:
       $data['formated_time'] = format_time($lang['time_format'],$data['timestamp']);
 
-      if($data['pid']==0)
-       {
-        if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['last_reply'] || $last_visit && $data['last_reply'] > $last_visit) $data['new'] = true;
-        else $data['new'] = false;
-       }
-      else
-       { 
-        if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['time'] || $last_visit && $data['time'] > $last_visit) $data['new'] = true;
-        else $data['new'] = false;
-       }
-      if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
-       $data['is_read'] = true;
-      } else {
-       $data['is_read'] = false;
-      }
 
       if($data['pid']==0) $threads[] = $data['id'];
       $data_array[$data['id']] = $data;
@@ -152,6 +137,23 @@ if($result_count > 0)
    }
   @mysqli_free_result($result);
  }
+			if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
+				$data['is_read'] = true;
+				$data['new'] = false;
+			} else {
+				if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+					$data['is_read'] = false;
+					$data['new'] = true;
+				} else {
+					if (isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time'] || ($last_visit && ($data['last_reply'] > $last_visit or $data['time'] > $last_visit))) {
+						$data['is_read'] = false;
+						$data['new'] = true;
+					} else {
+						$data['is_read'] = true;
+						$data['new'] = false;
+					}
+				}
+			}
 
 // latest postings:
 if($settings['latest_postings']>0)
