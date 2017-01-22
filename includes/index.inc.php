@@ -124,19 +124,6 @@ if($result_count > 0)
 
       $data['subject'] = htmlspecialchars($data['subject']);
       if(isset($categories[$data['category']]) && $categories[$data['category']]!='') $data['category_name']=$categories[$data['category']];
-
-      // convert formated time to a utf-8:
-      $data['formated_time'] = format_time($lang['time_format'],$data['timestamp']);
-
-
-      if($data['pid']==0) $threads[] = $data['id'];
-      $data_array[$data['id']] = $data;
-      $child_array[$data['pid']][] =  $data['id'];
-     }
-    mysqli_free_result($thread_result);
-   }
-  @mysqli_free_result($result);
- }
 			if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
 				$data['is_read'] = true;
 				$data['new'] = false;
@@ -154,6 +141,19 @@ if($result_count > 0)
 					}
 				}
 			}
+
+      // convert formated time to a utf-8:
+      $data['formated_time'] = format_time($lang['time_format'],$data['timestamp']);
+
+
+      if($data['pid']==0) $threads[] = $data['id'];
+      $data_array[$data['id']] = $data;
+      $child_array[$data['pid']][] =  $data['id'];
+     }
+    mysqli_free_result($thread_result);
+   }
+  @mysqli_free_result($result);
+ }
 
 // latest postings:
 if($settings['latest_postings']>0)
