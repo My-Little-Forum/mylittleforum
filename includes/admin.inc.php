@@ -2011,11 +2011,8 @@ switch($action)
  }
 
 // show the version number of the installation
-$smarty->configLoad($settings['language_file'], 'admin');
-$lang = $smarty->getConfigVars();
 if (isset($settings) && isset($settings['version'])) {
-	$smarty->assign('installed_version_header', $lang['actual_installed_version_header']);
-	$smarty->assign('installed_version_info_content', str_replace('[current_version_string]', $settings['version'], $lang['actual_installed_version']));
+	$smarty->assign('installed_version_number', htmlspecialchars($settings['version']));
 }
 
 // Prueft, ob die Datei install/index.php noch existiert
