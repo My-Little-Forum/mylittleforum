@@ -4,6 +4,8 @@
  * the messages in classical threaded view
  *
  * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
+ * @author Michael Lösler (https://github.com/derletztekick)
+ * @author H. August (https://github.com/auge8472)
  * @copyright 2006-2016 Mark Alexander Hoschek
  * @version 2.3.99.2 (2017-01-24)
  * @link http://mylittleforum.net/
