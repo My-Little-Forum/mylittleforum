@@ -55,11 +55,8 @@ switch($settings['version']) {
 
 	case '2.3.7':
 		$update['items'][] = 'index.php';											// #39
-
 		$update['items'][] = 'js/';													// #39, #47
-
 		$update['items'][] = 'includes/';											// #39, #42, #50, #54, #57, #64
-		
 		$update['items'][] = 'themes/default/main.tpl';								// #39
 		$update['items'][] = 'themes/default/style.css';							// #39, #41, #56, #64
 		$update['items'][] = 'themes/default/style.min.css';						// #39, #41, #56, #64
@@ -74,8 +71,11 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl';		// #39
 		$update['items'][] = 'themes/default/images/bg_sprite_3.png';				// #39
 		$update['items'][] = 'themes/default/images/bg_sprite_4.png';				// #64
-		
 		$update['items'][] = 'lang/';												// #39, #56, #64, #68
+	case '2.3.99.1':
+		$update['items'][] = 'includes/index.inc.php';			// #150
+		$update['items'][] = 'includes/admin.inc.php';			// #151
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';			// #151
 	
 	
 		// !!!Do *NOT* add 'break;' to a single case!!!
