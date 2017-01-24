@@ -1,6 +1,23 @@
 my little forum changelog
 -------------------------
 
+2.3.99.2 (pre release of 2.4) (2017-01-24)
+------------------
+- fixed accidentally duplicating of settings when installing the forum with a database backup
+- fixed the unexpected behaviour of the refresh link and in context the new and read marking of entries
+- fixed the view breaking diyplay of images that are wider than the viewport of the browser and the width of the Ajax-preview
+- fixed the issue of unnecessarily displaying the Ajax-preview when the entry itself is empty
+- fixed a buggy handling of blocked IPs when one tries to log in
+- do not add and remove inline styles of HTML-elements with JavaScript, toggle class names instead
+- added the possibility to trigger the Ajax-preview by mouse over on the icon
+- added a function for bookmarking entries
+- added an email message to a user that was activated by an administrator
+- added a warning for the forum team about the not from the server removed installation script
+- added a notification for the forum team about registered but not activated users
+- added a notification for the forum team about the current version number of the installation
+- added a notification for the forum team about the actual available release with a link to the download location
+- added a link to the releases list for the case, that the query for the actual available release failes
+
 2.3.7 (2016-10-10)
 ------------------
 - fixed further spelling error (German language)
