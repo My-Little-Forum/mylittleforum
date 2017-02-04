@@ -301,7 +301,7 @@ switch($action)
 			@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE `user_id`= ".intval($user_id)." AND `posting_id` = ".intval($_GET['bookmark'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
 		else
 			@mysqli_query($connid, "INSERT INTO ".$db_settings['bookmark_table']."( `order_id`, `user_id`, `posting_id`, `subject` ) 
-									SELECT MAX( `order_id` ) + 1, ".intval($user_id).", ".intval($_GET['bookmark']).", 
+									SELECT COALESCE(MAX(`order_id`), 0) + 1, ".intval($user_id).", ".intval($_GET['bookmark']).", 
 									(SELECT `subject` FROM ".$db_settings['forum_table']." WHERE ".$db_settings['forum_table'].".`id` = ".intval($_GET['bookmark']).") 
 									FROM ".$db_settings['bookmark_table']." WHERE `user_id`= ".intval($user_id)."") or raise_error('database_error',mysqli_error($connid));
 		
