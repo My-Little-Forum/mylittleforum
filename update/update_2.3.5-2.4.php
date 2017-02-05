@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.3.5','2.3.6','2.3.6.1','2.3.7','2.3.99.1');
+$update['version'] = array('2.3.5','2.3.6','2.3.6.1','2.3.7','2.3.99.1', '2.3.99.2');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -76,6 +76,10 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/index.inc.php';			// #150
 		$update['items'][] = 'includes/admin.inc.php';			// #151
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';			// #151
+	case '2.3.99.2':
+		$update['items'][] = 'includes/posting.inc.php';			// #160
+		$update['items'][] = 'lang/';			// #161, #163
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';			// #163
 	
 	
 		// !!!Do *NOT* add 'break;' to a single case!!!
