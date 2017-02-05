@@ -107,7 +107,8 @@ function daily_actions($current_time=0) {
 		if (isset($settings) && isset($settings['version'])) {
 			$latestRelease = checkUpdate($settings['version']);
 			if ($latestRelease !== false) {
-				@mysqli_query($connid, "INSERT INTO ".$db_settings['temp_infos_table']." (name, value, time) VALUES ('last_version_check', '". mysqli_real_escape_string($connid, $latestRelease->version) ."', NOW()) ON DUPLICATE KEY UPDATE value = '". mysqli_real_escape_string($connid, $latestRelease->version) ."', time = NOW();");
+				@mysqli_query($connid, "INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`, `time`) VALUES ('last_version_check', '" . mysqli_real_escape_string($connid, $latestRelease->version) . "', NOW()) ON DUPLICATE KEY UPDATE `value` = '" . mysqli_real_escape_string($connid, $latestRelease->version) . "', `time` = NOW();");
+				@mysqli_query($connid, "INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`) VALUES ('last_version_uri', '" . mysqli_real_escape_string($connid, $latestRelease->uri) . "') ON DUPLICATE KEY UPDATE `value` = '" . mysqli_real_escape_string($connid, $latestRelease->uri) . "';");
 			}
 		}
 		// set time of next daily actions:
@@ -2645,8 +2646,9 @@ function isInfamousEmail($email) {
  * @return mix $releaseInfo
  */
 function checkUpdate($currentVersion = '0.0') {
-	$url = "https://github.com/ilosuna/mylittleforum/releases.atom";
-	$resource = getExternalResource($url);
+	$baseURI = "https://github.com";
+	$atomURI = $baseURI . "/ilosuna/mylittleforum/releases.atom";
+	$resource = getExternalResource($atomURI);
 	if ($resource) {
 		$xml = new SimpleXMLElement($resource);
 		$len = count($xml->entry);
@@ -2655,23 +2657,26 @@ function checkUpdate($currentVersion = '0.0') {
 		$xml->registerXPathNamespace('atom', 'http://www.w3.org/2005/Atom');
 		$updateDateOfActualVersion    = $xml->xpath("//atom:entry[1]/atom:updated");
 		$lastVersion                  = $xml->xpath("//atom:entry[1]/atom:id");
-		$updateDateOfInstalledVersion = $xml->xpath("//atom:entry/atom:id[substring(text(), string-length(text()) - string-length('" . htmlspecialchars($currentVersion) . "') + 1) = '" . htmlspecialchars($currentVersion) . "']/../atom:updated");
-		
+		$updateDateOfInstalledVersion = $xml->xpath("//atom:entry/atom:id[substring(text(), string-length(text()) - string-length('" . htmlspecialchars($currentVersion) . "') + 1) = '" . htmlspecialchars($currentVersion) . "']/../atom:updated");	
 		$updateDateOfActualVersion = strtotime($updateDateOfActualVersion[0]);
-		$lastVersion = preg_replace ("/.+\/v/u", "", $lastVersion[0]);
+		//$lastVersion = preg_replace ("/.+\/v/u", "", $lastVersion[0]);
+		$lastVersion = preg_replace("/.*?([^\/v?]+$)/u", "$1", $lastVersion[0]);
+
 		if (empty($updateDateOfInstalledVersion ))
 			$updateDateOfInstalledVersion = 0;
 		else
 			$updateDateOfInstalledVersion = strtotime($updateDateOfInstalledVersion[0]);
 		
 		if ($lastVersion != $currentVersion && $updateDateOfActualVersion > $updateDateOfInstalledVersion) {
-			$title   = $xml->xpath("//atom:entry[1]/atom:title/text()");
-			$content = $xml->xpath("//atom:entry[1]/atom:content/text()");
-			
+			$title      = $xml->xpath("//atom:entry[1]/atom:title/text()");
+			$content    = $xml->xpath("//atom:entry[1]/atom:content/text()");
+			$releaseURI = $xml->xpath("//atom:entry[1]/atom:link/@href");
+
 			$release = (object) [
 				'title'   => (string)$title[0],
 				'content' => (string)$content[0],
 				'version' => (string)$lastVersion,
+				'uri'     => $baseURI . (string)$releaseURI[0]->href
 			];
 			return $release;
 		}
