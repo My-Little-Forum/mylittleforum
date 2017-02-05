@@ -40,8 +40,8 @@ next_page_link =                  &raquo;
 previous_page_link =              &laquo;
 next_page_link_title =            下一页
 previous_page_link_title =        前一页
-posted_by =                       作者: <strong>[name]</strong>[email_hp], 发表于: [time]
-posted_by_location =              作者: <strong>[name]</strong>[email_hp], 来自: [location], 发表于: [time]
+posted_by =                       作者: <strong>[name]</strong>[email_hp]<span class="interpunction">, </span>发表于: [time]
+posted_by_location =              作者: <strong>[name]</strong>[email_hp]<span class="interpunction">, </span>来自: [location]<span class="interpunction">, </span>发表于: [time]
 original_posting_linktitle =      点此查看[name]发表的主贴
 error_headline =                  错误!
 no_authorisation =                没有权限!
