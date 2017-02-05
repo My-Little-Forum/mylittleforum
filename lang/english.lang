@@ -596,6 +596,7 @@ edit_pw =                         change password
 edit_user_email_contact =         E-mail address contactable
 edit_user_real_name =             Name:
 edit_user_gender =                Gender:
+gender_not_specified =            not specified
 male =                            male
 female =                          female
 edit_user_birthday =              Birthday:

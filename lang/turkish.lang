@@ -591,6 +591,7 @@ edit_pw =                         Şifre değiştir
 edit_user_email_contact =         E-posta adresi irtibata açık
 edit_user_real_name =             İsim:
 edit_user_gender =                Cinsiyet:
+gender_not_specified =            not specified
 male =                            erkek
 female =                          bayan
 edit_user_birthday =              Doğum tarihi:

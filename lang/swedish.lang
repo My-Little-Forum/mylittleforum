@@ -596,6 +596,7 @@ edit_pw =                         Ändra lösenord
 edit_user_email_contact =         Tillåt andra medlemmar att kontakta mig via E-post
 edit_user_real_name =             Namn:
 edit_user_gender =                Kön:
+gender_not_specified =            not specified
 male =                            Man
 female =                          Kvinna
 edit_user_birthday =              Födelsedag:

@@ -600,6 +600,7 @@ edit_pw =                         сменить пароль
 edit_user_email_contact =         Контактный адрес E-mail
 edit_user_real_name =             Имя:
 edit_user_gender =                Пол:
+gender_not_specified =            not specified
 male =                            мужчина
 female =                          женщина
 edit_user_birthday =              Дата рождения:

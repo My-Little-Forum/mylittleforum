@@ -588,6 +588,7 @@ edit_pw =                         cambiar la contrasena
 edit_user_email_contact =         Mostrar sobrecito
 edit_user_real_name =             Nombre:
 edit_user_gender =                Sexo:
+gender_not_specified =            not specified
 male =                            masculino
 female =                          femenino
 edit_user_birthday =              Fecha de nacimiento:

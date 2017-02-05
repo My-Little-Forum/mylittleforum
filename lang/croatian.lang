@@ -585,6 +585,7 @@ edit_pw =                         izmijeni lozinku
 edit_user_email_contact =         E-mail adresa dostupna za kontakt
 edit_user_real_name =             Ime:
 edit_user_gender =                Spol:
+gender_not_specified =            not specified
 male =                            muški
 female =                          ženski
 edit_user_birthday =              Rođendan:
