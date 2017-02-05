@@ -55,8 +55,7 @@ function table_exists($table)
 
 // check version:
 if(!file_exists('../config/VERSION')) {
-	$errors[] = 'Error in line '.__LINE__.': Missing the file config/VERSION.';
-	break;
+	die('Error in line '.__LINE__.': Missing the file config/VERSION.');
 }
 $newVersion = trim(file_get_contents('../config/VERSION'));
 
