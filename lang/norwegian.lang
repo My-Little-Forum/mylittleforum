@@ -585,6 +585,7 @@ edit_pw =                         endre passord
 edit_user_email_contact =         Gjør e-postadressen tilgjengelig for andre brukere (adressen vil ikke vises; meldinger skrives via et kontaktskjema)
 edit_user_real_name =             Navn:
 edit_user_gender =                Kjønn:
+gender_not_specified =            not specified
 male =                            mann
 female =                          kvinne
 edit_user_birthday =              Bursdag:

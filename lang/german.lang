@@ -588,6 +588,7 @@ edit_pw =                         Passwort ändern
 edit_user_email_contact =         E-Mail-Adresse kontaktierbar
 edit_user_real_name =             Name:
 edit_user_gender =                Geschlecht:
+gender_not_specified =            keine Angabe
 male =                            männlich
 female =                          weiblich
 edit_user_birthday =              Geburtstag:

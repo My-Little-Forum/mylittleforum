@@ -586,6 +586,7 @@ edit_pw =                         Cambia password
 edit_user_email_contact =         Indirizzo e-mail contattabile
 edit_user_real_name =             Nome:
 edit_user_gender =                Sesso:
+gender_not_specified =            not specified
 male =                            machio
 female =                          femmina
 edit_user_birthday =              Data di nascita:
