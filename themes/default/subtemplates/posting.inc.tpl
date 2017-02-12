@@ -104,12 +104,15 @@
 
 <fieldset>
 {if $categories}
-<p><label for="p_category" class="input">{#category_marking#}</label>
-<select id="p_category" size="1" name="p_category" tabindex="5"{if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0} disabled="disabled"{/if}>
-{foreach key=key item=val from=$categories}
-{if $key!=0}<option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>{/if}
-{/foreach}
-</select></p>
+	<p><label for="p_category" class="input">{#category_marking#}</label>
+	<select id="p_category" size="1" name="p_category" tabindex="5"{if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0} disabled="disabled"{/if}>
+		{foreach key=key item=val from=$categories}
+			{if $key!=0}<option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>{/if}
+		{/foreach}
+	</select></p>
+	{if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0}
+		<input type="hidden" name="p_category" value="{$p_category}" />
+	{/if}
 {/if}
 
 <p><label for="subject" class="input">{#subject_marking#}</label>
