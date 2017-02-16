@@ -1,6 +1,11 @@
 my little forum changelog
 -------------------------
 
+2.4 (2017-02-16)
+----------------
+- fixed wrong category in select field when editing an entry
+- fixed URL for latest release leads now to the page of the release instead to "latest"
+
 2.3.99.3 (pre release of 2.4) (2017-02-05)
 ------------------
 - fixed NULL value for bookmarks table field order_id
