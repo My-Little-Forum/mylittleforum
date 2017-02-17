@@ -2671,13 +2671,14 @@ function checkUpdate($currentVersion = '0.0') {
 			$title      = $xml->xpath("//atom:entry[1]/atom:title/text()");
 			$content    = $xml->xpath("//atom:entry[1]/atom:content/text()");
 			$releaseURI = $xml->xpath("//atom:entry[1]/atom:link/@href");
-
-			$release = (object) [
+			
+			$release = (object) array(
 				'title'   => (string)$title[0],
 				'content' => (string)$content[0],
 				'version' => (string)$lastVersion,
 				'uri'     => $baseURI . (string)$releaseURI[0]->href
-			];
+			);
+
 			return $release;
 		}
 	}
