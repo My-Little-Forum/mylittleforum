@@ -548,7 +548,7 @@ a.replynew:focus,
 a.replynew:hover         { color:#0000ff; text-decoration:underline; }
 a.replynew:active        { color:#ff0000; }
 
-.read,
+a.read,
 a.read:link,
 a.read:visited,
 #latest-postings li a span.read
