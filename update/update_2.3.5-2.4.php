@@ -134,7 +134,7 @@ if (!empty($folders)) {
 
 // check version:
 if(!file_exists('config/VERSION')) {
-	$update['errors'][] = 'Error in line '.__LINE__.': Missing the file config/VERSION.';
+	$update['errors'][] = 'Error in line '.__LINE__.': Missing the file config/VERSION. Load it up from your script package (config/VERSION) before proceeding.';
 }
 if (empty($update['errors'])) {
 	$newVersion = trim(file_get_contents('config/VERSION'));
