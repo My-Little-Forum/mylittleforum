@@ -123,6 +123,7 @@ if (!empty($folders)) {
 		$tmp = array_diff($tmp, $removeFolders);
 	}
 	$folders = $tmp;
+	sort($folders);
 	
 	// Remove single files from list if and only if the complete folder is in list
 	foreach ($folders as $folder) {
@@ -131,6 +132,7 @@ if (!empty($folders)) {
 			continue;
 		$update['items'] = array_diff($update['items'], $removeFiles);
 	}
+	sort($update['items']);
 	
 	// Add folders at the end of the files list to keep the order (files, folders)
 	$update['items'] = array_merge($update['items'], $folders);
