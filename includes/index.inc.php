@@ -132,11 +132,10 @@ if($result_count > 0)
 					$data['is_read'] = false;
 					$data['new'] = true;
 				} else {
+					$data['is_read'] = false;
 					if (isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time'] || ($last_visit && ($data['last_reply'] > $last_visit or $data['time'] > $last_visit))) {
-						$data['is_read'] = false;
 						$data['new'] = true;
 					} else {
-						$data['is_read'] = true;
 						$data['new'] = false;
 					}
 				}
