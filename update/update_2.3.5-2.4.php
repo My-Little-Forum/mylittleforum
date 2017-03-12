@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4');
+$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -88,6 +88,10 @@ switch($settings['version']) {
 	case '2.4':
 		$update['items'][] = 'includes/functions.inc.php';			// #170
 		$update['items'][] = 'themes/default/style.css';				// #171
+	case '2.4.1':
+		$update['items'][] = 'includes/admin.inc.php';			// #175
+		$update['items'][] = 'includes/index.inc.php';				// #182
+		$update['items'][] = 'includes/thread.inc.php';				// #182
 	
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
@@ -255,6 +259,34 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 	}
 	else {
 		$update['errors'][] = "File ./config/db_settings.php not found or unwritable. New database table '" . htmlspecialchars($table_prefix) . "bookmarks' could not be added!";
+	}
+}
+
+if(empty($update['errors']) && in_array($settings['version'],array('2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1'))) {
+	# check, if the column 'name' has the PK or not
+	$checkSettingsTable = @mysqli_query($connid, "SELECT COLUMN_KEY FROM information_schema.columns WHERE TABLE_SCHEMA = `". $db_settings['database'] ."` AND TABLE_NAME = `". $db_settings['settings_table'] ."` AND COLUMN_NAME = `name`");
+	if ($checkSettingsTable === false) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	} else {
+		$checkSTres = mysqli_fetch_assoc($checkSettingsTable);
+		if ($checkSTres[0]['COLUMN_KEY'] != 'PRI') {
+			// rework the settings table, add primary key, restore the settings
+			$newSettingsResult = false;
+			$tempTableName = $db_settings['settings_table'] ."_tmp";
+			if(!@mysqli_query($connid, "ALTER TABLE `". $db_settings['settings_table'] ."` RENAME `". $tempTableName ."`;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			} else {
+				$newSettingsResult = @mysqli_query($connid, "CREATE TABLE `". $db_settings['settings_table'] ."` (`name` varchar(255) NOT NULL, `value` varchar(255) NOT NULL default '', PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;");
+				if ($newSettingsResult !== false) {
+					$newSettingsResult = @mysqli_query($connid, "INSERT INTO `". $db_settings['settings_table'] ."` (`name`, `value`) SELECT t.`name`, t.`value` FROM `". $tempTableName ."` AS t ON DUPLICATE KEY UPDATE `value` = t.`value`");
+					if(!@mysqli_query($connid, "DROP TABLE `". $tempTableName ."`;")) {
+						$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+					}
+				} else {
+					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+				}
+			}
+		}
 	}
 }
 
