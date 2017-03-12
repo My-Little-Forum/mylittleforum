@@ -264,7 +264,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2
 
 if(empty($update['errors']) && in_array($settings['version'],array('2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1'))) {
 	# check, if the column 'name' has the PK or not
-	$checkSettingsTable = @mysqli_query($connid, "SELECT COLUMN_KEY FROM information_schema.columns WHERE TABLE_SCHEMA = `". $db_settings['database'] ."` AND TABLE_NAME = `". $db_settings['settings_table'] ."` AND COLUMN_NAME = `name`");
+	$checkSettingsTable = @mysqli_query($connid, "SELECT `COLUMN_KEY` FROM information_schema.columns WHERE `TABLE_SCHEMA` = '". $db_settings['database'] ."' AND `TABLE_NAME` = '". $db_settings['settings_table'] ."' AND `COLUMN_NAME` = 'name'");
 	if ($checkSettingsTable === false) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	} else {
