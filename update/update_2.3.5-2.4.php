@@ -88,6 +88,10 @@ switch($settings['version']) {
 	case '2.4':
 		$update['items'][] = 'includes/functions.inc.php';			// #170
 		$update['items'][] = 'themes/default/style.css';				// #171
+	case '2.4.1':
+		$update['items'][] = 'includes/admin.inc.php';			// #175
+		$update['items'][] = 'includes/index.inc.php';				// #182
+		$update['items'][] = 'includes/thread.inc.php';				// #182
 	
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
