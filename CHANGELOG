@@ -1,6 +1,13 @@
 my little forum changelog
 -------------------------
 
+2.4.2 (2017-03-12)
+------------------
+- fixed the installation of the settings table without a PK on the column 'name' (in update procedure since 2.3.99.1)
+- fixed the lack of the third gender-radio-button in the user editing form of the admin area
+- fixed the undesirably setting of class .read for not registered and not logged in visitors of a forum
+- added alphabetical ordering of the list of files and directories that has to be updated
+
 2.4.1 (2017-02-20)
 ------------------
 - fixed a lost 'a' in the defaults template style.css, only relevant, when using style.css instead style.min.css
