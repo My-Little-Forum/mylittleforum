@@ -4,7 +4,7 @@
 * file do not have any effect unless it is loaded by the template      *
 * (main.tpl).                                                          *
 * The minimized version was created with the YUI Compressor            *
-* <http://developer.yahoo.com/yui/compressor/>.                        *
+* <https://yui.github.io/yuicompressor/>.                              *
 ***********************************************************************/
 
 body                     { color:#000; background:#f9f9f9; margin:0; padding:0; font-family:verdana,arial,sans-serif; font-size:100.01%; }
