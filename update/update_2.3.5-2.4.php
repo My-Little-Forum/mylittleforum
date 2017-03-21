@@ -300,6 +300,12 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3
 	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` ADD INDEX(`time`);")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['read_status_table']."` ADD INDEX(`user_id`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['read_status_table']."` ADD INDEX(`posting_id`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
 }
 
 if(empty($update['errors'])) {

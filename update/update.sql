@@ -344,5 +344,7 @@ UPDATE mlf2_settings SET value = '2.4.0' WHERE name = 'version';
 ALTER TABLE mlf2_entries ADD INDEX(`spam`);
 ALTER TABLE mlf2_entries ADD INDEX(`user_id`);
 ALTER TABLE mlf2_entries ADD INDEX(`time`);
+ALTER TABLE mlf2_read_entries ADD INDEX(`user_id`);
+ALTER TABLE mlf2_read_entries ADD INDEX(`posting_id`);
 */
 
