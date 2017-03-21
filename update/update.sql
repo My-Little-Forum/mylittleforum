@@ -338,3 +338,11 @@ CREATE TABLE mlf2_read_entries (user_id int(11) UNSIGNED NOT NULL, posting_id in
 CREATE TABLE mlf2_temp_infos (name varchar(50) NOT NULL, value varchar(255) NOT NULL, time timestamp NULL DEFAULT NULL, PRIMARY KEY (name)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 UPDATE mlf2_settings SET value = '2.4.0' WHERE name = 'version';
 */
+--------------------------------------------------------------------------------
+-- 2.4.2 to 2.4.3
+/*
+ALTER TABLE mlf2_entries ADD INDEX(`spam`);
+ALTER TABLE mlf2_entries ADD INDEX(`user_id`);
+ALTER TABLE mlf2_entries ADD INDEX(`time`);
+*/
+
