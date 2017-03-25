@@ -67,8 +67,12 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #footer #footer-1{margin:0;padding:7px 0 10px 20px;float:left}
 #footer #footer-2{margin:0;padding:7px 20px 10px 0;text-align:right}
 #footermenu{margin:0 0 1em;list-style-type:none}
-#footermenu li{display:inline;margin-left:6px;padding-left:7px;background:url(images/bg_sprite_1.png) no-repeat 0 -1097px}
-#footermenu li:first-child{margin-left:0;padding-left:0;background:none}
+#footermenu li{display:inline;margin-left:5px;padding-left:0px;}
+#footermenu li:first-child{margin-left:0;padding-left:0px;}
+#footermenu li:before{content:"|";}
+#footermenu li:first-child:before{content:"";}
+#footermenu li a {padding-left:5px;}
+#footermenu li:first-child a {padding-left:15px;}
 #pbmlf{clear:both;margin:0;padding:0 20px 11px;text-align:center;font-size:.69em;color:gray}
 #pbmlf a{color:gray;text-decoration:none}
 #sidebar{position:relative;float:right;margin:0;padding:0}
