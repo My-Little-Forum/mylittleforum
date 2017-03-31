@@ -347,5 +347,7 @@ ALTER TABLE mlf2_entries ADD INDEX(`time`);
 ALTER TABLE mlf2_entries ADD INDEX(`last_reply`);
 ALTER TABLE mlf2_read_entries ADD INDEX(`user_id`);
 ALTER TABLE mlf2_read_entries ADD INDEX(`posting_id`);
+ALTER TABLE mlf2_userdata ADD INDEX(`user_type`);
+ALTER TABLE mlf2_userdata ADD INDEX(`user_name`);
 */
 
