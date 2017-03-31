@@ -290,6 +290,33 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.3.99.1', '
 	}
 }
 
+if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2'))) {
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` ADD INDEX(`spam`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` ADD INDEX(`user_id`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` ADD INDEX(`time`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` ADD INDEX(`last_reply`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['read_status_table']."` ADD INDEX(`user_id`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['read_status_table']."` ADD INDEX(`posting_id`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` ADD INDEX(`user_type`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` ADD INDEX(`user_name`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+}
+
 if(empty($update['errors'])) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
