@@ -68,6 +68,7 @@ else $order = 'time';
 
     // get all postings of thread:
     $result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS disp_time,
+						   UNIX_TIMESTAMP(last_reply + INTERVAL ".intval($time_difference)." MINUTE) AS last_reply,	
                            UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL ".intval($time_difference)." MINUTE) AS e_time,
                            UNIX_TIMESTAMP(edited - INTERVAL ".$settings['edit_delay']." MINUTE) AS edited_diff, edited_by, name, email,
                            subject, hp, location, ip, text, cache_text, tags, show_signature, views, spam, spam_check_status, category, locked, ip,
