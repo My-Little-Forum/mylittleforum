@@ -170,18 +170,9 @@ function get_categories()
  *
  * @return array
  */
-function get_category_ids($categories)
- {
-  if($categories!=false)
-   {
-    while(list($key) = each($categories))
-     {
-      $category_ids[] = $key;
-     }
-    return $category_ids;
-   }
-  else return false;
- }
+function get_category_ids($categories) {
+	return $categories != false ? array_keys($categories) : false;
+}
 
 /**
  * filters not accessible category ids from category selection
