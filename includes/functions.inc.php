@@ -2810,6 +2810,18 @@ function getAvatar($user_id) {
 }
 
 /**
+ * check, if HTTPS was used for the current request
+ *
+ * @return boolean
+ */
+function getURLProtocol() {
+	if ((!empty($_SERVER['HTTPS']) and $_SERVER['HTTPS'] !== 'off') or (!empty($_SERVER['SERVER_PORT']) and $_SERVER['SERVER_PORT'] == 443)) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * sends a status code, displays an error message and halts the script
  *
  * @param string $status_code
