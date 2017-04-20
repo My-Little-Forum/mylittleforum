@@ -20,13 +20,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.        *
 *******************************************************************************/
 
-$default_settings['forum_name'] = 'my little forum';
-$default_settings['forum_address'] = 'http://'.$_SERVER['HTTP_HOST'].substr(rtrim(dirname($_SERVER['PHP_SELF']), '/\\'),0,strrpos(rtrim(dirname($_SERVER['PHP_SELF']), '/\\'),'/')).'/';
-$default_settings['table_prefix'] = 'mlf2_';
-
 define('IN_INDEX', TRUE);
 include('../config/db_settings.php');
 include('../includes/functions.inc.php');
+
+$default_settings['forum_name'] = 'my little forum';
+$default_settings['forum_address'] = ((getURLProtocol() === true) ? 'https' : 'http') .'://'. $_SERVER['HTTP_HOST'] . substr(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'), 0, strrpos(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'), '/')) . '/';
+$default_settings['table_prefix'] = 'mlf2_';
 
 // stripslashes on GPC if get_magic_quotes_gpc is enabled:
 if(get_magic_quotes_gpc())
