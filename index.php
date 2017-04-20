@@ -206,12 +206,7 @@ if($mode=='rss')
  }
 else
  {
-  if(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE')===false)
-   {
-    // do not send cache-control header to Internet Explorer
-    // causes problems when toggeling views or folding threads
-    header('Cache-Control: public, max-age=300');
-   }
+  header('Cache-Control: private, no-cache="set-cookie"');
   header('Content-Type: text/html; charset='.$lang['charset']);
  }
 
