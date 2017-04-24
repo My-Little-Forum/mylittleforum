@@ -2814,7 +2814,7 @@ function getAvatar($user_id) {
  *
  * @return boolean
  */
-function getURLProtocol() {
+function isProtocolHTTPS() {
 	if ((!empty($_SERVER['HTTPS']) and $_SERVER['HTTPS'] !== 'off') or (!empty($_SERVER['SERVER_PORT']) and $_SERVER['SERVER_PORT'] == 443)) {
 		return true;
 	}
