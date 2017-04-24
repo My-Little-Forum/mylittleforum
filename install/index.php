@@ -25,7 +25,7 @@ include('../config/db_settings.php');
 include('../includes/functions.inc.php');
 
 $default_settings['forum_name'] = 'my little forum';
-$default_settings['forum_address'] = ((getURLProtocol() === true) ? 'https' : 'http') .'://'. $_SERVER['HTTP_HOST'] . substr(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'), 0, strrpos(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'), '/')) . '/';
+$default_settings['forum_address'] = ((isProtocolHTTPS() === true) ? 'https' : 'http') .'://'. $_SERVER['HTTP_HOST'] . substr(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'), 0, strrpos(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'), '/')) . '/';
 $default_settings['table_prefix'] = 'mlf2_';
 
 // stripslashes on GPC if get_magic_quotes_gpc is enabled:
