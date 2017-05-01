@@ -241,60 +241,50 @@ else $order = 'time';
        }
       else $data['views']=0;
 
-		if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-			// bookmark handling
-			$user_id  = $_SESSION[$settings['session_prefix'].'user_id'];
-			$bookmark_result = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($user_id)." AND `posting_id` = ".intval($data['id'])."") or raise_error('database_error',mysqli_error($connid));
-			$bookmark = mysqli_fetch_row($bookmark_result);
-			mysqli_free_result($bookmark_result);
-			if (isset($bookmark) && intval($bookmark) == 1) {
-				$data['bookmarkedby'] = intval($user_id);
-				$data['options']['delete_bookmark'] = true;
+			if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+				// bookmark handling
+				$user_id  = $_SESSION[$settings['session_prefix'].'user_id'];
+				$bookmark_result = mysqli_query($connid, "SELECT TRUE AS 'bookmark' FROM ".$db_settings['bookmark_table']." WHERE `user_id` = ".intval($user_id)." AND `posting_id` = ".intval($data['id'])."") or raise_error('database_error',mysqli_error($connid));
+				$bookmark = mysqli_fetch_row($bookmark_result);
+				mysqli_free_result($bookmark_result);
+				if (isset($bookmark) && intval($bookmark) == 1) {
+					$data['bookmarkedby'] = intval($user_id);
+					$data['options']['delete_bookmark'] = true;
+				}
+				else $data['options']['add_bookmark'] = true;
+				// read-status handling
+				$rstatus = save_read_status($connid, $user_id, $data['id']);
 			}
-			else
-				$data['options']['add_bookmark'] = true;
-			// read-status handling
-			$rstatus = save_read_status($connid, $user_id, $data['id']);
-		}
 			if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
 				$data['is_read'] = true;
 				$data['new'] = false;
 			} else {
-				if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-					$data['is_read'] = false;
+				$data['is_read'] = false;
+				if (isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time'] || ($last_visit && (isset($data['last_reply']) && $data['last_reply'] > $last_visit or isset($data['time']) && $data['time'] > $last_visit))) {
 					$data['new'] = true;
 				} else {
-					$data['is_read'] = false;
-					if (isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time'] || ($last_visit && (isset($data['last_reply']) && $data['last_reply'] > $last_visit or isset($data['time']) && $data['time'] > $last_visit))) {
-						$data['new'] = true;
-					} else {
-						$data['new'] = false;
-					}
+					$data['new'] = false;
 				}
 			}
+			$data_array[$data["id"]] = $data;
+			$child_array[$data["pid"]][] =  $data["id"];
+		}
+		mysqli_free_result($result);
+	} else {
+		header("location: index.php");
+		exit;
+	}
 
-	  $data_array[$data["id"]] = $data;
-      $child_array[$data["pid"]][] =  $data["id"];
-     }
-    mysqli_free_result($result);
-
-    }
-    else
-     {
-      header("location: index.php");
-      exit;
-     }
-
-    $subnav_link = array('mode'=>'index', 'name'=>'thread_entry_back_link', 'title'=>'thread_entry_back_title');
-    $smarty->assign('id',$id);
-    $smarty->assign('data',$data_array);
-    if(isset($child_array)) $smarty->assign('child_array', $child_array);
-    $smarty->assign('subnav_link',$subnav_link);
-    $smarty->assign('page',$page);
-    $smarty->assign('order',$order);
-    $smarty->assign('category',$category);
-    if($thread_display==0) $smarty->assign('subtemplate','thread.inc.tpl');
-    else $smarty->assign('subtemplate','thread_linear.inc.tpl');
-    $template = 'main.tpl';
-   }
+	$subnav_link = array('mode'=>'index', 'name'=>'thread_entry_back_link', 'title'=>'thread_entry_back_title');
+	$smarty->assign('id',$id);
+	$smarty->assign('data',$data_array);
+	if(isset($child_array)) $smarty->assign('child_array', $child_array);
+	$smarty->assign('subnav_link',$subnav_link);
+	$smarty->assign('page',$page);
+	$smarty->assign('order',$order);
+	$smarty->assign('category',$category);
+	if($thread_display==0) $smarty->assign('subtemplate','thread.inc.tpl');
+	else $smarty->assign('subtemplate','thread_linear.inc.tpl');
+	$template = 'main.tpl';
+}
 ?>
