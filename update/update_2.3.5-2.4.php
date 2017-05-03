@@ -315,6 +315,9 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3
 	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` ADD INDEX(`user_name`);")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` MODIFY `user_name` varchar(255) COLLATE utf8_bin;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
 }
 
 if(empty($update['errors'])) {

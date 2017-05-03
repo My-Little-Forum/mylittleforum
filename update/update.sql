@@ -349,5 +349,6 @@ ALTER TABLE mlf2_read_entries ADD INDEX(`user_id`);
 ALTER TABLE mlf2_read_entries ADD INDEX(`posting_id`);
 ALTER TABLE mlf2_userdata ADD INDEX(`user_type`);
 ALTER TABLE mlf2_userdata ADD INDEX(`user_name`);
+ALTER TABLE mlf2_userdata MODIFY `user_name` varchar(255) COLLATE utf8_bin;
 */
 
