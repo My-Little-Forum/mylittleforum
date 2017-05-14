@@ -341,6 +341,7 @@ UPDATE mlf2_settings SET value = '2.4.0' WHERE name = 'version';
 --------------------------------------------------------------------------------
 -- 2.4.2 to 2.4.3
 /*
+ALTER TABLE mlf2_userdata MODIFY `user_name` varchar(255) COLLATE utf8_bin;
 ALTER TABLE mlf2_entries ADD INDEX(`spam`);
 ALTER TABLE mlf2_entries ADD INDEX(`user_id`);
 ALTER TABLE mlf2_entries ADD INDEX(`time`);
