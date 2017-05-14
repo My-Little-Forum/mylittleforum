@@ -302,7 +302,7 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 		if (mysqli_num_rows($connid, $resCountNames) > 0) {
 			# list the doubled user names
 			$update['errors'][]  = '<h3><strong>Attention</strong>: Found non-unique user names!</h3>';
-			$update['errors'][] .= '<p>Please make the names unique and inform the users in question about the changes.</p>';
+			$update['errors'][] .= '<p>Please make the names unique and inform the users in question about the changes. <em>Tipp:</em> Open the links to the user edit forms in a new browser tab. After editing all listed users start the update process again.</p>';
 			$update['errors'][] .= '<table>';
 			$update['errors'][] .= '<tr><th>Username</th><th>occured number of times</th></tr>';
 			while ($row = mysqli_fetch_assoc($resCountNames)) {
