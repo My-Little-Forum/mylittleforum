@@ -726,6 +726,14 @@ default_theme =                   Theme
 default_theme_desc =              Default forum layout theme
 threads_per_page =                Threads per page
 threads_per_page_desc =           How many threads should be displayed per page?
+reset_read_state =                Reset read status
+reset_read_state_desc =           In which kind the read status shoud be resetted?
+read_state_no_reset =             Store status permanently
+read_state_numbered_reset =       Store status for an amount of entries
+read_state_timeout_reset =        Store status for x days
+read_state_locktime_reset =       Store status until a thread will be automatically locked
+read_state_value =                Value for the reset of the read status
+read_state_value_desc =           To which number of entries or days until the reset the storing amount should be limited? In case of reset when auto locking the local value of that setting will be applied.
 auto_lock_old_threads =           Auto lock old threads
 auto_lock_old_threads_desc =      Automaticlly lock threads with last replies older than how many days? (0=disabled)
 accession =                       Access permission

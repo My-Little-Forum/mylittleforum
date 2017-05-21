@@ -714,6 +714,14 @@ default_theme =                   மைய்ய கருத்து
 default_theme_desc =              <!-- TODO -->Default forum layout theme
 threads_per_page =                திரட் / பக்கம்
 threads_per_page_desc =           ஒரு பக்கத்திற்கு எத்தனை திரட்டை காட்ச்சிக்கு வைக்கவேண்டும்?
+reset_read_state =                <!-- TODO -->Reset read status
+reset_read_state_desc =           <!-- TODO -->In which kind the read status shoud be resetted?
+read_state_no_reset =             <!-- TODO -->Store status permanently
+read_state_numbered_reset =       <!-- TODO -->Store status for an amount of entries
+read_state_timeout_reset =        <!-- TODO -->Store status for x days
+read_state_locktime_reset =       <!-- TODO -->Store status until a thread will be automatically locked
+read_state_value =                <!-- TODO -->Value for the reset of the read status
+read_state_value_desc =           <!-- TODO -->To which number of entries or days until the reset the storing amount should be limited? In case of reset when auto locking the local value of that setting will be applied.
 auto_lock_old_threads =           தானாக்வே பழைய திரட்டை பூட்டுக
 auto_lock_old_threads_desc =      கடைசி பதில் எத்தனை நாளுக்கு முன்னதாக இருந்தால் திரட்டை தானாக்வே பூட்ட வேண்டும்? (0=முடக்கப்பட்டிருக்கிறது)
 accession =                       அநுகுவதறகான உரிமையுடைய

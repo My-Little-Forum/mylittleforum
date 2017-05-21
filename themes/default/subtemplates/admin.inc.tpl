@@ -189,6 +189,17 @@
 </tr>
 
 <tr>
+<td class="c"><strong>{#reset_read_state#}</strong><br><span class="small">{#reset_read_state_desc#}</span></td>
+<td class="d">
+<p><input name="reset_read_state" value="0" id="read_state_no_reset" type="radio"{if $settings.reset_read_state==0} checked="checked"{/if} /><label for="read_state_no_reset">{#read_state_no_reset#}</label><br /><input id="read_state_number_reset" name="reset_read_state" value="1" type="radio"{if $settings.reset_read_state==1} checked="checked"{/if} /><label for="read_state_number_reset">{#read_state_numbered_reset#}</label><br /><input name="reset_read_state" value="2" id="read_state_age_reset" type="radio"{if $settings.reset_read_state==2} checked="checked"{/if} /><label for="read_state_age_reset">{#read_state_timeout_reset#}</label><br /><input name="reset_read_state" value="3" id="read_state_lock_reset" type="radio"{if $settings.reset_read_state==3} checked="checked"{/if} /><label for="read_state_lock_reset">{#read_state_locktime_reset#}</label></p>
+</td>
+</tr>
+<tr>
+<td class="c"><strong>{#read_state_value#}</strong><br><span class="small">{#read_state_value_desc#}</span></td>
+<td class="d"><input name="read_state_value" value="500" size="5" type="text"></td>
+</tr>
+
+<tr>
 <td class="c"><strong>{#auto_lock_old_threads#}</strong><br /><span class="small">{#auto_lock_old_threads_desc#}</span></td>
 <td class="d"><input type="text" name="auto_lock_old_threads" value="{$settings.auto_lock_old_threads|escape}" size="5" /></td>
 </tr>

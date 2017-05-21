@@ -718,6 +718,14 @@ default_theme =                   Theme
 default_theme_desc =              standardmäßiges Theme (Layoutvorlage) des Forums
 threads_per_page =                Threads pro Seite
 threads_per_page_desc =           Wieviele Threads sollen pro Seite angezeigt werden?
+reset_read_state =                Gelesen-Status zurücksetzen
+reset_read_state_desc =           Auf welche Weise soll der Gelesen-Status zurückgesetzt werden?
+read_state_no_reset =             Status dauerhaft speichern
+read_state_numbered_reset =       Status für eine bestimmte Anzahl von Beiträgen speichern
+read_state_timeout_reset =        Status für die Dauer von x Tagen speichern
+read_state_locktime_reset =       Status bis zur automatischen Sperrung der Beiträge speichern
+read_state_value =                Wert für das Zurücksetzen des Gelesen-Status'
+read_state_value_desc =           Auf welche Anzahl von Beiträgen oder von Tagen soll der Gelesen-Status begrenzt werden? Für das entfernen des Status' bei der automatischen Sperrung des Threads wird der für jene Einstellung vorgesehene Wert verwendet.
 auto_lock_old_threads =           Automatisches Sperren alter Threads
 auto_lock_old_threads_desc =      Threads automatisch sperren, deren letzte Antworten älter als wieviele Tage sind? (0=aus)
 accession =                       Zugangsberechtigung

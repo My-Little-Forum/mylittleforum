@@ -716,6 +716,14 @@ default_theme =                   Grafisk mal
 default_theme_desc =              Standard grafisk mal for forumet
 threads_per_page =                Tråder per side
 threads_per_page_desc =           Hvor mange tråder skal vises per side?
+reset_read_state =                <!-- TODO -->Reset read status
+reset_read_state_desc =           <!-- TODO -->In which kind the read status shoud be resetted?
+read_state_no_reset =             <!-- TODO -->Store status permanently
+read_state_numbered_reset =       <!-- TODO -->Store status for an amount of entries
+read_state_timeout_reset =        <!-- TODO -->Store status for x days
+read_state_locktime_reset =       <!-- TODO -->Store status until a thread will be automatically locked
+read_state_value =                <!-- TODO -->Value for the reset of the read status
+read_state_value_desc =           <!-- TODO -->To which number of entries or days until the reset the storing amount should be limited? In case of reset when auto locking the local value of that setting will be applied.
 auto_lock_old_threads =           Automatisk låse gamle tråder?
 auto_lock_old_threads_desc =      Automatisk låse tråder med svar som er eldre enn hvor mange dager? (0=avslått)
 accession =                       Tilgangstillatelse
