@@ -196,7 +196,7 @@
 </tr>
 <tr>
 <td class="c"><strong>{#read_state_value#}</strong><br><span class="small">{#read_state_value_desc#}</span></td>
-<td class="d"><input name="read_state_value" value="500" size="5" type="text"></td>
+<td class="d"><input name="read_state_expiration_value" value="{$settings.read_state_expiration_value|escape}" size="5" type="text"></td>
 </tr>
 
 <tr>
