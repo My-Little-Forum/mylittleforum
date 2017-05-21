@@ -992,6 +992,7 @@ if(isset($_POST['settings_submit']))
   if(empty($_POST['forum_enabled'])) $_POST['forum_enabled'] = 0;
   if(empty($_POST['user_edit_if_no_replies'])) $_POST['user_edit_if_no_replies'] = 0;
   if(empty($_POST['time_zone'])) $_POST['time_zone'] = '';
+  if(empty($_POST['read_state_expiration_method'])) $_POST['read_state_expiration_method'] = 0;
   $_POST['last_changes'] = TIMESTAMP;
 
   while(list($key, $val) = each($settings))
