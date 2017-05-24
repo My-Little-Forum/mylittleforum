@@ -726,6 +726,14 @@ default_theme =                   Forumets tema
 default_theme_desc =              Forumets standard tema
 threads_per_page =                Ämnen per sida
 threads_per_page_desc =           Hur många ämnen ska synas på varje sida?
+reset_read_state =                <!-- TODO -->Reset read status
+reset_read_state_desc =           <!-- TODO -->In which kind the read status shoud be resetted?
+read_state_no_reset =             <!-- TODO -->Store status permanently
+read_state_numbered_reset =       <!-- TODO -->Store status for an amount of entries
+read_state_timeout_reset =        <!-- TODO -->Store status for x days
+read_state_locktime_reset =       <!-- TODO -->Store status until a thread will be automatically locked
+read_state_value =                <!-- TODO -->Value for the reset of the read status
+read_state_value_desc =           <!-- TODO -->To which number of entries or days until the reset the storing amount should be limited? In case of reset when auto locking the local value of that setting will be applied.
 auto_lock_old_threads =           Lås automatiskt gamla ämnen
 auto_lock_old_threads_desc =      Lås automatiskt ämnen som är äldre än antal dagar (0=disabled)
 accession =                       Tillgång till forumet

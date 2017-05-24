@@ -350,5 +350,9 @@ ALTER TABLE mlf2_read_entries ADD INDEX(`user_id`);
 ALTER TABLE mlf2_read_entries ADD INDEX(`posting_id`);
 ALTER TABLE mlf2_userdata ADD INDEX(`user_type`);
 ALTER TABLE mlf2_userdata ADD INDEX(`user_name`);
+INSERT INTO mlf2_settings VALUES (`read_state_expiration_value`, '500');
+INSERT INTO mlf2_settings VALUES (`read_state_expiration_method`, '0');
+DELETE FROM mlf2_settings WHERE name = 'max_read_items'
+DELETE FROM mlf2_settings WHERE name = 'read_state_expiration_date'
 */
 

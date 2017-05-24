@@ -715,6 +715,14 @@ default_theme =                   Predložak
 default_theme_desc =              Zadani predložak za izgled foruma
 threads_per_page =                Tema po stranici
 threads_per_page_desc =           Koliko tema će biti prikazano po stranici
+reset_read_state =                <!-- TODO -->Reset read status
+reset_read_state_desc =           <!-- TODO -->In which kind the read status shoud be resetted?
+read_state_no_reset =             <!-- TODO -->Store status permanently
+read_state_numbered_reset =       <!-- TODO -->Store status for an amount of entries
+read_state_timeout_reset =        <!-- TODO -->Store status for x days
+read_state_locktime_reset =       <!-- TODO -->Store status until a thread will be automatically locked
+read_state_value =                <!-- TODO -->Value for the reset of the read status
+read_state_value_desc =           <!-- TODO -->To which number of entries or days until the reset the storing amount should be limited? In case of reset when auto locking the local value of that setting will be applied.
 auto_lock_old_threads =           Automatsko zaključavanje starih tema
 auto_lock_old_threads_desc =      Automatski zaključaj teme koje su starije od navedenog broja dana. (0=neograničeno)
 accession =                       Dozvola pristupa

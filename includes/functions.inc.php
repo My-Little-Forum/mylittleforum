@@ -91,7 +91,10 @@ function daily_actions($current_time=0) {
 		}
 		// remove read state on-lock and lock old threads:
 		if($settings['auto_lock_old_threads'] > 0) {
-			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `posting_id` IN (SELECT `id` FROM `".$db_settings['forum_table']."` WHERE `last_reply` < (NOW() - INTERVAL ".intval($settings['auto_lock_old_threads'])." DAY))");
+			if ($settings['read_state_expiration_method'] == 3) {
+				// remove read state by auto locking:
+				@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `posting_id` IN (SELECT `id` FROM `".$db_settings['forum_table']."` WHERE `last_reply` < (NOW() - INTERVAL ". intval($settings['auto_lock_old_threads']) ." DAY))");
+			}
 			@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET locked=1 WHERE locked=0 AND last_reply < (NOW() - INTERVAL ".intval($settings['auto_lock_old_threads'])." DAY)");
 		}
 		// delete IPs in old entries and user accounts:
@@ -100,8 +103,8 @@ function daily_actions($current_time=0) {
 			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_ip='' WHERE user_ip!='' AND last_login < (NOW() - INTERVAL ".intval($settings['delete_ips'])." HOUR)");
 		}
 		// remove read state by time:
-		if($settings['read_state_expiration_date'] > 0) {
-			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ".intval($settings['read_state_expiration_date'])." DAY)");
+		if ($settings['read_state_expiration_method'] == 2 and $settings['read_state_expiration_value'] > 0) {
+			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['read_state_expiration_date']) ." DAY)");
 		}
 		// if possible, load new version info from Github
 		if (isset($settings) && isset($settings['version'])) {
@@ -212,8 +215,8 @@ function save_read_status($connid, $user_id, $entry_id) {
 		return false;
 	if (intval($_SESSION[$settings['session_prefix'].'user_id']) === $user_id and $entry_id > 0) {
 		$ret = @mysqli_query($connid, "INSERT INTO ". $db_settings['read_status_table'] ." (user_id, posting_id, time) VALUES (". $user_id .", ". $entry_id .", NOW()) ON DUPLICATE KEY UPDATE time = NOW()");
-		if ($ret && intval($settings['max_read_items']) > 0) {
-			@mysqli_query($connid, "DELETE FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". $user_id ." AND `posting_id` NOT IN (SELECT `posting_id` FROM (SELECT `posting_id` FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". $user_id ." ORDER BY `time` DESC LIMIT 0," . intval($settings['max_read_items']). ") AS `dummy`)");
+		if ($ret && ($settings['read_state_expiration_method'] == 1 and intval($settings['read_state_expiration_value']) > 0)) {
+			@mysqli_query($connid, "DELETE FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". $user_id ." AND `posting_id` NOT IN (SELECT `posting_id` FROM (SELECT `posting_id` FROM ". $db_settings['read_status_table'] ." WHERE `user_id` = ". $user_id ." ORDER BY `time` DESC LIMIT 0," . intval($settings['read_state_expiration_value']). ") AS `dummy`)");
 		}
 	}
 	return $ret;
