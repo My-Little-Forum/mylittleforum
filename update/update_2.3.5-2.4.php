@@ -294,19 +294,19 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` MODIFY `user_name` varchar(255) COLLATE utf8_bin;")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
-	$resCountNames = mysqli_query($connid, "SELECT `user_id`, `user_name`, COUNT(`user_name`) AS cnt FROM `mlf2_userdata` GROUP BY `user_name` HAVING COUNT(`user_name`) > 1");
+	$resCountNames = mysqli_query($connid, "SELECT `user_id`, `user_name`, COUNT(`user_name`) AS cnt FROM `".$db_settings['userdata_table']."` GROUP BY `user_name` HAVING COUNT(`user_name`) > 1");
 	if ($resCountNames === false) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 	if (empty($update['errors'])) {
-		if (mysqli_num_rows($connid, $resCountNames) > 0) {
+		if (mysqli_num_rows($resCountNames) > 0) {
 			# list the doubled user names
 			$update['errors'][]  = '<h3><strong>Attention</strong>: Found non-unique user names!</h3>';
 			$update['errors'][] .= '<p>Please make the names unique and inform the users in question about the changes. <em>Tipp:</em> Open the links to the user edit forms in a new browser tab. After editing all listed users start the update process again.</p>';
 			$update['errors'][] .= '<table>';
 			$update['errors'][] .= '<tr><th>Username</th><th>occured number of times</th></tr>';
 			while ($row = mysqli_fetch_assoc($resCountNames)) {
-				$update['errors'][] .= '<tr><td><a href="?mode=admin&amp;edit_user='. htmlspecialchars($row['user_id']) .'">'. htmlspecialchars($row['user_name']) .'</a></td><td>'. htmlspecialchars($row['cnt']) '</td></tr>'."\n";
+				$update['errors'][] .= '<tr><td><a href="?mode=admin&amp;edit_user='. htmlspecialchars($row['user_id']) .'">'. htmlspecialchars($row['user_name']) .'</a></td><td>'. htmlspecialchars($row['cnt']) .'</td></tr>'."\n";
 			}
 			$update['errors'][] .= '<table>';
 			mysqli_free_result($result);
