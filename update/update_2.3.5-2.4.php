@@ -306,7 +306,7 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 			$update['errors'][] .= '<table>';
 			$update['errors'][] .= '<tr><th>Username</th><th>occured number of times</th></tr>';
 			while ($row = mysqli_fetch_assoc($resCountNames)) {
-				$update['errors'][] .= '<tr><td><a href="?mode=admin&amp;edit_user='. htmlspecialchars($row['user_id']) .'">'. htmlspecialchars($row['user_name']) .'</a></td><td>'. htmlspecialchars($row['cnt']) '</td></tr>'."\n";
+				$update['errors'][] .= '<tr><td><a href="?mode=admin&amp;edit_user='. htmlspecialchars($row['user_id']) .'">'. htmlspecialchars($row['user_name']) .'</a></td><td>'. htmlspecialchars($row['cnt']) .'</td></tr>'."\n";
 			}
 			$update['errors'][] .= '<table>';
 			mysqli_free_result($result);
