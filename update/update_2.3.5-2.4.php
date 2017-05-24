@@ -294,7 +294,7 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['userdata_table']."` MODIFY `user_name` varchar(255) COLLATE utf8_bin;")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
-	$resCountNames = mysqli_query($connid, "SELECT `user_id`, `user_name`, COUNT(`user_name`) AS cnt FROM `mlf2_userdata` GROUP BY `user_name` HAVING COUNT(`user_name`) > 1");
+	$resCountNames = mysqli_query($connid, "SELECT `user_id`, `user_name`, COUNT(`user_name`) AS cnt FROM `".$db_settings['userdata_table']."` GROUP BY `user_name` HAVING COUNT(`user_name`) > 1");
 	if ($resCountNames === false) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
