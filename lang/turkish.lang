@@ -623,7 +623,7 @@ edit_pw_old =                     Eski şifre:
 edit_pw_new =                     Yeni şifre:
 edit_pw_conf =                    Yeni şifre tekrar:
 error_old_pw_wrong =              Eski şifre geçersiz
-error_pw_conf_wrong =             Yeni şifre tekrar edilen şifreyle farklı
+error_pw_conf_uneven =            Yeni şifre tekrar edilen şifreyle farklı
 error_new_pw_too_short =          Yeni şifre en az [characters] karakter içermeli
 
 [edit_email]

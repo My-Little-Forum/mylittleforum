@@ -618,7 +618,7 @@ edit_pw_old =                     Vecchia password:
 edit_pw_new =                     Nuova password:
 edit_pw_conf =                    Conferma new password:
 error_old_pw_wrong =              La vecchia password è sbagliata
-error_pw_conf_wrong =             La password confermata è diversa da quella nuova
+error_pw_conf_uneven =            La password confermata è diversa da quella nuova
 error_new_pw_too_short =          La nuova password può contenere al massimo [characters] caratteri
 
 [edit_email]

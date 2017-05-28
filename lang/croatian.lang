@@ -617,7 +617,7 @@ edit_pw_old =                     Stara lozinka:
 edit_pw_new =                     Nova lozinka:
 edit_pw_conf =                    Ponovite novu lozinku:
 error_old_pw_wrong =              Stara lozinka nije ispravna
-error_pw_conf_wrong =             Nova lozinka nije identična u oba polja
+error_pw_conf_uneven =            Nova lozinka nije identična u oba polja
 error_new_pw_too_short =          Nova lozinka mora imati najmanje [characters] znakova
 
 [edit_email]
