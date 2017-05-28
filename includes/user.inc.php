@@ -752,7 +752,7 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_ar
        else
         {
          if(!is_pw_correct($old_pw,$field['user_pw'])) $errors[] = 'error_old_pw_wrong';
-         if($new_pw_conf != $new_pw) $errors[] = 'error_pw_conf_wrong';
+         if($new_pw_conf != $new_pw) $errors[] = 'error_pw_conf_uneven';
          if(my_strlen($new_pw, $lang['charset']) < $settings['min_pw_length']) $errors[] = 'error_new_pw_too_short';
         }
        // Update, if no errors:

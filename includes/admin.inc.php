@@ -1047,7 +1047,7 @@ if(isset($_POST['register_submit']) && isset($_POST['csrf_token']) && $_POST['cs
     $too_long_word = too_long_word($ar_username,$settings['name_word_maxlength']);
     if($too_long_word) $errors[] = 'error_word_too_long';
 
-    if($ar_pw_conf != $ar_pw) $errors[] = 'error_pw_conf_wrong';
+    if($ar_pw_conf != $ar_pw) $errors[] = 'error_pw_conf_uneven';
    }
   // save user if no errors:
   if (empty($errors))

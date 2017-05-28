@@ -617,7 +617,7 @@ edit_pw_old =                     Gammelt passord:
 edit_pw_new =                     Nytt passord:
 edit_pw_conf =                    Gjenta nytt passord:
 error_old_pw_wrong =              Det gamle passordet er feil
-error_pw_conf_wrong =             Det nye passordet er ikke det samme som passordet du gjentok
+error_pw_conf_uneven =            Det nye passordet er ikke det samme som passordet du gjentok
 error_new_pw_too_short =          Passordet må inneholde minst [characters] tegn
 
 [edit_email]

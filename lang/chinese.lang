@@ -621,7 +621,7 @@ edit_pw_old =                     旧密码:
 edit_pw_new =                     新密码:
 edit_pw_conf =                    重复新密码:
 error_old_pw_wrong =              旧密码错误
-error_pw_conf_wrong =             新密码输入不匹配
+error_pw_conf_uneven =            新密码输入不匹配
 error_new_pw_too_short =          新密码最少[characters]字符
  
 [edit_email]

@@ -628,7 +628,7 @@ edit_pw_old =                     Nuvarande lösenord:
 edit_pw_new =                     Nytt lösenord:
 edit_pw_conf =                    Upprepa lösenord:
 error_old_pw_wrong =              Nuvarande lösenord felaktigt
-error_pw_conf_wrong =             De nya lösenorden matchar inte
+error_pw_conf_uneven =            De nya lösenorden matchar inte
 error_new_pw_too_short =          Det nya lösenordet måste innehålla [characters] tecken
 
 [edit_email]

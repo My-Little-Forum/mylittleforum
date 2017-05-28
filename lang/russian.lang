@@ -633,7 +633,7 @@ edit_pw_old =                     Старый пароль:
 edit_pw_new =                     Новый пароль:
 edit_pw_conf =                    Повторите новый пароль:
 error_old_pw_wrong =              Старый пароль указан неверно
-error_pw_conf_wrong =             Новый пароль не совпадает с введенным повторно
+error_pw_conf_uneven =            Новый пароль не совпадает с введенным повторно
 error_new_pw_too_short =          Новый пароль должен содержать как минимум [characters] символов
 
 [edit_email]

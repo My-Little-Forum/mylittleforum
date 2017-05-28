@@ -620,7 +620,7 @@ edit_pw_old =                     altes Passwort:
 edit_pw_new =                     neues Passwort:
 edit_pw_conf =                    neues Passwort wiederholen:
 error_old_pw_wrong =              altes Passwort falsch
-error_pw_conf_wrong =             neues Passwort und Wiederholung stimmen nicht überein
+error_pw_conf_uneven =            neues Passwort und Wiederholung stimmen nicht überein
 error_new_pw_too_short =          das neue Passwort muss mindestens [characters] Zeichen lang sein
 
 [edit_email]

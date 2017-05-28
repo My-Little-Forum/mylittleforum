@@ -616,7 +616,7 @@ edit_pw_old =                     பழைய மறைவு சொல்:
 edit_pw_new =                     புதிய மறைவு சொல்:
 edit_pw_conf =                    மறுபடியும் புதிய மறைவு சொலை :
 error_old_pw_wrong =              பழைய மறைவு சொல் தவரு
-error_pw_conf_wrong =             புதிய மறைவு சொலும் இரண்டாவது மறைவு சொலும் ஒன்றாக இல்லை
+error_pw_conf_uneven =            புதிய மறைவு சொலும் இரண்டாவது மறைவு சொலும் ஒன்றாக இல்லை
 error_new_pw_too_short =          புதிய மறைவு சொல்லில்  [characters] சொல்லாவது இருகாகவேணடும்
 
 [edit_email]
