@@ -1,6 +1,18 @@
 my little forum changelog
 -------------------------
 
+2.4.3 (2017-07-09)
+------------------
+- fix for lost CSS-rule for element #image-canvas
+- fix, remove graphical separator for link list
+- fix cache handling, newer IE-versions was not taken into account
+- fix marking as unread for visited entries which was dropped from the list of visited entries
+- fix collation of the user name field to distinguish between "a" and "ä" (examlpe)
+- fix doubled key in the language files
+- prepopulate the field for the forum-URL in the installation script with the protocol which is actually in use
+- add indices to several database tables to speed up the loading time of the forum
+- enhanced handling of read status (new setting for selection of handling scheme), in general higher values
+
 2.4.2 (2017-03-12)
 ------------------
 - fixed the installation of the settings table without a PK on the column 'name' (in update procedure since 2.3.99.1)
