@@ -97,11 +97,12 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/thread.inc.php';			// #197, #219
 		$update['items'][] = 'includes/functions.inc.php';			// #198, #208
 		$update['items'][] = 'includes/index.inc.php';			// #219
-		$update['items'][] = 'includes/admin.inc.php';			// #233
+		$update['items'][] = 'includes/admin.inc.php';			// #233, #237
+		$update['items'][] = 'includes/user.inc.php';			// #237
 		$update['items'][] = 'themes/default/style.css';			// #190, #191, #194, #228
 		$update['items'][] = 'themes/default/style.min.css';			// #191, #194
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';			// #210, #233
-		$update['items'][] = 'lang/';			// #233
+		$update['items'][] = 'lang/';			// #233, #237
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
