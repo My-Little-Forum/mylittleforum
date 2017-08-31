@@ -375,18 +375,15 @@ function is_valid_url($url)
  * @param string $email
  * @return bool
  */
-function is_valid_email($email)
- {
-  if(!preg_match("/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/", $email))
-   {
-    return false;
-   }
-  if(contains_invalid_string($email))
-   {
-    return false;
-   }
-  return true;
- }
+function is_valid_email($email) {
+	if (!preg_match("/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,}|[0-9]{1,3})(\]?)$/", $email)) {
+		return false;
+	}
+	if (contains_invalid_string($email)) {
+		return false;
+	}
+	return true;
+}
 
 /**
  * help function for is_valid_url() and is_valid_email()
