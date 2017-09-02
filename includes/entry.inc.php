@@ -147,6 +147,22 @@ if(isset($id) && $id > 0)
    else $data['name'] = htmlspecialchars($data['name']);
    $data['subject'] = htmlspecialchars($data['subject']);
    $data['formated_time'] = format_time($lang['time_format'],$data['disp_time']);
+
+    // Read state taken from thread.inc.php Line ~258
+	if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
+		$data['is_read'] = true;
+		$data['new'] = false;
+	} else {
+		$data['is_read'] = false;
+		if (isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time'] || ($last_visit && (isset($data['last_reply']) && $data['last_reply'] > $last_visit or isset($data['time']) && $data['time'] > $last_visit))) {
+			$data['new'] = true;
+		} else {
+			$data['new'] = false;
+		}
+	}
+   
+   
+   /*
    if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
        $data['is_read'] = true;
       } else {
@@ -162,7 +178,7 @@ if(isset($id) && $id > 0)
      if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime']<$data['time'] || $last_visit && $data['time'] > $last_visit) $data['new'] = true;
      else $data['new'] = false;
     }
-   
+   */
    if($data['text']=='') $data['no_text'] = true;
    unset($data['text']);
 
