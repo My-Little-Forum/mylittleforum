@@ -2822,6 +2822,29 @@ function isProtocolHTTPS() {
 }
 
 /**
+ * set the read or new status for a thread message
+ *
+ * @param array
+ * @param integer
+ * @return array
+ */
+function getMessageStatus($data, $lastVisit) {
+	global $settings;
+	if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
+		$data['is_read'] = true;
+		$data['new'] = false;
+	} else {
+		$data['is_read'] = false;
+		if ((isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time']) || ($lastVisit && ($data['last_reply'] > $lastVisit or $data['time'] > $lastVisit))) {
+			$data['new'] = true;
+		} else {
+			$data['new'] = false;
+		}
+	}
+	return $data;
+}
+
+/**
  * sends a status code, displays an error message and halts the script
  *
  * @param string $status_code
