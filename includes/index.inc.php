@@ -124,17 +124,8 @@ if($result_count > 0)
 
       $data['subject'] = htmlspecialchars($data['subject']);
       if(isset($categories[$data['category']]) && $categories[$data['category']]!='') $data['category_name']=$categories[$data['category']];
-			if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
-				$data['is_read'] = true;
-				$data['new'] = false;
-			} else {
-				$data['is_read'] = false;
-				if (isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time'] || ($last_visit && ($data['last_reply'] > $last_visit or $data['time'] > $last_visit))) {
-					$data['new'] = true;
-				} else {
-					$data['new'] = false;
-				}
-			}
+			// set read or new status of messages
+			$data = getMessageStatus($data, $last_visit);
 
       // convert formated time to a utf-8:
       $data['formated_time'] = format_time($lang['time_format'],$data['timestamp']);
