@@ -2828,17 +2828,25 @@ function isProtocolHTTPS() {
  * @param integer
  * @return array
  */
-function getMessageStatus($data, $lastVisit) {
+function getMessageStatus($data, $lastVisit, $folded = false) {
 	global $settings;
 	if ($data['req_user'] !== NULL and is_numeric($data['req_user'])) {
 		$data['is_read'] = true;
 		$data['new'] = false;
 	} else {
 		$data['is_read'] = false;
-		if ((isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time']) || ($lastVisit && ($data['last_reply'] > $lastVisit or $data['time'] > $lastVisit))) {
-			$data['new'] = true;
+		if ($data['pid'] == 0 && $folded !== false) {
+			if ((isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['last_reply']) || ($last_visit && $data['last_reply'] > $last_visit)) {
+				$data['new'] = true;
+			} else {
+				$data['new'] = false;
+			}
 		} else {
-			$data['new'] = false;
+			if ((isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time']) || ($last_visit && $data['time'] > $last_visit)) {
+				$data['new'] = true;
+			} else {
+				$data['new'] = false;
+			}
 		}
 	}
 	return $data;
