@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2');
+$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -103,6 +103,12 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/style.min.css';			// #191, #194
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';			// #210, #233
 		$update['items'][] = 'lang/';			// #233, #237
+	case '2.4.3':
+		$update['items'][] = 'themes/default/main.tpl';			// #248
+		$update['items'][] = 'includes/functions.inc.php';	// #249, #255, #256
+		$update['items'][] = 'includes/entry.inc.php';			// #251, #255
+		$update['items'][] = 'includes/index.inc.php';			// #255, #256
+		$update['items'][] = 'includes/thread.inc.php';			// #255
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
