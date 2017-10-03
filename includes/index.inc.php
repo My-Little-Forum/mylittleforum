@@ -14,8 +14,8 @@ if(isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 if(isset($_SESSION[$settings['session_prefix'].'usersettings']['user_view'])) $user_view = $_SESSION[$settings['session_prefix'].'usersettings']['user_view'];
 else $user_view = $settings['default_view'];
 
-if(isset($_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'])) $fold_threads = $_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'];
-else $fold_threads = $settings['fold_threads'];
+if(isset($_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'])) $fold_threads = (boolean) $_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'];
+else $fold_threads = (boolean) $settings['fold_threads'];
 
 if(isset($_SESSION[$settings['session_prefix'].'usersettings']['thread_order']))
  {
@@ -125,7 +125,7 @@ if($result_count > 0)
       $data['subject'] = htmlspecialchars($data['subject']);
       if(isset($categories[$data['category']]) && $categories[$data['category']]!='') $data['category_name']=$categories[$data['category']];
 			// set read or new status of messages
-			$data = getMessageStatus($data, $last_visit);
+			$data = getMessageStatus($data, $last_visit, $fold_threads);
 
       // convert formated time to a utf-8:
       $data['formated_time'] = format_time($lang['time_format'],$data['timestamp']);
