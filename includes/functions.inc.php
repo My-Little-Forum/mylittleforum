@@ -2836,9 +2836,9 @@ function getMessageStatus($data, $lastVisit, $folded = false) {
 	} else {
 		$data['is_read'] = false;
 		$data['new'] = false;
-		if (($data['pid'] == 0 && $folded !== false) && ((isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && isset($data['last_reply']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['last_reply']) || ($last_visit && $data['last_reply'] > $last_visit))) {
+		if (($data['pid'] == 0 && $folded !== false) && ((isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && isset($data['last_reply']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['last_reply']) || ($lastVisit && $data['last_reply'] > $lastVisit))) {
 			$data['new'] = true;
-		} else if ((isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && isset($data['time']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time']) || ($last_visit && $data['time'] > $last_visit)) {
+		} else if ((isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime']) && isset($data['time']) && $_SESSION[$settings['session_prefix'].'usersettings']['newtime'] < $data['time']) || ($lastVisit && $data['time'] > $lastVisit)) {
 			$data['new'] = true;
 		}
 	}
