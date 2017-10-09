@@ -109,6 +109,10 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/entry.inc.php';			// #251, #255
 		$update['items'][] = 'includes/index.inc.php';			// #255, #256
 		$update['items'][] = 'includes/thread.inc.php';			// #255
+	case '2.4.4':
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';		// #259
+		$update['items'][] = 'themes/default/main.tpl';			// #260
+		$update['items'][] = 'includes/functions.inc.php';	// #262
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
