@@ -1,6 +1,12 @@
 my little forum changelog
 -------------------------
 
+2.4.5 (2017-10-09)
+------------------
+- fix for wrong variable name in the function getMessageStatus
+- removed orphaned code fragment, was never used
+- add a meta element named "referrer", that causes not sending a referrer when open an external link or (for older browsers) sending a referrer with onlythe domain part, it's a small contribution for forum users privacy
+
 2.4.4 (2017-10-03)
 ------------------
 - fix for by mistake overwritten user type
