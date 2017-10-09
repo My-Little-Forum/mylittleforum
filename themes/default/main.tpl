@@ -8,6 +8,8 @@
 {if $mode=='posting'}
 <meta name="robots" content="noindex" />
 {/if}
+<meta name="referrer" value="origin" />
+<meta name="referrer" value="same-origin" />
 <meta name="generator" content="my little forum {$settings.version}" />
 <link rel="stylesheet" type="text/css" href="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/style.min.css" media="all" />
 {if $settings.rss_feed==1}<link rel="alternate" type="application/rss+xml" title="RSS" href="index.php?mode=rss" />{/if}
