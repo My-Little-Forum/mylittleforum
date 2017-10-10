@@ -375,6 +375,10 @@ if(empty($update['errors'])) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
+	else {
+		// Set new Version, taken ftrom VERSION file.
+		$update['new_version'] = $newVersion;
+	}
 }
 
 ?>
