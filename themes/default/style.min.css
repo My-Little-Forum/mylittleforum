@@ -88,6 +88,8 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #latest-postings li a{font-size:.82em;line-height:1.5em;color:gray;text-decoration:none;display:block;margin:0;padding:3px 5px}
 #latest-postings li a:hover{background:#efefef;text-decoration:none}
 #latest-postings li a span{font-size:1.2em;line-height:1.5em;color:#00c}
+#latest-postings li a:visited span{color:#000077;}
+#latest-postings li a:focus span, #latest-postings li a:hover span{text-decoration:underline;}
 #tagcloud{position:relative;margin:0 0 20px 20px;background:#f9f9f9;border:1px solid #bacbdf;padding:0;width:13em}
 #tagcloud p{margin:0;padding:5px;font-size:.69em;line-height:1.5em}
 #tagcloud a.hide-sidebar{position:absolute;top:2px;right:4px;margin:0;padding:0;line-height:11px}
