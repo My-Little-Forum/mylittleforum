@@ -123,15 +123,15 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #latest-postings h3      { font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px; }
 #latest-postings ul      { font-size:0.82em; list-style:none; margin:0; padding:0; }
 #latest-postings li      { margin:0; padding:0; line-height:1.5em; word-wrap:break-word; overflow:hidden; }
-#latest-postings li a    { font-size:0.82em; line-height:1.5em; color:#808080; text-decoration:none; display:block; margin:0; padding:3px 5px 3px 5px; }
-#latest-postings li a:hover
-                         { background:#efefef; text-decoration:none; }
-#latest-postings li a span
-                         { font-size:1.2em; line-height:1.5em; color:#0000cc; }
-#latest-postings li a:visited span
+#latest-postings li a    { font-size:0.82em; line-height:1.5em; text-decoration:none; display:block; margin:0; padding:3px 5px; }
+#latest-postings li a:visited, #latest-postings li a.read
+                         { background-color: #ffffff; }
+#latest-postings li a:visited .entry-title, #latest-postings li a.read .entry-title
                          { color:#000077; }
-#latest-postings li a:focus span, #latest-postings li a:hover span
-                         { text-decoration:underline; }
+#latest-postings li a:focus,#latest-postings li a:hover
+                         { background:#efefef; text-decoration:none; }
+#latest-postings li a .entry-date, #latest-postings li a.read .entry-date
+                         { font-size: 0.82em; color: #808080; }
 
 #tagcloud                { position:relative; margin:0 0 20px 20px; background:#f9f9f9; border:1px solid #bacbdf; padding:0; width:13em; }
 #tagcloud p              { margin:0; padding:5px; font-size:0.69em; line-height:1.5em; }
