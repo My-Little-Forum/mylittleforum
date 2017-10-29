@@ -85,7 +85,7 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #latest-postings h3{font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px}
 #latest-postings ul{font-size:.82em;list-style:none;margin:0;padding:0}
 #latest-postings li{margin:0;padding:0;line-height:1.5em;word-wrap:break-word;overflow:hidden}
-#latest-postings li a{line-height:1.5em;text-decoration:none;display:block;margin:0;padding:3px 5px}
+#latest-postings li a{background-color:#f0f0f0;line-height:1.5em;text-decoration:none;display:block;margin:0;padding:3px 5px}
 #latest-postings li a:visited,#latest-postings li a.read{background-color:#fff}
 #latest-postings li a:visited .entry-title,#latest-postings li a.read .entry-title{color:#007}
 #latest-postings li a:focus,#latest-postings li a:hover{background:#efefef;text-decoration:none}
