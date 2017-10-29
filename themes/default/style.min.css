@@ -75,15 +75,15 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #footermenu li:first-child a {padding-left:15px;}
 #pbmlf{clear:both;margin:0;padding:0 20px 11px;text-align:center;font-size:.69em;color:gray}
 #pbmlf a{color:gray;text-decoration:none}
-#sidebar{position:relative;float:right;margin:0;padding:0}
+#sidebar{position:relative;width:13em;float:right;margin:0;padding:0}
 #sidebar div{position:relative;z-index:2}
 #sidebar h3.sidebar{position:absolute;top:0;right:0;font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 17px 0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px;border:1px solid #bacbdf;z-index:1}
 #sidebar h3.sidebar a{color:#000;text-decoration:none;z-index:2}
 #sidebartoggle{position:absolute;top:5px;right:4px;margin:0;padding:0;z-index:3}
-#latest-postings{position:relative;margin:0 0 20px 20px;background:#f9f9f9;border:1px solid #bacbdf;padding:0;width:13em}
+#latest-postings{position:relative;margin:0 0 20px 0;background:#f9f9f9;border:1px solid #bacbdf;padding:0}
 #latest-postings a.hide-sidebar{position:absolute;top:2px;right:4px;margin:0;padding:0;line-height:11px}
 #latest-postings h3{font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px}
-#latest-postings ul{font-size:.82em;list-style:none;margin:0;padding:0}
+#latest-postings ul{max-width:100%;font-size:.82em;list-style:none;margin:0;padding:0}
 #latest-postings li{margin:0;padding:0;line-height:1.5em;word-wrap:break-word;overflow:hidden}
 #latest-postings li a{background-color:#f0f0f0;line-height:1.5em;text-decoration:none;display:block;margin:0;padding:3px 5px}
 #latest-postings li a:visited,#latest-postings li a.read{background-color:#fff}
@@ -91,12 +91,12 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #latest-postings li a:focus,#latest-postings li a:hover{background:#efefef;text-decoration:none}
 #latest-postings li a:focus .entry-title,#latest-postings li a:hover .entry-title{text-decoration:underline}
 #latest-postings li a .entry-date,#latest-postings li a.read .entry-date{font-size:.82em;color:gray}
-#tagcloud{position:relative;margin:0 0 20px 20px;background:#f9f9f9;border:1px solid #bacbdf;padding:0;width:13em}
+#tagcloud{position:relative;margin:0 0 20px 0;background:#f9f9f9;border:1px solid #bacbdf;padding:0}
 #tagcloud p{margin:0;padding:5px;font-size:.69em;line-height:1.5em}
 #tagcloud a.hide-sidebar{position:absolute;top:2px;right:4px;margin:0;padding:0;line-height:11px}
 #tagcloud h3{font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px}
 #tagcloud strong{font-weight:700;font-size:1.051em}
-#modmenu{position:relative;margin:0 0 20px 20px;background:#f9f9f9;border:1px solid #bacbdf;width:13em}
+#modmenu{position:relative;margin:0 0 20px 0;background:#f9f9f9;border:1px solid #bacbdf}
 #modmenu h3{font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px}
 #mod-options{list-style:none;margin:0;padding:5px;font-size:.69em!important;line-height:1.7em!important}
 #mod-options a {padding-left:15px;}
