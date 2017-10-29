@@ -49,7 +49,7 @@
 <h3 class="sidebar"><a href="index.php?toggle_sidebar=true" title="{#toggle_sidebar#}">{#sidebar#}</a></h3>
 <div id="sidebarcontent">
 {if $latest_postings}
-<div>
+<div id="latest-postings">
 <h3>{#latest_postings_hl#}</h3>
 <ul id="latest-postings-container">
 {foreach from=$latest_postings item=posting}<li><a{if $posting.is_read} class="read"{/if} href="index.php?mode=thread&amp;id={$posting.tid}{if $posting.pid!=0}#p{$posting.id}{/if}" title="{$posting.name}, {$posting.formated_time} {if $posting.category_name}({$posting.category_name}){/if}"><span class="entry-title">{if $posting.pid==0}<strong>{$posting.subject}</strong>{else}{$posting.subject}{/if}</span><br /><span class="entry-date">{if $posting.ago.days>1}{#posting_several_days_ago#|replace:"[days]":$posting.ago.days_rounded}{else}{if $posting.ago.days==0 && $posting.ago.hours==0}{#posting_minutes_ago#|replace:"[minutes]":$posting.ago.minutes}{elseif $posting.ago.days==0 && $posting.ago.hours!=0}{#posting_hours_ago#|replace:"[hours]":$posting.ago.hours|replace:"[minutes]":$posting.ago.minutes}{else}{#posting_one_day_ago#|replace:"[hours]":$posting.ago.hours|replace:"[minutes]":$posting.ago.minutes}{/if}{/if}<span></a></li>{/foreach}
@@ -57,7 +57,7 @@
 </div>
 {/if}
 {if $tag_cloud}
-<div>
+<div id="tagcloud">
 <h3>{#tag_cloud_hl#}</h3>
 <p class="tagcloud">{foreach from=$tag_cloud item=tag}
 {section name=strong_start start=0 loop=$tag.frequency}<strong>{/section}<a href="index.php?mode=search&amp;search={$tag.escaped}&amp;method=tags">{$tag.tag}</a> {section name=strong_end start=0 loop=$tag.frequency}</strong>{/section}
@@ -65,7 +65,7 @@
 </div>
 {/if}
 {if $admin || $mod}
-<div>
+<div id="modmenu">
 	<h3>{#options#}</h3>
 	<ul id="mod-options">
 		{if $number_of_non_activated_users}<li><a href="index.php?mode=user" class="non-activated-users">{#non_activated_users_link#|replace:'[counter]':$number_of_non_activated_users}</a></li>{/if}
