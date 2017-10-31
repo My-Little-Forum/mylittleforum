@@ -114,9 +114,6 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #bottombar p.tagcloud{margin:0;padding:10px;font-size:.69em;line-height:1.5em}
 #bottombar p.tagcloud strong{font-weight:700;font-size:1.051em}
 #bottombar .xsmall{font-size:.82em}
-#bottombar .latestposts{margin:0;padding:10px 10px 7px;font-size:.69em;color:gray;list-style-type:none}
-#bottombar .latestposts li{padding-bottom:3px}
-#bottombar .latestposts a{font-size:1.2em}
 #bottombar #mod-options{padding:10px}
 #usersonline{background:#f9f9f9;border:1px solid #bacbdf;margin:20px 0}
 #usersonline h3{font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px}

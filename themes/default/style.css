@@ -162,12 +162,6 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #bottombar p.tagcloud strong
                          { font-weight:bold; font-size:1.051em; }
 #bottombar .xsmall       { font-size:0.82em; }
-#bottombar .latestposts  { margin:0; padding:10px 10px 7px 10px; font-size:0.69em; color:#808080; list-style-type:none; }
-#bottombar .latestposts li
-                         { padding-bottom:3px; }
-#bottombar .latestposts a
-                         { font-size:1.2em; }
-#bottombar .latestposts a:visited  { /*color:#800080;*/ }
 #bottombar #mod-options  { padding:10px; }
 
 #usersonline             { background:#f9f9f9; border:1px solid #bacbdf; margin:20px 0 20px 0; }
