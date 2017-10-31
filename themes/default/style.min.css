@@ -111,8 +111,7 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #bottombarhandle{position:absolute;top:0;right:4px;margin:0;padding:0;z-index:3}
 #bottombar #sidebarcontent div{position:relative;z-index:2;background:#f9f9f9;border:1px solid #bacbdf;margin:0 0 20px}
 #bottombar h3{font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px}
-#bottombar p.tagcloud{margin:0;padding:10px;font-size:.69em;line-height:1.5em}
-#bottombar p.tagcloud strong{font-weight:700;font-size:1.051em}
+#bottombar #tagcloud p{padding:10px}
 #bottombar .xsmall{font-size:.82em}
 #bottombar #mod-options{padding:10px}
 #usersonline{background:#f9f9f9;border:1px solid #bacbdf;margin:20px 0}
