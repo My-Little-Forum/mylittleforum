@@ -108,15 +108,12 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #bottombar{position:relative;margin:20px 0 -20px}
 #bottombar h3.sidebar{position:relative;float:right;font-size:.69em;line-height:1.6em;font-weight:400;margin:0 0 20px;padding:0 17px 0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px;border:1px solid #bacbdf}
 #bottombar h3.sidebar a{color:#000;text-decoration:none}
+#bottombar:not(.js-display-fold) h3.sidebar{margin:0}
 #bottombarhandle{position:absolute;top:0;right:4px;margin:0;padding:0;z-index:3}
 #bottombar #sidebarcontent div{position:relative;z-index:2;background:#f9f9f9;border:1px solid #bacbdf;margin:0 0 20px}
 #bottombar h3{font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px}
-#bottombar p.tagcloud{margin:0;padding:10px;font-size:.69em;line-height:1.5em}
-#bottombar p.tagcloud strong{font-weight:700;font-size:1.051em}
+#bottombar #tagcloud p{padding:10px}
 #bottombar .xsmall{font-size:.82em}
-#bottombar .latestposts{margin:0;padding:10px 10px 7px;font-size:.69em;color:gray;list-style-type:none}
-#bottombar .latestposts li{padding-bottom:3px}
-#bottombar .latestposts a{font-size:1.2em}
 #bottombar #mod-options{padding:10px}
 #usersonline{background:#f9f9f9;border:1px solid #bacbdf;margin:20px 0}
 #usersonline h3{font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px}
