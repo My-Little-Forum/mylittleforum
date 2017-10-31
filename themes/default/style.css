@@ -155,6 +155,8 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #bottombar               { position:relative; margin:20px 0 -20px 0; }
 #bottombar h3.sidebar    { position:relative; float:right; font-size:0.69em; line-height:1.6em; font-weight:normal; margin:0 0 20px 0; padding:0 17px 0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px; border:1px solid #bacbdf; }
 #bottombar h3.sidebar a  { color:#000; text-decoration:none; }
+#bottombar:not(.js-display-fold) h3.sidebar
+                         { margin: 0; }
 #bottombarhandle         { position:absolute; top:0; right:4px; margin:0; padding:0; z-index:3; }
 #bottombar #sidebarcontent div { position:relative; z-index:2; background:#f9f9f9; border:1px solid #bacbdf; margin:0 0 20px 0; }
 #bottombar h3            { font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 5px 0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px; }
