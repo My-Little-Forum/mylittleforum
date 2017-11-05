@@ -1568,7 +1568,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				mysqli_query($connid, "UPDATE ".$db_settings['banlists_table']." SET list = '". mysqli_real_escape_string($connid, $banned_user_agents) ."' WHERE name = 'user_agents'");
 				mysqli_query($connid, "UPDATE ".$db_settings['banlists_table']." SET list = '". mysqli_real_escape_string($connid, $not_accepted_words) ."' WHERE name = 'words'");
 
-				if (trim($banned_ips == '') && trim($banned_user_agents == '')) $access_permission_checks = 0;
+				if (trim($banned_ips) == '' && trim($banned_user_agents) == '') $access_permission_checks = 0;
 				else $access_permission_checks = 1;
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". mysqli_real_escape_string($connid, $access_permission_checks) ."' WHERE name = 'access_permission_checks'");
 
