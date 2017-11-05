@@ -7,13 +7,13 @@ if(!defined('IN_INDEX')) {
 // upload folder:
 $uploaded_images_path = 'images/avatars/';
 
-if($settings['avatars']>0 && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+if ($settings['avatars'] > 0 && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 	$avatarInfo = getAvatar($_SESSION[$settings['session_prefix'].'user_id']);
 	$filename = $avatarInfo === false ? false : $avatarInfo[1];
-	
+
 	// remove existing avatar
-	if(isset($_GET['delete'])) {
-		if($filename !== false && file_exists($uploaded_images_path.$filename)) {
+	if (isset($_GET['delete'])) {
+		if ($filename !== false && file_exists($uploaded_images_path.$filename)) {
 			@chmod($uploaded_images_path.$filename, 0777);
 			@unlink($uploaded_images_path.$filename);
 		}
@@ -22,7 +22,7 @@ if($settings['avatars']>0 && isset($_SESSION[$settings['session_prefix'].'user_i
 	}
 
 	// upload a new avatar
-	if(isset($_FILES['probe']) && $_FILES['probe']['size'] != 0 && !$_FILES['probe']['error']) {
+	if (isset($_FILES['probe']) && $_FILES['probe']['size'] != 0 && !$_FILES['probe']['error']) {
 		unset($errors);
 		$image_info = getimagesize($_FILES['probe']['tmp_name']);
 
@@ -97,37 +97,35 @@ if($settings['avatars']>0 && isset($_SESSION[$settings['session_prefix'].'user_i
 				@move_uploaded_file($_FILES['probe']['tmp_name'], $uploaded_images_path.$filename) or $errors[] = 'upload_error';
 			}
 		}
-		
-		if(empty($errors)) {
+
+		if (empty($errors)) {
 			@chmod($uploaded_images_path.$filename, 0644);
-			$smarty->assign('avatar_uploaded',true);
+			$smarty->assign('avatar_uploaded', true);
 		}
 		else {
 			$smarty->assign('errors',$errors);
-			$smarty->assign('form',true);
+			$smarty->assign('form', true);
 		}
 	}
 
 	// show avatar
-	if($filename !== false && file_exists($uploaded_images_path.$filename)) {
+	if ($filename !== false && file_exists($uploaded_images_path.$filename)) {
 		$avatar = $uploaded_images_path.$filename;
 	}
 
-	if(isset($avatar)) {
+	if (isset($avatar)) {
 		//$avatar .= '?u='.uniqid();
 		$smarty->assign('avatar', $avatar);
-	}
-	else 
+	} else {
 		$smarty->assign('upload', 'true');
-
-	if(isset($_GET['deleted'])) 
+	}
+	if (isset($_GET['deleted']))
 		$smarty->assign('avatar_deleted', true);
 
-
-	if(empty($errors) && isset($_FILES['probe']['error'])) {
+	if (empty($errors) && isset($_FILES['probe']['error'])) {
 		$smarty->assign('server_max_filesize', ini_get('upload_max_filesize'));
 		$errors[] = 'upload_error_2';
-		$smarty->assign('errors',$errors);
+		$smarty->assign('errors', $errors);
 	}
 }
 

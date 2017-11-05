@@ -1,28 +1,26 @@
 <?php
-if(!defined('IN_INDEX'))
- {
-  header('Location: ../index.php');
-  exit;
- }
+if (!defined('IN_INDEX')) {
+	header('Location: ../index.php');
+	exit;
+}
 
-if(isset($_SESSION[$settings['session_prefix'].'usersettings']['theme']) && $smarty->templateExists($_SESSION[$settings['session_prefix'].'usersettings']['theme'].'/main.tpl')) $theme = $_SESSION[$settings['session_prefix'].'usersettings']['theme'];
+if (isset($_SESSION[$settings['session_prefix'].'usersettings']['theme']) && $smarty->templateExists($_SESSION[$settings['session_prefix'].'usersettings']['theme'].'/main.tpl')) $theme = $_SESSION[$settings['session_prefix'].'usersettings']['theme'];
 else $theme = $settings['theme'];
 
 $theme_config = parse_ini_file('./'.THEMES_DIR.'/'.$theme.'/js_config.ini');
 
-if(isset($_GET['user_type'])) $user_type = intval($_GET['user_type']); 
-if(isset($user_type) && $user_type > 2) unset($user_type);
+if (isset($_GET['user_type'])) $user_type = intval($_GET['user_type']);
+if (isset($user_type) && $user_type > 2) unset($user_type);
 
 $smarty->configLoad($language_file, 'general');
 $lang = $smarty->getConfigVars();
 
-if($settings['ajax_preview'])
- {
-  $template = 'ajax_preview.tpl';
-  $smarty->assign('theme',$theme);
-  $ajax_preview_structure = $smarty->fetch($theme.'/'.$template);
-  $ajax_preview_structure = addslashes(preg_replace("/\015\012|\015|\012/", "", $ajax_preview_structure));
- }
+if ($settings['ajax_preview']) {
+	$template = 'ajax_preview.tpl';
+	$smarty->assign('theme', $theme);
+	$ajax_preview_structure = $smarty->fetch($theme.'/'.$template);
+	$ajax_preview_structure = addslashes(preg_replace("/\015\012|\015|\012/", "", $ajax_preview_structure));
+}
 
 $expires = 2592000; // 30 days
 header("Pragma: public");
@@ -31,7 +29,7 @@ header('Expires: ' . gmdate('D, d M Y H:i:s', TIMESTAMP + $expires) . ' GMT');
 header('Content-type: application/javascript');
 
 ?>var lang = new Array();
-<?php if($settings['ajax_preview']): ?>
+<?php if ($settings['ajax_preview']): ?>
 lang["ajax_preview_title"] =               "<?php echo addslashes($lang['ajax_preview_title']); ?>";
 lang["close"] =                            "<?php echo addslashes($lang['close']); ?>";
 lang["no_text"] =                          "<?php echo addslashes($lang['no_text']); ?>";
@@ -95,25 +93,25 @@ settings["expand_thread_inactive_image"] = "<?php echo $theme_config['expand_thr
 settings["terms_of_use_popup_width"] =     <?php echo $theme_config['terms_of_use_popup_width']; ?>;
 settings["terms_of_use_popup_height"] =    <?php echo $theme_config['terms_of_use_popup_height']; ?>;
 <?php endif; ?>
-<?php if($settings['ajax_preview']): ?>
+<?php if ($settings['ajax_preview']): ?>
 settings["ajaxPreviewStructure"] =         "<?php echo $ajax_preview_structure; ?>";
 settings["ajax_preview_image"] =           "<?php echo $theme_config['ajax_preview_image']; ?>";
 settings["ajax_preview_throbber_image"] =  "<?php echo $theme_config['ajax_preview_throbber_image']; ?>";
 settings["ajax_preview_onmouseover"] =     <?php echo ($settings['ajax_preview'] > 1 ? 'true':'false'); ?>;
 <?php endif; ?>
-<?php if(isset($user_type) && $user_type>0 && $settings['upload_images'] > 0 || isset($user_type) && $settings['upload_images'] > 1 || $settings['upload_images']>2): ?>
+<?php if (isset($user_type) && $user_type>0 && $settings['upload_images'] > 0 || isset($user_type) && $settings['upload_images'] > 1 || $settings['upload_images'] > 2): ?>
 settings["upload_popup_width"] =           <?php echo $theme_config['upload_popup_width']; ?>;
 settings["upload_popup_height"] =          <?php echo $theme_config['upload_popup_height']; ?>;
 <?php endif; ?>
-<?php if($settings['bbcode_flash']): ?>
+<?php if ($settings['bbcode_flash']): ?>
 settings["flash_popup_width"] =            <?php echo $theme_config['flash_popup_width']; ?>;
 settings["flash_popup_height"] =           <?php echo $theme_config['flash_popup_height']; ?>;
 <?php endif; ?>
-<?php if(isset($user_type) && $settings['avatars']): ?>
+<?php if (isset($user_type) && $settings['avatars']): ?>
 settings["avatar_popup_width"] =           <?php echo $theme_config['avatar_popup_width']; ?>;
 settings["avatar_popup_height"] =          <?php echo $theme_config['avatar_popup_height']; ?>;
 <?php endif; ?>
-<?php if(isset($user_type) && $user_type>0): ?>
+<?php if (isset($user_type) && $user_type > 0): ?>
 settings["mark_process_image"] =           "<?php echo $theme_config['mark_process_image']; ?>";
 settings["marked_image"] =                 "<?php echo $theme_config['marked_image']; ?>";
 settings["unmarked_image"] =               "<?php echo $theme_config['unmarked_image']; ?>";
