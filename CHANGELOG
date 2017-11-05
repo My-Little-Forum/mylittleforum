@@ -1,6 +1,19 @@
 my little forum changelog
 -------------------------
 
+2.4.6 (2017-11-05)
+------------------
+- fix for displaying the new version number after update in the update script itself
+- fix for missing rules for visited links in the list of latest entries
+- fix for wrong syntax in the meta element "referrer", that was introduced in version 2.4.5 (author: https://github.com/Romchik)
+- removed doubled title attributes (author: https://github.com/Romchik)
+- rework of the HTML-structure in the side- and bottombar, removal of a few obsolete CSS-rules
+- refactoring of the *.inc.php-files, better readability for future development, no functional changes at that point
+- fix for broken toggling of check for banned IPs or user agents, should toggle automatically when listing bans but didn't
+- fix broken query for reading user data for notification in case of account creation through the admin
+- fix for doubled key in the german language file
+- fix for ordering of user data lists when sorted by the user names, collation led to sorting in the order names beginning with numbers, capital letters and in the end low letters, now capitals and low letters are sorted mixed in their natural order
+
 2.4.5 (2017-10-09)
 ------------------
 - fix for wrong variable name in the function getMessageStatus
