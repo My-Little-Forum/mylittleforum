@@ -125,7 +125,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_a
 				mysqli_free_result($lock_result);
 				if ($field['user_type'] == 0) {
 					if ($field['user_lock'] == 0) $new_lock = 1; else $new_lock = 0;
-					@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_lock = '".$new_lock."', last_login = last_login, registered = registered WHERE user_id = ". intval($_GET['user_lock']) ." LIMIT 1");
+					@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_lock = ".$new_lock.", last_login = last_login, registered = registered WHERE user_id = ". intval($_GET['user_lock']) ." LIMIT 1");
 				}
 			}
 			if (isset($_GET['page'])) header('Location: index.php?mode=user'.$search_user_q.'&page='.$page.'&order='.$order.'&descasc='.$descasc);
