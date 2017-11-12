@@ -119,7 +119,7 @@ switch ($action) {
 					$_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
 
 					if(isset($save_auto_login)) {
-           @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', auto_login_code = '". mysqli_real_escape_string($connid, $auto_login_code) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ". intval($user_id));
+						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', auto_login_code = '". mysqli_real_escape_string($connid, $auto_login_code) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ". intval($user_id));
 					} else {
 						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ".intval($user_id));
 					}
@@ -131,16 +131,19 @@ switch ($action) {
 						@mysqli_query($connid, "DELETE FROM ".$db_settings['useronline_table']." WHERE ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."'");
 					}
 
-					if (isset($_POST['back']) && isset($_POST['id'])) {
-						$redir_qs = '?mode='.$_POST['back'].'&id='.$_POST['id'].'&back=entry';;
+					if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+						$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
+					} else if (isset($_POST['back']) && isset($_POST['id'])) {
+						$redir = 'index.php?mode='.$_POST['back'].'&id='.$_POST['id'].'&back=entry';
 					} elseif (isset($_POST['back'])) {
-						$redir_qs = '?mode='.$_POST['back'];
+						$redir = 'index.php?mode='.$_POST['back'];
 					} elseif (isset($_POST['id'])) {
-						$redir_qs = '?id='.$_POST['id'].'&back=entry';
+						$redir = 'index.php?id='.$_POST['id'].'&back=entry';
 					} else {
-						$redir_qs = '';
+						$redir = 'index.php';
 					}
-					header('Location: index.php'.$redir_qs);
+
+					header('Location: '.$redir);
 					exit;
 				} else {
 					if ($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
