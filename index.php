@@ -191,7 +191,6 @@ switch($mode)
      $mode='index';
      include('includes/index.inc.php');
  }
-
 $smarty->assign('mode', $mode);
 
 if(empty($template))
@@ -208,6 +207,10 @@ else
  {
   header('Cache-Control: private, no-cache="set-cookie"');
   header('Content-Type: text/html; charset='.$lang['charset']);
+  
+  $currentURI = (isProtocolHTTPS() ? 'https':'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+  if ($mode != 'login' && (!isset($_SESSION[$settings['session_prefix'].'last_visited_uri']) || $_SESSION[$settings['session_prefix'].'last_visited_uri'] != $currentURI))
+	$_SESSION[$settings['session_prefix'].'last_visited_uri'] = $currentURI;
  }
 
 if(isset($_SESSION[$settings['session_prefix'].'usersettings']['theme']) && $smarty->templateExists($_SESSION[$settings['session_prefix'].'usersettings']['theme'].'/'.$template)) $theme = $_SESSION[$settings['session_prefix'].'usersettings']['theme'];
