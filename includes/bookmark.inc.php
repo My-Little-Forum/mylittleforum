@@ -155,7 +155,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			break;
 			
 		case 'edit_bookmark_submit':
-			if (!isset($_POST['bookmark']) || empty($_POST['bookmark']))
+			if (empty($_POST['bookmark']))
 				$errors[] = 'error_no_bookmark_subject';
 			if (my_strlen(trim($_POST['bookmark']), $lang['charset']) > $settings['subject_maxlength'])
 				$errors[] = 'error_bookmark_subject_too_long';
