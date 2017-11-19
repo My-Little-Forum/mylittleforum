@@ -1,5 +1,5 @@
 ################################################################################
-# Tamil language file for my little forum 2.3                                  #
+# Tamil language file for my little forum 2.4                                  #
 ################################################################################
 
 [default]
@@ -261,14 +261,24 @@ show_bookmarks_link =             <!-- TODO -->Bookmarks
 show_userdata_linktitle =         <!-- TODO -->Visit profil of [user]
 
 [bookmark]
+[bookmark]
 delete_bookmark_submit =          <!-- TODO -->OK - Delete Bookmark
 delete_bookmark_confirm =         <!-- TODO -->Do you really want to delete this bookmark?
 no_bookmarks =                    <!-- TODO -->No bookmarks specified.
 edit_bookmark =                   <!-- TODO -->Bookmark:
+edit_tags =                       <!-- TODO -->Tags:
+edit_tags_note =                  <!-- TODO -->(optional, separated by comma)
 bookmark_title =                  <!-- TODO -->Name of bookmark
 bookmark_user_name =              <!-- TODO -->User name
 bookmark_creation_time =          <!-- TODO -->Bookmark creation
 bookmark_posting_time =           <!-- TODO -->Posting creation
+bookmark_filter_linktitle =       <!-- TODO -->Apply bookmark filter
+clear_bookmark_filter_linkname =  <!-- TODO -->Clear bookmark filter
+clear_bookmark_filter_linktitle = <!-- TODO -->clear current bookmark filter and show all saved bookmarks
+error_no_bookmark_subject =       <!-- TODO -->No subject has been entered
+error_bookmark_subject_too_long = <!-- TODO -->The subject is too long
+error_bookmark_tags_too_long =    <!-- TODO -->Tags too long
+error_bookmark_word_too_long =    <!-- TODO -->The word "[word]" is too long
 
 [entry]
 edited_by =                       புதுப்பித்தவர் [name], [time]
