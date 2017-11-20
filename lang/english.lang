@@ -1,5 +1,5 @@
 ################################################################################
-# English language file for my little forum 2.3                                #
+# English language file for my little forum 2.4                                #
 #------------------------------------------------------------------------------#
 # - don't modify or translate the section names like "[general]" or "[entry]"! #
 # - placeholders in square brackets (e.g. "[name]") will be replaced by values #
@@ -277,10 +277,19 @@ delete_bookmark_submit =          OK - Delete Bookmark
 delete_bookmark_confirm =         Do you really want to delete this bookmark?
 no_bookmarks =                    No bookmarks specified.
 edit_bookmark =                   Bookmark:
+edit_tags =                       Tags:
+edit_tags_note =                  (optional, separated by comma)
 bookmark_title =                  Name of bookmark
 bookmark_user_name =              User name
 bookmark_creation_time =          Bookmark creation
 bookmark_posting_time =           Posting creation
+bookmark_filter_linktitle =       Apply bookmark filter
+clear_bookmark_filter_linkname =  Clear bookmark filter
+clear_bookmark_filter_linktitle = clear current bookmark filter and show all saved bookmarks
+error_no_bookmark_subject =       No subject has been entered
+error_bookmark_subject_too_long = The subject is too long
+error_bookmark_tags_too_long =    Tags too long
+error_bookmark_word_too_long =    The word "[word]" is too long
 
 [entry]
 edited_by =                       edited by [name], [time]

@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5');
+$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -121,7 +121,10 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';	// #267, #269
 		$update['items'][] = 'includes/';											// #271, #275, #276, #277, #279
 		$update['items'][] = 'lang/german.lang';							// #278
-		
+	case '2.4.6':	
+		$update['items'][] = 'lang/';                                        //  #287
+		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl'; //  #287
+		$update['items'][] = 'includes/bookmark.inc.php';                    //  #287
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
@@ -377,6 +380,12 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 		}
+	}
+}
+
+if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6'))) {
+	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['bookmark_table']."` ADD `tags` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '';")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
 
