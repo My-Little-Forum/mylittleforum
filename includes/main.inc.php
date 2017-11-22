@@ -156,14 +156,17 @@ if (isset($_GET['thread_order']) && isset($_SESSION[$settings['session_prefix'].
 	}
 }
 
-if (isset($_GET['toggle_view'])) {
-	if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && $_SESSION[$settings['session_prefix'].'usersettings']['user_view'] == 0) {
-		$_SESSION[$settings['session_prefix'].'usersettings']['user_view'] = 1;
-		setcookie($settings['session_prefix'].'usersettings', '1.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 *$settings['cookie_validity_days']));
-	} elseif (isset($_SESSION[$settings['session_prefix'].'usersettings']) && $_SESSION[$settings['session_prefix'].'usersettings']['user_view'] == 1) {
-    $_SESSION[$settings['session_prefix'].'usersettings']['user_view'] = 0;
-    setcookie($settings['session_prefix'].'usersettings','0.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
+if (isset($_GET['toggle_view']) or isset($_GET['main_view'])) {
+	if (isset($_GET['toggle_view'])) {
+		if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && $_SESSION[$settings['session_prefix'].'usersettings']['user_view'] == 0) {
+			$_SESSION[$settings['session_prefix'].'usersettings']['user_view'] = 1;
+		} else {
+			$_SESSION[$settings['session_prefix'].'usersettings']['user_view'] = 0;
+		}
+	} else if (isset($_GET['main_view']) and in_array($_GET['main_view'], array(0, 1))) {
+		$_SESSION[$settings['session_prefix'].'usersettings']['user_view'] = intval($_GET['main_view']);
 	}
+	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
 	// update database for registered users:
 	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, user_view = ". intval($_SESSION[$settings['session_prefix'].'usersettings']['user_view']) ." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or die(mysqli_error($connid));
