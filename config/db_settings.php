@@ -28,4 +28,5 @@ $db_settings['read_status_table']    = 'mlf2_read_entries';
 $db_settings['temp_infos_table']     = 'mlf2_temp_infos';
 $db_settings['tags_table']           = 'mlf2_tags';
 $db_settings['bookmark_tags_table']  = 'mlf2_bookmark_tags';
+$db_settings['entry_tags_table']     = 'mlf2_entry_tags';
 ?>
