@@ -280,7 +280,6 @@ clear_bookmark_filter_linkname =  Bookmarkfilter entfernen
 clear_bookmark_filter_linktitle = aktuellen Filter entfernen und alle Bookmarks anzeigen
 error_no_bookmark_subject =       kein Betreff eingegeben
 error_bookmark_subject_too_long = der Betreff ist zu lang
-error_bookmark_tags_too_long =    Tags zu lang
 error_bookmark_word_too_long =    das Wort "[word]" ist zu lang
 
 [entry]
