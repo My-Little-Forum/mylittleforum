@@ -2858,7 +2858,6 @@ function deleteTags() {
 function setEntryTags($pid, $tags) {
 	global $db_settings;
 	setTags($pid, $tags, $db_settings['entry_tags_table']);
-	
 }
 
 function setBookmarkTags($bid, $tags) {
@@ -2868,6 +2867,7 @@ function setBookmarkTags($bid, $tags) {
 
 function setTags($id, $tags, $table_name) {
 	global $db_settings, $connid;
+	$tags = array_filter(array_map('trim', $tags), function($value) { return $value !== ''; });
 	$escapedTags = array_map(function($tag) use($connid) { return mysqli_real_escape_string($connid, trim($tag)); }, array_values($tags));
 	// Fuege neue TAGS hinzu, sofern die noch nicht vorhanden sind.
 	@mysqli_query($connid, "INSERT IGNORE INTO `".$db_settings['tags_table']."` (`tag`) VALUES ('". implode("'), ('", $escapedTags) ."')") or raise_error('database_error', mysqli_error($connid));
