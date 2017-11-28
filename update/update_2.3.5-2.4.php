@@ -384,8 +384,65 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 }
 
 if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6'))) {
-	if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['bookmark_table']."` ADD `tags` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '';")) {
-		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	// add new database table
+	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
+		$db_settings['bookmark_tags_table'] = $table_prefix . 'bookmark_tags';
+		$db_settings['tags_table']          = $table_prefix . 'tags';
+		$db_settings_file = @fopen("./config/db_settings.php", "w") or $update['errors'][] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
+		if(empty($update['errors'])) {
+			flock($db_settings_file, 2);
+			fwrite($db_settings_file, "<?php\n");
+			fwrite($db_settings_file, "\$db_settings['host']                 = '". addslashes($db_settings['host']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['user']                 = '". addslashes($db_settings['user']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['password']             = '". addslashes($db_settings['password']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['database']             = '". addslashes($db_settings['database']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['settings_table']       = '". addslashes($db_settings['settings_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['forum_table']          = '". addslashes($db_settings['forum_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['category_table']       = '". addslashes($db_settings['category_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['userdata_table']       = '". addslashes($db_settings['userdata_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['smilies_table']        = '". addslashes($db_settings['smilies_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['pages_table']          = '". addslashes($db_settings['pages_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['banlists_table']       = '". addslashes($db_settings['banlists_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['useronline_table']     = '". addslashes($db_settings['useronline_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['login_control_table']  = '". addslashes($db_settings['login_control_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['entry_cache_table']    = '". addslashes($db_settings['entry_cache_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['userdata_cache_table'] = '". addslashes($db_settings['userdata_cache_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['bookmark_table']       = '". addslashes($db_settings['bookmark_table']) ."';\n");
+			
+			fwrite($db_settings_file, "\$db_settings['bookmark_tags_table']  = '". addslashes($db_settings['bookmark_tags_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['tags_table']           = '". addslashes($db_settings['tags_table']) ."';\n");
+			
+			fwrite($db_settings_file, "\$db_settings['read_status_table']    = '". addslashes($db_settings['read_status_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['temp_infos_table']     = '". addslashes($db_settings['temp_infos_table']) ."';\n");
+			fwrite($db_settings_file, "?".">\n");
+			flock($db_settings_file, 3);
+			fclose($db_settings_file);
+			
+			// new tables
+			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['bookmark_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL), PRIMARY KEY (`bid`,`tid`) USING BTREE CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['tags_table']."` (`id` int(11) NOT NULL, `tag` varchar(255) NOT NULL), PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			
+			/*
+			// transfer the TAGs of the posting entries to new table
+			$numberOfStoredEntries = 100; // Maximum number of stored tags of a single posting, i.e. VARCHAR(255) a 3 chars == 85 apprx 100
+			$transferPostingTagsSQL = "INSERT IGNORE INTO `".$db_settings['tags_table']."` (`tag`) SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(`tags`, ';', `numbers`.`n`), ';', -1) AS `tag` FROM (SELECT 1 AS `n` ";
+			for ($n = 2; $n <= $numberOfStoredEntries; $n++) {
+				$transferPostingTagsSQL .= " UNION ALL SELECT ".$n;
+			}
+			$transferPostingTagsSQL .= " ) `numbers` INNER JOIN `".$db_settings['forum_table']."` ON CHAR_LENGTH(`tags`)-CHAR_LENGTH(REPLACE(`tags`, ';', '')) >= `numbers`.`n`-1 WHERE `tags` <> '' ORDER BY `n`;";
+			
+			if(!@mysqli_query($connid, $transferPostingTagsSQL)) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` DROP COLUMN `tags`;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			*/			
+		}
 	}
 }
 
