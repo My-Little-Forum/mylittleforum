@@ -45,11 +45,11 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 				`".$db_settings['bookmark_table']."`.`id` AS `bid`, `".$db_settings['tags_table']."`.`id` AS `tag_id`, `".$db_settings['tags_table']."`.`tag`
 				FROM `".$db_settings['bookmark_table']."`
 				JOIN `".$db_settings['forum_table']."` ON `".$db_settings['forum_table']."`.`id` = `".$db_settings['bookmark_table']."`.`posting_id`
-				JOIN `".$db_settings['bookmark_tags_table']."` ON `".$db_settings['bookmark_table']."`.`id` = `".$db_settings['bookmark_tags_table']."`.`bid` 
-				JOIN `".$db_settings['tags_table']."` ON `".$db_settings['bookmark_tags_table']."`.`tid` = `".$db_settings['tags_table']."`.`id`
+				LEFT JOIN `".$db_settings['bookmark_tags_table']."` ON `".$db_settings['bookmark_table']."`.`id` = `".$db_settings['bookmark_tags_table']."`.`bid` 
+				LEFT JOIN `".$db_settings['tags_table']."` ON `".$db_settings['bookmark_tags_table']."`.`tid` = `".$db_settings['tags_table']."`.`id`
 				WHERE `".$db_settings['bookmark_table']."`.`user_id` = ".intval($user_id)." ".(isset($filter_string) ? $filter_string : ""  )." 
 				ORDER BY ".$db_settings['bookmark_table'].".`order_id` ASC") or raise_error('database_error',mysqli_error($connid));
-				
+
 			$total_bookmarks = mysqli_num_rows($bookmark_result);
 			$bookmarkdata = false;
 			
@@ -175,7 +175,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			}
 			
 			if (empty($errors)) {
-				addBookmarkTags($_POST['id'], $tagsArray);
+				setBookmarkTags($_POST['id'], $tagsArray);
 				mysqli_query($connid, "UPDATE ".$db_settings['bookmark_table']." SET `subject` = '". mysqli_real_escape_string($connid, trim($_POST['bookmark'])) ."' WHERE `id` = ". intval($_POST['id']) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				header("Location: index.php?mode=bookmarks");
 				exit;
