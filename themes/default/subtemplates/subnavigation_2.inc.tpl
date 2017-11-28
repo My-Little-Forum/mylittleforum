@@ -3,7 +3,7 @@
 {elseif $mode=='entry'}
 <ul id="subnavmenu"><li><a class="openthread" href="index.php?mode=thread&amp;id={$tid}#p{$id}" title="{#open_in_thread_linktitle#}">{#open_in_thread_link#}</a></li></ul>
 {elseif $mode=='thread'}
-<ul id="subnavmenu"><li>{if $usersettings.thread_display==0}<a class="linear" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=true" title="{#thread_linear_linktitle#}">{#thread_linear#}</a>{else}<a class="hierarchic" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=true" title="{#thread_hierarchical_linktitle#}">{#thread_hierarchical#}</a>{/if}</li>
+<ul id="subnavmenu"><li>{if $usersettings.thread_display==0}<a class="linear" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=1" title="{#thread_linear_linktitle#}">{#thread_linear#}</a>{else}<a class="hierarchic" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=0" title="{#thread_hierarchical_linktitle#}">{#thread_hierarchical#}</a>{/if}</li>
 </ul>
 {/if}
 {if $categories && $mode=='index'}
