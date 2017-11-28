@@ -2845,6 +2845,33 @@ function getMessageStatus($data, $lastVisit, $folded = false) {
 	return $data;
 }
 
+function addBookmarkTags($bid, $tags) {
+	global $db_settings, $connid;
+	$escapedTags = array_map(function($tag) use($connid) { return mysqli_real_escape_string($connid, trim($tag)); }, array_values($tags));
+	// Fuege neue TAGS hinzu, sofern die noch nicht vorhanden sind.
+	@mysqli_query($connid, "INSERT IGNORE INTO `".$db_settings['tags_table']."` (`tag`) VALUES ('". implode("'), ('", $escapedTags) ."')") or raise_error('database_error', mysqli_error($connid));
+	// Entferne die TAGS von einem BOOKMARK
+	@mysqli_query($connid, "DELETE FROM `".$db_settings['bookmark_tags_table']."` WHERE `bid` = " . intval($bid) . " AND `tid` IN (SELECT `id` FROM `".$db_settings['tags_table']."` WHERE `tag` NOT IN ('" . implode("', '",  $escapedTags) . "') )  ") or raise_error('database_error', mysqli_error($connid));
+	// Speichere die neuen TAGS zum BOOKMARK
+	@mysqli_query($connid, "INSERT IGNORE INTO `".$db_settings['bookmark_tags_table']."` (`bid`, `tid`) (SELECT " . intval($bid) . " AS `bid`, `id` FROM `".$db_settings['tags_table']."` WHERE `tag` IN ('" . implode("', '",  $escapedTags) . "') )  ") or raise_error('database_error', mysqli_error($connid));
+	// Entferne alle TAGS, die keine Referenz mehr besitzen.
+	@mysqli_query($connid, "DELETE FROM `".$db_settings['tags_table']."` WHERE `id` NOT IN (SELECT `tid` FROM `".$db_settings['bookmark_tags_table']."`)") or raise_error('database_error', mysqli_error($connid));
+}
+
+function getBookmarkTags($bid) {
+	global $db_settings, $connid;
+
+	$result = mysqli_query($connid, "SELECT `tag` FROM `".$db_settings['tags_table']."` JOIN `".$db_settings['bookmark_tags_table']."` ON `".$db_settings['tags_table']."`.`id` = `tid` WHERE `bid` = " . intval($bid) . "") or raise_error('database_error', mysqli_error($connid));
+	if (mysqli_num_rows($result) == 0) 
+		return false;
+	
+	$tags = [];
+	while($line = mysqli_fetch_array($result))
+		$tags[] = $line['tag'];
+	mysqli_free_result($result);
+	return $tags;
+}
+
 /**
  * sends a status code, displays an error message and halts the script
  *
