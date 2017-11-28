@@ -178,19 +178,13 @@ if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET[
 	exit;
 }
 
-if (isset($_GET['fold_threads'])) {
-	if ($_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] == 0) {
-		$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] = 1;
-		setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.1.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
-	} else {
-		$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] = 0;
-		setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.0.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
-	}
+if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET['fold_threads']) && in_array($_GET['fold_threads'], array(1, 2))) {
+	$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] = intval($_GET['fold_threads']);
+	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 	// update database for registered users:
 	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, fold_threads = ". intval($_SESSION[$settings['session_prefix'].'usersettings']['fold_threads']) ." WHERE user_id = ".intval($_SESSION[$settings['session_prefix'].'user_id'])) or die(mysqli_error($connid));
+		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, fold_threads = ". intval($_SESSION[$settings['session_prefix'].'usersettings']['fold_threads']) ." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or die(mysqli_error($connid));
 	}
-
 	if (isset($_GET['category']) && isset($_GET['page']) && isset($_GET['order'])) $q = '&page='.$_GET['page'].'&category='.$_GET['category'].'&order='.$_GET['order']; else $q = '';
 	if (isset($_GET['ajax'])) exit;
 	header('Location: index.php?mode=index'.$q);
