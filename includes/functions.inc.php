@@ -2845,23 +2845,53 @@ function getMessageStatus($data, $lastVisit, $folded = false) {
 	return $data;
 }
 
-function addBookmarkTags($bid, $tags) {
+function deleteTags() {
+	global $db_settings, $connid;
+	// Entferne alle TAGS, die keine Referenz mehr besitzen.
+	@mysqli_query($connid, "DELETE FROM `".$db_settings['tags_table']."` WHERE `id` NOT IN (
+	SELECT `tid` FROM `".$db_settings['bookmark_tags_table']."`
+	UNION ALL
+	SELECT `tid` FROM `".$db_settings['entry_tags_table']."`
+	)") or raise_error('database_error', mysqli_error($connid));
+}
+
+function setEntryTags($pid, $tags) {
+	global $db_settings;
+	setTags($pid, $tags, $db_settings['entry_tags_table']);
+	
+}
+
+function setBookmarkTags($bid, $tags) {
+	global $db_settings;
+	setTags($bid, $tags, $db_settings['bookmark_tags_table']);
+}
+
+function setTags($id, $tags, $table_name) {
 	global $db_settings, $connid;
 	$escapedTags = array_map(function($tag) use($connid) { return mysqli_real_escape_string($connid, trim($tag)); }, array_values($tags));
 	// Fuege neue TAGS hinzu, sofern die noch nicht vorhanden sind.
 	@mysqli_query($connid, "INSERT IGNORE INTO `".$db_settings['tags_table']."` (`tag`) VALUES ('". implode("'), ('", $escapedTags) ."')") or raise_error('database_error', mysqli_error($connid));
-	// Entferne die TAGS von einem BOOKMARK
-	@mysqli_query($connid, "DELETE FROM `".$db_settings['bookmark_tags_table']."` WHERE `bid` = " . intval($bid) . " AND `tid` IN (SELECT `id` FROM `".$db_settings['tags_table']."` WHERE `tag` NOT IN ('" . implode("', '",  $escapedTags) . "') )  ") or raise_error('database_error', mysqli_error($connid));
-	// Speichere die neuen TAGS zum BOOKMARK
-	@mysqli_query($connid, "INSERT IGNORE INTO `".$db_settings['bookmark_tags_table']."` (`bid`, `tid`) (SELECT " . intval($bid) . " AS `bid`, `id` FROM `".$db_settings['tags_table']."` WHERE `tag` IN ('" . implode("', '",  $escapedTags) . "') )  ") or raise_error('database_error', mysqli_error($connid));
-	// Entferne alle TAGS, die keine Referenz mehr besitzen.
-	@mysqli_query($connid, "DELETE FROM `".$db_settings['tags_table']."` WHERE `id` NOT IN (SELECT `tid` FROM `".$db_settings['bookmark_tags_table']."`)") or raise_error('database_error', mysqli_error($connid));
+	// Entferne die TAGS von der Tabelle
+	@mysqli_query($connid, "DELETE FROM `".mysqli_real_escape_string($connid, $table_name)."` WHERE `bid` = " . intval($id) . " AND `tid` IN (SELECT `id` FROM `".$db_settings['tags_table']."` WHERE `tag` NOT IN ('" . implode("', '",  $escapedTags) . "') )  ") or raise_error('database_error', mysqli_error($connid));
+	// Speichere die neuen TAGS zur ID in der Tabelle
+	@mysqli_query($connid, "INSERT IGNORE INTO `".mysqli_real_escape_string($connid, $table_name)."` (`bid`, `tid`) (SELECT " . intval($id) . " AS `bid`, `id` FROM `".$db_settings['tags_table']."` WHERE `tag` IN ('" . implode("', '",  $escapedTags) . "') )  ") or raise_error('database_error', mysqli_error($connid));
+	deleteTags();
+}
+
+function getEntryTags($id) {
+	global $db_settings;
+	return getTags($id, $db_settings['entry_tags_table']);
 }
 
 function getBookmarkTags($bid) {
+	global $db_settings;
+	return getTags($bid, $db_settings['bookmark_tags_table']);
+}
+
+function getTags($bid, $table_name) {
 	global $db_settings, $connid;
 
-	$result = mysqli_query($connid, "SELECT `tag` FROM `".$db_settings['tags_table']."` JOIN `".$db_settings['bookmark_tags_table']."` ON `".$db_settings['tags_table']."`.`id` = `tid` WHERE `bid` = " . intval($bid) . "") or raise_error('database_error', mysqli_error($connid));
+	$result = mysqli_query($connid, "SELECT `tag` FROM `".$db_settings['tags_table']."` JOIN `".mysqli_real_escape_string($connid, $table_name)."` ON `".$db_settings['tags_table']."`.`id` = `tid` WHERE `bid` = " . intval($bid) . "") or raise_error('database_error', mysqli_error($connid));
 	if (mysqli_num_rows($result) == 0) 
 		return false;
 	
@@ -2869,7 +2899,7 @@ function getBookmarkTags($bid) {
 	while($line = mysqli_fetch_array($result))
 		$tags[] = $line['tag'];
 	mysqli_free_result($result);
-	return $tags;
+	return $tags;	
 }
 
 /**
