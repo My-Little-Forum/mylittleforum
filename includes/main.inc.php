@@ -167,7 +167,7 @@ if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET[
 	header('location: index.php?mode=index'.$q);
 	exit;
 }
-if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET['toggle_thread_display']) && in_array($_GET['toggle_thread_display'], array(1, 2)) && isset($_GET['id'])) {
+if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET['toggle_thread_display']) && in_array($_GET['toggle_thread_display'], array(0, 1)) && isset($_GET['id'])) {
 	$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'] = intval($_GET['toggle_thread_display']);
 	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 	// update database for registered users:
@@ -178,7 +178,7 @@ if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET[
 	exit;
 }
 
-if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET['fold_threads']) && in_array($_GET['fold_threads'], array(1, 2))) {
+if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET['fold_threads']) && in_array($_GET['fold_threads'], array(0, 1))) {
 	$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] = intval($_GET['fold_threads']);
 	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 	// update database for registered users:
