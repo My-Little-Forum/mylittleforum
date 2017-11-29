@@ -36,7 +36,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 
 	switch($action) {
 		case 'main':
-			$bookmark_result = mysqli_query($connid, "SELECT `".$db_settings['bookmark_table']."`.`subject`, `".$db_settings['forum_table']."`.`user_id`,
+			$bookmark_result = @mysqli_query($connid, "SELECT `".$db_settings['bookmark_table']."`.`subject`, `".$db_settings['forum_table']."`.`user_id`,
 				".$db_settings['forum_table'].".`id`, IF (`".$db_settings['forum_table']."`.`user_id` = 0, `name`, 
 				(SELECT `user_name` FROM `".$db_settings['userdata_table']."` WHERE `".$db_settings['userdata_table']."`.`user_id` = `".$db_settings['forum_table']."`.`user_id` ) ) AS `user_name`,
 				UNIX_TIMESTAMP(`".$db_settings['bookmark_table']."`.`time` + INTERVAL ".$time_difference." MINUTE) AS `bookmark_time`, 
@@ -106,7 +106,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			
 		case 'delete_bookmark':
 			$id = intval($_GET['delete_bookmark']);
-			$result = mysqli_query($connid, "SELECT `subject` FROM ".$db_settings['bookmark_table']." WHERE id= ".$id." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+			$result = @mysqli_query($connid, "SELECT `subject` FROM ".$db_settings['bookmark_table']." WHERE id= ".$id." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			if(mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_array($result);
 				$bookmark['id']    = $id;
@@ -124,7 +124,12 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			break;
 			
 		case 'delete_bookmark_submit':
-			mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE `id` = ". intval($_POST['id']) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+			$result = @mysqli_query($connid, "SELECT `id` FROM ".$db_settings['bookmark_table']." WHERE `id` = ". intval($_POST['id']) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+			if(mysqli_num_rows($result) > 0) {
+				$row = mysqli_fetch_array($result);
+				deleteBookmark($row['id']);
+			}
+			mysqli_free_result($result);
 			header("Location: index.php?mode=bookmarks");
 			exit;
 			break;
@@ -133,7 +138,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			$id = intval($_GET['edit_bookmark']);
 			$tags = getBookmarkTags($id);
 			
-			$result = mysqli_query($connid, "SELECT `subject` FROM ".$db_settings['bookmark_table']." WHERE id= ".$id." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+			$result = @mysqli_query($connid, "SELECT `subject` FROM ".$db_settings['bookmark_table']." WHERE id= ".$id." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			if (mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_array($result);
 				$bookmark['id']    = $id;
@@ -176,7 +181,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			
 			if (empty($errors)) {
 				setBookmarkTags($_POST['id'], $tagsArray);
-				mysqli_query($connid, "UPDATE ".$db_settings['bookmark_table']." SET `subject` = '". mysqli_real_escape_string($connid, trim($_POST['bookmark'])) ."' WHERE `id` = ". intval($_POST['id']) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+				@mysqli_query($connid, "UPDATE ".$db_settings['bookmark_table']." SET `subject` = '". mysqli_real_escape_string($connid, trim($_POST['bookmark'])) ."' WHERE `id` = ". intval($_POST['id']) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				header("Location: index.php?mode=bookmarks");
 				exit;
 			}
@@ -201,7 +206,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		case 'reorder':
 			if (isset($_POST['bookmarks'])) {		
 				$items = array_map(function($item) use($connid) { return mysqli_real_escape_string($connid, $item); }, explode(',', $_POST['bookmarks']));
-				$order_result = mysqli_query($connid, "SELECT `id`, `order_id` FROM ".$db_settings['bookmark_table']." WHERE `id` IN (".implode(",", $items).") ORDER BY `order_id` ASC");
+				$order_result = @mysqli_query($connid, "SELECT `id`, `order_id` FROM ".$db_settings['bookmark_table']." WHERE `id` IN (".implode(",", $items).") ORDER BY `order_id` ASC");
 				$order = false;
 				
 				while ($row = mysqli_fetch_array($order_result))
@@ -212,7 +217,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 					for ($i = 0; $i < count($items); $i++) {
 						$order_id = $order[$i];
 						$item_id  = $items[$i];
-						mysqli_query($connid, "UPDATE ".$db_settings['bookmark_table']." SET `order_id` = ". intval($order_id) ." WHERE `id` = ". intval($item_id) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+						@mysqli_query($connid, "UPDATE ".$db_settings['bookmark_table']." SET `order_id` = ". intval($order_id) ." WHERE `id` = ". intval($item_id) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 					}
 				}
 			}

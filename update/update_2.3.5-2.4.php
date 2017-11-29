@@ -408,10 +408,9 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 			fwrite($db_settings_file, "\$db_settings['entry_cache_table']    = '". addslashes($db_settings['entry_cache_table']) ."';\n");
 			fwrite($db_settings_file, "\$db_settings['userdata_cache_table'] = '". addslashes($db_settings['userdata_cache_table']) ."';\n");
 			fwrite($db_settings_file, "\$db_settings['bookmark_table']       = '". addslashes($db_settings['bookmark_table']) ."';\n");
-			
 			fwrite($db_settings_file, "\$db_settings['bookmark_tags_table']  = '". addslashes($db_settings['bookmark_tags_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['entry_tags_table']     = '". addslashes($db_settings['entry_tags_table']) ."';\n");
 			fwrite($db_settings_file, "\$db_settings['tags_table']           = '". addslashes($db_settings['tags_table']) ."';\n");
-			
 			fwrite($db_settings_file, "\$db_settings['read_status_table']    = '". addslashes($db_settings['read_status_table']) ."';\n");
 			fwrite($db_settings_file, "\$db_settings['temp_infos_table']     = '". addslashes($db_settings['temp_infos_table']) ."';\n");
 			fwrite($db_settings_file, "?".">\n");
@@ -426,9 +425,8 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			
-			/*
 			// transfer the TAGs of the posting entries to new table
-			$numberOfStoredEntries = 100; // Maximum number of stored tags of a single posting, i.e. VARCHAR(255) a 3 chars == 85 apprx 100
+			$numberOfStoredEntries = 100; // Maximum number of stored tags of a single posting, i.e. VARCHAR(255) a 3 chars per tag == 85 apprx 100
 			$transferPostingTagsSQL = "INSERT IGNORE INTO `".$db_settings['tags_table']."` (`tag`) SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(`tags`, ';', `numbers`.`n`), ';', -1) AS `tag` FROM (SELECT 1 AS `n` ";
 			for ($n = 2; $n <= $numberOfStoredEntries; $n++) {
 				$transferPostingTagsSQL .= " UNION ALL SELECT ".$n;
@@ -440,8 +438,7 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 			}
 			if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` DROP COLUMN `tags`;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			}
-			*/			
+			}		
 		}
 	}
 }

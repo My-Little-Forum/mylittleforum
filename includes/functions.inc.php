@@ -1235,54 +1235,51 @@ function too_long_word($text,$word_maxlength,$delimiters = ' ') {
  *
  * @param int $id : the id of the posting
  */
-function delete_posting_recursive($id)
- {
-  global $db_settings, $connid;
-  $id = intval($id);
-  $result=mysqli_query($connid, "SELECT pid, tid FROM ".$db_settings['forum_table']." WHERE id = ".$id) or raise_error('database_error',mysqli_error($connid));
-  $field = mysqli_fetch_array($result);
-  $tid = $field['tid'];
-  mysqli_free_result($result);
-  if($field["pid"] == 0)
-   {
-    // it's a thread starting posting - delete whole thread:
-        // clear cache:
-        $ids_result=mysqli_query($connid, "SELECT id FROM ".$db_settings['forum_table']." WHERE tid = ".intval($id));
-        while($ids_data = mysqli_fetch_array($ids_result))
-         {
-          @mysqli_query($connid, "DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id=".intval($ids_data['id']));
-		  @mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE posting_id=".intval($ids_data['id']));
-		  @mysqli_query($connid, "DELETE FROM ".$db_settings['read_status_table']." WHERE posting_id=".intval($ids_data['id']));
-         }
-        mysqli_free_result($ids_result);
-        // end clear cache
-    @mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE tid = ".intval($id));
-   }
-  else
-   {
-    // it's a posting within the thread - delete posting and child postings:
-    $child_ids = get_child_ids($id);
-    @mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE id = ".intval($id));
-    @mysqli_query($connid, "DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id = ".intval($id));
-	@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE posting_id = ".intval($id));
-	@mysqli_query($connid, "DELETE FROM ".$db_settings['read_status_table']." WHERE posting_id = ".intval($id));
-    if(isset($child_ids) && is_array($child_ids))
-     {
-      foreach($child_ids as $child_id)
-       {
-        @mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE id = ".intval($child_id));
-        @mysqli_query($connid, "DELETE FROM ".$db_settings['entry_cache_table']." WHERE cache_id = ".intval($child_id));
-		@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." WHERE posting_id = ".intval($child_id));
-		@mysqli_query($connid, "DELETE FROM ".$db_settings['read_status_table']." WHERE posting_id = ".intval($child_id));
-       }
-     }
-    // set last reply time:
-    $result = @mysqli_query($connid, "SELECT time FROM ".$db_settings['forum_table']." WHERE tid = ".intval($tid)." ORDER BY time DESC LIMIT 1") or raise_error('database_error',mysqli_error($connid));
-    $field = mysqli_fetch_array($result);
-    mysqli_free_result($result);
-    @mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time=time, last_reply='".$field['time']."' WHERE tid=".intval($tid));
-   }
- }
+function delete_posting_recursive($id) {
+	global $db_settings, $connid;
+	$id = intval($id);
+	$result = mysqli_query($connid, "SELECT pid, tid FROM " . $db_settings['forum_table'] . " WHERE id = " . $id) or raise_error('database_error', mysqli_error($connid));
+	$field = mysqli_fetch_array($result);
+	$tid   = $field['tid'];
+	mysqli_free_result($result);
+	if ($field["pid"] == 0) {
+		// it's a thread starting posting - delete whole thread:
+		// clear cache:
+		$ids_result = mysqli_query($connid, "SELECT id FROM " . $db_settings['forum_table'] . " WHERE tid = " . intval($id));
+		while ($ids_data = mysqli_fetch_array($ids_result)) {
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id   = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] . " WHERE posting_id = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .  " WHERE `bid`      = " . intval($ids_data['id']));
+		}
+		mysqli_free_result($ids_result);
+		// end clear cache
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] . " WHERE tid = " . intval($id));
+	} else {
+		// it's a posting within the thread - delete posting and child postings:
+		$child_ids = get_child_ids($id);
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] . "       WHERE id         = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id   = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] . " WHERE posting_id = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .  " WHERE `bid`      = " . intval($id));
+		if (isset($child_ids) && is_array($child_ids)) {
+			foreach ($child_ids as $child_id) {
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] . "       WHERE id         = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id   = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] . " WHERE posting_id = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .  " WHERE `bid`      = " . intval($child_id));
+			}
+		}
+		// set last reply time:
+		$result = @mysqli_query($connid, "SELECT time FROM " . $db_settings['forum_table'] . " WHERE tid = " . intval($tid) . " ORDER BY time DESC LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+		$field = mysqli_fetch_array($result);
+		mysqli_free_result($result);
+		@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time=time, last_reply='" . $field['time'] . "' WHERE tid=" . intval($tid));
+	}
+	deleteTags();
+}
 
 /**
  * returns child ids of a posting
@@ -1582,85 +1579,69 @@ function resize_image($uploaded_file, $file, $new_width, $new_height, $compressi
  * @param int $scale_max : frequency maximun scale
  * @return array
  */
-function tag_cloud($days,$scale_min,$scale_max)
- {
-  global $category, $categories, $category_ids_query, $db_settings,$connid;
-  if($categories==false)
-   {
-    $result = @mysqli_query($connid, "SELECT tags FROM ".$db_settings['forum_table']." WHERE time > (NOW() - INTERVAL ".intval($days)." DAY)");
-   }
-  else
-   {
-    if($category>0)
-     {
-      $result = @mysqli_query($connid, "SELECT tags FROM ".$db_settings['forum_table']." WHERE category=".intval($category)." AND time > (NOW() - INTERVAL ".intval($days)." DAY)");
-     }
-    else
-     {
-      $result = @mysqli_query($connid, "SELECT tags FROM ".$db_settings['forum_table']." WHERE category IN (".$category_ids_query.") AND time > (NOW() - INTERVAL ".intval($days)." DAY)");
-     }
-   }
-  if(mysqli_num_rows($result)>0)
-   {
-    while($data = mysqli_fetch_array($result))
-     {
-      $entry_tags = $data['tags'];
-      if($entry_tags!='')
-       {
-        $tags_help_array = explode(';',$entry_tags);
-        $i=0;
-        foreach($tags_help_array as $tag)
-         {
-          if($tag!='')
-           {
-            $all_tags[] = $tag;
-            $i++;
-           }
-         }
-       }
-     }
-   }
+function tag_cloud($days, $scale_min, $scale_max) {
+	global $category, $categories, $category_ids_query, $db_settings, $connid;
+	$sql = "SELECT `tag` FROM `" . $db_settings['entry_tags_table'] . "` JOIN `" . $db_settings['forum_table'] . "` ON `" . $db_settings['forum_table'] . "`.`id` = `" . $db_settings['entry_tags_table'] . "`.`bid` JOIN `" . $db_settings['tags_table'] . "` ON `" . $db_settings['tags_table'] . "`.`id` = `" . $db_settings['entry_tags_table'] . "`.`tid` WHERE `time` > (NOW() - INTERVAL " . intval($days) . " DAY) ";
+	if ($categories == false)
+		$result = @mysqli_query($connid, $sql);
+	elseif ($category > 0)
+		$result = @mysqli_query($connid, $sql . " AND `category` = " . intval($category) );
+	else
+		$result = @mysqli_query($connid, $sql . " AND `category` IN (" . $category_ids_query . ")");
 
-  if(isset($all_tags))
-   {
-    $tags_array = array();
-    foreach($all_tags as $tag)
-     {
-      if(isset($tags_array[$tag])) $tags_array[$tag]++;
-      else
-       {
-        $tags_array[$tag] = 1;
-       }
-     }
-    ksort($tags_array);
+	if (mysqli_num_rows($result) > 0) {
+		$tags_array = [];
+		while ($data = mysqli_fetch_array($result)) {
+			$tag = $data['tag'];
+			if (isset($tags_array[$tag]))
+				$tags_array[$tag]++;
+			else 
+				$tags_array[$tag] = 1;
+		}
+		
+		ksort($tags_array);
 
-    // minimum and maximum value:
-    foreach($tags_array as $tag)
-     {
-      if(empty($max)) $max=$tag; elseif($tag>$max) $max=$tag;
-      if(empty($min)) $min=$tag; elseif($tag<$min) $min=$tag;
-     }
-    reset($tags_array);
-
-    if($max-$min<1) $d = 1;
-    else $d = $max-$min;
-    $m = ($scale_max-$scale_min)/$d;
-    $t = $scale_min-$m*$min;
-
-    $i=0;
-    while(list($key, $val) = each($tags_array))
-     {
-      if(my_strpos($key, ' ', 0, CHARSET)) $tag_escaped='"'.$key.'"';
-      else $tag_escaped = $key;
-      $tags[$i]['tag'] = $key;
-      $tags[$i]['escaped'] = urlencode($tag_escaped);
-      $tags[$i]['frequency'] = round($m*$val+$t,0);
-      $i++;
-     }
-   }
-  if(isset($tags)) return $tags;
-  else return false;
- }
+		// minimum and maximum value:
+		foreach ($tags_array as $tag) {
+			if (empty($max))
+				$max = $tag;
+			elseif ($tag > $max)
+				$max = $tag;
+			if (empty($min))
+				$min = $tag;
+			elseif ($tag < $min)
+				$min = $tag;
+		}
+		reset($tags_array);
+		
+		if ($max - $min < 1)
+			$d = 1;
+		else
+			$d = $max - $min;
+		
+		$m = ($scale_max - $scale_min) / $d;
+		$t = $scale_min - $m * $min;
+		
+		$i = 0;
+		while (list($key, $val) = each($tags_array)) {
+			if (my_strpos($key, ' ', 0, CHARSET))
+				$tag_escaped = '"' . $key . '"';
+			else
+				$tag_escaped = $key;
+			$tags[$i]['tag']       = $key;
+			$tags[$i]['escaped']   = urlencode($tag_escaped);
+			$tags[$i]['frequency'] = round($m * $val + $t, 0);
+			$i++;
+		}
+	}
+	
+	mysqli_free_result($result);
+	
+	if (isset($tags))
+		return $tags;
+	else
+		return false;
+}
 
 /**
  * converts a unix timestamp into a formated date string
@@ -2900,6 +2881,33 @@ function getTags($bid, $table_name) {
 		$tags[] = $line['tag'];
 	mysqli_free_result($result);
 	return $tags;	
+}
+
+function deleteBookmark($id) {
+	global $db_settings, $connid;
+	
+	@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']."      WHERE `id`  = ". intval($id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+	@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_tags_table']." WHERE `bid` = ". intval($id)) or raise_error('database_error', mysqli_error($connid));
+	
+	deleteTags();
+}
+
+function addBookmark($user_id, $posting_id) {
+	global $db_settings, $connid;
+	
+	@mysqli_query($connid, "INSERT INTO " . $db_settings['bookmark_table'] . "(order_id, user_id, posting_id, subject)
+					SELECT COALESCE(MAX(`order_id`), 0) + 1, " . intval($user_id) . ", " . intval($posting_id) . ",
+					(SELECT `subject` FROM " . $db_settings['forum_table'] . " WHERE " . $db_settings['forum_table'] . ".id = " . intval($posting_id) . ")
+					FROM " . $db_settings['bookmark_table'] . " WHERE user_id = " . intval($user_id)) or raise_error('database_error', mysqli_error($connid));
+					
+	$bookmark_id = mysqli_insert_id($connid);
+
+	// transfer tags from entry to saved bookmark
+	if ($bookmark_id > 0) {
+		@mysqli_query($connid, "INSERT INTO `" . $db_settings['bookmark_tags_table'] . "` (`bid`, `tid`) 
+					(SELECT " . intval($bookmark_id) . " AS `bid`, `tid` FROM `" . $db_settings['entry_tags_table'] . "` 
+					WHERE `" . $db_settings['entry_tags_table'] . "`.`bid` = " . intval($posting_id) . ")") or raise_error('database_error', mysqli_error($connid));
+	}
 }
 
 /**

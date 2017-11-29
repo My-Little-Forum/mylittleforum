@@ -295,12 +295,16 @@
 				$exists = mysqli_fetch_row($result);
 				mysqli_free_result($result);
 				if (isset($exists) && intval($exists) == 1) {
-					@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . " WHERE `user_id`= " . intval($user_id) . " AND `posting_id` = " . intval($_GET['bookmark']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-				} else {
-					@mysqli_query($connid, "INSERT INTO " . $db_settings['bookmark_table'] . "(order_id, user_id, posting_id, subject)
-				SELECT COALESCE(MAX(`order_id`), 0) + 1, " . intval($user_id) . ", " . intval($_GET['bookmark']) . ",
-				(SELECT `subject` FROM " . $db_settings['forum_table'] . " WHERE " . $db_settings['forum_table'] . ".id = " . intval($_GET['bookmark']) . ")
-				FROM " . $db_settings['bookmark_table'] . " WHERE user_id= " . intval($user_id)) or raise_error('database_error', mysqli_error($connid));
+					$result = @mysqli_query($connid, "SELECT `id` FROM " . $db_settings['bookmark_table'] . " WHERE `user_id`= " . intval($user_id) . " AND `posting_id` = " . intval($_GET['bookmark']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+					if(mysqli_num_rows($result) > 0) {
+						$row = mysqli_fetch_array($result);
+						deleteBookmark($row['id']);
+					}
+					mysqli_free_result($result);
+					
+				} 
+				else {
+					addBookmark($user_id, $_GET['bookmark']);
 				}
 				header("location: index.php?mode=" . $back . "&id=" . intval($_GET['bookmark']));
 			}
