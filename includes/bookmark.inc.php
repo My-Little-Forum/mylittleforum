@@ -165,16 +165,19 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
             
 			if (isset($_POST['tags']) && trim($_POST['tags']) != '') {
 				$tagStr = trim($_POST['tags']);
-			
-				$tagsArray = array_map('trim', explode(',', $tagStr));
-				array_filter($tagsArray, function($value) { return $value !== ''; });
-
-				foreach ($tagsArray as $tag) {
-					unset($too_long_word);
-					$too_long_word = too_long_word($tag, $settings['text_word_maxlength'], $lang['word_delimiters']);
-					if ($too_long_word) { 
-						$errors[] = 'error_bookmark_word_too_long'; 
-						break;
+				$tagsArray = array_filter(array_map('trim', explode(',', $tagStr)), function($value) { return $value !== ''; });
+				
+				if (count($tagsArray) > 10) {
+					$errors[] = 'error_bookmark_tags_limit_reached'; 
+				}
+				else {
+					foreach ($tagsArray as $tag) {
+						unset($too_long_word);
+						$too_long_word = too_long_word($tag, $settings['text_word_maxlength'], $lang['word_delimiters']);
+						if ($too_long_word) { 
+							$errors[] = 'error_bookmark_word_too_long'; 
+							break;
+						}
 					}
 				}
 			}
