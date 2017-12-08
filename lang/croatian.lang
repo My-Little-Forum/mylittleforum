@@ -10,6 +10,7 @@ locale =                          hr_HR.utf8
 locale =                          hr_HR
 locale =                          hr
 locale_charset =                  utf-8
+word_delimiters =                 ' '
 dir =                             ltr
 time_format =                     %d/%m/%Y, %H:%M
 time_format_full =                %A %d %B %Y, %H:%M
