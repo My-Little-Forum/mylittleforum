@@ -1048,9 +1048,9 @@ Lien pour se connecter directement:
 
 Le mot de passe peut être changé après s'être connecté."""
 
-admin_activate_user_email_text =       """Hi [name],
-welcome to the forum!
 admin_activate_user_email_subj =  'Enregistrement pour le Forum'
+admin_activate_user_email_text =  """Bonjour [name],
+bienvenue sur le forum!
 
 Link to log in directly:
 [login_link]
