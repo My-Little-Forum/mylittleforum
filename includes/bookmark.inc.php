@@ -164,8 +164,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 				$errors[] = 'error_bookmark_subject_too_long';
             
 			if (isset($_POST['tags']) && trim($_POST['tags']) != '') {
-				$tagStr = trim($_POST['tags']);
-				$tagsArray = array_filter(array_map('trim', explode(',', $tagStr)), function($value) { return $value !== ''; });
+				$tagsArray = array_filter(array_map('trim', explode(',', $_POST['tags'])), function($value) { return $value !== ''; });
 				
 				if (count($tagsArray) > 10) {
 					$errors[] = 'error_bookmark_tags_limit_reached'; 
