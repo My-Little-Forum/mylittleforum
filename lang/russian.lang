@@ -28,11 +28,11 @@ word_delimiters =                 ' '
 dir =                             ltr
 time_format =                     %Y-%m-%d, %H:%M
 time_format_full =                %Y-%m-%d, %H:%M
-forum_time =                      'Время форума: [time]
-forum_time_with_time_zone =       'Время форума: [time] ([time_zone])
-unknown_user =                    'неизвестный
-db_error =                        'Ошибка базы данных!
-mail_error =                      'Почтовый сервер недоступен - пожалуйста, попробуйте позже!
+forum_time =                      'Время форума: [time]'
+forum_time_with_time_zone =       'Время форума: [time] ([time_zone])'
+unknown_user =                    'неизвестный'
+db_error =                        'Ошибка базы данных!'
+mail_error =                      'Почтовый сервер недоступен - пожалуйста, попробуйте позже!'
 
 [general]
 subject =                         'Тема'
