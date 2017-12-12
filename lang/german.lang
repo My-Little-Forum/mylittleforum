@@ -282,6 +282,7 @@ error_no_bookmark_subject =       'kein Betreff eingegeben'
 error_bookmark_subject_too_long = 'der Betreff ist zu lang'
 error_bookmark_tags_too_long =    'Tags zu lang'
 error_bookmark_word_too_long =    'das Wort "[word]" ist zu lang'
+error_bookmark_tags_limit_reached = 'Maximale Anzahl an Tags pro Bookmark überschritten'
 
 [entry]
 edited_by =                       'bearbeitet von [name], [time]'
