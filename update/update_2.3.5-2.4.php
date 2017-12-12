@@ -424,7 +424,7 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 			flock($db_settings_file, 3);
 			fclose($db_settings_file);
 			
-			// new tables
+			// add new tables
 			if(empty($update['errors']) && !@mysqli_query($connid, "CREATE TABLE `".$db_settings['bookmark_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
@@ -446,6 +446,13 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 			if(empty($update['errors']) && !@mysqli_query($connid, $transferPostingTagsSQL)) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
+			
+			// Store the ids of the tags of the postings in new table
+			if(empty($update['errors']) && !@mysqli_query($connid, "INSERT IGNORE INTO `".$db_settings['entry_tags_table']."`(`bid`, `tid`) SELECT `".$db_settings['forum_table']."`.`id` AS `bid`, `".$db_settings['tags_table']."`.`id` AS `tid` FROM `".$db_settings['forum_table']."` JOIN `".$db_settings['tags_table']."` ON `tags` LIKE CONCAT('%;', `tag`, ';%');")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			
+			// remove old tags column
 			if(empty($update['errors']) && !@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` DROP COLUMN `tags`;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}		
