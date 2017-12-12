@@ -389,10 +389,11 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 }
 
 if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6'))) {
+	$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
 	// add new database table
 	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
 		$db_settings['bookmark_tags_table'] = $table_prefix . 'bookmark_tags';
-		$db_settings['bookmark_entry_tags'] = $table_prefix . 'entry_tags';
+		$db_settings['entry_tags_table']    = $table_prefix . 'entry_tags';
 		$db_settings['tags_table']          = $table_prefix . 'tags';
 		$db_settings_file = @fopen("./config/db_settings.php", "w") or $update['errors'][] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
 		if(empty($update['errors'])) {
@@ -424,13 +425,13 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 			fclose($db_settings_file);
 			
 			// new tables
-			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['bookmark_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			if(empty($update['errors']) && !@mysqli_query($connid, "CREATE TABLE `".$db_settings['bookmark_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['entry_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			if(empty($update['errors']) && !@mysqli_query($connid, "CREATE TABLE `".$db_settings['entry_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['tags_table']."` (`id` int(11) NOT NULL AUTO_INCREMENT, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			if(empty($update['errors']) && !@mysqli_query($connid, "CREATE TABLE `".$db_settings['tags_table']."` (`id` int(11) NOT NULL AUTO_INCREMENT, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			
@@ -442,13 +443,16 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 			}
 			$transferPostingTagsSQL .= " ) `numbers` INNER JOIN `".$db_settings['forum_table']."` ON CHAR_LENGTH(`tags`)-CHAR_LENGTH(REPLACE(`tags`, ';', '')) >= `numbers`.`n`-1 WHERE `tags` <> '' ORDER BY `n`;";
 			
-			if(!@mysqli_query($connid, $transferPostingTagsSQL)) {
+			if(empty($update['errors']) && !@mysqli_query($connid, $transferPostingTagsSQL)) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			if(!@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` DROP COLUMN `tags`;")) {
+			if(empty($update['errors']) && !@mysqli_query($connid, "ALTER TABLE `".$db_settings['forum_table']."` DROP COLUMN `tags`;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}		
 		}
+	}
+	else {
+		$update['errors'][] = "File ./config/db_settings.php not found or unwritable. New database tables '" . htmlspecialchars($table_prefix) . "bookmark_tags_table', '" . htmlspecialchars($table_prefix) . "entry_tags_table' and '" . htmlspecialchars($table_prefix) . "tags_table' could not be added!";
 	}
 }
 
