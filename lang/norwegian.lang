@@ -278,7 +278,6 @@ clear_bookmark_filter_linkname =  '<!-- TODO -->Clear bookmark filter'
 clear_bookmark_filter_linktitle = '<!-- TODO -->clear current bookmark filter and show all saved bookmarks'
 error_no_bookmark_subject =       '<!-- TODO -->No subject has been entered'
 error_bookmark_subject_too_long = '<!-- TODO -->The subject is too long'
-error_bookmark_tags_too_long =    '<!-- TODO -->Tags too long'
 error_bookmark_word_too_long =    '<!-- TODO -->The word "[word]" is too long'
 error_bookmark_tags_limit_reached = '<!-- TODO -->Tags limit reached for bookmark'
 
