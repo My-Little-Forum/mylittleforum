@@ -358,9 +358,9 @@ DELETE FROM mlf2_settings WHERE name = 'read_state_expiration_date'
 --------------------------------------------------------------------------------
 -- 2.4.5 to 2.4.6
 /*
-CREATE TABLE mlf2_bookmark_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) CHARSET=utf8 COLLATE=utf8_general_ci;
-CREATE TABLE mlf2_entry_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) CHARSET=utf8 COLLATE=utf8_general_ci;
-CREATE TABLE mlf2_tags (`id` int(11) NOT NULL, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_bookmark_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_entry_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_tags (`id` int(11) NOT NULL, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 
 */
 --------------------------------------------------------------------------------

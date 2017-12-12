@@ -419,13 +419,13 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 			fclose($db_settings_file);
 			
 			// new tables
-			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['bookmark_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['bookmark_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['entry_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['entry_tags_table']."` (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['tags_table']."` (`id` int(11) NOT NULL, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			if(!@mysqli_query($connid, "CREATE TABLE `".$db_settings['tags_table']."` (`id` int(11) NOT NULL, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			

@@ -14,9 +14,9 @@ CREATE TABLE mlf2_userdata_cache (cache_id int(11) NOT NULL, cache_signature tex
 CREATE TABLE mlf2_bookmarks (id int(11) NOT NULL AUTO_INCREMENT, user_id int(11) NOT NULL, posting_id int(11) NOT NULL, time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, subject varchar(255) NOT NULL, order_id int(11) NOT NULL DEFAULT '0', PRIMARY KEY (id), UNIQUE KEY UNIQUE_uid_pid (user_id,posting_id)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_read_entries (user_id int(11) UNSIGNED NOT NULL, posting_id int(11) UNSIGNED NOT NULL, time timestamp NOT NULL, PRIMARY KEY (user_id, posting_id), KEY `user_id` (`user_id`), KEY `posting_id` (`posting_id`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_temp_infos (name varchar(50) NOT NULL, value varchar(255) NOT NULL, time timestamp NULL DEFAULT NULL, PRIMARY KEY (name)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
-CREATE TABLE mlf2_entry_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) CHARSET=utf8 COLLATE=utf8_general_ci;
-CREATE TABLE mlf2_bookmark_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) CHARSET=utf8 COLLATE=utf8_general_ci;
-CREATE TABLE mlf2_tags (`id` int(11) NOT NULL, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_entry_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_bookmark_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_tags (`id` int(11) NOT NULL, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO mlf2_banlists VALUES ('user_agents', '');
 INSERT INTO mlf2_banlists VALUES ('ips', '');
