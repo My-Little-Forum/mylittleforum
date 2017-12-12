@@ -262,7 +262,6 @@ show_bookmarks_link =             '<!-- TODO -->Bookmarks'
 show_userdata_linktitle =         '<!-- TODO -->Visit profil of [user]'
 
 [bookmark]
-[bookmark]
 delete_bookmark_submit =          '<!-- TODO -->OK - Delete Bookmark'
 delete_bookmark_confirm =         '<!-- TODO -->Do you really want to delete this bookmark?'
 no_bookmarks =                    '<!-- TODO -->No bookmarks specified.'
