@@ -676,3 +676,8 @@ img.right                { float:right; margin:0 0 10px 10px; }
 
 /* Admin Warning */
 div.warning 			 { border: 5px solid red; padding: 15px; font-size:1.3em; }
+
+/* Honey pots */
+input#surname, input#phone {
+	display: none;
+}

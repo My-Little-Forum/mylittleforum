@@ -48,6 +48,7 @@
 {/if}
 <form action="index.php" method="post" id="postingform" accept-charset="{#charset#}">
 <div>
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="back" value="{$back}" />
 <input type="hidden" name="mode" value="{$mode}" />
 <input type="hidden" name="id" value="{$id}" />
@@ -76,6 +77,8 @@
 <p>
 <label for="name" class="input">{#name_marking#}</label>
 <input id="name" type="text" size="40" name="name" value="{if $name}{$name}{/if}" maxlength="{$settings.username_maxlength}"  tabindex="1" />
+<input id="surname" type="text" size="40" name="surname" value="{if $surname}{$surname}{/if}" maxlength="{$settings.username_maxlength}" />
+<input id="phone" type="text" size="40" name="phone" value="{if $phone}{$phone}{/if}" maxlength="255" />
 </p>
 
 <p>

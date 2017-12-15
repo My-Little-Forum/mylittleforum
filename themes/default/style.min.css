@@ -451,3 +451,4 @@ img.right{float:right;margin:0 0 10px 10px}
 .js-cursor-move{cursor:move}
 .js-display-fold .wrapper,.js-display-fold #sidebarcontent{display:none}
 .js-display-fold img.avatar{width:1.6em;height:1.6em}
+input#surname,input#phone{display: none}

@@ -16,7 +16,9 @@
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {if $captcha}<input type="hidden" name="{$captcha.session_name}" value="{$captcha.session_id}" />{/if}
 <p><label for="new_user_name" class="main">{#register_username#}</label><br />
-<input id="new_user_name" class="login" type="text" size="30" name="new_user_name" value="{$new_user_name|default:''}" maxlength="{$settings.username_maxlength}" /></p>
+<input id="new_user_name" class="login" type="text" size="30" name="new_user_name" value="{$new_user_name|default:''}" maxlength="{$settings.username_maxlength}" />
+<input id="surname" class="login" type="text" size="30" name="surname" value="{$honey_pot_surname|default:''}" maxlength="{$settings.username_maxlength}" />
+<input id="phone" class="login" type="text" size="30" name="phone" value="{$honey_pot_phone|default:''}" maxlength="255" /></p>
 <p><label for="new_user_email" class="main">{#register_user_email#}</label><br />
 <input id="new_user_email" class="login" type="text" size="30" name="new_user_email" value="{$new_user_email|default:''}" maxlength="{$settings.email_maxlength}" /></p>
 <p><label for="reg_pw" class="main">{#register_pw#}</label><br />
