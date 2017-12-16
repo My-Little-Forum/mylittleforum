@@ -494,7 +494,7 @@ switch ($action) {
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
 		}
 		// Honeypot - using 'default' error behavior; $_POST['name']) indicates a form for non-registered users
-		elseif (isset($_POST['name']) && (!isset($_POST['surname']) || !empty($_POST['surname']) || !isset($_POST['phone']) || !empty($_POST['phone']))) {
+		elseif (isset($_POST['name']) && (!isset($_POST['repeat_email']) || !empty($_POST['repeat_email']) || !isset($_POST['phone']) || !empty($_POST['phone']))) {
 			$smarty->assign('no_authorisation', 'no_auth_readonly');
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
 		}
@@ -1052,8 +1052,8 @@ switch ($action) {
 				$smarty->assign('name', htmlspecialchars($name));
 				$smarty->assign('subject', htmlspecialchars($subject));
 				$smarty->assign('text', htmlspecialchars($text));
-				if (isset($_POST['surname']))
-					$smarty->assign('honey_pot_name',  htmlspecialchars($_POST['surname']));
+				if (isset($_POST['repeat_email']))
+					$smarty->assign('honey_pot_email',  htmlspecialchars($_POST['repeat_email']));
 				if (isset($_POST['phone']))
 					$smarty->assign('honey_pot_phone', htmlspecialchars($_POST['phone']));
 				if (isset($_POST['tags']))

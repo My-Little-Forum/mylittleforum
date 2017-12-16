@@ -55,8 +55,8 @@ switch ($action) {
 			else 
 				$terms_of_use_agree = 0;
 
-			// form complete?
-			if ($new_user_name == '' || $new_user_email == '' || $reg_pw == '' || $reg_pw_conf == '' || !isset($_POST['surname']) || !empty($_POST['surname']) || !isset($_POST['phone']) || !empty($_POST['phone']))
+			// form complete and are honey pot fields empty?
+			if ($new_user_name == '' || $new_user_email == '' || $reg_pw == '' || $reg_pw_conf == '' || !isset($_POST['repeat_email']) || !empty($_POST['repeat_email']) || !isset($_POST['phone']) || !empty($_POST['phone']))
 				$errors[] = 'error_form_uncomplete';
 
 			if (empty($errors)) {
@@ -165,7 +165,7 @@ switch ($action) {
 				$smarty->assign('subtemplate', 'register.inc.tpl');
 				$smarty->assign('new_user_name',   htmlspecialchars($new_user_name));
 				$smarty->assign('new_user_email',  htmlspecialchars($new_user_email));
-				$smarty->assign('honey_pot_name',  htmlspecialchars(isset($_POST['surname']) ? $_POST['surname'] : ''));
+				$smarty->assign('honey_pot_email', htmlspecialchars(isset($_POST['repeat_email']) ? $_POST['repeat_email'] : ''));
 				$smarty->assign('honey_pot_phone', htmlspecialchars(isset($_POST['phone'])   ? $_POST['phone']   : ''));
 				if ($settings['terms_of_use_agreement'] == 1) 
 					$smarty->assign("terms_of_use_agreement", true);
