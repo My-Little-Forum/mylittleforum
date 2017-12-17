@@ -470,6 +470,9 @@ switch ($action) {
 		}
 		break;
 	case 'posting_submitted':
+		if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token'])
+			die('No authorisation!');
+		
 		if ($settings['forum_readonly'] == 1) {
 			$subnav_link = array(
 				'mode' => 'index',
@@ -479,15 +482,23 @@ switch ($action) {
 			$smarty->assign("subnav_link", $subnav_link);
 			$smarty->assign('no_authorisation', 'no_auth_readonly');
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
-		} elseif ($settings['entries_by_users_only'] != 0 && empty($_SESSION[$settings['session_prefix'] . 'user_name'])) {
+		} 
+		elseif ($settings['entries_by_users_only'] != 0 && empty($_SESSION[$settings['session_prefix'] . 'user_name'])) {
 			if (isset($_POST['text'])) {
 				$smarty->assign('no_authorisation', 'no_auth_session_expired');
 				$smarty->assign('text', htmlspecialchars($_POST['text']));
-			} else {
+			} 
+			else {
 				$smarty->assign('no_authorisation', 'no_auth_post_reg_users');
 			}
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
-		} else {
+		}
+		// Honeypot - using 'default' error behavior; $_POST['name']) indicates a form for non-registered users
+		elseif (isset($_POST['name']) && (!isset($_POST['repeat_email']) || !empty($_POST['repeat_email']) || !isset($_POST['phone']) || !empty($_POST['phone']))) {
+			$smarty->assign('no_authorisation', 'no_auth_readonly');
+			$smarty->assign('subtemplate', 'posting.inc.tpl');
+		}
+		else {
 			if (isset($_POST['posting_mode']))
 				$posting_mode = intval($_POST['posting_mode']);
 			else
@@ -1041,6 +1052,10 @@ switch ($action) {
 				$smarty->assign('name', htmlspecialchars($name));
 				$smarty->assign('subject', htmlspecialchars($subject));
 				$smarty->assign('text', htmlspecialchars($text));
+				if (isset($_POST['repeat_email']))
+					$smarty->assign('honey_pot_email',  htmlspecialchars($_POST['repeat_email']));
+				if (isset($_POST['phone']))
+					$smarty->assign('honey_pot_phone', htmlspecialchars($_POST['phone']));
 				if (isset($_POST['tags']))
 					$smarty->assign('tags', htmlspecialchars(trim($_POST['tags'])));
 				if (isset($p_category))

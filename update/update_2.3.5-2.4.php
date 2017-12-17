@@ -124,12 +124,17 @@ switch($settings['version']) {
 	case '2.4.6':	
 		$update['items'][] = 'lang/';                                        //  #287
 		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl'; //  #287
+		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl'; //  #287
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';  //  #287, #303
+		$update['items'][] = 'themes/style.css';                             //  #303
+		$update['items'][] = 'themes/style.min.css';                         //  #303
 		$update['items'][] = 'includes/bookmark.inc.php';                    //  #287, #297
 		$update['items'][] = 'includes/entry.inc.php';                       //  #297
-		$update['items'][] = 'includes/posting.inc.php';                     //  #297
+		$update['items'][] = 'includes/posting.inc.php';                     //  #297, #303
 		$update['items'][] = 'includes/thread.inc.php';                      //  #297
 		$update['items'][] = 'includes/search.inc.php';                      //  #297
 		$update['items'][] = 'includes/functions.inc.php';                   //  #297
+		$update['items'][] = 'includes/register.inc.php';                    //  #303
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!

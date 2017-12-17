@@ -48,6 +48,7 @@
 {/if}
 <form action="index.php" method="post" id="postingform" accept-charset="{#charset#}">
 <div>
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="back" value="{$back}" />
 <input type="hidden" name="mode" value="{$mode}" />
 <input type="hidden" name="id" value="{$id}" />
@@ -83,9 +84,19 @@
 <input id="email" type="text" size="40" name="email" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="2" />&nbsp;<span class="xsmall">{#optional_email#}</span>
 </p>
 
+<p class="hp">
+<label for="repeat_email" class="main">{#honeypot_field_marking#}</label>
+<input id="repeat_email" type="text" size="40" name="repeat_email" value="{if $honey_pot_email}{$honey_pot_email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="-1" />
+</p>
+
 <p>
 <label for="hp" class="input">{#hp_marking#}</label>
 <input id="hp" type="text" size="40" name="hp" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" tabindex="3" />&nbsp;<span class="xsmall">{#optional#}</span>
+</p>
+
+<p class="hp">
+<label for="phone" class="main">{#honeypot_field_marking#}</label>
+<input id="phone" class="login" type="text" size="30" name="phone" value="{if $honey_pot_phone}{$honey_pot_phone}{/if}" maxlength="35" tabindex="-1" />
 </p>
 
 <p>
