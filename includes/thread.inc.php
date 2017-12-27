@@ -78,7 +78,6 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 	
 	if (mysqli_num_rows($result) > 0) {
 		while ($data = mysqli_fetch_array($result)) {
-			$new_read[] = $data['id'];
 			
 			// tags:
 			$tags = getEntryTags($data['id']);

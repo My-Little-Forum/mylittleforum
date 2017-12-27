@@ -198,11 +198,11 @@ function filter_category_selection($categories, $allowed_categories)
 
 /**
  * saves the status "entry read" to the database table "mlf2_read_entries"
- * restrict the number of saved entires, if "max_read_items" > 0
+ * restrict the number of saved entries, if "max_read_items" > 0
  *
  * @param resource $connid, ID of the database connection
  * @param int $user_id, ID of the registered, actually acting user
- * @param int $entry, ID of the entry itself
+ * @param int $entry_id, ID of the entry itself
  *
  * @return boolean $ret, success: true, else: false
  */
