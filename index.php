@@ -69,7 +69,7 @@ if (isset($forum_time_zone))
 if (isset($_SESSION[$settings['session_prefix'] . 'usersettings']))
     $smarty->assign('usersettings', $_SESSION[$settings['session_prefix'] . 'usersettings']);
 #$smarty->assign('category', $category);
-if (isset($categories)) {
+if (isset($categories) and !empty($categories)) {
     $smarty->assign('categories', $categories);
     $smarty->assign('number_of_categories', count($categories) - 1);
 }
