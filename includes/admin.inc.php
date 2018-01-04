@@ -219,7 +219,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			}
 			else $errors[] = 'error_invalid_date';
 		}
-		if (empty($birthday)) $birthday = '0000-00-00';
+		else $birthday = NULL;
 
 		// check for too long words:
 		$too_long_word = too_long_word($edit_user_name, $settings['name_word_maxlength']);
@@ -246,7 +246,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 		// save if no errors:
 		if(empty($errors)) {
-			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_name='". mysqli_real_escape_string($connid, $edit_user_name) ."', user_type='". intval($edit_user_type) ."', user_email='". mysqli_real_escape_string($connid, $user_email) ."', user_real_name='". mysqli_real_escape_string($connid, $user_real_name) ."', gender=". intval($gender) .", birthday='". mysqli_real_escape_string($connid, $birthday) ."', email_contact=". intval($email_contact) .", user_hp='". mysqli_real_escape_string($connid, $user_hp) ."', user_location='". mysqli_real_escape_string($connid, $user_location) ."', profile='". mysqli_real_escape_string($connid, $profile) ."', signature='". mysqli_real_escape_string($connid, $signature) ."', last_login=last_login, registered=registered, new_posting_notification=". intval($new_posting_notification) .", new_user_notification=". intval($new_user_notification) .", language='". mysqli_real_escape_string($connid, $user_language) ."', time_zone='". mysqli_real_escape_string($connid, $user_time_zone) ."', time_difference=". intval($time_difference) .", theme='". mysqli_real_escape_string($connid, $user_theme) ."' WHERE user_id=". $edit_user_id) or raise_error('database_error', mysqli_error($connid));
+			$queryUserDataEdit  = "UPDATE ".$db_settings['userdata_table']." SET user_name='". mysqli_real_escape_string($connid, $edit_user_name) ."', user_type='". intval($edit_user_type) ."', user_email='". mysqli_real_escape_string($connid, $user_email) ."', user_real_name='". mysqli_real_escape_string($connid, $user_real_name) ."', gender=". intval($gender) .", birthday= ";
+			$queryUserDataEdit .=  ($birthday !== NULL) ? "'". mysqli_real_escape_string($connid, $birthday) ."'" : "NULL";
+			$queryUserDataEdit .= ", email_contact=". intval($email_contact) .", user_hp='". mysqli_real_escape_string($connid, $user_hp) ."', user_location='". mysqli_real_escape_string($connid, $user_location) ."', profile='". mysqli_real_escape_string($connid, $profile) ."', signature='". mysqli_real_escape_string($connid, $signature) ."', last_login=last_login, registered=registered, new_posting_notification=". intval($new_posting_notification) .", new_user_notification=". intval($new_user_notification) .", language='". mysqli_real_escape_string($connid, $user_language) ."', time_zone='". mysqli_real_escape_string($connid, $user_time_zone) ."', time_difference=". intval($time_difference) .", theme='". mysqli_real_escape_string($connid, $user_theme) ."' WHERE user_id=". $edit_user_id;
+			@mysqli_query($connid, $queryUserDataEdit) or raise_error('database_error', mysqli_error($connid));
 			@mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id = ". $edit_user_id);
 			if (isset($_POST['delete_avatar'])) {
 				$uploaded_avatars_path = 'images/avatars/';
