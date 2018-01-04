@@ -54,80 +54,81 @@ switch($settings['version']) {
 		$update['items'][] = 'modules/stringparser_bbcode/';
 
 	case '2.3.7':
-		$update['items'][] = 'index.php';											// #39
-		$update['items'][] = 'js/';													// #39, #47
-		$update['items'][] = 'includes/';											// #39, #42, #50, #54, #57, #64
-		$update['items'][] = 'themes/default/main.tpl';								// #39
-		$update['items'][] = 'themes/default/style.css';							// #39, #41, #56, #64
-		$update['items'][] = 'themes/default/style.min.css';						// #39, #41, #56, #64
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';			// #56
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';			// #39, #47
-		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';		// #39, #50, #64
-		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';			// #39, #64
-		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';			// #39
-		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';			// #39
-		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';			// #39
-		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';	// #39
-		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl';		// #39
-		$update['items'][] = 'themes/default/images/bg_sprite_3.png';				// #39
-		$update['items'][] = 'themes/default/images/bg_sprite_4.png';				// #64
-		$update['items'][] = 'lang/';												// #39, #56, #64, #68
+		$update['items'][] = 'index.php';                                         // #39
+		$update['items'][] = 'js/';                                               // #39, #47
+		$update['items'][] = 'includes/';                                         // #39, #42, #50, #54, #57, #64
+		$update['items'][] = 'themes/default/main.tpl';                           // #39
+		$update['items'][] = 'themes/default/style.css';                          // #39, #41, #56, #64
+		$update['items'][] = 'themes/default/style.min.css';                      // #39, #41, #56, #64
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';         // #56
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';       // #39, #47
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';   // #39, #50, #64
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';         // #39, #64
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';         // #39
+		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';       // #39
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';        // #39
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl'; // #39
+		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl';      // #39
+		$update['items'][] = 'themes/default/images/bg_sprite_3.png';             // #39
+		$update['items'][] = 'themes/default/images/bg_sprite_4.png';             // #64
+		$update['items'][] = 'lang/';                                             // #39, #56, #64, #68
 	case '2.3.99.1':
-		$update['items'][] = 'includes/index.inc.php';			// #150
-		$update['items'][] = 'includes/admin.inc.php';			// #151
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';			// #151
+		$update['items'][] = 'includes/index.inc.php';                            // #150
+		$update['items'][] = 'includes/admin.inc.php';                            // #151
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';         // #151
 	case '2.3.99.2':
-		$update['items'][] = 'includes/posting.inc.php';			// #160
-		$update['items'][] = 'lang/';			// #161, #163
-		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';			// #163
+		$update['items'][] = 'includes/posting.inc.php';                          // #160
+		$update['items'][] = 'lang/';                                             // #161, #163
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';     // #163
 	case '2.3.99.3':
-		$update['items'][] = 'includes/admin.inc.php';			// #165
-		$update['items'][] = 'includes/functions.inc.php';			// #165
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';			// #165
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';			// #167
+		$update['items'][] = 'includes/admin.inc.php';                            // #165
+		$update['items'][] = 'includes/functions.inc.php';                        // #165
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';         // #165
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';       // #167
 	case '2.4':
-		$update['items'][] = 'includes/functions.inc.php';			// #170
-		$update['items'][] = 'themes/default/style.css';				// #171
+		$update['items'][] = 'includes/functions.inc.php';                        // #170
+		$update['items'][] = 'themes/default/style.css';                          // #171
 	case '2.4.1':
-		$update['items'][] = 'includes/admin.inc.php';			// #175
-		$update['items'][] = 'includes/index.inc.php';				// #182
-		$update['items'][] = 'includes/thread.inc.php';				// #182
+		$update['items'][] = 'includes/admin.inc.php';                            // #175
+		$update['items'][] = 'includes/index.inc.php';                            // #182
+		$update['items'][] = 'includes/thread.inc.php';                           // #182
 	case '2.4.2':
-		$update['items'][] = 'index.php';			// #207
-		$update['items'][] = 'includes/thread.inc.php';			// #197, #219
-		$update['items'][] = 'includes/functions.inc.php';			// #198, #208
-		$update['items'][] = 'includes/index.inc.php';			// #219
-		$update['items'][] = 'includes/admin.inc.php';			// #233, #237
-		$update['items'][] = 'includes/user.inc.php';			// #237
-		$update['items'][] = 'themes/default/style.css';			// #190, #191, #194, #228
-		$update['items'][] = 'themes/default/style.min.css';			// #191, #194
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';			// #210, #233
-		$update['items'][] = 'lang/';			// #233, #237
+		$update['items'][] = 'index.php';                                         // #207
+		$update['items'][] = 'includes/thread.inc.php';                           // #197, #219
+		$update['items'][] = 'includes/functions.inc.php';                        // #198, #208
+		$update['items'][] = 'includes/index.inc.php';                            // #219
+		$update['items'][] = 'includes/admin.inc.php';                            // #233, #237
+		$update['items'][] = 'includes/user.inc.php';                             // #237
+		$update['items'][] = 'themes/default/style.css';                          // #190, #191, #194, #228
+		$update['items'][] = 'themes/default/style.min.css';                      // #191, #194
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';         // #210, #233
+		$update['items'][] = 'lang/';                                             // #233, #237
 	case '2.4.3':
-		$update['items'][] = 'themes/default/main.tpl';			// #248
-		$update['items'][] = 'includes/functions.inc.php';	// #249, #255, #256
-		$update['items'][] = 'includes/entry.inc.php';			// #251, #255
-		$update['items'][] = 'includes/index.inc.php';			// #255, #256
-		$update['items'][] = 'includes/thread.inc.php';			// #255
+		$update['items'][] = 'themes/default/main.tpl';                           // #248
+		$update['items'][] = 'includes/functions.inc.php';                        // #249, #255, #256
+		$update['items'][] = 'includes/entry.inc.php';                            // #251, #255
+		$update['items'][] = 'includes/index.inc.php';                            // #255, #256
+		$update['items'][] = 'includes/thread.inc.php';                           // #255
 	case '2.4.4':
-		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';		// #259
-		$update['items'][] = 'themes/default/main.tpl';			// #260
-		$update['items'][] = 'includes/functions.inc.php';	// #262
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';         // #259
+		$update['items'][] = 'themes/default/main.tpl';                           // #260
+		$update['items'][] = 'includes/functions.inc.php';                        // #262
 	case '2.4.5':
-		$update['items'][] = 'themes/default/style.css';			// #266, #269, #270
-		$update['items'][] = 'themes/default/style.min.css';	// #266, #269, #270
-		$update['items'][] = 'themes/default/main.tpl';				// #267
-		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';				// #267, #269
-		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';	// #267, #269
-		$update['items'][] = 'includes/';											// #271, #275, #276, #277, #279
-		$update['items'][] = 'lang/german.lang';							// #278
-	case '2.4.6':	
-		$update['items'][] = 'lang/';                                        //  #287
+		$update['items'][] = 'themes/default/style.css';                          // #266, #269, #270
+		$update['items'][] = 'themes/default/style.min.css';                      // #266, #269, #270
+		$update['items'][] = 'themes/default/main.tpl';                           // #267
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';         // #267, #269
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';   // #267, #269
+		$update['items'][] = 'includes/';                                         // #271, #275, #276, #277, #279
+		$update['items'][] = 'lang/german.lang';                                  // #278
+	case '2.4.6':
+		$update['items'][] = 'lang/';                                        //  #287, #300
 		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl'; //  #287
 		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl'; //  #287
 		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';  //  #287, #303
 		$update['items'][] = 'themes/style.css';                             //  #303
 		$update['items'][] = 'themes/style.min.css';                         //  #303
+		$update['items'][] = 'includes/admin.inc.php';                       //  #304
 		$update['items'][] = 'includes/bookmark.inc.php';                    //  #287, #297
 		$update['items'][] = 'includes/entry.inc.php';                       //  #297
 		$update['items'][] = 'includes/posting.inc.php';                     //  #297, #303
