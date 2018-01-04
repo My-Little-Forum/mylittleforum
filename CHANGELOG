@@ -1,6 +1,19 @@
 my little forum changelog
 -------------------------
 
+2.4.7 ()
+------------------
+- fixed database issue because of the obsolete field *_userdata.entries_read, can cause error in some database configurations
+- fixed the use of a wrong string for too long user name in the create-new-user-function of the admin panel
+- fixed an check for existence of categories in the main script, can cause error in PHP 7.2 when no categories are present
+- fixed handling of not given birthday date, set it to NULL in that case, can cause error in some MySQL-configurations
+- added redirect to the last page, one has visited, after the users login
+- added the availability of tags to the bookmark function
+- added new tables for tag handling, existing tags for postings will be handed over to one of the new tables
+- added a few fields as honeypots for spammers to the registration and the posting form
+- changed handling of the URL-parameters 'fold_threads', 'toggle_view' and 'toggle_thread_view', are not toggles anymore, fix reproducible behaviour for every value instead
+- 
+
 2.4.6 (2017-11-05)
 ------------------
 - fix for displaying the new version number after update in the update script itself
