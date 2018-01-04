@@ -130,7 +130,7 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/subnavigation_2.inc.tpl';  // #291, #294, #295
 		$update['items'][] = 'themes/style.css';                                     // #303, #305
 		$update['items'][] = 'themes/style.min.css';                                 // #303, #305
-		$update['items'][] = 'includes/admin.inc.php';                               // #304, #319
+		$update['items'][] = 'includes/admin.inc.php';                               // #304, #321
 		$update['items'][] = 'includes/bookmark.inc.php';                            // #287, #297
 		$update['items'][] = 'includes/entry.inc.php';                               // #297
 		$update['items'][] = 'includes/posting.inc.php';                             // #297, #303, #305
@@ -140,7 +140,7 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/register.inc.php';                            // #303, #305
 		$update['items'][] = 'includes/login.inc.php';                               // #286
 		$update['items'][] = 'includes/index.inc.php';                               // #290
-		$update['items'][] = 'includes/user.inc.php';                                // #290, #319
+		$update['items'][] = 'includes/user.inc.php';                                // #290, #321
 		$update['items'][] = 'includes/main.inc.php';                                // #291, #294, #295, #296
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
