@@ -71,13 +71,10 @@
 			<div>
 				<input type="hidden" name="mode" value="bookmarks" />
 				<input type="hidden" name="id" value="{$bookmark.id}" />
-				
 				<label for="bookmark" class="input"><strong>{#edit_bookmark#}</strong></label><br />
 				<input type="text" id="bookmark" name="bookmark" value="{$bookmark.title}" maxlength="255" size="25" /><br /><br />
-
-				<label for="tags" class="input"><strong>{#edit_tags#}</strong></label><br />		
+				<label for="tags" class="input"><strong>{#edit_tags#}</strong></label><br />
 				<input type="text" id="tags" name="tags" value="{$bookmark.tags}" maxlength="255" size="25" />&nbsp;<span class="xsmall">{#edit_tags_note#}</span><br /><br />
-
 				<input type="submit" name="edit_bookmark_submit" value="{#submit_button_ok#}" />
 			</div>
 		</form>
