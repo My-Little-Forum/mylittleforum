@@ -206,7 +206,7 @@ if (isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'] . '
 				LEFT JOIN `" . $db_settings['tags_table'] . "` ON `" . $db_settings['entry_tags_table'] . "`.`tid` = `" . $db_settings['tags_table'] . "`.`id` 
 				
 				WHERE " . $search_string . " AND category IN (" . $category_ids_query . ")
-				ORDER BY tid DESC, ft.time ASC LIMIT " . $ul . ", " . $settings['search_results_per_page']) or die(mysqli_error($connid));
+				ORDER BY tid DESC, time ASC LIMIT " . $ul . ", " . $settings['search_results_per_page']) or die(mysqli_error($connid));
 		} else {
 			$result = @mysqli_query($connid, "SELECT DISTINCT ft.id, ft.pid, ft.tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky, rst.user_id AS req_user
 				FROM " . $db_settings['forum_table'] . " AS ft
@@ -217,7 +217,7 @@ if (isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'] . '
 				LEFT JOIN `" . $db_settings['tags_table'] . "` ON `" . $db_settings['entry_tags_table'] . "`.`tid` = `" . $db_settings['tags_table'] . "`.`id` 
 				
 				WHERE " . $search_string . "
-				ORDER BY tid DESC, ft.time ASC LIMIT " . $ul . ", " . $settings['search_results_per_page']) or die(mysqli_error($connid));
+				ORDER BY tid DESC, time ASC LIMIT " . $ul . ", " . $settings['search_results_per_page']) or die(mysqli_error($connid));
 		}
 
 		$i = 0;
