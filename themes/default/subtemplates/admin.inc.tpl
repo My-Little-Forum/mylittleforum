@@ -697,7 +697,6 @@
 {section name=nr loop=$smiley_files}
 <option value="{$smiley_files[nr]}">{$smiley_files[nr]}</option>
 {/section}
-</select>
 </select></td>
 <td><input id="smiley_code" type="text" name="smiley_code" size="10" /></td>
 <td><input type="submit" value="{#submit_button_ok#}" /></td>
