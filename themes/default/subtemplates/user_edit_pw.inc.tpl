@@ -10,6 +10,7 @@
 {/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="mode" value="user" />
 <p><strong>{#edit_pw_old#}</strong><br />
 <input type="password" size="25" name="old_pw" /></p>
