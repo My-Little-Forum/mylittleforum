@@ -213,7 +213,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 				
 				while ($row = mysqli_fetch_array($order_result))
 					$order[] = $row["order_id"];
-				mysqli_free_result($bookmark_result);
+				mysqli_free_result($order_result);
 				
 				if ($order !== false && count($order) == count($items)) {
 					for ($i = 0; $i < count($items); $i++) {
