@@ -11,6 +11,7 @@
 {if $msg}<p class="ok">{$smarty.config.$msg}</p>{/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="mode" value="user" />
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
 <tr>

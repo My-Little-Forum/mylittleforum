@@ -390,16 +390,21 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_a
 			}
 		break;
 		case 'edit_userdata':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']){
 				$id = $_SESSION[$settings['session_prefix'].'user_id'];
-				if (empty($_POST['email_contact'])) $email_contact = 0;
-				else $email_contact = 1;
+				if (empty($_POST['email_contact'])) 
+					$email_contact = 0;
+				else 
+					$email_contact = 1;
 				$user_hp = trim($_POST['user_hp']);
 				$user_real_name = trim($_POST['user_real_name']);
 				$user_birthday = trim($_POST['user_birthday']);
-				if (isset($_POST['user_gender'])) $gender = intval($_POST['user_gender']);
-				else $gender = 0;
-				if ($gender != 0 && $gender !=1 && $gender != 2) $gender = 0;
+				if (isset($_POST['user_gender'])) 
+					$gender = intval($_POST['user_gender']);
+				else 
+					$gender = 0;
+				if ($gender != 0 && $gender !=1 && $gender != 2) 
+					$gender = 0;
 				$user_location = trim($_POST['user_location']);
 				$profile = trim($_POST['profile']);
 				$signature = trim($_POST['signature']);
@@ -637,7 +642,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_a
 			}
 		break;
 		case 'edit_pw_submitted':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 				$user_id = $_SESSION[$settings['session_prefix'].'user_id'];
 				$pw_result = mysqli_query($connid, "SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$field = mysqli_fetch_array($pw_result);
@@ -685,7 +690,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_a
 			}
 		break;
 		case 'edit_email_submit':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 				$new_email = trim($_POST['new_email']);
 				$new_email_confirm = trim($_POST['new_email_confirm']);
 				$pw_new_email = $_POST['pw_new_email'];
