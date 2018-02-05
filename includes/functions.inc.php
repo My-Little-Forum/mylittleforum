@@ -1738,7 +1738,7 @@ function create_backup_file($mode=0)
   global $settings, $db_settings, $connid;
   #@set_time_limit(30);
   $mode=intval($mode);
-  if($mode<0 || $mode > 7) $mode = 0;
+  if($mode<0 || $mode > 10) $mode = 0;
 
   require('includes/classes/Backup.class.php');
   $backup = new Backup;
@@ -1948,7 +1948,7 @@ function create_backup_file($mode=0)
     $backup->assign("#\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['forum_table'].";\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['entry_cache_table'].";\n");
-    $result = @mysqli_query($connid, "SELECT id,pid,tid,uniqid,time,last_reply,edited,edited_by,user_id,name,subject,category,email,hp,location,ip,text,tags,show_signature,email_notification,marked,locked,sticky,views,spam,spam_check_status,edit_key FROM ".$db_settings['forum_table']) or $error=true;
+    $result = @mysqli_query($connid, "SELECT id,pid,tid,uniqid,time,last_reply,edited,edited_by,user_id,name,subject,category,email,hp,location,ip,text,show_signature,email_notification,marked,locked,sticky,views,spam,spam_check_status,edit_key FROM ".$db_settings['forum_table']) or $error=true;
     $time_start = TIMESTAMP;
     while($data = mysqli_fetch_array($result))
      {
