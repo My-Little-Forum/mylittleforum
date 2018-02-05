@@ -1738,7 +1738,7 @@ function create_backup_file($mode=0)
   global $settings, $db_settings, $connid;
   #@set_time_limit(30);
   $mode=intval($mode);
-  if($mode<0 || $mode > 7) $mode = 0;
+  if($mode<0 || $mode > 10) $mode = 0;
 
   require('includes/classes/Backup.class.php');
   $backup = new Backup;
