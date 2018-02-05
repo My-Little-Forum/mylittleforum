@@ -128,8 +128,8 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #287, #305
 		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';          // #287, #303, #305
 		$update['items'][] = 'themes/default/subtemplates/subnavigation_2.inc.tpl';  // #291, #294, #295
-		$update['items'][] = 'themes/style.css';                                     // #303, #305
-		$update['items'][] = 'themes/style.min.css';                                 // #303, #305
+		$update['items'][] = 'themes/default/style.css';                             // #303, #305
+		$update['items'][] = 'themes/default/style.min.css';                         // #303, #305
 		$update['items'][] = 'includes/admin.inc.php';                               // #304, #321
 		$update['items'][] = 'includes/bookmark.inc.php';                            // #287, #297
 		$update['items'][] = 'includes/entry.inc.php';                               // #297
