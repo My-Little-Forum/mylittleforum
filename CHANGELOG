@@ -1,7 +1,7 @@
 my little forum changelog
 -------------------------
 
-2.4.7 ()
+2.4.7 (2018-01-05)
 ------------------
 - fixed database issue because of the obsolete field *_userdata.entries_read, can cause error in some database configurations
 - fixed the use of a wrong string for too long user name in the create-new-user-function of the admin panel
