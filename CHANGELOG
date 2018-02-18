@@ -1,6 +1,25 @@
 my little forum changelog
 -------------------------
 
+2.4.8 (2018-02-18)
+------------------
+- fixed double closing tag of a select in the admin.inc.tpl
+- fixed the use of a table alias in a database query that caused a MySQL error
+- removed a few empty lines in the code in search.inc.php because some of them caused headers-sent-erros
+- fixed the use of a wrong variable name in bookmark.inc.php
+- fixed forgotten masking of single quotes, used as apostrophe in the german language file
+- fixed wrong cases range for partial backups, the three cases that was introduced in the 2.4-branch wasn't recognised as valid
+- fixed the invalid use of column name tags in the entries table because the column no longer exists
+- fixed wrong path names of files that have to be updated in the update to version 2.4.7, yet relevant because of updates from earlier versions
+- added the version number of the minimal required PHP-version
+- added CSRF-tokens to user_edit.inc.tpl, user_edit_email.inc.tpl, user_edit_pw.inc.tpl and the corresponding code in user.inc.php
+- added the links to the original project site and forum again, was changed to the interim site and forum because of the temporary inaccessibility of the original site
+- added danish language file, translation by Tommy Nielsson (tommy@jernbanen.dk)
+- added a rework of the swedish language file, mainly based on the work of Tommy Nielsson (tommy@svenska-lok.se)
+- replace "Bookmarks" with "Lesezeichen" in the german language file
+- removed a few line breaks and spaces at a line end in bookmarks.inc.tpl
+- removed a size attribute in an input submit button
+
 2.4.7 (2018-01-05)
 ------------------
 - fixed database issue because of the obsolete field *_userdata.entries_read, can cause error in some database configurations
