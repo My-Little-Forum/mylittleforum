@@ -11,6 +11,7 @@ my little forum changelog
 - fixed wrong cases range for partial backups, the three cases that was introduced in the 2.4-branch wasn't recognised as valid
 - fixed the invalid use of column name tags in the entries table because the column no longer exists
 - fixed wrong path names of files that have to be updated in the update to version 2.4.7, yet relevant because of updates from earlier versions
+- fixed superfluous column name "tags" in create statement of table mlf2_entries
 - added the version number of the minimal required PHP-version
 - added CSRF-tokens to user_edit.inc.tpl, user_edit_email.inc.tpl, user_edit_pw.inc.tpl and the corresponding code in user.inc.php
 - added the links to the original project site and forum again, was changed to the interim site and forum because of the temporary inaccessibility of the original site
