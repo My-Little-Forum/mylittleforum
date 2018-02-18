@@ -142,6 +142,22 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/index.inc.php';                               // #290
 		$update['items'][] = 'includes/user.inc.php';                                // #290, #321
 		$update['items'][] = 'includes/main.inc.php';                                // #291, #294, #295, #296
+	case '2.4.7':
+		$update['items'][] = 'README.md';                                            // #325
+		$update['items'][] = 'lang/danish.lang';                                     // #344
+		$update['items'][] = 'lang/german.lang';                                     // #338, #345
+		$update['items'][] = 'lang/english.lang';                                    // #344
+		$update['items'][] = 'lang/swedish.lang';                                    // #344
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #327
+		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl';         // #327
+		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';          // #327
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';        // #336
+		$update['items'][] = 'themes/default/subtemplates/user_edit_email.inc.tpl';  // #336
+		$update['items'][] = 'themes/default/subtemplates/user_edit_pw.inc.tpl';     // #336
+		$update['items'][] = 'includes/bookmark.inc.php';                            // #335
+		$update['items'][] = 'includes/search.inc.php';                              // #328, #329
+		$update['items'][] = 'includes/user.inc.php';                                // #336
+		$update['items'][] = 'includes/functions.inc.php';                           // #341
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
