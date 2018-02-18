@@ -1,7 +1,27 @@
 my little forum changelog
 -------------------------
 
-2.4.7 ()
+2.4.8 (2018-02-18)
+------------------
+- fixed double closing tag of a select in the admin.inc.tpl
+- fixed the use of a table alias in a database query that caused a MySQL error
+- removed a few empty lines in the code in search.inc.php because some of them caused headers-sent-erros
+- fixed the use of a wrong variable name in bookmark.inc.php
+- fixed forgotten masking of single quotes, used as apostrophe in the german language file
+- fixed wrong cases range for partial backups, the three cases that was introduced in the 2.4-branch wasn't recognised as valid
+- fixed the invalid use of column name tags in the entries table because the column no longer exists
+- fixed wrong path names of files that have to be updated in the update to version 2.4.7, yet relevant because of updates from earlier versions
+- fixed superfluous column name "tags" in create statement of table mlf2_entries
+- added the version number of the minimal required PHP-version
+- added CSRF-tokens to user_edit.inc.tpl, user_edit_email.inc.tpl, user_edit_pw.inc.tpl and the corresponding code in user.inc.php
+- added the links to the original project site and forum again, was changed to the interim site and forum because of the temporary inaccessibility of the original site
+- added danish language file, translation by Tommy Nielsson (tommy@jernbanen.dk)
+- added a rework of the swedish language file, mainly based on the work of Tommy Nielsson (tommy@svenska-lok.se)
+- replace "Bookmarks" with "Lesezeichen" in the german language file
+- removed a few line breaks and spaces at a line end in bookmarks.inc.tpl
+- removed a size attribute in an input submit button
+
+2.4.7 (2018-01-05)
 ------------------
 - fixed database issue because of the obsolete field *_userdata.entries_read, can cause error in some database configurations
 - fixed the use of a wrong string for too long user name in the create-new-user-function of the admin panel
@@ -12,7 +32,6 @@ my little forum changelog
 - added new tables for tag handling, existing tags for postings will be handed over to one of the new tables
 - added a few fields as honeypots for spammers to the registration and the posting form
 - changed handling of the URL-parameters 'fold_threads', 'toggle_view' and 'toggle_thread_view', are not toggles anymore, fix reproducible behaviour for every value instead
-- 
 
 2.4.6 (2017-11-05)
 ------------------
