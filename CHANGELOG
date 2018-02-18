@@ -12,7 +12,6 @@ my little forum changelog
 - added new tables for tag handling, existing tags for postings will be handed over to one of the new tables
 - added a few fields as honeypots for spammers to the registration and the posting form
 - changed handling of the URL-parameters 'fold_threads', 'toggle_view' and 'toggle_thread_view', are not toggles anymore, fix reproducible behaviour for every value instead
-- 
 
 2.4.6 (2017-11-05)
 ------------------
