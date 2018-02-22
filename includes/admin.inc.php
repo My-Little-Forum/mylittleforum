@@ -96,10 +96,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$smarty->assign('new_user_notification', intval($field["new_user_notification"]));
 		if (trim($field['activate_code']) != '') $smarty->assign('inactive', true);
 
-		if (file_exists('images/avatars/'.$edit_user_id.'.jpg')) $avatar['image'] = 'images/avatars/'.$edit_user_id.'.jpg';
-		elseif(file_exists('images/avatars/'.$edit_user_id.'.png')) $avatar['image'] = 'images/avatars/'.$edit_user_id.'.png';
-		elseif(file_exists('images/avatars/'.$edit_user_id.'.gif')) $avatar['image'] = 'images/avatars/'.$edit_user_id.'.gif';
-		if(isset($avatar)) {
+		$avatarInfo = getAvatar($edit_user_id);
+		if($avatarInfo !== false || is_array($avatarInfo)) {
+			$avatar['image'] = $avatarInfo[2];
 			$image_info = getimagesize($avatar['image']);
 			$avatar['width'] = $image_info[0];
 			$avatar['height'] = $image_info[1];
