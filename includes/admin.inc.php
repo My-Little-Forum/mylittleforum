@@ -97,8 +97,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if (trim($field['activate_code']) != '') $smarty->assign('inactive', true);
 
 		$avatarInfo = getAvatar($edit_user_id);
-		if($avatarInfo !== false || is_array($avatarInfo)) {
-			$avatar['image'] = $avatarInfo[2];
+		$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
+		if (isset($avatar) && $avatar['image'] !== false) {
 			$image_info = getimagesize($avatar['image']);
 			$avatar['width'] = $image_info[0];
 			$avatar['height'] = $image_info[1];
@@ -174,11 +174,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				}
 			}
 		}
-
-		if (file_exists('images/avatars/'.$edit_user_id.'.jpg')) $avatar['image'] = 'images/avatars/'.$edit_user_id.'.jpg';
-		elseif(file_exists('images/avatars/'.$edit_user_id.'.png')) $avatar['image'] = 'images/avatars/'.$edit_user_id.'.png';
-		elseif(file_exists('images/avatars/'.$edit_user_id.'.gif')) $avatar['image'] = 'images/avatars/'.$edit_user_id.'.gif';
-		if (isset($avatar)) {
+		
+		$avatarInfo = getAvatar($edit_user_id);
+		$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
+		if (isset($avatar) && $avatar['image'] !== false) {
 			$image_info = getimagesize($avatar['image']);
 			$avatar['width'] = $image_info[0];
 			$avatar['height'] = $image_info[1];
@@ -250,19 +249,13 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$queryUserDataEdit .= ", email_contact=". intval($email_contact) .", user_hp='". mysqli_real_escape_string($connid, $user_hp) ."', user_location='". mysqli_real_escape_string($connid, $user_location) ."', profile='". mysqli_real_escape_string($connid, $profile) ."', signature='". mysqli_real_escape_string($connid, $signature) ."', last_login=last_login, registered=registered, new_posting_notification=". intval($new_posting_notification) .", new_user_notification=". intval($new_user_notification) .", language='". mysqli_real_escape_string($connid, $user_language) ."', time_zone='". mysqli_real_escape_string($connid, $user_time_zone) ."', time_difference=". intval($time_difference) .", theme='". mysqli_real_escape_string($connid, $user_theme) ."' WHERE user_id=". $edit_user_id;
 			@mysqli_query($connid, $queryUserDataEdit) or raise_error('database_error', mysqli_error($connid));
 			@mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id = ". $edit_user_id);
+			
 			if (isset($_POST['delete_avatar'])) {
-				$uploaded_avatars_path = 'images/avatars/';
-				if (file_exists($uploaded_avatars_path.$edit_user_id.'.jpg')) {
-					@chmod($uploaded_avatars_path.$edit_user_id.'.jpg', 0777);
-					@unlink($uploaded_avatars_path.$edit_user_id.'.jpg');
-				}
-				if (file_exists($uploaded_avatars_path.$edit_user_id.'.png')) {
-					@chmod($uploaded_avatars_path.$edit_user_id.'.png', 0777);
-					@unlink($uploaded_avatars_path.$edit_user_id.'.png');
-				}
-				if(file_exists($uploaded_avatars_path.$edit_user_id.'.gif')) {
-					@chmod($uploaded_avatars_path.$edit_user_id.'.gif', 0777);
-					@unlink($uploaded_avatars_path.$edit_user_id.'.gif');
+				$avatarInfo = getAvatar($edit_user_id);
+				$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
+				if (isset($avatar) && $avatar['image'] !== false && file_exists($avatar['image'])) {
+					@chmod($avatar['image'], 0777);
+					@unlink($avatar['image']);
 				}
 			}
 
@@ -677,18 +670,11 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 					@mysqli_free_result($delete_result);
 
 					// delete avatar:
-					$uploaded_avatars_path = 'images/avatars/';
-					if (file_exists($uploaded_avatars_path.intval($selected_confirmed[$x]).'.jpg')) {
-						@chmod($uploaded_avatars_path.intval($selected_confirmed[$x]).'.jpg', 0777);
-						@unlink($uploaded_avatars_path.intval($selected_confirmed[$x]).'.jpg');
-					}
-					if (file_exists($uploaded_avatars_path.intval($selected_confirmed[$x]).'.png')) {
-						@chmod($uploaded_avatars_path.intval($selected_confirmed[$x]).'.png', 0777);
-						@unlink($uploaded_avatars_path.intval($selected_confirmed[$x]).'.png');
-					}
-					if (file_exists($uploaded_avatars_path.intval($selected_confirmed[$x]).'.gif')) {
-						@chmod($uploaded_avatars_path.intval($selected_confirmed[$x]).'.gif', 0777);
-						@unlink($uploaded_avatars_path.intval($selected_confirmed[$x]).'.gif');
+					$avatarInfo = getAvatar(intval($selected_confirmed[$x]));
+					$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
+					if (isset($avatar) && $avatar['image'] !== false && file_exists($avatar['image'])) {
+						@chmod($avatar['image'], 0777);
+						@unlink($avatar['image']);
 					}
 				}
 			}
