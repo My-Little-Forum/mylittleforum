@@ -1342,7 +1342,7 @@ var ready = new (function () {
 			}
  
 			var querys = [
-					new Query("fold_threads", expand),
+					new Query("fold_threads", expand ? "0" : "1"),
 					new Query("ajax", "true")
 			];
 
@@ -1368,7 +1368,7 @@ var ready = new (function () {
 
 				foldingLink.onclick = function(e) {
 					expandAllThreads( !isExpand );
-					this.className = this.className.replace(foldRegExp, "fold-" + (isExpand?2:1) );
+					this.className = this.className.replace(foldRegExp, "fold-" + (isExpand ? 2 : 1) );
 					this.firstChild.replaceData(0, this.firstChild.nodeValue.length, (isExpand?lang["expand_threads"]:lang["fold_threads"]) );
 					this.title = isExpand?lang["expand_threads_linktitle"]:lang["fold_threads_linktitle"];
 					isExpand = !isExpand;
