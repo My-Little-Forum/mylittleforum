@@ -11,11 +11,11 @@ locale =                          de_DE.utf8
 locale =                          de_DE
 locale =                          de_DE@euro
 locale =                          de
-locale_charset =                  iso-8859-1
+locale_charset =                  utf-8
 word_delimiters =                 ' '
 dir =                             ltr
 time_format =                     %d.%m.%Y, %H:%M
-time_format_full =                %A, %d. %B %Y, %H:%M
+time_format_full =                %A, %d.%m.%Y, %H:%M
 forum_time =                      'Forumszeit: [time]'
 forum_time_with_time_zone =       'Forumszeit: [time] ([time_zone])'
 unknown_user =                    'unbekannt'
@@ -1009,6 +1009,8 @@ update_download =                 'Falls nicht verfügbar, können diese Dateien
 [emails]
 email_subject =                   'Antwort auf "[original_subject]"'
 email_text =                      """Hallo [recipient],
+
+dies ist eine automatisch generierte Email, die aufgrund der explizit aktivierten Benachrichtigungsoption verschickt wurde. Bitte antworte nicht direkt auf diese Email, sondern schreib die Antwort direkt in den vorhandenen Forenthread.
 [name] hat eine Antwort zu \"[original_subject]\" geschrieben:
 
 Betreff: [subject]
@@ -1021,7 +1023,7 @@ URL des Eintrags: [posting_address]
 [original_text]"""
 
 email_text_delayed_addition =     """---
-Diese Benachrichtigung kommt verzögert, da der Eintrag manuell freigeschaltet wurde"""
+Diese Benachrichtigung kommt verzögert, da der Eintrag manuell freigeschaltet wurde. Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 
 admin_email_subject =             'Neuer Eintrag im Forum: [subject]'
 admin_email_text =                """Neuer Eintrag von [name]
@@ -1029,13 +1031,17 @@ Betreff: [subject]
 
 [text]
 
-URL des Eintrags: [posting_address]"""
+URL des Eintrags: [posting_address]
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 admin_email_text_reply =          """Antwort von [name]
 Betreff: [subject]
 
 [text]
 
-URL des Eintrags: [posting_address]"""
+URL des Eintrags: [posting_address]
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 admin_reg_user_email_subj =       'Foren-Registrierung'
 admin_reg_user_email_text =       """Hallo [name],
 willkommen im Forum!
@@ -1048,7 +1054,8 @@ Passwort: [password]
 Direkter Link zum Einloggen:
 [login_link]
 
-Das Passwort kann nach dem Einloggen geändert werden."""
+Das Passwort kann nach dem Einloggen geändert werden.
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 
 admin_activate_user_email_subj =       'Foren-Registrierung'
 admin_activate_user_email_text =       """Hallo [name],
@@ -1056,37 +1063,47 @@ willkommen im Forum!
 
 Direkter Link zum Einloggen:
 [login_link]
-"""
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 
 new_user_email_sj =               'Foren-Registrierung'
 new_user_email_txt =              """Hallo [name],
 willkommen im Forum!
 
 Zur Aktivierung bitte diesen Link aufrufen:
-[activate_link]"""
+[activate_link]
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 new_user_notif_sj =               'Neue Benutzer-Registrierung'
 new_user_notif_txt =              """Hallo [recipient],
 es hat sich ein neuer Benutzer registriert.
 Benutzername: [name]
 E-Mail: [email]
 
-[user_link]"""
+[user_link]
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 new_user_notif_txt_locked =       """Hallo [recipient],
 es hat sich ein neuer Benutzer registriert.
 Benutzername: [name]
 E-Mail: [email]
 
-WICHTIG: Dieser Benutzer muss entsperrt werden, damit er sich einloggen kann!"""
+WICHTIG: Dieser Benutzer muss entsperrt werden, damit er sich einloggen kann!
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 edit_address_email_sj =           'Freischaltung nach Änderung der E-Mail-Adresse'
 edit_address_email_txt =          """Hallo [name],
 die E-Mail-Adresse wurde geändert. Das Benutzerkonto muss nun wieder mit folgendem Link freigeschaltet werden:
-[activate_link]"""
+[activate_link]
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 pwf_activating_email_sj =         'Neues Passwort anfordern'
 pwf_activating_email_txt =        """Hallo [name],
 diese E-Mail wurde vom Forum auf [forum_address] gesendet, da ein neues Passwort angefordert wurde. Falls es sich nicht um ein Irrtum handelt (z.B. weil jemand anderes diese E-Mail angefordert hat), bitte dies mit folgendem Link bestätigen. Ansonsten den Link nicht anklicken und diese E-Mail ignorieren. Mit Klicken des Links wird ein neues Passwort generiert und per E-Mail gesendet.
 
 Bestätigungslink:
-[activating_link]"""
+[activating_link]
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 new_pw_email_sj =                 'Neue Zugangsdaten für das Forum'
 new_pw_email_txt =                """Hallo [name],
 die neuen Benutzerdaten lauten:
@@ -1097,7 +1114,9 @@ Passwort: [password]
 Direkter Link zum Einloggen:
 [login_link]
 
-Das Passwort kann nach dem Einloggen geändert werden."""
+Das Passwort kann nach dem Einloggen geändert werden.
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 contact_email_txt =               """[message]
 
 -- 
