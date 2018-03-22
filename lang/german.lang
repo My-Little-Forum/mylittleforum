@@ -146,6 +146,7 @@ subnav_disabled =                 'Forum deaktiviert'
 subnav_bookmarks =                'Lesezeichen'
 subnav_delete_bookmark =          'Lesezeichen löschen'
 subnav_edit_bookmark =            'Lesezeichen bearbeiten'
+subnav_list_uploads =             'Liste der Uploads'
 subnav_page_error =               'Fehler'
 subnav_page =                     '[var]'
 counter =                         '[total_postings] Einträge in [total_threads] Threads, [registered_users] registrierte Benutzer'
@@ -907,6 +908,11 @@ new_user_reg_send_error =         'Der Benutzer "[name]" wurde registriert, aber
 clear_userdata_condition =        'Benutzer löschen, die sich höchstens [logins] mal eingeloggt haben und das letzte Mal vor über [days] Tagen.'
 clear_userdata_note =             'Administratoren und Moderatoren werden nicht erfasst, vor dem entgültigen Löschen wird eine Liste der betroffenen Benutzer angezeigt.'
 no_users_in_selection =           'keine Benutzer in der Auswahl'
+
+# Uploadverwaltung
+upload_administration =           'Verwaltung der Uploads'
+mark_upload_for_removal =         'zum löschen vormerken'
+no_uploads_found =                'Es wurden keine hochgeladenen Dateien gefunden.'
 
 # Spamschutz:
 captcha =                         'CAPTCHA'

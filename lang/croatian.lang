@@ -144,6 +144,7 @@ subnav_disabled =                 'Forum je zatvoren'
 subnav_bookmarks =                '<!-- TODO -->Bookmarks'
 subnav_delete_bookmark =          '<!-- TODO -->Delete bookmark'
 subnav_edit_bookmark =            '<!-- TODO -->Edit bookmark'
+subnav_list_uploads =             '<!-- TODO -->List of uploads'
 subnav_page_error =               'Greška'
 subnav_page =                     '[var]'
 counter =                         '[total_postings] poruka u [total_threads] tema, [registered_users] registriranih korisnika'
@@ -905,6 +906,11 @@ new_user_reg_send_error =       'Korisnik "[name]" je registrirano ali korisnič
 clear_userdata_condition =      'Obriši korisnike koji su se prijavili najviše [logins] puta i posljednji put prije više od [days] dana.'
 clear_userdata_note =           'Administratori i moderatori neće biti zahvaćeni. Prije brisanja biti će prikazan popis korisnika koji zadovoljavaju uvjete.'
 no_users_in_selection =         'Nema korisnika koji zadovoljavaju postavljene uvjete.'
+
+# upload management
+upload_administration =           '<!-- TODO -->Upload management'
+mark_upload_for_removal =         '<!-- TODO -->mark for removal'
+no_uploads_found =                '<!-- TODO -->Found no uploaded files.'
 
 # spam protection:
 captcha =                       'CAPTCHA'

@@ -994,6 +994,30 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		die();
 	}
 
+	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
+		$uploaded_images_path = 'images/uploaded/';
+		$images_per_page = 20;
+		$images = array();
+		$browse_images = (isset($_GET['browse_images']) && $_GET['browse_images'] > 0) ? intval($_GET['browse_images']) : 1;
+		$handle = opendir($uploaded_images_path);
+		while ($file = readdir($handle)) {
+			if (preg_match('/\.jpg$/i', $file) || preg_match('/\.png$/i', $file) || preg_match('/\.gif$/i', $file)) {
+				$images[] = $file;
+			}
+		}
+		closedir($handle);
+		if ($images) {
+			rsort($images);
+			$images_count = count($images);
+			if ($browse_images > ceil($images_count / $images_per_page)) $browse_images = ceil($images_count / $images_per_page);
+			$start = $browse_images * $images_per_page - $images_per_page;
+			$show_images_to = $browse_images * $images_per_page;
+			if ($show_images_to > $images_count) $show_images_to = $images_count;
+		}
+		else $images_count = 0;
+		$action = 'list_uploads';
+	}
+
 	if (empty($action)) $action='main';
 	$smarty->assign('action', $action);
 
@@ -1734,6 +1758,19 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				}
 			}
 			exit;
+		break;
+		case 'list_uploads':
+			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
+			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
+			$smarty->assign('breadcrumbs', $breadcrumbs);
+			$smarty->assign('subnav_location', 'subnav_list_uploads');
+			$smarty->assign('current',$browse_images);
+			if ($browse_images*$images_per_page < $images_count) $smarty->assign('next', $browse_images + 1);
+			if ($browse_images > 1) $smarty->assign('previous', $browse_images - 1);
+			$smarty->assign('browse_images', true);
+			$smarty->assign('images_per_page', $images_per_page);
+			if (isset($images)) $smarty->assign('images', $images);
+			if (isset($start)) $smarty->assign('start', $start);
 		break;
 	}
 

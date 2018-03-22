@@ -147,6 +147,7 @@ subnav_disabled =                 '论坛已关闭'
 subnav_bookmarks =                '<!-- TODO -->Bookmarks'
 subnav_delete_bookmark =          '<!-- TODO -->Delete bookmark'
 subnav_edit_bookmark =            '<!-- TODO -->Edit bookmark'
+subnav_list_uploads =             '<!-- TODO -->List of uploads'
 subnav_page_error =               '错误'
 subnav_page =                     '[var]'
 counter =                         '帖子总数: [total_postings]; 主题总数: [total_threads]; 注册用户: [registered_users]'
@@ -908,6 +909,11 @@ new_user_reg_send_error =         '用户"[name]"已被注册但用户信息无�
 clear_userdata_condition =        '删除登陆次数不超过 [logins] 次并且最后一次登陆超过 [days] 天前的用户.'
 clear_userdata_note =             '管理员与板主不受影响. 删除前您将看到选中的用户列表.'
 no_users_in_selection =           '未选择用户'
+
+# upload management
+upload_administration =           '<!-- TODO -->Upload management'
+mark_upload_for_removal =         '<!-- TODO -->mark for removal'
+no_uploads_found =                '<!-- TODO -->Found no uploaded files.'
 
 # spam protection:
 captcha =                         'CAPTCHA'

@@ -1090,6 +1090,24 @@
 {else}
 <p>{#page_doesnt_exist#}</p>
 {/if}
+
+{elseif $action=='list_uploads'}
+<h2>{#upload_administration#}</h2>
+{if $images}
+<form action="index.php" method="post" accept-charset="{#charset#}">
+<input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
+ <ul id="uploadlist">
+{section name=nr loop=$images start=$start max=$images_per_page}
+  <li><p class="image_container"><img src="images/uploaded/{$images[nr]}" alt="{$images[nr]}" /></p>
+  <p class="management_container"><input type="checkbox" id="{$images[nr]}" name="uploads_remove[]" value="{$images[nr]}" /><label for="{$images[nr]}">{#mark_upload_for_removal#}</label></p></li>
+{/section}
+ </ul>
+ <p><input type="submit" name="delete_uploads" value="{#delete#}" /></p>
+</form>
+{else}
+<p>{#no_uploads_found#}</p>
+{/if}
 {else}
 <div class="additional-admin-info">
 	<div id="admin-info-current-version">

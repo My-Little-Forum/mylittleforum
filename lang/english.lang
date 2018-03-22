@@ -155,6 +155,7 @@ subnav_disabled =                 'Forum disabled'
 subnav_bookmarks =                'Bookmarks'
 subnav_delete_bookmark =          'Delete bookmark'
 subnav_edit_bookmark =            'Edit bookmark'
+subnav_list_uploads =             'List of uploads'
 subnav_page_error =               'Error'
 subnav_page =                     '[var]'
 counter =                         '[total_postings] Postings in [total_threads] Threads, [registered_users] registered users'
@@ -916,6 +917,11 @@ new_user_reg_send_error =         'The user "[name]" has been registered but the
 clear_userdata_condition =        'Delete users that logged in maximum [logins] times and the last time more than [days] days ago.'
 clear_userdata_note =             'Admins and Moderators will not be affected. Before deleting you get a list of the selected users.'
 no_users_in_selection =           'No users in selection'
+
+# upload management
+upload_administration =           'Upload management'
+mark_upload_for_removal =         'mark for removal'
+no_uploads_found =                'Found no uploaded files.'
 
 # spam protection:
 captcha =                         'CAPTCHA'

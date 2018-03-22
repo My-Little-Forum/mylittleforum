@@ -158,6 +158,7 @@ subnav_disabled =           'Forum deaktiveret'
 subnav_bookmarks =          'Bogmærker'
 subnav_delete_bookmark =    'Slet bogmærker'
 subnav_edit_bookmark =      'Redigér bogmærker'
+subnav_list_uploads =             '<!-- TODO -->List of uploads'
 subnav_page_error =         'Fejl'
 subnav_page =               '[var]'
 counter =                   '[total_postings] Indlæg i [total_threads] emner, [registered_users] registrerede brugere'
@@ -919,6 +920,11 @@ new_user_reg_send_error =   'Brugeren "[name]" er registreret men loginoplysning
 clear_userdata_condition =  'Slet brugere der har logget ind maksimalt [logins] gange, og siste gang mere end [days] dage siden'
 clear_userdata_note =       'Administratorer og redaktører vil ikke blive berørt. Før sletning ser du en liste over alle valgte brugere.'
 no_users_in_selection =     'Ingen brugere fundet'
+
+# upload management
+upload_administration =           '<!-- TODO -->Upload management'
+mark_upload_for_removal =         '<!-- TODO -->mark for removal'
+no_uploads_found =                '<!-- TODO -->Found no uploaded files.'
 
 # spam protection:
 captcha =                   'CAPTCHA'

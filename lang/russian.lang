@@ -158,6 +158,7 @@ subnav_disabled =                 'Форум отключен'
 subnav_bookmarks =                '<!-- TODO -->Bookmarks'
 subnav_delete_bookmark =          '<!-- TODO -->Delete bookmark'
 subnav_edit_bookmark =            '<!-- TODO -->Edit bookmark'
+subnav_list_uploads =             '<!-- TODO -->List of uploads'
 subnav_page_error =               'Ошибочка'
 subnav_page =                     '[var]'
 counter =                         '[total_postings] сообщений в [total_threads] темах, [registered_users] зарегистрированных пользователей'
@@ -925,6 +926,11 @@ new_user_reg_send_error =         'Пользователь "[name]" был за
 clear_userdata_condition =        'Удалить пользователей, которые заходили максимум [logins] раз и последний раз более чем [days] дней назад.'
 clear_userdata_note =             'Администраторы и Модераторы не будут уведомлены. Перед удалением вы получите список выбранных пользователей.'
 no_users_in_selection =           'Пользователи не выбраны'
+
+# upload management
+upload_administration =           '<!-- TODO -->Upload management'
+mark_upload_for_removal =         '<!-- TODO -->mark for removal'
+no_uploads_found =                '<!-- TODO -->Found no uploaded files.'
 
 # защита от спама:
 captcha =                         'КАПЧА'
