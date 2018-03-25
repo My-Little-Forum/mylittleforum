@@ -996,7 +996,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
 		$uploaded_images_path = 'images/uploaded/';
-		$images_per_page = 20;
 		$images = array();
 		$browse_images = (isset($_GET['browse_images']) && $_GET['browse_images'] > 0) ? intval($_GET['browse_images']) : 1;
 		$handle = opendir($uploaded_images_path);
@@ -1008,13 +1007,23 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		closedir($handle);
 		if ($images) {
 			rsort($images);
-			$images_count = count($images);
-			if ($browse_images > ceil($images_count / $images_per_page)) $browse_images = ceil($images_count / $images_per_page);
-			$start = $browse_images * $images_per_page - $images_per_page;
-			$show_images_to = $browse_images * $images_per_page;
-			if ($show_images_to > $images_count) $show_images_to = $images_count;
+			$page_browse['total_items'] = count($images);
+			#$page_browse['items_per_page'] = $settings['uploads_per_page'];
+			$page_browse['items_per_page'] = 20;
+			$total_pages = ceil($page_browse['total_items'] / $page_browse['items_per_page']);
+			$page_browse['page'] = isset($_GET['page']) ? intval($_GET['page']) : 1;
+			$page_browse['page'] = ($page_browse['page'] > $total_pages) ? $total_pages : $page_browse['page'];
+			$page_browse['page'] = ($page_browse['page'] < 1) ? 1 : $page_browse['page'];
+			$page_browse['browse_array'][] = ($page > 5) ? 0 : 1;
+			for ($browse = $page_browse['page'] - 3; $browse < $page_browse['page'] + 4; $browse++) {
+				if ($browse > 1 && $browse < $total_pages) $page_browse['browse_array'][] = $browse;
+			}
+			if ($page_browse['page'] < $total_pages - 4) $page_browse['browse_array'][] = 0;
+			if ($total_pages > 1) $page_browse['browse_array'][] = $total_pages;
+			$page_browse['next_page'] = ($page_browse['page'] < $total_pages) ? $page_browse['page'] + 1 : 0;
+			$page_browse['previous_page'] = ($page_browse['page'] > 1) ? $page_browse['page'] - 1 : 0;
+			$start = $page_browse['page'] * $page_browse['items_per_page'] - $page_browse['items_per_page'];
 		}
-		else $images_count = 0;
 		$action = 'list_uploads';
 	}
 
@@ -1764,11 +1773,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
 			$smarty->assign('breadcrumbs', $breadcrumbs);
 			$smarty->assign('subnav_location', 'subnav_list_uploads');
-			$smarty->assign('current',$browse_images);
-			if ($browse_images*$images_per_page < $images_count) $smarty->assign('next', $browse_images + 1);
-			if ($browse_images > 1) $smarty->assign('previous', $browse_images - 1);
-			$smarty->assign('browse_images', true);
-			$smarty->assign('images_per_page', $images_per_page);
+			$smarty->assign('user_page_browse', $page_browse);
+			$smarty->assign('pagination', pagination($total_pages, $page_browse['page'], 3));
+			$smarty->assign('images_per_page', $page_browse['items_per_page']);
 			if (isset($images)) $smarty->assign('images', $images);
 			if (isset($start)) $smarty->assign('start', $start);
 		break;
