@@ -1008,8 +1008,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if ($images) {
 			rsort($images);
 			$page_browse['total_items'] = count($images);
-			#$page_browse['items_per_page'] = $settings['uploads_per_page'];
-			$page_browse['items_per_page'] = 20;
+			$page_browse['items_per_page'] = $settings['uploads_per_page'];
 			$total_pages = ceil($page_browse['total_items'] / $page_browse['items_per_page']);
 			$page_browse['page'] = isset($_GET['page']) ? intval($_GET['page']) : 1;
 			$page_browse['page'] = ($page_browse['page'] > $total_pages) ? $total_pages : $page_browse['page'];
