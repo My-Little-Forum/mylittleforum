@@ -1038,6 +1038,20 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		else $action = 'list_uploads';
 	}
 
+	if (isset($_POST['delete_uploads_confirmed']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if (isset($_POST['selected_confirmed'])) {
+			foreach ($_POST['selected_confirmed'] as $upload_rm) {
+				$path_rm = 'images/uploaded/'. $upload_rm;
+				if (file_exists($path_rm)) {
+					@chmod($path_rm, 0777);
+					@unlink($path_rm);
+				}
+			}
+		}
+		header("location: index.php?mode=admin&action=list_uploads");
+		die();
+	}
+
 	if (empty($action)) $action='main';
 	$smarty->assign('action', $action);
 
