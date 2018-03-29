@@ -1794,6 +1794,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		case 'delete_uploads':
 			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
 			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
+			$breadcrumbs[1]['link'] = 'index.php?mode=admin&amp;action=list_uploads';
+			$breadcrumbs[1]['linkname'] = 'subnav_list_uploads';
 			$smarty->assign('breadcrumbs', $breadcrumbs);
 			$smarty->assign('subnav_location', 'subnav_confirm_delete_uploads');
 			$smarty->assign('selected_uploads', $selected_uploads);
