@@ -1027,6 +1027,18 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$action = 'list_uploads';
 	}
 
+	if (isset($_POST['delete_selected_uploads'])) {
+		if (isset($_POST['uploads_remove'])) {
+			$selected = $_POST['uploads_remove'];
+			$selected_uploads_count = count($selected);
+			for ($x=0; $x<$selected_uploads_count; $x++) {
+				$selected_uploads[$x]['name'] = htmlspecialchars($selected[$x]);
+			}
+			$action = 'delete_uploads';
+		}
+		else $action = 'list_uploads';
+	}
+
 	if (empty($action)) $action='main';
 	$smarty->assign('action', $action);
 
@@ -1778,6 +1790,14 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('images_per_page', $page_browse['items_per_page']);
 			if (isset($images)) $smarty->assign('images', $images);
 			if (isset($start)) $smarty->assign('start', $start);
+		break;
+		case 'delete_uploads':
+			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
+			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
+			$smarty->assign('breadcrumbs', $breadcrumbs);
+			$smarty->assign('subnav_location', 'subnav_confirm_delete_uploads');
+			$smarty->assign('selected_uploads', $selected_uploads);
+			$smarty->assign('selected_uploads_count', $selected_uploads_count);
 		break;
 	}
 
