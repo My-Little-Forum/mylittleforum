@@ -1026,7 +1026,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$action = 'list_uploads';
 	}
 
-	if (isset($_POST['delete_selected_uploads'])) {
+	if (isset($_POST['delete_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		if (isset($_POST['uploads_remove'])) {
 			$selected = $_POST['uploads_remove'];
 			$selected_uploads_count = count($selected);
