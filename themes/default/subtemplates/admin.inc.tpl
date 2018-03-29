@@ -1092,7 +1092,7 @@
 {/if}
 
 {elseif $action=='list_uploads'}
-<h2>{#upload_administration#}</h2>
+<h2 id="admin_header">{#upload_administration#}</h2>
 {if $images}
 
 {if $pagination}
@@ -1124,7 +1124,7 @@
 <p>{#no_uploads_found#}</p>
 {/if}
 {elseif $action=='delete_uploads'}
-<h2>{#upload_administration#}</h2>
+<h2 id="admin_header">{#upload_administration#}</h2>
 <p class="caution">{#caution#}</p>
 <p>{if $selected_uploads_count>1}{#delete_uploads_confirmation#}{else}{#delete_upload_confirmation#}{/if}</p>
 <ul>

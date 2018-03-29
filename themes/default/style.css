@@ -472,6 +472,7 @@ ul.pagination-index-table
 .adminmenu a img         { margin:0 5px -3px 0; padding:0; }
 #content .adminmenu .small
                          { font-size:0.82em; }
+h2#admin_header          { margin: 0 0 0.5em 0; }
 
 .manage-postings         { border:1px solid #bacbdf; margin-top:25px; background:#f9f9f9; }
 .manage-postings legend  { font-size:0.82em; font-weight:bold; }
