@@ -1118,7 +1118,7 @@
   <p class="management_container"><input type="checkbox" id="{$images[nr]}" name="uploads_remove[]" value="{$images[nr]}" /><label for="{$images[nr]}">{#mark_upload_for_removal#}</label></p></li>
 {/section}
  </ul>
- <p><input type="submit" name="delete_uploads" value="{#delete#}" /></p>
+ <p><input type="submit" name="delete_selected_uploads" value="{#delete#}" /></p>
 </form>
 {else}
 <p>{#no_uploads_found#}</p>
