@@ -1127,19 +1127,16 @@
 <h2 id="admin_header">{#upload_administration#}</h2>
 <p class="caution">{#caution#}</p>
 <p>{if $selected_uploads_count>1}{#delete_uploads_confirmation#}{else}{#delete_upload_confirmation#}{/if}</p>
-<ul>
-{section name=nr loop=$selected_uploads}
-<li><img src="images/uploaded/{$selected_uploads[nr].name}" width="64" alt="" /><strong>{$selected_uploads[nr].name}</strong></li>
-{/section}
-</ul>
-<br />
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
-<input type="hidden" name="mode" value="admin" />
+ <input type="hidden" name="mode" value="admin" />
+ <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
+ <ul>
 {section name=nr loop=$selected_uploads}
-<input type="hidden" name="selected_confirmed[]" value="{$selected_uploads[nr].name}" />
+  <li><input type="hidden" name="selected_confirmed[]" value="{$selected_uploads[nr].name}" /><img src="images/uploaded/{$selected_uploads[nr].name}" width="64" alt="" /><strong>{$selected_uploads[nr].name}</strong></li>
 {/section}
-<input type="submit" name="delete_uploads_confirmed" value="{#delete_submit#}" />
+ </ul>
+ <input type="submit" name="delete_uploads_confirmed" value="{#delete_submit#}" />
 </div>
 </form>
 {else}
