@@ -104,7 +104,7 @@ function daily_actions($current_time=0) {
 		}
 		// remove read state by time:
 		if ($settings['read_state_expiration_method'] == 2 and $settings['read_state_expiration_value'] > 0) {
-			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['read_state_expiration_date']) ." DAY)");
+			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['read_state_expiration_value']) ." DAY)");
 		}
 		// if possible, load new version info from Github
 		if (isset($settings) && isset($settings['version'])) {
