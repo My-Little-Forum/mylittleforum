@@ -1131,9 +1131,10 @@
 <div>
  <input type="hidden" name="mode" value="admin" />
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
- <ul>
+ <ul class="confirm-selection">
 {section name=nr loop=$selected_uploads}
-  <li><input type="hidden" name="selected_confirmed[]" value="{$selected_uploads[nr].name}" /><img src="images/uploaded/{$selected_uploads[nr].name}" width="64" alt="" /><strong>{$selected_uploads[nr].name}</strong></li>
+  <li><input type="hidden" name="selected_confirmed[]" value="{$selected_uploads[nr].name}" />
+   <p class="item"><img src="images/uploaded/{$selected_uploads[nr].name}" width="64" alt="" /></p><p class="info">{$selected_uploads[nr].name}</p></li>
 {/section}
  </ul>
  <input type="submit" name="delete_uploads_confirmed" value="{#delete_submit#}" />
