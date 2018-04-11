@@ -364,3 +364,7 @@ CREATE TABLE mlf2_tags (`id` int(11) NOT NULL AUTO_INCREMENT, `tag` varchar(255)
 
 */
 --------------------------------------------------------------------------------
+-- 2.4.8 to 2.5
+/*
+INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20');
+*/
