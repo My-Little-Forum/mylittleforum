@@ -994,6 +994,64 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		die();
 	}
 
+	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
+		$uploaded_images_path = 'images/uploaded/';
+		$images = array();
+		$browse_images = (isset($_GET['browse_images']) && $_GET['browse_images'] > 0) ? intval($_GET['browse_images']) : 1;
+		$handle = opendir($uploaded_images_path);
+		while ($file = readdir($handle)) {
+			if (preg_match('/\.jpg$/i', $file) || preg_match('/\.png$/i', $file) || preg_match('/\.gif$/i', $file)) {
+				$images[] = $file;
+			}
+		}
+		closedir($handle);
+		if ($images) {
+			rsort($images);
+			$page_browse['total_items'] = count($images);
+			$page_browse['items_per_page'] = $settings['uploads_per_page'];
+			$total_pages = ceil($page_browse['total_items'] / $page_browse['items_per_page']);
+			$page_browse['page'] = isset($_GET['page']) ? intval($_GET['page']) : 1;
+			$page_browse['page'] = ($page_browse['page'] > $total_pages) ? $total_pages : $page_browse['page'];
+			$page_browse['page'] = ($page_browse['page'] < 1) ? 1 : $page_browse['page'];
+			$page_browse['browse_array'][] = ($page > 5) ? 0 : 1;
+			for ($browse = $page_browse['page'] - 3; $browse < $page_browse['page'] + 4; $browse++) {
+				if ($browse > 1 && $browse < $total_pages) $page_browse['browse_array'][] = $browse;
+			}
+			if ($page_browse['page'] < $total_pages - 4) $page_browse['browse_array'][] = 0;
+			if ($total_pages > 1) $page_browse['browse_array'][] = $total_pages;
+			$page_browse['next_page'] = ($page_browse['page'] < $total_pages) ? $page_browse['page'] + 1 : 0;
+			$page_browse['previous_page'] = ($page_browse['page'] > 1) ? $page_browse['page'] - 1 : 0;
+			$start = $page_browse['page'] * $page_browse['items_per_page'] - $page_browse['items_per_page'];
+		}
+		$action = 'list_uploads';
+	}
+
+	if (isset($_POST['delete_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if (isset($_POST['uploads_remove'])) {
+			$selected = $_POST['uploads_remove'];
+			$selected_uploads_count = count($selected);
+			for ($x=0; $x<$selected_uploads_count; $x++) {
+				$selected_uploads[$x]['name'] = htmlspecialchars($selected[$x]);
+			}
+			$action = 'delete_uploads';
+		}
+		else $action = 'list_uploads';
+	}
+
+	if (isset($_POST['delete_uploads_confirmed']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if (isset($_POST['selected_confirmed'])) {
+			foreach ($_POST['selected_confirmed'] as $upload_rm) {
+				$path_rm = 'images/uploaded/'. $upload_rm;
+				if (file_exists($path_rm)) {
+					@chmod($path_rm, 0777);
+					@unlink($path_rm);
+				}
+			}
+		}
+		header("location: index.php?mode=admin&action=list_uploads");
+		die();
+	}
+
 	if (empty($action)) $action='main';
 	$smarty->assign('action', $action);
 
@@ -1734,6 +1792,29 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				}
 			}
 			exit;
+		break;
+		case 'list_uploads':
+			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
+			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
+			$smarty->assign('breadcrumbs', $breadcrumbs);
+			$smarty->assign('subnav_location', 'subnav_list_uploads');
+			if (isset($images)) {
+				$smarty->assign('user_page_browse', $page_browse);
+				$smarty->assign('pagination', pagination($total_pages, $page_browse['page'], 3));
+				$smarty->assign('images_per_page', $page_browse['items_per_page']);
+				$smarty->assign('images', $images);
+				if (isset($start)) $smarty->assign('start', $start);
+			}
+		break;
+		case 'delete_uploads':
+			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
+			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
+			$breadcrumbs[1]['link'] = 'index.php?mode=admin&amp;action=list_uploads';
+			$breadcrumbs[1]['linkname'] = 'subnav_list_uploads';
+			$smarty->assign('breadcrumbs', $breadcrumbs);
+			$smarty->assign('subnav_location', 'subnav_confirm_delete_uploads');
+			$smarty->assign('selected_uploads', $selected_uploads);
+			$smarty->assign('selected_uploads_count', $selected_uploads_count);
 		break;
 	}
 

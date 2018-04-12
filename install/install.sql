@@ -138,6 +138,7 @@ INSERT INTO mlf2_settings VALUES ('last_changes', '0');
 INSERT INTO mlf2_settings VALUES ('ajax_preview', '1');
 INSERT INTO mlf2_settings VALUES ('read_state_expiration_value', '500');
 INSERT INTO mlf2_settings VALUES ('read_state_expiration_method', '0');
+INSERT INTO mlf2_settings VALUES ('uploads_per_page', '20');
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (2, 2, 'wink.png', ';-)', '', '', '', '', '');

@@ -104,7 +104,7 @@ function daily_actions($current_time=0) {
 		}
 		// remove read state by time:
 		if ($settings['read_state_expiration_method'] == 2 and $settings['read_state_expiration_value'] > 0) {
-			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['read_state_expiration_date']) ." DAY)");
+			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['read_state_expiration_value']) ." DAY)");
 		}
 		// if possible, load new version info from Github
 		if (isset($settings) && isset($settings['version'])) {
@@ -450,35 +450,36 @@ function do_bbcode_msg($action, $attributes, $content, $params, $node_object)
 /**
  * processes BBCode img
  */
-function do_bbcode_img($action, $attributes, $content, $params, $node_object)
- {
-  if($action == 'validate')
-   {
-    if(!is_valid_url($content))
-     {
-      return false;
-     }
-    else
-     {
-      // [img]image[/img]
-      if(!isset($attributes['default'])) return true;
-      // [img=xxx]image[/img]
-      elseif(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right' || $attributes['default']=='thumbnail' || $attributes['default']=='thumbnail-left' || $attributes['default']=='thumbnail-right')) return true;
-      else return false;
-     }
-   }
-  else
-   {
-    // [img=xxx]image[/img]
-    if(isset($attributes['default']) && $attributes['default']=='left') return '<img src="'.htmlspecialchars($content).'" class="left" alt="[image]" />';
-    if(isset($attributes['default']) && $attributes['default']=='right') return '<img src="'.htmlspecialchars($content).'" class="right" alt="[image]" />';
-    if(isset($attributes['default']) && $attributes['default']=='thumbnail') return '<a rel="thumbnail" href="'.htmlspecialchars($content).'"><img src="'.htmlspecialchars($content).'" class="thumbnail" alt="[image]" /></a>';
-    if(isset($attributes['default']) && $attributes['default']=='thumbnail-left') return '<a rel="thumbnail" href="'.htmlspecialchars($content).'"><img src="'.htmlspecialchars($content).'" class="thumbnail left" alt="[image]" /></a>';
-    if(isset($attributes['default']) && $attributes['default']=='thumbnail-right') return '<a rel="thumbnail" href="'.htmlspecialchars($content).'"><img src="'.htmlspecialchars($content).'" class="thumbnail right" alt="[image]" /></a>';
-    // [img]image[/img]
-    return '<img src="'.htmlspecialchars($content).'" alt="[image]" />';
-   }
- }
+function do_bbcode_img($action, $attributes, $content, $params, $node_object) {
+	if ($action == 'validate') {
+		if (!is_valid_url($content)) {
+			return false;
+		} else {
+			// [img]image[/img]
+			if (!isset($attributes['default'])) return true;
+			// [img=xxx]image[/img]
+			elseif (isset($attributes['default']) && ($attributes['default'] == 'left' || $attributes['default'] == 'right' || $attributes['default'] == 'thumbnail' || $attributes['default'] == 'thumbnail-left' || $attributes['default'] == 'thumbnail-right')) return true;
+			else return false;
+		}
+	} else {
+		// [img=xxx]image[/img]
+		$strSize = '';
+		if (strpos($content, 'images/uploaded/', 0) !== false) {
+			$size = @getimagesize($content);
+			if ($size !== false && (is_numeric($size[0]) && $size[0] > 0) && (is_numeric($size[1]) && $size[1] > 0)) {
+				$strSize = $size[3];
+				#$strSize = 'width="256" height="256"';
+			}
+		}
+		if (isset($attributes['default']) && $attributes['default'] == 'left') return '<img src="'. htmlspecialchars($content) .'" class="left" alt="[image]" '. $strSize .' />';
+		if (isset($attributes['default']) && $attributes['default'] == 'right') return '<img src="'. htmlspecialchars($content) .'" class="right" alt="[image]" '. $strSize .' />';
+		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'.htmlspecialchars($content).'" class="thumbnail" alt="[image]" '. $strSize .' /></a>';
+		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-left') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" class="thumbnail left" alt="[image]" '. $strSize .' /></a>';
+		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-right') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" class="thumbnail right" alt="[image]" '. $strSize .' /></a>';
+		// [img]image[/img]
+		return '<img src="'. htmlspecialchars($content) .'" alt="[image]" '. $strSize .' />';
+	}
+}
 
 /**
  * processes BBCode tex
