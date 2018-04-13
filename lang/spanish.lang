@@ -1026,6 +1026,8 @@ update_download =                 'Si no tienes estos archivos puedes descargarl
 [emails]
 email_subject =                   'Responder en "[original_subject]"'
 email_text =                      """Hola [recipient],
+
+this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
 [name] ha enviado una respuesta a \"[original_subject]\":
 
 Asunto: [subject]
@@ -1038,7 +1040,7 @@ Direccion del mensaje: [posting_address]
 [original_text]"""
 
 email_text_delayed_addition =     """---
-Este mensaje se retraso porque tuvo que ser activado manualmente"""
+Este mensaje se retraso porque tuvo que ser activado manualmente. This is an automatically generated email, please do not reply to this email."""
 
 admin_email_subject =             'Nuevo mensaje en el foro: [subject]'
 admin_email_text =                """Nuevo mensaje de [name]
@@ -1046,13 +1048,17 @@ Asunto: [subject]
 
 [text]
 
-Direccion del mensaje: [posting_address]"""
+Direccion del mensaje: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_email_text_reply =          """Respuesta de [name]
 Asunto: [subject]
 
 [text]
 
-Direccion del mensaje: [posting_address]"""
+Direccion del mensaje: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_reg_user_email_subj =       'Nuevo registro en el foro'
 admin_reg_user_email_text =       """Hola [name],
 Bienvenido al foro!
@@ -1065,7 +1071,9 @@ Contrasena: [password]
 Direccion para acceder:
 [login_link]
 
-Puedes cambiar la contrasena despues de entrar."""
+Puedes cambiar la contrasena despues de entrar.
+
+This is an automatically generated information message, please do not reply to this email."""
 
 admin_activate_user_email_subj =  'Registro en el foro'
 admin_activate_user_email_text =  """Hola [name],
@@ -1073,37 +1081,48 @@ Bienvenido al foro!
 
 Link to log in directly:
 [login_link]
-"""
+
+This is an automatically generated information message, please do not reply to this email."""
 
 new_user_email_sj =               'Registro en el foro'
 new_user_email_txt =              """Hola [name],
 Bienvenido al foro!
 
 Para activar tu cuenta por favor visita el siguiente enlace (HAZ SOLO UN CLICK):
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_sj =               'Nueva suscripcion'
 new_user_notif_txt =              """Hola [recipient],
 Un nuevo usuario se ha suscrito al foro.
 Nombre de usuario: [name]
 E-mail: [email]
 
-[user_link]"""
+[user_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_txt_locked =       """Hola [recipient],
 Un nuevo usuario se ha suscrito al foro.
 Nombre de usuario: [name]
 E-mail: [email]
 
-IMPORTANTE: Tienes que desbloquear a este usuario para que pueda iniciar sesion!"""
+IMPORTANTE: Tienes que desbloquear a este usuario para que pueda iniciar sesion!
+
+This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =           'Activacion de cuenta despues de cambiar el e-mail'
 edit_address_email_txt =          """Hola [name],
 La direccion de e-mail ha cambiado. Puedes activar la cuenta de nuevo usando el siguiente enlace (HAZ SOLO UN CLICK):
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 pwf_activating_email_sj =         'Solicitar una nueva contrasena'
 pwf_activating_email_txt =        """Hola [name],
 El foro [forum_address] te ha enviado este correo porque has solicitado una nueva contrasena. Por favor pulsa el enlace para confirmar tu solicitud (HAZ UN SOLO CLICK), se generara una nueva contrasena y te la enviaremos por correo. Si has recibido este mensaje por error por favor ignoralo.
 
 Enlace para confirmar tu solicitud:
-[activating_link]"""
+[activating_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_pw_email_sj =                 'Contrasena solicitada'
 new_pw_email_txt =                """Hola [name],
 Aqui estan tus datos de acceso:
@@ -1114,7 +1133,9 @@ Contrasena: [password]
 Pulsa aqui para acceder directamente:
 [login_link]
 
-Puedes cambiar la contrasena despues de entrar."""
+Puedes cambiar la contrasena despues de entrar.
+
+This is an automatically generated information message, please do not reply to this email."""
 contact_email_txt =               """[message]
 
 -- 

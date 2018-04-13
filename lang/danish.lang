@@ -1031,6 +1031,8 @@ update_download =           'Hvis du endnu ikke har disse filer kan du downloade
 [emails]
 email_subject =             'Svar til "[original_subject]"'
 email_text =                """Hej [recipient],
+
+this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
 [name] har skrevet et svar til \"[original_subject]\":
 
 Emne: [subject]
@@ -1043,7 +1045,7 @@ URL til dette indlæg: [posting_address]
 [original_text]"""
 
 email_text_delayed_addition = """---
-Denne notifikation er forsinket fordi indlægget var aktiveret manuelt"""
+Denne notifikation er forsinket fordi indlægget var aktiveret manuelt. This is an automatically generated email, please do not reply to this email."""
 
 admin_email_subject =       'Nyt indlæg i forumet: [subject]'
 admin_email_text =          """Nyt Indlæg af [name]
@@ -1051,13 +1053,17 @@ Emne: [subject]
 
 [text]
 
-URL til dette indlæg: [posting_address]"""
+URL til dette indlæg: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_email_text_reply =    """Svar af [name]
 Emne: [subject]
 
 [text]
 
-URL til dette indlæg: [posting_address]"""
+URL til dette indlæg: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_reg_user_email_subj = 'Forum registrering'
 admin_reg_user_email_text = """Hej [name],
 Velkommen til forummet!
@@ -1070,7 +1076,9 @@ Kodeord: [password]
 Link til at logge direkte ind:
 [login_link]
 
-Dit kodeord kan ændres efter du er logget ind."""
+Dit kodeord kan ændres efter du er logget ind.
+
+This is an automatically generated information message, please do not reply to this email."""
 
 admin_activate_user_email_subj = 'Forum registrering'
 admin_activate_user_email_text = """Hej [name],
@@ -1078,37 +1086,48 @@ Velkommen til forummet!
 
 Link til log ind:
 [login_link]
-"""
+
+This is an automatically generated information message, please do not reply to this email."""
 
 new_user_email_sj =         'Forum registrering'
 new_user_email_txt =        """Hej [name],
 Velkommen til forummet!
 
 Følg venligst dette link for at aktivere din konto:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_sj =         'Ny bruger registreret'
 new_user_notif_txt =        """Hej [recipient],
 En ny bruger er registreret i forummet.
 Brugernavn: [name]
 E-mail: [email]
 
-[user_link]"""
+[user_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_txt_locked = """Hej [recipient],
 En ny bruger er registreret i forummet.
 Brugernavn: [name]
 E-mail: [email]
 
-VIGTIGT: Denne bruger skal låses op før han/hun kan logge ind!"""
+VIGTIGT: Denne bruger skal låses op før han/hun kan logge ind!
+
+This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =     'Konto aktivering efter ændring af e-mail adresse'
 edit_address_email_txt =    """Hej [name],
 E-mail adressen er ændret. Du skal nu aktivere din konto igen ved at følge dette link:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 pwf_activating_email_sj =   'Nyt kodeord'
 pwf_activating_email_txt =  """Hej [name],
 Denne e-mail er sendt fra forumet ([forum_address]) fordi der er bedt om et nyt kodeord. Klik venligst på linket for at godkende. Et nyt kodeord vil blive lavet og sendt til dig ved at klikke på linket. Hvis denne e-mail er sendt ved en fejl (enten af dig selv eller en anden) skal du venligst ignorere denne e-mail.
 
 Link til at bekræfte din tilmelding:
-[activating_link]"""
+[activating_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_pw_email_sj =             'Nye bruger data til forummet'
 new_pw_email_txt =            """Hej [name],
 her er dine nye bruger data:
@@ -1119,7 +1138,9 @@ Kodeord: [password]
 Klik her for at logge direkte ind:
 [login_link]
 
-Kodeordet kan ændres efter du er logget ind."""
+Kodeordet kan ændres efter du er logget ind.
+
+This is an automatically generated information message, please do not reply to this email."""
 contact_email_txt =           """[message]
 
 ---
