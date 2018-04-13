@@ -1074,6 +1074,7 @@ Link to log in directly:
 [login_link]
 
 The password can be changed after logging in.
+
 This is an automatically generated information message, please do not reply to this email."""
 
 admin_activate_user_email_subj =  'Forum registration'
@@ -1108,6 +1109,7 @@ User name: [name]
 E-mail: [email]
 
 IMPORTANT: This user has to be unlocked in order that he can log in!
+
 This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =           'Account activation after changing e-mail address'
 edit_address_email_txt =          """Hi [name],

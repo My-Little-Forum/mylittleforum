@@ -1020,6 +1020,8 @@ update_download =                 '如果没有下列文件, 您可在此下载[
 [emails]
 email_subject =                   '回复 "[original_subject]"'
 email_text =                      """您好 [recipient],
+
+this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
 [name]对\"[original_subject]\"发表了回复:
  
 标题: [subject]
@@ -1032,7 +1034,7 @@ email_text =                      """您好 [recipient],
 [original_text]"""
  
 email_text_delayed_addition =     """---
-This notification is delayed because the posting was activated manually"""
+This notification is delayed because the posting was activated manually. This is an automatically generated email, please do not reply to this email."""
  
 admin_email_subject =             '论坛新帖: [subject]'
 admin_email_text =                """[name]发表的新贴
@@ -1040,13 +1042,17 @@ admin_email_text =                """[name]发表的新贴
  
 [text]
  
-帖子URL: [posting_address]"""
+帖子URL: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_email_text_reply =          """由[name]回复
 标题: [subject]
  
 [text]
  
-帖子URL: [posting_address]"""
+帖子URL: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_reg_user_email_subj =       '论坛注册'
 admin_reg_user_email_text =       """您好 [name],
 欢迎来到论坛!
@@ -1059,7 +1065,9 @@ admin_reg_user_email_text =       """您好 [name],
 点击以下链接可直接登陆:
 [login_link]
  
-登陆后可更改密码."""
+登陆后可更改密码.
+
+This is an automatically generated information message, please do not reply to this email."""
 
 admin_activate_user_email_subj =  '论坛注册'
 admin_activate_user_email_text =  """Hi [name],
@@ -1067,36 +1075,47 @@ welcome to the forum!
 
 Link to log in directly:
 [login_link]
-"""
+
+This is an automatically generated information message, please do not reply to this email."""
  
 new_user_email_sj =               '论坛注册'
 new_user_email_txt =              """您好 [name],
 欢迎加入论坛!
  
 请点击以下链接激活您的帐户:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_sj =               '新用户订阅'
 new_user_notif_txt =              """您好 [recipient],
 一位新用户已订阅本论坛.
 用户名: [name]
 E-mail: [email]
  
-[user_link]"""
+[user_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_txt_locked =       """您好 [recipient],
 一位新用户已订阅本论坛.
 用户名: [name]
 E-mail: [email]
  
-重要提示: 此用户已被解锁, 可登陆论坛!"""
+重要提示: 此用户已被解锁, 可登陆论坛!
+
+This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =           '更改e-mail地址后帐户激活'
 edit_address_email_txt =          """您好 [name],
 E-mail地址已更改. 您需点击以下链接再次激活帐户:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 pwf_activating_email_sj =         '索取新密码'
 pwf_activating_email_txt =        """您好 [name],
 此电子邮件发送自论坛([forum_address]), 原因是接收到申请新密码的请求. 请点击以下链接确认您的请求. 系统将生成新密码并发送给您. 如果此电子邮件为误发送(无论是因为您还是其他人), 请忽略此邮件.
  
-[activating_link]"""
+[activating_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_pw_email_sj =                 '<!-- TODO -->New user data for the forum'
 new_pw_email_txt =                """您好 [name],
 新的用户信息:
@@ -1107,7 +1126,9 @@ new_pw_email_txt =                """您好 [name],
 点此直接登陆:
 [login_link]
  
-密码可在登陆后更改."""
+密码可在登陆后更改.
+
+This is an automatically generated information message, please do not reply to this email."""
 contact_email_txt =               """[message]
  
 -- 
