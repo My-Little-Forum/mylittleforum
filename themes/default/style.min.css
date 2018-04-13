@@ -3,6 +3,7 @@ h1{margin-top:0;font-size:1.25em;font-weight:700}
 h2{margin-top:20px;font-size:1.25em;font-weight:700}
 p{margin-top:0}
 img{border:0}
+label{cursor:pointer}
 a{color:#00c;text-decoration:none}
 a:visited{color:#00c}
 a:hover{color:#00f;text-decoration:underline}
