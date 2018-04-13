@@ -1007,6 +1007,8 @@ update_download =               'Ako nemate potrebne datoteke možete ih naći o
 [emails]
 email_subject =                 'Odgovor na "[original_subject]"'
 email_text =                    """Pozdrav [recipient],
+
+this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
 [name] je ostavio poruku na temu \"[original_subject]\":
 
 Tema: [subject]
@@ -1019,7 +1021,7 @@ Link na ovu poruku: [posting_address]
 [original_text]"""
 
 email_text_delayed_addition =     """---
-Ova obavjest kasni jer je poruka ručno aktivirana"""
+Ova obavjest kasni jer je poruka ručno aktivirana. This is an automatically generated email, please do not reply to this email."""
 
 admin_email_subject =           'Nova poruka u forumu: [subject]'
 admin_email_text =              """Nova poruka od [name]
@@ -1027,13 +1029,17 @@ Tema: [subject]
 
 [text]
 
-Link na poruku: [posting_address]"""
+Link na poruku: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_email_text_reply =        """Odgovor od [name]
 Tema: [subject]
 
 [text]
 
-Link na poruku: [posting_address]"""
+Link na poruku: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_reg_user_email_subj =     'Forum registracija'
 admin_reg_user_email_text =     """Pozdrav [name],
 dobrodošao na forum!
@@ -1046,7 +1052,9 @@ Lozinka: [password]
 Link za prijavu:
 [login_link]
 
-Lozinku je moguće izmijeniti nakon prijave."""
+Lozinku je moguće izmijeniti nakon prijave.
+
+This is an automatically generated information message, please do not reply to this email."""
 
 admin_activate_user_email_subj ='Forum registration'
 admin_activate_user_email_text ="""Hi [name],
@@ -1054,37 +1062,48 @@ welcome to the forum!
 
 Link to log in directly:
 [login_link]
-"""
+
+This is an automatically generated information message, please do not reply to this email."""
 
 new_user_email_sj =             'Registracija na forum'
 new_user_email_txt =            """Pozdrav [name],
 dobrodošao na forum!
 
 za aktivaciju vašeg korisničkog računa koristite sljedeći link:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_sj =             'Nova pretplata'
 new_user_notif_txt =            """Pozdrav [recipient],
 novi se korisnik pretplatio na forum.
 Korisničko ime: [name]
 E-mail: [email]
 
-[user_link]"""
+[user_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_txt_locked =     """Pozdrav [recipient],
 novi se korisnik pretplatio na forum.
 Korisničko ime: [name]
 E-mail: [email]
 
-VAŽNO: Ovaj korisnik mora biti otključan kako bi se mogao prijaviti!"""
+VAŽNO: Ovaj korisnik mora biti otključan kako bi se mogao prijaviti!
+
+This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =         'Aktivacija nakon promjene e-mail adrese'
 edit_address_email_txt =        """Pozdrav [name],
 vaša je e-mail adresa promijenjena. Morate nanovo aktivirati vaš korisnički račun pomoću sljedećeg linka:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 pwf_activating_email_sj =       'Zahtjev za novom lozinkom'
 pwf_activating_email_txt =      """Pozdrav [name],
 ovaj je e-mail poslan sa foruma ([forum_address]) zbog zahtjeva za novom lozinkom. Koristite donji link za potvrdu ovog zahtjeva. Nakon otvaranja linka nova će lozinka biti generirana i poslana e-mailom.  Ignorirajte ovaj e-mail u slučaju da niste zatražili novu lozinku.
 
 Link za potvrdu vašeg zahtjeva:
-[activating_link]"""
+[activating_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_pw_email_sj =                 'Novi korisnički podaci za forum'
 new_pw_email_txt =                """Pozdrav [name],
 slijede vaši korisnički podaci:
@@ -1095,7 +1114,9 @@ Lozinka: [password]
 Koristite sljedeći link za prijavu:
 [login_link]
 
-Lozinku možete izmijeniti nakon prijave."""
+Lozinku možete izmijeniti nakon prijave.
+
+This is an automatically generated information message, please do not reply to this email."""
 contact_email_txt =               """[message]
 
 ---

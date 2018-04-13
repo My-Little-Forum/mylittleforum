@@ -1013,6 +1013,8 @@ update_download =                 'Eğer henüz bu dosyalara sahip değilseniz [
 [emails]
 email_subject =                   '"[original_subject]" üzerine yanıt'
 email_text =                      """Merhaba [recipient],
+
+this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
 [name] adlı kullanıcı \"[original_subject]\" konusuna yanıt gönderdi:
 
 Konu: [subject]
@@ -1025,7 +1027,7 @@ Bu gönderimin bağlantısı (URL): [posting_address]
 [original_text]"""
 
 email_text_delayed_addition =     """---
-Bu uyarı bekletildi çünkü gönderim manüel olarak aktif edildi"""
+Bu uyarı bekletildi çünkü gönderim manüel olarak aktif edildi. This is an automatically generated email, please do not reply to this email."""
 
 admin_email_subject =             'Forumda yeni giriş: [subject]'
 admin_email_text =                """[name] tarafından yeni giriş
@@ -1033,13 +1035,17 @@ Konu: [subject]
 
 [text]
 
-Gönderim bağlantısı (URL): [posting_address]"""
+Gönderim bağlantısı (URL): [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_email_text_reply =          """[name] olarak yanıtla
 Konu: [subject]
 
 [text]
 
-Gönderim bağlantısı (URL): [posting_address]"""
+Gönderim bağlantısı (URL): [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_reg_user_email_subj =       'Forum kaydı'
 admin_reg_user_email_text =       """Merhaba [name],
 foruma hoş geldiniz!
@@ -1052,7 +1058,9 @@ Parola: [password]
 Direkt giriş bağlantısı:
 [login_link]
 
-Parolanızı giriş yaptıktan sonra değiştirebilirsiniz."""
+Parolanızı giriş yaptıktan sonra değiştirebilirsiniz.
+
+This is an automatically generated information message, please do not reply to this email."""
 
 admin_activate_user_email_subj =  'Forum kaydı'
 admin_activate_user_email_text =  """Merhaba [name],
@@ -1060,36 +1068,47 @@ foruma hoş geldiniz!
 
 Link to log in directly:
 [login_link]
-"""
+
+This is an automatically generated information message, please do not reply to this email."""
 
 new_user_email_sj =               'Forum kaydı'
 new_user_email_txt =              """Merhaba [name],
 foruma hoş geldiniz!
 
 hesabınızı aktif etmek için lütfen aşağıdaki bağlantıyı takip edin:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_sj =               'Yeni kullanıcı kaydı'
 new_user_notif_txt =              """Merhaba [recipient],
 foruma yeni bir kullanıcı abone oldu.
 Kullanıcı adı: [name]
 E-posta: [email]
 
-[user_link]"""
+[user_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_txt_locked =       """Merhaba [recipient],
 foruma yeni bir kullanıcı abone oldu.
 Kullanıcı adı: [name]
 E-posta: [email]
 
-ÖNEMLİ: Bu kullanıcı giriş yapabilmesi için öncelikle kilitten kaldırılması gerekir!"""
+ÖNEMLİ: Bu kullanıcı giriş yapabilmesi için öncelikle kilitten kaldırılması gerekir!
+
+This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =           'E-posta değişiminden sonra hesap aktivasyonu'
 edit_address_email_txt =          """Merhaba [name],
 e-posta adresiniz değişti. Hesabınızı aşağıdaki bağlantıya tıklayarak tekrar aktif etmelisiniz:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 pwf_activating_email_sj =         'Yeni parola talebi'
 pwf_activating_email_txt =        """Merhaba [name],
 bu e-posta, yeni bir parola talebinden dolayı ([forum_address]) forumundan gönderildi. Lütfen yeni parolanızın oluşturulması ve size gönderilmesi için aşağıdaki bağlantıya tıklayın. Eğer bu e-posta bilginiz dışında bir yanlışlıktan ötürü (sizden veya herhangi birinden) geldiyse önemsemeyin.
 
-[activating_link]"""
+[activating_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_pw_email_sj =                 'Yeni kullanıcı bilginiz'
 new_pw_email_txt =                """Merhaba [name],
 yeni kullanıcı bilgileriniz şöyledir:
@@ -1100,7 +1119,9 @@ Parola: [password]
 Giriş yapmak için bağlantıya tıklayın:
 [login_link]
 
-Parola giriş yapıldıktan sonra değiştirilebilir."""
+Parola giriş yapıldıktan sonra değiştirilebilir.
+
+This is an automatically generated information message, please do not reply to this email."""
 contact_email_txt =               """[message]
 
 -- 

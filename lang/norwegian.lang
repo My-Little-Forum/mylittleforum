@@ -1009,6 +1009,8 @@ update_download =                 'Dersom du ikke har disse filene kan de lastes
 [emails]
 email_subject =                   'Svar på "[original_subject]"'
 email_text =                      """Hei [recipient],
+
+this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
 [name] har skrevet et svar på innlegget \"[original_subject]\":
 
 Emne: [subject]
@@ -1021,7 +1023,7 @@ Lenke til dette innlegget: [posting_address]
 [original_text]"""
 
 email_text_delayed_addition =     """---
-Denne varslingen er forsinket fordi innlegget ble aktivert manuelt"""
+Denne varslingen er forsinket fordi innlegget ble aktivert manuelt. This is an automatically generated email, please do not reply to this email."""
 
 admin_email_subject =             'Nytt innlegg i forumet: [subject]'
 admin_email_text =                """Nytt innlegg skrevet av [name]
@@ -1029,13 +1031,17 @@ Emne: [subject]
 
 [text]
 
-Lenke til innlegget: [posting_address]"""
+Lenke til innlegget: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_email_text_reply =          """Svar fra [name]
 Emne: [subject]
 
 [text]
 
-Lenke til innlegget: [posting_address]"""
+Lenke til innlegget: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_reg_user_email_subj =       'Forumregistrering'
 admin_reg_user_email_text =       """Hei [name],
 velkommen til forumet!
@@ -1048,7 +1054,9 @@ Passord: [password]
 Lenke for direkte innlogging:
 [login_link]
 
-Passordet kan endres etter at du har logget inn."""
+Passordet kan endres etter at du har logget inn.
+
+This is an automatically generated information message, please do not reply to this email."""
 
 admin_activate_user_email_subj =  'Forumregistering'
 admin_activate_user_email_text =  """Hei [name],
@@ -1056,36 +1064,47 @@ velkommen til forumet!
 
 Link to log in directly:
 [login_link]
-"""
+
+This is an automatically generated information message, please do not reply to this email."""
 
 new_user_email_sj =               'Forumregistrering'
 new_user_email_txt =              """Hei [name],
 velkommen til forumet!
 
 for å aktivere kontoen din, klikk på denne lenken:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_sj =               'Ny bruker på forumet'
 new_user_notif_txt =              """Hei [recipient],
 en ny bruker har registrert seg på forumet.
 Brukernavn: [name]
 E-post: [email]
 
-[user_link]"""
+[user_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_txt_locked =       """Hei [recipient],
 en ny bruker har registrert seg på forumet.
 Brukernavn: [name]
 E-post: [email]
 
-VIKTIG: Denne brukeren må låses opp før han eller hun kan logge inn!"""
+VIKTIG: Denne brukeren må låses opp før han eller hun kan logge inn!
+
+This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =           'Kontoaktivering etter endring av e-postadresse'
 edit_address_email_txt =          """Hei [name],
 e-postadressen din er endret. Du må nå aktivere kontoen din ved å klikke på denne lenken:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 pwf_activating_email_sj =         'Forespørsel om nytt passord'
 pwf_activating_email_txt =        """Hei [name],
 denne e-posten er sendt fra forumet ([forum_address]) fordi du har bedt om et nytt passord. Klikk på lenken under for å bekrefte forespørselen din. Når du klikker på lenken vil et nytt passord bli generert og sendt til deg på e-post. Dersom denne e-posten har blitt sendt til deg ved en feiltakelse (enten av deg eller noen andre) så kan du bare ignorere den.
 
-[activating_link]"""
+[activating_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_pw_email_sj =                 'Nye brukerdata for forumet'
 new_pw_email_txt =                """Hei [name],
 here er dine nye brukerdata:
@@ -1096,7 +1115,9 @@ Passord: [password]
 Klikk her for å logge inn direkte:
 [login_link]
 
-Passordet kan endres etter at du har logget inn."""
+Passordet kan endres etter at du har logget inn.
+
+This is an automatically generated information message, please do not reply to this email."""
 contact_email_txt =               """[message]
 
 -- 

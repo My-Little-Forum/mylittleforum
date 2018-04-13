@@ -1055,6 +1055,7 @@ Direkter Link zum Einloggen:
 [login_link]
 
 Das Passwort kann nach dem Einloggen geändert werden.
+
 Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 
 admin_activate_user_email_subj =       'Foren-Registrierung'
@@ -1089,6 +1090,7 @@ Benutzername: [name]
 E-Mail: [email]
 
 WICHTIG: Dieser Benutzer muss entsperrt werden, damit er sich einloggen kann!
+
 Dies ist eine automatisch generierte Nachricht. Bitte antworte nicht direkt auf diese Email."""
 edit_address_email_sj =           'Freischaltung nach Änderung der E-Mail-Adresse'
 edit_address_email_txt =          """Hallo [name],

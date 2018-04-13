@@ -1019,6 +1019,8 @@ update_download =                 'Om Du inte laddat ner filerna kan Du göra de
 [emails]
 email_subject =                   'Svar på "[original_subject]"'
 email_text =                      """Hej [recipient],
+
+this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
 [name] har postat ett svar i \"[original_subject]\":
 
 Ämne: [subject]
@@ -1031,7 +1033,7 @@ Länk till inlägget: [posting_address]
 [original_text]"""
 
 email_text_delayed_addition =     """---
-Detta meddelande har skickats eftersom Du har aktiverat mailfunktionen manuellt"""
+Detta meddelande har skickats eftersom Du har aktiverat mailfunktionen manuellt. This is an automatically generated email, please do not reply to this email."""
 
 admin_email_subject =             'Nytt inlägg i forumet: [subject]'
 admin_email_text =                """Nytt inlägg av [name]
@@ -1039,13 +1041,17 @@ admin_email_text =                """Nytt inlägg av [name]
 
 [text]
 
-Länk till inlägget: [posting_address]"""
+Länk till inlägget: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_email_text_reply =          """Svar av [name]
 Ämne: [subject]
 
 [text]
 
-Länk till inlägget: [posting_address]"""
+Länk till inlägget: [posting_address]
+
+This is an automatically generated information message, please do not reply to this email."""
 admin_reg_user_email_subj =       'Registrering på forum'
 admin_reg_user_email_text =       """Hej [name],
 Välkommen till forumet!
@@ -1058,7 +1064,9 @@ Lösenord: [password]
 Logga in direkt med denna länk:
 [login_link]
 
-Lösenordet kan ändras efter att Du loggat in!"""
+Lösenordet kan ändras efter att Du loggat in!
+
+This is an automatically generated information message, please do not reply to this email."""
 
 admin_activate_user_email_subj =  'Registrering på forum'
 admin_activate_user_email_text =  """Hej [name],
@@ -1066,37 +1074,48 @@ Välkommen till forumet!
 
 Logga in direkt med denna länk:
 [login_link]
-"""
+
+This is an automatically generated information message, please do not reply to this email."""
 
 new_user_email_sj =               'Registrering på forum'
 new_user_email_txt =              """Hej [name],
 Välkommen till forumet!
 
 För att aktivera kontot, vänligen följ aktiveringslänken:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_sj =               'Ny användar registrerad'
 new_user_notif_txt =              """Hej [recipient],
 En ny användar har registrerat sig på forumet.
 Användarnamn: [name]
 E-post: [email]
 
-[user_link]"""
+[user_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_txt_locked =       """Hej [recipient],
 En ny användar har registrerat sig på forumet.
 Användarnamn: [name]
 E-post: [email]
 
-VIKTIGT: Denna användar måste aktiveras!"""
+VIKTIGT: Denna användar måste aktiveras!
+
+This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =           'Kontoaktivering efter byte av E-postadress'
 edit_address_email_txt =          """Hej [name],
 E-postadressen har ändrats, Du måste återaktivera kontot via länken:
-[activate_link]"""
+[activate_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 pwf_activating_email_sj =         'Begäran om nytt lösenord'
 pwf_activating_email_txt =        """Hej [name],
 Detta mail har skickats från [forum_address] eftersom ett nytt lösenord har begärts, klicka på länken för att bekräfta begäran. Ett nytt lösenord kommer då att skapas och skickas till dig. Om Du själv inte begärt byte av lösenord ber vi dig bortse från detta mail och lämna det utan åtgärd.
 
 Aktiveringslänk:
-[activating_link]"""
+[activating_link]
+
+This is an automatically generated information message, please do not reply to this email."""
 new_pw_email_sj =                 'Nya användaruppgifter till forumet'
 new_pw_email_txt =                """Hej [name],
 Här är dina nya användaruppgifter:
@@ -1107,7 +1126,9 @@ Lösenord: [password]
 Logga in via länken:
 [login_link]
 
-Lösenordet kan ändras efter att Du loggat in."""
+Lösenordet kan ändras efter att Du loggat in.
+
+This is an automatically generated information message, please do not reply to this email."""
 contact_email_txt =               """[message]
 
 -- 
