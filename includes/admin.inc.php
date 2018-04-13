@@ -1798,7 +1798,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
 			$smarty->assign('breadcrumbs', $breadcrumbs);
 			$smarty->assign('subnav_location', 'subnav_list_uploads');
-			if (isset($images)) {
+			if ($images) {
 				$smarty->assign('user_page_browse', $page_browse);
 				$smarty->assign('pagination', pagination($total_pages, $page_browse['page'], 3));
 				$smarty->assign('images_per_page', $page_browse['items_per_page']);
