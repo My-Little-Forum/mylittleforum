@@ -1,6 +1,17 @@
 my little forum changelog
 -------------------------
 
+2.4.9 (2018-04-13)
+------------------
+- fixed: use the function get_avatar also in the admin panel, used before only the code for the old file name scheme whcih leads to only displaying avatars with names in this old name scheme
+- fixed: avatar field in the user data form of the admin panel had no label because of missing string in the language files
+- fixed: adapt changed URL-parameter behaviour for folding threads to the JS-sources, didn't work with the switch instead the toggle
+- fixed: changed long date format for german language to month as number with leading zero, out written month name "März" can cause encoding problem on some servers
+- fixed: the deletion of entries about read postings was broken in the case of deletion after X days, used the old and removed setting name read_state_expiration_date instead read_state_expiration_value
+- added: sentence about automatic generation of e-mails to inform about new entries
+- added: make the mouse cursor a hand (pointer) when hovering over a (visible) label element
+- added: put pixel dimensions of uploaded images into the HTMl source, when included in entries, prevents page jumping during load process for only this case(!)
+
 2.4.8 (2018-02-18)
 ------------------
 - fixed double closing tag of a select in the admin.inc.tpl
