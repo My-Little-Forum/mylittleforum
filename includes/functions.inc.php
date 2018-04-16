@@ -2649,7 +2649,8 @@ function checkUpdate($currentVersion = '0.0') {
 				'title'   => (string)$title[0],
 				'content' => (string)$content[0],
 				'version' => (string)$lastVersion,
-				'uri'     => $baseURI . (string)$releaseURI[0]->href
+				//'uri'     => $baseURI . (string)$releaseURI[0]->href
+				'uri'     => (string)$releaseURI[0]->href
 			);
 
 			return $release;
