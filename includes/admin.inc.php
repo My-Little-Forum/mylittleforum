@@ -1013,7 +1013,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$page_browse['page'] = isset($_GET['page']) ? intval($_GET['page']) : 1;
 			$page_browse['page'] = ($page_browse['page'] > $total_pages) ? $total_pages : $page_browse['page'];
 			$page_browse['page'] = ($page_browse['page'] < 1) ? 1 : $page_browse['page'];
-			$page_browse['browse_array'][] = ($page > 5) ? 0 : 1;
+			$page_browse['browse_array'][] = ($page_browse['page'] > 5) ? 0 : 1;
 			for ($browse = $page_browse['page'] - 3; $browse < $page_browse['page'] + 4; $browse++) {
 				if ($browse > 1 && $browse < $total_pages) $page_browse['browse_array'][] = $browse;
 			}
@@ -1798,7 +1798,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
 			$smarty->assign('breadcrumbs', $breadcrumbs);
 			$smarty->assign('subnav_location', 'subnav_list_uploads');
-			if (isset($images)) {
+			if ($images) {
 				$smarty->assign('user_page_browse', $page_browse);
 				$smarty->assign('pagination', pagination($total_pages, $page_browse['page'], 3));
 				$smarty->assign('images_per_page', $page_browse['items_per_page']);
