@@ -861,8 +861,8 @@ enable_smilies =                  'Включить смайлики'
 add_smiley =                      'Добавить смайлик:'
 add_smiley_code =                 'Код:'
 smilies_disabled =                'Смайлики отключены.'
-'
-# страницы:'
+
+# страницы:
 page_title =                      'Заголовок'
 page_content =                    'Содержание'
 page_content_desc =               'Для форматирования страницы можно использовать HTML'
@@ -878,8 +878,8 @@ page_doesnt_exist =               'Эта страница не существу
 delete_page_confirm =             'Вы действительно хотите удалить эту страницу?'
 delete_page_submit =              'Да, удалить'
 error_no_page_title =             'Отсутствует заголовок'
-'
-# управление пользователями:'
+
+# управление пользователями:
 user_name_empty =                 'Не указано имя пользователя'
 num_registerd_users =             '[number] зарегистрированных пользователей'
 user_id =                         'ID'
