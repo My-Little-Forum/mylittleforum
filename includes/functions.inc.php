@@ -108,7 +108,16 @@ function daily_actions($current_time=0) {
 		}
 		// if possible, load new version info from Github
 		if (isset($settings) && isset($settings['version'])) {
-			$latestRelease = checkUpdate($settings['version']);
+			// select stored version number from temp_infos_table (instead of the use of installed version)
+			$result = @mysqli_query($connid, "SELECT `value` FROM ".$db_settings['temp_infos_table']." WHERE `name` = 'last_version_check' LIMIT 1");
+			$lastCheckedVersion = '0.0';
+			if ($result && mysqli_num_rows($result) > 0) {
+				$data = mysqli_fetch_array($result);
+				$lastCheckedVersion = is_null($data['value']) ? $lastCheckedVersion : $data['value'];
+				mysqli_free_result($result);
+			}	
+			//$latestRelease = checkUpdate($settings['version']);
+			$latestRelease = checkUpdate($lastCheckedVersion);
 			if ($latestRelease !== false) {
 				@mysqli_query($connid, "INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`, `time`) VALUES ('last_version_check', '" . mysqli_real_escape_string($connid, $latestRelease->version) . "', NOW()) ON DUPLICATE KEY UPDATE `value` = '" . mysqli_real_escape_string($connid, $latestRelease->version) . "', `time` = NOW();");
 				@mysqli_query($connid, "INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`) VALUES ('last_version_uri', '" . mysqli_real_escape_string($connid, $latestRelease->uri) . "') ON DUPLICATE KEY UPDATE `value` = '" . mysqli_real_escape_string($connid, $latestRelease->uri) . "';");
@@ -2615,7 +2624,7 @@ function isInfamousEmail($email) {
  * returns the description of the latest version, if the current
  * version is not the latest one otherwise false
  *
- * @return String $currentVersion
+ * @param String $currentVersion
  * @return mix $releaseInfo
  */
 function checkUpdate($currentVersion = '0.0') {
@@ -2635,7 +2644,7 @@ function checkUpdate($currentVersion = '0.0') {
 		//$lastVersion = preg_replace ("/.+\/v/u", "", $lastVersion[0]);
 		$lastVersion = preg_replace("/.*?([^\/v?]+$)/u", "$1", $lastVersion[0]);
 
-		if (empty($updateDateOfInstalledVersion ))
+		if (empty($updateDateOfInstalledVersion))
 			$updateDateOfInstalledVersion = 0;
 		else
 			$updateDateOfInstalledVersion = strtotime($updateDateOfInstalledVersion[0]);
@@ -2652,7 +2661,6 @@ function checkUpdate($currentVersion = '0.0') {
 				//'uri'     => $baseURI . (string)$releaseURI[0]->href
 				'uri'     => (string)$releaseURI[0]->href
 			);
-
 			return $release;
 		}
 	}
