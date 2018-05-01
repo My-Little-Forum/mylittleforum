@@ -1,13 +1,13 @@
 <?php
 /*************************************************************************************
- * html4strict.php
+ * html5.php
  * ---------------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.9.0
  * Date Started: 2004/07/10
  *
- * HTML 4.01 strict language file for GeSHi.
+ * HTML 5 language file for GeSHi.
  *
  * CHANGES
  * -------
@@ -50,7 +50,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'HTML',
+    'LANG_NAME' => 'HTML5',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -58,42 +58,64 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         2 => array(
-            'a', 'abbr', 'acronym', 'address', 'applet', 'area',
-            'base', 'basefont', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'b',
-            'caption', 'center', 'cite', 'code', 'colgroup', 'col',
-            'dd', 'del', 'dfn', 'dir', 'div', 'dl', 'dt',
-            'em',
-            'fieldset', 'font', 'form', 'frame', 'frameset',
-            'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'hr', 'html',
+            'a', 'abbr', 'address', 'article', 'area', 'aside', 'audio',
+
+            'base', 'bdo', 'blockquote', 'body', 'br', 'button', 'b',
+
+            'caption', 'cite', 'code', 'colgroup', 'col', 'canvas', 'command', 'datalist', 'details',
+
+            'dd', 'del', 'dfn', 'div', 'dl', 'dt',
+
+            'em', 'embed',
+
+            'fieldset', 'form', 'figcaption', 'figure', 'footer',
+
+            'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'hr', 'html', 'header', 'hgroup',
+
             'iframe', 'ilayer', 'img', 'input', 'ins', 'isindex', 'i',
-            'kbd',
+
+            'kbd', 'keygen',
+
             'label', 'legend', 'link', 'li',
-            'map', 'meta',
-            'noframes', 'noscript',
-            'object', 'ol', 'optgroup', 'option',
-            'param', 'pre', 'p',
+
+            'map', 'meta', 'mark', 'meter',
+
+            'noscript', 'nav',
+
+            'object', 'ol', 'optgroup', 'option', 'output',
+
+            'param', 'pre', 'p', 'progress',
+
             'q',
-            'samp', 'script', 'select', 'small', 'span', 'strike', 'strong', 'style', 'sub', 'sup', 's',
-            'table', 'tbody', 'td', 'textarea', 'text', 'tfoot', 'thead', 'th', 'title', 'tr', 'tt',
-            'ul', 'u',
-            'var',
+
+            'rp', 'rt', 'ruby',
+
+            'samp', 'script', 'select', 'small', 'span', 'strong', 'style', 'sub', 'sup', 's', 'section', 'source', 'summary',
+
+            'table', 'tbody', 'td', 'textarea', 'text', 'tfoot', 'thead', 'th', 'title', 'tr', 'time',
+
+            'ul',
+
+            'var', 'video',
+
+            'wbr',
             ),
         3 => array(
-            'abbr', 'accept-charset', 'accept', 'accesskey', 'action', 'align', 'alink', 'alt', 'archive', 'axis',
+            'abbr', 'accept-charset', 'accept', 'accesskey', 'action', 'align', 'alink', 'alt', 'archive', 'axis', 'autocomplete', 'autofocus',
             'background', 'bgcolor', 'border',
-            'cellpadding', 'cellspacing', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords',
-            'data', 'datetime', 'declare', 'defer', 'dir', 'disabled',
+            'cellpadding', 'cellspacing', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords', 'contenteditable', 'contextmenu',
+            'data', 'datetime', 'declare', 'defer', 'dir', 'disabled', 'draggable', 'dropzone',
             'enctype',
-            'face', 'for', 'frame', 'frameborder',
-            'headers', 'height', 'href', 'hreflang', 'hspace', 'http-equiv',
+            'face', 'for', 'frame', 'frameborder', 'form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget',
+            'headers', 'height', 'href', 'hreflang', 'hspace', 'http-equiv', 'hidden',
             'id', 'ismap',
             'label', 'lang', 'language', 'link', 'longdesc',
-            'marginheight', 'marginwidth', 'maxlength', 'media', 'method', 'multiple',
-            'name', 'nohref', 'noresize', 'noshade', 'nowrap',
-            'object', 'onblur', 'onchange', 'onclick', 'ondblclick', 'onfocus', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onmousedown', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onreset', 'onselect', 'onsubmit', 'onunload',
-            'profile', 'prompt',
-            'readonly', 'rel', 'rev', 'rowspan', 'rows', 'rules',
-            'scheme', 'scope', 'scrolling', 'selected', 'shape', 'size', 'span', 'src', 'standby', 'start', 'style', 'summary',
+            'marginheight', 'marginwidth', 'maxlength', 'media', 'method', 'multiple', 'min', 'max',
+            'name', 'nohref', 'noresize', 'noshade', 'nowrap', 'novalidate',
+            'object', 'onblur', 'onchange', 'onclick', 'ondblclick', 'onfocus', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onmousedown', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onselect', 'onsubmit', 'onunload', 'onafterprint', 'onbeforeprint', 'onbeforeonload', 'onerror', 'onhaschange', 'onmessage', 'onoffline', 'ononline', 'onpagehide', 'onpageshow', 'onpopstate', 'onredo', 'onresize', 'onstorage', 'onundo', 'oncontextmenu', 'onformchange', 'onforminput', 'oninput', 'oninvalid', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onmousewheel', 'onscroll', 'oncanplay', 'oncanplaythrough', 'ondurationchange', 'onemptied', 'onended', 'onloadeddata', 'onloadedmetadata', 'onloadstart', 'onpause', 'onplay', 'onplaying', 'onprogress', 'onratechange', 'onreadystatechange', 'onseeked', 'onseeking', 'onstalled', 'onsuspend', 'ontimeupdate', 'onvolumechange', 'onwaiting',
+            'profile', 'prompt', 'pattern', 'placeholder',
+            'readonly', 'rel', 'rev', 'rowspan', 'rows', 'rules', 'required',
+            'scheme', 'scope', 'scrolling', 'selected', 'shape', 'size', 'span', 'src', 'standby', 'start', 'style', 'summary', 'spellcheck', 'step',
             'tabindex', 'target', 'text', 'title', 'type',
             'usemap',
             'valign', 'value', 'valuetype', 'version', 'vlink', 'vspace',
@@ -186,5 +208,3 @@ $language_data = array (
         )
     )
 );
-
-?>
