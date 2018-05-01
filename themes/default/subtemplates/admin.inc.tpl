@@ -76,8 +76,13 @@
 <td class="d"><p><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $settings.terms_of_use_agreement==1} checked="checked"{/if} /><label id="terms_of_use_agreement_label" for="terms_of_use_agreement" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_settings_enabled#}</label></p>
 <p><label id="terms_of_use_url_label" for="terms_of_use_url" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_url#}</label><br /><input id="terms_of_use_url" type="text" name="terms_of_use_url" value="{$settings.terms_of_use_url|escape}" size="40" /></p></td>
 </tr>
-
 <tr>
+<td class="c"><strong>{#data_privacy_statement#}</strong><br /><span class="small">{#data_privacy_statement_desc#}</span></td>
+<td class="d"><p><input id="data_privacy_agreement" type="checkbox" name="data_privacy_agreement" value="1"{if $settings.data_privacy_agreement==1} checked="checked"{/if} /><label id="data_privacy_agreement_label" for="data_privacy_agreement" class="{if $settings.data_privacy_agreement==1}active{else}inactive{/if}">{#data_privacy_settings_enabled#}</label></p>
+<p><label id="data_privacy_url_label" for="data_privacy_statement_url" class="{if $settings.data_privacy_agreement==1}active{else}inactive{/if}">{#data_privacy_url#}</label><br /><input id="data_privacy_statement_url" type="text" name="data_privacy_statement_url" value="{$settings.data_privacy_statement_url|escape}" size="40" /></p></td>
+</tr>
+
+<tr>_
 <td class="c"><strong>{#accession#}</strong><br /><span class="small">{#accession_desc#}</span></td>
 <td class="d"><input id="access_for_all" type="radio" name="access_for_users_only" value="0"{if $settings.access_for_users_only==0} checked="checked"{/if} /><label id="access_for_all_label" for="access_for_all" class="{if $settings.access_for_users_only==0}active{else}inactive{/if}">{#all_users#}</label><br />
 <input id="access_for_users_only" type="radio" name="access_for_users_only" value="1"{if $settings.access_for_users_only==1} checked="checked"{/if} /><label id="access_for_users_only_label" for="access_for_users_only" class="{if $settings.access_for_users_only==1}active{else}inactive{/if}">{#only_registered_users#}</label></td>
