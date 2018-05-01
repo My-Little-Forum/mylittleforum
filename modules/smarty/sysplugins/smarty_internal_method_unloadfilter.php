@@ -22,11 +22,12 @@ class Smarty_Internal_Method_UnloadFilter extends Smarty_Internal_Method_LoadFil
      * @param  string                                                         $type filter type
      * @param  string                                                         $name filter name
      *
-     * @return bool
+     * @return Smarty_Internal_TemplateBase
+     * @throws \SmartyException
      */
     public function unloadFilter(Smarty_Internal_TemplateBase $obj, $type, $name)
     {
-        $smarty = isset($obj->smarty) ? $obj->smarty : $obj;
+        $smarty = $obj->_getSmartyObj();
         $this->_checkFilterType($type);
         if (isset($smarty->registered_filters[ $type ])) {
             $_filter_name = "smarty_{$type}filter_{$name}";
