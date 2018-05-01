@@ -9,7 +9,7 @@ my little forum
 System requirements
 -------------------
 
-* Webserver with PHP >= 5.4 and MySQL >= 4.1
+* Webserver with PHP >= 5.4 and MySQL >= 5.0
 
 Installation
 ------------
