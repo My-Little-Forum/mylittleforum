@@ -38,11 +38,11 @@ class Smarty_Internal_Method_RegisterPlugin
     public function registerPlugin(Smarty_Internal_TemplateBase $obj, $type, $name, $callback, $cacheable = true,
                                    $cache_attr = null)
     {
-        $smarty = isset($obj->smarty) ? $obj->smarty : $obj;
+        $smarty = $obj->_getSmartyObj();
         if (isset($smarty->registered_plugins[ $type ][ $name ])) {
-            throw new SmartyException("Plugin tag \"{$name}\" already registered");
+            throw new SmartyException("Plugin tag '{$name}' already registered");
         } elseif (!is_callable($callback)) {
-            throw new SmartyException("Plugin \"{$name}\" not callable");
+            throw new SmartyException("Plugin '{$name}' not callable");
         } else {
             $smarty->registered_plugins[ $type ][ $name ] = array($callback, (bool) $cacheable, (array) $cache_attr);
         }

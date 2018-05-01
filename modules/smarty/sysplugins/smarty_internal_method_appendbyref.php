@@ -27,7 +27,7 @@ class Smarty_Internal_Method_AppendByRef
      */
     public static function appendByRef(Smarty_Internal_Data $data, $tpl_var, &$value, $merge = false)
     {
-        if ($tpl_var != '' && isset($value)) {
+        if ($tpl_var !== '' && isset($value)) {
             if (!isset($data->tpl_vars[ $tpl_var ])) {
                 $data->tpl_vars[ $tpl_var ] = new Smarty_Variable();
             }
@@ -41,7 +41,7 @@ class Smarty_Internal_Method_AppendByRef
             } else {
                 $data->tpl_vars[ $tpl_var ]->value[] = &$value;
             }
-            if ($data->_objType == 2 && $data->scope) {
+            if ($data->_isTplObj() && $data->scope) {
                 $data->ext->_updateScope->_updateScope($data, $tpl_var);
             }
         }
