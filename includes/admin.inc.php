@@ -820,6 +820,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if (empty($_POST['count_users_online'])) $_POST['count_users_online'] = 0;
 		if (empty($_POST['rss_feed'])) $_POST['rss_feed'] = 0;
 		if (empty($_POST['terms_of_use_agreement'])) $_POST['terms_of_use_agreement'] = 0;
+		if (empty($_POST['data_privacy_agreement'])) $_POST['data_privacy_agreement'] = 0;
 		if (empty($_POST['forum_enabled'])) $_POST['forum_enabled'] = 0;
 		if (empty($_POST['user_edit_if_no_replies'])) $_POST['user_edit_if_no_replies'] = 0;
 		if (empty($_POST['time_zone'])) $_POST['time_zone'] = '';
