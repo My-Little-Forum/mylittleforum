@@ -250,6 +250,7 @@ error_invalid_form =        'Session udløbet! Kopier venligst teksten og log in
 error_form_sent_too_fast =  'Formularen blev sendt for hurtigt - vent venligst nogle sekunder og prøv igen (automatiseret formular sendings beskyttelse)'
 error_form_sent_too_slow =  'Formularen er ikke gyldig længere - kopier venligst teksten og opdater siden'
 terms_of_use_agreement =    'Jeg er enig med [[bruger betingelserne]]'
+data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
 error_not_accepted_word =   'Ikke accepteret ord: [not_accepted_word]'
 error_not_accepted_words =  'Ikke accepterede ord: [not_accepted_words]'
 error_username_invalid_chars = 'Brugernavnet indeholder specialtegn'

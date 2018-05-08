@@ -251,6 +251,7 @@ error_invalid_form =              'Сессия просрочена! Пожал
 error_form_sent_too_fast =        'Форма была отправлена слишком быстро - пожалуйста, подождите несколько секунд и повторите отправку (работает защита от автоматического заполнения форм)'
 error_form_sent_too_slow =        'Форма уже не актуальна - пожалуйста, скопируйте текст и обновите страницу'
 terms_of_use_agreement =          'Я согласен с [[Правилами пользования]]'
+data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
 error_not_accepted_word =         'Неприемлемое слово: [not_accepted_word]'
 error_not_accepted_words =        'Неприемлемые слова: [not_accepted_words]'
 error_username_invalid_chars =    'Имя пользователя содержит специальные символы'

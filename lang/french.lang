@@ -239,6 +239,7 @@ error_invalid_form =              'La session a expiré! Veuillez copier le text
 error_form_sent_too_fast =        'Le formulaire a été envoyé trop rapidement - attendez quelques secondes et recommencez (protection contre les robots)'
 error_form_sent_too_slow =        'Le formulaire n\'est plus valide - veuillez copier le texte et recharger la page'
 terms_of_use_agreement =          'J\'accepte les [[conditions d\'utilisation]]'
+data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
 error_not_accepted_word =         'Mot non autorisé : [not_accepted_word]'
 error_not_accepted_words =        'Mots non autorisés : [not_accepted_words]'
 error_username_invalid_chars =    'Le nom de l\'utilisateur contient des caractères spéciaux'

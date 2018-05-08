@@ -242,6 +242,7 @@ error_invalid_form =              '<!-- TODO -->Invalid request - please try aga
 error_form_sent_too_fast =        'Form çok hızlı gönderildi - lütfen bir kaç saniye bekleyip tekrar deneyiniz (otomatik form gönderim koruması)'
 error_form_sent_too_slow =        'Form artık geçerli değil - lütfen metni kopyalayıp sayfayı tekrar yenileyiniz'
 terms_of_use_agreement =          '[[terms of use]] metnini kabul ediyorum'
+data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
 error_not_accepted_word =         'Kabul edilmeyen kelime: [not_accepted_word]'
 error_not_accepted_words =        'Kabul edilmeyen kelimeler: [not_accepted_words]'
 error_username_invalid_chars =    '<!-- TODO -->The user name contains invalid characters'

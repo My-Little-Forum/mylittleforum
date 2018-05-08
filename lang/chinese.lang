@@ -239,6 +239,7 @@ error_invalid_form =              'Session失效! 请拷贝文本并登陆, 或�
 error_form_sent_too_fast =        '提交表单间隔太短. 请稍后再试.'
 error_form_sent_too_slow =        '表单已失效. 请拷贝文本后刷新本页面.'
 terms_of_use_agreement =          '我接受论坛规则 [[terms of use]]'
+data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
 error_not_accepted_word =         '敏感词: [not_accepted_word]'
 error_not_accepted_words =        '敏感词: [not_accepted_words]'
 error_username_invalid_chars =    '<!-- TODO -->The user name contains special characters'

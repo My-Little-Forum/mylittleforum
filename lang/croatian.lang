@@ -236,6 +236,7 @@ error_invalid_form =              'Prijava je istekla! Kopirajte tekst i nanovo 
 error_form_sent_too_fast =        'Obrazac je poslan prerano - počekajte par sekundi i pokušajte opet (prevencija automatskog popunjavanja obrasca)'
 error_form_sent_too_slow =        'Obrazac više ne vrijedi - kopirajte sadržaj i osvježite stranicu'
 terms_of_use_agreement =          'Prihvaćam [[terms of use]]'
+data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
 error_not_accepted_word =         'Riječ nije prihvaćena: [not_accepted_word]'
 error_not_accepted_words =        'Riječi nisu prihvaćene: [not_accepted_words]'
 error_username_invalid_chars =    'Korisničko ime sadrži nedopuštene znakove'
