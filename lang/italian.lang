@@ -235,6 +235,7 @@ error_invalid_form =              'Sessione scaduta! Si prega di copiare il test
 error_form_sent_too_fast =        'Il form è stato spedito troppo velocemente - si prega di attendere qualche secondo e riprovare (sistema di prevenzione contro messaggi automatici)'
 error_form_sent_too_slow =        'Il form non è più valido - si prega di copiare il testo è aggiornare la pagina'
 terms_of_use_agreement =          'Accetto i [[termini di utilizzo]]'
+data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
 error_not_accepted_word =         'Parola non accettata: [not_accepted_word]'
 error_not_accepted_words =        'Parole non accettate: [not_accepted_words]'
 error_username_invalid_chars =    '<!-- TODO -->The user name contains special characters'

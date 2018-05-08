@@ -246,6 +246,7 @@ error_invalid_form =              'Sessionen har upphört! Vänligen kopiera inl
 error_form_sent_too_fast =        'Inlägget postades för fort - vänligen vänta en stund och försök sedan igen! (skydd mot automatiserad spam)'
 error_form_sent_too_slow =        'Formuläret är inte giltigt längre - vänligen kopiera texten och uppdatera sidan!'
 terms_of_use_agreement =          'Ja, jag godkänner [[terms of use]]'
+data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
 error_not_accepted_word =         'Ordet accepteras inte: [not_accepted_word]'
 error_not_accepted_words =        'Ordet accepteras inte: [not_accepted_words]'
 error_username_invalid_chars =    'Användarnamnet innehåller ogiltiga tecken!'

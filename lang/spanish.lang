@@ -237,6 +237,7 @@ error_invalid_form =              'La sesion ha caducado! Por favor, copie el te
 error_form_sent_too_fast =        'El formulario se presento muy rapido - por favor, espere unos segundos y vuelva a intentarlo (Sistema Automatizado de prevencion de envio de formularios)'
 error_form_sent_too_slow =        'La formulario no es valido - Por favor, copia el texto y vuelva a cargar la pagina '
 terms_of_use_agreement =          'Estoy de acuerdo [[T&Condiciones de uso]]'
+data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
 error_not_accepted_word =         'Palabra no aceptada: [not_accepted_word]'
 error_not_accepted_words =        'Palabras no aceptadas: [not_accepted_words]'
 error_username_invalid_chars =    'El nombre de usuario contiene caracteres especiales'

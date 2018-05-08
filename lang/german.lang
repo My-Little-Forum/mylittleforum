@@ -236,6 +236,7 @@ error_invalid_form =              'ungültiges Formular versendet - bitte nochma
 error_form_sent_too_fast =        'Formular zu schnell abgesendet - bitte ein paar Sekunden warten und erneut absenden (Maßnahme zur Vermeidung automatisierter Einträge)'
 error_form_sent_too_slow =        'Formular nicht mehr gültig - bitte Text kopieren und die Seite neu laden'
 terms_of_use_agreement =          'Ich bin mit den [[Nutzungsbedingungen]] einverstanden'
+data_privacy_agreement =          'Ich akzeptiere die [[Datenschutzerklärung]]'
 error_not_accepted_word =         'nicht akzeptiertes Wort: [not_accepted_word]'
 error_not_accepted_words =        'nicht akzeptierte Wörter: [not_accepted_words]'
 error_username_invalid_chars =    'der Benutzername enthält ungültige Zeichen'
