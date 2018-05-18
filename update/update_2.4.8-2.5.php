@@ -29,10 +29,10 @@ switch($settings['version']) {
 		$update['items'][] = 'lang/';                                                  #364
 		
 	case '2.4.9':
-		$update['items'][] = 'includes/functions.inc.php';                             #latex
-		$update['items'][] = 'includes/js_defaults.inc.php';                           #latex
-		$update['items'][] = 'themes/default/main.tpl';                                #latex
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';            #latex                                    #364
+		$update['items'][] = 'includes/functions.inc.php';                             #377
+		$update['items'][] = 'includes/js_defaults.inc.php';                           #377
+		$update['items'][] = 'themes/default/main.tpl';                                #377
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';            #377
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
