@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.4.8');
+$update['version'] = array('2.4.8', '2.4.9');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -27,6 +27,12 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';              #364
 		$update['items'][] = 'themes/default/images/image.png';                        #364
 		$update['items'][] = 'lang/';                                                  #364
+		
+	case '2.4.9':
+		$update['items'][] = 'includes/functions.inc.php';                             #377
+		$update['items'][] = 'includes/js_defaults.inc.php';                           #377
+		$update['items'][] = 'themes/default/main.tpl';                                #377
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';            #377
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
@@ -92,6 +98,15 @@ if (empty($update['errors'])) {
 
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.8'))) {
 	if(!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('uploads_per_page', '20');")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+}
+
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.8', '2.4.9'))) {
+	if(!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "DELETE FROM `".$db_settings['settings_table']."` WHERE name = 'bbcode_tex';")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
