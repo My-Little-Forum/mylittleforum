@@ -96,7 +96,7 @@ switch ($action) {
 				if ($settings['terms_of_use_agreement'] == 1 && $terms_of_use_agree != 1)
 					$errors[] = 'terms_of_use_error_register';
 				if ($settings['data_privacy_agreement'] == 1 && $data_privacy_statement_agree != 1)
-					$errors[] = 'data_privacy_error_register';
+					$errors[] = 'data_priv_statement_error_reg';
 
 				if (contains_special_characters($new_user_name)) 
 					$errors[] = 'error_username_invalid_chars';
