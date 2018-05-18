@@ -200,7 +200,7 @@ JavaScript isn't available.
 <dt id="flash" title="{#bbcode_flash_label#}">{#bbcode_flash_title#}</dt>
 <dd>{#bbcode_flash_instruction#}</dd>
 {/if}
-{if $settings.bbcode_latex}
+{if $settings.bbcode_latex && $settings.bbcode_latex_uri}
 <dt id="tex" title="{#bbcode_tex_label#}">{#bbcode_tex_title#}</dt>
 <dd>{#bbcode_tex_instruction#}</dd>
 {/if}
