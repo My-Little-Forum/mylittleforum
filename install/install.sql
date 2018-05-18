@@ -56,7 +56,6 @@ INSERT INTO mlf2_settings VALUES ('bbcode_img', '1');
 INSERT INTO mlf2_settings VALUES ('bbcode_color', '1');
 INSERT INTO mlf2_settings VALUES ('bbcode_size', '1');
 INSERT INTO mlf2_settings VALUES ('bbcode_code', '0');
-INSERT INTO mlf2_settings VALUES ('bbcode_tex', '0');
 INSERT INTO mlf2_settings VALUES ('bbcode_flash', '0');
 INSERT INTO mlf2_settings VALUES ('flash_default_width', '425');
 INSERT INTO mlf2_settings VALUES ('flash_default_height', '344');
@@ -139,6 +138,9 @@ INSERT INTO mlf2_settings VALUES ('ajax_preview', '1');
 INSERT INTO mlf2_settings VALUES ('read_state_expiration_value', '500');
 INSERT INTO mlf2_settings VALUES ('read_state_expiration_method', '0');
 INSERT INTO mlf2_settings VALUES ('uploads_per_page', '20');
+INSERT INTO mlf2_settings VALUES ('bbcode_latex', '0');
+INSERT INTO mlf2_settings VALUES ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
+
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (2, 2, 'wink.png', ';-)', '', '', '', '', '');

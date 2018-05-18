@@ -491,20 +491,15 @@ function do_bbcode_img($action, $attributes, $content, $params, $node_object) {
 }
 
 /**
- * processes BBCode tex
+ * processes BBCode latex
  */
-function do_bbcode_tex($action, $attributes, $content, $params, $node_object)
- {
-  global $settings;
-  if ($action == 'validate')
-   {
-    return true;
-   }
-  else
-   {
-    return '<img src="'.str_replace('&','&amp;',$settings['bbcode_tex']).urlencode($content).'" alt="'.htmlspecialchars($content).'" />';
-   }
- }
+function do_bbcode_tex($action, $attributes, $content, $params, $node_object) {
+	//global $settings;
+	if ($action == 'validate')
+		return true;
+	else
+		return '<span class="tex2jax_process">$' . $content . '$</span>';
+}
 
 /**
  * processes BBCode flash
@@ -1025,7 +1020,7 @@ function html_format($string)
       $bbcode->addCode ('flash', 'usecontent', 'do_bbcode_flash', array (), 'flash', array ('block', 'quote'), array ());
       #$bbcode->setCodeFlag ('flash', 'paragraph_type', BBCODE_PARAGRAPH_BLOCK_ELEMENT);
      }
-    if($settings['bbcode_tex'])
+    if($settings['bbcode_latex']==1 && !empty($settings['bbcode_latex_uri']))
      {
       $bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
      }
@@ -1117,7 +1112,7 @@ function email_format($string)
       $bbcode->addCode ('inlinecode', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
       $bbcode->addCode ('monospace', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
      }
-    if($settings['bbcode_tex'])
+    if($settings['bbcode_latex']==1 && !empty($settings['bbcode_latex_uri']))
      {
       $bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex_email', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
      }
