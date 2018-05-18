@@ -70,6 +70,9 @@
 {if $terms_of_use_agreement}
 <input type="hidden" id="terms_of_use_required" value="true" />
 {/if}
+{if $data_privacy_agreement}
+<input type="hidden" id="data_privacy_agreement_required" value="true" />
+{/if}
 
 {if $form_type==0}
 <fieldset>
@@ -229,7 +232,7 @@ JavaScript isn't available.
 </div>
 </fieldset>
 
-{if $signature || $provide_email_notification || $provide_sticky || $terms_of_use_agreement}
+{if $signature || $provide_email_notification || $provide_sticky || $terms_of_use_agreement || $data_privacy_agreement}
 <fieldset>
 {if $signature}
 <p>
@@ -255,6 +258,12 @@ JavaScript isn't available.
 <input id="terms_of_use_agree" tabindex="8" type="checkbox" name="terms_of_use_agree" value="1"{if $terms_of_use_agree && $terms_of_use_agree==1} checked="checked"{/if} />&nbsp;<label for="terms_of_use_agree">{if $terms_of_use_url}{#terms_of_use_agreement#|replace:"[[":"<a id=\"terms_of_use\" href=\"$terms_of_use_url\">"|replace:"]]":"</a>"}{else}{#terms_of_use_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label>
 </p>
 {/if}
+{if $data_privacy_agreement}
+{assign var=data_privacy_statement_url value=$settings.data_privacy_statement_url}
+<p>
+<input id="data_privacy_statement_agree" tabindex="9" type="checkbox" name="data_privacy_statement_agree" value="1"{if $data_privacy_statement_agree && $data_privacy_statement_agree==1} checked="checked"{/if} />&nbsp;<label for="data_privacy_statement_agree">{if $data_privacy_statement_url}{#data_privacy_agreement#|replace:"[[":"<a id=\"data_privacy_statement\" href=\"$data_privacy_statement_url\">"|replace:"]]":"</a>"}{else}{#data_privacy_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label>
+</p>
+{/if}
 </fieldset>
 {/if}
 
@@ -266,13 +275,13 @@ JavaScript isn't available.
 <label for="captcha_code">{#captcha_expl_image#}</label><br />
 <input id="captcha_code" type="text" name="captcha_code" value="" size="10" tabindex="9" /></p>
 {else}
-<p><label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" maxlength="5" tabindex="9" /></p>
+<p><label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" maxlength="5" tabindex="10" /></p>
 {/if}
 </fieldset>
 {/if}
 
 <fieldset>
-<p><input type="submit" name="save_entry" value="{#message_submit_button#}" title="{#message_submit_title#}" tabindex="10" />&nbsp;<input type="submit" name="preview" value="{#message_preview_button#}" title="{#message_preview_title#}" tabindex="11" /> <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
+<p><input type="submit" name="save_entry" value="{#message_submit_button#}" title="{#message_submit_title#}" tabindex="11" />&nbsp;<input type="submit" name="preview" value="{#message_preview_button#}" title="{#message_preview_title#}" tabindex="11" /> <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
 </fieldset>
 
 </div>

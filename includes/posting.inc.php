@@ -458,6 +458,8 @@ switch ($action) {
 			$smarty->assign('action', htmlspecialchars($action));
 			if ($settings['terms_of_use_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
 				$smarty->assign('terms_of_use_agreement', true);
+			if ($settings['data_privacy_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
+				$smarty->assign('data_privacy_agreement', true);
 			
 			if (isset($_SESSION[$settings['session_prefix'] . 'user_id']) || $settings['email_notification_unregistered'] == 1)
 				$smarty->assign('provide_email_notification', true);
@@ -522,6 +524,7 @@ switch ($action) {
 			if (empty($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 				$setcookie          = isset($_POST['setcookie']) && intval($_POST['setcookie'] == 1) ? 1 : 0;
 				$terms_of_use_agree = isset($_POST['terms_of_use_agree']) && intval($_POST['terms_of_use_agree'] == 1) ? 1 : 0;
+				$data_privacy_agree = isset($_POST['data_privacy_statement_agree']) && intval($_POST['data_privacy_statement_agree'] == 1) ? 1 : 0;
 			} else {
 				$show_signature = isset($_POST['show_signature']) && intval($_POST['show_signature'] == 1) ? 1 : 0;
 			}
@@ -811,6 +814,8 @@ switch ($action) {
 				if (empty($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 					if ($settings['terms_of_use_agreement'] == 1 && $terms_of_use_agree != 1)
 						$errors[] = 'terms_of_use_error_posting';
+					if ($settings['data_privacy_agreement'] == 1 && $data_privacy_agree != 1)
+						$errors[] = 'data_priv_statement_error_post';
 				}
 			}
 			
@@ -1070,6 +1075,10 @@ switch ($action) {
 					$smarty->assign("terms_of_use_agreement", true);
 				if (isset($terms_of_use_agree))
 					$smarty->assign('terms_of_use_agree', intval($terms_of_use_agree));
+				if ($settings['data_privacy_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
+					$smarty->assign("data_privacy_agreement", true);
+				if (isset($data_privacy_statement_agree))
+					$smarty->assign('data_privacy_statement_agree', intval($data_privacy_statement_agree));
 				$smarty->assign('preview_text', $preview_text);
 				$smarty->assign('preview_subject', htmlspecialchars($subject));
 				$_SESSION[$settings['session_prefix'] . 'formtime'] = TIMESTAMP - 7; // 7 seconds credit for preview
@@ -1117,6 +1126,10 @@ switch ($action) {
 					$smarty->assign("terms_of_use_agreement", true);
 				if (isset($terms_of_use_agree))
 					$smarty->assign('terms_of_use_agree', intval($terms_of_use_agree));
+				if ($settings['data_privacy_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
+					$smarty->assign("data_privacy_agreement", true);
+				if (isset($data_privacy_statement_agree))
+					$smarty->assign('data_privacy_statement_agree', intval($data_privacy_statement_agree));
 				$_SESSION[$settings['session_prefix'] . 'formtime'] = TIMESTAMP - 7; // 7 seconds credit (form already sent)
 				$smarty->assign('subtemplate', 'posting.inc.tpl');
 			}
@@ -1196,6 +1209,8 @@ switch ($action) {
 			$smarty->assign('posting_mode', 1);
 			if ($settings['terms_of_use_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
 				$smarty->assign("terms_of_use_agreement", true);
+			if ($settings['data_privacy_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
+				$smarty->assign("data_privacy_agreement", true);
 		}
 		
 		if ($field['user_id'] > 0) {
