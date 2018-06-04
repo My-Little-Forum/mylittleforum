@@ -141,6 +141,8 @@ INSERT INTO mlf2_settings VALUES ('read_state_expiration_method', '0');
 INSERT INTO mlf2_settings VALUES ('uploads_per_page', '20');
 INSERT INTO mlf2_settings VALUES ('data_privacy_agreement', '0');
 INSERT INTO mlf2_settings VALUES ('data_privacy_statement_url', '');
+INSERT INTO mlf2_settings VALUES ('bbcode_latex', '0');
+INSERT INTO mlf2_settings VALUES ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (2, 2, 'wink.png', ';-)', '', '', '', '', '');
