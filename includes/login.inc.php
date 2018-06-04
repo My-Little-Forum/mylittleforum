@@ -170,6 +170,56 @@ switch ($action) {
 		header("location: index.php");
 		exit;
 	break;
+	case "dps":
+		# the user has to accept (again) the data privacy statement
+		if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			# user is logged in and accepting of the data privacy statement is necessary
+			$resultDPS = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
+			$feld = mysqli_fetch_assoc($resultDPS);
+			if ($feld['dps_accepted'] === NULL) {
+				# display the form for accepting the data privacy statement
+				$action = 'show_dps';
+			} else {
+				# data privacy statement was accepted before, redirect
+				if ($settings['terms_of_use_agreement'] == 1 && $feld['tou_accepted'] === NULL) {
+					$redir = 'index.php?mode=login&action=tou';
+				} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+					$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
+				} else {
+					$redir = 'index.php';
+				}
+			}
+		} else {
+			# redirect to the index view
+			header("location: index.php");
+			exit;
+		}
+	break;
+	case "tou":
+		# the user has to accept (again) the terms of use
+		if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			# user is logged in and accepting of the terms of use agreement is necessary
+			$resultTOU = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
+			$feld = mysqli_fetch_assoc($resultTOU);
+			if ($feld['tou_accepted'] === NULL) {
+				# display the form for accepting the terms of use agreement
+				$action = 'show_tou';
+			} else {
+				# terms of use agreement was accepted before, redirect
+				if ($settings['data_privacy_agreement'] == 1 && $feld['dps_accepted'] === NULL) {
+					$redir = 'index.php?mode=login&action=tou';
+				} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+					$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
+				} else {
+					$redir = 'index.php';
+				}
+			}
+		} else {
+			# redirect to the index view
+			header("location: index.php");
+			exit;
+		}
+	break;
 	case "pw_forgotten_submitted":
 		if (trim($_POST['pwf_email']) == '') $error = true;
 		if (empty($error)) {
