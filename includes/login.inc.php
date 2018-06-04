@@ -44,7 +44,7 @@ if ($settings['temp_block_ip_after_repeated_failed_logins'] > 0) {
 switch ($action) {
 	case "do_login":
 		if (isset($request_username) && isset($request_userpw)) {
-			$result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '". mysqli_real_escape_string($connid, my_strtolower($request_username, $lang['charset'])) ."'") or raise_error('database_error', mysqli_error($connid));
+			$result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, tou_accepted, dps_accepted FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '". mysqli_real_escape_string($connid, my_strtolower($request_username, $lang['charset'])) ."'") or raise_error('database_error', mysqli_error($connid));
 			if (mysqli_num_rows($result) == 1) {
 				$feld = mysqli_fetch_array($result);
 				if (is_pw_correct($request_userpw, $feld['user_pw'])) {
@@ -131,7 +131,11 @@ switch ($action) {
 						@mysqli_query($connid, "DELETE FROM ".$db_settings['useronline_table']." WHERE ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."'");
 					}
 
-					if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+					if ($settings['data_privacy_agreement'] == 1 && $feld['dps_accepted'] === NULL) {
+						$redir = 'index.php?mode=login&action=dps';
+					} else if ($settings['terms_of_use_agreement'] == 1 && $feld['tou_accepted'] === NULL) {
+						$redir = 'index.php?mode=login&action=tou';
+					} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
 						$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
 					} else if (isset($_POST['back']) && isset($_POST['id'])) {
 						$redir = 'index.php?mode='.$_POST['back'].'&id='.$_POST['id'].'&back=entry';
