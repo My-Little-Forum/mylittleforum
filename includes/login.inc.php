@@ -316,5 +316,17 @@ switch($action) {
 		$smarty->assign('subtemplate', 'login.inc.tpl');
 		$template = 'main.tpl';
 	break;
+	case "show_dps":
+		$smarty->assign('show_dps_page', true);
+		$smarty->assign('subnav_location', 'subnav_accept_dps');
+		$smarty->assign('subtemplate', 'user_agreement.inc.tpl');
+		$template = 'main.tpl';
+	break;
+	case "show_tou":
+		$smarty->assign('show_tou_page', true);
+		$smarty->assign('subnav_location', 'subnav_accept_tou');
+		$smarty->assign('subtemplate', 'user_agreement.inc.tpl');
+		$template = 'main.tpl';
+	break;
 }
 ?>
