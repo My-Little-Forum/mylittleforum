@@ -47,6 +47,19 @@ else
 // determine mode:
 if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 	// registered user
+	// enforce the agreement to the data privacy statement or terms of use
+	$resultAGR = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
+	$feld = mysqli_fetch_assoc($resultAGR);
+	if ($settings['data_privacy_agreement'] == 1 && $feld['dps_accepted'] === NULL) {
+		header('Location: index.php?mode=login&action=dps');
+		exit;
+	} else if ($settings['terms_of_use_agreement'] == 1 && $feld['tou_accepted'] === NULL) {
+		header('Location: index.php?mode=login&action=tou');
+		exit;
+	}
+	@mysqli_free_result($resultAGR);
+	unset($feld);
+	//select the mode
 	if ($posting_mode == 1) {
 		// edit
 		if (isset($_GET['edit']))
