@@ -174,7 +174,7 @@ switch ($action) {
 	break;
 	case "dps":
 		# the user has to accept (again) the data privacy statement
-		if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+		if ($settings['data_privacy_agreement'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			# user is logged in and accepting of the data privacy statement is necessary
 			$resultDPS = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
 			$feld = mysqli_fetch_assoc($resultDPS);
@@ -201,7 +201,7 @@ switch ($action) {
 	break;
 	case "tou":
 		# the user has to accept (again) the terms of use
-		if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+		if ($settings['terms_of_use_agreement'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			# user is logged in and accepting of the terms of use agreement is necessary
 			$resultTOU = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
 			$feld = mysqli_fetch_assoc($resultTOU);
@@ -227,7 +227,7 @@ switch ($action) {
 		}
 	break;
 	case "dps_agreement":
-		if (isset($_POST['agreed']) && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+		if ($settings['data_privacy_agreement'] == 1 && isset($_POST['agreed']) && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			$resultDPS = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
 			$feld = mysqli_fetch_assoc($resultDPS);
 			if ($feld['dps_accepted'] === NULL) {
@@ -254,7 +254,7 @@ switch ($action) {
 		}
 	break;
 	case "tou_agreement":
-		if (isset($_POST['agreed']) && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+		if ($settings['terms_of_use_agreement'] == 1 && isset($_POST['agreed']) && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			$resultTOU = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
 			$feld = mysqli_fetch_assoc($resultTOU);
 			if ($feld['tou_accepted'] === NULL) {
