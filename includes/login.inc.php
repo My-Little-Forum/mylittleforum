@@ -188,6 +188,8 @@ switch ($action) {
 				} else {
 					$redir = 'index.php';
 				}
+				header('Location: '.$redir);
+				exit;
 			}
 		} else {
 			# redirect to the index view
@@ -213,6 +215,8 @@ switch ($action) {
 				} else {
 					$redir = 'index.php';
 				}
+				header('Location: '.$redir);
+				exit;
 			}
 		} else {
 			# redirect to the index view
