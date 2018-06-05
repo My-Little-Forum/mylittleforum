@@ -13,7 +13,7 @@
 {/if}
 <form method="post">
 <input type="hidden" name="sort_of_agreement" value="{$sort_agreement}" />
-<iframe src="{$agreement_url}" width="100%" height="380"></iframe>
+<iframe src="{$agreement_url}" width="100%" height="400"></iframe>
 <p>{$agreement_description}</p>
 <p><input type="submit" name="agreed" value="{#submit_button_agreed#}" /> <input type="submit" name="disagreed" value="{#submit_button_disagreed#}" /></p>
 </form>
