@@ -207,7 +207,7 @@ switch ($action) {
 			} else {
 				# terms of use agreement was accepted before, redirect
 				if ($settings['data_privacy_agreement'] == 1 && $feld['dps_accepted'] === NULL) {
-					$redir = 'index.php?mode=login&action=tou';
+					$redir = 'index.php?mode=login&action=dps';
 				} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
 					$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
 				} else {
