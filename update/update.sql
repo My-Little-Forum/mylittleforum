@@ -364,7 +364,12 @@ CREATE TABLE mlf2_tags (`id` int(11) NOT NULL AUTO_INCREMENT, `tag` varchar(255)
 
 */
 --------------------------------------------------------------------------------
--- 2.4.8 to 2.5
+-- 2.4.8 to 2.4.9
 /*
 INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20');
+*/
+--------------------------------------------------------------------------------
+-- 2.4.9 to 2.5
+/*
+INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
 */

@@ -39,9 +39,26 @@
 {if $mode=='admin'}
 <script src="{$FORUM_ADDRESS}/js/admin.min.js" type="text/javascript" charset="utf-8"></script>
 {/if}
+{if $settings.bbcode_latex && $settings.bbcode_latex_uri}
+<script type="text/javascript" async src="{$settings.bbcode_latex_uri}"></script>
+<script type="text/x-mathjax-config">/*<![CDATA[*/MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+        displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+		ignoreClass: "tex2jax_ignore",
+		processClass: "tex2jax_process",
+        processEscapes: true
+    },
+
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" }
+    }
+});
+/*!]]>*/</script>
+{/if}
 </head>
 
-<body>
+<body class="tex2jax_ignore">
 <!--[if IE]><div id="ie"><![endif]-->
 
 <div id="top">

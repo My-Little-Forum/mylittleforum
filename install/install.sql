@@ -56,7 +56,6 @@ INSERT INTO mlf2_settings VALUES ('bbcode_img', '1');
 INSERT INTO mlf2_settings VALUES ('bbcode_color', '1');
 INSERT INTO mlf2_settings VALUES ('bbcode_size', '1');
 INSERT INTO mlf2_settings VALUES ('bbcode_code', '0');
-INSERT INTO mlf2_settings VALUES ('bbcode_tex', '0');
 INSERT INTO mlf2_settings VALUES ('bbcode_flash', '0');
 INSERT INTO mlf2_settings VALUES ('flash_default_width', '425');
 INSERT INTO mlf2_settings VALUES ('flash_default_height', '344');
