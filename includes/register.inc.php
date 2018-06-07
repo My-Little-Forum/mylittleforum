@@ -28,8 +28,10 @@ if (isset($_GET['key']))
 switch ($action) {
 	case 'main':
 		if ($settings['register_mode'] < 2) {
-			if ($settings['terms_of_use_agreement'] == 1) 
+			if ($settings['terms_of_use_agreement'] == 1)
 				$smarty->assign("terms_of_use_agreement", true);
+			if ($settings['data_privacy_agreement'] == 1)
+				$smarty->assign("data_privacy_agreement", true);
 			$smarty->assign('subnav_location', 'subnav_register');
 			$smarty->assign('subtemplate', 'register.inc.tpl');
 			$template = 'main.tpl';
@@ -50,10 +52,8 @@ switch ($action) {
 			
 			$reg_pw = $_POST['reg_pw'];
 			$reg_pw_conf = $_POST['reg_pw_conf'];
-			if (isset($_POST['terms_of_use_agree']) && $_POST['terms_of_use_agree'] == 1) 
-				$terms_of_use_agree = 1; 
-			else 
-				$terms_of_use_agree = 0;
+			$terms_of_use_agree = (isset($_POST['terms_of_use_agree']) && $_POST['terms_of_use_agree'] == 1) ? 1 : 0;
+			$data_privacy_statement_agree = (isset($_POST['data_privacy_statement_agree']) && $_POST['data_privacy_statement_agree'] == 1) ? 1 : 0;
 
 			// form complete and are honey pot fields empty?
 			if ($new_user_name == '' || $new_user_email == '' || $reg_pw == '' || $reg_pw_conf == '' || !isset($_POST['repeat_email']) || !empty($_POST['repeat_email']) || !isset($_POST['phone']) || !empty($_POST['phone']))
@@ -93,8 +93,10 @@ switch ($action) {
 				if (!is_valid_email($new_user_email)) 
 					$errors[] = 'error_email_wrong';
 
-				if ($settings['terms_of_use_agreement'] == 1 && $terms_of_use_agree != 1) 
+				if ($settings['terms_of_use_agreement'] == 1 && $terms_of_use_agree != 1)
 					$errors[] = 'terms_of_use_error_register';
+				if ($settings['data_privacy_agreement'] == 1 && $data_privacy_statement_agree != 1)
+					$errors[] = 'data_priv_statement_error_reg';
 
 				if (contains_special_characters($new_user_name)) 
 					$errors[] = 'error_username_invalid_chars';
@@ -132,7 +134,7 @@ switch ($action) {
 					$user_lock = 1;
 				else 
 					$user_lock = 0;
-				@mysqli_query($connid, "INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, signature, profile, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, user_lock, auto_login_code, pwf_code, activate_code) VALUES (0, '". mysqli_real_escape_string($connid, $new_user_name) ."', '', '". mysqli_real_escape_string($connid, $pw_hash) ."', '". mysqli_real_escape_string($connid, $new_user_email) ."', '', '', '', '', ".$settings['default_email_contact'].", NULL, NOW(), '". mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) ."', NOW(), ". intval($settings['default_view']) .", ". intval($settings['fold_threads']) .", ". $user_lock .", '', '', '". mysqli_real_escape_string($connid, $activate_code_hash) ."')") or raise_error('database_error', mysqli_error($connid));
+				@mysqli_query($connid, "INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, signature, profile, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, user_lock, auto_login_code, pwf_code, activate_code, tou_accepted, dps_accepted) VALUES (0, '". mysqli_real_escape_string($connid, $new_user_name) ."', '', '". mysqli_real_escape_string($connid, $pw_hash) ."', '". mysqli_real_escape_string($connid, $new_user_email) ."', '', '', '', '', ".$settings['default_email_contact'].", NULL, NOW(), '". mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) ."', NOW(), ". intval($settings['default_view']) .", ". intval($settings['fold_threads']) .", ". $user_lock .", '', '', '". mysqli_real_escape_string($connid, $activate_code_hash) ."', ". ($terms_of_use_agree == 1 ? "NOW()" : "NULL") .", ". ($data_privacy_statement_agree == 1 ? "NOW()" : "NULL") .")") or raise_error('database_error', mysqli_error($connid));
 
 				// get new user ID:
 				$new_user_id_result = mysqli_query($connid, "SELECT user_id FROM ".$db_settings['userdata_table']." WHERE user_name = '". mysqli_real_escape_string($connid, $new_user_name) ."' LIMIT 1");
@@ -156,8 +158,7 @@ switch ($action) {
 				$smarty->assign('subnav_location', 'subnav_register');
 				$smarty->assign('subtemplate', 'info.inc.tpl');
 				$template = 'main.tpl';
-			} 
-			else {
+			} else {
 				$smarty->assign('errors', $errors);
 				if (isset($too_long_word)) 
 					$smarty->assign('word', $too_long_word);
@@ -167,8 +168,10 @@ switch ($action) {
 				$smarty->assign('new_user_email',  htmlspecialchars($new_user_email));
 				$smarty->assign('honey_pot_email', htmlspecialchars(isset($_POST['repeat_email']) ? $_POST['repeat_email'] : ''));
 				$smarty->assign('honey_pot_phone', htmlspecialchars(isset($_POST['phone'])   ? $_POST['phone']   : ''));
-				if ($settings['terms_of_use_agreement'] == 1) 
+				if ($settings['terms_of_use_agreement'] == 1)
 					$smarty->assign("terms_of_use_agreement", true);
+				if ($settings['data_privacy_agreement'] == 1)
+					$smarty->assign("data_privacy_agreement", true);
 				$template = 'main.tpl';
 			}
 		}

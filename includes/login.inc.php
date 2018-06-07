@@ -6,6 +6,8 @@ if(!defined('IN_INDEX')) {
 
 if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
 if (isset($_POST['pwf_submit'])) $action = 'pw_forgotten_submitted';
+if (isset($_POST['sort_of_agreement']) && $_POST['sort_of_agreement'] === 'dps_agreement') $action = 'dps_agreement';
+if (isset($_POST['sort_of_agreement']) && $_POST['sort_of_agreement'] === 'tou_agreement') $action = 'tou_agreement';
 
 // import posted or got username and password:
 if (isset($_POST['username']) && trim($_POST['username']) != '') $request_username = $_POST['username'];
@@ -44,7 +46,7 @@ if ($settings['temp_block_ip_after_repeated_failed_logins'] > 0) {
 switch ($action) {
 	case "do_login":
 		if (isset($request_username) && isset($request_userpw)) {
-			$result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '". mysqli_real_escape_string($connid, my_strtolower($request_username, $lang['charset'])) ."'") or raise_error('database_error', mysqli_error($connid));
+			$result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, tou_accepted, dps_accepted FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '". mysqli_real_escape_string($connid, my_strtolower($request_username, $lang['charset'])) ."'") or raise_error('database_error', mysqli_error($connid));
 			if (mysqli_num_rows($result) == 1) {
 				$feld = mysqli_fetch_array($result);
 				if (is_pw_correct($request_userpw, $feld['user_pw'])) {
@@ -131,7 +133,11 @@ switch ($action) {
 						@mysqli_query($connid, "DELETE FROM ".$db_settings['useronline_table']." WHERE ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."'");
 					}
 
-					if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+					if ($settings['data_privacy_agreement'] == 1 && $feld['dps_accepted'] === NULL) {
+						$redir = 'index.php?mode=login&action=dps';
+					} else if ($settings['terms_of_use_agreement'] == 1 && $feld['tou_accepted'] === NULL) {
+						$redir = 'index.php?mode=login&action=tou';
+					} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
 						$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
 					} else if (isset($_POST['back']) && isset($_POST['id'])) {
 						$redir = 'index.php?mode='.$_POST['back'].'&id='.$_POST['id'].'&back=entry';
@@ -165,6 +171,114 @@ switch ($action) {
 		log_out($_SESSION[$settings['session_prefix'].'user_id']);
 		header("location: index.php");
 		exit;
+	break;
+	case "dps":
+		# the user has to accept (again) the data privacy statement
+		if ($settings['data_privacy_agreement'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			# user is logged in and accepting of the data privacy statement is necessary
+			$resultDPS = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
+			$feld = mysqli_fetch_assoc($resultDPS);
+			if ($feld['dps_accepted'] === NULL) {
+				# display the form for accepting the data privacy statement
+				$action = 'show_dps';
+			} else {
+				# data privacy statement was accepted before, redirect
+				if ($settings['terms_of_use_agreement'] == 1 && $feld['tou_accepted'] === NULL) {
+					$redir = 'index.php?mode=login&action=tou';
+				} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+					$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
+				} else {
+					$redir = 'index.php';
+				}
+				header('Location: '.$redir);
+				exit;
+			}
+		} else {
+			# redirect to the index view
+			header("location: index.php");
+			exit;
+		}
+	break;
+	case "tou":
+		# the user has to accept (again) the terms of use
+		if ($settings['terms_of_use_agreement'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			# user is logged in and accepting of the terms of use agreement is necessary
+			$resultTOU = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
+			$feld = mysqli_fetch_assoc($resultTOU);
+			if ($feld['tou_accepted'] === NULL) {
+				# display the form for accepting the terms of use agreement
+				$action = 'show_tou';
+			} else {
+				# terms of use agreement was accepted before, redirect
+				if ($settings['data_privacy_agreement'] == 1 && $feld['dps_accepted'] === NULL) {
+					$redir = 'index.php?mode=login&action=dps';
+				} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+					$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
+				} else {
+					$redir = 'index.php';
+				}
+				header('Location: '.$redir);
+				exit;
+			}
+		} else {
+			# redirect to the index view
+			header("location: index.php");
+			exit;
+		}
+	break;
+	case "dps_agreement":
+		if ($settings['data_privacy_agreement'] == 1 && isset($_POST['agreed']) && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			$resultDPS = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
+			$feld = mysqli_fetch_assoc($resultDPS);
+			if ($feld['dps_accepted'] === NULL) {
+				$writeDPS = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET dps_accepted = NOW() WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
+			}
+			# data privacy statement got accepted, redirect
+			if ($settings['terms_of_use_agreement'] == 1 && $feld['tou_accepted'] === NULL) {
+				$redir = 'index.php?mode=login&action=tou';
+			} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+				$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
+			} else {
+				$redir = 'index.php';
+			}
+			header('Location: '.$redir);
+			exit;
+		} else {
+			if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+				$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
+			} else {
+				$redir = 'index.php';
+			}
+			header('Location: '.$redir);
+			exit;
+		}
+	break;
+	case "tou_agreement":
+		if ($settings['terms_of_use_agreement'] == 1 && isset($_POST['agreed']) && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			$resultTOU = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
+			$feld = mysqli_fetch_assoc($resultTOU);
+			if ($feld['tou_accepted'] === NULL) {
+				$writeTOU = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET tou_accepted = NOW() WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
+			}
+			# terms of use got accepted, redirect
+			if ($settings['data_privacy_agreement'] == 1 && $feld['dps_accepted'] === NULL) {
+				$redir = 'index.php?mode=login&action=dps';
+			} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+				$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
+			} else {
+				$redir = 'index.php';
+			}
+			header('Location: '.$redir);
+			exit;
+		} else {
+			if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
+				$redir = $_SESSION[$settings['session_prefix'].'last_visited_uri'];
+			} else {
+				$redir = 'index.php';
+			}
+			header('Location: '.$redir);
+			exit;
+		}
 	break;
 	case "pw_forgotten_submitted":
 		if (trim($_POST['pwf_email']) == '') $error = true;
@@ -260,6 +374,18 @@ switch($action) {
 		$smarty->assign('ip_temporarily_blocked', true);
 		$smarty->assign('subnav_location', 'subnav_login');
 		$smarty->assign('subtemplate', 'login.inc.tpl');
+		$template = 'main.tpl';
+	break;
+	case "show_dps":
+		$smarty->assign('show_dps_page', true);
+		$smarty->assign('subnav_location', 'subnav_accept_dps');
+		$smarty->assign('subtemplate', 'user_agreement.inc.tpl');
+		$template = 'main.tpl';
+	break;
+	case "show_tou":
+		$smarty->assign('show_tou_page', true);
+		$smarty->assign('subnav_location', 'subnav_accept_tou');
+		$smarty->assign('subtemplate', 'user_agreement.inc.tpl');
 		$template = 'main.tpl';
 	break;
 }
