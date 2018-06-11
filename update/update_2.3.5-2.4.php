@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8');
+$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -168,6 +168,20 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/style.css';                             // #365
 		$update['items'][] = 'themes/default/style.min.css';                         // #370
 		$update['items'][] = 'includes/functions.inc.php';                           // #366, #368, #369
+	case '2.4.9':
+		$update['items'][] = 'lang/';                                                // #371, #375
+		$update['items'][] = 'includes/functions.inc.php';                           // #372, #373
+		$update['items'][] = 'modules/bad-behavior';                                 // #374
+		$update['items'][] = 'modules/geshi';                                        // #374
+		$update['items'][] = 'modules/smarty';                                       // #374
+		$update['items'][] = 'includes/admin.inc.php';                               // #375
+		$update['items'][] = 'includes/login.inc.php';                               // #375
+		$update['items'][] = 'includes/posting.inc.php';                             // #375
+		$update['items'][] = 'includes/register.inc.php';                            // #375
+		$update['items'][] = 'themes/default/admin.inc.tpl';                         // #375
+		$update['items'][] = 'themes/default/posting.inc.tpl';                       // #375
+		$update['items'][] = 'themes/default/register.inc.tpl';                      // #375
+		$update['items'][] = 'themes/default/user_agreement.inc.tpl';                // #375
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
@@ -498,6 +512,21 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 	}
 	else {
 		$update['errors'][] = "File ./config/db_settings.php not found or unwritable. New database tables '" . htmlspecialchars($table_prefix) . "bookmark_tags_table', '" . htmlspecialchars($table_prefix) . "entry_tags_table' and '" . htmlspecialchars($table_prefix) . "tags_table' could not be added!";
+	}
+}
+
+if(empty($update['errors']) && in_array($settings['version'],array('2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9'))) {
+	$userDataAgeements = @mysqli_query($connid, "ALTER TABLE ".$db_settings['userdata_table']." ADD tou_accepted DATETIME NULL DEFAULT NULL, ADD dps_accepted DATETIME NULL DEFAULT NULL");
+	
+	if ($userDataAgeements === false) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	} else {
+		if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('data_privacy_agreement', '0')")) {
+			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+		}
+		if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('data_privacy_statement_url', '')")) {
+			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+		}
 	}
 }
 

@@ -364,3 +364,9 @@ CREATE TABLE mlf2_tags (`id` int(11) NOT NULL AUTO_INCREMENT, `tag` varchar(255)
 
 */
 --------------------------------------------------------------------------------
+-- 2.4.9 to 2.4.10
+/*
+ALTER TABLE mlf2_userdata ADD tou_accepted DATETIME NULL DEFAULT NULL, ADD dps_accepted DATETIME NULL DEFAULT NULL;
+INSERT INTO mlf2_settings VALUES ('data_privacy_agreement', '0');
+INSERT INTO mlf2_settings VALUES ('data_privacy_statement_url', '');
+*/
