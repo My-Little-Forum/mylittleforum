@@ -148,6 +148,6 @@ INSERT INTO mlf2_smilies VALUES (4, 4, 'biggrin.png', ':-D', '', '', '', '', '')
 INSERT INTO mlf2_smilies VALUES (5, 5, 'neutral.png', ':-|', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (6, 6, 'frown.png', ':-(', '', '', '', '', '');
 
-INSERT INTO mlf2_userdata VALUES (1, 2, 'admin', '', 0, NULL, 'c3ccb88dc0a985b9b5da20bb9333854194dfbc7767d91c6936', 'admin@example.com', 1, '', '', '', '', 0, NULL, NULL, '', NOW(), NULL, 0, 0, 1, 0, 0, 0, 0, 0, '', '', '', '', '', 0, '');
+INSERT INTO mlf2_userdata VALUES (1, 2, 'admin', '', 0, NULL, 'c3ccb88dc0a985b9b5da20bb9333854194dfbc7767d91c6936', 'admin@example.com', 1, '', '', '', '', 0, NULL, NULL, '', NOW(), NULL, 0, 0, 1, 0, 0, 0, 0, 0, '', '', '', '', '', 0, '', NULL, NULL);
 
 
