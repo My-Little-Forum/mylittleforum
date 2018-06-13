@@ -164,7 +164,7 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #bottombar #tagcloud p   { padding:10px; }
 #bottombar .xsmall       { font-size:0.82em; }
 #bottombar #mod-options  { padding:10px; }
-
+input[name=sort_of_agreement] + iframe { height: 400px; height: 60vh; }
 #usersonline             { background:#f9f9f9; border:1px solid #bacbdf; margin:20px 0 20px 0; }
 #usersonline h3          { font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 5px 0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px; }
 #usersonline p           { margin:0; padding:7px 5px 7px 5px; font-size:0.82em; line-height:1.5em; }
