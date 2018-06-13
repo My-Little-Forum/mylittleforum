@@ -1,6 +1,15 @@
 my little forum changelog
 -------------------------
 
+2.4.10 (2018-06-13)
+-------------------
+- fixed: the russian language had a few syntax errors, introduced with the reformatting of the language files (2.4.7)
+- fixed: the version check in the admin panel was broken, when the update was executed before the forum itself found the new version on Github
+- fixed: the meta element for the charset definition moved to top of the title to apply also for the title
+- feature: make it possible to force an agreement to a data privacy statement in the same manner as with the terms of rules
+- feature: store the date of the agreement (data privacy statement and/or terms of use) with the users data
+- feature: enforce a new agreement to adata privacy statement and/or terms of use with the deletion of the timestamp of the old agreement (no user interface yet!)
+
 2.4.9 (2018-04-13)
 ------------------
 - fixed: use the function get_avatar also in the admin panel, used before only the code for the old file name scheme whcih leads to only displaying avatars with names in this old name scheme
