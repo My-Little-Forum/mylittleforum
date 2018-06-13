@@ -9,6 +9,10 @@ my little forum changelog
 - feature: make it possible to force an agreement to a data privacy statement in the same manner as with the terms of rules
 - feature: store the date of the agreement (data privacy statement and/or terms of use) with the users data
 - feature: enforce a new agreement to adata privacy statement and/or terms of use with the deletion of the timestamp of the old agreement (no user interface yet!)
+- change: actualised Bad Behavior from 2.2.19 to version 2.2.20
+- change: actualised GesHi from 1.0.8.11 to version 1.0.9
+- change: actualised Smarty from 3.1.30 to version 3.1.32
+- change: because of the minimal system requirement for Bad Behavior the minimal MySQL version raises to 5.0
 
 2.4.9 (2018-04-13)
 ------------------
