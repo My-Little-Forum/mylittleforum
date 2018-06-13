@@ -98,7 +98,7 @@ switch ($action) {
 				if ($settings['data_privacy_agreement'] == 1 && $data_privacy_statement_agree != 1)
 					$errors[] = 'data_priv_statement_error_reg';
 
-				if (contains_special_characters($new_user_name)) 
+				if (contains_special_characters($new_user_name))
 					$errors[] = 'error_username_invalid_chars';
 			}
 
@@ -115,11 +115,11 @@ switch ($action) {
 			// CAPTCHA check:
 			if (empty($errors) && empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha_register'] > 0) {
 				if ($settings['captcha_register'] == 2) {
-					if (empty($_SESSION['captcha_session']) || empty($_POST['captcha_code']) || $captcha->check_captcha($_SESSION['captcha_session'], $_POST['captcha_code']) != true) 
+					if (empty($_SESSION['captcha_session']) || empty($_POST['captcha_code']) || $captcha->check_captcha($_SESSION['captcha_session'], $_POST['captcha_code']) != true)
 						$errors[] = 'captcha_check_failed';
 				} 
 				else {
-					if (empty($_SESSION['captcha_session']) || empty($_POST['captcha_code']) || $captcha->check_math_captcha($_SESSION['captcha_session'][2], $_POST['captcha_code']) != true) 
+					if (empty($_SESSION['captcha_session']) || empty($_POST['captcha_code']) || $captcha->check_math_captcha($_SESSION['captcha_session'][2], $_POST['captcha_code']) != true)
 						$errors[] = 'captcha_check_failed';
 				}
 				unset($_SESSION['captcha_session']);
@@ -130,9 +130,9 @@ switch ($action) {
 				$pw_hash = generate_pw_hash($reg_pw);
 				$activate_code = random_string(20);
 				$activate_code_hash = generate_pw_hash($activate_code);
-				if ($settings['register_mode'] == 1) 
+				if ($settings['register_mode'] == 1)
 					$user_lock = 1;
-				else 
+				else
 					$user_lock = 0;
 				@mysqli_query($connid, "INSERT INTO ".$db_settings['userdata_table']." (user_type, user_name, user_real_name, user_pw, user_email, user_hp, user_location, signature, profile, email_contact, last_login, last_logout, user_ip, registered, user_view, fold_threads, user_lock, auto_login_code, pwf_code, activate_code, tou_accepted, dps_accepted) VALUES (0, '". mysqli_real_escape_string($connid, $new_user_name) ."', '', '". mysqli_real_escape_string($connid, $pw_hash) ."', '". mysqli_real_escape_string($connid, $new_user_email) ."', '', '', '', '', ".$settings['default_email_contact'].", NULL, NOW(), '". mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) ."', NOW(), ". intval($settings['default_view']) .", ". intval($settings['fold_threads']) .", ". $user_lock .", '', '', '". mysqli_real_escape_string($connid, $activate_code_hash) ."', ". ($terms_of_use_agree == 1 ? "NOW()" : "NULL") .", ". ($data_privacy_statement_agree == 1 ? "NOW()" : "NULL") .")") or raise_error('database_error', mysqli_error($connid));
 
@@ -160,7 +160,7 @@ switch ($action) {
 				$template = 'main.tpl';
 			} else {
 				$smarty->assign('errors', $errors);
-				if (isset($too_long_word)) 
+				if (isset($too_long_word))
 					$smarty->assign('word', $too_long_word);
 				$smarty->assign('subnav_location', 'subnav_register');
 				$smarty->assign('subtemplate', 'register.inc.tpl');
