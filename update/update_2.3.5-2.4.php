@@ -178,10 +178,10 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/login.inc.php';                               // #375
 		$update['items'][] = 'includes/posting.inc.php';                             // #375
 		$update['items'][] = 'includes/register.inc.php';                            // #375
-		$update['items'][] = 'themes/default/admin.inc.tpl';                         // #375
-		$update['items'][] = 'themes/default/posting.inc.tpl';                       // #375
-		$update['items'][] = 'themes/default/register.inc.tpl';                      // #375
-		$update['items'][] = 'themes/default/user_agreement.inc.tpl';                // #375
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #375
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';          // #375
+		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #375
+		$update['items'][] = 'themes/default/subtemplates/user_agreement.inc.tpl';   // #375
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
