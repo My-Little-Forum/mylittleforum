@@ -82,7 +82,7 @@
 <p><label id="data_privacy_url_label" for="data_privacy_statement_url" class="{if $settings.data_privacy_agreement==1}active{else}inactive{/if}">{#data_privacy_url#}</label><br /><input id="data_privacy_statement_url" type="text" name="data_privacy_statement_url" value="{$settings.data_privacy_statement_url|escape}" size="40" /></p></td>
 </tr>
 
-<tr>_
+<tr>
 <td class="c"><strong>{#accession#}</strong><br /><span class="small">{#accession_desc#}</span></td>
 <td class="d"><input id="access_for_all" type="radio" name="access_for_users_only" value="0"{if $settings.access_for_users_only==0} checked="checked"{/if} /><label id="access_for_all_label" for="access_for_all" class="{if $settings.access_for_users_only==0}active{else}inactive{/if}">{#all_users#}</label><br />
 <input id="access_for_users_only" type="radio" name="access_for_users_only" value="1"{if $settings.access_for_users_only==1} checked="checked"{/if} /><label id="access_for_users_only_label" for="access_for_users_only" class="{if $settings.access_for_users_only==1}active{else}inactive{/if}">{#only_registered_users#}</label></td>
