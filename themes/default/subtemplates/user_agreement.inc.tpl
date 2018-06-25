@@ -4,7 +4,7 @@
 {assign var="agreement_description" value={#data_priv_statement_error_reconf#}}
 {elseif $show_tou_page}
 {assign var="sort_agreement" value="tou_agreement"}
-{assign var="agreement_url" value=$settings.data_privacy_statement_url}
+{assign var="agreement_url" value=$settings.terms_of_use_url}
 {assign var="agreement_description" value={#terms_of_use_error_reconf#}}
 {else}
 {assign var="sort_agreement" value=""}
