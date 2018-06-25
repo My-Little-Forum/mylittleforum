@@ -7,7 +7,7 @@
  * @author Michael Lösler (https://github.com/derletztekick)
  * @author H. August (https://github.com/auge8472)
  * @copyright 2006-2018 Mark Alexander Hoschek
- * @version 2.4.10 (2018-06-11)
+ * @version 2.4.11 (2018-06-25)
  * @link https://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
