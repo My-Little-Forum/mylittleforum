@@ -1,6 +1,11 @@
 my little forum changelog
 -------------------------
 
+2.4.11 (2018-06-25)
+-------------------
+- fixed: used the wrong setting for the terms-of-use-URL in the new template user_agreement.inc.tpl because of a copy'n'paste error, one was unable to read the terms of use before accepting it
+- fixed: a lost underscore in the admin template
+
 2.4.10 (2018-06-13)
 -------------------
 - fixed: the russian language had a few syntax errors, introduced with the reformatting of the language files (2.4.7)
