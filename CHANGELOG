@@ -1,6 +1,10 @@
 my little forum changelog
 -------------------------
 
+2.4.12 (2018-06-29)
+-------------------
+- fixed array of update targets for versions 2.4.10 and 2.4.11 because versions from 2.3.5 to 2.3.7 got no update of the table structure
+
 2.4.11 (2018-06-25)
 -------------------
 - fixed: used the wrong setting for the terms-of-use-URL in the new template user_agreement.inc.tpl because of a copy'n'paste error, one was unable to read the terms of use before accepting it
