@@ -556,9 +556,9 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 }
 
 if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9'))) {
-	$userDataAgeements = @mysqli_query($connid, "ALTER TABLE ".$db_settings['userdata_table']." ADD tou_accepted DATETIME NULL DEFAULT NULL, ADD dps_accepted DATETIME NULL DEFAULT NULL");
+	$userDataAgreements = @mysqli_query($connid, "ALTER TABLE ".$db_settings['userdata_table']." ADD tou_accepted DATETIME NULL DEFAULT NULL, ADD dps_accepted DATETIME NULL DEFAULT NULL");
 	
-	if ($userDataAgeements === false) {
+	if ($userDataAgreements === false) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	} else {
 		if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('data_privacy_agreement', '0')")) {
