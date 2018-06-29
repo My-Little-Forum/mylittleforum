@@ -569,6 +569,35 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3
 		}
 	}
 }
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.10', '2.4.11'))) {
+	$fields = @mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['userdata_table'] ."` WHERE Field = 'dps_accepted'");
+	if (mysqli_num_rows($fields) == 0) {
+		$privacyAgreement = @mysqli_query($connid, "ALTER TABLE ".$db_settings['userdata_table']." ADD dps_accepted DATETIME NULL DEFAULT NULL");
+		if ($privacyAgreement === false) {
+			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+		}
+	}
+	$fields = NULL;
+	$fields = @mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['userdata_table'] ."` WHERE Field = 'tou_accepted'");
+	if (mysqli_num_rows($fields) === 0) {
+		if (!@mysqli_query($connid, "ALTER TABLE ".$db_settings['userdata_table']." ADD tou_accepted DATETIME NULL DEFAULT NULL")) {
+			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+		}
+	}
+	$settingUpdate = @mysqli_query($conn, "SELECT value FROM `".$db_settings['settings_table']."` WHERE name = 'data_privacy_agreement'");
+	if (mysqli_num_rows($settingUpdate) === 0) {
+		if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('data_privacy_agreement', '0')")) {
+			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+		}
+	}
+	$settingUpdate = NULL;
+	$settingUpdate = @mysqli_query($conn, "SELECT value FROM `".$db_settings['settings_table']."` WHERE name = 'data_privacy_statement_url'");
+	if (mysqli_num_rows($settingUpdate) === 0) {
+		if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('data_privacy_statement_url', '')")) {
+			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+		}
+	}
+}
 
 if(empty($update['errors'])) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
