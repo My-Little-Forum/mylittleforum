@@ -1393,7 +1393,7 @@ var ready = new (function () {
 			for (var i=0; i<els.length; i++) {
 				var el = els[i];
 				var li = el.parentNode;
-				var pLink = document.getFirstChildByElement(li, "a", ["ap", "reply", "thread", "replynew", "threadnew", "thread-sticky", "threadnew-sticky", "reply-search", "thread-search"]);
+				var pLink = document.getFirstChildByElement(li, "a", ["ap", "reply", "thread", "replynew", "threadnew", "thread-sticky", "threadnew-sticky", "reply-search", "thread-search", "thread-locked"]);
 				var pEmpty = !!document.getFirstChildByElement(li, "img", ["no-text"]);
 				var pid = parseInt( el.id.substring(1) );
 				if (!pid) 
