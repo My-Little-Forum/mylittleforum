@@ -17,22 +17,22 @@
 {if $captcha}<input type="hidden" name="{$captcha.session_name}" value="{$captcha.session_id}" />{/if}
 
 <p><label for="new_user_name" class="main">{#register_username#}</label><br />
-<input id="new_user_name" class="login" type="text" size="30" name="new_user_name" value="{$new_user_name|default:''}" maxlength="{$settings.username_maxlength}" tabindex="1" /></p>
+<input id="new_user_name" class="login" type="text" size="30" name="{$fld_user_name}" value="{$new_user_name|default:''}" maxlength="{$settings.username_maxlength}" tabindex="1" /></p>
 
 <p class="hp"><label for="phone" class="main">{#register_honeypot_field#}</label><br />
-<input id="phone" class="login" type="text" size="30" name="phone" value="{$honey_pot_phone|default:''}" maxlength="35" tabindex="-1" /></p>
+<input id="phone" class="login" type="text" size="30" name="{$fld_phone}" value="{$honey_pot_phone|default:''}" maxlength="35" tabindex="-1" /></p>
 
 <p><label for="new_user_email" class="main">{#register_user_email#}</label><br />
-<input id="new_user_email" class="login" type="text" size="30" name="new_user_email" value="{$new_user_email|default:''}" maxlength="{$settings.email_maxlength}" tabindex="2" /></p>
+<input id="new_user_email" class="login" type="text" size="30" name="{$fld_user_email}" value="{$new_user_email|default:''}" maxlength="{$settings.email_maxlength}" tabindex="2" /></p>
 
 <p class="hp"><label for="repeat_email" class="main">{#register_honeypot_field#}</label><br />
-<input id="repeat_email" class="login" type="text" size="30" name="repeat_email" value="{$honey_pot_email|default:''}" maxlength="{$settings.email_maxlength}" tabindex="-1" /></p>
+<input id="repeat_email" class="login" type="text" size="30" name="{$fld_repeat_email}" value="{$honey_pot_email|default:''}" maxlength="{$settings.email_maxlength}" tabindex="-1" /></p>
 
 <p><label for="reg_pw" class="main">{#register_pw#}</label><br />
-<input id="reg_pw" class="login" type="password" size="30" name="reg_pw" maxlength="255" tabindex="3" /></p>
+<input id="reg_pw" class="login" type="password" size="30" name="{$fld_pword}" maxlength="255" tabindex="3" /></p>
 
 <p><label for="reg_pw_conf" class="main">{#register_pw_conf#}</label><br />
-<input id="reg_pw_conf" class="login" type="password" size="30" name="reg_pw_conf" maxlength="255" tabindex="4" /></p>
+<input id="reg_pw_conf" class="login" type="password" size="30" name="{$fld_pwconf}" maxlength="255" tabindex="4" /></p>
 
 {if $terms_of_use_agreement}
 {assign var=terms_of_use_url value=$settings.terms_of_use_url}
