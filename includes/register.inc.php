@@ -25,6 +25,13 @@ if (isset($_POST['register_submit']))
 if (isset($_GET['key'])) 
 	$action = 'activate';
 
+$fname_user = hash("sha256", 'new_user_name' . $_SESSION['csrf_token']);
+$fname_email = hash("sha256", 'new_user_email' . $_SESSION['csrf_token']);
+$fname_pword = hash("sha256", 'reg_pw' . $_SESSION['csrf_token']);
+$fname_pwconf = hash("sha256", 'reg_pw_conf' . $_SESSION['csrf_token']);
+$fname_phone = hash("sha256", 'phone' . $_SESSION['csrf_token']);
+$fname_repemail = hash("sha256", 'repeat_email' . $_SESSION['csrf_token']);
+
 switch ($action) {
 	case 'main':
 		if ($settings['register_mode'] < 2) {
@@ -34,6 +41,12 @@ switch ($action) {
 				$smarty->assign("data_privacy_agreement", true);
 			$smarty->assign('subnav_location', 'subnav_register');
 			$smarty->assign('subtemplate', 'register.inc.tpl');
+			$smarty->assign('fld_user_name', $fname_user);
+			$smarty->assign('fld_user_email', $fname_email);
+			$smarty->assign('fld_pword', $fname_pword);
+			$smarty->assign('fld_pwconf', $fname_pwconf);
+			$smarty->assign('fld_phone', $fname_phone);
+			$smarty->assign('fld_repeat_email', $fname_repemail);
 			$template = 'main.tpl';
 		} else {
 			$smarty->assign('lang_section', 'register');
@@ -47,16 +60,15 @@ switch ($action) {
 		if ($settings['register_mode'] > 1 || !isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) 
 			die('No authorisation!');
 		else {
-			$new_user_name  = trim($_POST['new_user_name']);
-			$new_user_email = trim($_POST['new_user_email']);
-			
-			$reg_pw = $_POST['reg_pw'];
-			$reg_pw_conf = $_POST['reg_pw_conf'];
+			$new_user_name  = trim($_POST[$fname_user]);
+			$new_user_email = trim($_POST[$fname_email]);
+			$reg_pw = $_POST[$fname_pword];
+			$reg_pw_conf = $_POST[$fname_pwconf];
 			$terms_of_use_agree = (isset($_POST['terms_of_use_agree']) && $_POST['terms_of_use_agree'] == 1) ? 1 : 0;
 			$data_privacy_statement_agree = (isset($_POST['data_privacy_statement_agree']) && $_POST['data_privacy_statement_agree'] == 1) ? 1 : 0;
 
 			// form complete and are honey pot fields empty?
-			if ($new_user_name == '' || $new_user_email == '' || $reg_pw == '' || $reg_pw_conf == '' || !isset($_POST['repeat_email']) || !empty($_POST['repeat_email']) || !isset($_POST['phone']) || !empty($_POST['phone']))
+			if ($new_user_name == '' || $new_user_email == '' || $reg_pw == '' || $reg_pw_conf == '' || !isset($_POST[$fname_repemail]) || !empty($_POST[$fname_repemail]) || !isset($_POST[$fname_phone]) || !empty($_POST[$fname_phone]))
 				$errors[] = 'error_form_uncomplete';
 
 			if (empty($errors)) {
@@ -164,10 +176,16 @@ switch ($action) {
 					$smarty->assign('word', $too_long_word);
 				$smarty->assign('subnav_location', 'subnav_register');
 				$smarty->assign('subtemplate', 'register.inc.tpl');
+				$smarty->assign('fld_user_name', $fname_user);
+				$smarty->assign('fld_user_email', $fname_email);
+				$smarty->assign('fld_pword', $fname_pword);
+				$smarty->assign('fld_pwconf', $fname_pwconf);
+				$smarty->assign('fld_phone', $fname_phone);
+				$smarty->assign('fld_repeat_email', $fname_repemail);
 				$smarty->assign('new_user_name',   htmlspecialchars($new_user_name));
 				$smarty->assign('new_user_email',  htmlspecialchars($new_user_email));
-				$smarty->assign('honey_pot_email', htmlspecialchars(isset($_POST['repeat_email']) ? $_POST['repeat_email'] : ''));
-				$smarty->assign('honey_pot_phone', htmlspecialchars(isset($_POST['phone'])   ? $_POST['phone']   : ''));
+				$smarty->assign('honey_pot_email', htmlspecialchars(isset($_POST[$fname_repemail]) ? $_POST[$fname_repemail] : ''));
+				$smarty->assign('honey_pot_phone', htmlspecialchars(isset($_POST[$fname_phone])   ? $_POST[$fname_phone]   : ''));
 				if ($settings['terms_of_use_agreement'] == 1)
 					$smarty->assign("terms_of_use_agreement", true);
 				if ($settings['data_privacy_agreement'] == 1)
