@@ -79,32 +79,32 @@
 
 <p>
 <label for="name" class="input">{#name_marking#}</label>
-<input id="name" type="text" size="40" name="name" value="{if $name}{$name}{/if}" maxlength="{$settings.username_maxlength}"  tabindex="1" />
+<input id="name" type="text" size="40" name="{$fld_user_name}" value="{if $name}{$name}{/if}" maxlength="{$settings.username_maxlength}"  tabindex="1" />
 </p>
 
 <p>
 <label for="email" class="input">{#email_marking#}</label>
-<input id="email" type="text" size="40" name="email" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="2" />&nbsp;<span class="xsmall">{#optional_email#}</span>
+<input id="email" type="text" size="40" name="{$fld_user_email}" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="2" />&nbsp;<span class="xsmall">{#optional_email#}</span>
 </p>
 
 <p class="hp">
 <label for="repeat_email" class="main">{#honeypot_field_marking#}</label>
-<input id="repeat_email" type="text" size="40" name="repeat_email" value="{if $honey_pot_email}{$honey_pot_email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="-1" />
+<input id="repeat_email" type="text" size="40" name="{$fld_repeat_email}" value="{if $honey_pot_email}{$honey_pot_email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="-1" />
 </p>
 
 <p>
 <label for="hp" class="input">{#hp_marking#}</label>
-<input id="hp" type="text" size="40" name="hp" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" tabindex="3" />&nbsp;<span class="xsmall">{#optional#}</span>
+<input id="hp" type="text" size="40" name="{$fld_hp}" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" tabindex="3" />&nbsp;<span class="xsmall">{#optional#}</span>
 </p>
 
 <p class="hp">
 <label for="phone" class="main">{#honeypot_field_marking#}</label>
-<input id="phone" class="login" type="text" size="30" name="phone" value="{if $honey_pot_phone}{$honey_pot_phone}{/if}" maxlength="35" tabindex="-1" />
+<input id="phone" class="login" type="text" size="30" name="{$fld_phone}" value="{if $honey_pot_phone}{$honey_pot_phone}{/if}" maxlength="35" tabindex="-1" />
 </p>
 
 <p>
 <label for="location" class="input">{#location_marking#}</label>
-<input id="location" type="text" size="40" name="location" value="{if $location}{$location}{/if}" maxlength="{$settings.location_maxlength}" tabindex="4" />&nbsp;<span class="xsmall">{#optional#}</span>
+<input id="location" type="text" size="40" name="{$fld_location}" value="{if $location}{$location}{/if}" maxlength="{$settings.location_maxlength}" tabindex="4" />&nbsp;<span class="xsmall">{#optional#}</span>
 </p>
 
 {if $settings.remember_userdata == 1 && $posting_mode==0 && !$user}
@@ -130,7 +130,7 @@
 {/if}
 
 <p><label for="subject" class="input">{#subject_marking#}</label>
-<input id="subject" type="text" size="50" name="subject" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" tabindex="6" />
+<input id="subject" type="text" size="50" name="{$fld_subject}" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" tabindex="6" />
 </p>
 
 {if ($admin ||$mod) && $settings.tags}

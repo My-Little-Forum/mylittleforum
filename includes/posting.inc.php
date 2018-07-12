@@ -300,6 +300,15 @@ if (isset($_POST['lock_submit']) && isset($_SESSION[$settings['session_prefix'] 
 	exit;
 }
 
+# generate the variable input field names
+$fname_user = hash("sha256", 'user_name' . $_SESSION['csrf_token']);
+$fname_email = hash("sha256", 'user_email' . $_SESSION['csrf_token']);
+$fname_phone = hash("sha256", 'phone' . $_SESSION['csrf_token']);
+$fname_repemail = hash("sha256", 'repeat_email' . $_SESSION['csrf_token']);
+$fname_hp = hash("sha256", 'hp' . $_SESSION['csrf_token']);
+$fname_loc = hash("sha256", 'location' . $_SESSION['csrf_token']);
+$fname_subject = hash("sha256", 'subject' . $_SESSION['csrf_token']);
+
 switch ($action) {
 	case 'bookmark_posting':
 		if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
@@ -469,6 +478,13 @@ switch ($action) {
 			$smarty->assign('id', intval($id));
 			$smarty->assign('back', htmlspecialchars($back));
 			$smarty->assign('action', htmlspecialchars($action));
+			$smarty->assign('fld_user_name', $fname_user);
+			$smarty->assign('fld_user_email', $fname_email);
+			$smarty->assign('fld_phone', $fname_phone);
+			$smarty->assign('fld_repeat_email', $fname_repemail);
+			$smarty->assign('fld_hp', $fname_hp);
+			$smarty->assign('fld_location', $fname_loc);
+			$smarty->assign('fld_subject', $fname_subject);
 			if ($settings['terms_of_use_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
 				$smarty->assign('terms_of_use_agreement', true);
 			if ($settings['data_privacy_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
@@ -509,7 +525,7 @@ switch ($action) {
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
 		}
 		// Honeypot - using 'default' error behavior; $_POST['name']) indicates a form for non-registered users
-		elseif (isset($_POST['name']) && (!isset($_POST['repeat_email']) || !empty($_POST['repeat_email']) || !isset($_POST['phone']) || !empty($_POST['phone']))) {
+		elseif (isset($_POST[$fname_user]) && (!isset($_POST[$fname_repemail]) || !empty($_POST[$fname_repemail]) || !isset($_POST[$fname_phone]) || !empty($_POST[$fname_phone]))) {
 			$smarty->assign('no_authorisation', 'no_auth_readonly');
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
 		}
@@ -527,13 +543,13 @@ switch ($action) {
 			// import, trim and complete data:
 			$uniqid             = isset($_POST['uniqid']) ? trim($_POST['uniqid']) : '';
 			$pid                = isset($_POST['pid']) ? intval($_POST['pid']) : 0;
-			$subject            = isset($_POST['subject']) ? trim($_POST['subject']) : '';
+			$subject            = isset($_POST[$fname_subject]) ? trim($_POST[$fname_subject]) : '';
 			$text               = isset($_POST['text']) ? trim($_POST['text']) : '';
 			$email_notification = isset($_POST['email_notification']) && intval($_POST['email_notification'] == 1) ? 1 : 0;
-			$email              = isset($_POST['email']) ? trim($_POST['email']) : '';
-			$hp                 = isset($_POST['hp']) ? trim($_POST['hp']) : '';
-			$location           = isset($_POST['location']) ? trim($_POST['location']) : '';
-			$name               = isset($_POST['name']) ? trim($_POST['name']) : '';
+			$email              = isset($_POST[$fname_email]) ? trim($_POST[$fname_email]) : '';
+			$hp                 = isset($_POST[$fname_hp]) ? trim($_POST[$fname_hp]) : '';
+			$location           = isset($_POST[$fname_loc]) ? trim($_POST[$fname_loc]) : '';
+			$name               = isset($_POST[$fname_user]) ? trim($_POST[$fname_user]) : '';
 			if (empty($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 				$setcookie          = isset($_POST['setcookie']) && intval($_POST['setcookie'] == 1) ? 1 : 0;
 				$terms_of_use_agree = isset($_POST['terms_of_use_agree']) && intval($_POST['terms_of_use_agree'] == 1) ? 1 : 0;
@@ -1064,6 +1080,13 @@ switch ($action) {
 				$smarty->assign('preview_formated_time', $preview_formated_time);
 				$smarty->assign('uniqid', htmlspecialchars($uniqid));
 				$smarty->assign('posting_mode', intval($posting_mode));
+				$smarty->assign('fld_user_name', $fname_user);
+				$smarty->assign('fld_user_email', $fname_email);
+				$smarty->assign('fld_phone', $fname_phone);
+				$smarty->assign('fld_repeat_email', $fname_repemail);
+				$smarty->assign('fld_hp', $fname_hp);
+				$smarty->assign('fld_location', $fname_loc);
+				$smarty->assign('fld_subject', $fname_subject);
 				$smarty->assign('id', intval($id));
 				$smarty->assign('pid', intval($pid));
 				$smarty->assign('back', htmlspecialchars($back));
@@ -1116,6 +1139,13 @@ switch ($action) {
 				$smarty->assign('uniqid', htmlspecialchars($uniqid));
 				$smarty->assign('back', htmlspecialchars($back));
 				$smarty->assign('posting_mode', intval($posting_mode));
+				$smarty->assign('fld_user_name', $fname_user);
+				$smarty->assign('fld_user_email', $fname_email);
+				$smarty->assign('fld_phone', $fname_phone);
+				$smarty->assign('fld_repeat_email', $fname_repemail);
+				$smarty->assign('fld_hp', $fname_hp);
+				$smarty->assign('fld_location', $fname_loc);
+				$smarty->assign('fld_subject', $fname_subject);
 				if (isset($name))
 					$smarty->assign('name', htmlspecialchars($name));
 				$smarty->assign('email', htmlspecialchars($email));
@@ -1208,6 +1238,13 @@ switch ($action) {
 			
 			$smarty->assign('id', intval($id));
 			$smarty->assign('pid', intval($field['pid']));
+			$smarty->assign('fld_user_name', $fname_user);
+			$smarty->assign('fld_user_email', $fname_email);
+			$smarty->assign('fld_phone', $fname_phone);
+			$smarty->assign('fld_repeat_email', $fname_repemail);
+			$smarty->assign('fld_hp', $fname_hp);
+			$smarty->assign('fld_location', $fname_loc);
+			$smarty->assign('fld_subject', $fname_subject);
 			$smarty->assign('name', htmlspecialchars($field['name']));
 			$smarty->assign('email', htmlspecialchars($field['email']));
 			$smarty->assign('hp', htmlspecialchars($field['hp']));
