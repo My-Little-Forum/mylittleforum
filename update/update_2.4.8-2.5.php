@@ -28,11 +28,14 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/images/image.png';                        #364
 		$update['items'][] = 'lang/';                                                  #364
 		
+/** !!!TODO: Version array is not correct!!! **/
 	case '2.4.9':
-		$update['items'][] = 'includes/functions.inc.php';                             #377
-		$update['items'][] = 'includes/js_defaults.inc.php';                           #377
-		$update['items'][] = 'themes/default/main.tpl';                                #377
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';            #377
+		$update['items'][] = 'index.php';                                              #376
+		$update['items'][] = 'includes/';                                              #377, #376
+		$update['items'][] = 'lang/';                                                  #376
+		$update['items'][] = 'js/posting.js';                                          #376
+		$update['items'][] = 'js/posting.min.js';                                      #376
+		$update['items'][] = 'themes/';                                                #377, #376
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
