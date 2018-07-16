@@ -812,7 +812,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if (empty($_POST['smilies'])) $_POST['smilies'] = 0;
 		if (empty($_POST['bbcode'])) $_POST['bbcode'] = 0;
 		if (empty($_POST['bbcode_img'])) $_POST['bbcode_img'] = 0;
-		if (empty($_POST['bbcode_flash'])) $_POST['bbcode_flash'] = 0;
 		if (empty($_POST['tag_cloud'])) $_POST['tag_cloud'] = 0;
 		if (empty($_POST['avatars'])) $_POST['avatars'] = 0;
 		if (empty($_POST['autolink'])) $_POST['autolink'] = 0;

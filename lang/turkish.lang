@@ -394,9 +394,6 @@ bbcode_image_instr_thumb_right =  '<!-- TODO -->thumbnail right: [img=thumbnail]
 bbcode_upload_label =             'yükle'
 bbcode_upload_title =             'Resim yükle'
 bbcode_upload_instruction =       'Resim yükle …'
-bbcode_flash_label =              'flash'
-bbcode_flash_title =              'Flash ekle'
-bbcode_flash_instruction =        '[flash]http://example.com/flash.swf[/flash]'
 bbcode_tex_label =                'TeX'
 bbcode_tex_title =                '<!-- TODO -->insert TeX code'
 bbcode_tex_instruction =          '[tex]TeX code[/tex]'
@@ -482,12 +479,6 @@ back =                            '&laquo; geri'
 no_images =                       'Resim yok.'
 delete_image_confirm =            'Bu resmi sil?'
 delete_image_button =             'Tamam - Sil'
-
-[insert_flash]
-insert_flash_hl =                 'Flash video ekle
-flash_url =                       'URL:
-flash_size =                      'Boyut:
-insert_flash_button =             'Flash video ekle
 
 [avatar]
 avatar_hl =                       'Kullanıcı resmi'
@@ -798,7 +789,6 @@ bbcode =                          'BB kodu'
 bbcode_desc =                     'İletinizi oluştururken veya düzenlerken BB Kodları seçenekleri olsun mu?'
 bbcodes_enabled =                 'BB Kodları aktif'
 bbcodes_img_enabled =             'BB Kodların resimler eklemesine izin ver'
-bbcodes_flash_enabled =           'BB Kodların flash videoları eklemesine izin ver'
 smilies =                         'Simgeler'
 smilies_desc =                    'Forumda ":-)" benzeri simgeler kendilerine uygun resimlerle değiştirilsin mi? (Simgeler, simge yönetici panelinde düzenlenebilirler)'
 smilies_enabled =                 'Simgeler aktif'

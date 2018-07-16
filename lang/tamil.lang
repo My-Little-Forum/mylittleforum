@@ -387,9 +387,6 @@ bbcode_image_instr_thumb_right =  '<!-- TODO -->thumbnail right: [img=thumbnail]
 bbcode_upload_label =             'மேலேற்றுக'
 bbcode_upload_title =             'படத்தை மேலேற்றுக'
 bbcode_upload_instruction =       'படத்தை மேலேற்றுக …'
-bbcode_flash_label =              'பிளாஷ்'
-bbcode_flash_title =              'பிளாஷ் செருகு'
-bbcode_flash_instruction =        '[flash]http://example.com/flash.swf[/flash]'
 bbcode_tex_label =                '<!-- TODO -->TeX'
 bbcode_tex_title =                '<!-- TODO -->insert TeX code'
 bbcode_tex_instruction =          '<!-- TODO -->[tex]TeX code[/tex]'
@@ -475,12 +472,6 @@ back =                            '&laquo; பின்நோக்கி செ
 no_images =                       'ஒரு படமும் இல்லை.'
 delete_image_confirm =            'இந்த உருவத்தைஅழிக்க?'
 delete_image_button =             'சரி - அழிக்க'
-
-[insert_flash]
-insert_flash_hl =                 'பிளாஷ் விடியோவை செருகுக'
-flash_url =                       'URL:'
-flash_size =                      'அளவு:'
-insert_flash_button =             'பிளாஷ் விடியோவை செருகுக'
 
 [avatar]
 avatar_hl =                       'உருவ படம்'
@@ -791,7 +782,6 @@ bbcode =                          'BB குறியீடு'
 bbcode_desc =                     'செய்தியை முரைப்படுத்த BB குறியீடு செயல்படுத்தவும்?'
 bbcodes_enabled =                 'BB குறியீடு செயல்பட வை'
 bbcodes_img_enabled =             'BB குறியீடு மூலம் படத்தை செருகுக அனுமதிக்கவும்'
-bbcodes_flash_enabled =           'BB குறியீடு மூலம் பிளாஷ் வீடியோவை  செருகுக அனுமதிக்கவும்'
 smilies =                         'சிரிப்பு முகங்கள்'
 smilies_desc =                    '":-)" இது போன்ற சிரிப்பு முகங்களை படமாக மாற்ற வேண்டுமா? (சிரிப்பு முகங்களை சிரிப்பு முகங்களுக்கான நிர்வாக பக்கத்தின் மூலம் உருவாக்குக)'
 smilies_enabled =                 'சிரிப்பு முகங்களை செயல்பட வை'

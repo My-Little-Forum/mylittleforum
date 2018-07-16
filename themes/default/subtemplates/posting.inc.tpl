@@ -199,10 +199,6 @@ JavaScript isn't available.
 <dt id="upload" title="{#bbcode_upload_label#}">{#bbcode_upload_title#}</dt>
 <dd><a href="index.php?mode=upload_image">{#bbcode_upload_instruction#}</a></dd>
 {/if}
-{if $settings.bbcode_flash}
-<dt id="flash" title="{#bbcode_flash_label#}">{#bbcode_flash_title#}</dt>
-<dd>{#bbcode_flash_instruction#}</dd>
-{/if}
 {if $settings.bbcode_latex && $settings.bbcode_latex_uri}
 <dt id="tex" title="{#bbcode_tex_label#}">{#bbcode_tex_title#}</dt>
 <dd>{#bbcode_tex_instruction#}</dd>
