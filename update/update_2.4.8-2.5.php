@@ -28,11 +28,14 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/images/image.png';                        #364
 		$update['items'][] = 'lang/';                                                  #364
 		
+/** !!!TODO: Version array is not correct!!! **/
 	case '2.4.9':
-		$update['items'][] = 'includes/functions.inc.php';                             #377
-		$update['items'][] = 'includes/js_defaults.inc.php';                           #377
-		$update['items'][] = 'themes/default/main.tpl';                                #377
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';            #377
+		$update['items'][] = 'index.php';                                              #390
+		$update['items'][] = 'includes/';                                              #377, #390
+		$update['items'][] = 'lang/';                                                  #390
+		$update['items'][] = 'js/posting.js';                                          #390
+		$update['items'][] = 'js/posting.min.js';                                      #390
+		$update['items'][] = 'themes/';                                                #377, #390
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
@@ -101,12 +104,21 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.8'))) 
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
-
-if (empty($update['errors']) && in_array($settings['version'], array('2.4.8', '2.4.9'))) {
+/** !!!TODO: Version array is not correct!!! **/
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.8', '2.4.9'))) { 
 	if(!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 	if(!@mysqli_query($connid, "DELETE FROM `".$db_settings['settings_table']."` WHERE name = 'bbcode_tex';")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "DELETE FROM `".$db_settings['settings_table']."` WHERE name = 'bbcode_flash';")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "DELETE FROM `".$db_settings['settings_table']."` WHERE name = 'flash_default_width';")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if(!@mysqli_query($connid, "DELETE FROM `".$db_settings['settings_table']."` WHERE name = 'flash_default_height';")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }

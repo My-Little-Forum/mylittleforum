@@ -502,79 +502,6 @@ function do_bbcode_tex($action, $attributes, $content, $params, $node_object) {
 }
 
 /**
- * processes BBCode flash
- */
-function do_bbcode_flash($action, $attributes, $content, $params, $node_object)
- {
-  global $settings;
-  if($action == 'validate')
-   {
-    if(!is_valid_url($content))
-     {
-      return false;
-     }
-    else
-     {
-      // [flash]url[/flash]
-      if(!isset($attributes['width']) && !isset($attributes['height'])) return true;
-      // [flash width=x height=y]url[/flash]
-      elseif(isset($attributes['width']) && intval($attributes['width'])>0 && intval($attributes['width'])<=1024 && isset($attributes['height']) && intval($attributes['height'])>0 && intval($attributes['height'])<=768) return true;
-      else return false;
-     }
-   }
-  else
-   {
-    $html = '<!--[if IE]>
-    <object type="application/x-shockwave-flash" data="'.htmlspecialchars($content).'" width="[width]" height="[height]">
-    <param name="movie" value="'.htmlspecialchars($content).'" />
-    </object>
-    <![endif]-->
-    <!--[if !IE]>-->
-    <object type="application/x-shockwave-flash" data="'.htmlspecialchars($content).'" width="[width]" height="[height]"><param name="movie" value="'.htmlspecialchars($content).'" />
-    </object>
-    <!--<![endif]-->';
-
-    // [flash]url[/flash]
-    if(!isset($attributes['width']) || !isset($attributes['height']))
-     {
-      $html = str_replace('[width]', $settings['flash_default_width'], $html);
-      $html = str_replace('[height]', $settings['flash_default_width'], $html);
-     }
-    // [flash width=x height=y]url[/flash]
-    else
-     {
-      $html = str_replace('[width]', intval($attributes['width']), $html);
-      $html = str_replace('[height]' ,intval($attributes['height']), $html);
-     }
-    return $html;
-   }
- }
-
-// processes BBCode links for e-mail notifications (plain text)
-function do_bbcode_flash_email($action, $attributes, $content, $params, $node_object)
- {
-  if($action == 'validate')
-   {
-    if(!is_valid_url($content))
-     {
-      return false;
-     }
-    else
-     {
-      // [flash]url[/flash]
-      if(!isset($attributes['width']) && !isset($attributes['height'])) return true;
-      // [flash width=x height=y]url[/flash]
-      elseif(isset($attributes['width']) && intval($attributes['width']>0) && isset($attributes['height']) && intval($attributes['height']>0)) return true;
-      else return false;
-     }
-   }
-  else
-   {
-    return $content;
-   }
- }
-
-/**
  * processes BBCode color
  */
 function do_bbcode_color($action, $attributes, $content, $params, $node_object)
@@ -991,39 +918,29 @@ function html_format($string)
     $bbcode->setCodeFlag ('*', 'closetag', BBCODE_CLOSETAG_OPTIONAL);
     #$bbcode->setCodeFlag ('*', 'paragraphs', true);
 
-    if($settings['bbcode_code']==1)
-     {
-      $bbcode->addCode ('code', 'usecontent', 'do_bbcode_code', array (), 'code', array ('block','quote'), array ());
-      $bbcode->setCodeFlag ('code', 'paragraph_type', BBCODE_PARAGRAPH_BLOCK_ELEMENT);
-      $bbcode->addParser ('inlinecode', 'parse_inlinecode');
-      $bbcode->addParser ('monospace', 'parse_monospace');
-      $bbcode->addCode('inlinecode', 'simple_replace', null, array ('start_tag' => '<code>', 'end_tag' => '</code>'), 'inlinecode', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-      $bbcode->addCode('monospace', 'simple_replace', null, array ('start_tag' => '<code class="monospace">', 'end_tag' => '</code>'), 'monospace', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-      $bbcode->addCode('pre', 'simple_replace', null, array ('start_tag' => '<pre>', 'end_tag' => '</pre>'), 'pre', array ('block','quote'), array ());
-      $bbcode->setCodeFlag('pre', 'paragraph_type', BBCODE_PARAGRAPH_BLOCK_ELEMENT);
-      #$bbcode->addCode('inlinepre', 'simple_replace', null, array ('start_tag' => '<pre class="inline">', 'end_tag' => '</pre>'), 'inlinepre', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-     }
-    if($settings['bbcode_img']==1)
-     {
-      $bbcode->addCode ('img', 'usecontent', 'do_bbcode_img', array (), 'image', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-     }
-    if($settings['bbcode_color']==1)
-     {
-      $bbcode->addCode ('color', 'callback_replace', 'do_bbcode_color', array ('usecontent_param' => 'default'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
-     }
-    if($settings['bbcode_size']==1)
-     {
-      $bbcode->addCode ('size', 'callback_replace', 'do_bbcode_size', array ('usecontent_param' => 'default'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-     }
-    if($settings['bbcode_flash']==1)
-     {
-      $bbcode->addCode ('flash', 'usecontent', 'do_bbcode_flash', array (), 'flash', array ('block', 'quote'), array ());
-      #$bbcode->setCodeFlag ('flash', 'paragraph_type', BBCODE_PARAGRAPH_BLOCK_ELEMENT);
-     }
-    if($settings['bbcode_latex']==1 && !empty($settings['bbcode_latex_uri']))
-     {
-      $bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-     }
+	if($settings['bbcode_code']==1){
+		$bbcode->addCode ('code', 'usecontent', 'do_bbcode_code', array (), 'code', array ('block','quote'), array ());
+		$bbcode->setCodeFlag ('code', 'paragraph_type', BBCODE_PARAGRAPH_BLOCK_ELEMENT);
+		$bbcode->addParser ('inlinecode', 'parse_inlinecode');
+		$bbcode->addParser ('monospace', 'parse_monospace');
+		$bbcode->addCode('inlinecode', 'simple_replace', null, array ('start_tag' => '<code>', 'end_tag' => '</code>'), 'inlinecode', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+		$bbcode->addCode('monospace', 'simple_replace', null, array ('start_tag' => '<code class="monospace">', 'end_tag' => '</code>'), 'monospace', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+		$bbcode->addCode('pre', 'simple_replace', null, array ('start_tag' => '<pre>', 'end_tag' => '</pre>'), 'pre', array ('block','quote'), array ());
+		$bbcode->setCodeFlag('pre', 'paragraph_type', BBCODE_PARAGRAPH_BLOCK_ELEMENT);
+		#$bbcode->addCode('inlinepre', 'simple_replace', null, array ('start_tag' => '<pre class="inline">', 'end_tag' => '</pre>'), 'inlinepre', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+	}
+    if($settings['bbcode_img']==1) {
+		$bbcode->addCode ('img', 'usecontent', 'do_bbcode_img', array (), 'image', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+	}
+    if($settings['bbcode_color']==1) {
+		$bbcode->addCode ('color', 'callback_replace', 'do_bbcode_color', array ('usecontent_param' => 'default'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
+	}
+	if($settings['bbcode_size']==1) {
+		$bbcode->addCode ('size', 'callback_replace', 'do_bbcode_size', array ('usecontent_param' => 'default'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+	}
+	if($settings['bbcode_latex']==1 && !empty($settings['bbcode_latex_uri'])) {
+		$bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+	}
    }
 
   $bbcode->setRootParagraphHandling(true);
@@ -1075,51 +992,42 @@ function signature_format($string)
  * @param string $string
  * @return string
  */
-function email_format($string)
- {
-  global $settings;
-  require_once('modules/stringparser_bbcode/stringparser_bbcode.class.php');
-  $bbcode = new StringParser_BBCode();
-  $bbcode->setGlobalCaseSensitive(false);
-  $bbcode->addCode ('quote', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-  if($settings['bbcode'] == 1)
-   {
-    $bbcode->addParser ('list', 'bbcode_stripcontents');
-    $bbcode->addCode ('b', 'simple_replace', null, array ('start_tag' => '*', 'end_tag' => '*'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
-    $bbcode->addCode ('i', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
-    $bbcode->addCode ('u', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
-    $bbcode->addCode ('url', 'usecontent?', 'do_bbcode_url_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace'), array ('link'));
-    $bbcode->addCode ('link', 'usecontent?', 'do_bbcode_url_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace'), array ('link'));
-    $bbcode->addCode ('msg', 'usecontent?', 'do_bbcode_msg_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace'), array ('link'));
-    if($settings['bbcode_img'] == 1)
-     {
-      $bbcode->addCode ('img', 'usecontent', 'do_bbcode_img_email', array (), 'image', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-     }
-    $bbcode->addCode ('color', 'callback_replace', 'do_bbcode_color_email', array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
-    $bbcode->addCode ('size', 'callback_replace', 'do_bbcode_size_email', array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-    $bbcode->addCode ('list', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'list', array ('block', 'listitem'), array ());
-    $bbcode->addCode ('*', 'simple_replace', null, array ('start_tag' => '* ', 'end_tag' => ''), 'listitem', array ('list'), array ());
-    $bbcode->setCodeFlag ('*', 'closetag', BBCODE_CLOSETAG_OPTIONAL);
-    #$bbcode->addCode ('code', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'code', array ('block', 'inline'), array ());
-    if($settings['bbcode_flash']==1)
-     {
-      $bbcode->addCode('flash', 'usecontent', 'do_bbcode_flash_email', array (), 'flash', array ('block', 'quote'), array ());
-     }
-    if($settings['bbcode_code']==1)
-     {
-      $bbcode->addCode('code', 'usecontent', 'do_bbcode_code_email', array (), 'code', array ('block','quote'), array ());
-      $bbcode->addCode ('pre', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'pre', array ('block', 'quote'), array ());
-      $bbcode->addCode ('inlinecode', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-      $bbcode->addCode ('monospace', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-     }
-    if($settings['bbcode_latex']==1 && !empty($settings['bbcode_latex_uri']))
-     {
-      $bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex_email', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
-     }
-   }
-  $string = $bbcode->parse($string);
-  return $string;
- }
+function email_format($string) {
+	global $settings;
+	require_once('modules/stringparser_bbcode/stringparser_bbcode.class.php');
+	$bbcode = new StringParser_BBCode();
+	$bbcode->setGlobalCaseSensitive(false);
+	$bbcode->addCode ('quote', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+	if($settings['bbcode'] == 1) {
+		$bbcode->addParser ('list', 'bbcode_stripcontents');
+		$bbcode->addCode ('b', 'simple_replace', null, array ('start_tag' => '*', 'end_tag' => '*'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
+		$bbcode->addCode ('i', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
+		$bbcode->addCode ('u', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
+		$bbcode->addCode ('url', 'usecontent?', 'do_bbcode_url_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace'), array ('link'));
+		$bbcode->addCode ('link', 'usecontent?', 'do_bbcode_url_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace'), array ('link'));
+		$bbcode->addCode ('msg', 'usecontent?', 'do_bbcode_msg_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace'), array ('link'));
+		if($settings['bbcode_img'] == 1) {
+			$bbcode->addCode ('img', 'usecontent', 'do_bbcode_img_email', array (), 'image', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+		}
+		$bbcode->addCode ('color', 'callback_replace', 'do_bbcode_color_email', array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace'), array ());
+		$bbcode->addCode ('size', 'callback_replace', 'do_bbcode_size_email', array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+		$bbcode->addCode ('list', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'list', array ('block', 'listitem'), array ());
+		$bbcode->addCode ('*', 'simple_replace', null, array ('start_tag' => '* ', 'end_tag' => ''), 'listitem', array ('list'), array ());
+		$bbcode->setCodeFlag ('*', 'closetag', BBCODE_CLOSETAG_OPTIONAL);
+		#$bbcode->addCode ('code', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'code', array ('block', 'inline'), array ());
+		if($settings['bbcode_code']==1){
+			$bbcode->addCode('code', 'usecontent', 'do_bbcode_code_email', array (), 'code', array ('block','quote'), array ());
+			$bbcode->addCode ('pre', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'pre', array ('block', 'quote'), array ());
+			$bbcode->addCode ('inlinecode', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+			$bbcode->addCode ('monospace', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+		}
+		if($settings['bbcode_latex']==1 && !empty($settings['bbcode_latex_uri'])) {
+			$bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex_email', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote'), array ());
+		}
+	}
+	$string = $bbcode->parse($string);
+	return $string;
+}
 
 /**
  * adds the quote symbol (">") before each line for textareas in replies

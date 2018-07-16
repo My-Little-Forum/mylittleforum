@@ -578,38 +578,35 @@ function ButtonGroup(f) {
 		//switch(button.name.toLowerCase()) {
 		switch(bname) {
 		case "link":
-		bbCodeButton = new BBCodeLinkButton( button );
+			bbCodeButton = new BBCodeLinkButton( button );
 		break;
 		case "img":
-		if (list && list.length > 1)
-		bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "http://" );
-		else
-		bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); 
+			if (list && list.length > 1)
+				bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "http://" );
+			else
+				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); 
 		break;
 		case "color":
-		bbCodeButton = new BBCodeColorChooserButton( button );
+			bbCodeButton = new BBCodeColorChooserButton( button );
 		break;
 		case "list":
-		bbCodeButton = new BBCodeListButton( button );
-		break;
-		case "flash":
-		bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=insert_flash", settings["flash_popup_width"], settings["flash_popup_height"]);
+			bbCodeButton = new BBCodeListButton( button );
 		break;
 		case "upload":
-		bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=upload_image", settings["upload_popup_width"], settings["upload_popup_height"]); 
+			bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=upload_image", settings["upload_popup_width"], settings["upload_popup_height"]); 
 		break;
 		case "tex":
-		bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); 
+			bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); 
 		break;
 		default:
-		if (button.isSmilie && list && list.length > 0)
-		bbCodeButton = new BBCodeSmilieButton( button, list );
-		else if (button.isSmilie)
-		bbCodeButton = new BBCodeSingleSmilieButton( button );
-		else if (list && list.length > 1) 
-		bbCodeButton = new BBCodeOptionButton( button, list );
-		else
-		bbCodeButton = new BBCodeButton( button );
+			if (button.isSmilie && list && list.length > 0)
+				bbCodeButton = new BBCodeSmilieButton( button, list );
+			else if (button.isSmilie)
+				bbCodeButton = new BBCodeSingleSmilieButton( button );
+			else if (list && list.length > 1) 
+				bbCodeButton = new BBCodeOptionButton( button, list );
+			else
+				bbCodeButton = new BBCodeButton( button );
 		break;
 		}
 		return bbCodeButton;

@@ -103,10 +103,6 @@ settings["ajax_preview_onmouseover"] =     <?php echo ($settings['ajax_preview']
 settings["upload_popup_width"] =           <?php echo $theme_config['upload_popup_width']; ?>;
 settings["upload_popup_height"] =          <?php echo $theme_config['upload_popup_height']; ?>;
 <?php endif; ?>
-<?php if ($settings['bbcode_flash']): ?>
-settings["flash_popup_width"] =            <?php echo $theme_config['flash_popup_width']; ?>;
-settings["flash_popup_height"] =           <?php echo $theme_config['flash_popup_height']; ?>;
-<?php endif; ?>
 <?php if (isset($user_type) && $settings['avatars']): ?>
 settings["avatar_popup_width"] =           <?php echo $theme_config['avatar_popup_width']; ?>;
 settings["avatar_popup_height"] =          <?php echo $theme_config['avatar_popup_height']; ?>;

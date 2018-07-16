@@ -178,9 +178,6 @@ switch ($mode) {
     case 'upload_image':
         include('includes/upload_image.inc.php');
         break;
-    case 'insert_flash':
-        include('includes/insert_flash.inc.php');
-        break;
     case 'avatar':
         include('includes/avatar.inc.php');
         break;
