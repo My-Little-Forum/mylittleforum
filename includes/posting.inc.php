@@ -1113,8 +1113,8 @@ switch ($action) {
 					$smarty->assign('terms_of_use_agree', intval($terms_of_use_agree));
 				if ($settings['data_privacy_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
 					$smarty->assign("data_privacy_agreement", true);
-				if (isset($data_privacy_statement_agree))
-					$smarty->assign('data_privacy_statement_agree', intval($data_privacy_statement_agree));
+				if (isset($data_privacy_agree))
+					$smarty->assign('data_privacy_statement_agree', intval($data_privacy_agree));
 				$smarty->assign('preview_text', $preview_text);
 				$smarty->assign('preview_subject', htmlspecialchars($subject));
 				$_SESSION[$settings['session_prefix'] . 'formtime'] = TIMESTAMP - 7; // 7 seconds credit for preview
@@ -1171,8 +1171,8 @@ switch ($action) {
 					$smarty->assign('terms_of_use_agree', intval($terms_of_use_agree));
 				if ($settings['data_privacy_agreement'] == 1 && empty($_SESSION[$settings['session_prefix'] . 'user_id']))
 					$smarty->assign("data_privacy_agreement", true);
-				if (isset($data_privacy_statement_agree))
-					$smarty->assign('data_privacy_statement_agree', intval($data_privacy_statement_agree));
+				if (isset($data_privacy_agree))
+					$smarty->assign('data_privacy_statement_agree', intval($data_privacy_agree));
 				$_SESSION[$settings['session_prefix'] . 'formtime'] = TIMESTAMP - 7; // 7 seconds credit (form already sent)
 				$smarty->assign('subtemplate', 'posting.inc.tpl');
 			}
