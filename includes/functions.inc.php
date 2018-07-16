@@ -1919,7 +1919,7 @@ function create_backup_file($mode=0)
      {
       $data['user_name'] = mysqli_real_escape_string($connid, $data['user_name']);
       $data['user_real_name'] = mysqli_real_escape_string($connid, $data['user_real_name']);
-      $data['birthday'] = !is_null($data['birthday']) ? mysqli_real_escape_string($connid, $data['birthday']) : 'NULL';
+      $data['birthday'] = !is_null($data['birthday']) ? "'".mysqli_real_escape_string($connid, $data['birthday'])."'" : 'NULL';
       $data['user_pw'] = mysqli_real_escape_string($connid, $data['user_pw']);
       $data['user_email'] = mysqli_real_escape_string($connid, $data['user_email']);
       $data['user_hp'] = mysqli_real_escape_string($connid, $data['user_hp']);
