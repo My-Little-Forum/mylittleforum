@@ -1877,13 +1877,12 @@ function create_backup_file($mode=0)
       $data['email'] = mysqli_real_escape_string($connid, $data['email']);
       $data['location'] = mysqli_real_escape_string($connid, $data['location']);
       $data['ip'] = mysqli_real_escape_string($connid, $data['ip']);
-      $data['tags'] = mysqli_real_escape_string($connid, $data['tags']);
       #$data['text'] = iconv("UTF-8","ISO-8859-1",$data['text']);
       $data['text'] = mysqli_real_escape_string($connid, $data['text']);
       $data['text'] = str_replace("\r", "\\r", $data['text']);
       $data['text'] = str_replace("\n",  "\\n", $data['text']);
       $data['edit_key'] = mysqli_real_escape_string($connid, $data['edit_key']);
-      $backup->assign("INSERT INTO ".$db_settings['forum_table']." VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', ".$data['time'].", ".$data['last_reply'].", ".$data['edited'].", ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', '".$data['tags']."', ".$data['show_signature'].", ".$data['email_notification'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", ".$data['spam'].", ".$data['spam_check_status'].", '".$data['edit_key']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['forum_table']." VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', ".$data['time'].", ".$data['last_reply'].", ".$data['edited'].", ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', ".$data['show_signature'].", ".$data['email_notification'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", ".$data['spam'].", ".$data['spam_check_status'].", '".$data['edit_key']."');\n");
      }
     mysqli_free_result($result);
    }
