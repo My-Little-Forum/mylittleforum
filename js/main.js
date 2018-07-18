@@ -1545,8 +1545,9 @@ var ready = new (function () {
 		 * bei einem Link
 		 */
 		var initPopUpLinks = function() {
-			var els = [[document.getElementById("terms_of_use") || false, settings["terms_of_use_popup_width"],settings["terms_of_use_popup_height"]],
-						[document.getElementById("edit_avatar") || false, settings["avatar_popup_width"],settings["avatar_popup_height"]]];
+			var els = [[document.getElementById("terms_of_use") || false, settings["terms_of_use_popup_width"], settings["terms_of_use_popup_height"]],
+						[document.getElementById("data_privacy_statement") || false, settings["terms_of_use_popup_width"], settings["terms_of_use_popup_height"]],
+						[document.getElementById("edit_avatar") || false, settings["avatar_popup_width"], settings["avatar_popup_height"]]];
 						
 			for (var i=0; i<els.length; i++) {
 				if (els[i][0]) {
