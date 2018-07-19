@@ -2250,14 +2250,11 @@ function my_mail($to, $subject, $message, $from='')
   $to = mail_header_filter($to);
   $subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q", $mail_header_separator);
   $message = my_quoted_printable_encode($message);
-  
-  if($from == '')
+
+  $headers = "From: " . encode_mail_name($settings['forum_name'], $mail_charset, $mail_header_separator)." <".$settings['forum_email'].">". $mail_header_separator;
+  if ($from != '')
    {
-    $headers = "From: " . encode_mail_name($settings['forum_name'], $mail_charset, $mail_header_separator)." <".$settings['forum_email'].">". $mail_header_separator;
-   }
-  else
-   {
-    $headers  = "From: " . mail_header_filter($from) . $mail_header_separator;
+    $headers .= "Reply-to: " . mail_header_filter($from) . $mail_header_separator;
    }
 
   $headers .= "MIME-Version: 1.0" . $mail_header_separator;
