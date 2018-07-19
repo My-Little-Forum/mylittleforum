@@ -1539,7 +1539,6 @@ var ready = new (function () {
 			}
 		};
 		
-				
 		/**
 		 * Initialisiert PopUp-Aufrufe 
 		 * bei einem Link
@@ -1562,8 +1561,7 @@ var ready = new (function () {
 					};
 				}
 			}
-		
-		};	
+		};
 		
 		/**
 		 * Tauscht bzw. aktualisiert den Inhalt des Vorschaufensters
