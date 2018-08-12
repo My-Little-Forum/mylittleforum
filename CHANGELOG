@@ -1,6 +1,18 @@
 my little forum changelog
 -------------------------
 
+2.4.13 (2018-08-12)
+-------------------
+- fixed: icon for Ajax-preview of an entry was not displayed, if the entry is locked
+- fixed: reordering registration-form fields because firefox users could be unable to register dependent from the browser settings (prefilled form fields)
+- fixed: status of the checkbox for accepting the data privacy statement got lost when previewing the entry
+- fixed: display data privacy statement in a popup like the terms of use in case of an entry from an unregistered user
+- fixed: missing fields for the dates of the acceptance of the terms of use and the data privacy statement in the backup script for the user data
+- fixed: set a birthday date in single quotes in the backup script for the user data
+- fixed: remove field mlf2_entries.tags from the backup script for the forum entries because it does no longer exist
+- fixed: masked an occurence of single quotes in the german language file
+- fixed: set the forums own e-mail-address as sender of an e-mail in every case, set a possibly given divergent address as Reply-To-header; prevents not sending e-mails because of not matching domain names (forum domain versus domain part of an e-mail-address)
+
 2.4.12 (2018-06-29)
 -------------------
 - fixed array of update targets for versions 2.4.10 and 2.4.11 because versions from 2.3.5 to 2.3.7 got no update of the table structure
