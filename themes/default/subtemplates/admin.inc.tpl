@@ -4,6 +4,7 @@
 <form id="settings" action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
 <tr>
 <td class="c"><strong>{#forum_name#}</strong><br /><span class="small">{#forum_name_desc#}</span></td>
@@ -233,6 +234,7 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="return_to" value="advanced_settings" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
 {section name=nr loop=$settings_sorted}
 <tr>
@@ -305,6 +307,7 @@
 <form action="index.php" method="post" class="normalform" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <label for="new_category" class="main">{#new_category#}</label><br />
 <input id="new_category" type="text" name="new_category" size="25" value="{if $new_category}{$new_category}{/if}" /><br /><br />
 <strong>{#category_accessible_by#}</strong><br />
@@ -328,6 +331,7 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="id" value="{$category_id}" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <strong>{#edit_category#}</strong><br />
 <input type="text" name="category" value="{$edit_category}" size="25" /><br /><br />
 <strong>{#category_accessible_by#}</strong><br />
@@ -352,6 +356,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="category_id" value="{$category_id}" />
 <p><input type="radio" name="delete_mode" value="complete" checked="checked" /> {#delete_category_compl#}</p></td>
 <p><input type="radio" name="delete_mode" value="keep_entries" /> {if $categories_count <= 1}{#del_cat_keep_entries#}
@@ -604,6 +609,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {section name=nr loop=$selected_users}
 <input type="hidden" name="selected_confirmed[]" value="{$selected_users[nr].id}" />
 {/section}
@@ -616,6 +622,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="user_delete_entries" value="{$user_delete_entries.id}" />
 <input type="submit" name="delete_confirmed" value="{#delete_submit#}" />
 </div>
@@ -731,6 +738,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
 
 <tr>
@@ -807,6 +815,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <p><input id="delete_postings" type="checkbox" name="delete_postings" value="true" /><label for="delete_postings"> {#delete_postings#}</label></p>
 <p><input id="delete_userdata" type="checkbox" name="delete_userdata" value="true" /><label for="delete_userdata"> {#delete_userdata#}</label></p>
 <p>{#admin_confirm_password#}<br />
@@ -821,6 +830,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <p>{#reset_uninstall_conf_pw#}<br />
 <input type="password" size="20" name="confirm_pw" /> <input type="submit" name="uninstall_forum_confirmed" value="{#uninstall_forum_submit#}" /></p>
 </div>
@@ -936,6 +946,7 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="update_file_submit" value="{$update_file}" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <p>{#admin_confirm_password#}<br /><input type="password" name="update_password" size="25"/></p>
 <p><input type="submit" name="update_submit" value="{#update_submit#}" onclick="document.getElementById('throbber-submit').style.visibility = 'visible';" /> <img id="throbber-submit" style="visibility:hidden;" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
 </div>
@@ -971,6 +982,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <p>{$smarty.config.clear_userdata_condition|replace:"[logins]":$input_logins|replace:"[days]":$input_days} <input type="submit" name="clear_userdata" value="{#submit_button_ok#}" /></p>
 </div>
 </form>
@@ -989,6 +1001,7 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="id" value="{$id}" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
 <tr>
 <td class="c"><strong>{#edit_smilies_smiley#}</strong></td>
@@ -1053,6 +1066,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {if $id}<input type="hidden" name="id" value="{$id}" />{/if}
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
 <tr>
@@ -1087,6 +1101,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="id" value="{$page.id}" />
 <input type="submit" name="delete_page_submit" value="{#delete_page_submit#}" />
 </div>
