@@ -12,13 +12,17 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
 	if (isset($_GET['delete_page'])) $action = 'delete_page';
 	if (isset($_GET['edit_page'])) $action = 'edit_page';
-	if (isset($_POST['delete_page_submit'])) $action = 'delete_page_submit';
-	if (isset($_POST['edit_page_submit'])) $action = 'edit_page_submit';
 	if (isset($_GET['move_up_page']) || isset($_GET['move_down_page'])) $action = 'move_page';
 	if (isset($_GET['move_up_smiley']) || isset($_GET['move_down_smiley'])) $action = 'move_smiley';
 	if (isset($_GET['move_up_category']) || isset($_GET['move_down_category'])) $action = 'move_category';
+	
+	if (isset($_POST['delete_page_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'])
+		$action = 'delete_page_submit';
+	
+	if (isset($_POST['edit_page_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'])
+		$action = 'edit_page_submit';
 
-	if (isset($_POST['new_category'])) {
+	if (isset($_POST['new_category']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		$new_category = trim($_POST['new_category']);
 		$new_category = str_replace('"', '\'', $new_category);
 		$accession = intval($_POST['accession']);
@@ -39,7 +43,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$smarty->assign('errors',$errors);
 			}
 		}
-	$action='categories';
+		$action='categories';
 	}
 
 	if (isset($_GET['edit_user'])) {
@@ -337,7 +341,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$action='delete_category';
 	}
 
-	if (isset($_POST['edit_category_submit'])) {
+	if (isset($_POST['edit_category_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		$id = intval($_POST['id']);
 		$category = trim($_POST['category']);
 		$category = str_replace('"', '\'', $category);
@@ -381,7 +385,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		exit;
 	}
 
-	if (isset($_POST['delete_category_submit'])) {
+	if (isset($_POST['delete_category_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		$category_id = intval($_POST['category_id']);
 		if ($category_id > 0) {
 			// delete category from category table:
@@ -437,7 +441,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		else $action = 'user';
 	}
 
-	if (isset($_POST['user_delete_entries']) && isset($_POST['delete_confirmed'])) {
+	if (isset($_POST['user_delete_entries']) && isset($_POST['delete_confirmed']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		$user_delete_entries = intval($_POST['user_delete_entries']);
 		$result = mysqli_query($connid, "SELECT id FROM ".$db_settings['forum_table']." WHERE user_id = ". $user_delete_entries) or raise_error('database_error', mysqli_error($connid));
 		while ($data = mysqli_fetch_array($result)) {
@@ -566,7 +570,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 	}
 
-	if (isset($_POST['update_file_submit'])) {
+	if (isset($_POST['update_file_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		if ($_POST['update_file_submit'] == '' || !file_exists('update/'.$_POST['update_file_submit']) || !check_filename($_POST['update_file_submit'])) {
 			$errors[] = 'error_file_doesnt_exist';
 			$smarty->assign('errors', $errors);
@@ -619,7 +623,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 	}
 
-	if (isset($_POST['clear_userdata']) && isset($_POST['logins']) && isset($_POST['days'])) {
+	if (isset($_POST['clear_userdata']) && isset($_POST['logins']) && isset($_POST['days']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		$logins = intval($_POST['logins']);
 		$days = intval($_POST['days']);
 
@@ -642,7 +646,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	if (isset($_POST['email_list'])) $action = "email_list";
 
-	if (isset($_POST['delete_confirmed'])) {
+	if (isset($_POST['delete_confirmed']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		if (isset($_POST['selected_confirmed'])) {
 			$selected_confirmed = $_POST['selected_confirmed'];
 			for ($x=0; $x<count($selected_confirmed); $x++) {
@@ -723,7 +727,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		exit;
 	}
 
-	if (isset($_POST['reset_forum_confirmed']) || isset($_POST['uninstall_forum_confirmed'])) {
+	if ((isset($_POST['reset_forum_confirmed']) || isset($_POST['uninstall_forum_confirmed'])) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		if (empty($_POST['confirm_pw'])) $errors[] = 'error_password_wrong';
 
 		if (empty($errors)) {
@@ -804,7 +808,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 	}
 
-	if (isset($_POST['settings_submit'])) {
+	if (isset($_POST['settings_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		// not checked checkboxes:
 		if (empty($_POST['show_if_edited'])) $_POST['show_if_edited'] = 0;
 		if (empty($_POST['dont_reg_edit_by_admin'])) $_POST['dont_reg_edit_by_admin'] = 0;
@@ -908,9 +912,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 	}
 
-	if (isset($_POST['spam_protection_submit'])) $action = 'spam_protection_submit';
+	if (isset($_POST['spam_protection_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token'])
+		$action = 'spam_protection_submit';
 
-	if (isset($_POST['add_smiley'])) {
+	if (isset($_POST['add_smiley']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		if (!file_exists('images/smilies/'.$_POST['add_smiley'])) $errors[] = 'smiley_file_doesnt_exist';
 		if (trim($_POST['smiley_code']) == '') $errors[] = 'smiley_code_empty';
 
@@ -961,7 +966,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$action = 'edit_smiley';
 	}
 
-	if (isset($_POST['edit_smiley_submit'])) {
+	if (isset($_POST['edit_smiley_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		$id = intval($_POST['id']);
 		$file = trim($_POST['file']);
 		$code_1 = trim($_POST['code_1']);
