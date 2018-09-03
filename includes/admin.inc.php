@@ -1005,7 +1005,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$browse_images = (isset($_GET['browse_images']) && $_GET['browse_images'] > 0) ? intval($_GET['browse_images']) : 1;
 		$handle = opendir($uploaded_images_path);
 		while ($file = readdir($handle)) {
-			if (preg_match('/\.jpg$/i', $file) || preg_match('/\.png$/i', $file) || preg_match('/\.gif$/i', $file)) {
+			if (preg_match('/\.(gif|png|jpg|svg)$/i', $file)) {
 				$images[] = $file;
 			}
 		}
@@ -1455,7 +1455,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 				$fp = opendir('images/smilies/');
 				while ($file = readdir($fp)) {
-					if (preg_match('/\.gif$/i', $file) || preg_match('/\.png$/i', $file) || preg_match('/\.jpg$/i', $file)) {
+					if (preg_match('/\.(gif|png|jpg|svg)$/i', $file)) {
 						$smiley_files[] = $file;
 					}
 				}
@@ -1512,7 +1512,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 			$fp = opendir('images/smilies/');
 			while ($smiley_file = readdir($fp)) {
-				if (preg_match('/\.gif$/i', $smiley_file) || preg_match('/\.png$/i', $smiley_file) || preg_match('/\.jpg$/i', $smiley_file)) {
+				if (preg_match('/\.(gif|png|jpg|svg)$/i', $smiley_file)) {
 					$smiley_files[] = $smiley_file;
 				}
 			}
