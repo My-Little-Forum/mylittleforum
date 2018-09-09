@@ -462,6 +462,12 @@ report_flag_ham_submit =          'Сообщить и пометить как �
 flag_ham_submit =                 'Только пометить как разрешённое'
 no_authorisation_delete =         'Сообщение не может быть удалено! Возможно, истёк период времени для удаления сообщения, тема заблокирована или уже имеются ответы на данное сообщение.'
 
+[unsubscribe_posting]
+unsubscribed_hl =                 '<!-- TODO -->Quitted subscription'
+unsubscribed_message =            '<!-- TODO -->The subscription for informations about replies to your entry got quitted. You will not receive any more e-mails about this specific entry. Subscriptions for informations about further entries are not affected by this action.'
+unsubscribe_error_hl =            '<!-- TODO -->Could not quit the subscription'
+unsubscribe_error_message =       '<!-- TODO -->During the action to quit the subscription an error occured. Please inform the forum operator by e-mail about this issue. Please add the following informations: ID of the entry (take it from the link in the e-mail (URL-parameter "unsubscribe")) and the time of the failed action (add the name of your time zone if possible).'
+
 [captcha]
 captcha_marking =                 'Защита от спама:'
 captcha_expl_math =               'Пожалуйста, сложите два числа:'

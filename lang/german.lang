@@ -449,6 +449,12 @@ report_flag_ham_submit =          'als Ham (kein Spam) kennzeichnen und melden'
 flag_ham_submit =                 'nur als Ham (kein Spam) kennzeichnen'
 no_authorisation_delete =         'Der Eintrag kann nicht gelöscht werden! Entweder der Löschzeitraum ist abgelaufen, der Thread ist gesperrt oder es gibt bereits eine Antwort auf diesen Eintrag.'
 
+[unsubscribe_posting]
+unsubscribed_hl =                 'Benachrichtigung ausgeschaltet'
+unsubscribed_message =            'Die Benachrichtigung über Antworten auf deinen Eintrag wurde ausgeschaltet. Es werden keine weiteren E-Mails gesendet, um dich über Antworten auf den nämlichen Eintrag zu informieren. Weitere aktivierte Benachrichtigungen über Antworten auf andere Einträge sind von dieser Aktion nicht betroffen.'
+unsubscribe_error_hl =            'Die Benachrichtigung konnte nicht ausgeschaltet werden'
+unsubscribe_error_message =       'Während der Verarbeitung der Anfrage zum abschalten der Benachrichtigung trat ein Fehler auf. Bitte informiere den Forenbetreiber per E-Mail über den Fehler. Bitte füge der E-Mail folgende Informationen hinzu: die ID des betreffenden Eintrags (lies sie aus dem Link in der E-Mail aus (URL-Parameter "unsubscribe")) und den Zeitpunkt, an dem diese Aktion scheiterte (füge, wenn möglich, den Namen deiner Zeitzone hinzu).'
+
 [captcha]
 captcha_marking =                 'Spamschutz-Maßnahme:'
 captcha_expl_math =               'Bitte die beiden Zahlen addieren:'

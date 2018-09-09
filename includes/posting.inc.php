@@ -111,6 +111,8 @@ if (isset($_GET['manage_postings']))
 	$action = 'manage_postings';
 if (isset($_GET['delete_spam']))
 	$action = 'delete_spam';
+if (isset($_GET['unsubscribe']) and isset($_GET['checker']))
+	$action = 'unsubscribe';
 if (isset($_POST['report_spam_submit']) || isset($_POST['report_spam_delete_submit']))
 	$action = 'report_spam_submit';
 if (isset($_POST['report_flag_ham_submit']) || isset($_POST['flag_ham_submit']))
@@ -298,6 +300,15 @@ if (isset($_POST['lock_submit']) && isset($_SESSION[$settings['session_prefix'] 
 	}
 	header('Location: index.php?mode=index');
 	exit;
+}
+
+if ($action == 'unsubscribe' and (!empty($_GET['unsubscribe']) and intval($_GET['unsubscribe']) > 0 and !empty($_GET['checker']))) {
+	$resultUnsubscribe = mysqli_query($connid, "UPDATE ". $db_settings['forum_table'] ." SET email_notification = 0 WHERE id = ". intval($_GET['unsubscribe']) ." AND uniqid = '". mysqli_real_escape_string($connid, $_GET['checker']) ."' AND email_notification = 1");
+	if ($resultUnsubscribe === true) {
+		$action = 'unsubscribed';
+	} else {
+		$action = 'unsubscribe-error';
+	}
 }
 
 # generate the variable input field names
@@ -1704,6 +1715,28 @@ switch ($action) {
 		}
 		header("location: index.php?mode=" . $back . "&id=" . $id);
 		exit;
+		break;
+	case 'unsubscribed':
+		// subscription was quitted:
+		$subnav_link = array(
+			'mode' => 'index',
+			'name' => 'forum_index_link',
+			'title' => 'forum_index_link_title'
+		);
+		$smarty->assign("subnav_link", $subnav_link);
+		$smarty->assign("unsubscribe_status", true);
+		$smarty->assign('subtemplate', 'posting_unsubscribe.inc.tpl');
+		break;
+	case 'unsubscribe-error':
+		// subscription was not quitted because of an error:
+		$subnav_link = array(
+			'mode' => 'index',
+			'name' => 'forum_index_link',
+			'title' => 'forum_index_link_title'
+		);
+		$smarty->assign("subnav_link", $subnav_link);
+		$smarty->assign("unsubscribe_status", false);
+		$smarty->assign('subtemplate', 'posting_unsubscribe.inc.tpl');
 		break;
 }
 
