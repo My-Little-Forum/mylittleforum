@@ -1283,7 +1283,7 @@ function emailNotification2ParentAuthor($id, $delayed=false)
   // if it's a reply (pid!=0) check if notification was desired by parent posting author:
   if($data['pid']!=0)
    {
-    $parent_result = mysqli_query($connid, "SELECT pid, user_id, name, email, subject, text, email_notification FROM ".$db_settings['forum_table']." WHERE id = ".intval($data['pid'])." LIMIT 1");
+    $parent_result = mysqli_query($connid, "SELECT pid, user_id, uniqid, name, email, subject, text, email_notification FROM ".$db_settings['forum_table']." WHERE id = ".intval($data['pid'])." LIMIT 1");
     $parent_data = mysqli_fetch_array($parent_result);
     mysqli_free_result($parent_result);
     if($parent_data['email_notification'] == 1 && ($parent_data['user_id']>0 || $settings['email_notification_unregistered']))
@@ -1302,6 +1302,7 @@ function emailNotification2ParentAuthor($id, $delayed=false)
       $text = email_format($data['text']);
       $parent_text = email_format($parent_data["text"]);
       $emailbody = str_replace("[recipient]", $parent_data['name'], $lang['email_text']);
+      $emailbody = str_replace("[unsubscribe_address]", $settings['forum_address']."index.php?mode=posting&unsubscribe=". intval($data['pid']) ."&checker=". $parent_data['uniqid'], $emailbody);
       $emailbody = str_replace("[name]", $name, $emailbody);
       $emailbody = str_replace("[subject]", $subject, $emailbody);
       $emailbody = str_replace("[text]", $text, $emailbody);

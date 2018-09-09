@@ -1024,9 +1024,14 @@ email_subject =                   'Antwort auf "[original_subject]"'
 email_text =                      """Hallo [recipient],
 
 dies ist eine automatisch generierte Email, die aufgrund der explizit aktivierten Benachrichtigungsoption verschickt wurde. Bitte antworte nicht direkt auf diese Email, sondern schreib die Antwort direkt in den vorhandenen Forenthread.
+
+Wenn du keine Benachrichtigungen bei erfolgten Antworten auf dein Posting mehr erhalten möchtest, benutze bitte den nachfolgenden Link um die Benachrichtigung abzuschalten.
+[unsubscribe_address]
+
 [name] hat eine Antwort zu \"[original_subject]\" geschrieben:
 
 Betreff: [subject]
+
 [text]
 
 URL des Eintrags: [posting_address]

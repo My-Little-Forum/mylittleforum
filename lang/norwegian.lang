@@ -1024,9 +1024,14 @@ email_subject =                   'Svar på "[original_subject]"'
 email_text =                      """Hei [recipient],
 
 this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
+
+If you do not want to get informed about replies to your entry anymore, please use the following link to unsubscribe from the notification.
+[unsubscribe_address]
+
 [name] har skrevet et svar på innlegget \"[original_subject]\":
 
 Emne: [subject]
+
 [text]
 
 Lenke til dette innlegget: [posting_address]

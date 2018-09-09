@@ -1036,9 +1036,14 @@ email_subject =             'Svar til "[original_subject]"'
 email_text =                """Hej [recipient],
 
 this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
+
+If you do not want to get informed about replies to your entry anymore, please use the following link to unsubscribe from the notification.
+[unsubscribe_address]
+
 [name] har skrevet et svar til \"[original_subject]\":
 
 Emne: [subject]
+
 [text]
 
 URL til dette indlæg: [posting_address]

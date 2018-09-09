@@ -1022,9 +1022,14 @@ email_subject =                 'Odgovor na "[original_subject]"'
 email_text =                    """Pozdrav [recipient],
 
 this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
+
+If you do not want to get informed about replies to your entry anymore, please use the following link to unsubscribe from the notification.
+[unsubscribe_address]
+
 [name] je ostavio poruku na temu \"[original_subject]\":
 
 Tema: [subject]
+
 [text]
 
 Link na ovu poruku: [posting_address]
