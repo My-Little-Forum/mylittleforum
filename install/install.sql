@@ -17,6 +17,7 @@ CREATE TABLE mlf2_temp_infos (name varchar(50) NOT NULL, value varchar(255) NOT 
 CREATE TABLE mlf2_entry_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_bookmark_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_tags (`id` int(11) NOT NULL AUTO_INCREMENT, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_subscriptions (`user_id` int(12) unsigned NOT NULL, `start_id` int(12) unsigned NOT NULL, `hash` varchar(36) NOT NULL, UNIQUE KEY user_thread (`user_id`, `start_id`), KEY k_hash (`hash`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO mlf2_banlists VALUES ('user_agents', '');
 INSERT INTO mlf2_banlists VALUES ('ips', '');
