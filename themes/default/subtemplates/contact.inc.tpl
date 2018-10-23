@@ -34,7 +34,13 @@
 <label for="captcha_code">{#captcha_expl_image#}</label> <input id="captcha_code" type="text" name="captcha_code" value="" size="10" /></p>
 {else}
 <p><strong>{#captcha_marking#}</strong><br />
-<label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" /></p>
+<label for="captcha_code">{#captcha_expl_math#} 
+{if $captcha.signum > 0}
+	{$smarty.config.captcha_expl_math_plus|replace:"[number1]":$smarty.config.{$captcha.number_1}|replace:"[number2]":$smarty.config.{$captcha.number_2}}
+{else}
+	{$smarty.config.captcha_expl_math_minus|replace:"[number1]":$smarty.config.{$captcha.number_1}|replace:"[number2]":$smarty.config.{$captcha.number_2}}
+{/if}
+ = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" tabindex="8" /></p>
 {/if}
 {/if}
 <p><input type="submit" name="message_submit" value="{#message_submit_caption#}" onclick="document.getElementById('throbber-submit').classList.remove('js-visibility-hidden');" /> <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>

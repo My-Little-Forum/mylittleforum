@@ -50,7 +50,13 @@
 <input id="captcha_code" type="text" name="captcha_code" value="" size="10" tabindex="7" /></p>
 {else}
 <p><strong>{#captcha_marking#}</strong><br />
-<label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" tabindex="8" /></p>
+<label for="captcha_code">{#captcha_expl_math#} 
+{if $captcha.signum > 0}
+	{$smarty.config.captcha_expl_math_plus|replace:"[number1]":$smarty.config.{$captcha.number_1}|replace:"[number2]":$smarty.config.{$captcha.number_2}}
+{else}
+	{$smarty.config.captcha_expl_math_minus|replace:"[number1]":$smarty.config.{$captcha.number_1}|replace:"[number2]":$smarty.config.{$captcha.number_2}}
+{/if}
+ = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" tabindex="8" /></p>
 {/if}
 {/if}
 <p><input type="submit" name="register_submit" value="{#submit_button_ok#}" tabindex="9" /></p>

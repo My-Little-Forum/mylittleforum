@@ -451,11 +451,25 @@ no_authorisation_delete =         'Der Eintrag kann nicht gelöscht werden! Entw
 
 [captcha]
 captcha_marking =                 'Spamschutz-Maßnahme:'
-captcha_expl_math =               'Bitte die beiden Zahlen addieren:'
+captcha_expl_math =               'Bitte Berechnen:'
 captcha_expl_image =              'Bitte die Buchstaben/Zahlen des Bildes eingeben:'
 captcha_image_alt =               'Wenn Sie das Bild nicht sehen können, müssen Sie sich zuerst registrieren/einloggen, um den Eintrag speichern zu können'
 captcha_image_alt_reg =           'Bitte den Foren-Administrator kontaktieren, wenn Sie das Bild nicht sehen können'
 captcha_check_failed =            'Spamschutz-Maßnahme nicht bestanden - bitte nochmal versuchen!'
+captcha_expl_math_plus =          'Addiere [number1] und [number2]'
+captcha_expl_math_minus =         'Subtrahiere [number2] von [number1]'
+captcha_number_0  =               'Null'
+captcha_number_1  =               'Eins'
+captcha_number_2  =               'Zwei'
+captcha_number_3  =               'Drei'
+captcha_number_4  =               'Vier'
+captcha_number_5  =               'Fünf'
+captcha_number_6  =               'Sechs'
+captcha_number_7  =               'Sieben'
+captcha_number_8  =               'Acht'
+captcha_number_9  =               'Neun'
+captcha_number_10 =               'Zehn'
+
 
 [upload_image]
 image_upload_not_enabled =        'Der Bilder-Upload ist deaktiviert.'

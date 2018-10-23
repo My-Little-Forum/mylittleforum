@@ -126,19 +126,20 @@ class Captcha
     ImagePNG($im);
    }
 
-  // for math CAPTCHA:
-  function generate_math_captcha($number1from=1,$number1to=10,$number2from=0,$number2to=10)
-   {
-    $number[0] = rand($number1from,$number1to);
-    $number[1] = rand($number2from,$number2to);
-    $number[2] = $number[0] + $number[1];
-    return $number;
-   }
+	// for math CAPTCHA:
+	function generate_math_captcha($number1from=1,$number1to=10,$number2from=0,$number2to=10) {
+		$signum = rand(-1, 1);
+		$signum = $signum >= 0 ? +1 : -1; // http://php.net/manual/de/function.gmp-sign.php returns 0 if the value is zero
+	
+		$number[0] = rand($number1from,$number1to);
+		$number[1] = rand($number2from,$number2to);
+		$number[2] = $signum;
+		$number[3] = $number[0] + $signum * $number[1];
+		return $number;
+	}
 
-  function check_math_captcha($result, $entered_result)
-   {
-    if(intval($result) == intval($entered_result)) return true;
-    else return false;
-   }
+	function check_math_captcha($result, $entered_result) {
+		return intval($result) == intval($entered_result);
+	}
  }
 ?>

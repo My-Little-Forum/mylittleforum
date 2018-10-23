@@ -854,7 +854,7 @@ switch ($action) {
 					if (empty($_SESSION['captcha_session']) || empty($_POST['captcha_code']) || $captcha->check_captcha($_SESSION['captcha_session'], $_POST['captcha_code']) != true)
 						$errors[] = 'captcha_check_failed';
 				} else {
-					if (empty($_SESSION['captcha_session']) || empty($_POST['captcha_code']) || $captcha->check_math_captcha($_SESSION['captcha_session'][2], $_POST['captcha_code']) != true)
+					if (empty($_SESSION['captcha_session']) || empty($_POST['captcha_code']) || $captcha->check_math_captcha($_SESSION['captcha_session'][3], $_POST['captcha_code']) != true)
 						$errors[] = 'captcha_check_failed';
 				}
 				unset($_SESSION['captcha_session']);
@@ -1713,8 +1713,9 @@ if (empty($_SESSION[$settings['session_prefix'] . 'user_id']) && $settings['capt
 		$_SESSION['captcha_session'] = $captcha->generate_code();
 	} else {
 		$_SESSION['captcha_session'] = $captcha->generate_math_captcha();
-		$captcha_tpl['number_1']     = $_SESSION['captcha_session'][0];
-		$captcha_tpl['number_2']     = $_SESSION['captcha_session'][1];
+		$captcha_tpl['number_1'] = "captcha_number_" . $_SESSION['captcha_session'][0];
+		$captcha_tpl['number_2'] = "captcha_number_" . $_SESSION['captcha_session'][1];
+		$captcha_tpl['signum']   = $_SESSION['captcha_session'][2];
 	}
 	$captcha_tpl['type'] = $settings['captcha_posting'];
 	$smarty->assign('captcha', $captcha_tpl);
