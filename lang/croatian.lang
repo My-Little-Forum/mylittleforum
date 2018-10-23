@@ -449,11 +449,24 @@ no_authorisation_delete =         'Poruku nije moguće obrisati! Mogući uzroci 
 
 [captcha]
 captcha_marking =                 'Provjera za zaštitu od spama:'
-captcha_expl_math =               'Upiši zbroj dva broja:'
 captcha_expl_image =              'Upiši slova i brojeve sa slike iznad:'
 captcha_image_alt =               'Ako ne možeš vidjeti sliku, moraš kreirati svoj korisnički račun i prijaviti se za popunjavanje ovog obrasca'
 captcha_image_alt_reg =           'Kontaktirajte administratora foruma ako ne možete vidjeti sliku.'
 captcha_check_failed =            'Niste prošli provjeru za zaštitu od spama - pokušajte ponovo!'
+captcha_expl_math =               'Evaluating mathematical expression:'
+captcha_expl_math_plus =          'Sum [number1] and [number2]'
+captcha_expl_math_minus =         'Subtract [number2] from [number1]'
+captcha_number_0  =               'Zero'
+captcha_number_1  =               'One'
+captcha_number_2  =               'Two'
+captcha_number_3  =               'Three'
+captcha_number_4  =               'Four'
+captcha_number_5  =               'Five'
+captcha_number_6  =               'Six'
+captcha_number_7  =               'Seven'
+captcha_number_8  =               'Eight'
+captcha_number_9  =               'Nine'
+captcha_number_10 =               'Ten'
 
 [upload_image]
 image_upload_not_enabled =        'Slanje slika nije omogućeno.'

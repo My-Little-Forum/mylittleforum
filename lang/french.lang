@@ -452,11 +452,24 @@ no_authorisation_delete =         'Le message ne peut être supprimé! Il se peu
 
 [captcha]
 captcha_marking =                 'Protection contre le spam :'
-captcha_expl_math =               'Veuillez additionner ces deux nombres:'
 captcha_expl_image =              'Veuillez entrer les lettres ou nombres de l\'image ci-dessus:'
 captcha_image_alt =               'Si vous ne pouvez voir l\'image, vous devez créer un compte utilisateur et vous connecter pour pouvoir envoyer votre message'
 captcha_image_alt_reg =           'Veuillez contacter l\'admistrateur du forum si vous ne pouvez voir cette image'
 captcha_check_failed =            'La vérification anti-spam a échoué - veuillez recommencer!'
+captcha_expl_math =               'Evaluating mathematical expression:'
+captcha_expl_math_plus =          'Sum [number1] and [number2]'
+captcha_expl_math_minus =         'Subtract [number2] from [number1]'
+captcha_number_0  =               'Zero'
+captcha_number_1  =               'One'
+captcha_number_2  =               'Two'
+captcha_number_3  =               'Three'
+captcha_number_4  =               'Four'
+captcha_number_5  =               'Five'
+captcha_number_6  =               'Six'
+captcha_number_7  =               'Seven'
+captcha_number_8  =               'Eight'
+captcha_number_9  =               'Nine'
+captcha_number_10 =               'Ten'
 
 [upload_image]
 image_upload_not_enabled =        'L\'envoi d\'images n\'est pas activé.'

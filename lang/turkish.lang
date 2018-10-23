@@ -455,11 +455,24 @@ no_authorisation_delete =         'Gönderim silinemiyor! Konu kilitli olabilir 
 
 [captcha]
 captcha_marking =                 'Spam koruma kontrolü:'
-captcha_expl_math =               'Lütfen verilen iki numarayı hesaplayınız:'
 captcha_expl_image =              'Lütfen yukarıdaki resimdeki karakterleri/numaraları giriniz:'
 captcha_image_alt =               'Eğer resmi göremiyorsanız yeni bir kullanıcı hesabı yaratarak bu formu gönderebilirsiniz'
 captcha_image_alt_reg =           'Eğer resmi göremiyorsanız lütfen forum yöneticisi ile irtibata geçiniz'
 captcha_check_failed =            'Spam kontrolü başarısız - lütfen tekrar deneyin!'
+captcha_expl_math =               'Evaluating mathematical expression:'
+captcha_expl_math_plus =          'Sum [number1] and [number2]'
+captcha_expl_math_minus =         'Subtract [number2] from [number1]'
+captcha_number_0  =               'Zero'
+captcha_number_1  =               'One'
+captcha_number_2  =               'Two'
+captcha_number_3  =               'Three'
+captcha_number_4  =               'Four'
+captcha_number_5  =               'Five'
+captcha_number_6  =               'Six'
+captcha_number_7  =               'Seven'
+captcha_number_8  =               'Eight'
+captcha_number_9  =               'Nine'
+captcha_number_10 =               'Ten'
 
 [upload_image]
 image_upload_not_enabled =        'Resim yükleme fonksiyonu açık değil.'

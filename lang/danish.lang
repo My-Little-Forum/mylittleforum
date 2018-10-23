@@ -463,11 +463,24 @@ no_authorisation_delete =   'Indlægget kan ikke slettes! Enten er det fordi per
 
 [captcha]
 captcha_marking =           'Spam beskyttelsestjek:'
-captcha_expl_math =         'Regn venligst de to tal ud:'
 captcha_expl_image =        'Indtast venligst bogstaverne/tallene fra billedet ovenover:'
 captcha_image_alt =         'Hvis du ikke kan se dette billede, skal du oprette en brugerkonto og logge ind for at sende denne formular'
 captcha_image_alt_reg =     'Kontakt venligst forumadministratoren hvis du ikke kan se dette billede'
 captcha_check_failed =      'Spambeskyttelsen fejlede - prøv venligst igen!'
+captcha_expl_math =         'Evaluating mathematical expression:'
+captcha_expl_math_plus =    'Sum [number1] and [number2]'
+captcha_expl_math_minus =   'Subtract [number2] from [number1]'
+captcha_number_0  =         'Zero'
+captcha_number_1  =         'One'
+captcha_number_2  =         'Two'
+captcha_number_3  =         'Three'
+captcha_number_4  =         'Four'
+captcha_number_5  =         'Five'
+captcha_number_6  =         'Six'
+captcha_number_7  =         'Seven'
+captcha_number_8  =         'Eight'
+captcha_number_9  =         'Nine'
+captcha_number_10 =         'Ten'
 
 [upload_image]
 image_upload_not_enabled =  'Billede upload er ikke aktiveret.'

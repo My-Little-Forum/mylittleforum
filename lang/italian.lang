@@ -450,11 +450,24 @@ no_authorisation_delete =         'Il messaggio non può essere eliminato! Proba
 
 [captcha]
 captcha_marking =                 'Controllo protezione anti-spam:'
-captcha_expl_math =               'Si prega di sommare i due numeri:'
 captcha_expl_image =              'Si prega di inserire le lettere/numeri dell\'immagine quì sopra:'
 captcha_image_alt =               'Se non puoi visualizzare questa immagine necessiti di creare il tuo account e fare l\'accesso per spedire questo form'
 captcha_image_alt_reg =           'Si prega di contattare l\'amministratore del forum se non si riesce a visualizzare questa immagine'
 captcha_check_failed =            'Controllo protezione anti-spam fallito - si prega di riprovare!'
+captcha_expl_math =               'Evaluating mathematical expression:'
+captcha_expl_math_plus =          'Sum [number1] and [number2]'
+captcha_expl_math_minus =         'Subtract [number2] from [number1]'
+captcha_number_0  =               'Zero'
+captcha_number_1  =               'One'
+captcha_number_2  =               'Two'
+captcha_number_3  =               'Three'
+captcha_number_4  =               'Four'
+captcha_number_5  =               'Five'
+captcha_number_6  =               'Six'
+captcha_number_7  =               'Seven'
+captcha_number_8  =               'Eight'
+captcha_number_9  =               'Nine'
+captcha_number_10 =               'Ten'
 
 [upload_image]
 image_upload_not_enabled =        'Non è abilitato il caricamento di immagini.'

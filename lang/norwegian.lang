@@ -449,11 +449,24 @@ no_authorisation_delete =         'Innlegget kan ikke slettes!  Mulige årsaker:
 
 [captcha]
 captcha_marking =                 'Spambeskyttelse:'
-captcha_expl_math =               'Legg sammen de to tallene:'
 captcha_expl_image =              'Skriv inn bokstavene/tallene fra bildet over:'
 captcha_image_alt =               'Dersom du ikke kan se dette bildet må du opprette en brukerkonto og logge inn for å sende denn meldingen.'
 captcha_image_alt_reg =           'Dersom du ikke kan se dette bildet, kontakt forumadministratoren'
 captcha_check_failed =            'Spambeskyttelses-sjekken feilet - prøv igjen!'
+captcha_expl_math =               'Evaluating mathematical expression:'
+captcha_expl_math_plus =          'Sum [number1] and [number2]'
+captcha_expl_math_minus =         'Subtract [number2] from [number1]'
+captcha_number_0  =               'Zero'
+captcha_number_1  =               'One'
+captcha_number_2  =               'Two'
+captcha_number_3  =               'Three'
+captcha_number_4  =               'Four'
+captcha_number_5  =               'Five'
+captcha_number_6  =               'Six'
+captcha_number_7  =               'Seven'
+captcha_number_8  =               'Eight'
+captcha_number_9  =               'Nine'
+captcha_number_10 =               'Ten'
 
 [upload_image]
 image_upload_not_enabled =        'Bildeopplasting er ikke aktivert.'
