@@ -1,7 +1,7 @@
 /***********************************************************************
 *                         MyLittleJavaScript                           *
 ************************************************************************
-* Created by Michael Loesler <http://derletztekick.com>                *
+* Created by Michael Loesler <https://github.com/loesler>              *
 *                                                                      *
 * This script is part of my little forum <http://mylittleforum.net>    *
 *                                                                      *
@@ -27,8 +27,6 @@
 * file do not have any effect unless it is loaded by the template      *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
 * The minimized version was created with the YUI Compressor            *
-* <http://developer.yahoo.com/yui/compressor/>, i.e.                   *
-* <http://ganquan.info/yui/>.                                          *
 ***********************************************************************/
 
 /**

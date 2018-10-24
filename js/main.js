@@ -1,7 +1,7 @@
 /***********************************************************************
 *                         MyLittleJavaScript                           *
 ************************************************************************
-* Created by Michael Loesler <http://derletztekick.com>                *
+* Created by Michael Loesler <https://github.com/loesler>              *
 *                                                                      *
 * This script is part of my little forum <http://mylittleforum.net>    *
 *                                                                      *
