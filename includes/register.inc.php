@@ -28,7 +28,6 @@ if (isset($_GET['key']))
 $fname_user = hash("sha256", 'new_user_name' . $_SESSION['csrf_token']);
 $fname_email = hash("sha256", 'new_user_email' . $_SESSION['csrf_token']);
 $fname_pword = hash("sha256", 'reg_pw' . $_SESSION['csrf_token']);
-$fname_pwconf = hash("sha256", 'reg_pw_conf' . $_SESSION['csrf_token']);
 $fname_phone = hash("sha256", 'phone' . $_SESSION['csrf_token']);
 $fname_repemail = hash("sha256", 'repeat_email' . $_SESSION['csrf_token']);
 
@@ -44,7 +43,6 @@ switch ($action) {
 			$smarty->assign('fld_user_name', $fname_user);
 			$smarty->assign('fld_user_email', $fname_email);
 			$smarty->assign('fld_pword', $fname_pword);
-			$smarty->assign('fld_pwconf', $fname_pwconf);
 			$smarty->assign('fld_phone', $fname_phone);
 			$smarty->assign('fld_repeat_email', $fname_repemail);
 			$template = 'main.tpl';
@@ -63,20 +61,17 @@ switch ($action) {
 			$new_user_name  = trim($_POST[$fname_user]);
 			$new_user_email = trim($_POST[$fname_email]);
 			$reg_pw = $_POST[$fname_pword];
-			$reg_pw_conf = $_POST[$fname_pwconf];
 			$terms_of_use_agree = (isset($_POST['terms_of_use_agree']) && $_POST['terms_of_use_agree'] == 1) ? 1 : 0;
 			$data_privacy_statement_agree = (isset($_POST['data_privacy_statement_agree']) && $_POST['data_privacy_statement_agree'] == 1) ? 1 : 0;
 
 			// form complete and are honey pot fields empty?
-			if ($new_user_name == '' || $new_user_email == '' || $reg_pw == '' || $reg_pw_conf == '' || !isset($_POST[$fname_repemail]) || !empty($_POST[$fname_repemail]) || !isset($_POST[$fname_phone]) || !empty($_POST[$fname_phone]))
+			if ($new_user_name == '' || $new_user_email == '' || $new_user_name == $new_user_email || $reg_pw == '' || !isset($_POST[$fname_repemail]) || !empty($_POST[$fname_repemail]) || !isset($_POST[$fname_phone]) || !empty($_POST[$fname_phone]))
 				$errors[] = 'error_form_uncomplete';
 
 			if (empty($errors)) {
 				// password too short?
 				if (my_strlen($reg_pw, $lang['charset']) < $settings['min_pw_length']) 
 					$errors[] = 'error_password_too_short';
-				// password and repeatet Password equal?
-				if ($reg_pw != $reg_pw_conf) $errors[] = 'error_pw_conf_wrong';
 				// name too long?
 				if (my_strlen($new_user_name, $lang['charset']) > $settings['username_maxlength']) 
 					$errors[] = 'error_name_too_long';
@@ -179,7 +174,6 @@ switch ($action) {
 				$smarty->assign('fld_user_name', $fname_user);
 				$smarty->assign('fld_user_email', $fname_email);
 				$smarty->assign('fld_pword', $fname_pword);
-				$smarty->assign('fld_pwconf', $fname_pwconf);
 				$smarty->assign('fld_phone', $fname_phone);
 				$smarty->assign('fld_repeat_email', $fname_repemail);
 				$smarty->assign('new_user_name',   htmlspecialchars($new_user_name));

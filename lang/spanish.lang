@@ -175,7 +175,6 @@ error_invalid_date_format =       'Formato de fecha de nacimiento no valido (AAA
 error_invalid_date =              'Fecha de nacimiento no valida'
 error_email_wrong =               'La direccion de correo electronico no es valida'
 error_hp_wrong =                  'La direccionpagina principal no es valida
-error_pw_conf_wrong =             'La contrasena no coincide con la anterior
 error_akismet_connection =        'Servidor de tiempo de espera, por favor, intentelo de nuevo!
 error_akismet_connection_admin =  'No se ha podido conectar con el servidor Akismet para verificar la clave de API!
 error_akismet_api_key =           'No es valida la clave de Akismet'
@@ -273,6 +272,8 @@ drag_and_drop_title =             'Arrastras & soltar para mover hacia arriba o 
 show_all_postings_link =          'mostrar mensajes'
 show_bookmarks_link =             '<!-- TODO -->Bookmarks'
 show_userdata_linktitle =         '<!-- TODO -->Visit profil of [user]'
+show_password_title =             '<!-- TODO -->Show password in plain text'
+hidde_password_title =            '<!-- TODO -->Hidde password'
 
 [bookmark]
 delete_bookmark_submit =          '<!-- TODO -->OK - Delete Bookmark'
