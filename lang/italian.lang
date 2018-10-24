@@ -273,6 +273,8 @@ drag_and_drop_title =             'drag & drop per spostare in alto o in basso'
 show_all_postings_link =          'visualizza messaggi'
 show_bookmarks_link =             '<!-- TODO -->Bookmarks'
 show_userdata_linktitle =         '<!-- TODO -->Visit profil of [user]'
+show_password_title =             '<!-- TODO -->Show password in plain text'
+hidde_password_title =            '<!-- TODO -->Hidde password'
 
 [bookmark]
 delete_bookmark_submit =          '<!-- TODO -->OK - Delete Bookmark'

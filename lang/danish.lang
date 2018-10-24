@@ -286,6 +286,8 @@ drag_and_drop_title =       'Træk og slip for at gå op eller ned'
 show_all_postings_link =    'Egne indlæg'
 show_bookmarks_link =       'Bogmærker'
 show_userdata_linktitle =   'Brugerprofil for [user]'
+show_password_title =             '<!-- TODO -->Show password in plain text'
+hidde_password_title =            '<!-- TODO -->Hidde password'
 
 [bookmark]
 delete_bookmark_submit =    'OK - Slet bogmærke'
