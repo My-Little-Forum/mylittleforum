@@ -284,7 +284,7 @@ show_all_postings_link =    'Egne indlæg'
 show_bookmarks_link =       'Bogmærker'
 show_userdata_linktitle =   'Brugerprofil for [user]'
 show_password_title =             '<!-- TODO -->Show password in plain text'
-hidde_password_title =            '<!-- TODO -->Hidde password'
+hide_password_title =             '<!-- TODO -->Hide password'
 
 [bookmark]
 delete_bookmark_submit =    'OK - Slet bogmærke'

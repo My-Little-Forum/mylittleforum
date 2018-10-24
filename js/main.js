@@ -26,7 +26,7 @@
 * this script is used by default (main.min.js). Changes in this file   *
 * do not have any effect unless it is loaded by the template           *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
-* The minimized version was created with the YUI Compressor            *                                    *
+* The minimized version was created with the YUI Compressor            *
 ***********************************************************************/
 
 /**
@@ -1517,7 +1517,7 @@ var ready = new (function () {
 								cb.onclick = function(e) {
 									var isShown = this.field.type == "text";
 									this.value = isShown;
-									this.title = isShown ? lang["show_password_title"] : lang["hidde_password_title"];
+									this.title = isShown ? lang["show_password_title"] : lang["hide_password_title"];
 									this.field.type  = isShown ? "password" : "text";
 								};
 							}

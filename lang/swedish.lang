@@ -282,7 +282,7 @@ show_all_postings_link =          'Visa inlägg'
 show_bookmarks_link =             'Bokmärken'
 show_userdata_linktitle =         'Visa användardata för [user]'
 show_password_title =             '<!-- TODO -->Show password in plain text'
-hidde_password_title =            '<!-- TODO -->Hidde password'
+hide_password_title =             '<!-- TODO -->Hide password'
 
 [bookmark]
 delete_bookmark_submit =          'OK - Radera bokmärke'

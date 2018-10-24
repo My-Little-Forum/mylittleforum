@@ -44,7 +44,7 @@ lang["fold_posting_title"] =               "<?php echo addslashes($lang['fold_po
 lang["fold_postings"] =                    "<?php echo addslashes($lang['fold_postings']); ?>";
 lang["fold_postings_title"] =              "<?php echo addslashes($lang['fold_postings_title']); ?>";
 lang["show_password_title"] =              "<?php echo addslashes($lang['show_password_title']); ?>";
-lang["hidde_password_title"] =             "<?php echo addslashes($lang['hidde_password_title']); ?>";
+lang["hide_password_title"] =              "<?php echo addslashes($lang['hide_password_title']); ?>";
 <?php if(isset($user_type) && $user_type >= 0): ?>
 lang["drag_and_drop_title"] =              "<?php echo addslashes($lang['drag_and_drop_title']); ?>";
 <?php endif; ?>
