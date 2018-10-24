@@ -180,7 +180,6 @@ error_invalid_date_format =       'Geçersiz doğum tarihi (YYYY-AA-GG)'
 error_invalid_date =              'Geçersiz doğum tarihi'
 error_email_wrong =               'E-posta adresi geçersiz'
 error_hp_wrong =                  'Ana sayfa adresi geçersiz'
-error_pw_conf_wrong =             'Tekrarlanan parola öncekiyle aynı değil'
 error_akismet_connection =        'Sunucu zaman aşımına uğradı, lütfen tekrar deneyin!'
 error_akismet_connection_admin =  'API anahtarını doğrulatabilmek için Akismet sunucusuna denenen bağlantı sağlanamadı!'
 error_akismet_api_key =           'Geçersiz Wordpress API anahtarı'
@@ -278,6 +277,8 @@ drag_and_drop_title =             'aşağı / yukarı taşımak için sürükle 
 show_all_postings_link =          'iletileri göster'
 show_bookmarks_link =             '<!-- TODO -->Bookmarks'
 show_userdata_linktitle =         '<!-- TODO -->Visit profil of [user]'
+show_password_title =             '<!-- TODO -->Show password in plain text'
+hidde_password_title =            '<!-- TODO -->Hidde password'
 
 [bookmark]
 delete_bookmark_submit =          '<!-- TODO -->OK - Delete Bookmark'

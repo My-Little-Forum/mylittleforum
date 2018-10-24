@@ -174,7 +174,6 @@ error_invalid_date_format =       'Format datuma rođenja nije ispravan (YYYY-MM
 error_invalid_date =              'Neispravan datum rođenja'
 error_email_wrong =               'Neispravna e-mail adresa'
 error_hp_wrong =                  'Neispravna adresa web stranice'
-error_pw_conf_wrong =             'Lozinke se razlikuju'
 error_akismet_connection =        'Problem sa posluživačem, pokušaj ponovo!'
 error_akismet_connection_admin =  'Ne mogu se povezati na Akismet posluživač u svrhu provjere API ključa!'
 error_akismet_api_key =           'Neispravan Wordpress API ključ'
@@ -272,6 +271,8 @@ drag_and_drop_title =             'Povuci gore ili dole za premještanje'
 show_all_postings_link =          'prikaži poruke'
 show_bookmarks_link =             '<!-- TODO -->Bookmarks'
 show_userdata_linktitle =         '<!-- TODO -->Visit profil of [user]'
+show_password_title =             '<!-- TODO -->Show password in plain text'
+hidde_password_title =            '<!-- TODO -->Hidde password'
 
 [bookmark]
 delete_bookmark_submit =          '<!-- TODO -->OK - Delete Bookmark'

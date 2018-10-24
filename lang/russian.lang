@@ -188,7 +188,6 @@ error_invalid_date_format =       'Неправильный формат дат�
 error_invalid_date =              'Неправильно указана дата рождения'
 error_email_wrong =               'Неправильный адрес e-mail'
 error_hp_wrong =                  'Неправильный адрес домашней страницы'
-error_pw_conf_wrong =             'Пароль не совпадает с введенным повторно'
 error_akismet_connection =        'Сервер тормозит, попробуйте ещё раз!'
 error_akismet_connection_admin =  'Нельзя подключиться к серверу Akismet для проверки ключа API!'
 error_akismet_api_key =           'Неправильный ключ Wordpress API'
@@ -287,6 +286,8 @@ drag_and_drop_title =             'перетащите мышкой чтобы 
 show_all_postings_link =          'показать сообщения'
 show_bookmarks_link =             '<!-- TODO -->Bookmarks'
 show_userdata_linktitle =         '<!-- TODO -->Visit profil of [user]'
+show_password_title =             '<!-- TODO -->Show password in plain text'
+hidde_password_title =            '<!-- TODO -->Hidde password'
 
 [bookmark]
 delete_bookmark_submit =          '<!-- TODO -->OK - Delete Bookmark'
