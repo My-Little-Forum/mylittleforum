@@ -287,7 +287,7 @@ show_all_postings_link =          'показать сообщения'
 show_bookmarks_link =             '<!-- TODO -->Bookmarks'
 show_userdata_linktitle =         '<!-- TODO -->Visit profil of [user]'
 show_password_title =             '<!-- TODO -->Show password in plain text'
-hidde_password_title =            '<!-- TODO -->Hidde password'
+hide_password_title =             '<!-- TODO -->Hide password'
 
 [bookmark]
 delete_bookmark_submit =          '<!-- TODO -->OK - Delete Bookmark'

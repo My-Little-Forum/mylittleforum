@@ -283,7 +283,7 @@ show_all_postings_link =          'show postings'
 show_bookmarks_link =             'Bookmarks'
 show_userdata_linktitle =         'Visit profil of [user]'
 show_password_title =             'Show password in plain text'
-hidde_password_title =            'Hidde password'
+hide_password_title =             'Hide password'
 
 [bookmark]
 delete_bookmark_submit =          'OK - Delete Bookmark'
