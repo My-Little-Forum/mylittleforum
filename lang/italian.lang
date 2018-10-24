@@ -175,7 +175,6 @@ error_invalid_date_format =       'Formato della data di nascita non valido (AAA
 error_invalid_date =              'Data di nascita non valida'
 error_email_wrong =               'Indirizzo e-mail non valido'
 error_hp_wrong =                  'Indirizzo home page non valido'
-error_pw_conf_wrong =             'La password non conicide con la precedente'
 error_akismet_connection =        'Connessione al server scaduta, riprova!'
 error_akismet_connection_admin =  'Impossibile connettersi col server Akismet per verificare API key!'
 error_akismet_api_key =           'Non valido Wordpress API Key'

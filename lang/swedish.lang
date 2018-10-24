@@ -186,7 +186,6 @@ error_invalid_date_format =       'Ogiltigt datumformat på födelsedag, (ÅÅÅ
 error_invalid_date =              'Ogiltigt datumformat!'
 error_email_wrong =               'Ogiltig E-postadress!'
 error_hp_wrong =                  'Ogiltig hemsideadress!'
-error_pw_conf_wrong =             'Lösenorden är inte lika!'
 error_akismet_connection =        'Servertimeout, vänligen försök igen!'
 error_akismet_connection_admin =  'Kunde inte kontakta Akismet server för att verifiera API-nyckeln!'
 error_akismet_api_key =           'Ogiltig Wordpress API Nyckel!'

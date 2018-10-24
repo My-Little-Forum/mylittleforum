@@ -177,7 +177,6 @@ error_invalid_date_format =       'Format de date de naissance incorrect (AAAA-M
 error_invalid_date =              'Date de naissance incorrecte'
 error_email_wrong =               'L\'adresse mail est incorrecte'
 error_hp_wrong =                  'Le site web est incorrect'
-error_pw_conf_wrong =             'Le mot de passe n\'est pas le même que celui entré la première fois'
 error_akismet_connection =        'Serveur occupé, veuillez réessayer!'
 error_akismet_connection_admin =  'Ne peut pas établir de connexion au serveur Akismet pour vérifier la clé API!'
 error_akismet_api_key =           'Clé Wordpress API incorrecte'

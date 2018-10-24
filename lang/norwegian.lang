@@ -174,7 +174,6 @@ error_invalid_date_format =       'Ugyldig datoformat på fødselsdag (DD.MM.Å�
 error_invalid_date =              'Ugyldig fødselsdato'
 error_email_wrong =               'E-postadressen er ugyldig'
 error_hp_wrong =                  'Hjemmesideadressen er ugyldig'
-error_pw_conf_wrong =             'Passordet du skrev inn er ikke det samme som det du skrev over'
 error_akismet_connection =        'Serveren gikk på en smell og fikk en tidsutkopling  timed, men bare prøv igjen!'
 error_akismet_connection_admin =  'Kunne ikke koble til Akismet-serveren for å verifisere API-nøkkelen!'
 error_akismet_api_key =           'Ugyldig Wordpress API Key'
