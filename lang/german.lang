@@ -176,7 +176,6 @@ error_invalid_date_format =       'ungültiges Datums-Format des Geburtstages (J
 error_invalid_date =              'ungültiges Geburtsdatum'
 error_email_wrong =               'E-Mail-Adresse ungültig'
 error_hp_wrong =                  'Homepage ungültig'
-error_pw_conf_wrong =             'das Passwort stimmt nicht mit der Wiederholung überein'
 error_akismet_connection =        'Server-Timeout, bitte nochmal versuchen!'
 error_akismet_connection_admin =  'Akismet-Server konnte nicht kontaktiert werden um den API-Key zu überprüfen!'
 error_akismet_api_key =           'Ungültiger Wordpress-API-Key'
@@ -274,6 +273,8 @@ drag_and_drop_title =             'Drag & Drop zum Verschieben'
 show_all_postings_link =          'Einträge anzeigen'
 show_bookmarks_link =             'Lesezeichen'
 show_userdata_linktitle =         'Nutzerdaten von [user]'
+show_password_title =             'Passwort im Klartext anzeigen'
+hide_password_title =             'Passwort verstecken'
 
 [bookmark]
 delete_bookmark_submit =          'OK - Lesezeichen löschen'

@@ -1,7 +1,7 @@
 /***********************************************************************
 *                         MyLittleJavaScript                           *
 ************************************************************************
-* Created by Michael Loesler <http://derletztekick.com>                *
+* Created by Michael Loesler <https://github.com/loesler>              *
 *                                                                      *
 * This script is part of my little forum <http://mylittleforum.net>    *
 *                                                                      *
@@ -27,8 +27,6 @@
 * do not have any effect unless it is loaded by the template           *
 * (themes/[THEME FOLDER]/main.tpl).                                    *
 * The minimized version was created with the YUI Compressor            *
-* <http://developer.yahoo.com/yui/compressor/>, i.e.                   *
-* <http://ganquan.info/yui/>.                                          *
 ***********************************************************************/
 
 /**
@@ -1499,6 +1497,37 @@ var ready = new (function () {
 		};
 		
 		/**
+		 * Durchsucht Seite nach Formularen mit Passwort-Feldern im
+		 * >CONTENT< Bereich und fuegt eine Checkbox hinter dem 
+		 * jeweiligen Passwort-Feld hinzu. Ist die Checkbox ausgewaehlt,
+		 * so wird das Passwort im Klartext angezeigt ansonsten nicht.
+		 */
+		var togglePasswordVisibility = function() {
+			if (document.getElementById("content")) {
+				var f = document.getElementById("content").getElementsByTagName("form");
+				if (f && f.length>0) {
+					var passwordFields = [];
+					for (var i=0; i<f.length; i++) {
+						var fields = f[i].getElementsByTagName("input");
+						for (var j=0; j<fields.length; j++) {
+							if (fields[j].type == "password") {
+								var passwordField = fields[j];
+								// lang["fold_postings_title"]
+								var cb = document.createElementWithAttributes("input", {"type": "checkbox", "checked": false, "value": false, "field": passwordField, "title": lang["show_password_title"]}, passwordField.parentNode);
+								cb.onclick = function(e) {
+									var isShown = this.field.type == "text";
+									this.value = isShown;
+									this.title = isShown ? lang["show_password_title"] : lang["hide_password_title"];
+									this.field.type  = isShown ? "password" : "text";
+								};
+							}
+						}
+					}
+				}
+			}
+		};
+		
+		/**
 		 * Oeffnet/Schliesst alle Antworten in einem Thread
 		 * @param expand
 		 */
@@ -1672,6 +1701,8 @@ var ready = new (function () {
 			initPopUpLinks();
 			setAutoSubmitSubNaviForms();
 			sidebar = new Sidebar(templatePath);
+			
+			togglePasswordVisibility();
 			
 			if (typeof preload == "object") 
 				document.preloadImages(preload, templatePath);		
