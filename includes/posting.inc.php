@@ -111,7 +111,7 @@ if (isset($_GET['manage_postings']))
 	$action = 'manage_postings';
 if (isset($_GET['delete_spam']))
 	$action = 'delete_spam';
-if (isset($_GET['unsubscribe']) and isset($_GET['checker']))
+if (isset($_GET['unsubscribe']))
 	$action = 'unsubscribe';
 if (isset($_POST['report_spam_submit']) || isset($_POST['report_spam_delete_submit']))
 	$action = 'report_spam_submit';
@@ -302,8 +302,8 @@ if (isset($_POST['lock_submit']) && isset($_SESSION[$settings['session_prefix'] 
 	exit;
 }
 
-if ($action == 'unsubscribe' and (!empty($_GET['unsubscribe']) and intval($_GET['unsubscribe']) > 0 and !empty($_GET['checker']))) {
 	$resultUnsubscribe = mysqli_query($connid, "UPDATE ". $db_settings['forum_table'] ." SET email_notification = 0 WHERE id = ". intval($_GET['unsubscribe']) ." AND uniqid = '". mysqli_real_escape_string($connid, $_GET['checker']) ."' AND email_notification = 1");
+if ($action == 'unsubscribe' and !empty($_GET['unsubscribe'])) {
 	if ($resultUnsubscribe === true) {
 		$action = 'unsubscribed';
 	} else {
