@@ -459,6 +459,12 @@ report_flag_ham_submit =          'Report and flag as ham'
 flag_ham_submit =                 'Flag as ham only'
 no_authorisation_delete =         'Posting can not be deleted! Maybe the period within postings can be deleted has expired, the thread is locked or there are already replies to this posting.'
 
+[unsubscribe_posting]
+unsubscribed_hl =                 'Quitted subscription'
+unsubscribed_message =            'The subscription for informations about replies to your entry got quitted. You will not receive any more e-mails about this specific entry. Subscriptions for informations about further entries are not affected by this action.'
+unsubscribe_error_hl =            'Could not quit the subscription'
+unsubscribe_error_message =       'During the action to quit the subscription an error occured. Please inform the forum operator by e-mail about this issue. Please add the following informations: ID of the entry (take it from the link in the e-mail (URL-parameter "unsubscribe")) and the time of the failed action (add the name of your time zone if possible).'
+
 [captcha]
 captcha_marking =                 'Spam protection check:'
 captcha_expl_math =               'Please sum the two numbers:'
@@ -1034,9 +1040,14 @@ email_subject =                   'Reply on "[original_subject]"'
 email_text =                      """Hi [recipient],
 
 this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
+
+If you do not want to get informed about replies to your entry anymore, please use the following link to unsubscribe from the notification.
+[unsubscribe_address]
+
 [name] has posted a reply on \"[original_subject]\":
 
 Subject: [subject]
+
 [text]
 
 URL of this posting: [posting_address]

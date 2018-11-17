@@ -61,7 +61,7 @@ $newVersion = trim(file_get_contents('../config/VERSION'));
 
 if(isset($_POST['language_file'])) $language_file = $_POST['language_file'];
 
-// try to connect to the database...
+// try to connect to the database …
 if($connid = @mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password']))
  {
   if(@mysqli_select_db($connid, $db_settings['database']))
@@ -207,7 +207,8 @@ if(isset($_POST['install_submit']))
 								'temp_infos_table'     => 'temp_infos',
 								'tags_table'           => 'tags',
 								'bookmark_tags_table'  => 'bookmark_tags',
-								'entry_tags_table'     => 'entry_tags'
+								'entry_tags_table'     => 'entry_tags',
+								'subscriptions_table'  => 'subscriptions';
 							);
 
 		clearstatcache();
