@@ -302,8 +302,8 @@ if (isset($_POST['lock_submit']) && isset($_SESSION[$settings['session_prefix'] 
 	exit;
 }
 
-	$resultUnsubscribe = mysqli_query($connid, "UPDATE ". $db_settings['forum_table'] ." SET email_notification = 0 WHERE id = ". intval($_GET['unsubscribe']) ." AND uniqid = '". mysqli_real_escape_string($connid, $_GET['checker']) ."' AND email_notification = 1");
 if ($action == 'unsubscribe' and !empty($_GET['unsubscribe'])) {
+	$resultUnsubscribe = mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE unsubscribe_code = '" . mysqli_real_escape_string($connid, $_GET['unsubscribe']). "' LIMIT 1");
 	if ($resultUnsubscribe === true) {
 		$action = 'unsubscribed';
 	} else {
