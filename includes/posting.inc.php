@@ -111,6 +111,8 @@ if (isset($_GET['manage_postings']))
 	$action = 'manage_postings';
 if (isset($_GET['delete_spam']))
 	$action = 'delete_spam';
+if (isset($_GET['unsubscribe']))
+	$action = 'unsubscribe';
 if (isset($_POST['report_spam_submit']) || isset($_POST['report_spam_delete_submit']))
 	$action = 'report_spam_submit';
 if (isset($_POST['report_flag_ham_submit']) || isset($_POST['flag_ham_submit']))
@@ -298,6 +300,15 @@ if (isset($_POST['lock_submit']) && isset($_SESSION[$settings['session_prefix'] 
 	}
 	header('Location: index.php?mode=index');
 	exit;
+}
+
+if ($action == 'unsubscribe' and !empty($_GET['unsubscribe'])) {
+	$resultUnsubscribe = mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE unsubscribe_code = '" . mysqli_real_escape_string($connid, $_GET['unsubscribe']). "' LIMIT 1");
+	if ($resultUnsubscribe === true) {
+		$action = 'unsubscribed';
+	} else {
+		$action = 'unsubscribe-error';
+	}
 }
 
 # generate the variable input field names
@@ -939,8 +950,11 @@ switch ($action) {
 					else
 						$savename = $name;
 					
-					@mysqli_query($connid, "INSERT INTO " . $db_settings['forum_table'] . " (pid, tid, uniqid, time, last_reply, user_id, name, subject, email, hp, location, ip, text, show_signature, email_notification, category, locked, sticky, spam, spam_check_status, edit_key) VALUES (" . intval($id) . ", " . intval($thread) . ", '" . mysqli_real_escape_string($connid, $uniqid) . "', NOW(), NOW()," . intval($user_id) . ", '" . mysqli_real_escape_string($connid, $savename) . "', '" . mysqli_real_escape_string($connid, $subject) . "', '" . mysqli_real_escape_string($connid, $email) . "', '" . mysqli_real_escape_string($connid, $hp) . "', '" . mysqli_real_escape_string($connid, $location) . "', '" . mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) . "', '" . mysqli_real_escape_string($connid, $text) . "', " . intval($show_signature) . ", " . intval($email_notification) . ", " . intval($p_category) . ", " . intval($locked) . ", " . intval($sticky) . ", " . intval($spam) . ", " . intval($spam_check_status) . ", '" . mysqli_real_escape_string($connid, $edit_key_hash) . "')") or raise_error('database_error', mysqli_error($connid));
-					
+					@mysqli_query($connid, "INSERT INTO " . $db_settings['forum_table'] . " (pid, tid, uniqid, time, last_reply, user_id, name, subject, email, hp, location, ip, text, show_signature, category, locked, sticky, spam, spam_check_status, edit_key) VALUES (" . intval($id) . ", " . intval($thread) . ", '" . mysqli_real_escape_string($connid, $uniqid) . "', NOW(), NOW()," . intval($user_id) . ", '" . mysqli_real_escape_string($connid, $savename) . "', '" . mysqli_real_escape_string($connid, $subject) . "', '" . mysqli_real_escape_string($connid, $email) . "', '" . mysqli_real_escape_string($connid, $hp) . "', '" . mysqli_real_escape_string($connid, $location) . "', '" . mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) . "', '" . mysqli_real_escape_string($connid, $text) . "', " . intval($show_signature) . ", " . intval($p_category) . ", " . intval($locked) . ", " . intval($sticky) . ", " . intval($spam) . ", " . intval($spam_check_status) . ", '" . mysqli_real_escape_string($connid, $edit_key_hash) . "')") or raise_error('database_error', mysqli_error($connid));
+					$newID = mysqli_insert_id($connid);
+					if (intval($email_notification) === 1 and intval($newID) > 0) {
+						@mysqli_query($connid, "INSERT INTO " .$db_settings['subscriptions_table']. " (user_id, eid, unsubscribe_code, tstamp) VALUES (" . ($user_id > 0 ? intval($user_id) : "NULL") . ", " . intval($newID) . ", UUID(), NOW());") or raise_error('database_error', mysqli_error($connid));
+					}
 					if ($id == 0) {
 						// new thread, set thread id:
 						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET tid = id, time = time WHERE id = LAST_INSERT_ID()") or raise_error('database_error', mysqli_error($connid));
@@ -1704,6 +1718,28 @@ switch ($action) {
 		}
 		header("location: index.php?mode=" . $back . "&id=" . $id);
 		exit;
+		break;
+	case 'unsubscribed':
+		// subscription was quitted:
+		$subnav_link = array(
+			'mode' => 'index',
+			'name' => 'forum_index_link',
+			'title' => 'forum_index_link_title'
+		);
+		$smarty->assign("subnav_link", $subnav_link);
+		$smarty->assign("unsubscribe_status", true);
+		$smarty->assign('subtemplate', 'posting_unsubscribe.inc.tpl');
+		break;
+	case 'unsubscribe-error':
+		// subscription was not quitted because of an error:
+		$subnav_link = array(
+			'mode' => 'index',
+			'name' => 'forum_index_link',
+			'title' => 'forum_index_link_title'
+		);
+		$smarty->assign("subnav_link", $subnav_link);
+		$smarty->assign("unsubscribe_status", false);
+		$smarty->assign('subtemplate', 'posting_unsubscribe.inc.tpl');
 		break;
 }
 

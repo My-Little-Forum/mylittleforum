@@ -1360,95 +1360,70 @@ function is_valid_birthday($birthday)
  * @param int $id : the id of the reply
  * @param bool $delayed : true adds a delayed message (when postibg was activated manually)
  */
-function emailNotification2ParentAuthor($id, $delayed=false)
- {
-  global $settings, $db_settings, $lang, $connid;
-  $id=intval($id);
-  // data of posting:
-  $result = @mysqli_query($connid, "SELECT pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, subject, text
-                          FROM ".$db_settings['forum_table']."
-                          LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
-                          WHERE id = ".intval($id)." LIMIT 1");
-  $data = mysqli_fetch_array($result);
-  mysqli_free_result($result);
-  // overwrite $data['name'] with $data['user_name'] if registered user:
-  if($data['user_id']>0)
-   {
-    if(!$data['user_name']) $data['name'] = $lang['unknown_user'];
-    else $data['name'] = $data['user_name'];
-   }
-  // if it's a reply (pid!=0) check if notification was desired by parent posting author:
-  if($data['pid']!=0)
-   {
-    $parent_result = mysqli_query($connid, "SELECT pid, user_id, name, email, subject, text, email_notification FROM ".$db_settings['forum_table']." WHERE id = ".intval($data['pid'])." LIMIT 1");
-    $parent_data = mysqli_fetch_array($parent_result);
-    mysqli_free_result($parent_result);
-    if($parent_data['email_notification'] == 1 && ($parent_data['user_id']>0 || $settings['email_notification_unregistered']))
-     {
-      // if message is by a registered user, fetch e-mail address from userdata:
-      if($parent_data['user_id'] > 0)
-       {
-        $email_result = mysqli_query($connid, "SELECT user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($parent_data['user_id'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
-        $field = mysqli_fetch_array($email_result);
-        mysqli_free_result($email_result);
-        $parent_data['name'] = $field['user_name'];
-        $parent_data['email'] = $field['user_email'];
-       }
-      $name = $data['name'];
-      $subject = $data['subject'];
-      $text = email_format($data['text']);
-      $parent_text = email_format($parent_data["text"]);
-      $emailbody = str_replace("[recipient]", $parent_data['name'], $lang['email_text']);
-      $emailbody = str_replace("[name]", $name, $emailbody);
-      $emailbody = str_replace("[subject]", $subject, $emailbody);
-      $emailbody = str_replace("[text]", $text, $emailbody);
-      $emailbody = str_replace("[posting_address]", $settings['forum_address']."index.php?id=".$id, $emailbody);
-      $emailbody = str_replace("[original_subject]", $parent_data['subject'], $emailbody);
-      $emailbody = str_replace("[original_text]", $parent_text, $emailbody);
-      $emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
-      if($delayed==true) $emailbody = $emailbody . "\n\n" . $lang['email_text_delayed_addition'];
-      #$recipient = encode_mail_name($parent_data['name']).' <'.$parent_data['email'].'>';
-      $recipient = $parent_data['email'];
-      $subject = str_replace("[original_subject]",  $parent_data['subject'], $lang['email_subject']);
-      my_mail($recipient, $subject, $emailbody);
-     }
-    if($parent_data['pid']!=0)
-     {
-      // parent posting wasn't thread start so check if thread starter autor wants to be notified:
-      $ts_result = mysqli_query($connid, "SELECT pid, user_id, name, email, subject, text, email_notification FROM ".$db_settings['forum_table']." WHERE id = ".intval($data['tid'])." LIMIT 1");
-      $ts_data = mysqli_fetch_array($ts_result);
-      mysqli_free_result($ts_result);
-      if($ts_data['email_notification'] == 1 && ($ts_data['user_id']>0 || $settings['email_notification_unregistered']))
-       {
-        // if message is by a registered user, fetch e-mail address from userdata:
-        if($ts_data['user_id'] > 0)
-         {
-          $email_result = mysqli_query($connid, "SELECT user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($ts_data['user_id'])." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
-          $field = mysqli_fetch_array($email_result);
-          mysqli_free_result($email_result);
-          $ts_data['name'] = $field['user_name'];
-          $ts_data['email'] = $field['user_email'];
-         }
-        $name = $data['name'];
-        $subject = $data['subject'];
-        $text = email_format($data['text']);
-        $starter_text = email_format($ts_data["text"]);
-        $emailbody = str_replace("[recipient]", $ts_data['name'], $lang['email_text']);
-        $emailbody = str_replace("[name]", $name, $emailbody);
-        $emailbody = str_replace("[subject]", $subject, $emailbody);
-        $emailbody = str_replace("[text]", $text, $emailbody);
-        $emailbody = str_replace("[posting_address]", $settings['forum_address']."index.php?id=".$id, $emailbody);
-        $emailbody = str_replace("[original_subject]", $ts_data['subject'], $emailbody);
-        $emailbody = str_replace("[original_text]", $starter_text, $emailbody);
-        $emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
-        if($delayed==true) $emailbody = $emailbody . "\n\n" . $lang['email_text_delayed_addition'];
-        $recipient = $ts_data['email'];
-        $subject = str_replace("[original_subject]",  $ts_data['subject'], $lang['email_subject']);
-        my_mail($recipient, $subject, $emailbody);
-       }
-     }
-   }
- }
+function emailNotification2ParentAuthor($id, $delayed = false) {
+	global $settings, $db_settings, $lang, $connid;
+	$id = intval($id);
+	// get data of posting:
+	$queryNewPosting = "SELECT pid, tid, name, user_name, ".$db_settings['forum_table'].".user_id, subject, text
+		FROM ".$db_settings['forum_table']."
+		LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ".$db_settings['forum_table'].".user_id
+		WHERE id = ".intval($id)." LIMIT 1";
+	$resultNewPosting = @mysqli_query($connid, $queryNewPosting);
+	$data = mysqli_fetch_assoc($resultNewPosting);
+	mysqli_free_result($resultNewPosting);
+	# overwrite $data['name'] with $data['user_name'] if registered user:
+	if ($data['user_id'] > 0) {
+		if (!$data['user_name']) $data['name'] = $lang['unknown_user'];
+		else $data['name'] = $data['user_name'];
+	}
+	# if it's a reply (pid!=0) check if notification was desired by parent posting author:
+	if ($data['pid'] != 0) {
+		$parentSubscriptions = mysqli_query($connid, "SELECT user_id, eid, unsubscribe_code, 'child' AS type FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($data['pid']) . " UNION SELECT user_id, eid, unsubscribe_code, 'opener' AS type FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($data['tid']));
+		while ($parent_data = mysqli_fetch_assoc($parentSubscriptions)) {
+			if ($parent_data['user_id'] > 0) {
+				# user_id is greater than 0 and therefore we handle a subscription of a registered user
+				$queryEmailData = "SELECT user_id, user_name, user_email FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($parent_data['user_id']);
+			} else {
+				# user_id is 0 and therefore we handle a subscription of an unregistered user
+				$queryEmailData = "SELECT user_id, name AS user_name, email AS user_email FROM ".$db_settings['forum_table']." WHERE id = " . intval($parent_data['eid']) . " LIMIT 1";
+			}
+			$resultEmailData = @mysqli_query($connid, $queryEmailData);
+			if ($resultEmailData !== false) {
+				$emailData = mysqli_fetch_assoc($resultEmailData);
+				if ($parent_data['user_id'] > 0 || $settings['email_notification_unregistered'] == 1) {
+					if ($parent_data['type'] == 'opener') {
+						$queryParentPosting = "SELECT pid, user_id, name, email, subject, text
+						FROM " . $db_settings['forum_table'] . "
+						WHERE id = " . intval($data['tid']) . " LIMIT 1";
+					} else {
+						$queryParentPosting = "SELECT pid, user_id, name, email, subject, text
+						FROM " . $db_settings['forum_table'] . "
+						WHERE id = " . intval($data['pid']) . " LIMIT 1";
+					}
+					$resultParentPosting = mysqli_query($connid, $queryParentPosting);
+					$parentPosting = mysqli_fetch_assoc($resultParentPosting);
+					$name = $data['name'];
+					$subject = $data['subject'];
+					$text = email_format($data['text']);
+					$parent_text = email_format($parentPosting["text"]);
+					$emailbody = str_replace("[recipient]", $emailData['user_name'], $lang['email_text']);
+					$emailbody = str_replace("[unsubscribe_address]", $settings['forum_address']."index.php?mode=posting&unsubscribe=". $parent_data['unsubscribe_code'], $emailbody);
+					$emailbody = str_replace("[name]", $name, $emailbody);
+					$emailbody = str_replace("[subject]", $subject, $emailbody);
+					$emailbody = str_replace("[text]", $text, $emailbody);
+					$emailbody = str_replace("[posting_address]", $settings['forum_address']."index.php?id=".$id, $emailbody);
+					$emailbody = str_replace("[original_subject]", $parentPosting['subject'], $emailbody);
+					$emailbody = str_replace("[original_text]", $parent_text, $emailbody);
+					$emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
+					if ($delayed == true) $emailbody = $emailbody . "\n\n" . $lang['email_text_delayed_addition'];
+					$recipient = $emailData['user_email'];
+					$subject = str_replace("[original_subject]", $parentPosting['subject'], $lang['email_subject']);
+					my_mail($recipient, $subject, $emailbody);
+				}
+			}
+		}
+	}
+}
 
 /**
  * sends an e-mail notification to all admins and mods who have activated
