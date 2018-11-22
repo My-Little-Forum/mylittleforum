@@ -11,10 +11,6 @@ charset =                         utf-8
 #locale =                         tr_TR.utf8
 #locale =                         tr_TR
 #locale =                         tr
-# Caution: setting Turkish locale can cause problems --> http://bugs.php.net/39993
-locale =                          en_US.utf8
-locale =                          en_US
-locale =                          en
 locale_charset =                  utf-8
 word_delimiters =                 ' '
 dir =                             ltr
