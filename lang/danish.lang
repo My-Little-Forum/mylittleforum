@@ -1,5 +1,5 @@
 ################################################################################
-# Danish language file for my little forum 2.4.3                               #
+# Danish language file for my little forum 2.4.13                              #
 #------------------------------------------------------------------------------#
 # - don't modify or translate the section names like "[general]" or "[entry]"! #
 # - placeholders in square brackets (e.g. "[name]") will be replaced by values #
@@ -115,8 +115,8 @@ back_to_entry_link =        'Tilbage til indlæg skrevet af [name]'
 back_to_entry_link_title =  'Tilbage til indlæg skrevet af [name]'
 subnav_login =              'Log ind'
 subnav_pw_forgotten =       'Glemt kodeord'
-subnav_accept_dps =               '<!-- TODO -->Accept the data privacy statement'
-subnav_accept_tou =               '<!-- TODO -->Accept the terms of use agreement'
+subnav_accept_dps =         'Acceptér erklæring om databeskyttelse'
+subnav_accept_tou =         'Acceptér vilkår for brugsaftale'
 subnav_admin_area =         'Admin område'
 subnav_settings =           'Forum indstillinger'
 subnav_advanced_settings =  'Advancerede indstillinger'
@@ -244,12 +244,12 @@ search_user_default_value = 'Søg efter bruger …'
 no_users =                  'Ingen brugere fundet.'
 no_text_title =             'Tom indlæg / ingen tekst'
 no_text_alt =               '[ Ingen tekst]'
-no_text =                   '- No text -'
+no_text =                   '- Ingen tekst -'
 error_invalid_form =        'Session udløbet! Kopier venligst teksten og log ind igen eller send teksten igen for at skrive den som gæst.'
 error_form_sent_too_fast =  'Formularen blev sendt for hurtigt - vent venligst nogle sekunder og prøv igen (automatiseret formular sendings beskyttelse)'
 error_form_sent_too_slow =  'Formularen er ikke gyldig længere - kopier venligst teksten og opdater siden'
-terms_of_use_agreement =    'Jeg er enig med [[bruger betingelserne]]'
-data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
+terms_of_use_agreement =    'Jeg accepterer [[bruger betingelserne]]'
+data_privacy_agreement =    'Jeg accepterer erklæring om databeskyttelse [[data privacy statement]]'
 error_not_accepted_word =   'Ikke accepteret ord: [not_accepted_word]'
 error_not_accepted_words =  'Ikke accepterede ord: [not_accepted_words]'
 error_username_invalid_chars = 'Brugernavnet indeholder specialtegn'
@@ -267,14 +267,14 @@ quote_title =               'Indsæt sitéret tekst i indlægget, der skal svare
 error_no_name =             'Navn er ikke udfyldt'
 error_no_subject =          'Emne er ikke udfyldt'
 error_no_text =             'Tekst er ikke udfyldt'
-terms_of_use_error_register = 'Du skal godkende brugerreglerne for at kunne fuldføre registreringen'
-terms_of_use_error_posting = 'Du skal godkende brugerreglerne for at kunne gemme dette indlæg'
-terms_of_use_error_reconf =       '<!-- TODO -->You have to agree to the changes of the terms of use in order to submit further messages'
-data_priv_statement_error_reg =   '<!-- TODO -->You have to agree to the data privacy statement in order to complete the registration'
-data_priv_statement_error_post =  '<!-- TODO -->You have to agree to the data privacy statement in order to submit this message'
-data_priv_statement_error_reconf ='<!-- TODO -->You have to agree to the changes of the data privacy statement in order to submit further messages'
-submit_button_agreed =            '<!-- TODO -->I agree'
-submit_button_disagreed =         '<!-- TODO -->I disagree'
+terms_of_use_error_register = 'Du skal acceptere brugerreglerne for at kunne fuldføre registreringen'
+terms_of_use_error_posting = 'Du skal acceptere brugerreglerne for at kunne gemme dette indlæg'
+terms_of_use_error_reconf =       'Du skal acceptere ændringerne til brugerbetingelserne for at kunne skrive flere indlæg'
+data_priv_statement_error_reg =   'Du skal acceptere erklæring om databeskyttelse for at fuldføre registreringen'
+data_priv_statement_error_post =  'Du skal acceptere erklæring om databeskyttelse for at kunne gemme dette indlæg '
+data_priv_statement_error_reconf ='Du skal acceptere ændringerne i erklæring om databeskyttelse for at kunne skrive flere indlæg'
+submit_button_agreed =            'Jeg accepterer'
+submit_button_disagreed =         'Jeg accepterer ikke'
 check_all =                 'Markér alle'
 uncheck_all =               'fjern markering'
 delete_backup_confirm =     'Er du sikker på, at du vil slette denne backup-fil?'
@@ -291,19 +291,19 @@ delete_bookmark_submit =    'OK - Slet bogmærke'
 delete_bookmark_confirm =   'Vil du virkelig slette dette bogmærke?'
 no_bookmarks =              'Der er ingen bogmærker.'
 edit_bookmark =             'Bogmærke:'
-edit_tags =                       '<!-- TODO -->Tags:'
-edit_tags_note =                  '<!-- TODO -->(optional, separated by comma)'
+edit_tags =                 'Tags:'
+edit_tags_note =            '(valgfrit, adskil med komma)'
 bookmark_title =            'Navn på bogmærke'
 bookmark_user_name =        'Brugernavn'
 bookmark_creation_time =    'Bogmærke sat'
 bookmark_posting_time =     'Indlæg skrevet'
-bookmark_filter_linktitle =       '<!-- TODO -->Apply bookmark filter'
-clear_bookmark_filter_linkname =  '<!-- TODO -->Clear bookmark filter'
-clear_bookmark_filter_linktitle = '<!-- TODO -->clear current bookmark filter and show all saved bookmarks'
-error_no_bookmark_subject =       '<!-- TODO -->No subject has been entered'
-error_bookmark_subject_too_long = '<!-- TODO -->The subject is too long'
-error_bookmark_word_too_long =    '<!-- TODO -->The word "[word]" is too long'
-error_bookmark_tags_limit_reached = '<!-- TODO -->Tags limit reached for bookmark'
+bookmark_filter_linktitle =       'Anvend bogmærkefilter'
+clear_bookmark_filter_linkname =  'Ryd bogmærkefilter'
+clear_bookmark_filter_linktitle = 'Ryd nuværende bogmærkefilter og vis alle gemte bogmærker'
+error_no_bookmark_subject =       'Intet emne er indtastet'
+error_bookmark_subject_too_long = 'Emneteksten er for lang'
+error_bookmark_word_too_long =    'Ordet "[word]" er for langt'
+error_bookmark_tags_limit_reached = 'Grænsen for antallet af tags er nået'
 
 [entry]
 edited_by =                 'redigeret af [name], [time]'
@@ -345,7 +345,7 @@ no_authorization_edit =     'Indlægget kan ikke redigeres! Enten er redigerings
 posting_locked_no_reply =   'Du kan ikke svare på dette indlæg fordi det er låst.'
 no_auth_post_reg_users =    'Kun registrerede brugere kan skrive beskeder!'
 no_auth_session_expired =   'Session udløbet, kopier venligst din besked og log ind igen!'
-no_auth_readonly =          'The forum is currently set to read only mode!'
+no_auth_readonly =          'Forummet er i øjeblikket i skrivebeskyttet tilstand!'
 new_topic_hl =              'Nyt emne'
 reply_hl =                  'Skriv svar'
 edit_hl =                   'Rediger indlæg'
@@ -355,7 +355,7 @@ hp_marking =                'Hjemmeside:'
 location_marking =          'Lokation:'
 optional =                  '(valgfri)'
 optional_email =            '(valgfri, vil ikke blive vist offentligt)'
-honeypot_field_marking =          '<!-- TODO -->Leave this field empty:'
+honeypot_field_marking =    'Lad dette felt være tomt:'
 remember_userdata_marking = 'Husk mig (cookie)'
 delete_cookie_linkname =    'slet cookie'
 category_marking =          'Kategori:'
@@ -679,7 +679,7 @@ register_username =         'Brugernavn:'
 register_user_email =       'E-mail:'
 register_pw =               'Kodeord:'
 register_pw_conf =          'Gentag Kodeord:'
-register_honeypot_field =         '<!-- TODO -->Leave this field empty:'
+register_honeypot_field =   'Lad dette felt være tomt:'
 register_only_by_admin =    'Brugere kan kun blive registreret af forum administratoren.'
 registered =                'Kontoen er registreret og aktiverings nøglen er sendt til <strong>[var]</strong>. Kontoen skal aktiveres indenfor det næste døgn.'
 registered_send_error =     'Kontoen er registreret men aktiverings nøglen kunne ikke sendes (mailserver ikke tilgængelig). Kontakt venligst forum administratoren og spørg efter en manuel konto aktivering.'
@@ -704,7 +704,7 @@ error_message_no_subject =        'Intet emne indtastet'
 error_email_invalid =       'E-mail adressen er ugyldig'
 error_email_subject_too_long = 'Emnet er for langt'
 error_email_text_too_long = 'Beskeden er for lang ([text_length] skrifttegn - kun [text_maxlength] skrifttegn er tilladt)'
-error_spam_suspicion =      'Spam mistanke! ændre venligst din besked (fjern f.eks. links)'
+error_spam_suspicion =      'Spam mistanke! Ændre venligst dit indlæg (fjern f.eks. links)'
 
 [admin]
 enabled =                   'aktiveret'
@@ -728,8 +728,8 @@ releases_info_header =      'Aktuel tilgængelig version'
 releases_list_link =        'Se versionslisten for seneste tilgængelige version.'
 warning_header =            'Advarsel'
 warning_install_script_exists = 'Af sikkerhedshensyn anbefales det at slette eller omdøbe <code>install/index.php</code> filen!'
-actual_installed_version_header = '<!-- TODO -->Aktuelle version'
-actual_installed_version =  '<!-- TODO -->Versionsnummer: <strong>[current_version_string]</strong>'
+actual_installed_version_header = 'Aktuel version'
+actual_installed_version =  'Versionsnummer: <strong>[current_version_string]</strong>'
 
 # forum settings:
 clear_chache =              'Ryd cache for at tilføje ændringerne til allerede eksisterende indlæg'
@@ -791,10 +791,10 @@ terms_of_use_settings =     'Brugerbetingelser'
 terms_of_use_settings_desc = 'Obligatorisk for ikke registrerede brugere at være enige med brugerbetingelserne når de skriver beskeder og registrerer'
 terms_of_use_settings_enabled = 'Brugerbetingelser aktiveret'
 terms_of_use_url =          'Brugerbetingelser URL:'
-data_privacy_statement =          '<!-- TODO -->Data privacy statement'
-data_privacy_statement_desc =     '<!-- TODO -->Obligation for unregistered users to agree to the data privacy statement when posting messages and registering'
-data_privacy_settings_enabled =   '<!-- TODO -->Data privacy statement enabled'
-data_privacy_url =                '<!-- TODO -->Data privacy statement URL:'
+data_privacy_statement =          'Erklæring om databeskyttelse'
+data_privacy_statement_desc =     'Obligatorisk for ikke-registrerede brugere at acceptere Erklæring om databeskyttelse ved skrivning og registrering'
+data_privacy_settings_enabled =   'Erklæring om databeskyttelse aktiveret'
+data_privacy_url =                'Erklæring om databeskyttelse URL:'
 edit_postings =             'Redigering af indlæg'
 edit_postings_desc =        'Redigering af indlæg opførsel'
 edit_own_postings =         'Redigering af egne indlæg:'
@@ -919,7 +919,7 @@ delete_selected_users =     'Slet valgte'
 add_user =                  'Tilføj bruger'
 email_list =                'E-mail liste af registrerede brugere'
 clear_userdata =            'Ryd brugerdata'
-edit_user_avatar =                '<!-- TODO -->Avatar:'
+edit_user_avatar =          'Avatar:'
 delete_avatar =             'Slet avatar'
 delete_user_confirmation =  'Er du sikker på, at du vil slette denne bruger?'
 delete_users_confirmation = 'Er du sikker på, at du vil slette følgende brugere?'
@@ -1042,7 +1042,7 @@ update_download =           'Hvis du endnu ikke har disse filer kan du downloade
 email_subject =             'Svar til "[original_subject]"'
 email_text =                """Hej [recipient],
 
-this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
+Dette er en automatisk genereret besked. Du modtager denne email, fordi du har aktiveret beskedfunktionen. Svar venligst ikke på denne email men i den specifikke tråd i forummet.
 
 If you do not want to get informed about replies to your entry anymore, please use the following link to unsubscribe from the notification.
 [unsubscribe_address]
@@ -1060,7 +1060,7 @@ URL til dette indlæg: [posting_address]
 [original_text]"""
 
 email_text_delayed_addition = """---
-Denne notifikation er forsinket fordi indlægget var aktiveret manuelt. This is an automatically generated email, please do not reply to this email."""
+Denne besked er forsinket fordi indlægget blev aktiveret manuelt. Dette er en automatisk genereret email. Svar venligst ikke på denne email."""
 
 admin_email_subject =       'Nyt indlæg i forumet: [subject]'
 admin_email_text =          """Nyt Indlæg af [name]
@@ -1070,7 +1070,7 @@ Emne: [subject]
 
 URL til dette indlæg: [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 admin_email_text_reply =    """Svar af [name]
 Emne: [subject]
 
@@ -1078,7 +1078,7 @@ Emne: [subject]
 
 URL til dette indlæg: [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 admin_reg_user_email_subj = 'Forum registrering'
 admin_reg_user_email_text = """Hej [name],
 Velkommen til forummet!
@@ -1093,7 +1093,7 @@ Link til at logge direkte ind:
 
 Dit kodeord kan ændres efter du er logget ind.
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 
 admin_activate_user_email_subj = 'Forum registrering'
 admin_activate_user_email_text = """Hej [name],
@@ -1102,7 +1102,7 @@ Velkommen til forummet!
 Link til log ind:
 [login_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 
 new_user_email_sj =         'Forum registrering'
 new_user_email_txt =        """Hej [name],
@@ -1111,7 +1111,7 @@ Velkommen til forummet!
 Følg venligst dette link for at aktivere din konto:
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 new_user_notif_sj =         'Ny bruger registreret'
 new_user_notif_txt =        """Hej [recipient],
 En ny bruger er registreret i forummet.
@@ -1120,7 +1120,7 @@ E-mail: [email]
 
 [user_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 new_user_notif_txt_locked = """Hej [recipient],
 En ny bruger er registreret i forummet.
 Brugernavn: [name]
@@ -1128,21 +1128,21 @@ E-mail: [email]
 
 VIGTIGT: Denne bruger skal låses op før han/hun kan logge ind!
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 edit_address_email_sj =     'Konto aktivering efter ændring af e-mail adresse'
 edit_address_email_txt =    """Hej [name],
 E-mail adressen er ændret. Du skal nu aktivere din konto igen ved at følge dette link:
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 pwf_activating_email_sj =   'Nyt kodeord'
 pwf_activating_email_txt =  """Hej [name],
-Denne e-mail er sendt fra forumet ([forum_address]) fordi der er bedt om et nyt kodeord. Klik venligst på linket for at godkende. Et nyt kodeord vil blive lavet og sendt til dig ved at klikke på linket. Hvis denne e-mail er sendt ved en fejl (enten af dig selv eller en anden) skal du venligst ignorere denne e-mail.
+Denne e-mail er sendt fra forumet ([forum_address]) fordi der er bedt om et nyt kodeord. Klik venligst på linket for at godkende. Et nyt kodeord vil blive lavet og sendt til dig, når du klikker på linket. Hvis denne e-mail er sendt ved en fejl (enten af dig selv eller en anden) skal du blot ignorere denne e-mail.
 
 Link til at bekræfte din tilmelding:
 [activating_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 new_pw_email_sj =             'Nye bruger data til forummet'
 new_pw_email_txt =            """Hej [name],
 her er dine nye bruger data:
@@ -1155,7 +1155,7 @@ Klik her for at logge direkte ind:
 
 Kodeordet kan ændres efter du er logget ind.
 
-This is an automatically generated information message, please do not reply to this email."""
+Dette er en automatisk genereret besked. Svar venligst ikke på denne email."""
 contact_email_txt =           """[message]
 
 ---
