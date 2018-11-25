@@ -244,6 +244,7 @@ switch($settings['version']) {
 		$update['items'][] = 'js/main.min.js';                                       // #403, #404
 		$update['items'][] = 'js/posting.js';                                        // #403
 		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #403
+		$update['items'][] = 'includes/upload_image.inc.php';                        // no pull request
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
