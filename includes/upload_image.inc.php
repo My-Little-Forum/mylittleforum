@@ -6,7 +6,7 @@ if(!defined('IN_INDEX')) {
 
 // upload folder:
 $uploaded_images_path = 'images/uploaded/';
-$images_per_page = 5;
+$images_per_page = 10;
 
 if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] > 0) || ($settings['upload_images'] == 2 && isset($_SESSION[$settings['session_prefix'].'user_id'])) || ($settings['upload_images'] == 3)) {
 	// upload:image:
