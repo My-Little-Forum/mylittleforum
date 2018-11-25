@@ -621,6 +621,62 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.10', '
 		}
 	}
 }
+if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13'))) {
+	$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
+	// add new database table
+	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
+		$db_settings['subscriptions_table'] = $table_prefix . 'subscriptions';
+		$db_settings_file = @fopen("./config/db_settings.php", "w") or $update['errors'][] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
+		if (empty($update['errors'])) {
+			flock($db_settings_file, 2);
+			fwrite($db_settings_file, "<?php\n");
+			fwrite($db_settings_file, "\$db_settings['host']                 = '". addslashes($db_settings['host']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['user']                 = '". addslashes($db_settings['user']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['password']             = '". addslashes($db_settings['password']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['database']             = '". addslashes($db_settings['database']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['settings_table']       = '". addslashes($db_settings['settings_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['forum_table']          = '". addslashes($db_settings['forum_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['category_table']       = '". addslashes($db_settings['category_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['userdata_table']       = '". addslashes($db_settings['userdata_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['smilies_table']        = '". addslashes($db_settings['smilies_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['pages_table']          = '". addslashes($db_settings['pages_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['banlists_table']       = '". addslashes($db_settings['banlists_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['useronline_table']     = '". addslashes($db_settings['useronline_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['login_control_table']  = '". addslashes($db_settings['login_control_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['entry_cache_table']    = '". addslashes($db_settings['entry_cache_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['userdata_cache_table'] = '". addslashes($db_settings['userdata_cache_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['bookmark_table']       = '". addslashes($db_settings['bookmark_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['bookmark_tags_table']  = '". addslashes($db_settings['bookmark_tags_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['entry_tags_table']     = '". addslashes($db_settings['entry_tags_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['tags_table']           = '". addslashes($db_settings['tags_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['read_status_table']    = '". addslashes($db_settings['read_status_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['temp_infos_table']     = '". addslashes($db_settings['temp_infos_table']) ."';\n");
+			fwrite($db_settings_file, "\$db_settings['subscriptions_table']  = '". addslashes($db_settings['subscriptions_table']) ."';\n");
+			fwrite($db_settings_file, "?".">\n");
+			flock($db_settings_file, 3);
+			fclose($db_settings_file);
+			// new tables
+			if(!@mysqli_query($connid, "CREATE TABLE ". $db_settings['subscriptions_table'] ." (`user_id` int(12) UNSIGNED NOT NULL, `eid` int(12) UNSIGNED NOT NULL, `unsubscribe_code` varchar(36) NOT NULL, `tstamp` datetime DEFAULT NULL, PRIMARY KEY `user_thread` (`user_id`,`eid`), KEY `hash` (`unsubscribe_code`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if (empty($update['errors'])) {
+				// transfer the subscriptions from the entries to the subscriptions table
+				$newSubscriptionsResult = false;
+				$oldSubscriptions = "INSERT INTO ". $db_settings['subscriptions_table'] ." (user_id, eid, unsubscribe_code, tstamp) SELECT user_id, id, UUID(), NOW() FROM ". $db_settings['forum_table'] ." WHERE email_notification = 1"
+				if (!@mysqli_query($connid, $oldSubscriptions)) {
+					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+				} else {
+					if(!@mysqli_query($connid, "ALTER TABLE ". $db_settings['forum_table'] ." DROP COLUMN `email_notification`;")) {
+						$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+					}
+				}
+			}
+		}
+	}
+	else {
+		$update['errors'][] = "File ./config/db_settings.php not found or unwritable. New database table '" . htmlspecialchars($table_prefix) . "subscriptions' could not be added!";
+	}
+}
 
 if(empty($update['errors'])) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
