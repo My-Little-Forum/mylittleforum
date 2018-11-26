@@ -663,7 +663,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3
 			if (empty($update['errors'])) {
 				// transfer the subscriptions from the entries to the subscriptions table
 				$newSubscriptionsResult = false;
-				$oldSubscriptions = "INSERT INTO ". $db_settings['subscriptions_table'] ." (user_id, eid, unsubscribe_code, tstamp) SELECT user_id, id, UUID(), NOW() FROM ". $db_settings['forum_table'] ." WHERE email_notification = 1"
+				$oldSubscriptions = "INSERT INTO ". $db_settings['subscriptions_table'] ." (user_id, eid, unsubscribe_code, tstamp) SELECT user_id, id, UUID(), NOW() FROM ". $db_settings['forum_table'] ." WHERE email_notification = 1";
 				if (!@mysqli_query($connid, $oldSubscriptions)) {
 					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 				} else {
