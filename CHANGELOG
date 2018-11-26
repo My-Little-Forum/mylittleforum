@@ -1,6 +1,18 @@
 my little forum changelog
 -------------------------
 
+2.4.14
+-------------------
+- fixed: several forms in the admin area lacked the CSRF-token
+- fixed: remove underscores from "data privacy statement" in the language files
+- fixed: removed the workaround of setting the language to en-us in the turkish language file, underlying problem was solved with PHP5.2
+- feature: add a checkbox to make the password visible for input verification during registration, remove therefore the second password field
+- feature: add a unsubscribe link to the e-mails with a notification about a new reply
+- feature: add a new table to store the subscriptions independent from the entry in itself
+- feature: allow SVG-graphics as smilies, graphics have to be uploaded per FTP
+- update: danish language file updated by project-forum-user Tommy Nillson
+- update: norwegian language file updated by Github-user @flatnick
+
 2.4.13 (2018-08-12)
 -------------------
 - fixed: icon for Ajax-preview of an entry was not displayed, if the entry is locked
