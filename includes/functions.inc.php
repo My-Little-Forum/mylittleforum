@@ -1378,7 +1378,11 @@ function emailNotification2ParentAuthor($id, $delayed = false) {
 	}
 	# if it's a reply (pid!=0) check if notification was desired by parent posting author:
 	if ($data['pid'] != 0) {
-		$parentSubscriptions = mysqli_query($connid, "SELECT user_id, eid, unsubscribe_code, 'child' AS type FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($data['pid']) . " UNION SELECT user_id, eid, unsubscribe_code, 'opener' AS type FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($data['tid']));
+		if ($data['pid'] == $data['tid']) {
+			$parentSubscriptions = mysqli_query($connid, "SELECT user_id, eid, unsubscribe_code, 'opener' AS type FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($data['tid']));
+		} else {
+			$parentSubscriptions = mysqli_query($connid, "SELECT user_id, eid, unsubscribe_code, 'child' AS type FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($data['pid']) . " UNION SELECT user_id, eid, unsubscribe_code, 'opener' AS type FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($data['tid']));
+		}
 		while ($parent_data = mysqli_fetch_assoc($parentSubscriptions)) {
 			if ($parent_data['user_id'] > 0) {
 				# user_id is greater than 0 and therefore we handle a subscription of a registered user
