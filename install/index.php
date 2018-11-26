@@ -208,7 +208,7 @@ if(isset($_POST['install_submit']))
 								'tags_table'           => 'tags',
 								'bookmark_tags_table'  => 'bookmark_tags',
 								'entry_tags_table'     => 'entry_tags',
-								'subscriptions_table'  => 'subscriptions';
+								'subscriptions_table'  => 'subscriptions'
 							);
 
 		clearstatcache();
