@@ -370,3 +370,9 @@ ALTER TABLE mlf2_userdata ADD tou_accepted DATETIME NULL DEFAULT NULL, ADD dps_a
 INSERT INTO mlf2_settings VALUES ('data_privacy_agreement', '0');
 INSERT INTO mlf2_settings VALUES ('data_privacy_statement_url', '');
 */
+--------------------------------------------------------------------------------
+-- 2.4.13 to 2.4.14
+/*
+CREATE TABLE `mlf2_subscriptions` (`user_id` int(12) UNSIGNED NOT NULL, `eid` int(12) UNSIGNED NOT NULL, `unsubscribe_code` varchar(36) NOT NULL, `tstamp` datetime DEFAULT NULL, PRIMARY KEY `user_thread` (`user_id`,`eid`), KEY `hash` (`unsubscribe_code`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE mlf2_entries DROP COLUMN `email_notification`;
+*/
