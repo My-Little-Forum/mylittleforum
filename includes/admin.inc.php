@@ -664,7 +664,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 						@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time = time, last_reply = last_reply, edited_by = 0 WHERE edited_by = ". intval($selected_confirmed[$x]) ." AND user_id = ". intval($selected_confirmed[$x]));
 
 						// set user_id = 0
-						@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time = time, last_reply = last_reply, user_id = 0, email_notification = 0 WHERE user_id = ". intval($selected_confirmed[$x]));
+						@mysqli_query($connid, "UPDATE ".$db_settings['forum_table']." SET time = time, last_reply = last_reply, user_id = 0 WHERE user_id = ". intval($selected_confirmed[$x]));
 
 						@mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($selected_confirmed[$x]));
 						@mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id = ". intval($selected_confirmed[$x]));
