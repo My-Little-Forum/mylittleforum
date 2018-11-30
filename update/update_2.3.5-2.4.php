@@ -245,6 +245,10 @@ switch($settings['version']) {
 		$update['items'][] = 'js/posting.js';                                        // #403
 		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #403
 		$update['items'][] = 'includes/upload_image.inc.php';                        // no pull request
+	case '2.4.14':
+		$update['items'][] = 'includes/admin.inc.php';                               // no pull request
+		$update['items'][] = 'includes/functions.inc.php';                           // no pull request
+		$update['items'][] = 'includes/posting.inc.php';                             // no pull request
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
