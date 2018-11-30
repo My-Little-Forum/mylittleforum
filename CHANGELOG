@@ -1,7 +1,12 @@
 my little forum changelog
 -------------------------
 
-2.4.14
+2.4.15 (2018-11-30)
+-------------------
+- fixed: entries could not be edited
+- fixed: subscribung to or unsubscribing from an entry was not possible when saving the edit of an entry
+
+2.4.14 (2018-11-26)
 -------------------
 - fixed: several forms in the admin area lacked the CSRF-token
 - fixed: remove underscores from "data privacy statement" in the language files
