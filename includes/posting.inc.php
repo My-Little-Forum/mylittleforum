@@ -524,13 +524,11 @@ switch ($action) {
 			$smarty->assign("subnav_link", $subnav_link);
 			$smarty->assign('no_authorisation', 'no_auth_readonly');
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
-		} 
-		elseif ($settings['entries_by_users_only'] != 0 && empty($_SESSION[$settings['session_prefix'] . 'user_name'])) {
+		} elseif ($settings['entries_by_users_only'] != 0 && empty($_SESSION[$settings['session_prefix'] . 'user_name'])) {
 			if (isset($_POST['text'])) {
 				$smarty->assign('no_authorisation', 'no_auth_session_expired');
 				$smarty->assign('text', htmlspecialchars($_POST['text']));
-			} 
-			else {
+			} else {
 				$smarty->assign('no_authorisation', 'no_auth_post_reg_users');
 			}
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
@@ -732,7 +730,7 @@ switch ($action) {
 						break;
 					}
 				}
-			} 
+			}
 			else
 				$tagsArray = false;
 			

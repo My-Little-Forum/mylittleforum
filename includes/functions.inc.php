@@ -2650,111 +2650,91 @@ function checkUpdate($currentVersion = '0.0') {
  * @param string $string
  * @reurn bool
  */
-function contains_special_characters($string)
- {
-  #if(!preg_match("/^[a-zA-Z0-9_\- ]+$/", $string)) return true; // only alphanumeric characters, "-", "_" and " " allowed
-  if(preg_match("/([[:cntrl:]]|\p{Cf})/u", $string)) return true; // control characters and soft hyphen
-  if(preg_match("/(\x{200b})/u", $string)) return true; // zero width space
-  return false;
- }
+function contains_special_characters($string) {
+	#if (!preg_match("/^[a-zA-Z0-9_\- ]+$/", $string)) return true; // only alphanumeric characters, "-", "_" and " " allowed
+	if (preg_match("/([[:cntrl:]]|\p{Cf})/u", $string)) return true; // control characters and soft hyphen
+	if (preg_match("/(\x{200b})/u", $string)) return true; // zero width space
+	return false;
+}
 
 /**
  * gets available timezones
  *
  * @reurn array
  */
-function get_timezones()
- {
-  if(!$timezones_raw = @file('config/time_zones')) return false;
-  foreach($timezones_raw as $line)
-   {
-    $line = trim($line);
-    if(!empty($line))
-     {
-      $timezones[] = $line;
-     }
-   }
-  if(isset($timezones)) return $timezones;
-  else return false;
- }
+function get_timezones() {
+	if (!$timezones_raw = @file('config/time_zones')) return false;
+	foreach ($timezones_raw as $line) {
+		$line = trim($line);
+		if (!empty($line)) {
+			$timezones[] = $line;
+		}
+	}
+	if (isset($timezones)) return $timezones;
+	else return false;
+}
 
 /**
  * gets available languages
  *
  * @reurn array
  */
-function get_languages($titles=false)
- {
-  $handle=opendir('./'.LANG_DIR.'/');
-  while($file = readdir($handle))
-   {
-    if(strrchr($file, '.')=='.lang')
-     {
-      $language_files[] = $file;
-     }
-   }
-  closedir($handle);
-  if(isset($language_files))
-   {
-    if(!$titles)
-     {
-      return $language_files;
-     }
-    else
-     {
-      natcasesort($language_files);
-      $i=0;
-      foreach($language_files as $file)
-       {
-        $t_language_files[$i]['identifier'] = $file;
-        $t_language_files[$i]['title'] = ucfirst(str_replace('.lang','',$file));
-        $title_parts = explode('.', $t_language_files[$i]['title']);
-        if(isset($title_parts[1])) $t_language_files[$i]['title'] = $title_parts[0].' ('.$title_parts[1].')';      
-        ++$i;
-       }
-      return $t_language_files;
-     }
-   }
-  return false;
- }
+function get_languages($titles = false) {
+	$handle = opendir('./'.LANG_DIR.'/');
+	while ($file = readdir($handle)) {
+		if (strrchr($file, '.') == '.lang') {
+			$language_files[] = $file;
+		}
+	}
+	closedir($handle);
+	if (isset($language_files)) {
+		if (!$titles) {
+			return $language_files;
+		} else {
+			natcasesort($language_files);
+			$i = 0;
+			foreach ($language_files as $file) {
+				$t_language_files[$i]['identifier'] = $file;
+				$t_language_files[$i]['title'] = ucfirst(str_replace('.lang', '', $file));
+				$title_parts = explode('.', $t_language_files[$i]['title']);
+				if (isset($title_parts[1])) $t_language_files[$i]['title'] = $title_parts[0].' ('.$title_parts[1].')';
+				++$i;
+			}
+			return $t_language_files;
+		}
+	}
+	return false;
+}
 
 /**
  * gets available themes
  *
  * @reurn array
  */
-function get_themes($titles=false)
- {
-  $handle=opendir('./'.THEMES_DIR.'/');
-  while($dir = readdir($handle))
-   {
-    if($dir != '.' && $dir != '..' && is_dir('./'.THEMES_DIR.'/'.$dir) && file_exists('./'.THEMES_DIR.'/'.$dir.'/main.tpl'))
-     {
-      $themes[] = $dir;
-     }
-   }
-  if(isset($themes))
-   {
-    if(!$titles)
-     {
-      return $themes;
-     }
-    else
-     {
-      natcasesort($themes);
-      $i=0;
-      foreach($themes as $t)
-       {
-        $t_themes[$i]['identifier'] = $t;
-        $t_themes[$i]['title'] = str_replace('_',' ', $t);
-        ++$i;
-       }
-      return $t_themes;
-     }
-   }
-  else return false;
- }
- 
+function get_themes($titles = false) {
+	$handle = opendir('./'.THEMES_DIR.'/');
+	while ($dir = readdir($handle)) {
+		if ($dir != '.' && $dir != '..' && is_dir('./'.THEMES_DIR.'/'.$dir) && file_exists('./'.THEMES_DIR.'/'.$dir.'/main.tpl')) {
+			$themes[] = $dir;
+		}
+	}
+	if (isset($themes)) {
+		if (!$titles) {
+			return $themes;
+		} else {
+			natcasesort($themes);
+			$i = 0;
+			foreach ($themes as $t) {
+				$t_themes[$i]['identifier'] = $t;
+				$t_themes[$i]['title'] = str_replace('_', ' ', $t);
+				++$i;
+			}
+			return $t_themes;
+		}
+	}
+	else return false;
+}
+
 /**
  * Returns the avatar image by user id
  *
