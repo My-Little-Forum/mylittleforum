@@ -3,7 +3,7 @@
 ************************************************************************
 * Created by Michael Loesler <https://github.com/loesler>              *
 *                                                                      *
-* This script is part of my little forum <http://mylittleforum.net>    *
+* This script is part of my little forum <https://mylittleforum.net>   *
 *                                                                      *
 * This program is free software; you can redistribute it and/or modify *
 * it under the terms of the GNU General Public License as published by *
@@ -96,9 +96,9 @@ function BBCodeLinkButton(el) {
 			var txtarea = buttonGroup.getTextArea();
 			var selectionRange = txtarea.getSelection().trim();
 	
-			var insert_link = (regExpURI.test( selectionRange ))?window.prompt(lang["bbcode_link_url"], selectionRange):window.prompt(lang["bbcode_link_url"],"http://");
+			var insert_link = (regExpURI.test( selectionRange ))?window.prompt(lang["bbcode_link_url"], selectionRange):window.prompt(lang["bbcode_link_url"],"https://");
 	
-			if (!insert_link || insert_link == '' || insert_link == "http://") 
+			if (!insert_link || insert_link == '' || insert_link == "https://") 
 				return;
 			if (insert_link.indexOf(forumURI) > 0 && insert_link.indexOf("mode=page") < 0 && insert_link.indexOf("mode=contact") < 0 && regExpFID.test(insert_link)) {
 				var msgQuery = regExpFID.exec(insert_link);
@@ -580,9 +580,9 @@ function ButtonGroup(f) {
 		break;
 		case "img":
 			if (list && list.length > 1)
-				bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "http://" );
+				bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "https://" );
 			else
-				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); 
+				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "https://" ); 
 		break;
 		case "color":
 			bbCodeButton = new BBCodeColorChooserButton( button );
