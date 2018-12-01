@@ -16,7 +16,7 @@ if (isset($category_selection)) {
 		$reordered_categories[$cat] = $categories[$cat];
 	}
 	// add not selected categories to $reordered_categories:
-	while (list($key) = each($categories)) {
+	foreach ($categories as $key => $val) {
 		if (empty($reordered_categories[$key]))
 			$reordered_categories[$key] = $categories[$key];
 	}
