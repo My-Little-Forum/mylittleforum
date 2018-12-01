@@ -326,7 +326,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$smarty->assign('category_name', $field['category']);
 
 		if (count($categories) > 1) {
-			while (list($key, $val) = each($categories)) {
+			foreach ($categories as $key => $val) {
 				if ($key != $field['id']) $move_categories[$key] = $val;
 			}
 			$smarty->assign('move_categories', $move_categories);
@@ -830,7 +830,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if (empty($_POST['time_zone'])) $_POST['time_zone'] = '';
 		if (empty($_POST['read_state_expiration_method'])) $_POST['read_state_expiration_method'] = 0;
 
-		while(list($key, $val) = each($settings)) {
+		foreach ($settings as $key => $val) {
 			if (isset($_POST[$key])) mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". mysqli_real_escape_string($connid, $_POST[$key]) ."' WHERE name = '". mysqli_real_escape_string($connid, $key) ."' LIMIT 1");
 		}
 		if (isset($_POST['clear_cache'])) {
@@ -1273,7 +1273,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (isset($files)) {
 				arsort($files); // order by date
 				$i = 0;
-				while(list($key, $val) = each($files)) {
+				foreach ($files as $key => $val) {
 					$backup_files[$i]['file'] = htmlspecialchars($key);
 					$backup_files[$i]['date'] = $val;
 					$backup_files[$i]['size'] = number_format(filesize('backup/'.$key) / 1048576,2) .' MB';
