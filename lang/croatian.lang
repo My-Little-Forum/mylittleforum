@@ -637,7 +637,6 @@ edit_pw_old =                     'Stara lozinka:'
 edit_pw_new =                     'Nova lozinka:'
 edit_pw_conf =                    'Ponovite novu lozinku:'
 error_old_pw_wrong =              'Stara lozinka nije ispravna'
-error_pw_conf_uneven =            'Nova lozinka nije identična u oba polja'
 error_new_pw_too_short =          'Nova lozinka mora imati najmanje [characters] znakova'
 
 [edit_email]
@@ -657,7 +656,6 @@ register_exp =                    'Unesite željeno korisničko ime, lozinku i i
 register_username =               'Korisničko ime:'
 register_user_email =             'E-mail:'
 register_pw =                     'Lozinka:'
-register_pw_conf =                'Ponovite lozinku:'
 register_honeypot_field =         '<!-- TODO -->Leave this field empty:'
 register_only_by_admin =          'Samo administrator može registrirati nove korisnike.'
 registered =                      'Korisnički račun je registriran i aktivacijski ključ je poslan na <strong>[var]</strong>. Korsnički račun mora biti aktiviran unutar jednog dana.'

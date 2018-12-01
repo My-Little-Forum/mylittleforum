@@ -637,7 +637,6 @@ edit_pw_old =                     'Gammelt passord:'
 edit_pw_new =                     'Nytt passord:'
 edit_pw_conf =                    'Gjenta nytt passord:'
 error_old_pw_wrong =              'Det gamle passordet er feil'
-error_pw_conf_uneven =            'Det nye passordet er ikke det samme som passordet du gjentok'
 error_new_pw_too_short =          'Passordet må inneholde minst [characters] tegn'
 
 [edit_email]
@@ -657,7 +656,6 @@ register_exp =                    'Skriv inn ønsket brukernavn, et passord og e
 register_username =               'Brukernavn:'
 register_user_email =             'E-post:'
 register_pw =                     'Passord:'
-register_pw_conf =                'Gjenta passord:'
 register_honeypot_field =         'La dette feltet være tomt:'
 register_only_by_admin =          'Brukere kan bare registreres av forumadministratoren.'
 registered =                      'Kontoen ble registrert og aktiveringsnøkkelen er sendt til <strong>[var]</strong>. Kontoen må aktiveres innen én dag.'
