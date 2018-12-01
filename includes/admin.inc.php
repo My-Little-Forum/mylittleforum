@@ -852,12 +852,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$ar_username = $_POST['ar_username'];
 		$ar_email = $_POST['ar_email'];
 		$ar_pw = $_POST['ar_pw'];
-		$ar_pw_conf = $_POST['ar_pw_conf'];
 		if (isset($_POST['ar_send_userdata']) && $_POST['ar_send_userdata'] != '') $ar_send_userdata = true;
 		$ar_username = trim($ar_username);
 		$ar_email = trim($ar_email);
 		$ar_pw = trim($ar_pw);
-		$ar_pw_conf = trim($ar_pw_conf);
 		// look if form complete
 		if ($ar_username == '' or $ar_email == '') $errors[] = 'error_form_uncomplete';
 
@@ -867,8 +865,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (mysqli_num_rows($name_result) > 0) $errors[] = 'user_name_already_exists';
 			mysqli_free_result($name_result);
 
-			if (!is_valid_email($ar_email)) $errors[] = 'error_email_wrong';
-			if (($ar_pw == "" or $ar_pw_conf == "") && !isset($ar_send_userdata)) $errors[] = 'error_send_userdata';
+			if (!is_valid_email($ar_email)) 
+				$errors[] = 'error_email_wrong';
+			if ($ar_pw == "" && !isset($ar_send_userdata)) 
+				$errors[] = 'error_send_userdata';
 
 			if (my_strlen($ar_username, $lang['charset']) > $settings['name_maxlength'])
 				$errors[] = $lang['name_marking'] . " " .$lang['error_username_too_long'];
@@ -876,8 +876,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$too_long_word = too_long_word($ar_username, $settings['name_word_maxlength']);
 			if ($too_long_word)
 				$errors[] = 'error_word_too_long';
-			if ($ar_pw_conf != $ar_pw) 
-				$errors[] = 'error_pw_conf_uneven';
 		}
 		// save user if no errors:
 		if (empty($errors)) {

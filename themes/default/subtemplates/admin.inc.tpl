@@ -647,8 +647,6 @@
 <input id="ar_email" type="text" size="25" name="ar_email" value="{$ar_email|default:''}" maxlength="{$settings.email_maxlength}" /></p>
 <p><label for="ar_pw" class="main">{#register_pw#}</label><br />
 <input id="ar_pw" type="password" size="25" name="ar_pw" maxlength="50" /></p>
-<p><label for="ar_pw_conf" class="main">{#register_pw_conf#}</label><br />
-<input id="ar_pw_conf" type="password" size="25" name="ar_pw_conf" maxlength="50" /></p>
 <p><input id="ar_send_userdata" type="checkbox" name="ar_send_userdata" value="true"{if $ar_send_userdata} checked="checked"{/if} /> <label for="ar_send_userdata">{#register_send_userdata#}</label></p>
 <p><input type="submit" name="register_submit" value="{#submit_button_ok#}" /></p>
 </div>

@@ -640,7 +640,6 @@ edit_pw_old =                     'Antigua contrasena:'
 edit_pw_new =                     'Nueva contrasena:'
 edit_pw_conf =                    'Repite la nueva contrasena:'
 error_old_pw_wrong =              'La antigua contrasena es incorrecta'
-error_pw_conf_uneven =            'Las nuevas contrasenas no coinciden'
 error_new_pw_too_short =          'La nueva contrasena debe contener al menos [characters] caracteres'
 
 [edit_email]
@@ -660,7 +659,6 @@ register_exp =                    'Por favor, especifique el nombre de usuario, 
 register_username =               'Nombre de usuario:'
 register_user_email =             'E-mail:'
 register_pw =                     'Contrasena:'
-register_pw_conf =                'Repetir contrasena:'
 register_honeypot_field =         '<!-- TODO -->Leave this field empty:'
 register_only_by_admin =          'Los usuarios solo pueden ser registrados por el administrador del foro.'
 registered =                      'La cuenta ha sido registrada y la clave de activacion ha sido enviado a <strong>[var]</strong>. La cuenta tiene que ser activada en plazo de un dia!!!.'

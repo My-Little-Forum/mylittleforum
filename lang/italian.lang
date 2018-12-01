@@ -638,7 +638,6 @@ edit_pw_old =                     'Vecchia password:'
 edit_pw_new =                     'Nuova password:'
 edit_pw_conf =                    'Conferma new password:'
 error_old_pw_wrong =              'La vecchia password è sbagliata'
-error_pw_conf_uneven =            'La password confermata è diversa da quella nuova'
 error_new_pw_too_short =          'La nuova password può contenere al massimo [characters] caratteri'
 
 [edit_email]
@@ -658,7 +657,6 @@ register_exp =                    'Scegli un nome utente, una password e fornisc
 register_username =               'Nome utente:'
 register_user_email =             'E-mail:'
 register_pw =                     'Password:'
-register_pw_conf =                'Conferma Password:'
 register_honeypot_field =         '<!-- TODO -->Leave this field empty:'
 register_only_by_admin =          'Gli utenti possono essere registrati esclusivamente dall\'amministratore del forum.'
 registered =                      'L\'account è stato registrato con successo e la sua chiave d\'attivazione è stata spedita a <strong>[var]</strong>. L\'account deve essere attivato entro un giorno.'
