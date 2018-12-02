@@ -738,7 +738,7 @@ switch ($action) {
 			
 			
 			if ($posting_mode == 1) {
-				$edit_result = mysqli_query($connid, "SELECT tid, pid, name, user_id, email, hp, location, subject, text, category, email_notification, show_signature, sticky, locked, UNIX_TIMESTAMP(time) AS time, edit_key FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
+				$edit_result = mysqli_query($connid, "SELECT tid, pid, name, user_id, email, hp, location, subject, text, category, show_signature, sticky, locked, UNIX_TIMESTAMP(time) AS time, edit_key FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
 				$field = mysqli_fetch_array($edit_result);
 				mysqli_free_result($edit_result);
 				$pid = $field['pid'];
@@ -957,14 +957,14 @@ switch ($action) {
 					}
 					if ($id == 0) {
 						// new thread, set thread id:
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET tid = id, time = time WHERE id = LAST_INSERT_ID()") or raise_error('database_error', mysqli_error($connid));
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET tid = id, time = time WHERE id = " . intval($newID)) or raise_error('database_error', mysqli_error($connid));
 					}
 					// reply, set last reply:
 					if ($id != 0 && $spam == 0) {
 						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = NOW() WHERE tid = " . $thread) or raise_error('database_error', mysqli_error($connid));
 					}
 					// get last entry:
-					$result_new = mysqli_query($connid, "SELECT tid, pid, id FROM " . $db_settings['forum_table'] . " WHERE id = LAST_INSERT_ID()");
+					$result_new = mysqli_query($connid, "SELECT tid, pid, id FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($newID));
 					$new_data   = mysqli_fetch_array($result_new);
 					mysqli_free_result($result_new);
 					
@@ -1036,15 +1036,29 @@ switch ($action) {
 					
 					if ($field['user_id'] > 0) {
 						// posting of a registered user edited
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . $edited_by_query . ", subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', email_notification = " . intval($email_notification) . ", show_signature = " . intval($show_signature) . " " . ((isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) ? ", sticky = " . intval($sticky) : "") . " WHERE id = " . intval($id));
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . $edited_by_query . ", subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . " " . ((isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) ? ", sticky = " . intval($sticky) : "") . " WHERE id = " . intval($id));
 						// save new of posting tags:
-						if (isset($tagsArray) && $tagsArray)
-							setEntryTags($id, $tagsArray);						
+						if (isset($tagsArray) && $tagsArray) {
+							setEntryTags($id, $tagsArray);
+						}
+						// save status of email notification
+						if ($email_notification == 1) {
+							@mysqli_query($connid, "INSERT INTO " . $db_settings['subscriptions_table'] . " (user_id, eid, unsubscribe_code, tstamp) VALUES (" . intval($field['user_id']) . ", " . intval($id) . ", UUID(), NOW()) ON DUPLICATE KEY UPDATE eid = eid AND user_id = user_id") or die(mysqli_error($connid));
+						} else {
+							@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($id) . " AND user_id = " . intval($field['user_id'])) or die(mysqli_error($connid));
+						}
 					} else {
 						// posting of a not registed user edited
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . intval($edited_by_query) . ", name = '" . mysqli_real_escape_string($connid, $name) . "', subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', email_notification = " . intval($email_notification) . ", show_signature = " . intval($show_signature) . ", locked = " . $locked_query . ", sticky = " . intval($sticky) . ", spam = " . intval($spam) . ", spam_check_status = " . intval($spam_check_status) . " WHERE id = " . intval($id)) or die(mysqli_error($connid));
-						if (isset($tagsArray) && $tagsArray)
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . intval($edited_by_query) . ", name = '" . mysqli_real_escape_string($connid, $name) . "', subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . ", locked = " . $locked_query . ", sticky = " . intval($sticky) . ", spam = " . intval($spam) . ", spam_check_status = " . intval($spam_check_status) . " WHERE id = " . intval($id)) or die(mysqli_error($connid));
+						if (isset($tagsArray) && $tagsArray) {
 							setEntryTags($id, $tagsArray);
+						}
+						// save status of email notification
+						if ($email_notification == 1) {
+							@mysqli_query($connid, "INSERT INTO " . $db_settings['subscriptions_table'] . " (user_id, eid, unsubscribe_code, tstamp) VALUES (NULL, " . intval($id) . ", UUID(), NOW()) ON DUPLICATE KEY UPDATE eid = eid AND user_id = user_id") or die(mysqli_error($connid));
+						} else {
+							@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($id) . " AND user_id IS NULL") or die(mysqli_error($connid));
+						}
 					}
 					$category_update_result = mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = edited, category = " . intval($p_category) . " WHERE tid = " . intval($field['tid']));
 					@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id = " . intval($id));
@@ -1206,7 +1220,7 @@ switch ($action) {
 		}
 		
 		$id = intval($_GET['edit']);
-		$edit_result = @mysqli_query($connid, "SELECT tid, pid, name, user_name, " . $db_settings['forum_table'] . ".user_id, email, hp, location, subject, UNIX_TIMESTAMP(time) AS time, text, category, email_notification, show_signature, sticky, locked, edit_key
+		$edit_result = @mysqli_query($connid, "SELECT tid, pid, name, user_name, " . $db_settings['forum_table'] . ".user_id, email, hp, location, subject, UNIX_TIMESTAMP(time) AS time, text, category, show_signature, sticky, locked, edit_key
 		FROM " . $db_settings['forum_table'] . "
 		LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = " . $db_settings['forum_table'] . ".user_id
 		WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
@@ -1225,6 +1239,17 @@ switch ($action) {
 		$field = mysqli_fetch_array($edit_result);
 		$field['tags'] = getEntryTags($id);
 		mysqli_free_result($edit_result);
+		# check for notification
+		if ($field['user_id'] > 0) {
+			$subscription = @mysqli_query($connid, "SELECT eid FROM mlf2_subscriptions WHERE eid = " . intval($id) . " AND user_id = " . intval($field['user_id'])) or raise_error('database_error', mysqli_error($connid));
+		} else {
+			$subscription = @mysqli_query($connid, "SELECT eid FROM mlf2_subscriptions WHERE eid = " . intval($id) . " AND user_id IS NULL") or raise_error('database_error', mysqli_error($connid));
+		}
+		if (mysqli_num_rows($subscription) == 1) {
+			$field['email_notification'] = 1;
+		} else {
+			$field['email_notification'] = 0;
+		}
 		
 		// authorisatin check:
 		$authorization = get_edit_authorization($id, $field['user_id'], $field['edit_key'], $field['time'], $field['locked']);
