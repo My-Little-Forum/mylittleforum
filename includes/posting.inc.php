@@ -1190,7 +1190,6 @@ switch ($action) {
 					$smarty->assign("data_privacy_agreement", true);
 				if (isset($data_privacy_agree))
 					$smarty->assign('data_privacy_statement_agree', intval($data_privacy_agree));
-				//$_SESSION[$settings['session_prefix'] . 'formtime'] = TIMESTAMP - 7; // 7 seconds credit (form already sent)
 				$smarty->assign('subtemplate', 'posting.inc.tpl');
 			}
 		}
