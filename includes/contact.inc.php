@@ -16,6 +16,9 @@ if(isset($_POST['message_submit'])) $action = 'message_submit';
 
 switch($action) {
 	case 'main':
+		// set timestamp for SPAM protection
+		setReceiptTimestamp();
+		
 		// sender:
 		if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			$result = @mysqli_query($connid, "SELECT user_email FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($_SESSION[$settings['session_prefix'].'user_id'])."' LIMIT 1") or raise_error('database_error', mysqli_error($connid));
@@ -70,24 +73,28 @@ switch($action) {
 				$smarty->assign('recipient_user_id', intval($_REQUEST['user_id']));
 			}
 		}
-		$_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP;
 	break;
 	case 'message_submit':
-		if (isset($_POST['id'])) $id = intval($_POST['id']);
-		if (isset($_POST['user_id'])) $user_id = intval($_POST['user_id']);
-		if (isset($_POST['sender_email'])) $sender_email = trim(preg_replace("/\r/", "", $_POST['sender_email']));
-		if (isset($_POST['text'])) $text = trim($_POST['text']);
-		if (isset($_POST['subject'])) $subject = trim($_POST['subject']);
+		if (isset($_POST['id'])) 
+			$id = intval($_POST['id']);
+		if (isset($_POST['user_id'])) 
+			$user_id = intval($_POST['user_id']);
+		if (isset($_POST['sender_email'])) 
+			$sender_email = trim(preg_replace("/\r/", "", $_POST['sender_email']));
+		if (isset($_POST['text'])) 
+			$text = trim($_POST['text']);
+		if (isset($_POST['subject'])) 
+			$subject = trim($_POST['subject']);
 
 		// check form session and time used to complete the form:
-		if (empty($_SESSION[$settings['session_prefix'].'user_id'])) {
-			if (empty($_SESSION[$settings['session_prefix'].'formtime'])) $errors[] = 'error_invalid_form';
-			else {
-				$time_need = TIMESTAMP - intval($_SESSION[$settings['session_prefix'].'formtime']);
-				if ($time_need < 10) $errors[] = 'error_form_sent_too_fast';
-				elseif ($time_need > 10800) $errors[] = 'error_form_sent_too_slow';
-				unset($_SESSION[$settings['session_prefix'].'formtime']);
-			}
+		// if (empty($_SESSION[$settings['session_prefix'].'user_id'])) {
+		if (!isset($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference']) || intval($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference']) <= 0)
+			$errors[] = 'error_invalid_form';
+		else {
+			if ($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference'] < $settings['min_email_time'])
+				$errors[] = 'error_form_sent_too_fast';
+			elseif ($time_need > $settings['max_email_time'])
+				$errors[] = 'error_form_sent_too_slow';
 		}
 
 		if (empty($errors)) {
@@ -219,7 +226,6 @@ switch($action) {
 			if (!my_mail($recipient_email, $subject, $emailbody, $sender_email)) $errors[] = 'mail_error';
 		}
 		if (isset($errors)) {
-			$_SESSION[$settings['session_prefix'].'formtime'] = TIMESTAMP - 7; // 7 seconds credit (form already sent)
 			$smarty->assign('errors',$errors);
 			if (isset($id)) $smarty->assign('id', intval($id));
 			if (isset($user_id)) $smarty->assign('recipient_user_id', intval($user_id));

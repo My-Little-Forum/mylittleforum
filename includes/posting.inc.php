@@ -390,6 +390,8 @@ switch ($action) {
 			header('Location: index.php?mode=login&login_message=registered_users_only' . $back);
 			exit;
 		} else {
+			// set timestamp for SPAM protection
+			setReceiptTimestamp();
 			if ($id == 0) {
 				// new posting
 				$link_name  = 'back_to_index_link';
@@ -507,7 +509,6 @@ switch ($action) {
 				$smarty->assign('provide_sticky', true);
 			
 			$smarty->assign("subnav_link", $subnav_link);
-			$_SESSION[$settings['session_prefix'] . 'formtime'] = TIMESTAMP;
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
 		}
 		break;
@@ -541,11 +542,14 @@ switch ($action) {
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
 		}
 		else {
+			if (!isset($_POST['preview'])) // ignore preview mode
+				setReceiptTimestamp();
+				
 			if (isset($_POST['posting_mode']))
 				$posting_mode = intval($_POST['posting_mode']);
 			else
 				$posting_mode = 0;
-			
+	
 			// clear edit keys
 			if ($settings['user_edit'] == 2 && $settings['edit_max_time_period'] > 0) {
 				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = edited, edit_key = '' WHERE time < (NOW() - INTERVAL " . intval($settings['edit_max_time_period']) . " MINUTE)");
@@ -594,16 +598,15 @@ switch ($action) {
 				
 				if (empty($errors)) {
 					// check form session and time used to complete the form:
-					if (empty($_SESSION[$settings['session_prefix'] . 'user_id'])) {
-						if (empty($_SESSION[$settings['session_prefix'] . 'formtime']))
+					//if (!isset($_POST['preview']) && empty($_SESSION[$settings['session_prefix'] . 'user_id'])) {  // ignore preview mode AND reg. users
+					if (!isset($_POST['preview'])) { // ignore preview mode
+						if (!isset($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference']) || intval($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference']) <= 0)
 							$errors[] = 'error_invalid_form';
 						else {
-							$time_need = TIMESTAMP - intval($_SESSION[$settings['session_prefix'] . 'formtime']);
-							if ($time_need < 10)
+							if ($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference'] < $settings['min_posting_time'])
 								$errors[] = 'error_form_sent_too_fast';
-							elseif ($time_need > 10800)
+							elseif ($time_need > $settings['max_posting_time'])
 								$errors[] = 'error_form_sent_too_slow';
-							unset($_SESSION[$settings['session_prefix'] . 'formtime']);
 						}
 					}
 				}
@@ -1008,7 +1011,8 @@ switch ($action) {
 					else
 						header('Location: index.php?id=' . $new_data['id']);
 					exit;
-				} elseif (isset($_POST['save_entry']) && $posting_mode == 1) {
+				} 
+				elseif (isset($_POST['save_entry']) && $posting_mode == 1) {
 					// save edited posting:
 					$tid_result = @mysqli_query($connid, "SELECT pid, tid, name, location, user_id, category, subject, text FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
 					$field = mysqli_fetch_array($tid_result);
@@ -1131,7 +1135,6 @@ switch ($action) {
 					$smarty->assign('data_privacy_statement_agree', intval($data_privacy_agree));
 				$smarty->assign('preview_text', $preview_text);
 				$smarty->assign('preview_subject', htmlspecialchars($subject));
-				$_SESSION[$settings['session_prefix'] . 'formtime'] = TIMESTAMP - 7; // 7 seconds credit for preview
 				$smarty->assign('subtemplate', 'posting.inc.tpl');
 			}
 			
@@ -1187,7 +1190,7 @@ switch ($action) {
 					$smarty->assign("data_privacy_agreement", true);
 				if (isset($data_privacy_agree))
 					$smarty->assign('data_privacy_statement_agree', intval($data_privacy_agree));
-				$_SESSION[$settings['session_prefix'] . 'formtime'] = TIMESTAMP - 7; // 7 seconds credit (form already sent)
+				//$_SESSION[$settings['session_prefix'] . 'formtime'] = TIMESTAMP - 7; // 7 seconds credit (form already sent)
 				$smarty->assign('subtemplate', 'posting.inc.tpl');
 			}
 		}
