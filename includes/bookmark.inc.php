@@ -58,17 +58,18 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			
 			while ($row = mysqli_fetch_array($bookmark_result)) {
 				$tag = $row['tag'];
+				$tags_array = false;
+				if (!is_null($tag)) {
+					if (my_strpos($tag, ' ', 0, $lang['charset']))
+						$tag_escaped='"'.$tag.'"';
+					else 
+						$tag_escaped = $tag;
 				
-				if (my_strpos($tag, ' ', 0, $lang['charset']))
-					$tag_escaped='"'.$tag.'"';
-				else 
-					$tag_escaped = $tag;
-				
-				$tags_array = [
-					'escaped' => urlencode($tag_escaped),
-					'display' => htmlspecialchars($tag),
-				];
-				
+					$tags_array = [
+						'escaped' => urlencode($tag_escaped),
+						'display' => htmlspecialchars($tag),
+					];
+				}
 				$bookmarkdata[$row['bid']]['subject']       = htmlspecialchars($row['subject']);
 				$bookmarkdata[$row['bid']]['user_name']     = htmlspecialchars($row['user_name']);
 				$bookmarkdata[$row['bid']]['user_id']       = intval($row['user_id']);
@@ -77,7 +78,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 				$bookmarkdata[$row['bid']]['bookmark_time'] = format_time($lang['time_format_full'], $row['bookmark_time']);
 				$bookmarkdata[$row['bid']]['posting_time']  = format_time($lang['time_format_full'], $row['disp_time']);
 				$bookmarkdata[$row['bid']]['reply_time']    = format_time($lang['time_format_full'], $row['reply_time']);
-				$bookmarkdata[$row['bid']]['tags'][]        = $tags_array;
+				if ($tags_array !== false)
+					$bookmarkdata[$row['bid']]['tags'][]    = $tags_array;
 			}
 
 			mysqli_free_result($bookmark_result);
