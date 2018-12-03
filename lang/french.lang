@@ -3,7 +3,8 @@
 #------------------------------------------------------------------------------------#
 # Translated by Michel Gosse < mgosse3 at gmail dot com > 2009-03-27                 #
 # Updated by Marc Duval < duvalm at gmail dot com > 2011-05-22                       #
-# Updated by Jean-Michel Hubert < jean-michel dot hubert at eni dot com > 2014-02-12 #
+# Updated by Jean-Michel Hubert < jean-michel dot hubert at eni dot com > 2014-02-12
+# Updated by Hugues Martin < macadoum at lavache dot com > 2018-12-03
 ######################################################################################
 
 [default]
@@ -104,8 +105,8 @@ back_to_entry_link =              'Retour au message de [name]'
 back_to_entry_link_title =        'Retour au message de [name]'
 subnav_login =                    'Connexion'
 subnav_pw_forgotten =             'Oubli du mot de passe'
-subnav_accept_dps =               '<!-- TODO -->Accept the data privacy statement'
-subnav_accept_tou =               '<!-- TODO -->Accept the terms of use agreement'
+subnav_accept_dps =               'Accepter la déclaration sur la confidentialité des données'
+subnav_accept_tou =               'Accepter les conditions d\'utilisation'
 subnav_admin_area =               'Zone d\'administration'
 subnav_settings =                 'Préférences du forum'
 subnav_advanced_settings =        'Configuration avancée'
@@ -146,11 +147,11 @@ subnav_restore =                  'Restaurer'
 subnav_locked =                   'Compte verrouillé'
 subnav_delete_cookie =            'Supprimer le cookie'
 subnav_disabled =                 'Forum désactivé'
-subnav_bookmarks =                '<!-- TODO -->Bookmarks'
-subnav_delete_bookmark =          '<!-- TODO -->Delete bookmark'
-subnav_edit_bookmark =            '<!-- TODO -->Edit bookmark'
-subnav_list_uploads =             '<!-- TODO -->List of uploads'
-subnav_confirm_delete_uploads =   '<!-- TODO -->Delete uploads'
+subnav_bookmarks =                'Ajouter aux marques-pages'
+subnav_delete_bookmark =          'Supprimer le marque-page'
+subnav_edit_bookmark =            'Éditer le marque-page'
+subnav_list_uploads =             'Liste des téléchargements'
+subnav_confirm_delete_uploads =   'Supprimer les téléchargements'
 subnav_page_error =               'Erreur'
 subnav_page =                     '[var]'
 counter =                         '[total_postings] messages dans [total_threads] fils de discussion, [registered_users] utilisateurs enregistrés'
@@ -188,7 +189,7 @@ mark_linktitle =                  'Sélectionner le message'
 unmark_linktitle =                'Déselectionner le message'
 delete_marked_link =              'Supprimer les messages sélectionnés'
 manage_postings_link =            'Gérer les messages'
-non_activated_users_link =        '<!-- TODO -->[counter] non-activated user(s)'
+non_activated_users_link =        '[counter] d\'utilisateurs non activés'
 show_spam_link =                  'Montrer les spams ([number])'
 hide_spam_link =                  'Cacher les spams'
 delete_spam_link =                'Supprimer les spams'
@@ -240,7 +241,7 @@ error_invalid_form =              'La session a expiré! Veuillez copier le text
 error_form_sent_too_fast =        'Le formulaire a été envoyé trop rapidement - attendez quelques secondes et recommencez (protection contre les robots)'
 error_form_sent_too_slow =        'Le formulaire n\'est plus valide - veuillez copier le texte et recharger la page'
 terms_of_use_agreement =          'J\'accepte les [[conditions d\'utilisation]]'
-data_privacy_agreement =          '<!-- TODO -->I agree to the [[data privacy statement]]'
+data_privacy_agreement =          'J\'accepte la  déclaration sur la protection des données'
 error_not_accepted_word =         'Mot non autorisé : [not_accepted_word]'
 error_not_accepted_words =        'Mots non autorisés : [not_accepted_words]'
 error_username_invalid_chars =    'Le nom de l\'utilisateur contient des caractères spéciaux'
@@ -260,41 +261,41 @@ error_no_subject =                'Aucun sujet n\'a été entré'
 error_no_text =                   'Aucun texte n\'a été entré'
 terms_of_use_error_register =     'Vous devez accepter les conditions d\'utilisation pour terminer votre enregistrement'
 terms_of_use_error_posting =      'Vous devez accepter les conditions d\'utilisation pour publier le message'
-terms_of_use_error_reconf =       '<!-- TODO -->You have to agree to the changes of the terms of use in order to submit further messages'
-data_priv_statement_error_reg =   '<!-- TODO -->You have to agree to the data privacy statement in order to complete the registration'
-data_priv_statement_error_post =  '<!-- TODO -->You have to agree to the data privacy statement in order to submit this message'
-data_priv_statement_error_reconf ='<!-- TODO -->You have to agree to the changes of the data privacy statement in order to submit further messages'
-submit_button_agreed =            '<!-- TODO -->I agree'
-submit_button_disagreed =         '<!-- TODO -->I disagree'
+terms_of_use_error_reconf =       'Vous devez accepter le changement des conditions d'utilisation pour continuer à poster'
+data_priv_statement_error_reg =   'Vous devez accepter la déclaration sur la protection des contenus pour terminer votre inscription'
+data_priv_statement_error_post =  'Vous devez accepter la déclaration sur la protection des contenus pour poster ce message'
+data_priv_statement_error_reconf ='Vous devez accepter les changements de la déclaration sur la protection des contenus pour continuer à poster des messages'
+submit_button_agreed =            'J\'accepte'
+submit_button_disagreed =         'Je n\'accepte pas'
 check_all =                       'Cocher tout'
 uncheck_all =                     'Décocher tout'
 delete_backup_confirm =           'Etes-vous sûr de vouloir supprimer ce fichier de sauvegarde ?'
 delete_sel_backup_confirm =       'Etes-vous sûr de vouloir supprimer tous les fichiers de sauvegarde sélectionnés ?'
 drag_and_drop_title =             'déplacer et lâcher pour monter ou descendre'
 show_all_postings_link =          'montrer les messages'
-show_bookmarks_link =             '<!-- TODO -->Bookmarks'
-show_userdata_linktitle =         '<!-- TODO -->Visit profil of [user]'
-show_password_title =             '<!-- TODO -->Show password in plain text'
-hide_password_title =             '<!-- TODO -->Hide password'
+show_bookmarks_link =             'Marques-pages'
+show_userdata_linktitle =         'Visiter le profil de [user]'
+show_password_title =             'Montrer le mot de passe'
+hide_password_title =             'Cacher le mot de passe'
 
 [bookmark]
-delete_bookmark_submit =          '<!-- TODO -->OK - Delete Bookmark'
-delete_bookmark_confirm =         '<!-- TODO -->Do you really want to delete this bookmark?'
-no_bookmarks =                    '<!-- TODO -->No bookmarks specified.'
-edit_bookmark =                   '<!-- TODO -->Bookmark:'
-edit_tags =                       '<!-- TODO -->Tags:'
-edit_tags_note =                  '<!-- TODO -->(optional, separated by comma)'
-bookmark_title =                  '<!-- TODO -->Name of bookmark'
-bookmark_user_name =              '<!-- TODO -->User name'
-bookmark_creation_time =          '<!-- TODO -->Bookmark creation'
-bookmark_posting_time =           '<!-- TODO -->Posting creation'
-bookmark_filter_linktitle =       '<!-- TODO -->Apply bookmark filter'
-clear_bookmark_filter_linkname =  '<!-- TODO -->Clear bookmark filter'
-clear_bookmark_filter_linktitle = '<!-- TODO -->clear current bookmark filter and show all saved bookmarks'
-error_no_bookmark_subject =       '<!-- TODO -->No subject has been entered'
-error_bookmark_subject_too_long = '<!-- TODO -->The subject is too long'
-error_bookmark_word_too_long =    '<!-- TODO -->The word "[word]" is too long'
-error_bookmark_tags_limit_reached = '<!-- TODO -->Tags limit reached for bookmark'
+delete_bookmark_submit =          'OK - Supprimer le marque-page'
+delete_bookmark_confirm =         'Êtes-vous sûr de vouloir supprimer ce marque-page'
+no_bookmarks =                    'Aucun marque-page'
+edit_bookmark =                   'Marque-page:'
+edit_tags =                       'Tags:'
+edit_tags_note =                  '(optionnel, séparé par une virgule)'
+bookmark_title =                  'Nom du marque-page'
+bookmark_user_name =              'Nom d\'utilisateur'
+bookmark_creation_time =          'Date de création'
+bookmark_posting_time =           'Date de publication'
+bookmark_filter_linktitle =       'Appliquer le filtre'
+clear_bookmark_filter_linkname =  'Enlever le filtre'
+clear_bookmark_filter_linktitle = 'Supprimer le filtre et montrer tous les marques-pages'
+error_no_bookmark_subject =       'Vous devez entrer un nom pour le marque-page'
+error_bookmark_subject_too_long = 'Le nom est trop long'
+error_bookmark_word_too_long =    'Le mot "[word]" est trop long'
+error_bookmark_tags_limit_reached = 'Il y a trop de tags'
 
 [entry]
 edited_by =                       'édité par [name], [time]'
@@ -304,10 +305,10 @@ several_views =                   '[views] vues'
 complete_thread_marking =         'Fil complet:'
 branch_marking =                  'Branche courante du fil :'
 direct_replies_marking =          'Réponses liées à ce message:'
-add_bookmark_message_linkname =   '<!-- TODO -->add bookmark'
-add_bookmark_message_linktitle =  '<!-- TODO -->Add this posting to your personal bookmark list'
-delete_bookmark_message_linkname ='<!-- TODO -->delete bookmark'
-delete_bookmark_message_linktitle='<!-- TODO -->Remove this posting from your personal bookmark list'
+add_bookmark_message_linkname =   'Ajouter aux marques-pages'
+add_bookmark_message_linktitle =  'Ajouter ce message à ma liste de marques-pages'
+delete_bookmark_message_linkname ='Supprimer des marques-pages'
+delete_bookmark_message_linktitle='Supprimer ce messages de ma liste des marques-pages'
 edit_message_linkname =           'éditer'
 edit_message_linktitle =          'éditer le message'
 delete_message_linkname =         'Supprimer'
@@ -452,10 +453,10 @@ flag_ham_submit =                 'Déclarer comme non spam seulement'
 no_authorisation_delete =         'Le message ne peut être supprimé! Il se peut que le délai de suppression des messages soit dépassé, ou que le fil soit verrouillé, ou qu\'il y ait déjà des réponses à ce message.'
 
 [unsubscribe_posting]
-unsubscribed_hl =                 '<!-- TODO -->Quitted subscription'
-unsubscribed_message =            '<!-- TODO -->The subscription for informations about replies to your entry got quitted. You will not receive any more e-mails about this specific entry. Subscriptions for informations about further entries are not affected by this action.'
-unsubscribe_error_hl =            '<!-- TODO -->Could not quit the subscription'
-unsubscribe_error_message =       '<!-- TODO -->During the action to quit the subscription an error occured. Please inform the forum operator by e-mail about this issue. Please add the following informations: ID of the entry (take it from the link in the e-mail (URL-parameter "unsubscribe")) and the time of the failed action (add the name of your time zone if possible).'
+unsubscribed_hl =                 'Désinscrit'
+unsubscribed_message =            'La liste des souscription desquelles vous vous êtes désinscrit. Vous ne recevrez plus d\'e-mail pour ce message. Les souscriptions futures ne seront pas affectées par cette action.'
+unsubscribe_error_hl =            'Impossible de se désinscrire'
+unsubscribe_error_message =       'Une erreur empêche la désincription. Informez votre administrateur de ce problème. Ajoutez s\'il vous plaît l\'ID de ce message (que vous trouverez dans le lien de cet e-mail (lien de désinscrition)) et l\'heure précise au moment ou l\'action a échouée (précisez le fuseau horaire si possible).'
 
 [captcha]
 captcha_marking =                 'Protection contre le spam :'
@@ -704,13 +705,13 @@ spam_protection_link =            'Protection contre le Spam'
 backup_restore_link =             'Sauvegarde'
 update_link =                     'Mise à jour'
 reset_uninstall_link =            'Réinitialiser ou désinstaller le forum'
-upload_administr_link =           '<!-- TODO -->manage uploads'
-releases_info_header =            '<!-- TODO -->Actual available release'
-releases_list_link =              '<!-- TODO -->Check the releases list for the actual available version.'
-warning_header =                  '<!-- TODO -->Warning'
-warning_install_script_exists =   '<!-- TODO -->For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!'
-actual_installed_version_header = '<!-- TODO -->Actual installed version'
-actual_installed_version =        '<!-- TODO -->The version number of your installation: <strong>[current_version_string]</strong>'
+upload_administr_link =           'Gérer les téléchargements'
+releases_info_header =            'Dernière version disponible'
+releases_list_link =              'Vérifier la disponibilité d\'une nouvelle version'
+warning_header =                  'Attention'
+warning_install_script_exists =   'Par sécurité, il est recommandé de supprimer (ou de renommer) <code>install/index.php</code>'
+actual_installed_version_header = 'Version actuelle'
+actual_installed_version =        'Version installée: <strong>[current_version_string]</strong>'
 
 # forum settings:
 clear_chache =                    'Effacer les réglages et appliquer les changements aux entrées existantes'
@@ -738,14 +739,14 @@ default_theme =                   'Thème'
 default_theme_desc =              'Thème pour le gabarit de la page'
 threads_per_page =                'Fils par page'
 threads_per_page_desc =           'Combien de fils faut-il afficher par page ?'
-reset_read_state =                '<!-- TODO -->Reset read status'
-reset_read_state_desc =           '<!-- TODO -->In which kind the read status shoud be resetted?'
-read_state_no_reset =             '<!-- TODO -->Store status permanently'
-read_state_numbered_reset =       '<!-- TODO -->Store status for an amount of entries'
-read_state_timeout_reset =        '<!-- TODO -->Store status for x days'
-read_state_locktime_reset =       '<!-- TODO -->Store status until a thread will be automatically locked'
-read_state_value =                '<!-- TODO -->Value for the reset of the read status'
-read_state_value_desc =           '<!-- TODO -->To which number of entries or days until the reset the storing amount should be limited? In case of reset when auto locking the local value of that setting will be applied.'
+reset_read_state =                'Réinitialiser le statut de lecture'
+reset_read_state_desc =           'Dans quel cas faut-il réinitialiser le statut de lecture ?
+read_state_no_reset =             'Garder les statuts définitivement'
+read_state_numbered_reset =       'Garder les statuts pour le nombre de vues'
+read_state_timeout_reset =        'Garder les statuts pour x jours'
+read_state_locktime_reset =       'Garder les statuts jusqu\'à ce que le sujet soit automatiquement archivé'
+read_state_value =                'Valeur pour le statut de lecture'
+read_state_value_desc =           'Pour combien de temps faut-il limiter le nombre d'entrées ou de jours ? En cas d'archivage, la valeur locale sera appliquée.'
 auto_lock_old_threads =           'Fermeture automatique des vieux fils de discussion'
 auto_lock_old_threads_desc =      'Ferme automatiquement les fils de discussions dans la dernière réponse est plus vieille de combien de jours ? (0=désactivé)'
 accession =                       'Gestion des accès ou des permissions'
@@ -772,10 +773,10 @@ terms_of_use_settings =           'Règles d\'usage'
 terms_of_use_settings_desc =      'Obligation pour les utilisateurs non enregistrés d\'accepter les règles d\'usage pour publier des messages et pour s\'enregistrer'
 terms_of_use_settings_enabled =   'Règles d\'usage activées'
 terms_of_use_url =                'Adresse des règles d\'usage:'
-data_privacy_statement =          '<!-- TODO -->Data privacy statement'
-data_privacy_statement_desc =     '<!-- TODO -->Obligation for unregistered users to agree to the data privacy statement when posting messages and registering'
-data_privacy_settings_enabled =   '<!-- TODO -->Data privacy statement enabled'
-data_privacy_url =                '<!-- TODO -->Data privacy statement URL:'
+data_privacy_statement =          'Déclaration sur la protection des données'
+data_privacy_statement_desc =     'Obligation pour les utilisateurs non enregistrés d'accepter la déclaration sur la protection des données pour poster et s'inscrire'
+data_privacy_settings_enabled =   'Activer la déclaration sur la protection des données'
+data_privacy_url =                'URL de la déclaration sur la protection des données:'
 edit_postings =                   'Editer les messages'
 edit_postings_desc =              'Editer les comportements des messages'
 edit_own_postings =               'Editer mes messages:'
@@ -899,7 +900,7 @@ delete_selected_users =           'Supprimer la sélection'
 add_user =                        'Ajouter un utilisateur'
 email_list =                      'Liste des emails des utilisateurs enregistrés'
 clear_userdata =                  'Effacer les données des utilisateurs'
-edit_user_avatar =                '<!-- TODO -->Avatar:'
+edit_user_avatar =                'Avatar:'
 delete_avatar =                   'Supprimer l\'avatar'
 delete_user_confirmation =        'Etes-vous sûr de vouloir supprimer cet utilisateur ?'
 delete_users_confirmation =       'Etes-vous sûr de vouloir supprimer les utilisateurs suivants ?'
@@ -920,11 +921,11 @@ clear_userdata_note =             'Les administrateurs et les modérateurs ne se
 no_users_in_selection =           'Aucun utilisateur dans la sélection'
 
 # upload management
-upload_administration =           '<!-- TODO -->Upload management'
-mark_upload_for_removal =         '<!-- TODO -->mark for removal'
-no_uploads_found =                '<!-- TODO -->Found no uploaded files.'
-delete_upload_confirmation =      '<!-- TODO -->Are you sure you want to delete this upload?'
-delete_uploads_confirmation =     '<!-- TODO -->Are you sure you want to delete the following uploads?'
+upload_administration =           'Gérer les téléchargements'
+mark_upload_for_removal =         'À supprimer'
+no_uploads_found =                'Aucun téléchargement trouvé'
+delete_upload_confirmation =      'Êtes-vous sûr de vouloir supprimer ce téléchargement ?'
+delete_uploads_confirmation =     'Êtes-vous sûr de vouloir supprimer ces téléchargements ?'
 
 # spam protection:
 captcha =                         'PROTECTION'
@@ -987,8 +988,8 @@ backup_categories =               'catégories'
 backup_pages =                    'pages'
 backup_smilies =                  'smileys'
 backup_banlists =                 'listes noires'
-backup_bookmarks =                '<!-- TODO -->bookmarks'
-backup_read_status =              '<!-- TODO -->read status'
+backup_bookmarks =                'Marques-pages'
+backup_read_status =              'Statut de lectures'
 backup_temp_infos =               'temporary informations'
 download_backup_file =            'Télécharger le fichier de sauvegarde'
 delete_selected =                 'Supprimer la sélection'
@@ -1029,43 +1030,43 @@ update_download =                 'Si vous n\'avez pas ces fichiers vous pouvez 
 email_subject =                   'Réponse de "[original_subject]"'
 email_text =                      """Bonjour [recipient],
 
-this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
+ceci est un message d'information généré automatiquement. Vous recevez cet e-mail car vous avez activé la fonction de notification. Merci de ne pas répondre à cet e-mail, mais de poster une réponse sur le forum.
 
-If you do not want to get informed about replies to your entry anymore, please use the following link to unsubscribe from the notification.
+Si vous ne oulez plus recevoir d'e-mail pour ce sujet, suivez le lien suivant pour vous désabonner.
 [unsubscribe_address]
 
 [name] a posté une réponse à \"[original_subject]\":
 
-Subject: [subject]
+Sujet: [subject]
 
 [text]
 
-URL of this posting: [posting_address]
+URL de ce message: [posting_address]
 
---- Your original posting ---
+--- Message d'origine ---
 
 [original_text]"""
 
 email_text_delayed_addition =       """---
-La publication est en attente car le message a été validé manuellement. This is an automatically generated email, please do not reply to this email."""
+La publication est en attente car le message a été validé manuellement. Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 
 admin_email_subject =             'Nouveau sujet dans le forum : [subject]'
 admin_email_text =                """Nouveau sujet par [name]
-Subject: [subject]
+Sujet: [subject]
 
 [text]
 
 Adresse du message : [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 admin_email_text_reply =          """Réponse par [name]
-Subject: [subject]
+Sujet: [subject]
 
 [text]
 
 Adresse du message : [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 admin_reg_user_email_subj =       'Enregistrement pour le Forum'
 admin_reg_user_email_text =       """Bonjour [name],
 bienvenue sur le forum!
@@ -1080,7 +1081,7 @@ Lien pour se connecter directement:
 
 Le mot de passe peut être changé après s'être connecté.
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 
 admin_activate_user_email_subj =  'Enregistrement pour le Forum'
 admin_activate_user_email_text =  """Bonjour [name],
@@ -1089,16 +1090,16 @@ bienvenue sur le forum!
 Link to log in directly:
 [login_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 
 new_user_email_sj =               'Enregistrement sur le forum'
 new_user_email_txt =              """Bonjour [name],
-Bienvenue sur le forum !
+bienvenue sur le forum !
 
-pour activer votre compte veuiller cliquer sur le lien:
+Pour activer votre compte veuiller cliquer sur le lien:
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 new_user_notif_sj =               'Enregistrement d\'un nouvel utilisateur'
 new_user_notif_txt =              """Bonjour [recipient],
 un nouvel utilisateur s'est enregistré sur le forum.
@@ -1107,7 +1108,7 @@ E-mail: [email]
 
 [user_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 new_user_notif_txt_locked =       """Bonjour [recipient],
 un nouvel utilisateur s'est enregistré sur le forum.
 Identifiant : [name]
@@ -1115,20 +1116,20 @@ E-mail: [email]
 
 IMPORTANT: Cet utilisateur doit être validé afin qu'il puisse se connecter!
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 edit_address_email_sj =           'Activation d\'un compte après changement d\'adresse email'
 edit_address_email_txt =          """Bonjour [name],
 l'adresse email a changé. Vous devez maintenant activer de nouveau votre compte en cliquant sur le lien suivant :
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 pwf_activating_email_sj =         'Demande d\'un nouveau mot de passe'
 pwf_activating_email_txt =        """Bonjour [name],
 Cet email a été envoyé par le forum ([forum_address]) car un nouveau mot de passe a été demandé. Veuillez cliquer sur le lien ci-dessous pour confirmer votre demande. Cette action générera un nouveau mot de passe qui vous sera envoyé. Si cet email a été envoyé par erreur (que ce soit par vous ou par d'autres) veuillez ignorer cet email.
 
 [activating_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 new_pw_email_sj =                   'Nouvelles données pour un utilisateur du forum'
 new_pw_email_txt =                  """Bonjour [name],
 voici vos nouvelles données comme utilisateur :
@@ -1141,7 +1142,7 @@ Cliquer ici pour se connecter directement:
 
 Le mot de passe peut être changé après s'être connecté.
 
-This is an automatically generated information message, please do not reply to this email."""
+Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 contact_email_txt =                 """[message]
 
 -- 
