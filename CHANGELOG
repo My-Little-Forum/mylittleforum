@@ -1,6 +1,11 @@
 my little forum changelog
 -------------------------
 
+2.4.16 (2018-12-07)
+-------------------
+- fixed: do not create a list item for a non existing bookmark tag for the users bookmark list
+- fixed: errorneous use of a hardcoded table name that led to failing read attempts of a users subscriptions
+
 2.4.15 (2018-11-30)
 -------------------
 - fixed: entries could not be edited
