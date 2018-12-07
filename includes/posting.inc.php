@@ -1241,9 +1241,9 @@ switch ($action) {
 		mysqli_free_result($edit_result);
 		# check for notification
 		if ($field['user_id'] > 0) {
-			$subscription = @mysqli_query($connid, "SELECT eid FROM mlf2_subscriptions WHERE eid = " . intval($id) . " AND user_id = " . intval($field['user_id'])) or raise_error('database_error', mysqli_error($connid));
+			$subscription = @mysqli_query($connid, "SELECT eid FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($id) . " AND user_id = " . intval($field['user_id'])) or raise_error('database_error', mysqli_error($connid));
 		} else {
-			$subscription = @mysqli_query($connid, "SELECT eid FROM mlf2_subscriptions WHERE eid = " . intval($id) . " AND user_id IS NULL") or raise_error('database_error', mysqli_error($connid));
+			$subscription = @mysqli_query($connid, "SELECT eid FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($id) . " AND user_id IS NULL") or raise_error('database_error', mysqli_error($connid));
 		}
 		if (mysqli_num_rows($subscription) == 1) {
 			$field['email_notification'] = 1;
