@@ -2787,6 +2787,14 @@ function addBookmark($user_id, $posting_id) {
 	}
 }
 
+function setReceiptTimestamp($offset = 0) {
+	global $settings;
+	// SPAM protection (Time (difference) between page reload)
+	if (isset($_SESSION[$settings['session_prefix'] . 'receipt_timestamp']) && intval($_SESSION[$settings['session_prefix'] . 'receipt_timestamp']) > 0)
+		$_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference'] = $_SERVER['REQUEST_TIME'] + $offset - $_SESSION[$settings['session_prefix'] . 'receipt_timestamp'];
+	$_SESSION[$settings['session_prefix'] . 'receipt_timestamp'] = $_SERVER['REQUEST_TIME'];
+}
+
 /**
  * sends a status code, displays an error message and halts the script
  *

@@ -33,6 +33,8 @@ $fname_repemail = hash("sha256", 'repeat_email' . $_SESSION['csrf_token']);
 
 switch ($action) {
 	case 'main':
+		// set timestamp for SPAM protection
+		setReceiptTimestamp();
 		if ($settings['register_mode'] < 2) {
 			if ($settings['terms_of_use_agreement'] == 1)
 				$smarty->assign("terms_of_use_agreement", true);
@@ -67,6 +69,18 @@ switch ($action) {
 			// form complete and are honey pot fields empty?
 			if ($new_user_name == '' || $new_user_email == '' || $new_user_name == $new_user_email || $reg_pw == '' || !isset($_POST[$fname_repemail]) || !empty($_POST[$fname_repemail]) || !isset($_POST[$fname_phone]) || !empty($_POST[$fname_phone]))
 				$errors[] = 'error_form_uncomplete';
+			
+			if (empty($errors)) {
+				setReceiptTimestamp();
+				if (!isset($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference']) || intval($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference']) <= 0)
+					$errors[] = 'error_invalid_form';
+				else {
+					if ($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference'] < $settings['min_register_time'])
+						$errors[] = 'error_form_sent_too_fast';
+					elseif ($time_need > $settings['max_register_time'])
+						$errors[] = 'error_form_sent_too_slow';
+				}
+			}
 
 			if (empty($errors)) {
 				// password too short?

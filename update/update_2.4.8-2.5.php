@@ -121,6 +121,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.8', '2
 	if(!@mysqli_query($connid, "DELETE FROM `".$db_settings['settings_table']."` WHERE name = 'flash_default_height';")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
+	if(!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('min_posting_time', '5'), ('min_register_time', '5'), ('min_email_time', '5'),  ('max_posting_time', '10800'), ('max_register_time', '10800'), ('max_email_time', '10800');")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
 }
 
 if(empty($update['errors'])) {

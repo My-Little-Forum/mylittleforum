@@ -372,4 +372,5 @@ INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20');
 -- 2.4.9 to 2.5
 /*
 INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
+INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('min_posting_time', '5'), ('min_register_time', '5'), ('min_email_time', '5'), ('max_posting_time', '10800'), ('max_register_time', '10800'), ('max_email_time', '10800');
 */
