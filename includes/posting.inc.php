@@ -1011,8 +1011,7 @@ switch ($action) {
 					else
 						header('Location: index.php?id=' . $new_data['id']);
 					exit;
-				} 
-				elseif (isset($_POST['save_entry']) && $posting_mode == 1) {
+				} elseif (isset($_POST['save_entry']) && $posting_mode == 1) {
 					// save edited posting:
 					$tid_result = @mysqli_query($connid, "SELECT pid, tid, name, location, user_id, category, subject, text FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
 					$field = mysqli_fetch_array($tid_result);
