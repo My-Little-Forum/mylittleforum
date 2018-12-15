@@ -77,7 +77,7 @@ switch ($action) {
 				else {
 					if ($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference'] < $settings['min_register_time'])
 						$errors[] = 'error_form_sent_too_fast';
-					elseif ($time_need > $settings['max_register_time'])
+					elseif ($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference'] > $settings['max_register_time'])
 						$errors[] = 'error_form_sent_too_slow';
 				}
 			}
