@@ -973,8 +973,8 @@ switch ($action) {
 							$check_text = implode("\r\n", $check_posting);
 							
 							$b8_spam_probability = $b8->classify($check_text);
-							$b8_spam = $b8_spam_probability > $settings['b8_spam_probability_threshold'];
-							
+							$b8_spam = $b8_spam_probability > floatval($settings['b8_spam_probability_threshold']);
+										
 							if ($settings['b8_auto_training'] == 1) {
 								if ($b8_spam_probability > $settings['b8_spam_probability_threshold']) {
 									$b8_spam_rating = 2;  // SPAM
