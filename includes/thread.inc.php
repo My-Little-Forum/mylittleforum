@@ -67,13 +67,17 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 						   UNIX_TIMESTAMP(last_reply + INTERVAL " . intval($time_difference) . " MINUTE) AS last_reply,	
                            UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . intval($time_difference) . " MINUTE) AS e_time,
                            UNIX_TIMESTAMP(edited - INTERVAL " . $settings['edit_delay'] . " MINUTE) AS edited_diff, edited_by, name, email,
-                           subject, hp, location, ip, text, cache_text, show_signature, views, spam, spam_check_status, category, locked, ip,
-                           user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, rst.user_id AS req_user
+                           subject, hp, location, ip, text, cache_text, show_signature, views, category, locked, ip,
+                           user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, rst.user_id AS req_user,
+                           " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam,
+                           " . $db_settings['b8_rating_table'] . ".spam AS b8_spam
                            FROM " . $db_settings['forum_table'] . " AS ft
                            LEFT JOIN " . $db_settings['entry_cache_table'] . " ON " . $db_settings['entry_cache_table'] . ".cache_id=ft.id
                            LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id=ft.user_id
                            LEFT JOIN " . $db_settings['userdata_cache_table'] . " ON " . $db_settings['userdata_cache_table'] . ".cache_id=" . $db_settings['userdata_table'] . ".user_id
                            LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
+						   LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
+						   LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
                            WHERE tid = " . $tid . $display_spam_query_and . " ORDER BY ft.time ASC") or raise_error('database_error', mysqli_error($connid));
 	
 	if (mysqli_num_rows($result) > 0) {

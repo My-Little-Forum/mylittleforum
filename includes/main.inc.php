@@ -236,38 +236,39 @@ if (isset($category_ids) && isset($_SESSION[$settings['session_prefix'].'userset
 	if (!empty($category_selection)) $category_selection_query = implode(', ', $category_selection);
 }
 
-// show spam?
-$display_spam_query_and = ' AND spam = 0';
-$display_spam_query_where = ' WHERE spam = 0';
+// show spam?  NOTE: variables are used in several php files, i.e. index.inc.php, thread.inc.php, entry.inc.php
+$display_spam_query_and = " AND (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) ";
+$display_spam_query_where = " WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) ";
 if (isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) {
 	$display_spam_query_and = '';
 	$display_spam_query_where = '';
 }
 
+//LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id 
+
 // count postings, threads, users and users online:
 if ($categories == false) {
 	// no categories defined
-	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and);
+	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE pid = 0 " . $display_spam_query_and);
 	list($total_threads) = mysqli_fetch_row($count_result);
 	mysqli_free_result($count_result);
-	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table'].$display_spam_query_where);
+	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id " . $display_spam_query_where);
 	list($total_postings) = mysqli_fetch_row($count_result);
 	mysqli_free_result($count_result);
 } else {
 	// there are categories
-	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE pid = 0".$display_spam_query_and." AND category IN (".$category_ids_query.")");
+	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE pid = 0 " . $display_spam_query_and . " AND category IN (" . $category_ids_query . ")");
 	list($total_threads) = mysqli_fetch_row($count_result);
 	mysqli_free_result($count_result);
-	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE category IN (".$category_ids_query.")".$display_spam_query_and);
+	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE category IN (" . $category_ids_query . ")" . $display_spam_query_and);
 	list($total_postings) = mysqli_fetch_row($count_result);
 	mysqli_free_result($count_result);
- }
+}
 // count spam:
-$count_spam_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE spam = 1");
+$count_spam_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 1 OR " . $db_settings['b8_rating_table'] . ".spam = 1)");
 list($total_spam) = mysqli_fetch_row($count_spam_result);
 mysqli_free_result($count_spam_result);
-
-$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = ''");
+$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['userdata_table'] . " WHERE activate_code = ''");
 list($registered_users) = mysqli_fetch_row($count_result);
 
 if ($settings['count_users_online'] > 0) {
