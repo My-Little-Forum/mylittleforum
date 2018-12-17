@@ -24,17 +24,21 @@ if ($settings['rss_feed'] == 1 && $settings['forum_enabled'] == 1) {
 	if ($categories == false) {
 		$result = @mysqli_query($connid, "SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, subject, text, cache_text
 			FROM ".$db_settings['forum_table']."
-			LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id = id
-			LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ".$db_settings['forum_table'].".user_id
-			WHERE spam = 0".$query_addition."
+			LEFT JOIN " . $db_settings['entry_cache_table'] .    " ON " . $db_settings['entry_cache_table'] . ".cache_id = id
+			LEFT JOIN " . $db_settings['userdata_table'] .       " ON " . $db_settings['userdata_table'] . ".user_id = ".$db_settings['forum_table'].".user_id
+			LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `".$db_settings['forum_table']."`.`id` 
+			LEFT JOIN " . $db_settings['b8_rating_table'] .      " ON " . $db_settings['b8_rating_table'] . ".`eid` = `".$db_settings['forum_table']."`.`id` 
+			WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) ".$query_addition."
 			ORDER BY time DESC LIMIT ".$settings['rss_feed_max_items']) or raise_error('database_error', mysqli_error($connid));
 		if (!$result) raise_error('database_error', mysqli_error($connid));
 	} else {
 		$result = @mysqli_query($connid, "SELECT id, pid, ".$db_settings['forum_table'].".user_id, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS timestamp, UNIX_TIMESTAMP(time) AS pubdate_timestamp, name, user_name, category, subject, text, cache_text
 			FROM ".$db_settings['forum_table']."
-			LEFT JOIN ".$db_settings['entry_cache_table']." ON ".$db_settings['entry_cache_table'].".cache_id = id
-			LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ".$db_settings['forum_table'].".user_id
-			WHERE category IN (".$category_ids_query.") AND spam = 0".$query_addition."
+			LEFT JOIN " . $db_settings['entry_cache_table'] .    " ON " . $db_settings['entry_cache_table'] . ".cache_id = id
+			LEFT JOIN " . $db_settings['userdata_table'] .       " ON " . $db_settings['userdata_table'] . ".user_id = ".$db_settings['forum_table'].".user_id
+			LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `".$db_settings['forum_table']."`.`id` 
+			LEFT JOIN " . $db_settings['b8_rating_table'] .      " ON " . $db_settings['b8_rating_table'] . ".`eid` = `".$db_settings['forum_table']."`.`id` 
+			WHERE category IN (".$category_ids_query.") AND (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) ".$query_addition."
 			ORDER BY time DESC LIMIT ".$settings['rss_feed_max_items']) or raise_error('database_error', mysqli_error($connid));
 	}
 	$result_count = mysqli_num_rows($result);
