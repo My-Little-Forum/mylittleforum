@@ -976,11 +976,11 @@ switch ($action) {
 							$b8_spam = $b8_spam_probability > floatval($settings['b8_spam_probability_threshold']);
 										
 							if ($settings['b8_auto_training'] == 1) {
-								if ($b8_spam_probability > $settings['b8_spam_probability_threshold']) {
+								if ($b8_spam) {
 									$b8_spam_rating = 2;  // SPAM
 									$b8->learn($check_text, b8::SPAM);
 								}
-								elseif ($b8_spam_probability < (1.0 - $settings['b8_spam_probability_threshold'])) {
+								elseif ($b8_spam_probability < (1.0 - floatval($settings['b8_spam_probability_threshold']))) {
 									$b8_spam_rating = 1;  // HAM
 									$b8->learn($check_text, b8::HAM);
 								}
