@@ -1436,9 +1436,12 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('akismet_key', $settings['akismet_key']);
 			$smarty->assign('akismet_entry_check', $settings['akismet_entry_check']);
 			$smarty->assign('akismet_mail_check', $settings['akismet_mail_check']);
-			$smarty->assign('akismet_check_registered', $settings['akismet_check_registered']);
 			$smarty->assign('save_spam', $settings['save_spam']);
 			$smarty->assign('auto_delete_spam', $settings['auto_delete_spam']);
+			$smarty->assign('spam_check_registered', $settings['spam_check_registered']);			
+			$smarty->assign('b8_entry_check', $settings['b8_entry_check']);
+			$smarty->assign('b8_auto_training', $settings['b8_auto_training']);
+			$smarty->assign('b8_spam_probability_threshold', $settings['b8_spam_probability_threshold']);
 		break;
 		case "smilies":
 			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
@@ -1550,8 +1553,15 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (isset($_POST['captcha_register'])) $captcha_register = intval($_POST['captcha_register']); else $captcha_register = 0;
 			if (empty($_POST['akismet_entry_check'])) $akismet_entry_check = 0; else $akismet_entry_check = 1;
 			if (empty($_POST['akismet_mail_check'])) $akismet_mail_check = 0; else $akismet_mail_check = 1;
-			if (empty($_POST['akismet_check_registered'])) $akismet_check_registered = 0; else $akismet_check_registered = 1;
 			if (empty($_POST['save_spam'])) $save_spam = 0; else $save_spam = 1;
+			if (empty($_POST['spam_check_registered'])) $spam_check_registered = 0; else $spam_check_registered = 1;
+			if (empty($_POST['b8_entry_check'])) $b8_entry_check = 0; else $b8_entry_check = 1;
+			if (empty($_POST['b8_auto_training'])) $b8_auto_training = 0; else $b8_auto_training = 1;
+			if (isset($_POST['b8_spam_probability_threshold']) && floatval($_POST['b8_spam_probability_threshold']))
+				$b8_spam_probability_threshold = floatval($_POST['b8_spam_probability_threshold']);
+			else
+				$b8_spam_probability_threshold = 0.8;
+			$b8_spam_probability_threshold = min(1, max(0, $b8_spam_probability_threshold));
 
 			// check akismet API key:
 			if ($akismet_key != '') {
@@ -1612,12 +1622,15 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $akismet_key) ."' WHERE name = 'akismet_key'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($akismet_entry_check) ."' WHERE name = 'akismet_entry_check'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($akismet_mail_check) ."' WHERE name = 'akismet_mail_check'");
-				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($akismet_check_registered) ."' WHERE name = 'akismet_check_registered'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($save_spam)."' WHERE name = 'save_spam'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($_POST['auto_delete_spam']) ."' WHERE name = 'auto_delete_spam'");
 				mysqli_query($connid, "UPDATE ".$db_settings['banlists_table']." SET list = '". mysqli_real_escape_string($connid, $banned_ips) ."' WHERE name = 'ips'");
 				mysqli_query($connid, "UPDATE ".$db_settings['banlists_table']." SET list = '". mysqli_real_escape_string($connid, $banned_user_agents) ."' WHERE name = 'user_agents'");
 				mysqli_query($connid, "UPDATE ".$db_settings['banlists_table']." SET list = '". mysqli_real_escape_string($connid, $not_accepted_words) ."' WHERE name = 'words'");
+				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($spam_check_registered) ."' WHERE name = 'spam_check_registered'");	
+				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_entry_check) ."' WHERE name = 'b8_entry_check'");	
+				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_auto_training) ."' WHERE name = 'b8_auto_training'");	
+				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". floatval($b8_spam_probability_threshold) ."' WHERE name = 'b8_spam_probability_threshold'");
 
 				if (trim($banned_ips) == '' && trim($banned_user_agents) == '') $access_permission_checks = 0;
 				else $access_permission_checks = 1;
@@ -1635,12 +1648,15 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$smarty->assign('akismet_key', htmlspecialchars($akismet_key));
 				$smarty->assign('akismet_entry_check', $akismet_entry_check);
 				$smarty->assign('akismet_mail_check', $akismet_mail_check);
-				$smarty->assign('akismet_check_registered', $akismet_check_registered);
 				$smarty->assign('save_spam', $save_spam);
 				$smarty->assign('auto_delete_spam', $_POST['auto_delete_spam']);
 				$smarty->assign('banned_ips', htmlspecialchars($_POST['banned_ips']));
 				$smarty->assign('banned_user_agents', htmlspecialchars($_POST['banned_user_agents']));
 				$smarty->assign('not_accepted_words', htmlspecialchars($_POST['not_accepted_words']));
+				$smarty->assign('spam_check_registered', $spam_check_registered);			
+				$smarty->assign('b8_entry_check', $b8_entry_check);
+				$smarty->assign('b8_auto_training', $b8_auto_training);
+				$smarty->assign('b8_spam_probability_threshold', $b8_spam_probability_threshold);
 				$smarty->assign('errors', $errors);
 				$breadcrumbs[0]['link'] = 'index.php?mode=admin';
 				$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
