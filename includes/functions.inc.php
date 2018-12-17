@@ -106,6 +106,15 @@ function daily_actions($current_time=0) {
 		if ($settings['read_state_expiration_method'] == 2 and $settings['read_state_expiration_value'] > 0) {
 			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['read_state_expiration_value']) ." DAY)");
 		}
+		
+		// auto delete spam:
+		if ($settings['auto_delete_spam'] > 0)
+			@mysqli_query($connid, "DELETE FROM `". $db_settings['forum_table'] ."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['auto_delete_spam']) ." HOUR) AND 
+									`id` IN (SELECT `". $db_settings['akismet_rating_table'] ."`.`eid` 
+									FROM `". $db_settings['akismet_rating_table'] ."` 
+									JOIN `". $db_settings['b8_rating_table'] ."` ON `". $db_settings['akismet_rating_table'] ."`.`eid` = `". $db_settings['b8_rating_table'] ."`.`eid` 
+									WHERE `". $db_settings['akismet_rating_table'] ."`.`spam` = 1 AND `". $db_settings['b8_rating_table'] ."`.`spam` = 1); ");
+
 		// if possible, load new version info from Github
 		if (isset($settings) && isset($settings['version'])) {
 			// select stored version number from temp_infos_table (instead of the use of installed version)
