@@ -8,6 +8,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="posting" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="submit" name="delete_spam_submit" value="{#delete_posting_submit#}" />
 </div>
 </form>
