@@ -244,8 +244,6 @@ if (isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) {
 	$display_spam_query_where = '';
 }
 
-//LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id 
-
 // count postings, threads, users and users online:
 if ($categories == false) {
 	// no categories defined
