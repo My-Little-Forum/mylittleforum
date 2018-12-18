@@ -106,15 +106,18 @@ if ($result_count > 0) {
 				if (!$data['user_name']) $data['name'] = $lang['unknown_user'];
 				else $data['name'] = htmlspecialchars($data['user_name']);
 			}
-			else $data['name'] = htmlspecialchars($data['name']);
+			else 
+				$data['name'] = htmlspecialchars($data['name']);
 
 			$data['subject'] = htmlspecialchars($data['subject']);
-			if (isset($categories[$data['category']]) && $categories[$data['category']] != '') $data['category_name']=$categories[$data['category']];
+			if (isset($categories[$data['category']]) && $categories[$data['category']] != '') 
+				$data['category_name']=$categories[$data['category']];
 			// set read or new status of messages
 			$data = getMessageStatus($data, $last_visit, $fold_threads);
 			// convert formated time to a utf-8:
 			$data['formated_time'] = format_time($lang['time_format'], $data['timestamp']);
-
+			// flag spam
+			$data['spam'] = $data['akismet_spam'] || $data['b8_spam'] ? 1 : 0;
 			if ($data['pid'] == 0) $threads[] = $data['id'];
 			$data_array[$data['id']] = $data;
 			$child_array[$data['pid']][] =  $data['id'];

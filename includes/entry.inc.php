@@ -69,11 +69,13 @@
 				$rstatus = save_read_status($connid, $user_id, $id);
 			}
 			
-			if ($entrydata['req_user'] !== NULL and is_numeric($entrydata['req_user'])) {
+			if ($entrydata['req_user'] !== NULL and is_numeric($entrydata['req_user']))
 				$entrydata['is_read'] = true;
-			} else {
+			else
 				$entrydata['is_read'] = false;
-			}
+			
+			$entrydata['spam'] = $entrydata['akismet_spam'] || $entrydata['b8_spam'] ? 1 : 0;
+
 			$smarty->assign('is_read', $entrydata['is_read']);
 			
 			if (isset($settings['count_views']) && $settings['count_views'] == 1)
@@ -173,6 +175,7 @@
 		$last = $data['id'];
 		if ($data['pid'] > $last)
 			$last = $data['id'];
+		$data['spam'] = $data['akismet_spam'] || $data['b8_spam'] ? 1 : 0;
 	}
 	if (isset($child_array)) {
 		$smarty->assign('child_array', $child_array);
