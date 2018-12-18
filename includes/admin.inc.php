@@ -1557,11 +1557,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (empty($_POST['spam_check_registered'])) $spam_check_registered = 0; else $spam_check_registered = 1;
 			if (empty($_POST['b8_entry_check'])) $b8_entry_check = 0; else $b8_entry_check = 1;
 			if (empty($_POST['b8_auto_training'])) $b8_auto_training = 0; else $b8_auto_training = 1;
-			if (isset($_POST['b8_spam_probability_threshold']) && floatval($_POST['b8_spam_probability_threshold']))
-				$b8_spam_probability_threshold = floatval($_POST['b8_spam_probability_threshold']);
-			else
-				$b8_spam_probability_threshold = 0.8;
-			$b8_spam_probability_threshold = min(1, max(0, $b8_spam_probability_threshold));
+			if (isset($_POST['b8_spam_probability_threshold']))	$b8_spam_probability_threshold = intval($_POST['b8_spam_probability_threshold']);
+			$b8_spam_probability_threshold = min(100, max(0, $b8_spam_probability_threshold));
 
 			// check akismet API key:
 			if ($akismet_key != '') {
@@ -1630,7 +1627,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($spam_check_registered) ."' WHERE name = 'spam_check_registered'");	
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_entry_check) ."' WHERE name = 'b8_entry_check'");	
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_auto_training) ."' WHERE name = 'b8_auto_training'");	
-				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". floatval($b8_spam_probability_threshold) ."' WHERE name = 'b8_spam_probability_threshold'");
+				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_spam_probability_threshold) ."' WHERE name = 'b8_spam_probability_threshold'");
 
 				if (trim($banned_ips) == '' && trim($banned_user_agents) == '') $access_permission_checks = 0;
 				else $access_permission_checks = 1;

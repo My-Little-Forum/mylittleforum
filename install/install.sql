@@ -20,7 +20,7 @@ CREATE TABLE mlf2_tags (`id` int(11) NOT NULL AUTO_INCREMENT, `tag` varchar(255)
 CREATE TABLE `mlf2_subscriptions` (`user_id` int(12) UNSIGNED NOT NULL, `eid` int(12) UNSIGNED NOT NULL, `unsubscribe_code` varchar(36) NOT NULL, `tstamp` datetime DEFAULT NULL, PRIMARY KEY `user_thread` (`user_id`,`eid`), KEY `hash` (`unsubscribe_code`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE `mlf2_b8_rating` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `training_type` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `b8_spam` (`spam`), KEY training_type (training_type)) CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE `mlf2_akismet_rating` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `akismet_spam` (`spam`), KEY spam_check_status (spam_check_status)) CHARSET=utf8 COLLATE=utf8_general_ci;
-CREATE TABLE `mlf2_b8_wordlist_table` (`token` varchar(255) character set utf8 collate utf8_bin NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE `mlf2_b8_wordlist` (`token` varchar(255) character set utf8 collate utf8_bin NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO mlf2_banlists VALUES ('user_agents', '');
 INSERT INTO mlf2_banlists VALUES ('ips', '');
@@ -150,7 +150,7 @@ INSERT INTO mlf2_settings VALUES ('max_register_time', '10800');
 INSERT INTO mlf2_settings VALUES ('max_email_time', '10800');
 INSERT INTO mlf2_settings VALUES ('b8_entry_check', '1');
 INSERT INTO mlf2_settings VALUES ('b8_auto_training', '1');
-INSERT INTO mlf2_settings VALUES ('b8_spam_probability_threshold', '0.8');
+INSERT INTO mlf2_settings VALUES ('b8_spam_probability_threshold', '80');
 INSERT INTO mlf2_settings VALUES ('spam_check_registered', '0');
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');
@@ -159,6 +159,8 @@ INSERT INTO mlf2_smilies VALUES (3, 3, 'tongue.png', ':-P', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (4, 4, 'biggrin.png', ':-D', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (5, 5, 'neutral.png', ':-|', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (6, 6, 'frown.png', ':-(', '', '', '', '', '');
+
+INSERT INTO `mlf2_b8_wordlist` (`token`, `count_ham`, `count_spam`) VALUES ('b8*dbversion', '3', NULL), ('b8*texts', '0', '0');
 
 INSERT INTO mlf2_userdata VALUES (1, 2, 'admin', '', 0, NULL, 'c3ccb88dc0a985b9b5da20bb9333854194dfbc7767d91c6936', 'admin@example.com', 1, '', '', '', '', 0, NULL, NULL, '', NOW(), NULL, 0, 0, 1, 0, 0, 0, 0, 0, '', '', '', '', '', 0, '');
 

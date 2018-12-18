@@ -188,9 +188,9 @@
 			}
 			if ($entrydata['id'] != $thread_items[0])
 				$smarty->assign('link_rel_first', 'index.php?id=' . $thread_items[0]);
-			if (isset($thread_items[$current_key - 1]))
+			if (isset($current_key) && isset($thread_items[$current_key - 1]))
 				$smarty->assign('link_rel_prev', 'index.php?id=' . $thread_items[$current_key - 1]);
-			if (isset($thread_items[$current_key + 1]))
+			if (isset($current_key) && isset($thread_items[$current_key + 1]))
 				$smarty->assign('link_rel_next', 'index.php?id=' . $thread_items[$current_key + 1]);
 			if ($entrydata['id'] != $thread_items[$thread_items_count - 1])
 				$smarty->assign('link_rel_last', 'index.php?id=' . $thread_items[$thread_items_count - 1]);

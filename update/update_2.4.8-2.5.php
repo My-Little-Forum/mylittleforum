@@ -155,7 +155,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.8', '2
 			}
 			
 			// changed tables
-			if(!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js'), ('min_posting_time', '5'), ('min_register_time', '5'), ('min_email_time', '5'),  ('max_posting_time', '10800'), ('max_register_time', '10800'), ('max_email_time', '10800'), ('b8_entry_check', '1'), ('b8_auto_training', '1'), ('b8_spam_probability_threshold', '0.8');")) {
+			if(!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js'), ('min_posting_time', '5'), ('min_register_time', '5'), ('min_email_time', '5'),  ('max_posting_time', '10800'), ('max_register_time', '10800'), ('max_email_time', '10800'), ('b8_entry_check', '1'), ('b8_auto_training', '1'), ('b8_spam_probability_threshold', '80');")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			if(!@mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "` WHERE name = 'bbcode_tex';")) {

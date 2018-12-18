@@ -972,15 +972,15 @@ switch ($action) {
 							$b8 = new b8(B8_CONFIG_DATABASE, B8_CONFIG_AUTHENTICATION, B8_CONFIG_LEXER, B8_CONFIG_DEGENERATOR);
 							$check_text = implode("\r\n", $check_posting);
 							
-							$b8_spam_probability = $b8->classify($check_text);
-							$b8_spam = $b8_spam_probability > floatval($settings['b8_spam_probability_threshold']);
+							$b8_spam_probability = 100.0 * $b8->classify($check_text);
+							$b8_spam = $b8_spam_probability > intval($settings['b8_spam_probability_threshold']);
 										
 							if ($settings['b8_auto_training'] == 1) {
 								if ($b8_spam) {
 									$b8_spam_rating = 2;  // SPAM
 									$b8->learn($check_text, b8::SPAM);
 								}
-								elseif ($b8_spam_probability < (1.0 - floatval($settings['b8_spam_probability_threshold']))) {
+								elseif ($b8_spam_probability < (100.0 - intval($settings['b8_spam_probability_threshold']))) {
 									$b8_spam_rating = 1;  // HAM
 									$b8->learn($check_text, b8::HAM);
 								}
@@ -1452,7 +1452,7 @@ switch ($action) {
 		$field = mysqli_fetch_array($delete_check_result);
 		mysqli_free_result($delete_check_result);
 		$authorization = get_edit_authorization(intval($_REQUEST['delete_posting']), $field['user_id'], $field['edit_key'], $field['time'], $field['locked']);
-		if ($authorization['delete'] == true && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if ($authorization['delete'] == true) { // No check for csrf_token because of JS delete function $_POST['csrf_token'] === $_SESSION['csrf_token']
 			if (isset($_REQUEST['back'])) {
 				$result = @mysqli_query($connid, "SELECT pid FROM " . $db_settings['forum_table'] . " WHERE id=" . intval($_REQUEST['delete_posting']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				if (mysqli_num_rows($result) == 1) {
