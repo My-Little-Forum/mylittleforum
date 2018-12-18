@@ -1662,8 +1662,8 @@ switch ($action) {
 				$data = mysqli_fetch_array($result);
 				if (mysqli_num_rows($result) == 1) {
 					// Update SPAM table
-					@mysqli_query($connid, "REPLACE INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($id) . ", 1, 1)");
-					@mysqli_query($connid, "REPLACE INTO " . $db_settings['b8_rating_table'] . " (`eid`, `spam`, `training_type`) VALUES (" . intval($id) . ", 1, 2)");
+					@mysqli_query($connid, "REPLACE INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($id) . ", 1, 1)") or raise_error('database_error', mysqli_error($connid));
+					@mysqli_query($connid, "REPLACE INTO " . $db_settings['b8_rating_table'] . " (`eid`, `spam`, `training_type`) VALUES (" . intval($id) . ", 1, 2)") or raise_error('database_error', mysqli_error($connid));
 					
 					$check_posting = [];
 					// fetch user data if registered user:
@@ -1791,16 +1791,16 @@ switch ($action) {
 											 WHERE id = " . intval($id) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			$data = mysqli_fetch_array($result);
 			if (mysqli_num_rows($result) == 1) {
-				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = edited, locked = 0, spam = 0, spam_check_status = 0 WHERE id = " . intval($id));
+				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = edited, locked = 0 WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
 				// Flag HAM in rating tables
-				@mysqli_query($connid, "REPLACE INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($id) . ", 0, 1)");
-				@mysqli_query($connid, "REPLACE INTO " . $db_settings['b8_rating_table'] . " (`eid`, `spam`, `training_type`) VALUES (" . intval($id) . ", 0, 1)");
+				@mysqli_query($connid, "REPLACE INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($id) . ", 0, 1)") or raise_error('database_error', mysqli_error($connid));
+				@mysqli_query($connid, "REPLACE INTO " . $db_settings['b8_rating_table'] . " (`eid`, `spam`, `training_type`) VALUES (" . intval($id) . ", 0, 1)") or raise_error('database_error', mysqli_error($connid));
 				
 				// set last reply time of thread as it wasn't set in spam status:
 				$last_reply_result = @mysqli_query($connid, "SELECT time FROM " . $db_settings['forum_table'] . " WHERE tid = " . intval($data['tid']) . " ORDER BY time DESC LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$field = mysqli_fetch_array($last_reply_result);
 				mysqli_free_result($last_reply_result);
-				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = '" . $field['time'] . "' WHERE tid = " . intval($data['tid']));
+				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = '" . $field['time'] . "' WHERE tid = " . intval($data['tid'])) or raise_error('database_error', mysqli_error($connid));
 				
 				// load e-mail strings from language file:
 				$smarty->configLoad($settings['language_file'], 'emails');
