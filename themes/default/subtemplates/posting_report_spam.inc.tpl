@@ -10,6 +10,7 @@
 	{else}
 		<p class="caution">{#caution#}</p>
 		<p>{#report_spam_warning#}</p>
+		<p>{if $akismet_spam_check_status==2}{#spamcheck_akismet_timeout_error#}{/if}</p>
 		<p>{if $akismet_spam_check_status==3}{#spamcheck_akismet_api_error#}{/if}</p>
 		
 		<p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$disp_time|date_format:#time_format#}</p>
