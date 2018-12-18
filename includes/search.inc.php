@@ -16,7 +16,7 @@ if (isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'] . '
 												LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id 
 												LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id 
 												WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 1 OR " . $db_settings['b8_rating_table'] . ".spam = 1)");
-	list($search_results_count) = mysqli_fetch_row($count_result);
+	list($search_results_count) = mysqli_fetch_row($count_spam_result);
 	$total_pages = ceil($search_results_count / $settings['search_results_per_page']);
 	if (isset($_GET['page']))
 		$page = intval($_GET['page']);
