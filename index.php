@@ -59,6 +59,7 @@ if ($lang['locale_charset'] != $lang['charset'])
     define('LOCALE_CHARSET', $lang['locale_charset']);
 @ini_set('default_charset', $lang['charset']);
 setlocale(LC_ALL, $lang['locale']);
+setlocale(LC_NUMERIC, "C");
 
 $smarty->assign('settings', $settings);
 
