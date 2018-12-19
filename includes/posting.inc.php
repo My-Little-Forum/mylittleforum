@@ -1585,7 +1585,12 @@ switch ($action) {
 		break;
 	case 'delete_spam_submit':
 		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-			$result = mysqli_query($connid, "SELECT id FROM " . $db_settings['forum_table'] . " WHERE spam = 1") or raise_error('database_error', mysqli_error($connid));
+			$result = mysqli_query($connid, "SELECT id 
+										FROM " . $db_settings['forum_table'] . " 
+										LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+										LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+										WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 1 OR " . $db_settings['b8_rating_table'] . ".spam = 1) ") or raise_error('database_error', mysqli_error($connid));
+										
 			while ($data = mysqli_fetch_array($result)) {
 				delete_posting_recursive($data['id']);
 			}
