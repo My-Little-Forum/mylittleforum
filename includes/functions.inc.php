@@ -106,6 +106,15 @@ function daily_actions($current_time=0) {
 		if ($settings['read_state_expiration_method'] == 2 and $settings['read_state_expiration_value'] > 0) {
 			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['read_state_expiration_value']) ." DAY)");
 		}
+		
+		// auto delete spam:
+		if ($settings['auto_delete_spam'] > 0)
+			@mysqli_query($connid, "DELETE FROM `". $db_settings['forum_table'] ."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['auto_delete_spam']) ." HOUR) AND 
+									`id` IN (SELECT `". $db_settings['akismet_rating_table'] ."`.`eid` 
+									FROM `". $db_settings['akismet_rating_table'] ."` 
+									JOIN `". $db_settings['b8_rating_table'] ."` ON `". $db_settings['akismet_rating_table'] ."`.`eid` = `". $db_settings['b8_rating_table'] ."`.`eid` 
+									WHERE `". $db_settings['akismet_rating_table'] ."`.`spam` = 1 AND `". $db_settings['b8_rating_table'] ."`.`spam` = 1); ");
+
 		// if possible, load new version info from Github
 		if (isset($settings) && isset($settings['version'])) {
 			// select stored version number from temp_infos_table (instead of the use of installed version)
@@ -1160,10 +1169,12 @@ function delete_posting_recursive($id) {
 		// clear cache:
 		$ids_result = mysqli_query($connid, "SELECT id FROM " . $db_settings['forum_table'] . " WHERE tid = " . intval($id));
 		while ($ids_data = mysqli_fetch_array($ids_result)) {
-			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id   = " . intval($ids_data['id']));
-			@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($ids_data['id']));
-			@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] . " WHERE posting_id = " . intval($ids_data['id']));
-			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .  " WHERE `bid`      = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] .   " WHERE cache_id   = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] .      " WHERE posting_id = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] .   " WHERE posting_id = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .    " WHERE `bid`      = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['akismet_rating_table'] ." WHERE `eid`      = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['b8_rating_table'] .     " WHERE `eid`      = " . intval($ids_data['id']));
 		}
 		mysqli_free_result($ids_result);
 		// end clear cache
@@ -1171,18 +1182,22 @@ function delete_posting_recursive($id) {
 	} else {
 		// it's a posting within the thread - delete posting and child postings:
 		$child_ids = get_child_ids($id);
-		@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] . "       WHERE id         = " . intval($id));
-		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id   = " . intval($id));
-		@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($id));
-		@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] . " WHERE posting_id = " . intval($id));
-		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .  " WHERE `bid`      = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] .          " WHERE id         = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] .    " WHERE cache_id   = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] .       " WHERE posting_id = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] .    " WHERE posting_id = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .     " WHERE `bid`      = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['akismet_rating_table'] . " WHERE `eid`      = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['b8_rating_table'] .      " WHERE `eid`      = " . intval($id));
 		if (isset($child_ids) && is_array($child_ids)) {
 			foreach ($child_ids as $child_id) {
-				@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] . "       WHERE id         = " . intval($child_id));
-				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id   = " . intval($child_id));
-				@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($child_id));
-				@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] . " WHERE posting_id = " . intval($child_id));
-				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .  " WHERE `bid`      = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] .          " WHERE id         = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] .    " WHERE cache_id   = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] .       " WHERE posting_id = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] .    " WHERE posting_id = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .     " WHERE `bid`      = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['akismet_rating_table'] . " WHERE `eid`      = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['b8_rating_table'] .      " WHERE `eid`      = " . intval($child_id));
 			}
 		}
 		// set last reply time:
@@ -1838,7 +1853,7 @@ function create_backup_file($mode=0)
     $backup->assign("#\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['forum_table'].";\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['entry_cache_table'].";\n");
-    $result = @mysqli_query($connid, "SELECT id,pid,tid,uniqid,time,last_reply,edited,edited_by,user_id,name,subject,category,email,hp,location,ip,text,show_signature,marked,locked,sticky,views,spam,spam_check_status,edit_key FROM ".$db_settings['forum_table']) or $error=true;
+    $result = @mysqli_query($connid, "SELECT id,pid,tid,uniqid,time,last_reply,edited,edited_by,user_id,name,subject,category,email,hp,location,ip,text,show_signature,marked,locked,sticky,views,edit_key FROM ".$db_settings['forum_table']) or $error=true;
     $time_start = TIMESTAMP;
     while($data = mysqli_fetch_array($result))
      {
@@ -1857,7 +1872,7 @@ function create_backup_file($mode=0)
       $data['text'] = str_replace("\r", "\\r", $data['text']);
       $data['text'] = str_replace("\n",  "\\n", $data['text']);
       $data['edit_key'] = mysqli_real_escape_string($connid, $data['edit_key']);
-      $backup->assign("INSERT INTO ".$db_settings['forum_table']." VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', ".$data['time'].", ".$data['last_reply'].", ".$data['edited'].", ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', ".$data['show_signature'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", ".$data['spam'].", ".$data['spam_check_status'].", '".$data['edit_key']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['forum_table']." VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', ".$data['time'].", ".$data['last_reply'].", ".$data['edited'].", ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', ".$data['show_signature'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", '".$data['edit_key']."');\n");
      }
     mysqli_free_result($result);
    }

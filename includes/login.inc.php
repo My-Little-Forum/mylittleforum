@@ -126,9 +126,6 @@ switch ($action) {
 						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ".intval($user_id));
 					}
 
-					// auto delete spam:
-					if ($user_type > 0 && $settings['auto_delete_spam'] > 0) @mysqli_query($connid, "DELETE FROM ".$db_settings['forum_table']." WHERE time < (NOW() - INTERVAL ".$settings['auto_delete_spam']." HOUR) AND spam = 1");
-
 					if ($db_settings['useronline_table'] != "") {
 						@mysqli_query($connid, "DELETE FROM ".$db_settings['useronline_table']." WHERE ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."'");
 					}

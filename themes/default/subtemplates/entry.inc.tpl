@@ -57,7 +57,6 @@
 {if $options.lock}<li><a href="index.php?mode=posting&amp;lock={$id}&amp;back=entry" class="{if $locked==0}lock{else}unlock{/if}" title="{if $locked==0}{#lock_linktitle#}{else}{#unlock_linktitle#}{/if}">{if $locked==0}{#lock_linkname#}{else}{#unlock_linkname#}{/if}</a></li>
 <li><a href="index.php?mode=posting&amp;lock_thread={$id}&amp;back=entry" class="lock-thread" title="{#lock_thread_linktitle#}">{#lock_thread_linkname#}</a></li>
 <li><a href="index.php?mode=posting&amp;unlock_thread={$id}&amp;back=entry" class="unlock-thread" title="{#unlock_thread_linktitle#}">{#unlock_thread_linkname#}</a></li>{/if}
-</ul>
 {/if}
 </div>
 </div>

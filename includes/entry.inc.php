@@ -31,20 +31,19 @@
 		$result = @mysqli_query($connid, "SELECT ft.id, ft.pid, ft.tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
                          UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . $time_difference . " MINUTE) AS edit_time,
                          UNIX_TIMESTAMP(edited - INTERVAL " . $settings['edit_delay'] . " MINUTE) AS edited_diff, edited_by, name, email,
-                         subject, hp, location, ip, text, cache_text, show_signature, category, locked, views, spam, spam_check_status, edit_key,
-                         user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, rst.user_id AS req_user
+                         subject, hp, location, ip, text, cache_text, show_signature, category, locked, views, edit_key,
+                         user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, rst.user_id AS req_user,
+						 " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status,
+						 " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type
                          FROM " . $db_settings['forum_table'] . " AS ft
                          LEFT JOIN " . $db_settings['entry_cache_table'] . " ON " . $db_settings['entry_cache_table'] . ".cache_id=ft.id
                          LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id=ft.user_id
                          LEFT JOIN " . $db_settings['userdata_cache_table'] . " ON " . $db_settings['userdata_cache_table'] . ".cache_id=" . $db_settings['userdata_table'] . ".user_id
                          LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
+						 LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
+						 LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
                          WHERE ft.id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
-		
-		/*
-		LEFT JOIN ".$db_settings['entry_tags_table']." ON ".$db_settings['entry_tags_table'].".`bid` = ft.`id`
-		LEFT JOIN ".$db_settings['tags_table']." ON ".$db_settings['entry_tags_table'].".`tid` = ".$db_settings['tags_table'].".`id`
-		*/
-		
+
 		if (mysqli_num_rows($result) == 1) {
 			$entrydata = mysqli_fetch_array($result);
 			mysqli_free_result($result);
@@ -70,11 +69,13 @@
 				$rstatus = save_read_status($connid, $user_id, $id);
 			}
 			
-			if ($entrydata['req_user'] !== NULL and is_numeric($entrydata['req_user'])) {
+			if ($entrydata['req_user'] !== NULL and is_numeric($entrydata['req_user']))
 				$entrydata['is_read'] = true;
-			} else {
+			else
 				$entrydata['is_read'] = false;
-			}
+			
+			$entrydata['spam'] = $entrydata['akismet_spam'] || $entrydata['b8_spam'] ? 1 : 0;
+
 			$smarty->assign('is_read', $entrydata['is_read']);
 			
 			if (isset($settings['count_views']) && $settings['count_views'] == 1)
@@ -131,13 +132,19 @@
 	
 	// thread-data:
 	$thread = $entrydata['tid'];
-	if ($entrydata['spam'] == 1)
+	if ($entrydata['akismet_spam'] == 1 || $entrydata['b8_spam'] == 1)
 		$display_spam_query_and = '';
 	$result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
-                        UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, category, marked, text, spam, rst.user_id AS req_user FROM " . $db_settings['forum_table'] . " AS ft
-                        LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id=ft.user_id
+                        UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, category, marked, text, rst.user_id AS req_user,
+						" . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam,
+						" . $db_settings['b8_rating_table'] . ".spam AS b8_spam					
+						FROM " . $db_settings['forum_table'] . " AS ft
+                        LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = ft.user_id
                         LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
+						LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
+						LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
                         WHERE tid = " . $thread . $display_spam_query_and . " ORDER BY time ASC");
+	
 	if (!$result)
 		raise_error('database_error', mysqli_error($connid));
 	
@@ -168,6 +175,7 @@
 		$last = $data['id'];
 		if ($data['pid'] > $last)
 			$last = $data['id'];
+		$data['spam'] = $data['akismet_spam'] || $data['b8_spam'] ? 1 : 0;
 	}
 	if (isset($child_array)) {
 		$smarty->assign('child_array', $child_array);
@@ -180,9 +188,9 @@
 			}
 			if ($entrydata['id'] != $thread_items[0])
 				$smarty->assign('link_rel_first', 'index.php?id=' . $thread_items[0]);
-			if (isset($thread_items[$current_key - 1]))
+			if (isset($current_key) && isset($thread_items[$current_key - 1]))
 				$smarty->assign('link_rel_prev', 'index.php?id=' . $thread_items[$current_key - 1]);
-			if (isset($thread_items[$current_key + 1]))
+			if (isset($current_key) && isset($thread_items[$current_key + 1]))
 				$smarty->assign('link_rel_next', 'index.php?id=' . $thread_items[$current_key + 1]);
 			if ($entrydata['id'] != $thread_items[$thread_items_count - 1])
 				$smarty->assign('link_rel_last', 'index.php?id=' . $thread_items[$thread_items_count - 1]);
@@ -258,7 +266,7 @@
 		$smarty->assign('views', $entrydata['views']);
 	}
 	$smarty->assign('ip', $entrydata['ip']);
-	if ($entrydata['spam'] == 1)
+	if ($entrydata['akismet_spam'] == 1 || $entrydata['b8_spam'] == 1)
 		$smarty->assign('spam', true);
 	if (isset($categories[$entrydata["category"]]) && $categories[$entrydata['category']] != '') {
 		$smarty->assign('category_name', $categories[$entrydata["category"]]);
@@ -339,10 +347,13 @@
 		else
 			$options['add_bookmark'] = true;
 	}
-	if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $entrydata['spam'] == 0 && $entrydata['spam_check_status'] > 0)
-		$options['report_spam'] = true;
-	if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $entrydata['spam'] == 1)
-		$options['flag_ham'] = true;
+	if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
+		if (($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $entrydata['akismet_spam'] == 0 && $entrydata['spam_check_status'] > 0) || ($settings['b8_entry_check'] == 1 && $entrydata['b8_spam'] == 0 || $entrydata['training_type'] == 0))
+			$options['report_spam'] = true;
+		if (($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $entrydata['akismet_spam'] == 1 && $entrydata['spam_check_status'] > 0) || ($settings['b8_entry_check'] == 1 && $entrydata['b8_spam'] == 1 || $entrydata['training_type'] == 0))
+			$options['flag_ham'] = true;
+	}
+
 	if (isset($options))
 		$smarty->assign('options', $options);
 	$smarty->assign('subtemplate', 'entry.inc.tpl');

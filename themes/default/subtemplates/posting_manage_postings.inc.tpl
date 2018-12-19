@@ -19,6 +19,7 @@
 <fieldset class="manage-postings">
 <legend><img src="{$THEMES_DIR}/{$theme}/images/locked.png" width="14" height="12" alt="" /> {#lock_postings#}</legend>
 <input type="hidden" name="mode" value="posting" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <p><input id="lock_mode_1" type="radio" name="lock_mode" value="1" /><label for="lock_mode_1">{$smarty.config.lock_old_threads|replace:"[days]":$input_days}<br />
 <input id="lock_mode_2" type="radio" name="lock_mode" value="2" /><label for="lock_mode_2">{#lock_all_postings#}</label><br />
 <input id="lock_mode_3" type="radio" name="lock_mode" value="3" /><label for="lock_mode_3">{#unlock_all_postings#}</label></p>

@@ -2,7 +2,7 @@
 
 CREATE TABLE mlf2_banlists (name varchar(255) NOT NULL default '', list text NOT NULL) CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_categories (id int(11) NOT NULL AUTO_INCREMENT, order_id int(11) NOT NULL default '0', category varchar(255) NOT NULL default '', description varchar(255) NOT NULL default '',accession tinyint(4) NOT NULL default '0', PRIMARY KEY (id)) CHARSET=utf8 COLLATE=utf8_general_ci;
-CREATE TABLE mlf2_entries (id int(11) NOT NULL AUTO_INCREMENT, pid int(11) NOT NULL default '0', tid int(11) NOT NULL default '0', uniqid varchar(255) NOT NULL default '', time timestamp NOT NULL default CURRENT_TIMESTAMP, last_reply timestamp NULL DEFAULT NULL, edited timestamp NULL DEFAULT NULL, edited_by int(11) default NULL, user_id int(11) default '0', name varchar(255) NOT NULL default '', subject varchar(255) NOT NULL default '',category int(11) NOT NULL default '0', email varchar(255) NOT NULL default '', hp varchar(255) NOT NULL default '', location varchar(255) NOT NULL default '', ip varchar(128) NOT NULL default '', text text NOT NULL, show_signature tinyint(4) default '0', email_notification tinyint(4) default '0', marked tinyint(4) default '0', locked tinyint(4) default '0', sticky tinyint(4) default '0', views int(11) default '0', spam tinyint(4) default '0', spam_check_status tinyint(4) default '0', edit_key varchar(255) NOT NULL default '', PRIMARY KEY (id), UNIQUE KEY id (id), KEY tid (tid),KEY category (category), KEY pid (pid), KEY sticky (sticky), KEY user_id (user_id), KEY spam (spam), KEY time (time), KEY last_reply (last_reply)) CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_entries (id int(11) NOT NULL AUTO_INCREMENT, pid int(11) NOT NULL default '0', tid int(11) NOT NULL default '0', uniqid varchar(255) NOT NULL default '', time timestamp NOT NULL default CURRENT_TIMESTAMP, last_reply timestamp NULL DEFAULT NULL, edited timestamp NULL DEFAULT NULL, edited_by int(11) default NULL, user_id int(11) default '0', name varchar(255) NOT NULL default '', subject varchar(255) NOT NULL default '',category int(11) NOT NULL default '0', email varchar(255) NOT NULL default '', hp varchar(255) NOT NULL default '', location varchar(255) NOT NULL default '', ip varchar(128) NOT NULL default '', text text NOT NULL, show_signature tinyint(4) default '0', email_notification tinyint(4) default '0', marked tinyint(4) default '0', locked tinyint(4) default '0', sticky tinyint(4) default '0', views int(11) default '0', edit_key varchar(255) NOT NULL default '', PRIMARY KEY (id), UNIQUE KEY id (id), KEY tid (tid),KEY category (category), KEY pid (pid), KEY sticky (sticky), KEY user_id (user_id), KEY time (time), KEY last_reply (last_reply)) CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_settings (name varchar(255) NOT NULL, value varchar(255) NOT NULL default '', PRIMARY KEY (name)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_smilies (id int(11) NOT NULL AUTO_INCREMENT, order_id int(11) NOT NULL default '0', file varchar(100) NOT NULL default '', code_1 varchar(50) NOT NULL default '', code_2 varchar(50) NOT NULL default '', code_3 varchar(50) NOT NULL default '', code_4 varchar(50) NOT NULL default '', code_5 varchar(50) NOT NULL default '', title varchar(255) NOT NULL default '', PRIMARY KEY (id)) CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_userdata (user_id int(11) NOT NULL AUTO_INCREMENT, user_type tinyint(4) NOT NULL default '0', user_name varchar(255) NOT NULL default '' COLLATE utf8_bin, user_real_name varchar(255) NOT NULL default '', gender tinyint(4) NOT NULL default '0', birthday date NULL default NULL, user_pw varchar(255) NOT NULL default '', user_email varchar(255) NOT NULL default '', email_contact tinyint(4) default '0', user_hp varchar(255) NOT NULL default '', user_location varchar(255) NOT NULL default '', signature varchar(255) NOT NULL default '', profile text NOT NULL, logins int(11) NOT NULL default '0', last_login timestamp NULL default CURRENT_TIMESTAMP, last_logout timestamp NULL DEFAULT NULL, user_ip varchar(128) NOT NULL default '', registered timestamp NULL DEFAULT NULL, category_selection varchar(255) DEFAULT NULL, thread_order tinyint(4) NOT NULL default '0', user_view tinyint(4) NOT NULL default '0', sidebar tinyint(4) NOT NULL default '1', fold_threads tinyint(4) NOT NULL default '0', thread_display tinyint(4) NOT NULL default '0', new_posting_notification tinyint(4) default '0', new_user_notification tinyint(4) default '0', user_lock tinyint(4) default '0', auto_login_code varchar(50) NOT NULL default '', pwf_code varchar(50) NOT NULL, activate_code varchar(50) NOT NULL default '', language VARCHAR(255) NOT NULL DEFAULT '', time_zone VARCHAR(255) NOT NULL DEFAULT '', time_difference smallint(4) default '0', theme VARCHAR(255) NOT NULL DEFAULT '', tou_accepted DATETIME NULL DEFAULT NULL, dps_accepted DATETIME NULL DEFAULT NULL, PRIMARY KEY (user_id), KEY user_type (user_type), KEY user_name (user_name)) CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -18,6 +18,9 @@ CREATE TABLE mlf2_entry_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PR
 CREATE TABLE mlf2_bookmark_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_tags (`id` int(11) NOT NULL AUTO_INCREMENT, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE `mlf2_subscriptions` (`user_id` int(12) UNSIGNED NOT NULL, `eid` int(12) UNSIGNED NOT NULL, `unsubscribe_code` varchar(36) NOT NULL, `tstamp` datetime DEFAULT NULL, PRIMARY KEY `user_thread` (`user_id`,`eid`), KEY `hash` (`unsubscribe_code`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `mlf2_b8_rating` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `training_type` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `b8_spam` (`spam`), KEY training_type (training_type)) CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE `mlf2_akismet_rating` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `akismet_spam` (`spam`), KEY spam_check_status (spam_check_status)) CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE `mlf2_b8_wordlist` (`token` varchar(255) character set utf8 collate utf8_bin NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO mlf2_banlists VALUES ('user_agents', '');
 INSERT INTO mlf2_banlists VALUES ('ips', '');
@@ -101,7 +104,6 @@ INSERT INTO mlf2_settings VALUES ('bad_behavior', '0');
 INSERT INTO mlf2_settings VALUES ('akismet_entry_check', '0');
 INSERT INTO mlf2_settings VALUES ('akismet_mail_check', '0');
 INSERT INTO mlf2_settings VALUES ('akismet_key', '');
-INSERT INTO mlf2_settings VALUES ('akismet_check_registered', '0');
 INSERT INTO mlf2_settings VALUES ('stop_forum_spam', '0');
 INSERT INTO mlf2_settings VALUES ('tags', '1');
 INSERT INTO mlf2_settings VALUES ('tag_cloud', '0');
@@ -146,6 +148,10 @@ INSERT INTO mlf2_settings VALUES ('min_email_time', '5');
 INSERT INTO mlf2_settings VALUES ('max_posting_time', '10800'); 
 INSERT INTO mlf2_settings VALUES ('max_register_time', '10800');
 INSERT INTO mlf2_settings VALUES ('max_email_time', '10800');
+INSERT INTO mlf2_settings VALUES ('b8_entry_check', '1');
+INSERT INTO mlf2_settings VALUES ('b8_auto_training', '1');
+INSERT INTO mlf2_settings VALUES ('b8_spam_probability_threshold', '80');
+INSERT INTO mlf2_settings VALUES ('spam_check_registered', '0');
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (2, 2, 'wink.png', ';-)', '', '', '', '', '');
@@ -153,6 +159,8 @@ INSERT INTO mlf2_smilies VALUES (3, 3, 'tongue.png', ':-P', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (4, 4, 'biggrin.png', ':-D', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (5, 5, 'neutral.png', ':-|', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (6, 6, 'frown.png', ':-(', '', '', '', '', '');
+
+INSERT INTO `mlf2_b8_wordlist` (`token`, `count_ham`, `count_spam`) VALUES ('b8*dbversion', '3', NULL), ('b8*texts', '0', '0');
 
 INSERT INTO mlf2_userdata VALUES (1, 2, 'admin', '', 0, NULL, 'c3ccb88dc0a985b9b5da20bb9333854194dfbc7767d91c6936', 'admin@example.com', 1, '', '', '', '', 0, NULL, NULL, '', NOW(), NULL, 0, 0, 1, 0, 0, 0, 0, 0, '', '', '', '', '', 0, '');
 

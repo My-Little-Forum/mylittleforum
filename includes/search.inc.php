@@ -12,8 +12,11 @@ if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 
 if (isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
 	// list spam postings:
-	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " WHERE spam = 1");
-	list($search_results_count) = mysqli_fetch_row($count_result);
+	$count_spam_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " 
+												LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id 
+												LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id 
+												WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 1 OR " . $db_settings['b8_rating_table'] . ".spam = 1)");
+	list($search_results_count) = mysqli_fetch_row($count_spam_result);
 	$total_pages = ceil($search_results_count / $settings['search_results_per_page']);
 	if (isset($_GET['page']))
 		$page = intval($_GET['page']);
@@ -51,8 +54,10 @@ if (isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'] . '
 	if ($search_results_count > 0) {
 		$result = @mysqli_query($connid, "SELECT id, pid, tid, " . $db_settings['forum_table'] . ".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, marked, sticky
 			FROM " . $db_settings['forum_table'] . "
-			LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = " . $db_settings['forum_table'] . ".user_id
-			WHERE spam = 1
+			LEFT JOIN " . $db_settings['userdata_table'] .       " ON " . $db_settings['userdata_table'] . ".user_id = " . $db_settings['forum_table'] . ".user_id
+			LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `".$db_settings['forum_table']."`.`id` 
+			LEFT JOIN " . $db_settings['b8_rating_table'] .      " ON " . $db_settings['b8_rating_table'] . ".`eid` = `".$db_settings['forum_table']."`.`id` 
+			WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 1 OR " . $db_settings['b8_rating_table'] . ".spam = 1)
 			ORDER BY tid DESC, time ASC LIMIT " . $ul . ", " . $settings['search_results_per_page']) or die(mysqli_error($connid));
 		$i = 0;
 		while ($row = mysqli_fetch_array($result)) {
@@ -124,29 +129,34 @@ if (isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'] . '
 	$search = implode(' ', $search_string_array);
 	
 	// search...
+	$ham_filter = " (`" . $db_settings['akismet_rating_table'] . "`.`spam` = 0 AND `" . $db_settings['b8_rating_table'] . "`.`spam` = 0) ";
 	if ($method == 'fulltext_or') {
 		if (isset($p_category) && $p_category != 0)
-			$search_string = "category = " . $p_category . " AND `spam` = 0 AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' OR `category` = " . $p_category . " AND `spam` = 0 AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%'";
+			$search_string = "category = " . $p_category . " AND " . $ham_filter . " AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' OR `category` = " . $p_category . " AND " . $ham_filter . " AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%'";
 		else
-			$search_string = "`spam` = 0 AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' OR spam = 0 AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%'";
+			$search_string = $ham_filter . " AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' OR " . $ham_filter . " AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%'";
 	} elseif ($method == 'tags') {
 		if (isset($p_category) && $p_category != 0)
-			$search_string = "(IFNULL(LOWER(`tag`), '') LIKE '%" . implode("%' OR IFNULL(LOWER(`tag`), '') LIKE '%", $search_array) . "%') AND `category` = " . $p_category . " AND `spam` = 0";
+			$search_string = "(IFNULL(LOWER(`tag`), '') LIKE '%" . implode("%' OR IFNULL(LOWER(`tag`), '') LIKE '%", $search_array) . "%') AND `category` = " . $p_category . " AND " . $ham_filter;
 		else
-			$search_string = "(IFNULL(LOWER(`tag`), '') LIKE '%" . implode("%' OR IFNULL(LOWER(`tag`), '') LIKE '%", $search_array) . "%') AND `spam` = 0 ";
+			$search_string = "(IFNULL(LOWER(`tag`), '') LIKE '%" . implode("%' OR IFNULL(LOWER(`tag`), '') LIKE '%", $search_array) . "%') AND " . $ham_filter;
 	} else {
 		// fulltext
 		if (isset($p_category) && $p_category != 0)
-			$search_string = "CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%' AND `category` = " . $p_category . " AND `spam` = 0";
+			$search_string = "CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%' AND `category` = " . $p_category . " AND " . $ham_filter;
 		else
-			$search_string = "CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%' AND `spam` = 0";
+			$search_string = "CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' AND CONCAT(LOWER(`subject`), LOWER(`name`), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%' AND " . $ham_filter;
 	}
 	
 	// count results:
 	if ($search != '') {
-		$sql = "SELECT COUNT(DISTINCT `" . $db_settings['forum_table'] . "`.`id`) FROM `" . $db_settings['forum_table'] . "`		
-				LEFT JOIN `" . $db_settings['entry_tags_table'] . "` ON `" . $db_settings['entry_tags_table'] . "`.`bid` = `" . $db_settings['forum_table'] . "`.`id`
-				LEFT JOIN `" . $db_settings['tags_table'] . "` ON `" . $db_settings['entry_tags_table'] . "`.`tid` = `" . $db_settings['tags_table'] . "`.`id` WHERE ";
+		$sql = "SELECT COUNT(DISTINCT `" . $db_settings['forum_table'] . "`.`id`) 
+				FROM `" . $db_settings['forum_table'] . "`		
+				LEFT JOIN `" . $db_settings['entry_tags_table'] .     "` ON `" . $db_settings['entry_tags_table'] . "`.`bid`     = `" . $db_settings['forum_table'] . "`.`id`
+				LEFT JOIN `" . $db_settings['tags_table'] .           "` ON `" . $db_settings['entry_tags_table'] . "`.`tid`     = `" . $db_settings['tags_table']  . "`.`id` 
+				LEFT JOIN `" . $db_settings['akismet_rating_table'] . "` ON `" . $db_settings['akismet_rating_table'] . "`.`eid` = `" . $db_settings['forum_table'] . "`.`id` 
+				LEFT JOIN `" . $db_settings['b8_rating_table'] .      "` ON `" . $db_settings['b8_rating_table'] . "`.`eid`      = `" . $db_settings['forum_table'] . "`.`id` 
+				WHERE ";
 
 		if ($categories != false)
 			$count_result = @mysqli_query($connid, $sql . $search_string . " AND `category` IN (" . $category_ids_query . ")");
@@ -202,6 +212,8 @@ if (isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'] . '
 				LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
 				LEFT JOIN `" . $db_settings['entry_tags_table'] . "` ON `" . $db_settings['entry_tags_table'] . "`.`bid` = `ft`.`id`
 				LEFT JOIN `" . $db_settings['tags_table'] . "` ON `" . $db_settings['entry_tags_table'] . "`.`tid` = `" . $db_settings['tags_table'] . "`.`id`
+				LEFT JOIN `" . $db_settings['akismet_rating_table'] . "` ON `" . $db_settings['akismet_rating_table'] . "`.`eid` = `ft`.`id` 
+				LEFT JOIN `" . $db_settings['b8_rating_table'] .      "` ON `" . $db_settings['b8_rating_table'] . "`.`eid`      = `ft`.`id` 
 				WHERE " . $search_string . " AND category IN (" . $category_ids_query . ")
 				ORDER BY tid DESC, time ASC LIMIT " . $ul . ", " . $settings['search_results_per_page']) or die(mysqli_error($connid));
 		} else {
@@ -211,6 +223,8 @@ if (isset($_GET['list_spam']) && isset($_SESSION[$settings['session_prefix'] . '
 				LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
 				LEFT JOIN `" . $db_settings['entry_tags_table'] . "` ON `" . $db_settings['entry_tags_table'] . "`.`bid` = `ft`.`id`
 				LEFT JOIN `" . $db_settings['tags_table'] . "` ON `" . $db_settings['entry_tags_table'] . "`.`tid` = `" . $db_settings['tags_table'] . "`.`id`
+				LEFT JOIN `" . $db_settings['akismet_rating_table'] . "` ON `" . $db_settings['akismet_rating_table'] . "`.`eid` = `ft`.`id` 
+				LEFT JOIN `" . $db_settings['b8_rating_table'] .      "` ON `" . $db_settings['b8_rating_table'] . "`.`eid`      = `ft`.`id` 
 				WHERE " . $search_string . "
 				ORDER BY tid DESC, time ASC LIMIT " . $ul . ", " . $settings['search_results_per_page']) or die(mysqli_error($connid));
 		}

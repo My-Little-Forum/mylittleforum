@@ -10,6 +10,7 @@
 <div>
 <input type="hidden" name="mode" value="posting" />
 <input type="hidden" name="delete_posting" value="{$id}" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {if $back}<input type="hidden" name="back" value="{$back}" />{/if}
 {if $page}<input type="hidden" name="page" value="{$page}" />{/if}
 {if $category}<input type="hidden" name="category" value="{$category}" />{/if}

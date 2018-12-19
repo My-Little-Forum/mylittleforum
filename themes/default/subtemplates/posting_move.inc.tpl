@@ -11,6 +11,7 @@
 <input type="hidden" name="mode" value="posting" />
 <input type="hidden" name="move_posting" value="{$move_posting}" />
 <input type="hidden" name="back" value="{$back}" />
+<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {if $posting_type==0}
 {assign var="input_move_to" value="<input type=\"text\" name=\"move_to\" value=\"\" size=\"5\" />"}
 <input type="hidden" name="move_mode" value="1" />

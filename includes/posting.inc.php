@@ -4,6 +4,35 @@ if (!defined('IN_INDEX')) {
 	exit;
 }
 
+/** config for b8 filter **/
+define('B8_CONFIG_LEXER', array(
+	'min_size'      => 3,
+	'max_size'      => 30,
+	'allow_numbers' => FALSE,
+	'old_get_html'  => FALSE,
+	'get_html'      => TRUE,
+	'get_uris'      => TRUE,
+	'get_bbcode'    => FALSE
+));
+
+define('B8_CONFIG_DEGENERATOR', array(
+	'encoding'  => isset($lang['charset']) ? $lang['charset'] : 'UTF-8',
+	'multibyte' => function_exists('mb_strtolower') && function_exists('mb_strtoupper') && function_exists('mb_substr')
+));
+
+define('B8_CONFIG_DATABASE', array(
+	'storage' => 'mysqli'
+));
+
+define('B8_CONFIG_AUTHENTICATION', array(
+	'database'   => $db_settings['database'],
+	'table_name' => $db_settings['b8_wordlist_table'],
+	'host'       => $db_settings['host'],
+	'user'       => $db_settings['user'],
+	'pass'       => $db_settings['password']
+));
+/** config for b8 filter **/
+
 if (empty($_SESSION[$settings['session_prefix'] . 'user_id']) && $settings['captcha_posting'] > 0) {
 	require('modules/captcha/captcha.php');
 	$captcha = new Captcha();
@@ -151,7 +180,7 @@ if (isset($_POST['delete_submit'])) {
 	$action                     = 'delete_posting_confirmed';
 }
 
-if (isset($_POST['move_posting_submit']) && isset($_POST['move_posting']) && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
+if (isset($_POST['move_posting_submit']) && isset($_POST['move_posting']) && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 	$original_thread_result = @mysqli_query($connid, "SELECT tid, pid FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($_POST['move_posting']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 	$o_data = mysqli_fetch_array($original_thread_result);
 	mysqli_free_result($original_thread_result);
@@ -282,7 +311,7 @@ if (isset($_POST['mark_submit']) && isset($_SESSION[$settings['session_prefix'] 
 	exit;
 }
 
-if (isset($_POST['lock_submit']) && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
+if (isset($_POST['lock_submit']) && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 	if (isset($_POST['lock_mode'])) {
 		switch ($_POST['lock_mode']) {
 			case 1:
@@ -874,15 +903,19 @@ switch ($action) {
 				unset($_SESSION['captcha_session']);
 			}
 			
-			// default values for flagging spam:
-			$spam              = 0;
-			$spam_check_status = 0;
+			// default Akismet values for flagging spam:
+			$akismet_spam              = 0;
+			$akismet_spam_check_status = 0;
 			
-			// Akismet spam check:
-			if (empty($errors) && $settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && isset($_POST['save_entry'])) {
-				if (empty($_SESSION[$settings['session_prefix'] . 'user_id']) || isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] == 0 && $settings['akismet_check_registered'] == 1) {
-					require('modules/akismet/akismet.class.php');
+			// default B8 values for flagging spam:
+			$b8_spam             = 0; // 0 == HAM, 1 == SPAM
+			$b8_spam_rating      = 0; // 0 == no decision, 1 == learn(ed) ham, 2 == learn(ed) spam
+			
+			// Akismet and B8 spam check:
+			if (empty($errors) && isset($_POST['save_entry'])) {
+				if (empty($_SESSION[$settings['session_prefix'] . 'user_id']) || isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] == 0 && $settings['spam_check_registered'] == 1) {
 					// fetch user data if registered user:
+					$check_posting = [];
 					if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 						$akismet_userdata_result = @mysqli_query($connid, "SELECT user_email, user_hp FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($_SESSION[$settings['session_prefix'] . 'user_id']) . " LIMIT 1") or die(mysqli_error($connid));
 						$akismet_userdata_data = mysqli_fetch_array($akismet_userdata_result);
@@ -897,40 +930,72 @@ switch ($action) {
 					}
 					$check_posting['author'] = $name;
 					$check_posting['body']   = $text;
-					$akismet                 = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
-					// test for errors
-					if ($akismet->errorsExist()) {
-						// returns true if any errors exist
-						if ($akismet->isError(AKISMET_INVALID_KEY)) {
-							if ($settings['save_spam'] == 0)
-								$errors[] = 'error_akismet_api_key';
-							else
-								$spam_check_status = 3;
-						} elseif ($akismet->isError(AKISMET_RESPONSE_FAILED)) {
-							if ($settings['save_spam'] == 0)
-								$errors[] = 'error_akismet_connection';
-							else
-								$spam_check_status = 2;
-						} elseif ($akismet->isError(AKISMET_SERVER_NOT_FOUND)) {
-							if ($settings['save_spam'] == 0)
-								$errors[] = 'error_akismet_connection';
-							else
-								$spam_check_status = 2;
-						}
-					} else {
-						// No errors, check for spam
-						if ($akismet->isSpam()) {
-							if ($settings['save_spam'] == 0)
-								$errors[] = 'error_spam_suspicion';
-							else
-								$spam = 1;
+					
+					if ($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1) {
+						require('modules/akismet/akismet.class.php');
+						$akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
+						// test for errors
+						if ($akismet->errorsExist()) {
+							// returns true if any errors exist
+							if ($akismet->isError(AKISMET_INVALID_KEY)) {
+								if ($settings['save_spam'] == 0)
+									$errors[] = 'error_akismet_api_key';
+								else
+									$akismet_spam_check_status = 3;
+							} elseif ($akismet->isError(AKISMET_RESPONSE_FAILED)) {
+								if ($settings['save_spam'] == 0)
+									$errors[] = 'error_akismet_connection';
+								else
+									$akismet_spam_check_status = 2;
+							} elseif ($akismet->isError(AKISMET_SERVER_NOT_FOUND)) {
+								if ($settings['save_spam'] == 0)
+									$errors[] = 'error_akismet_connection';
+								else
+									$akismet_spam_check_status = 2;
+							}
 						} else {
-							$spam_check_status = 1;
+							// No errors, check for spam
+							if ($akismet->isSpam()) {
+								if ($settings['save_spam'] == 0)
+									$errors[] = 'error_spam_suspicion';
+								else
+									$akismet_spam = 1;
+							} else {
+								$akismet_spam_check_status = 1;
+							}
+						}
+					}
+					
+					if ($settings['b8_entry_check'] == 1) {
+						try {
+							require('modules/b8/b8.php');
+							$b8 = new b8(B8_CONFIG_DATABASE, B8_CONFIG_AUTHENTICATION, B8_CONFIG_LEXER, B8_CONFIG_DEGENERATOR);
+							$check_text = implode("\r\n", $check_posting);
+							
+							$b8_spam_probability = 100.0 * $b8->classify($check_text);
+							$b8_spam = $b8_spam_probability > intval($settings['b8_spam_probability_threshold']);
+										
+							if ($settings['b8_auto_training'] == 1) {
+								if ($b8_spam) {
+									$b8_spam_rating = 2;  // SPAM
+									$b8->learn($check_text, b8::SPAM);
+								}
+								elseif ($b8_spam_probability < (100.0 - intval($settings['b8_spam_probability_threshold']))) {
+									$b8_spam_rating = 1;  // HAM
+									$b8->learn($check_text, b8::HAM);
+								}
+								else
+									$b8_spam_rating = 0;  // No Decision
+							}
+						}
+						catch(Exception $e) {
+							raise_error('database_error', $e->getMessage()); // What should we do here?
+							$b8_spam = 0;
 						}
 					}
 				}
 			} // end check data
-			
+
 			if (empty($errors)) {
 				// save new posting:
 				if (isset($_POST['save_entry']) && $posting_mode == 0) {
@@ -945,16 +1010,24 @@ switch ($action) {
 						$edit_key      = '';
 						$edit_key_hash = '';
 					}
-					
+					// Akismet *OR* B8 flagged entry as SPAM
+					$spam = $akismet_spam == 1 || $b8_spam == 1 ? 1 : 0;
 					$locked = $spam == 0 ? 0 : 1;
 					
 					if (isset($_SESSION[$settings['session_prefix'] . 'user_id']))
 						$savename = '';
 					else
 						$savename = $name;
-					
-					@mysqli_query($connid, "INSERT INTO " . $db_settings['forum_table'] . " (pid, tid, uniqid, time, last_reply, user_id, name, subject, email, hp, location, ip, text, show_signature, category, locked, sticky, spam, spam_check_status, edit_key) VALUES (" . intval($id) . ", " . intval($thread) . ", '" . mysqli_real_escape_string($connid, $uniqid) . "', NOW(), NOW()," . intval($user_id) . ", '" . mysqli_real_escape_string($connid, $savename) . "', '" . mysqli_real_escape_string($connid, $subject) . "', '" . mysqli_real_escape_string($connid, $email) . "', '" . mysqli_real_escape_string($connid, $hp) . "', '" . mysqli_real_escape_string($connid, $location) . "', '" . mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) . "', '" . mysqli_real_escape_string($connid, $text) . "', " . intval($show_signature) . ", " . intval($p_category) . ", " . intval($locked) . ", " . intval($sticky) . ", " . intval($spam) . ", " . intval($spam_check_status) . ", '" . mysqli_real_escape_string($connid, $edit_key_hash) . "')") or raise_error('database_error', mysqli_error($connid));
+
+					@mysqli_query($connid, "INSERT INTO " . $db_settings['forum_table'] . " (pid, tid, uniqid, time, last_reply, user_id, name, subject, email, hp, location, ip, text, show_signature, category, locked, sticky, edit_key) VALUES (" . intval($id) . ", " . intval($thread) . ", '" . mysqli_real_escape_string($connid, $uniqid) . "', NOW(), NOW()," . intval($user_id) . ", '" . mysqli_real_escape_string($connid, $savename) . "', '" . mysqli_real_escape_string($connid, $subject) . "', '" . mysqli_real_escape_string($connid, $email) . "', '" . mysqli_real_escape_string($connid, $hp) . "', '" . mysqli_real_escape_string($connid, $location) . "', '" . mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) . "', '" . mysqli_real_escape_string($connid, $text) . "', " . intval($show_signature) . ", " . intval($p_category) . ", " . intval($locked) . ", " . intval($sticky) . ", '" . mysqli_real_escape_string($connid, $edit_key_hash) . "')") or raise_error('database_error', mysqli_error($connid));
 					$newID = mysqli_insert_id($connid);
+					
+					if (intval($newID) > 0) {
+						// save spam rating
+						@mysqli_query($connid, "INSERT INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($newID) . ", " . intval($akismet_spam) . ", " . intval($akismet_spam_check_status) . ")") or raise_error('database_error', mysqli_error($connid));
+						@mysqli_query($connid, "INSERT INTO " . $db_settings['b8_rating_table'] . " (`eid`, `spam`, `training_type`) VALUES (" . intval($newID) . ", " . intval($b8_spam) . ", " . intval($b8_spam_rating) . ")") or raise_error('database_error', mysqli_error($connid));
+					}
+					
 					if (intval($email_notification) === 1 and intval($newID) > 0) {
 						@mysqli_query($connid, "INSERT INTO " .$db_settings['subscriptions_table']. " (user_id, eid, unsubscribe_code, tstamp) VALUES (" . ($user_id > 0 ? intval($user_id) : "NULL") . ", " . intval($newID) . ", UUID(), NOW());") or raise_error('database_error', mysqli_error($connid));
 					}
@@ -1022,6 +1095,9 @@ switch ($action) {
 						$p_category = intval($field['category']);
 					}
 					
+					// Akismet *OR* B8 flagged entry as SPAM
+					$spam = $akismet_spam == 1 || $b8_spam == 1 ? 1 : 0;
+					
 					if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] == 2 && $settings['dont_reg_edit_by_admin'] == 1 || isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] == 1 && $settings['dont_reg_edit_by_mod'] == 1 || ($field['text'] == $text && $field['subject'] == $subject && ($field['user_id'] > 0 || $field['name'] == $name && $field['location'] == $location) && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && ($_SESSION[$settings['session_prefix'] . 'user_type'] == 2 && $settings['dont_reg_edit_by_admin'] == 1 || $_SESSION[$settings['session_prefix'] . 'user_type'] == 1 && $settings['dont_reg_edit_by_mod'] == 1))) {
 						// unnoticed editing for admins and mods
 						$edited_query    = 'edited';
@@ -1052,7 +1128,7 @@ switch ($action) {
 						}
 					} else {
 						// posting of a not registed user edited
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . intval($edited_by_query) . ", name = '" . mysqli_real_escape_string($connid, $name) . "', subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . ", locked = " . $locked_query . ", sticky = " . intval($sticky) . ", spam = " . intval($spam) . ", spam_check_status = " . intval($spam_check_status) . " WHERE id = " . intval($id)) or die(mysqli_error($connid));
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . intval($edited_by_query) . ", name = '" . mysqli_real_escape_string($connid, $name) . "', subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . ", locked = " . $locked_query . ", sticky = " . intval($sticky) . " WHERE id = " . intval($id)) or die(mysqli_error($connid));
 						if (isset($tagsArray) && $tagsArray) {
 							setEntryTags($id, $tagsArray);
 						}
@@ -1063,6 +1139,11 @@ switch ($action) {
 							@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($id) . " AND user_id IS NULL") or die(mysqli_error($connid));
 						}
 					}
+					
+					// save spam rating
+					@mysqli_query($connid, "REPLACE INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($id) . ", " . intval($b8_spam) . ", " . intval($b8_spam_rating) . ")");
+					@mysqli_query($connid, "REPLACE INTO " . $db_settings['b8_rating_table'] . " (`eid`, `spam`, `training_type`) VALUES (" . intval($id) . ", " . intval($b8_spam) . ", " . intval($b8_spam_rating) . ")");
+					
 					$category_update_result = mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = edited, category = " . intval($p_category) . " WHERE tid = " . intval($field['tid']));
 					@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id = " . intval($id));
 					header('location: index.php?mode=' . $back . '&id=' . $id);
@@ -1371,7 +1452,7 @@ switch ($action) {
 		$field = mysqli_fetch_array($delete_check_result);
 		mysqli_free_result($delete_check_result);
 		$authorization = get_edit_authorization(intval($_REQUEST['delete_posting']), $field['user_id'], $field['edit_key'], $field['time'], $field['locked']);
-		if ($authorization['delete'] == true) {
+		if ($authorization['delete'] == true) { // No check for csrf_token because of JS delete function $_POST['csrf_token'] === $_SESSION['csrf_token']
 			if (isset($_REQUEST['back'])) {
 				$result = @mysqli_query($connid, "SELECT pid FROM " . $db_settings['forum_table'] . " WHERE id=" . intval($_REQUEST['delete_posting']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				if (mysqli_num_rows($result) == 1) {
@@ -1420,7 +1501,7 @@ switch ($action) {
 		$smarty->assign('subtemplate', 'posting_delete_marked.inc.tpl');
 		break;
 	case 'delete_marked_submit':
-		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 			$result = mysqli_query($connid, "SELECT id FROM " . $db_settings['forum_table'] . " WHERE marked = 1") or raise_error('database_error', mysqli_error($connid));
 			while ($data = mysqli_fetch_array($result)) {
 				delete_posting_recursive($data['id']);
@@ -1503,8 +1584,13 @@ switch ($action) {
 		$smarty->assign('subtemplate', 'posting_delete_spam.inc.tpl');
 		break;
 	case 'delete_spam_submit':
-		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
-			$result = mysqli_query($connid, "SELECT id FROM " . $db_settings['forum_table'] . " WHERE spam = 1") or raise_error('database_error', mysqli_error($connid));
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+			$result = mysqli_query($connid, "SELECT id 
+										FROM " . $db_settings['forum_table'] . " 
+										LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+										LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+										WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 1 OR " . $db_settings['b8_rating_table'] . ".spam = 1) ") or raise_error('database_error', mysqli_error($connid));
+										
 			while ($data = mysqli_fetch_array($result)) {
 				delete_posting_recursive($data['id']);
 			}
@@ -1515,9 +1601,16 @@ switch ($action) {
 		break;
 	case 'report_spam':
 		$id = intval($_GET['report_spam']);
-		$delete_result = mysqli_query($connid, "SELECT tid, pid, UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, user_id, name, subject, category, spam, spam_check_status FROM " . $db_settings['forum_table'] . " WHERE id = " . $id . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-		$field = mysqli_fetch_array($delete_result);
-		if (mysqli_num_rows($delete_result) == 1) {
+		$result = mysqli_query($connid, "SELECT tid, pid, UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, 
+		                              user_id, name, subject, category, 
+									  " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status, 
+									  " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type 
+									  FROM " . $db_settings['forum_table'] . " 
+									  LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+									  LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+									  WHERE id = " . $id . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+		$field = mysqli_fetch_array($result);
+		if (mysqli_num_rows($result) == 1) {
 			// fetch user data if registered user:
 			if ($field['user_id'] > 0) {
 				$userdata_result = @mysqli_query($connid, "SELECT user_name FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($field['user_id']) . " LIMIT 1") or die(mysqli_error($connid));
@@ -1533,8 +1626,10 @@ switch ($action) {
 				$smarty->assign('name', htmlspecialchars($field['name']));
 				$smarty->assign('subject', htmlspecialchars($field['subject']));
 				$smarty->assign('disp_time', htmlspecialchars($field['disp_time']));
-				$smarty->assign('spam', intval($field['spam']));
-				$smarty->assign('spam_check_status', intval($field['spam_check_status']));
+				$smarty->assign('akismet_spam', intval($field['akismet_spam']));
+				$smarty->assign('akismet_spam_check_status', intval($field['spam_check_status']));
+				$smarty->assign('b8_spam', intval($field['b8_spam']));
+				$smarty->assign('b8_training_type', intval($field['training_type']));
 				$smarty->assign('back', $back);
 				$smarty->assign('category', $category);
 				$smarty->assign('posting_mode', 1);
@@ -1557,14 +1652,25 @@ switch ($action) {
 			);
 		$smarty->assign("subnav_link", $subnav_link);
 		$smarty->assign('subtemplate', 'posting_report_spam.inc.tpl');
-		mysqli_free_result($delete_result);
+		mysqli_free_result($result);
 		break;
 	case 'report_spam_submit':
-		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
-			if ($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1) {
-				$result = mysqli_query($connid, "SELECT user_id, name, email, hp, subject, location, text FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($id) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+			if ($settings['akismet_entry_check'] == 1 || $settings['b8_entry_check'] == 1) {
+				$result = mysqli_query($connid, "SELECT tid, user_id, name, email, hp, subject, location, text,
+											    " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status, 
+												" . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type 
+												FROM " . $db_settings['forum_table'] . " 
+												LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+												LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+												WHERE id = " . intval($id) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$data = mysqli_fetch_array($result);
 				if (mysqli_num_rows($result) == 1) {
+					// Update SPAM table
+					@mysqli_query($connid, "REPLACE INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($id) . ", 1, 1)") or raise_error('database_error', mysqli_error($connid));
+					@mysqli_query($connid, "REPLACE INTO " . $db_settings['b8_rating_table'] . " (`eid`, `spam`, `training_type`) VALUES (" . intval($id) . ", 1, 2)") or raise_error('database_error', mysqli_error($connid));
+					
+					$check_posting = [];
 					// fetch user data if registered user:
 					if ($data['user_id'] > 0) {
 						$akismet_userdata_result = @mysqli_query($connid, "SELECT user_name, user_email, user_hp FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($data['user_id']) . " LIMIT 1") or die(mysqli_error($connid));
@@ -1581,10 +1687,33 @@ switch ($action) {
 							$check_posting['website'] = $data['hp'];
 					}
 					$check_posting['body'] = $data['text'];
-					require('modules/akismet/akismet.class.php');
-					$akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
-					if (!$akismet->errorsExist()) {
-						$akismet->submitSpam();
+
+					if ($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && ($data['akismet_spam'] != 1 || $data['spam_check_status'] == 0)) { // $data['spam_check_status'] != 0
+						require('modules/akismet/akismet.class.php');
+						$akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
+						if (!$akismet->errorsExist()) {
+							$akismet->submitSpam();
+						}
+					}
+					
+					// 0 == no decision, 1 == learned ham, 2 == learned spam
+					if ($settings['b8_entry_check'] == 1 && ($data['b8_spam'] != 1 || empty($data['training_type']))) { // b8 did not flag the entry as SPAM
+						try {
+							require('modules/b8/b8.php');
+							$b8 = new b8(B8_CONFIG_DATABASE, B8_CONFIG_AUTHENTICATION, B8_CONFIG_LEXER, B8_CONFIG_DEGENERATOR);
+							$check_text = implode("\r\n", $check_posting);
+							
+							if ($data['training_type'] == 1)  // wrongly flaged as HAM, remove it
+								$b8->unlearn($check_text, b8::HAM);
+
+							$b8->learn($check_text, b8::SPAM); // train for SPAM
+							//$b8_spam_probability = $b8->classify($check_text);
+							//$b8_spam        = 1;  // SPAM
+							//$b8_spam_rating = 2;  // SPAM
+						}
+						catch(Exception $e) {
+							raise_error('database_error', $e->getMessage()); // What should we do here?
+						}
 					}
 				}
 				mysqli_free_result($result);
@@ -1602,7 +1731,15 @@ switch ($action) {
 		break;
 	case 'flag_ham':
 		$id = intval($_GET['flag_ham']);
-		$result = mysqli_query($connid, "SELECT tid, pid, UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, user_id, name, subject, category, spam, spam_check_status FROM " . $db_settings['forum_table'] . " WHERE id = " . $id . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+		$result = mysqli_query($connid, "SELECT tid, pid, UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, 
+		                              user_id, name, subject, category,
+									  " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status, 
+									  " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type 
+									  FROM " . $db_settings['forum_table'] . " 
+									  LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+									  LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+									  WHERE id = " . $id . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+		
 		$field = mysqli_fetch_array($result);
 		if (mysqli_num_rows($result) == 1) {
 			// fetch user data if registered user:
@@ -1620,8 +1757,10 @@ switch ($action) {
 				$smarty->assign('name', htmlspecialchars($field['name']));
 				$smarty->assign('subject', htmlspecialchars($field['subject']));
 				$smarty->assign('disp_time', htmlspecialchars($field['disp_time']));
-				$smarty->assign('spam', intval($field['spam']));
-				$smarty->assign('spam_check_status', intval($field['spam_check_status']));
+				$smarty->assign('akismet_spam', intval($field['akismet_spam']));
+				$smarty->assign('akismet_spam_check_status', intval($field['spam_check_status']));
+				$smarty->assign('b8_spam', intval($field['b8_spam']));
+				$smarty->assign('b8_training_type', intval($field['training_type']));
 				$smarty->assign('back', $back);
 				$smarty->assign('category', $category);
 				$smarty->assign('posting_mode', 1);
@@ -1647,17 +1786,26 @@ switch ($action) {
 		mysqli_free_result($result);
 		break;
 	case 'flag_ham_submit':
-		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
-			$result = mysqli_query($connid, "SELECT tid, user_id, name, email, hp, subject, location, text FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($id) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+			$result = mysqli_query($connid, "SELECT tid, user_id, name, email, hp, subject, location, text,
+											" . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status, 
+											" . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type 
+											 FROM " . $db_settings['forum_table'] . " 
+											 LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+			                                 LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = " . $db_settings['forum_table'] . ".`id` 
+											 WHERE id = " . intval($id) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			$data = mysqli_fetch_array($result);
 			if (mysqli_num_rows($result) == 1) {
-				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = edited, locked = 0, spam = 0, spam_check_status = 0 WHERE id = " . intval($id));
+				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = edited, locked = 0 WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
+				// Flag HAM in rating tables
+				@mysqli_query($connid, "REPLACE INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($id) . ", 0, 1)") or raise_error('database_error', mysqli_error($connid));
+				@mysqli_query($connid, "REPLACE INTO " . $db_settings['b8_rating_table'] . " (`eid`, `spam`, `training_type`) VALUES (" . intval($id) . ", 0, 1)") or raise_error('database_error', mysqli_error($connid));
 				
 				// set last reply time of thread as it wasn't set in spam status:
 				$last_reply_result = @mysqli_query($connid, "SELECT time FROM " . $db_settings['forum_table'] . " WHERE tid = " . intval($data['tid']) . " ORDER BY time DESC LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$field = mysqli_fetch_array($last_reply_result);
 				mysqli_free_result($last_reply_result);
-				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = '" . $field['time'] . "' WHERE tid = " . intval($data['tid']));
+				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = '" . $field['time'] . "' WHERE tid = " . intval($data['tid'])) or raise_error('database_error', mysqli_error($connid));
 				
 				// load e-mail strings from language file:
 				$smarty->configLoad($settings['language_file'], 'emails');
@@ -1669,27 +1817,51 @@ switch ($action) {
 				emailNotification2ParentAuthor($id, true);
 				emailNotification2ModsAndAdmins($id, true);
 				
-				if (isset($_POST['report_flag_ham_submit']) && $settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1) {
-					// fetch user data if registered user:
-					if ($data['user_id'] > 0) {
-						$akismet_userdata_result = @mysqli_query($connid, "SELECT user_name, user_email, user_hp FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($data['user_id']) . " LIMIT 1") or die(mysqli_error($connid));
-						$akismet_userdata_data = mysqli_fetch_array($akismet_userdata_result);
-						mysqli_free_result($akismet_userdata_result);
-						$check_posting['author'] = $akismet_userdata_data['user_name'];
-						if ($akismet_userdata_data['user_hp'] != '')
-							$check_posting['website'] = $akismet_userdata_data['user_hp'];
-					} else {
-						$check_posting['author'] = $data['name'];
-						if ($data['email'] != '')
-							$check_posting['email'] = $data['email'];
-						if ($data['hp'] != '')
-							$check_posting['website'] = $data['hp'];
-					}
-					$check_posting['body'] = $data['text'];
-					require('modules/akismet/akismet.class.php');
-					$akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
-					if (!$akismet->errorsExist()) {
-						$akismet->submitHam();
+				if (isset($_POST['report_flag_ham_submit'])) {
+					if ($settings['akismet_entry_check'] == 1 || $settings['b8_entry_check'] == 1) {
+						// fetch user data if registered user:
+						$check_posting = [];
+						if ($data['user_id'] > 0) {
+							$akismet_userdata_result = @mysqli_query($connid, "SELECT user_name, user_email, user_hp FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($data['user_id']) . " LIMIT 1") or die(mysqli_error($connid));
+							$akismet_userdata_data = mysqli_fetch_array($akismet_userdata_result);
+							mysqli_free_result($akismet_userdata_result);
+							$check_posting['author'] = $akismet_userdata_data['user_name'];
+							if ($akismet_userdata_data['user_hp'] != '')
+								$check_posting['website'] = $akismet_userdata_data['user_hp'];
+						} else {
+							$check_posting['author'] = $data['name'];
+							if ($data['email'] != '')
+								$check_posting['email'] = $data['email'];
+							if ($data['hp'] != '')
+								$check_posting['website'] = $data['hp'];
+						}
+						$check_posting['body'] = $data['text'];
+						if ($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $data['spam_check_status'] == 1) { // $data['spam_check_status'] != 0
+							require('modules/akismet/akismet.class.php');
+							$akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
+							if (!$akismet->errorsExist())
+								$akismet->submitHam();
+						}
+					
+						// 0 == no decision, 1 == learned ham, 2 == learned spam
+						if ($settings['b8_entry_check'] == 1 && ($data['b8_spam'] != 0 || empty($data['training_type']))) { // b8 did not flag the entry as HAM
+							try {
+								require('modules/b8/b8.php');
+								$b8 = new b8(B8_CONFIG_DATABASE, B8_CONFIG_AUTHENTICATION, B8_CONFIG_LEXER, B8_CONFIG_DEGENERATOR);
+								$check_text = implode("\r\n", $check_posting);
+
+								if ($data['training_type'] == 2)  // wrongly flaged as SPAM, remove it
+									$b8->unlearn($check_text, b8::SPAM);
+	
+								$b8->learn($check_text, b8::HAM); // train for HAM
+								//$b8_spam_probability = $b8->classify($check_text);
+								//$b8_spam        = 0;  // HAM
+								//$b8_spam_rating = 1;  // HAM
+							}
+							catch(Exception $e) {
+								raise_error('database_error', $e->getMessage()); // What should we do here?
+							}
+						}
 					}
 				}
 				header('Location: index.php?id=' . $id);
@@ -1700,6 +1872,7 @@ switch ($action) {
 		} else
 			die('No authorisation!');
 		break;
+			
 	case 'lock':
 		// lock/unlock posting if user is authorized:
 		if (isset($_SESSION[$settings['session_prefix'] . 'user_id']) && $_SESSION[$settings['session_prefix'] . "user_type"] == 2 || isset($_GET['lock']) && isset($_SESSION[$settings['session_prefix'] . 'user_id']) && $_SESSION[$settings['session_prefix'] . "user_type"] == 1) {
