@@ -79,7 +79,7 @@ function BBCodeButton(el) {
 };
 
 /**
- * Sonderbutton - LINK
+ * Sonderbutton - LINK 
  * @param el
  */
 function BBCodeLinkButton(el) {
@@ -100,7 +100,27 @@ function BBCodeLinkButton(el) {
 	
 			if (!insert_link || insert_link == '' || insert_link == "https://") 
 				return;
-			if (insert_link.indexOf(forumURI) > 0 && insert_link.indexOf("mode=page") < 0 && insert_link.indexOf("mode=contact") < 0 && regExpFID.test(insert_link)) {
+			if (insert_link.indexOf(forumURI) > 0 && // check page mode, see index.php for defined modes
+					insert_link.indexOf("mode=index")          < 0 && 
+					insert_link.indexOf("mode=search")         < 0 && 
+					insert_link.indexOf("mode=delete_cookie")  < 0 && 
+					insert_link.indexOf("mode=register")       < 0 && 
+					insert_link.indexOf("mode=rss")            < 0 && 
+					insert_link.indexOf("mode=entry")          < 0 && 
+					insert_link.indexOf("mode=thread")         < 0 && 
+					insert_link.indexOf("mode=js_defaults")    < 0 && 
+					insert_link.indexOf("mode=upload_image")   < 0 &&
+					insert_link.indexOf("mode=avatar")         < 0 &&
+					insert_link.indexOf("mode=account_locked") < 0 && 
+					insert_link.indexOf("mode=disabled")       < 0 &&
+					insert_link.indexOf("mode=page")           < 0 && 
+					insert_link.indexOf("mode=user")           < 0 && 
+					insert_link.indexOf("mode=admin")          < 0 && 
+					insert_link.indexOf("mode=login")          < 0 && 
+					insert_link.indexOf("mode=bookmarks")      < 0 && 
+					insert_link.indexOf("mode=posting")        < 0 && 
+					insert_link.indexOf("mode=contact")        < 0 && 
+					regExpFID.test(insert_link)) {
 				var msgQuery = regExpFID.exec(insert_link);
 				link_bb_code = "msg";
 				insert_link = msgQuery[1];
