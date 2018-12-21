@@ -86,8 +86,6 @@ function BBCodeLinkButton(el) {
 	this.constructor(el);
 	var link_bb_code = "link";
 	var regExpURI = new RegExp(/[http|https|ftp|ftps]:\/\/[a-zA-Z0-9-.][a-zA-Z0-9-.]+(S+)?/);
-	var regExpFID = new RegExp(/[?|&]id=([0-9]+)/);
-	var forumURI = window.location.hostname + window.location.pathname;
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
@@ -95,38 +93,10 @@ function BBCodeLinkButton(el) {
 		window.setTimeout(function(){ 
 			var txtarea = buttonGroup.getTextArea();
 			var selectionRange = txtarea.getSelection().trim();
-	
 			var insert_link = (regExpURI.test( selectionRange ))?window.prompt(lang["bbcode_link_url"], selectionRange):window.prompt(lang["bbcode_link_url"],"https://");
 	
-			if (!insert_link || insert_link == '' || insert_link == "https://") 
+			if (!insert_link || insert_link == '' || insert_link == "https://" || insert_link == "http://" || insert_link == "ftp://" || insert_link == "ftps://") 
 				return;
-			if (insert_link.indexOf(forumURI) > 0 && // check page mode, see index.php for defined modes
-					insert_link.indexOf("mode=index")          < 0 && 
-					insert_link.indexOf("mode=search")         < 0 && 
-					insert_link.indexOf("mode=delete_cookie")  < 0 && 
-					insert_link.indexOf("mode=register")       < 0 && 
-					insert_link.indexOf("mode=rss")            < 0 && 
-					insert_link.indexOf("mode=entry")          < 0 && 
-					insert_link.indexOf("mode=thread")         < 0 && 
-					insert_link.indexOf("mode=js_defaults")    < 0 && 
-					insert_link.indexOf("mode=upload_image")   < 0 &&
-					insert_link.indexOf("mode=avatar")         < 0 &&
-					insert_link.indexOf("mode=account_locked") < 0 && 
-					insert_link.indexOf("mode=disabled")       < 0 &&
-					insert_link.indexOf("mode=page")           < 0 && 
-					insert_link.indexOf("mode=user")           < 0 && 
-					insert_link.indexOf("mode=admin")          < 0 && 
-					insert_link.indexOf("mode=login")          < 0 && 
-					insert_link.indexOf("mode=bookmarks")      < 0 && 
-					insert_link.indexOf("mode=posting")        < 0 && 
-					insert_link.indexOf("mode=contact")        < 0 && 
-					regExpFID.test(insert_link)) {
-				var msgQuery = regExpFID.exec(insert_link);
-				link_bb_code = "msg";
-				insert_link = msgQuery[1];
-			}
-			else
-				link_bb_code = "link";
 			
 			if (selectionRange == '' || regExpURI.test( selectionRange )) 
 				selectionRange = window.prompt(lang["bbcode_link_text"], "");
