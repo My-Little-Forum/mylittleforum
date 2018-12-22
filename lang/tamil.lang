@@ -27,6 +27,7 @@ replies =                         'பதில்'
 views =                           'காட்ச்சிகள்'
 category =                        'வகை'
 submit_button_ok =                '&nbsp;சரி அநுப்பலாம்&nbsp;'
+submit_button_cancel =            '<!-- TODO -->&nbsp;Cancel&nbsp;'
 yes =                             'ஆம்'
 no =                              'இல்லை'
 go =                              'பொ'
@@ -134,6 +135,7 @@ subnav_userarea_show_posts =      '[var] ருடைய போஸ்டிங�
 subnav_userarea_edit_user =       'படுத்துபவர் விபறத்தை புதுப்பி'
 subnav_userarea_edit_pw =         'மறைவு சொலை மாற்று'
 subnav_userarea_edit_mail =       'மின்-அசல் விலாசத்தை மாற்று'
+subnav_userarea_remove_account =  '<!-- TODO -->Delete account'
 subnav_backup =                   'காப்பீடு செய்'
 subnav_update =                   'புதுப்பிக்கவும்'
 subnav_update_run =               'புதுப்பிக்க செயல்படுத்து'
@@ -629,6 +631,14 @@ admin_mod_notif_register =        'புதிதாக பயன் படு�
 userdata_submit_button =          'சரி - சேமிக்க'
 profile_saved =                   'விபரம் சேமிக்கபட்டுவிட்டது'
 pw_changed =                      'மறைவு சொல் மாற்றப்பட்டுவிட்டது'
+remove_user_account =             '<!-- TODO -->Delete account'
+remove_user_account_link =        '<!-- TODO -->Delete your user account'
+remove_user_account_button =      '<!-- TODO -->Delete your user account'
+
+[remove_user_account]
+remove_user_account_h1 =          '<!-- TODO -->Delete account'
+remove_user_account_warning =     '<!-- TODO -->Warning, once you delete your account, there is no going back. Please be certain! Bookmarks and account data will deleted. Your postings keep unchanged. Like an unregistered post, your display name ([user_name]) is used as author.'
+
 
 [edit_pw]
 edit_pw_old =                     'பழைய மறைவு சொல்:'

@@ -32,6 +32,7 @@ replies =                         'Réponses'
 views =                           'Vues'
 category =                        'Categorie'
 submit_button_ok =                '&nbsp;OK&nbsp;'
+submit_button_cancel =            '<!-- TODO -->&nbsp;Cancel&nbsp;'
 yes =                             'oui'
 no =                              'non'
 go =                              'aller'
@@ -139,6 +140,7 @@ subnav_userarea_show_posts =      'Posté par [var]'
 subnav_userarea_edit_user =       'Editer le profil'
 subnav_userarea_edit_pw =         'Changer le mot de passe'
 subnav_userarea_edit_mail =       'Changer l\'adresse email'
+subnav_userarea_remove_account =  '<!-- TODO -->Delete account'
 subnav_backup =                   'Sauvegarde'
 subnav_update =                   'Mise à jour'
 subnav_update_run =               'Démarrer la mise à jour'
@@ -634,6 +636,14 @@ admin_mod_notif_register =        'une fois qu\'un nouvel utilisateur s\'est enr
 userdata_submit_button =          'OK - Sauvegarder'
 profile_saved =                   'Votre profil a été sauvegardé.'
 pw_changed =                      'Le mot de passe a été modifié.'
+remove_user_account =             '<!-- TODO -->Delete account'
+remove_user_account_link =        '<!-- TODO -->Delete your user account'
+remove_user_account_button =      '<!-- TODO -->Delete your user account'
+
+[remove_user_account]
+remove_user_account_h1 =          '<!-- TODO -->Delete account'
+remove_user_account_warning =     '<!-- TODO -->Warning, once you delete your account, there is no going back. Please be certain! Bookmarks and account data will deleted. Your postings keep unchanged. Like an unregistered post, your display name ([user_name]) is used as author.'
+
 
 [edit_pw]
 edit_pw_old =                     'Ancien mot de passe:'

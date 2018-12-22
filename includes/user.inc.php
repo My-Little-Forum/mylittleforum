@@ -15,6 +15,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_a
 	if (isset($_POST['edit_user_submit'])) $action = 'edit_userdata';
 	if (isset($_POST['edit_pw_submit'])) $action = 'edit_pw_submitted';
 	if (isset($_POST['edit_email_submit'])) $action = 'edit_email_submit';
+	
+	if (isset($_POST['remove_account'])) $action = 'remove_account'; // delete, if GET ist used
+	if (isset($_POST['remove_account_submit'])) $action = 'remove_account_submitted';
 
 	if(isset($_REQUEST['id'])) $id = $_REQUEST['id'];
 
@@ -628,6 +631,61 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_a
 					exit;
 				}
 			}
+		break;
+		case 'remove_account':
+			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+				$id = $_SESSION[$settings['session_prefix'].'user_id'];
+				$result = mysqli_query($connid, "SELECT `user_name` FROM `".$db_settings['userdata_table']."` WHERE `user_id` = ". intval($id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+				if (mysqli_num_rows($result) == 1) {
+					$row = mysqli_fetch_array($result);
+					mysqli_free_result($result);
+					$smarty->assign('user_name', htmlspecialchars($row['user_name']));
+					$breadcrumbs[0]['link'] = 'index.php?mode=user';
+					$breadcrumbs[0]['linkname'] = 'subnav_userarea';
+					$breadcrumbs[1]['link'] = 'index.php?mode=user&amp;action=edit_profile';
+					$breadcrumbs[1]['linkname'] = 'subnav_userarea_edit_user';
+					$smarty->assign('breadcrumbs', $breadcrumbs);
+					$smarty->assign('subnav_location', 'subnav_userarea_remove_account');
+					$smarty->assign('subtemplate', 'user_remove_account.inc.tpl');
+					$template = 'main.tpl';
+				}
+			}
+		break;
+		case 'remove_account_submitted':
+			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+				$user_id = $_SESSION[$settings['session_prefix'].'user_id'];
+				$result = @mysqli_query($connid, "SELECT `user_name` FROM `".$db_settings['userdata_table']."` WHERE `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+				if (mysqli_num_rows($result) == 1) {
+					$row = mysqli_fetch_array($result);
+					mysqli_free_result($result);
+					$user_name = $row['user_name'];
+					
+					// set "edited_by" in own edited postings to 0:
+					@mysqli_query($connid, "UPDATE `".$db_settings['forum_table']."` SET `edited_by` = 0 WHERE `edited_by` = ". intval($user_id));
+					// save user name in forum table (like unregistered users) and set user_id = 0:
+					@mysqli_query($connid, "UPDATE `".$db_settings['forum_table']."` SET `user_id` = 0, `name` = '". mysqli_real_escape_string($connid, $user_name) ."' WHERE `user_id` = ". intval($user_id));
+
+					@mysqli_query($connid, "DELETE FROM `".$db_settings['userdata_table']."`       WHERE `user_id` = ". intval($user_id));
+					@mysqli_query($connid, "DELETE FROM `".$db_settings['userdata_cache_table']."` WHERE `cache_id` = ". intval($user_id));
+					@mysqli_query($connid, "DELETE FROM `".$db_settings['bookmark_table']."`       WHERE `user_id` = ". intval($user_id));
+					@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."`    WHERE `user_id` = ". intval($user_id));
+
+					// delete avatar:
+					$avatarInfo = getAvatar(intval($user_id));
+					$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
+					if (isset($avatar) && $avatar['image'] !== false && file_exists($avatar['image'])) {
+						@chmod($avatar['image'], 0777);
+						@unlink($avatar['image']);
+					}
+				}
+				$_SESSION[$settings['session_prefix'].'user_id'] = false;
+				$_SESSION[$settings['session_prefix'].'user_name'] = '';
+				$_SESSION[$settings['session_prefix'].'user_type'] = 0;
+				$_SESSION['csrf_token'] = Null;
+				setcookie($settings['session_prefix'].'userdata', '', 0);				
+			}
+			header('location: index.php?mode=index');
+			exit;
 		break;
 		case 'edit_pw':
 			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
