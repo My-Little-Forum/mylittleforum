@@ -641,6 +641,8 @@ remove_user_account_button =      'Nutzeraccount dauerhaft löschen'
 [remove_user_account]
 remove_user_account_h1 =          'Account löschen'
 remove_user_account_warning =     'Achtung, das Entfernen des Benutzerkontos kann nicht rückgängig gemacht werden! Es werden alle Profildaten und Bookmarks gelöscht. Die Einträge im Forum bleiben erhalten und werden unter dem gewählten Anzeigenamen ([user_name]) dargestellt. Sie sind nicht mehr mit einem Profil verbunden.'
+remove_user_confirm_password =    'Passwort:'
+error_pw_wrong =                  'das Passwort ist falsch'
 
 [edit_pw]
 edit_pw_old =                     'altes Passwort:'

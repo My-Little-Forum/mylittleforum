@@ -650,7 +650,8 @@ remove_user_account_button =      'Delete your user account'
 [remove_user_account]
 remove_user_account_h1 =          'Delete account'
 remove_user_account_warning =     'Warning, once you delete your account, there is no going back. Please be certain! Bookmarks and account data will deleted. Your postings keep unchanged. Like an unregistered post, your display name ([user_name]) is used as author.'
-
+remove_user_confirm_password =    'Password:'
+error_pw_wrong =                  'The password is wrong'
 
 [edit_pw]
 edit_pw_old =                     'Old password:'
