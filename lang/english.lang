@@ -655,7 +655,6 @@ error_pw_wrong =                  'The password is wrong'
 [edit_pw]
 edit_pw_old =                     'Old password:'
 edit_pw_new =                     'New password:'
-edit_pw_conf =                    'Repeat new password:'
 error_old_pw_wrong =              'The old password is wrong'
 error_new_pw_too_short =          'The new password must contain at least [characters] characters'
 

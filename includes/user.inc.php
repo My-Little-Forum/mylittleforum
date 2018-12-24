@@ -719,16 +719,17 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_a
 				$pw_result = mysqli_query($connid, "SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$field = mysqli_fetch_array($pw_result);
 				mysqli_free_result($pw_result);
-
-				$old_pw = trim($_POST['old_pw']);
-				$new_pw = trim($_POST['new_pw']);
-				$new_pw_conf = trim($_POST['new_pw_conf']);
-
-				if ($old_pw == '' or $new_pw == '' or $new_pw_conf == '') $errors[] = 'error_form_uncomplete';
+				
+				if (!isset($_POST['old_pw']) || !isset($_POST['new_pw']) || trim($_POST['old_pw']) == '' || trim($_POST['new_pw']) == '')
+					$errors[] = 'error_form_uncomplete';
 				else {
-					if (!is_pw_correct($old_pw, $field['user_pw'])) $errors[] = 'error_old_pw_wrong';
-					if ($new_pw_conf != $new_pw) $errors[] = 'error_pw_conf_uneven';
-					if (my_strlen($new_pw, $lang['charset']) < $settings['min_pw_length']) $errors[] = 'error_new_pw_too_short';
+					$old_pw = trim($_POST['old_pw']);
+					$new_pw = trim($_POST['new_pw']);
+					
+					if (!is_pw_correct($old_pw, $field['user_pw'])) 
+						$errors[] = 'error_old_pw_wrong';
+					if (my_strlen($new_pw, $lang['charset']) < $settings['min_pw_length']) 
+						$errors[] = 'error_new_pw_too_short';
 				}
 				// Update, if no errors:
 				if(empty($errors)) {

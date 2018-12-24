@@ -656,7 +656,6 @@ error_pw_wrong =                  'Felaktigt lösenord!'
 [edit_pw]
 edit_pw_old =                     'Nuvarande lösenord:'
 edit_pw_new =                     'Nytt lösenord:'
-edit_pw_conf =                    'Upprepa lösenord:'
 error_old_pw_wrong =              'Nuvarande lösenord felaktigt'
 error_new_pw_too_short =          'Det nya lösenordet måste innehålla minst [characters] tecken'
 

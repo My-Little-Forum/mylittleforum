@@ -658,9 +658,7 @@ error_pw_wrong =                  'Kodeordet er forkert'
 [edit_pw]
 edit_pw_old =               'Gammelt kodeord:'
 edit_pw_new =               'Nyt kodeord:'
-edit_pw_conf =              'Gentag nyt kodeord:'
 error_old_pw_wrong =        'Det gamle kodeord er forkert'
-error_pw_conf_wrong =       'Det nye kodeord er ikke det samme som det gentagne'
 error_new_pw_too_short =    'Det nye kodeord skal indeholde mindst [characters] tegn'
 
 [edit_email]
