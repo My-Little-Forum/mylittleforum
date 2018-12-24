@@ -655,7 +655,6 @@ error_pw_wrong =                  'La contrasena es incorrecta'
 [edit_pw]
 edit_pw_old =                     'Antigua contrasena:'
 edit_pw_new =                     'Nueva contrasena:'
-edit_pw_conf =                    'Repite la nueva contrasena:'
 error_old_pw_wrong =              'La antigua contrasena es incorrecta'
 error_pw_conf_uneven =            'Las nuevas contrasenas no coinciden'
 error_new_pw_too_short =          'La nueva contrasena debe contener al menos [characters] caracteres'

@@ -655,7 +655,6 @@ error_pw_wrong =                  'Le mot de passe est incorrect'
 [edit_pw]
 edit_pw_old =                     'Ancien mot de passe:'
 edit_pw_new =                     'Nouveau mot de passe :'
-edit_pw_conf =                    'Répéter le nouveau mot de passe :'
 error_old_pw_wrong =              'L\'ancien mot de passe est erroné'
 error_pw_conf_uneven =            'Le nouveau mot de passe n\'est pas le même que celui entré la première fois'
 error_new_pw_too_short =          'Le nouveau mot de passe doit contenir au moins [characters] caractères'
