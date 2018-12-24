@@ -137,6 +137,11 @@
 </tr>
 {/if}
 
+<tr>
+<td class="c"><strong class="caution">{#remove_user_account#}</strong></td>
+<td class="d"><span class="small">[ <a href="index.php?mode=user&amp;action=remove_account">{#remove_user_account_link#}</a> ]</span></td>
+</tr>
+
 {if $mod||$admin}
 <tr>
 <td class="c"><strong>{#edit_user_notification#}</strong></td>
