@@ -643,7 +643,6 @@ error_pw_wrong =                  'மறைவு சொல் தவரு'
 [edit_pw]
 edit_pw_old =                     'பழைய மறைவு சொல்:'
 edit_pw_new =                     'புதிய மறைவு சொல்:'
-edit_pw_conf =                    'மறுபடியும் புதிய மறைவு சொலை :'
 error_old_pw_wrong =              'பழைய மறைவு சொல் தவரு'
 error_new_pw_too_short =          'புதிய மறைவு சொல்லில்  [characters] சொல்லாவது இருகாகவேணடும்'
 

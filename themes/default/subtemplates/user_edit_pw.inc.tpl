@@ -16,8 +16,6 @@
 <input type="password" size="25" name="old_pw" /></p>
 <p><strong>{#edit_pw_new#}</strong><br />
 <input type="password" size="25" name="new_pw" maxlength="255" /></p>
-<p><strong>{#edit_pw_conf#}</strong><br />
-<input type="password" size="25" name="new_pw_conf" maxlength="255" /></p>
 <p><input type="submit" name="edit_pw_submit" value="{#submit_button_ok#}" /></p>
 </div>
 </form>

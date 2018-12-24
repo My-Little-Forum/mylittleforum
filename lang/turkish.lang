@@ -646,7 +646,6 @@ error_pw_wrong =                  'Şifre geçersiz'
 [edit_pw]
 edit_pw_old =                     'Eski şifre:'
 edit_pw_new =                     'Yeni şifre:'
-edit_pw_conf =                    'Yeni şifre tekrar:'
 error_old_pw_wrong =              'Eski şifre geçersiz'
 error_new_pw_too_short =          'Yeni şifre en az [characters] karakter içermeli'
 
