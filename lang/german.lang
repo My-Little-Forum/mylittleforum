@@ -636,7 +636,6 @@ profile_saved =                   'Profil gespeichert'
 pw_changed =                      'Passwort geändert'
 remove_user_account =             'Account löschen'
 remove_user_account_link =        'Nutzeraccount dauerhaft löschen'
-remove_user_account_button =      'Nutzeraccount dauerhaft löschen'
 
 [remove_user_account]
 remove_user_account_h1 =          'Account löschen'

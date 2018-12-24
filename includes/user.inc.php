@@ -15,8 +15,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_a
 	if (isset($_POST['edit_user_submit'])) $action = 'edit_userdata';
 	if (isset($_POST['edit_pw_submit'])) $action = 'edit_pw_submitted';
 	if (isset($_POST['edit_email_submit'])) $action = 'edit_email_submit';
-	
-	if (isset($_POST['remove_account'])) $action = 'remove_account'; // delete, if GET is used
 	if (isset($_POST['remove_account_submit'])) $action = 'remove_account_submitted';
 
 	if(isset($_REQUEST['id'])) $id = $_REQUEST['id'];

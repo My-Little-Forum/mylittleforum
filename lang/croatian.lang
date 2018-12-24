@@ -634,7 +634,6 @@ profile_saved =                   'Profil je spremljen'
 pw_changed =                      'Lozinka je izmjenjena'
 remove_user_account =             '<!-- TODO -->Delete account'
 remove_user_account_link =        '<!-- TODO -->Delete your user account'
-remove_user_account_button =      '<!-- TODO -->Delete your user account'
 
 [remove_user_account]
 remove_user_account_h1 =          '<!-- TODO -->Delete account'

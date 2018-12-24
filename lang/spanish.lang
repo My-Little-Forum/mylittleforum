@@ -637,7 +637,6 @@ profile_saved =                   'Su perfil ha sido guardado.'
 pw_changed =                      'La contrasena se ha cambiado.'
 remove_user_account =             '<!-- TODO -->Delete account'
 remove_user_account_link =        '<!-- TODO -->Delete your user account'
-remove_user_account_button =      '<!-- TODO -->Delete your user account'
 
 [remove_user_account]
 remove_user_account_h1 =          '<!-- TODO -->Delete account'

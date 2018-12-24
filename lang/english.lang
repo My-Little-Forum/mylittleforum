@@ -645,7 +645,6 @@ profile_saved =                   'Profile saved'
 pw_changed =                      'Password changed'
 remove_user_account =             'Delete account'
 remove_user_account_link =        'Delete your user account'
-remove_user_account_button =      'Delete your user account'
 
 [remove_user_account]
 remove_user_account_h1 =          'Delete account'

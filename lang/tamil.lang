@@ -633,7 +633,6 @@ profile_saved =                   'விபரம் சேமிக்கப�
 pw_changed =                      'மறைவு சொல் மாற்றப்பட்டுவிட்டது'
 remove_user_account =             '<!-- TODO -->Delete account'
 remove_user_account_link =        '<!-- TODO -->Delete your user account'
-remove_user_account_button =      '<!-- TODO -->Delete your user account'
 
 [remove_user_account]
 remove_user_account_h1 =          '<!-- TODO -->Delete account'

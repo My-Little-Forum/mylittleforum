@@ -138,13 +138,8 @@
 {/if}
 
 <tr>
-<td class="c"><strong class="online">{#remove_user_account#}</strong></td>
+<td class="c"><strong class="caution">{#remove_user_account#}</strong></td>
 <td class="d"><span class="small">[ <a href="index.php?mode=user&amp;action=remove_account">{#remove_user_account_link#}</a> ]</span></td>
-</tr>
-
-<tr>
-<td class="c"><strong class="online">{#remove_user_account#}</strong></td>
-<td class="d"><input type="submit" name="remove_account" value="{#remove_user_account_button#}" /></td>
 </tr>
 
 {if $mod||$admin}

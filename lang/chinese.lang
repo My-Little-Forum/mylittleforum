@@ -637,7 +637,6 @@ profile_saved =                   '资料已保存'
 pw_changed =                      '密码已更改'
 remove_user_account =             '<!-- TODO -->Delete account'
 remove_user_account_link =        '<!-- TODO -->Delete your user account'
-remove_user_account_button =      '<!-- TODO -->Delete your user account'
 
 [remove_user_account]
 remove_user_account_h1 =          '<!-- TODO -->Delete account'
