@@ -37,41 +37,6 @@
 function MyLittleAdmin() {
 
 	/**
-	 * Initialisiert in den globalen Einstellungen
-	 * den CSS-Klassenwechsel bei RADIO und CHECKBOX
-	 */
-	var initGlobalSettings = function() {
-		var f = document.getElementById("settings");
-		
-		if (!f)
-			return;
-			
-		var changeClassName = function(id, active) {
-			if (id && document.getElementById(id+"_label"))
-				document.getElementById(id+"_label").className = active?"active":"inactive";		
-		};
-		
-		var changeCollectionClassName = function(col) {
-			for (var i=0; i<col.length; i++)
-				changeClassName(col[i].id, col[i].checked);
-		};
-		
-		for (var i=0; i<f.elements.length; i++) {
-			var el = f.elements[i];
-			if (el.type == "checkbox" || el.type == "radio") {
-				el.onchange = function(e) {
-					var els = f.elements[this.name];
-					if (els) {
-						if (typeof els.length != "number") 
-							els = [els];
-						changeCollectionClassName(els);
-					}
-				};
-			}
-		}
-	};
-
-	/**
 	 * Initialisiert die Backup-Loesch-Abfragen
 	 *
 	 */
