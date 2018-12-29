@@ -463,8 +463,8 @@
 {/if}
 <ul class="adminmenu">
 <li><a href="index.php?mode=admin&amp;action=register"><img src="{$THEMES_DIR}/{$theme}/images/add_user.png" alt="" width="16" height="16" /><span>{#add_user#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=reset_tou"><img src="{$THEMES_DIR}/{$theme}/images/email_list.png" alt="" width="16" height="16" /><span>{#reset_terms_of_use#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=reset_dps"><img src="{$THEMES_DIR}/{$theme}/images/email_list.png" alt="" width="16" height="16" /><span>{#reset_data_privacy_statement#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=reset_tou"><img src="{$THEMES_DIR}/{$theme}/images/edit.png" alt="" width="16" height="16" /><span>{#reset_terms_of_use#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=reset_dps"><img src="{$THEMES_DIR}/{$theme}/images/edit.png" alt="" width="16" height="16" /><span>{#reset_data_privacy_statement#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=email_list"><img src="{$THEMES_DIR}/{$theme}/images/email_list.png" alt="" width="16" height="16" /><span>{#email_list#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=clear_userdata"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" alt="" width="16" height="16" /><span>{#clear_userdata#}</span></a></li>
 </ul>
