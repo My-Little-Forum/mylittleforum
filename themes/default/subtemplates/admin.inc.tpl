@@ -74,35 +74,35 @@
 
 <tr>
 <td class="c"><strong>{#terms_of_use_settings#}</strong><br /><span class="small">{#terms_of_use_settings_desc#}</span></td>
-<td class="d"><p><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $settings.terms_of_use_agreement==1} checked="checked"{/if} /><label id="terms_of_use_agreement_label" for="terms_of_use_agreement" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_settings_enabled#}</label></p>
-<p><label id="terms_of_use_url_label" for="terms_of_use_url" class="{if $settings.terms_of_use_agreement==1}active{else}inactive{/if}">{#terms_of_use_url#}</label><br /><input id="terms_of_use_url" type="text" name="terms_of_use_url" value="{$settings.terms_of_use_url|escape}" size="40" /></p></td>
+<td class="d"><p><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $settings.terms_of_use_agreement==1} checked="checked"{/if} /><label for="terms_of_use_agreement">{#terms_of_use_settings_enabled#}</label></p>
+<p><label for="terms_of_use_url">{#terms_of_use_url#}</label><br /><input id="terms_of_use_url" type="text" name="terms_of_use_url" value="{$settings.terms_of_use_url|escape}" size="40" /></p></td>
 </tr>
 <tr>
 <td class="c"><strong>{#data_privacy_statement#}</strong><br /><span class="small">{#data_privacy_statement_desc#}</span></td>
-<td class="d"><p><input id="data_privacy_agreement" type="checkbox" name="data_privacy_agreement" value="1"{if $settings.data_privacy_agreement==1} checked="checked"{/if} /><label id="data_privacy_agreement_label" for="data_privacy_agreement" class="{if $settings.data_privacy_agreement==1}active{else}inactive{/if}">{#data_privacy_settings_enabled#}</label></p>
-<p><label id="data_privacy_url_label" for="data_privacy_statement_url" class="{if $settings.data_privacy_agreement==1}active{else}inactive{/if}">{#data_privacy_url#}</label><br /><input id="data_privacy_statement_url" type="text" name="data_privacy_statement_url" value="{$settings.data_privacy_statement_url|escape}" size="40" /></p></td>
+<td class="d"><p><input id="data_privacy_agreement" type="checkbox" name="data_privacy_agreement" value="1"{if $settings.data_privacy_agreement==1} checked="checked"{/if} /><label for="data_privacy_agreement">{#data_privacy_settings_enabled#}</label></p>
+<p><label for="data_privacy_statement_url">{#data_privacy_url#}</label><br /><input id="data_privacy_statement_url" type="text" name="data_privacy_statement_url" value="{$settings.data_privacy_statement_url|escape}" size="40" /></p></td>
 </tr>
 
 <tr>
 <td class="c"><strong>{#accession#}</strong><br /><span class="small">{#accession_desc#}</span></td>
-<td class="d"><input id="access_for_all" type="radio" name="access_for_users_only" value="0"{if $settings.access_for_users_only==0} checked="checked"{/if} /><label id="access_for_all_label" for="access_for_all" class="{if $settings.access_for_users_only==0}active{else}inactive{/if}">{#all_users#}</label><br />
-<input id="access_for_users_only" type="radio" name="access_for_users_only" value="1"{if $settings.access_for_users_only==1} checked="checked"{/if} /><label id="access_for_users_only_label" for="access_for_users_only" class="{if $settings.access_for_users_only==1}active{else}inactive{/if}">{#only_registered_users#}</label></td>
+<td class="d"><input id="access_for_all" type="radio" name="access_for_users_only" value="0"{if $settings.access_for_users_only==0} checked="checked"{/if} /><label for="access_for_all">{#all_users#}</label><br />
+<input id="access_for_users_only" type="radio" name="access_for_users_only" value="1"{if $settings.access_for_users_only==1} checked="checked"{/if} /><label for="access_for_users_only">{#only_registered_users#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#post_permission#}</strong><br /><span class="small">{#post_permission_desc#}</span></td>
-<td class="d"><input id="entries_by_all" type="radio" name="entries_by_users_only" value="0"{if $settings.entries_by_users_only==0} checked="checked"{/if} /><label id="entries_by_all_label" for="entries_by_all" class="{if $settings.entries_by_users_only==0}active{else}inactive{/if}">{#all_users#}</label><br />
-<input id="entries_by_users" type="radio" name="entries_by_users_only" value="1"{if $settings.entries_by_users_only==1} checked="checked"{/if} /><label id="entries_by_users_label" for="entries_by_users" class="{if $settings.entries_by_users_only==1}active{else}inactive{/if}">{#only_registered_users#}</label></td>
+<td class="d"><input id="entries_by_all" type="radio" name="entries_by_users_only" value="0"{if $settings.entries_by_users_only==0} checked="checked"{/if} /><label for="entries_by_all">{#all_users#}</label><br />
+<input id="entries_by_users" type="radio" name="entries_by_users_only" value="1"{if $settings.entries_by_users_only==1} checked="checked"{/if} /><label for="entries_by_users">{#only_registered_users#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#register_permission#}</strong><br /><span class="small">{#register_permission_desc#}</span></td>
-<td class="d"><input id="register_mode_0" type="radio" name="register_mode" value="0"{if $settings.register_mode==0} checked="checked"{/if} /><label id="register_mode_0_label" for="register_mode_0" class="{if $settings.register_mode==0}active{else}inactive{/if}">{#register_self#}</label><br />
-<input id="register_mode_1" type="radio" name="register_mode" value="1"{if $settings.register_mode==1} checked="checked"{/if} /><label id="register_mode_1_label" for="register_mode_1" class="{if $settings.register_mode==1}active{else}inactive{/if}">{#register_self_locked#}</label><br />
-<input id="register_mode_2" type="radio" name="register_mode" value="2"{if $settings.register_mode==2} checked="checked"{/if} /><label id="register_mode_2_label" for="register_mode_2" class="{if $settings.register_mode==2}active{else}inactive{/if}">{#register_only_admin#}</label></td>
+<td class="d"><input id="register_mode_0" type="radio" name="register_mode" value="0"{if $settings.register_mode==0} checked="checked"{/if} /><label for="register_mode_0">{#register_self#}</label><br />
+<input id="register_mode_1" type="radio" name="register_mode" value="1"{if $settings.register_mode==1} checked="checked"{/if} /><label for="register_mode_1">{#register_self_locked#}</label><br />
+<input id="register_mode_2" type="radio" name="register_mode" value="2"{if $settings.register_mode==2} checked="checked"{/if} /><label for="register_mode_2">{#register_only_admin#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#user_area#}</strong><br /><span class="small">{#user_area_desc#}</span></td>
-<td class="d"><input id="public" type="radio" name="user_area_public" value="1"{if $settings.user_area_public==1} checked="checked"{/if} /><label id="public_label" for="public" class="{if $settings.user_area_public==1}active{else}inactive{/if}">{#public_accessible#}</label><br />
-<input id="not_public" type="radio" name="user_area_public" value="0"{if $settings.user_area_public==0} checked="checked"{/if} /><label id="not_public_label" for="not_public" class="{if $settings.user_area_public==0}active{else}inactive{/if}">{#accessible_reg_users_only#}</label></td>
+<td class="d"><input id="public" type="radio" name="user_area_public" value="1"{if $settings.user_area_public==1} checked="checked"{/if} /><label for="public">{#public_accessible#}</label><br />
+<input id="not_public" type="radio" name="user_area_public" value="0"{if $settings.user_area_public==0} checked="checked"{/if} /><label for="not_public">{#accessible_reg_users_only#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#latest_postings#}</strong><br /><span class="small">{#latest_postings_desc#}</span></td>
@@ -110,7 +110,7 @@
 </tr>
 <tr>
 <td class="c"><strong>{#tag_cloud#}</strong><br /><span class="small">{#tag_cloud_desc#}</span></td>
-<td class="d"><input id="tag_cloud" type="checkbox" name="tag_cloud" value="1"{if $settings.tag_cloud==1} checked="checked"{/if} /><label id="tag_cloud_label" for="tag_cloud" class="{if $settings.tag_cloud==1}active{else}inactive{/if}">{#enable_tag_cloud#}</label></td>
+<td class="d"><input id="tag_cloud" type="checkbox" name="tag_cloud" value="1"{if $settings.tag_cloud==1} checked="checked"{/if} /><label for="tag_cloud">{#enable_tag_cloud#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#edit_postings#}</strong><br /><span class="small">{#edit_postings_desc#}</span></td>
@@ -118,40 +118,40 @@
 {assign var="settings_edit_delay" value=$settings.edit_delay}
 {assign var="input_edit_delay" value="<input type=\"text\" name=\"edit_delay\" value=\"$settings_edit_delay\" size=\"3\" />"}
 
-<p><input id="show_if_edited" type="checkbox" name="show_if_edited" value="1"{if $settings.show_if_edited==1} checked="checked"{/if} /><label id="show_if_edited_label" for="show_if_edited" class="{if $settings.show_if_edited==1}active{else}inactive{/if}">{#show_if_edited#|replace:"[minutes]":$input_edit_delay}</label><br />
-<input id="dont_reg_edit_by_admin" type="checkbox" name="dont_reg_edit_by_admin" value="1"{if $settings.dont_reg_edit_by_admin==1} checked="checked"{/if} /><label id="dont_reg_edit_by_admin_label" for="dont_reg_edit_by_admin" class="{if $settings.dont_reg_edit_by_admin==1}active{else}inactive{/if}">{#dont_show_edit_by_admin#}</label><br />
-<input id="dont_reg_edit_by_mod" type="checkbox" name="dont_reg_edit_by_mod" value="1"{if $settings.dont_reg_edit_by_mod==1} checked="checked"{/if} /><label id="dont_reg_edit_by_mod_label" for="dont_reg_edit_by_mod" class="{if $settings.dont_reg_edit_by_mod==1}active{else}inactive{/if}">{#dont_show_edit_by_mod#}</label></p>
+<p><input id="show_if_edited" type="checkbox" name="show_if_edited" value="1"{if $settings.show_if_edited==1} checked="checked"{/if} /><label for="show_if_edited">{#show_if_edited#|replace:"[minutes]":$input_edit_delay}</label><br />
+<input id="dont_reg_edit_by_admin" type="checkbox" name="dont_reg_edit_by_admin" value="1"{if $settings.dont_reg_edit_by_admin==1} checked="checked"{/if} /><label for="dont_reg_edit_by_admin">{#dont_show_edit_by_admin#}</label><br />
+<input id="dont_reg_edit_by_mod" type="checkbox" name="dont_reg_edit_by_mod" value="1"{if $settings.dont_reg_edit_by_mod==1} checked="checked"{/if} /><label for="dont_reg_edit_by_mod">{#dont_show_edit_by_mod#}</label></p>
 
 <p><em>{#edit_own_postings#}</em></p>
-<p><input id="edit_own_postings_all" type="radio" name="user_edit" value="2"{if $settings.user_edit==2} checked="checked"{/if} /><label id="edit_own_postings_all_label" for="edit_own_postings_all" class="{if $settings.user_edit==2}active{else}inactive{/if}">{#edit_own_postings_all#}</label><br />
-<input id="edit_own_postings_users" type="radio" name="user_edit" value="1"{if $settings.user_edit==1} checked="checked"{/if} /><label id="edit_own_postings_users_label" for="edit_own_postings_users" class="{if $settings.user_edit==1}active{else}inactive{/if}">{#edit_own_postings_users#}</label><br />
-<input id="edit_own_postings_disabled" type="radio" name="user_edit" value="0"{if $settings.user_edit==0} checked="checked"{/if} /><label id="edit_own_postings_disabled_label" for="edit_own_postings_disabled" class="{if $settings.user_edit==0}active{else}inactive{/if}">{#edit_own_postings_disabled#}</label></p>
+<p><input id="edit_own_postings_all" type="radio" name="user_edit" value="2"{if $settings.user_edit==2} checked="checked"{/if} /><label for="edit_own_postings_all">{#edit_own_postings_all#}</label><br />
+<input id="edit_own_postings_users" type="radio" name="user_edit" value="1"{if $settings.user_edit==1} checked="checked"{/if} /><label for="edit_own_postings_users">{#edit_own_postings_users#}</label><br />
+<input id="edit_own_postings_disabled" type="radio" name="user_edit" value="0"{if $settings.user_edit==0} checked="checked"{/if} /><label for="edit_own_postings_disabled">{#edit_own_postings_disabled#}</label></p>
 
-<fieldset id="user_edit_details" class="{if $settings.user_edit==0}inactive{else}active{/if}">
+<fieldset id="user_edit_details">
 {assign var="settings_edit_max_time_period" value=$settings.edit_max_time_period}
 {assign var="input_edit_max_time_period" value="<input type=\"text\" id=\"edit_max_time_period\" name=\"edit_max_time_period\" value=\"$settings_edit_max_time_period\" size=\"3\" />"}
 <p><label id="edit_max_time_period_label" for="edit_max_time_period">{#edit_max_time_period#|replace:"[minutes]":$input_edit_max_time_period}</label></p>
 {assign var="settings_edit_min_time_period" value=$settings.edit_min_time_period}
 {assign var="input_edit_min_time_period" value="<input type=\"text\" name=\"edit_min_time_period\" value=\"$settings_edit_min_time_period\" size=\"3\" />"}
-<p><input id="user_edit_if_no_replies" type="checkbox" name="user_edit_if_no_replies" value="1"{if $settings.user_edit_if_no_replies==1} checked="checked"{/if} /><label id="user_edit_if_no_replies_label" for="user_edit_if_no_replies" class="{if $settings.user_edit_if_no_replies==1}active{else}inactive{/if}">{#user_edit_if_no_replies#|replace:"[minutes]":$input_edit_min_time_period}</label></p>
+<p><input id="user_edit_if_no_replies" type="checkbox" name="user_edit_if_no_replies" value="1"{if $settings.user_edit_if_no_replies==1} checked="checked"{/if} /><label for="user_edit_if_no_replies">{#user_edit_if_no_replies#|replace:"[minutes]":$input_edit_min_time_period}</label></p>
 </fieldset>
 
 </td>
 </tr>
 <tr>
 <td class="c"><strong>{#bbcode#}</strong><br /><span class="small">{#bbcode_desc#}</span></td>
-<td class="d"><input id="bbcode" type="checkbox" name="bbcode" value="1"{if $settings.bbcode==1} checked="checked"{/if} /><label id="bbcode_label" for="bbcode" class="{if $settings.bbcode==1}active{else}inactive{/if}">{#bbcodes_enabled#}</label><br />
-<input id="bbcode_img" type="checkbox" name="bbcode_img" value="1"{if $settings.bbcode_img==1} checked="checked"{/if} /><label id="bbcode_img_label" for="bbcode_img" class="{if $settings.bbcode_img==1}active{else}inactive{/if}">{#bbcodes_img_enabled#}</label></td>
+<td class="d"><input id="bbcode" type="checkbox" name="bbcode" value="1"{if $settings.bbcode==1} checked="checked"{/if} /><label for="bbcode">{#bbcodes_enabled#}</label><br />
+<input id="bbcode_img" type="checkbox" name="bbcode_img" value="1"{if $settings.bbcode_img==1} checked="checked"{/if} /><label for="bbcode_img">{#bbcodes_img_enabled#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#smilies#}</strong><br /><span class="small">{#smilies_desc#}</span></td>
-<td class="d"><input id="smilies" type="checkbox" name="smilies" value="1"{if $settings.smilies==1} checked="checked"{/if} /><label id="smilies_label" for="smilies" class="{if $settings.smilies==1}active{else}inactive{/if}">{#smilies_enabled#}</label></td>
+<td class="d"><input id="smilies" type="checkbox" name="smilies" value="1"{if $settings.smilies==1} checked="checked"{/if} /><label for="smilies">{#smilies_enabled#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#enamble_avatars#}</strong><br /><span class="small">{#enamble_avatars_desc#}</span></td>
-<td class="d"><p><input id="avatars_profiles_postings" type="radio" name="avatars" value="2"{if $settings.avatars==2} checked="checked"{/if} /><label id="avatars_profiles_postings_label" for="avatars_profiles_postings" class="{if $settings.avatars==2}active{else}inactive{/if}">{#avatars_profiles_postings#}</label><br />
-<input id="avatars_profiles" type="radio" name="avatars" value="1"{if $settings.avatars==1} checked="checked"{/if} /><label id="avatars_profiles_label" for="avatars_profiles" class="{if $settings.avatars==1}active{else}inactive{/if}">{#avatars_profiles#}</label><br />
-<input id="avatars_disabled" type="radio" name="avatars" value="0"{if $settings.avatars==0} checked="checked"{/if} /><label id="avatars_disabled_label" for="avatars_disabled" class="{if $settings.avatars==0}active{else}inactive{/if}">{#disabled#}</label></p>
+<td class="d"><p><input id="avatars_profiles_postings" type="radio" name="avatars" value="2"{if $settings.avatars==2} checked="checked"{/if} /><label for="avatars_profiles_postings">{#avatars_profiles_postings#}</label><br />
+<input id="avatars_profiles" type="radio" name="avatars" value="1"{if $settings.avatars==1} checked="checked"{/if} /><label for="avatars_profiles">{#avatars_profiles#}</label><br />
+<input id="avatars_disabled" type="radio" name="avatars" value="0"{if $settings.avatars==0} checked="checked"{/if} /><label for="avatars_disabled">{#disabled#}</label></p>
 
 {assign var="settings_avatar_max_width" value=$settings.avatar_max_width}
 {assign var="input_avatar_max_width" value="<input id=\"avatar_max_width\" type=\"text\" name=\"avatar_max_width\" value=\"$settings_avatar_max_width\" size=\"5\" />"}
@@ -159,33 +159,33 @@
 {assign var="input_avatar_max_height" value="<input type=\"text\" name=\"avatar_max_height\" value=\"$settings_avatar_max_height\" size=\"5\" />"}
 {assign var="settings_avatar_max_filesize" value=$settings.avatar_max_filesize}
 {assign var="input_avatar_max_filesize" value="<input type=\"text\" name=\"avatar_max_filesize\" value=\"$settings_avatar_max_filesize\" size=\"5\" />"}
-<p><label id="max_avatar_size_label" for="avatar_max_width" class="{if $settings.avatars==0}inactive{else}active{/if}">{#max_avatar_size#|replace:"[width]":$input_avatar_max_width|replace:"[height]":$input_avatar_max_height|replace:"[filesize]":$input_avatar_max_filesize}</label></p></td>
+<p><label for="avatar_max_width">{#max_avatar_size#|replace:"[width]":$input_avatar_max_width|replace:"[height]":$input_avatar_max_height|replace:"[filesize]":$input_avatar_max_filesize}</label></p></td>
 </tr>
 <tr>
 <td class="c"><strong>{#upload_images#}</strong><br /><span class="small">{#upload_images_desc#}</span></td>
-<td class="d"><p><input id="upload_images_all" type="radio" name="upload_images" value="3"{if $settings.upload_images==3} checked="checked"{/if} /><label id="upload_images_all_label" for="upload_images_all" class="{if $settings.upload_images==3}active{else}inactive{/if}">{#upload_enabled_all#}</label><br />
-<input id="upload_images_users" type="radio" name="upload_images" value="2"{if $settings.upload_images==2} checked="checked"{/if} /><label id="upload_images_users_label" for="upload_images_users" class="{if $settings.upload_images==2}active{else}inactive{/if}">{#upload_enabled_users#}</label><br />
-<input id="upload_images_admins_mods" type="radio" name="upload_images" value="1"{if $settings.upload_images==1} checked="checked"{/if} /><label id="upload_images_admins_mods_label" for="upload_images_admins_mods" class="{if $settings.upload_images==1}active{else}inactive{/if}">{#upload_enabled_admins_mods#}</label><br />
-<input id="upload_images_disabled" type="radio" name="upload_images" value="0"{if $settings.upload_images==0} checked="checked"{/if} /><label id="upload_images_disabled_label" for="upload_images_disabled" class="{if $settings.upload_images==0}active{else}inactive{/if}">{#disabled#}</label></p>
+<td class="d"><p><input id="upload_images_all" type="radio" name="upload_images" value="3"{if $settings.upload_images==3} checked="checked"{/if} /><label for="upload_images_all">{#upload_enabled_all#}</label><br />
+<input id="upload_images_users" type="radio" name="upload_images" value="2"{if $settings.upload_images==2} checked="checked"{/if} /><label for="upload_images_users">{#upload_enabled_users#}</label><br />
+<input id="upload_images_admins_mods" type="radio" name="upload_images" value="1"{if $settings.upload_images==1} checked="checked"{/if} /><label for="upload_images_admins_mods">{#upload_enabled_admins_mods#}</label><br />
+<input id="upload_images_disabled" type="radio" name="upload_images" value="0"{if $settings.upload_images==0} checked="checked"{/if} /><label for="upload_images_disabled">{#disabled#}</label></p>
 {assign var="settings_upload_max_width" value=$settings.upload_max_img_width}
 {assign var="input_upload_max_width" value="<input id=\"upload_max_img_width\" type=\"text\" name=\"upload_max_img_width\" value=\"$settings_upload_max_width\" size=\"5\" />"}
 {assign var="settings_upload_max_height" value=$settings.upload_max_img_height}
 {assign var="input_upload_max_height" value="<input type=\"text\" name=\"upload_max_img_height\" value=\"$settings_upload_max_height\" size=\"5\" />"}
 {assign var="settings_upload_max_img_size" value=$settings.upload_max_img_size}
 {assign var="input_upload_max_filesize" value="<input type=\"text\" name=\"upload_max_img_size\" value=\"$settings_upload_max_img_size\" size=\"5\" />"}
-<p><label id="max_upload_size_label" for="upload_max_img_width" class="{if $settings.upload_images==0}inactive{else}active{/if}">{#max_upload_size#|replace:"[width]":$input_upload_max_width|replace:"[height]":$input_upload_max_height|replace:"[filesize]":$input_upload_max_filesize}</label></p></td>
+<p><label for="upload_max_img_width">{#max_upload_size#|replace:"[width]":$input_upload_max_width|replace:"[height]":$input_upload_max_height|replace:"[filesize]":$input_upload_max_filesize}</label></p></td>
 </tr>
 <tr>
 <td class="c"><strong>{#autolink#}</strong><br /><span class="small">{#autolink_desc#}</span></td>
-<td class="d"><input id="autolink" type="checkbox" name="autolink" value="1"{if $settings.autolink==1} checked="checked"{/if} /><label id="autolink_label" for="autolink" class="{if $settings.autolink==1}active{else}inactive{/if}">{#autolink_enabled#}</label></td>
+<td class="d"><input id="autolink" type="checkbox" name="autolink" value="1"{if $settings.autolink==1} checked="checked"{/if} /><label for="autolink">{#autolink_enabled#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#count_views#}</strong><br /><span class="small">{#count_views_desc#}</span></td>
-<td class="d"><input id="count_views" type="checkbox" name="count_views" value="1"{if $settings.count_views==1} checked="checked"{/if} /><label id="count_views_label" for="count_views" class="{if $settings.count_views==1}active{else}inactive{/if}">{#views_counter_enabled#}</label></td>
+<td class="d"><input id="count_views" type="checkbox" name="count_views" value="1"{if $settings.count_views==1} checked="checked"{/if} /><label for="count_views">{#views_counter_enabled#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#rss_feed#}</strong><br /><span class="small">{#rss_feed_desc#}</span></td>
-<td class="d"><input id="rss_feed" type="checkbox" name="rss_feed" value="1"{if $settings.rss_feed==1} checked="checked"{/if} /><label id="rss_feed_label" for="rss_feed" class="{if $settings.rss_feed==1}active{else}inactive{/if}">{#rss_feed_enabled#}</label></td>
+<td class="d"><input id="rss_feed" type="checkbox" name="rss_feed" value="1"{if $settings.rss_feed==1} checked="checked"{/if} /><label for="rss_feed">{#rss_feed_enabled#}</label></td>
 </tr>
 
 <tr>
@@ -216,8 +216,8 @@
 
 <tr>
 <td class="c"><strong>{#forum_enabled_marking#}</strong><br /><span class="small">{#forum_enabled_desc#}</span></td>
-<td class="d"><p><input id="forum_enabled" type="checkbox" name="forum_enabled" value="1"{if $settings.forum_enabled==1} checked="checked"{/if} /><label id="forum_enabled_label" for="forum_enabled" class="{if $settings.forum_enabled==1}active{else}inactive{/if}">{#forum_enabled#}</label></p>
-<p><label id="forum_disabled_message_label" for="forum_disabled_message" class="{if $settings.forum_enabled==1}inactive{else}active{/if}">{#forum_disabled_message#}</label><br /><input id="forum_disabled_message" type="text" name="forum_disabled_message" value="{$settings.forum_disabled_message|escape}" size="40" /></p></td>
+<td class="d"><p><input id="forum_enabled" type="checkbox" name="forum_enabled" value="1"{if $settings.forum_enabled==1} checked="checked"{/if} /><label for="forum_enabled">{#forum_enabled#}</label></p>
+<p><label for="forum_disabled_message">{#forum_disabled_message#}</label><br /><input id="forum_disabled_message" type="text" name="forum_disabled_message" value="{$settings.forum_disabled_message|escape}" size="40" /></p></td>
 </tr>
 <tr>
 <td class="c">&nbsp;</td>
