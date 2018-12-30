@@ -1000,6 +1000,18 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		die();
 	}
 
+	if (isset($_GET['action']) and $_GET['action'] == 'reset_tou') {
+		mysqli_query($connid, "UPDATE ". $db_settings['userdata_table'] ." SET tou_accepted = NULL");
+		header("location: index.php?mode=admin&action=user");
+		die();
+	}
+
+	if (isset($_GET['action']) and $_GET['action'] == 'reset_dps') {
+		mysqli_query($connid, "UPDATE ". $db_settings['userdata_table'] ." SET dps_accepted = NULL");
+		header("location: index.php?mode=admin&action=user");
+		die();
+	}
+
 	if (empty($action)) $action='main';
 	$smarty->assign('action', $action);
 
