@@ -648,6 +648,10 @@ edit_pw_old =                     'altes Passwort:'
 edit_pw_new =                     'neues Passwort:'
 error_old_pw_wrong =              'altes Passwort falsch'
 error_new_pw_too_short =          'das neue Passwort muss mindestens [characters] Zeichen lang sein'
+error_new_pw_needs_digit =            'das Passwort muss mindestens [digits] Ziffer(n) enthalten'
+error_new_pw_needs_lowercase_letter = 'das Passwort muss mindestens [lowercase_letters] Kleinbuchstaben enthalten'
+error_new_pw_needs_uppercase_letter = 'das Passwort muss mindestens [uppercase_letters] Großbuchstaben enthalten'
+error_new_pw_needs_special_character ='das Passwort muss mindestens [special_characters] Sonderzeichen enthalten'
 
 [edit_email]
 edit_email_exp =                  'Nach dem Ändern der E-Mail-Adresse muss das Account erneut freigeschaltet werden. Es wird ausgeloggt und ein Aktivierungsschlüssel an die neue E-Mail-Adresse gesendet. Bitte genau auf die richtige Schreibweise der E-Mail-Adresse achten! Das Account muss innerhalb eines Tages freigeschaltet werden!'
@@ -674,6 +678,10 @@ activation_failed =               'Aktivierung fehlgeschlagen!'
 error_password_too_short =        'das Passwort muss mindestens [characters] Zeichen lang sein'
 error_email_alr_exists =          'es ist bereits ein Benutzer mit dieser E-Mail-Adresse vorhanden'
 error_reg_not_accepted_word =     'Spam-Schutz: E-Mail oder Benutzername nicht akzeptiert'
+error_pw_needs_digit =            'das Passwort muss mindestens [digits] Ziffer(n) enthalten'
+error_pw_needs_lowercase_letter = 'das Passwort muss mindestens [lowercase_letters] Kleinbuchstaben enthalten'
+error_pw_needs_uppercase_letter = 'das Passwort muss mindestens [uppercase_letters] Großbuchstaben enthalten'
+error_pw_needs_special_character ='das Passwort muss mindestens [special_characters] Sonderzeichen enthalten'
 
 [contact]
 contact_hl =                      'E-Mail an den Foren-Administrator'

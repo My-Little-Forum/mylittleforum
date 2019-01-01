@@ -650,6 +650,10 @@ edit_pw_old =                     'Ancien mot de passe:'
 edit_pw_new =                     'Nouveau mot de passe :'
 error_old_pw_wrong =              'L\'ancien mot de passe est erroné'
 error_new_pw_too_short =          'Le nouveau mot de passe doit contenir au moins [characters] caractères'
+error_new_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_new_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_new_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_new_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [edit_email]
 edit_email_exp =                  'Lors d\'un changment d\'adresse mail vous serez déconnecté et le compte devra être réactivé. Une clef d\'activation sera envoyée à votre nouvelle adresse email. Assurez-vous que l\'adresse email est valide! Le compte sera activé prochainement.'
@@ -676,6 +680,10 @@ activation_failed =               'La validation du compte a échoué.'
 error_password_too_short =        'Le mot de passe doit contenir au moins [characters] caractères'
 error_email_alr_exists =          'Il y a déjà un utilisateur avec cette adresse email'
 error_reg_not_accepted_word =     'Protection contre le spam : l\'email ou le nom contient un mot ou un domaine non accepté'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'Envoyer un message à l\'administrateur du forum'

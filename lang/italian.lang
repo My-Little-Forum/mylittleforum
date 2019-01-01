@@ -647,6 +647,10 @@ edit_pw_old =                     'Vecchia password:'
 edit_pw_new =                     'Nuova password:'
 error_old_pw_wrong =              'La vecchia password è sbagliata'
 error_new_pw_too_short =          'La nuova password può contenere al massimo [characters] caratteri'
+error_new_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_new_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_new_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_new_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [edit_email]
 edit_email_exp =                  'Ogni volta che cambi l\'indirizzo e-mail, devi uscire dall\'account e attendere la sua riattivazione. Una chiave di attivazione verrà spedita alla nuova e-mail. Per questo assicurati che l\'indirizzo sia corretto! L\'account deve essere attivato entro un giorno.'
@@ -673,6 +677,10 @@ activation_failed =               'L\'attivazione dell\'account è fallita.'
 error_password_too_short =        'La password deve contenere almeno [characters] caratteri'
 error_email_alr_exists =          'Attualmente risulta registrato un altro utente con l\'e-mail fornita'
 error_reg_not_accepted_word =     'Protezione anti-spam: l\'e-mail o il nome utente contiene una parola o dominio non valido'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'Scrivi all\'amministratore del forum'

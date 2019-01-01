@@ -83,16 +83,28 @@ switch ($action) {
 			}
 
 			if (empty($errors)) {
+				$min_password_length_by_restrictions = intval($settings['min_pw_digits']) + intval($settings['min_pw_lowercase_letters']) + intval($settings['min_pw_uppercase_letters']) + intval($settings['min_pw_special_characters']);
 				// password too short?
-				if (my_strlen($reg_pw, $lang['charset']) < $settings['min_pw_length']) 
+				if ($min_password_length_by_restrictions < intval($settings['min_pw_length']) && my_strlen($reg_pw, $lang['charset']) < intval($settings['min_pw_length'])) 
 					$errors[] = 'error_password_too_short';
+				// password contains numbers?
+				if ($settings['min_pw_digits'] != 0 && !preg_match("/[0-9]{" . intval($settings['min_pw_digits']) . ",}/", $reg_pw))
+					$errors[] = 'error_pw_needs_digit';
+				// password contains lowercase letter?
+				if ($settings['min_pw_lowercase_letters'] != 0 && !preg_match("/[a-z]{" . intval($settings['min_pw_lowercase_letters']) . ",}/", $reg_pw))
+					$errors[] = 'error_pw_needs_lowercase_letter';
+				// password contains uppercase letter?
+				if ($settings['min_pw_uppercase_letters'] != 0 && !preg_match("/[A-Z]{" . intval($settings['min_pw_uppercase_letters']) . ",}/", $reg_pw))
+					$errors[] = 'error_pw_needs_uppercase_letter';
+				// password contains special character?
+				if ($settings['min_pw_special_characters'] != 0 && !preg_match("/\W{" . intval($settings['min_pw_special_characters']) . ",}/", $reg_pw))
+					$errors[] = 'error_pw_needs_special_character';
 				// name too long?
 				if (my_strlen($new_user_name, $lang['charset']) > $settings['username_maxlength']) 
 					$errors[] = 'error_name_too_long';
 				// e-mail address too long?
 				if (my_strlen($new_user_email, $lang['charset']) > $settings['email_maxlength']) 
 					$errors[] = 'error_email_too_long';
-
 				// word in username too long?
 				$too_long_word = too_long_word($new_user_name,$settings['name_word_maxlength']);
 				if ($too_long_word) 

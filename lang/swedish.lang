@@ -658,6 +658,10 @@ edit_pw_old =                     'Nuvarande lösenord:'
 edit_pw_new =                     'Nytt lösenord:'
 error_old_pw_wrong =              'Nuvarande lösenord felaktigt'
 error_new_pw_too_short =          'Det nya lösenordet måste innehålla minst [characters] tecken'
+error_new_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_new_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_new_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_new_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [edit_email]
 edit_email_exp =                  'Vid ändring av E-postadress måste kontot aktiveras igen. En aktiveringsnyckel kommer att sändas till den nya E-postadressen. Kontrollera att E-postadressen är korrekt! Kontot måste aktiveras inom ett dygn.'
@@ -684,6 +688,10 @@ activation_failed =               'Aktivering av kontot misslyckades.'
 error_password_too_short =        'Lösenordet måste innehålla minst [characters] tecken!'
 error_email_alr_exists =          'Användarnamnet används redan!'
 error_reg_not_accepted_word =     'Spamskydd: E-postadress eller användarnamn är spärrat!'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'E-post till administratören'
