@@ -671,6 +671,10 @@ activation_failed =               'கணக்கை செயல்பாட�
 error_password_too_short =        'புதிய மறைவு சொல்லில் [characters] சொல்லாவது இருகாகவேணடும்'
 error_email_alr_exists =          'இந்த மின்-அசல் விலாசம் ஏற்கனவே ஒருவறால் உபயோகப்படுத்தப்பட்டு வருகிற்து'
 error_reg_not_accepted_word =     'ஸ்பேம் காப்பு: ஏற்றுக்கொள்ள மயடியாத வார்த்தைகள் இந்த மின்-அசல் விலாசம் அல்லது பெயரில் இடம்பெற்றுள்ளது'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [numbers] number(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'பொது மன்ற நிர்வாகியின் மின்-அசல்'

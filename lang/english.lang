@@ -683,6 +683,10 @@ activation_failed =               'The activation of the account failed.'
 error_password_too_short =        'The password must contain at least [characters] characters'
 error_email_alr_exists =          'There is already a user with this e-mail address'
 error_reg_not_accepted_word =     'Spam protection: E-mail or user name not accepted'
+error_pw_needs_digit =            'The password must contain at least [numbers] number(s)'
+error_pw_needs_lowercase_letter = 'The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = 'The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'E-mail to the forum administrator'

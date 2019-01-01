@@ -674,6 +674,10 @@ activation_failed =               'Aktivierung fehlgeschlagen!'
 error_password_too_short =        'das Passwort muss mindestens [characters] Zeichen lang sein'
 error_email_alr_exists =          'es ist bereits ein Benutzer mit dieser E-Mail-Adresse vorhanden'
 error_reg_not_accepted_word =     'Spam-Schutz: E-Mail oder Benutzername nicht akzeptiert'
+error_pw_needs_digit =            'das Passwort muss mindestens [number] Ziffer(n) enthalten'
+error_pw_needs_lowercase_letter = 'das Passwort muss mindestens [lowercase_letters] Kleinbuchstaben enthalten'
+error_pw_needs_uppercase_letter = 'das Passwort muss mindestens [uppercase_letters] Großbuchstaben enthalten'
+error_pw_needs_special_character ='das Passwort muss mindestens [special_characters] Sonderzeichen enthalten'
 
 [contact]
 contact_hl =                      'E-Mail an den Foren-Administrator'

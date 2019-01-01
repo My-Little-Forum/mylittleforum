@@ -674,6 +674,10 @@ activation_failed =               'Hesabın aktivasyonu başarısız.'
 error_password_too_short =        'Şifre en az [characters] karakter içermeli'
 error_email_alr_exists =          'Bu e-posta adresiyle bağlantılı bir kullanıcı zaten var'
 error_reg_not_accepted_word =     'Spam koruma: E-posta veya isim hanesi kabul edilmeyen bir kelime veya alan adı içermektedir'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [numbers] number(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'Forum yöneticisine e-posta gönder'

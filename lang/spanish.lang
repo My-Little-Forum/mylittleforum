@@ -675,6 +675,10 @@ activation_failed =               'La activacion de la cuenta ha sido fallida'
 error_password_too_short =        'La contrasena debe contener al menos [characters] caracteres'
 error_email_alr_exists =          'Ya existe un usuario con esta direccion de e-mail'
 error_reg_not_accepted_word =     'Spam protecion: El E-mail o en nombre de usuario contienen palabras no aceptadas por el dominio'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [numbers] number(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'E-mail al administrador del foro'

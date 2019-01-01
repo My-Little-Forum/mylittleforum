@@ -152,6 +152,10 @@ INSERT INTO mlf2_settings VALUES ('b8_entry_check', '1');
 INSERT INTO mlf2_settings VALUES ('b8_auto_training', '1');
 INSERT INTO mlf2_settings VALUES ('b8_spam_probability_threshold', '80');
 INSERT INTO mlf2_settings VALUES ('spam_check_registered', '0');
+INSERT INTO mlf2_settings VALUES ('min_pw_digits', '0');
+INSERT INTO mlf2_settings VALUES ('min_pw_lowercase_letters', '0');
+INSERT INTO mlf2_settings VALUES ('min_pw_uppercase_letters', '0');
+INSERT INTO mlf2_settings VALUES ('min_pw_special_characters', '0');
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (2, 2, 'wink.png', ';-)', '', '', '', '', '');

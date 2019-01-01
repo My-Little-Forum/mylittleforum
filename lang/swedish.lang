@@ -684,6 +684,10 @@ activation_failed =               'Aktivering av kontot misslyckades.'
 error_password_too_short =        'Lösenordet måste innehålla minst [characters] tecken!'
 error_email_alr_exists =          'Användarnamnet används redan!'
 error_reg_not_accepted_word =     'Spamskydd: E-postadress eller användarnamn är spärrat!'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [numbers] number(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'E-post till administratören'
