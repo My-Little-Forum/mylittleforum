@@ -376,3 +376,8 @@ INSERT INTO mlf2_settings VALUES ('data_privacy_statement_url', '');
 CREATE TABLE `mlf2_subscriptions` (`user_id` int(12) UNSIGNED NOT NULL, `eid` int(12) UNSIGNED NOT NULL, `unsubscribe_code` varchar(36) NOT NULL, `tstamp` datetime DEFAULT NULL, PRIMARY KEY `user_thread` (`user_id`,`eid`), KEY `hash` (`unsubscribe_code`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ALTER TABLE mlf2_entries DROP COLUMN `email_notification`;
 */
+--------------------------------------------------------------------------------
+-- 2.4.16 to 2.4.17
+/*
+INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('min_posting_time', '5'), ('min_register_time', '5'), ('min_email_time', '5'), ('max_posting_time', '10800'), ('max_register_time', '10800'), ('max_email_time', '10800');
+*/
