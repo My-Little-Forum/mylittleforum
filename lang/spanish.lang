@@ -658,6 +658,10 @@ edit_pw_new =                     'Nueva contrasena:'
 error_old_pw_wrong =              'La antigua contrasena es incorrecta'
 error_pw_conf_uneven =            'Las nuevas contrasenas no coinciden'
 error_new_pw_too_short =          'La nueva contrasena debe contener al menos [characters] caracteres'
+error_new_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_new_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_new_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_new_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [edit_email]
 edit_email_exp =                  'Cuando cambias de correo se cierra la sesion y la cuenta debe ser activada de nuevo. Se enviara a tu correo una clave de activacion. Asegurate que el nuevo e-mail es correcto! La cuenta debe ser activada antes de 24 horas.'
@@ -685,6 +689,10 @@ activation_failed =               'La activacion de la cuenta ha sido fallida'
 error_password_too_short =        'La contrasena debe contener al menos [characters] caracteres'
 error_email_alr_exists =          'Ya existe un usuario con esta direccion de e-mail'
 error_reg_not_accepted_word =     'Spam protecion: El E-mail o en nombre de usuario contienen palabras no aceptadas por el dominio'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'E-mail al administrador del foro'

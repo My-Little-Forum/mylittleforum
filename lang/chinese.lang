@@ -658,6 +658,10 @@ edit_pw_new =                     '新密码:'
 error_old_pw_wrong =              '旧密码错误'
 error_pw_conf_uneven =            '新密码输入不匹配'
 error_new_pw_too_short =          '新密码最少[characters]字符'
+error_new_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_new_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_new_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_new_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [edit_email]
 edit_email_exp =                  '更改密码时您的帐户需重新激活. 激活代码将发送至新的e-mail地址, 并需在一日内激活.'
@@ -685,6 +689,10 @@ activation_failed =               '激活帐户未成功.'
 error_password_too_short =        '密码至少包含[characters]个字符'
 error_email_alr_exists =          '已有用户使用这个E-mail地址'
 error_reg_not_accepted_word =     '防垃圾保护: E-mail或名字包含禁止字符或域名'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      '给论坛管理员发送E-mail'

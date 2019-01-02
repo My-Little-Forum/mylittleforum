@@ -655,6 +655,10 @@ edit_pw_new =                     'Nova lozinka:'
 error_old_pw_wrong =              'Stara lozinka nije ispravna'
 error_pw_conf_uneven =            'Nova lozinka nije identična u oba polja'
 error_new_pw_too_short =          'Nova lozinka mora imati najmanje [characters] znakova'
+error_new_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_new_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_new_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_new_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [edit_email]
 edit_email_exp =                  'Nakon promjene e-mail adrese biti ćete odjavljeni i vaš će korisnički račun morati nanovo biti aktiviran. Aktivacijski ključ će vam biti poslan na novu e-mail adresu. Pobrinite se da je nova e-mail adresa ispravna! Korisnički račun mora biti aktiviran unutar jednog dana.'
@@ -682,6 +686,10 @@ activation_failed =               'Aktivacija korisničkog računa nije uspjela.
 error_password_too_short =        'Lozinka mora imati najmanje [characters] znakova'
 error_email_alr_exists =          'Već postoji korisnik sa ovom e-mail adresom'
 error_reg_not_accepted_word =     'Zaštita od spama: E-mail ili ime sadrže domenu ili riječ koju ne prihvaćamo.'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'Pošalji e-mail administratoru foruma'

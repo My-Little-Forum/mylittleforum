@@ -141,12 +141,16 @@ INSERT INTO mlf2_settings VALUES ('read_state_expiration_value', '500');
 INSERT INTO mlf2_settings VALUES ('read_state_expiration_method', '0');
 INSERT INTO mlf2_settings VALUES ('data_privacy_agreement', '0');
 INSERT INTO mlf2_settings VALUES ('data_privacy_statement_url', '');
-INSERT INTO mlf2_settings VALUES ('min_posting_time', '5'); 
+INSERT INTO mlf2_settings VALUES ('min_posting_time', '5');
 INSERT INTO mlf2_settings VALUES ('min_register_time', '5');
 INSERT INTO mlf2_settings VALUES ('min_email_time', '5');
 INSERT INTO mlf2_settings VALUES ('max_posting_time', '10800'); 
 INSERT INTO mlf2_settings VALUES ('max_register_time', '10800');
 INSERT INTO mlf2_settings VALUES ('max_email_time', '10800');
+INSERT INTO mlf2_settings VALUES ('min_pw_digits', '0');
+INSERT INTO mlf2_settings VALUES ('min_pw_lowercase_letters', '0');
+INSERT INTO mlf2_settings VALUES ('min_pw_uppercase_letters', '0');
+INSERT INTO mlf2_settings VALUES ('min_pw_special_characters', '0');
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (2, 2, 'wink.png', ';-)', '', '', '', '', '');

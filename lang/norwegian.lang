@@ -655,6 +655,10 @@ edit_pw_new =                     'Nytt passord:'
 error_old_pw_wrong =              'Det gamle passordet er feil'
 error_pw_conf_uneven =            'Det nye passordet er ikke det samme som passordet du gjentok'
 error_new_pw_too_short =          'Passordet må inneholde minst [characters] tegn'
+error_new_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_new_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_new_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_new_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [edit_email]
 edit_email_exp =                  'Når du endrer e-postadresse vil du bli logget ut, og kontoen din må aktiveres på nytt. En aktiveringsnøkkel vil bli sendt til den nye e-postadressen. Det er viktig at du staver adressen din korrekt. Kontoen din må aktiveres innen én dag. Dersom du ikke mottar e-posten, sjekk eventuelle spamfiltre, eller kontakt forumadministratoren.'
@@ -682,6 +686,10 @@ activation_failed =               'Aktivering av kontoen mislykted.'
 error_password_too_short =        'Passordet må inneholde minst [characters] tegn'
 error_email_alr_exists =          'Det eksisterer allerede en bruker som har denne e-postadressen'
 error_reg_not_accepted_word =     'Spambeskyttelse: E-post eller navn inneholder et ord eller domene som ikke er tillatt'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'E-post til forumadministrator'

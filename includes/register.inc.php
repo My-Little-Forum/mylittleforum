@@ -83,16 +83,33 @@ switch ($action) {
 			}
 
 			if (empty($errors)) {
+				$min_password_length_by_restrictions = intval($settings['min_pw_digits']) + intval($settings['min_pw_lowercase_letters']) + intval($settings['min_pw_uppercase_letters']) + intval($settings['min_pw_special_characters']);
 				// password too short?
-				if (my_strlen($reg_pw, $lang['charset']) < $settings['min_pw_length']) 
+				if ($min_password_length_by_restrictions < intval($settings['min_pw_length']) && my_strlen($reg_pw, $lang['charset']) < intval($settings['min_pw_length']))
 					$errors[] = 'error_password_too_short';
+				// see: http://php.net/manual/en/regexp.reference.unicode.php
+				// \p{N}                == numbers
+				// [\p{Ll}\p{Lm}\p{Lo}] == lowercase, modifier, other letters
+				// [\p{Lu}\p{Lt}]       == uppercase, titlecase letters
+				// [\p{S}\p{P}\p{Z}]    == symbols, punctuations, separator
+				// password contains numbers?
+				if ($settings['min_pw_digits'] > 0 && !preg_match("/\p{N}{" . intval($settings['min_pw_digits']) . ",}/u", $reg_pw))
+					$errors[] = 'error_pw_needs_digit';
+				// password contains lowercase letter?
+				if ($settings['min_pw_lowercase_letters'] > 0 && !preg_match("/[\p{Ll}\p{Lm}\p{Lo}]{" . intval($settings['min_pw_lowercase_letters']) . ",}/u", $reg_pw))
+					$errors[] = 'error_pw_needs_lowercase_letter';
+				// password contains uppercase letter?
+				if ($settings['min_pw_uppercase_letters'] > 0 && !preg_match("/[\p{Lu}\p{Lt}]{" . intval($settings['min_pw_uppercase_letters']) . ",}/u", $reg_pw))
+					$errors[] = 'error_pw_needs_uppercase_letter';
+				// password contains special character?
+				if ($settings['min_pw_special_characters'] > 0 && !preg_match("/[\p{S}\p{P}\p{Z}]{" . intval($settings['min_pw_special_characters']) . ",}/u", $reg_pw))
+					$errors[] = 'error_pw_needs_special_character';
 				// name too long?
 				if (my_strlen($new_user_name, $lang['charset']) > $settings['username_maxlength']) 
 					$errors[] = 'error_name_too_long';
 				// e-mail address too long?
 				if (my_strlen($new_user_email, $lang['charset']) > $settings['email_maxlength']) 
 					$errors[] = 'error_email_too_long';
-
 				// word in username too long?
 				$too_long_word = too_long_word($new_user_name,$settings['name_word_maxlength']);
 				if ($too_long_word) 
@@ -100,18 +117,18 @@ switch ($action) {
 
 				// look if name already exists:
 				$name_result = mysqli_query($connid, "SELECT user_name FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '". mysqli_real_escape_string($connid, my_strtolower($new_user_name, $lang['charset'])) ."'") or raise_error('database_error', mysqli_error($connid));
-				if (mysqli_num_rows($name_result) > 0) 
+				if (mysqli_num_rows($name_result) > 0)
 					$errors[] = 'user_name_already_exists';
 				mysqli_free_result($name_result);
 
 				// look, if e-mail already exists:
 				$email_result = mysqli_query($connid, "SELECT user_email FROM ".$db_settings['userdata_table']." WHERE lower(user_email) = '". mysqli_real_escape_string($connid, my_strtolower($new_user_email, $lang['charset'])) ."'") or raise_error('database_error', mysqli_error($connid));
-				if (mysqli_num_rows($email_result) > 0) 
+				if (mysqli_num_rows($email_result) > 0)
 					$errors[] = 'error_email_alr_exists';
 				mysqli_free_result($email_result);
 
 				// e-mail correct?
-				if (!is_valid_email($new_user_email)) 
+				if (!is_valid_email($new_user_email))
 					$errors[] = 'error_email_wrong';
 
 				if ($settings['terms_of_use_agreement'] == 1 && $terms_of_use_agree != 1)

@@ -671,6 +671,10 @@ edit_pw_new =                     'Новый пароль:'
 error_old_pw_wrong =              'Старый пароль указан неверно'
 error_pw_conf_uneven =            'Новый пароль не совпадает с введенным повторно'
 error_new_pw_too_short =          'Новый пароль должен содержать как минимум [characters] символов'
+error_new_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_new_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_new_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_new_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [edit_email]
 edit_email_exp =                  'При смене адреса e-mail произойдет выход из форума и потребуется повторная активация учетной записи. Ключ активации будет выслан на новый адрес e-mail, будьте уверены, что он указан правильно! Учётная запись должна быть активирована в течение суток.'
@@ -699,6 +703,10 @@ activation_failed =               'Не получилось активиров�
 error_password_too_short =        'Пароль должен состоять как минимум из [characters] символов'
 error_email_alr_exists =          'Пользователь с таким адресом e-mail уже зарегистрирован'
 error_reg_not_accepted_word =     'Защита от спама: Адрес е-mail или имя содержат неприемлемое слово или домен'
+error_pw_needs_digit =            '<!-- TODO -->The password must contain at least [digits] digit(s)'
+error_pw_needs_lowercase_letter = '<!-- TODO -->The password must contain at least [lowercase_letters] lowercase letter(s)'
+error_pw_needs_uppercase_letter = '<!-- TODO -->The password must contain at least [uppercase_letters] uppercase letter(s)'
+error_pw_needs_special_character ='<!-- TODO -->The password must contain at least [special_characters] special character(s)'
 
 [contact]
 contact_hl =                      'Отправить e-mail Администратору форума'
