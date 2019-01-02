@@ -86,8 +86,6 @@ function BBCodeLinkButton(el) {
 	this.constructor(el);
 	var link_bb_code = "link";
 	var regExpURI = new RegExp(/[http|https|ftp|ftps]:\/\/[a-zA-Z0-9-.][a-zA-Z0-9-.]+(S+)?/);
-	var regExpFID = new RegExp(/[?|&]id=([0-9]+)/);
-	var forumURI = window.location.hostname + window.location.pathname;
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
@@ -97,17 +95,8 @@ function BBCodeLinkButton(el) {
 			var selectionRange = txtarea.getSelection().trim();
 	
 			var insert_link = (regExpURI.test( selectionRange ))?window.prompt(lang["bbcode_link_url"], selectionRange):window.prompt(lang["bbcode_link_url"],"http://");
-	
-			if (!insert_link || insert_link == '' || insert_link == "http://") 
+			if (!insert_link || insert_link == '' || insert_link == "https://" || insert_link == "http://" || insert_link == "ftp://" || insert_link == "ftps://")
 				return;
-			if (insert_link.indexOf(forumURI) > 0 && insert_link.indexOf("mode=page") < 0 && insert_link.indexOf("mode=contact") < 0 && regExpFID.test(insert_link)) {
-				var msgQuery = regExpFID.exec(insert_link);
-				link_bb_code = "msg";
-				insert_link = msgQuery[1];
-			}
-			else
-				link_bb_code = "link";
-			
 			if (selectionRange == '' || regExpURI.test( selectionRange )) 
 				selectionRange = window.prompt(lang["bbcode_link_text"], "");
 			if (selectionRange != null) {
