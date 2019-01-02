@@ -732,19 +732,23 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $settings['user_a
 					// new password too short?
 					if ($min_new_password_length_by_restrictions < intval($settings['min_pw_length']) && my_strlen($new_pw, $lang['charset']) < intval($settings['min_pw_length'])) 
 						$errors[] = 'error_new_pw_too_short';
+					// see: http://php.net/manual/en/regexp.reference.unicode.php
+					// \p{N}                == numbers
+					// [\p{Ll}\p{Lm}\p{Lo}] == lowercase, modifier, other letters
+					// [\p{Lu}\p{Lt}]       == uppercase, titlecase letters
+					// [\p{S}\p{P}\p{Z}]    == symbols, punctuations, separator
 					// new password contains numbers?
-					if ($settings['min_pw_digits'] != 0 && !preg_match("/[0-9]{" . intval($settings['min_pw_digits']) . ",}/", $new_pw))
+					if ($settings['min_pw_digits'] > 0 && !preg_match("/\p{N}{" . intval($settings['min_pw_digits']) . ",}/u", $new_pw))
 						$errors[] = 'error_new_pw_needs_digit';
 					// new password contains lowercase letter?
-					if ($settings['min_pw_lowercase_letters'] != 0 && !preg_match("/[a-z]{" . intval($settings['min_pw_lowercase_letters']) . ",}/", $new_pw))
+					if ($settings['min_pw_lowercase_letters'] > 0 && !preg_match("/[\p{Ll}\p{Lm}\p{Lo}]{" . intval($settings['min_pw_lowercase_letters']) . ",}/u", $new_pw))
 						$errors[] = 'error_new_pw_needs_lowercase_letter';
 					// new password contains uppercase letter?
-					if ($settings['min_pw_uppercase_letters'] != 0 && !preg_match("/[A-Z]{" . intval($settings['min_pw_uppercase_letters']) . ",}/", $new_pw))
+					if ($settings['min_pw_uppercase_letters'] > 0 && !preg_match("/[\p{Lu}\p{Lt}]{" . intval($settings['min_pw_uppercase_letters']) . ",}/u", $new_pw))
 						$errors[] = 'error_new_pw_needs_uppercase_letter';
 					// new password contains special character?
-					if ($settings['min_pw_special_characters'] != 0 && !preg_match("/\W{" . intval($settings['min_pw_special_characters']) . ",}/", $new_pw))
-						$errors[] = 'error_new_pw_needs_special_character';
-					
+					if ($settings['min_pw_special_characters'] > 0 && !preg_match("/[\p{S}\p{P}\p{Z}]{" . intval($settings['min_pw_special_characters']) . ",}/u", $new_pw))
+						$errors[] = 'error_new_pw_needs_special_character';					
 				}
 				// Update, if no errors:
 				if(empty($errors)) {

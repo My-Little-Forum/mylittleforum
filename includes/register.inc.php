@@ -87,17 +87,22 @@ switch ($action) {
 				// password too short?
 				if ($min_password_length_by_restrictions < intval($settings['min_pw_length']) && my_strlen($reg_pw, $lang['charset']) < intval($settings['min_pw_length'])) 
 					$errors[] = 'error_password_too_short';
+				// see: http://php.net/manual/en/regexp.reference.unicode.php
+				// \p{N}                == numbers
+				// [\p{Ll}\p{Lm}\p{Lo}] == lowercase, modifier, other letters
+				// [\p{Lu}\p{Lt}]       == uppercase, titlecase letters
+				// [\p{S}\p{P}\p{Z}]    == symbols, punctuations, separator
 				// password contains numbers?
-				if ($settings['min_pw_digits'] != 0 && !preg_match("/[0-9]{" . intval($settings['min_pw_digits']) . ",}/", $reg_pw))
+				if ($settings['min_pw_digits'] > 0 && !preg_match("/\p{N}{" . intval($settings['min_pw_digits']) . ",}/u", $reg_pw))
 					$errors[] = 'error_pw_needs_digit';
 				// password contains lowercase letter?
-				if ($settings['min_pw_lowercase_letters'] != 0 && !preg_match("/[a-z]{" . intval($settings['min_pw_lowercase_letters']) . ",}/", $reg_pw))
+				if ($settings['min_pw_lowercase_letters'] > 0 && !preg_match("/[\p{Ll}\p{Lm}\p{Lo}]{" . intval($settings['min_pw_lowercase_letters']) . ",}/u", $reg_pw))
 					$errors[] = 'error_pw_needs_lowercase_letter';
 				// password contains uppercase letter?
-				if ($settings['min_pw_uppercase_letters'] != 0 && !preg_match("/[A-Z]{" . intval($settings['min_pw_uppercase_letters']) . ",}/", $reg_pw))
+				if ($settings['min_pw_uppercase_letters'] > 0 && !preg_match("/[\p{Lu}\p{Lt}]{" . intval($settings['min_pw_uppercase_letters']) . ",}/u", $reg_pw))
 					$errors[] = 'error_pw_needs_uppercase_letter';
 				// password contains special character?
-				if ($settings['min_pw_special_characters'] != 0 && !preg_match("/\W{" . intval($settings['min_pw_special_characters']) . ",}/", $reg_pw))
+				if ($settings['min_pw_special_characters'] > 0 && !preg_match("/[\p{S}\p{P}\p{Z}]{" . intval($settings['min_pw_special_characters']) . ",}/u", $reg_pw))
 					$errors[] = 'error_pw_needs_special_character';
 				// name too long?
 				if (my_strlen($new_user_name, $lang['charset']) > $settings['username_maxlength']) 
