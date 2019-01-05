@@ -141,7 +141,8 @@
 <tr>
 <td class="c"><strong>{#bbcode#}</strong><br /><span class="small">{#bbcode_desc#}</span></td>
 <td class="d"><input id="bbcode" type="checkbox" name="bbcode" value="1"{if $settings.bbcode==1} checked="checked"{/if} /><label for="bbcode">{#bbcodes_enabled#}</label><br />
-<input id="bbcode_img" type="checkbox" name="bbcode_img" value="1"{if $settings.bbcode_img==1} checked="checked"{/if} /><label for="bbcode_img">{#bbcodes_img_enabled#}</label></td>
+<input id="bbcode_img" type="checkbox" name="bbcode_img" value="1"{if $settings.bbcode_img==1} checked="checked"{/if} /><label for="bbcode_img">{#bbcodes_img_enabled#}</label><br />
+<input id="bbcode_flash" type="checkbox" name="bbcode_flash" value="1"{if $settings.bbcode_flash==1} checked="checked"{/if} /><label id="bbcode_flash_label" for="bbcode_flash">{#bbcodes_flash_enabled#}</label></td></td>
 </tr>
 <tr>
 <td class="c"><strong>{#smilies#}</strong><br /><span class="small">{#smilies_desc#}</span></td>
