@@ -252,6 +252,23 @@ switch($settings['version']) {
 	case '2.4.15':
 		$update['items'][] = 'includes/bookmark.inc.php';                            // #419
 		$update['items'][] = 'includes/posting.inc.php';                             // #421
+	case '2.4.16':
+		$update['items'][] = 'includes/contact.inc.php';                             // #413, #423
+		$update['items'][] = 'includes/functions.inc.php';                           // #413
+		$update['items'][] = 'includes/posting.inc.php';                             // #413, #423
+		$update['items'][] = 'includes/register.inc.php';                            // #413, #423
+		$update['items'][] = 'index.php';                                            // #429
+		$update['items'][] = 'includes/admin.inc.php';                               // #430
+		$update['items'][] = 'lang/';                                                // #430, #434, #435
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #430, #437
+		$update['items'][] = 'js/posting.js';                                        // #432
+		$update['items'][] = 'js/posting.min.js';                                    // #432
+		$update['items'][] = 'includes/user.inc.php';                                // #434, #435
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';        // #434
+		$update['items'][] = 'themes/default/subtemplates/user_remove_account.inc.tpl';// #434
+		$update['items'][] = 'themes/default/subtemplates/user_edit_pw.inc.tpl';     // #435
+		$update['items'][] = 'js/admin.js';                                          // #437
+		$update['items'][] = 'js/admin.min.js';                                      // #437
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
@@ -683,6 +700,11 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3
 	}
 	else {
 		$update['errors'][] = "File ./config/db_settings.php not found or unwritable. New database table '" . htmlspecialchars($table_prefix) . "subscriptions' could not be added!";
+	}
+}
+if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16'))) {
+	if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('min_posting_time', '5'), ('min_register_time', '5'), ('min_email_time', '5'), ('max_posting_time', '10800'), ('max_register_time', '10800'), ('max_email_time', '10800')")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
 
