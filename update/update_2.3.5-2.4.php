@@ -256,14 +256,14 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/contact.inc.php';                             // #413, #423
 		$update['items'][] = 'includes/functions.inc.php';                           // #413
 		$update['items'][] = 'includes/posting.inc.php';                             // #413, #423
-		$update['items'][] = 'includes/register.inc.php';                            // #413, #423, #438
+		$update['items'][] = 'includes/register.inc.php';                            // #413, #423, #438, #439
 		$update['items'][] = 'index.php';                                            // #429
 		$update['items'][] = 'includes/admin.inc.php';                               // #430
 		$update['items'][] = 'lang/';                                                // #430, #434, #435, #438
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #430, #437
 		$update['items'][] = 'js/posting.js';                                        // #432
 		$update['items'][] = 'js/posting.min.js';                                    // #432
-		$update['items'][] = 'includes/user.inc.php';                                // #434, #435, #438
+		$update['items'][] = 'includes/user.inc.php';                                // #434, #435, #438, #439
 		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';        // #434
 		$update['items'][] = 'themes/default/subtemplates/user_remove_account.inc.tpl';// #434
 		$update['items'][] = 'themes/default/subtemplates/user_edit_pw.inc.tpl';     // #435, #438
