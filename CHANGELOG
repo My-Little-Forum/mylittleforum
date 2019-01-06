@@ -1,6 +1,18 @@
 my little forum changelog
 -------------------------
 
+2.4.17 (2019-01-06)
+-------------------
+- fixed: set the decimal point as fix char because different decimal separators (i.e. comma in german language) causes errors in floating number operations in PHP
+- fixed: the checkbox for the Flash-bb-code-setting got reintroduced (will definitely get removed with version 2.5, change was removed by accident in the 2.4.x-branch)
+- fixed: remove the confirm-password-field from the form for change ones own password, function was removed for the other forms in versions 2.4.16
+- feature: minimal and maximal time between requesting a form and sending the filled form back to the forum-server as separate settings for posting form, e-mail form and registration form
+- feature: a user is from now on able to close her/his own forum account, until now this was only possible for the admin/forum operator
+- feature: a by the registered users granted acceptance to the terms of use and/or the data privacy statement can be recalled and a newly acceptance can be enforced for the case of changes in the terms of use and/or the data privacy statement
+- feature: further possible requirements for password quality (enforce a number of lowercase and/or capital letters, ciphers and/or "special" chars), disabled by default
+- change: removed the JS-function to create the bb-code [msg] for forum entries, it needed a blacklist of not covered exceptions that was incomplete; entries will from now on handled as [link] or [url] like all other links; existing msg-bb-codes will still get interpreted
+- change: not selected checkboxes and radio buttons in the settings forms of the admin panel will not grayed out from now on, was a misleading UI-feature because the form fields looked like disabled but was still accessible
+
 2.4.16 (2018-12-07)
 -------------------
 - fixed: do not create a list item for a non existing bookmark tag for the users bookmark list
