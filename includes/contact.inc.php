@@ -87,6 +87,7 @@ switch($action) {
 			$subject = trim($_POST['subject']);
 
 		// check form session and time used to complete the form:
+		setReceiptTimestamp();
 		// if (empty($_SESSION[$settings['session_prefix'].'user_id'])) {
 		if (!isset($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference']) || intval($_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference']) <= 0)
 			$errors[] = 'error_invalid_form';
