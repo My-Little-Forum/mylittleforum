@@ -614,7 +614,7 @@ a.reply-search:visited   { /*color:#800080;*/ }
 a.thread-search:active,
 a.reply-search:active    { color:#ff0000; }
 
-img.thumbnail            { width:150px; border:1px solid #c0c0c0; margin: 0; }
+img.thumbnail            { width:150px; border:1px solid #c0c0c0; margin: 0; height:auto; }
 a:link img.thumbnail     { color: #0000ff; border:1px solid #c0c0c0; }
 a:visited img.thumbnail  { color: #0000ff; border:1px solid #c0c0c0; }
 a:hover img.thumbnail    { color: #0000ff; border:1px solid #000000; }
