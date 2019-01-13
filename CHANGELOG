@@ -1,6 +1,18 @@
 my little forum changelog
 -------------------------
 
+2.4.18 (2019-01-13)
+-------------------
+- fixed: unregistered users was not able to subscribe to their own postings because of field user_id being NOT NULL in the subscriptions table
+- fixed: because of failing subscriptions of unregistered users for thread opening postings the thread in itself was broken and not deletable
+- fixed: sending e-mails over the contact form failed because of forgotten function call for form time handling
+- fixed: deleting a posting with subscriptions left orphaned subscriptions because they got not removed from the database
+- fixed: the check for password strength failed when more than one char in a category was required and these chars did not follow one after the other
+- fixed: if one used the thumbnail funtion to include an image to a posting, the image got the right width but was elongated to the complete possible height of the posting.
+- change: the default protocol, used in the JS-prompts for links and images when creating a posting is from now on "https://" instead "http://"
+- change: changed the language strings, key: show_spam_link, for english and german language, led to danger of confusion ("show spam (no. of entries)" vs. "list spam") (enahncement for admins and mods)
+- change: the update script disables the forum during the update and reenables it afterwards (admin only feature), @admins: please check the status after an update in the settings page
+
 2.4.17 (2019-01-06)
 -------------------
 - fixed: set the decimal point as fix char because different decimal separators (i.e. comma in german language) causes errors in floating number operations in PHP
