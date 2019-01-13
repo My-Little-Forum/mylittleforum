@@ -1173,6 +1173,7 @@ function delete_posting_recursive($id) {
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] .      " WHERE posting_id = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] .   " WHERE posting_id = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .    " WHERE `bid`      = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE `eid`      = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['akismet_rating_table'] ." WHERE `eid`      = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['b8_rating_table'] .     " WHERE `eid`      = " . intval($ids_data['id']));
 		}
@@ -1187,6 +1188,7 @@ function delete_posting_recursive($id) {
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] .       " WHERE posting_id = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] .    " WHERE posting_id = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .     " WHERE `bid`      = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] .  " WHERE `eid`      = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['akismet_rating_table'] . " WHERE `eid`      = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['b8_rating_table'] .      " WHERE `eid`      = " . intval($id));
 		if (isset($child_ids) && is_array($child_ids)) {
@@ -1196,6 +1198,7 @@ function delete_posting_recursive($id) {
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] .       " WHERE posting_id = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] .    " WHERE posting_id = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .     " WHERE `bid`      = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] .  " WHERE `eid`      = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['akismet_rating_table'] . " WHERE `eid`      = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['b8_rating_table'] .      " WHERE `eid`      = " . intval($child_id));
 			}
