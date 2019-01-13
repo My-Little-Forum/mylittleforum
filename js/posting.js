@@ -3,7 +3,7 @@
 ************************************************************************
 * Created by Michael Loesler <https://github.com/loesler>              *
 *                                                                      *
-* This script is part of my little forum <http://mylittleforum.net>    *
+* This script is part of my little forum <https://mylittleforum.net>   *
 *                                                                      *
 * This program is free software; you can redistribute it and/or modify *
 * it under the terms of the GNU General Public License as published by *
