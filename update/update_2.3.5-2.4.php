@@ -347,7 +347,7 @@ if (empty($update['errors'])) {
 }
 // disable the forum until update is done
 if (empty($update['errors'])) {
-	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET `forum_enabled` = 0")) {
+	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET  value = '0' WHERE name =  'forum_enabled'")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
@@ -750,7 +750,7 @@ if(empty($update['errors'])) {
 		$update['new_version'] = $newVersion;
 		// reenable the forum after update is done
 		if (empty($update['errors'])) {
-			if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET `forum_enabled` = 1")) {
+			if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 		}
