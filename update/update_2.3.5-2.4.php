@@ -273,6 +273,7 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #438
 	case '2.4.17':
 		$update['items'][] = 'themes/default/subtemplates/posting_unsubscribe.inc.tpl.'; // #399
+		$update['items'][] = 'js/';                                                  // #411, no pull request
 		$update['items'][] = 'includes/register.inc.php';                            // #441
 		$update['items'][] = 'includes/user.inc.php';                                // #441
 		$update['items'][] = 'themes/default/style.css';                             // #442
