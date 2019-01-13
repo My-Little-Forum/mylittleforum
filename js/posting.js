@@ -94,7 +94,7 @@ function BBCodeLinkButton(el) {
 			var txtarea = buttonGroup.getTextArea();
 			var selectionRange = txtarea.getSelection().trim();
 	
-			var insert_link = (regExpURI.test( selectionRange ))?window.prompt(lang["bbcode_link_url"], selectionRange):window.prompt(lang["bbcode_link_url"],"http://");
+			var insert_link = (regExpURI.test( selectionRange ))?window.prompt(lang["bbcode_link_url"], selectionRange):window.prompt(lang["bbcode_link_url"],"https://");
 			if (!insert_link || insert_link == '' || insert_link == "https://" || insert_link == "http://" || insert_link == "ftp://" || insert_link == "ftps://")
 				return;
 			if (selectionRange == '' || regExpURI.test( selectionRange )) 
@@ -569,9 +569,9 @@ function ButtonGroup(f) {
 		break;
 		case "img":
 		if (list && list.length > 1)
-		bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "http://" );
+		bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "https://" );
 		else
-		bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "http://" ); 
+		bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "https://" ); 
 		break;
 		case "color":
 		bbCodeButton = new BBCodeColorChooserButton( button );
