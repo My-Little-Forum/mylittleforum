@@ -345,6 +345,12 @@ if (empty($update['errors'])) {
 		$update['errors'][] = 'Error in line '.__LINE__.': This update file doesn\'t work with the current version.';
 	}
 }
+// disable the forum until update is done
+if (empty($update['errors'])) {
+	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET `forum_enabled` = 0")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+}
 
 if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3'))) {
 	if(!@mysqli_query($connid, "INSERT INTO ".$db_settings['settings_table']." VALUES ('stop_forum_spam', '0')")) {
@@ -742,6 +748,12 @@ if(empty($update['errors'])) {
 	else {
 		// Set new Version, taken ftrom VERSION file.
 		$update['new_version'] = $newVersion;
+		// reenable the forum after update is done
+		if (empty($update['errors'])) {
+			if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET `forum_enabled` = 1")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+		}
 	}
 }
 
