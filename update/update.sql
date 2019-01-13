@@ -381,3 +381,12 @@ ALTER TABLE mlf2_entries DROP COLUMN `email_notification`;
 /*
 INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('min_posting_time', '5'), ('min_register_time', '5'), ('min_email_time', '5'), ('max_posting_time', '10800'), ('max_register_time', '10800'), ('max_email_time', '10800');
 */
+--------------------------------------------------------------------------------
+-- 2.4.17 to 2.4.18
+/*
+ALTER TABLE `mlf2_subscriptions` DROP PRIMARY KEY;
+ALTER TABLE `mlf2_subscriptions` CHANGE `user_id` `user_id` int UNSIGNED NULL;
+ALTER TABLE `mlf2_subscriptions` ADD UNIQUE INDEX `user_thread` (`user_id`, `eid`);
+ALTER TABLE `mlf2_subscriptions` ADD INDEX `entry` (`eid`);
+*/
+
