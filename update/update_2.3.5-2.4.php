@@ -720,6 +720,20 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
+if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16', '2.4.17'))) {
+	if (!@mysqli_query($connid, "ALTER TABLE `".$db_settings['subscriptions_table']."` DROP PRIMARY KEY;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `".$db_settings['subscriptions_table']."` CHANGE `user_id` `user_id` int UNSIGNED NULL;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `".$db_settings['subscriptions_table']."` ADD UNIQUE INDEX `user_thread` (`user_id`, `eid`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `".$db_settings['subscriptions_table']."` ADD INDEX `entry` (`eid`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+}
 
 if(empty($update['errors'])) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
