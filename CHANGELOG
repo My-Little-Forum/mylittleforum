@@ -11,7 +11,7 @@ my little forum changelog
 - fixed: if one used the thumbnail funtion to include an image to a posting, the image got the right width but was elongated to the complete possible height of the posting.
 - change: the default protocol, used in the JS-prompts for links and images when creating a posting is from now on "https://" instead "http://"
 - change: changed the language strings, key: show_spam_link, for english and german language, led to danger of confusion ("show spam (no. of entries)" vs. "list spam") (enahncement for admins and mods)
-- change: the update script disables the forum during the update and reenables it afterwards (admin only feature), @admins: please check the status after an update in the settings page
+- change: the update script disables the forum during the database operations of the update and reenables it afterwards (admin only feature), at the moment it got enabled before one updates the files and folders; @admins: please check the status after an update in the settings page
 
 2.4.17 (2019-01-06)
 -------------------
