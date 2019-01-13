@@ -237,6 +237,7 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/functions.inc.php';                           // #399
 		$update['items'][] = 'includes/posting.inc.php';                             // #399
 		$update['items'][] = 'lang/';                                                // #399, #400, #401, #403, #404, #405
+		$update['items'][] = 'themes/default/subtemplates/posting_unsubscribe.inc.tpl.'; // #399
 		$update['items'][] = 'includes/js_defaults.inc.php';                         // #403, #404
 		$update['items'][] = 'includes/register.inc.php';                            // #403
 		$update['items'][] = 'js/admin.js';                                          // #403
@@ -270,6 +271,8 @@ switch($settings['version']) {
 		$update['items'][] = 'js/admin.js';                                          // #437
 		$update['items'][] = 'js/admin.min.js';                                      // #437
 		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #438
+	case '2.4.17':
+		$update['items'][] = 'themes/default/subtemplates/posting_unsubscribe.inc.tpl.'; // #399
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
