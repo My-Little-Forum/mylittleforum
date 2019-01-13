@@ -1269,7 +1269,6 @@ function delete_posting_recursive($id) {
 	} else {
 		// it's a posting within the thread - delete posting and child postings:
 		$child_ids = get_child_ids($id);
-<<<<<<< HEAD
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] . "       WHERE id         = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id   = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($id));
