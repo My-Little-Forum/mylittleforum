@@ -1261,6 +1261,7 @@ function delete_posting_recursive($id) {
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] . " WHERE posting_id = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .  " WHERE `bid`      = " . intval($ids_data['id']));
+			@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE `eid`    = " . intval($ids_data['id']));
 		}
 		mysqli_free_result($ids_result);
 		// end clear cache
@@ -1268,11 +1269,13 @@ function delete_posting_recursive($id) {
 	} else {
 		// it's a posting within the thread - delete posting and child postings:
 		$child_ids = get_child_ids($id);
+<<<<<<< HEAD
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] . "       WHERE id         = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] . " WHERE cache_id   = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] . " WHERE posting_id = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .  " WHERE `bid`      = " . intval($id));
+		@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE `eid`    = " . intval($id));
 		if (isset($child_ids) && is_array($child_ids)) {
 			foreach ($child_ids as $child_id) {
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['forum_table'] . "       WHERE id         = " . intval($child_id));
@@ -1280,6 +1283,7 @@ function delete_posting_recursive($id) {
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] . "    WHERE posting_id = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] . " WHERE posting_id = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .  " WHERE `bid`      = " . intval($child_id));
+				@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE `eid`    = " . intval($child_id));
 			}
 		}
 		// set last reply time:
