@@ -1,6 +1,10 @@
 my little forum changelog
 -------------------------
 
+2.4.18.1 (2019-01-14)
+---------------------
+- fixed: table name in install.sql MUST NOT be surrounded by backticks, this makes the prefix replacement during installation impossible; this is only relevant during first installation
+
 2.4.18 (2019-01-13)
 -------------------
 - fixed: unregistered users was not able to subscribe to their own postings because of field user_id being NOT NULL in the subscriptions table
