@@ -434,7 +434,7 @@ img.right{float:right;margin:0 0 10px 10px}
 #ajax-preview-throbber{display:block;margin-left:auto;margin-right:auto}
 #ajax-preview-content p,#ajax-preview-content ul{font-size:.82em;line-height:1.5em}
 #ajax-preview-content li,#ajax-preview-content ul ul{font-size:1em}
-#ajax-preview-content img{max-width:100%}
+#ajax-preview-content img{max-width:100%;height:auto}
 #image-canvas{position:absolute;top:0;left:0;width:100%;height:100%;background:url(images/canvas_bg.png);z-index:20}
 #image-canvas img{display:block;margin:2em auto 0;border:1px solid #000;z-index:30;max-width:90%}
 #ie ul.reply{width:100%}
