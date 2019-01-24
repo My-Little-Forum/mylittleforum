@@ -66,7 +66,10 @@ function count_failed_logins()
 function get_settings()
  {
   global $connid, $db_settings;
-  $result = mysqli_query($connid, "SELECT name, value FROM ".$db_settings['settings_table']) or raise_error('database_error',mysqli_error($connid));
+  $qGetSettings = "SELECT name, value FROM " . $db_settings['settings_table'] . "
+  UNION SELECT name, value FROM " . $db_settings['temp_infos_table'] . "
+  WHERE name IN('access_permission_checks')";
+  $result = mysqli_query($connid, $qGetSettings) or raise_error('database_error',mysqli_error($connid));
   while($line = mysqli_fetch_array($result))
    {
     $settings[$line['name']] = $line['value'];
