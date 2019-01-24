@@ -131,11 +131,8 @@ INSERT INTO mlf2_settings VALUES ('captcha_email', '0');
 INSERT INTO mlf2_settings VALUES ('captcha_register', '0');
 INSERT INTO mlf2_settings VALUES ('min_pw_length', '8');
 INSERT INTO mlf2_settings VALUES ('cookie_validity_days', '30');
-INSERT INTO mlf2_settings VALUES ('access_permission_checks', '0');
 INSERT INTO mlf2_settings VALUES ('daily_actions_time', '3:30');
-INSERT INTO mlf2_settings VALUES ('next_daily_actions', '0');
 INSERT INTO mlf2_settings VALUES ('delete_ips', '0');
-INSERT INTO mlf2_settings VALUES ('last_changes', '0');
 INSERT INTO mlf2_settings VALUES ('ajax_preview', '1');
 INSERT INTO mlf2_settings VALUES ('read_state_expiration_value', '500');
 INSERT INTO mlf2_settings VALUES ('read_state_expiration_method', '0');
@@ -151,6 +148,8 @@ INSERT INTO mlf2_settings VALUES ('min_pw_digits', '0');
 INSERT INTO mlf2_settings VALUES ('min_pw_lowercase_letters', '0');
 INSERT INTO mlf2_settings VALUES ('min_pw_uppercase_letters', '0');
 INSERT INTO mlf2_settings VALUES ('min_pw_special_characters', '0');
+
+INSERT INTO mlf2_temp_infos ('name', 'value') VALUES ('access_permission_checks', '0'), ('last_changes', '0'), ('next_daily_actions', '0');
 
 INSERT INTO mlf2_smilies VALUES (1, 1, 'smile.png', ':-)', '', '', '', '', '');
 INSERT INTO mlf2_smilies VALUES (2, 2, 'wink.png', ';-)', '', '', '', '', '');
