@@ -1645,7 +1645,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 				if (trim($banned_ips) == '' && trim($banned_user_agents) == '') $access_permission_checks = 0;
 				else $access_permission_checks = 1;
-				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". mysqli_real_escape_string($connid, $access_permission_checks) ."' WHERE name = 'access_permission_checks'");
+				mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value = '". intval($access_permission_checks) ."' WHERE name = 'access_permission_checks'");
 
 				header("Location: index.php?mode=admin&action=spam_protection&saved=true");
 				exit;
