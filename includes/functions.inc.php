@@ -82,9 +82,12 @@ function get_settings()
  */
 function daily_actions($current_time=0) {
 	global $settings, $db_settings, $connid;
-	if($current_time==0) 
+	$rNDA = mysqli_query($connid, "SELECT value FROM " . $db_settings['temp_infos_table'] . " WHERE name = 'next_daily_actions'");
+	$nda = mysqli_fetch_assoc($rNDA);
+	if($current_time==0)
 		$current_time = TIMESTAMP;
-	if($current_time > $settings['next_daily_actions']) {
+	#if($current_time > $next_daily_actions['value']) {
+	if ($current_time > intval($nda[0]['value'])) {
 		// clear up expired auto_login_codes:
 		if($settings['autologin'] == 1) {
 			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET auto_login_code='' WHERE auto_login_code != '' AND last_login < (NOW() - INTERVAL ".$settings['cookie_validity_days']." DAY)");
@@ -115,7 +118,7 @@ function daily_actions($current_time=0) {
 				$data = mysqli_fetch_array($result);
 				$lastCheckedVersion = is_null($data['value']) ? $lastCheckedVersion : $data['value'];
 				mysqli_free_result($result);
-			}	
+			}
 			//$latestRelease = checkUpdate($settings['version']);
 			$latestRelease = checkUpdate($lastCheckedVersion);
 			if ($latestRelease !== false) {
@@ -135,7 +138,8 @@ function daily_actions($current_time=0) {
 		else {
 			$next_daily_actions = $current_time + 86400;
 		}
-		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($next_daily_actions)."' WHERE name='next_daily_actions'");
+		#@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($next_daily_actions)."' WHERE name='next_daily_actions'");
+		@mysqli_query($connid, "UPDATE " . $db_settings['temp_infos_table'] . " SET value='" . intval($next_daily_actions) . "', time = NOW() WHERE name='next_daily_actions'");
 	}
 }
 
