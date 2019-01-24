@@ -829,7 +829,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if (empty($_POST['user_edit_if_no_replies'])) $_POST['user_edit_if_no_replies'] = 0;
 		if (empty($_POST['time_zone'])) $_POST['time_zone'] = '';
 		if (empty($_POST['read_state_expiration_method'])) $_POST['read_state_expiration_method'] = 0;
-		$_POST['last_changes'] = TIMESTAMP;
 
 		while(list($key, $val) = each($settings)) {
 			if (isset($_POST[$key])) mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". mysqli_real_escape_string($connid, $_POST[$key]) ."' WHERE name = '". mysqli_real_escape_string($connid, $key) ."' LIMIT 1");
@@ -841,6 +840,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if ($settings['autologin'] == 1 && isset($_POST['autologin']) && $_POST['autologin'] == 0) {
 			mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET auto_login_code = ''");
 		}
+		$qSetChangeTime = "INSERT INTO " . $db_settings['temp_infos_table'] . " (name, value, time)
+		VALUES ('last_changes', NOW(), NOW()) ON DUPLICATE KEY UPDATE value = NOW(), time = NOW()";
+		mysqli_query($connid, $qSetChangeTime);
 		if (isset($_POST['return_to']) and $_POST['return_to'] === 'advanced_settings') {
 			header("Location: index.php?mode=admin&action=advanced_settings&saved=true");
 		} else {
