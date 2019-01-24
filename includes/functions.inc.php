@@ -68,7 +68,7 @@ function get_settings()
   global $connid, $db_settings;
   $qGetSettings = "SELECT name, value FROM " . $db_settings['settings_table'] . "
   UNION SELECT name, value FROM " . $db_settings['temp_infos_table'] . "
-  WHERE name IN('access_permission_checks')";
+  WHERE name IN('access_permission_checks', 'version')";
   $result = mysqli_query($connid, $qGetSettings) or raise_error('database_error',mysqli_error($connid));
   while($line = mysqli_fetch_array($result))
    {
@@ -122,7 +122,6 @@ function daily_actions($current_time=0) {
 				$lastCheckedVersion = is_null($data['value']) ? $lastCheckedVersion : $data['value'];
 				mysqli_free_result($result);
 			}
-			//$latestRelease = checkUpdate($settings['version']);
 			$latestRelease = checkUpdate($lastCheckedVersion);
 			if ($latestRelease !== false) {
 				@mysqli_query($connid, "INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`, `time`) VALUES ('last_version_check', '" . mysqli_real_escape_string($connid, $latestRelease->version) . "', NOW()) ON DUPLICATE KEY UPDATE `value` = '" . mysqli_real_escape_string($connid, $latestRelease->version) . "', `time` = NOW();");
