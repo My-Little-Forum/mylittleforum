@@ -1185,19 +1185,22 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('breadcrumbs',$breadcrumbs);
 			$smarty->assign('subnav_location','subnav_settings');
 			if (isset($_GET['saved'])) $smarty->assign('saved', true);
-
+			$rGetSettingsEdit = mysqli_fetch_assoc(mysqli_query($connid, "SELECT name, value FROM " . $db_settings['settings_table']));
+			foreach ($rGetSettingsEdit as $line) {
+				$settings_array[$line['name']] = $line['value'];
+			}
+			$smarty->assign('edSet', $settings_array);
+			// languages
 			$languages = get_languages(true);
 			if (isset($languages) && count($languages) > 1) {
 				$smarty->assign('languages', $languages);
 			}
-
+			// themes
 			$themes = get_themes(true);
 			if(isset($themes) && count($themes) > 1) {
 				$smarty->assign('themes', $themes);
 			}
-
-			if (isset($settings['time_difference'])) $std = $settings['time_difference']; else $std = 0;
-
+			$std = (isset($settings['time_difference'])) ? intval($settings['time_difference']) : 0;
 			// time zones:
 			if(function_exists('date_default_timezone_set') && $time_zones = get_timezones()) {
 				$smarty->assign('time_zones', $time_zones);
@@ -1211,17 +1214,17 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('breadcrumbs', $breadcrumbs);
 			$smarty->assign('subnav_location', 'subnav_advanced_settings');
 			if (isset($_GET['saved'])) $smarty->assign('saved', true);
-
-			$settings_sorted = $settings;
-			ksort($settings_sorted);
-
+			$rGetSettingsEdit = mysqli_fetch_all(mysqli_query($connid, "SELECT name, value FROM " . $db_settings['settings_table'] ." ORDER BY name ASC"), MYSQLI_ASSOC);
+			foreach ($rGetSettingsEdit as $line) {
+				$settings_array[$line['name']] = $line['value'];
+			}
 			$i=0;
-			while(list($key, $val) = each($settings_sorted)) {
-				$settings_sorted_array[$i]['key'] = $key;
-				$settings_sorted_array[$i]['val'] = $val;
+			foreach ($settings_array as $key => $val) {
+				$settings_sorted[$i]['key'] = $key;
+				$settings_sorted[$i]['val'] = $val;
 				$i++;
 			}
-			$smarty->assign('settings_sorted',$settings_sorted_array);
+			$smarty->assign('settings_sorted', $settings_sorted);
 		break;
 		case "delete_users":
 			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
