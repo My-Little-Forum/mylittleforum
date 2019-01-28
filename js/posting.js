@@ -374,7 +374,7 @@ BBCodePopUpButton.prototype   = new BBCodeButton;
 BBCodePromtButton.prototype  = new BBCodeButton;
 
 /**
- * ButtonGroup, die allte BB-Code-Button verwaltet
+ * ButtonGroup, die alle BB-Code-Button verwaltet
  * @param form
  */
 function ButtonGroup(f) {
@@ -415,7 +415,7 @@ function ButtonGroup(f) {
 			return false;
 		}
 		if (document.getElementById('throbber-submit')) {
-			document.getElementById('throbber-submit').classList.remove('js-visibility-hidden'); //style.visibility = 'visible';
+			document.getElementById('throbber-submit').classList.remove('js-visibility-hidden');
 		}
 		return true;
 	};
@@ -423,7 +423,7 @@ function ButtonGroup(f) {
 	/**
 	 * Wandelt die Smilie-Anleitung in klickbare Elemente um
 	 */
-	convertInstructionsToSmilies = function() {
+	var convertInstructionsToSmilies = function() {
 		if (!document.getElementById("smiley-bar"))
 			return;
 		var buttonBar = document.getElementById("smiley-bar");
@@ -439,7 +439,7 @@ function ButtonGroup(f) {
 						classes : el.className,
 						isSmilie: true,
 						childs  : []
-					}
+					};
 				}
 				else if (obj && el.nodeName && el.nodeName.toLowerCase() == "dd") {
 					obj.label = el.firstChild;
@@ -487,8 +487,7 @@ function ButtonGroup(f) {
 						title   : el.firstChild.nodeValue,
 						classes : el.className,
 						childs  : []
-					}
-
+					};
 				}
 				else if (obj && el.nodeName && el.nodeName.toLowerCase() == "dd") {
 					var attChild = {
@@ -777,16 +776,23 @@ function ButtonGroup(f) {
 			return false;
 		};		
 	};
+	
+	var removeIntroductionElements = function() {
+		if (document.getElementById("bbcode-instructions")) {
+			var el = document.getElementById("bbcode-instructions");
+			el.parentNode.removeChild(el);
+		}
+		if (document.getElementById("smiley-instructions")) {
+			var el = document.getElementById("smiley-instructions");
+			el.parentNode.removeChild(el);
+		}
+	};
 
 	/**
 	 * Initialisiert ButtonGroup
 	 *
 	 */
 	(function() {
-		if (document.getElementById("bbcode-instructions"))
-			document.getElementById("bbcode-instructions").classList.add("js-display-none");
-		if (document.getElementById("smiley-instructions"))
-			document.getElementById("smiley-instructions").classList.add("js-display-none");
 		additionalOptionsWindow = createAdditionalOptionsWindow();
 		// Erzeuge Textarea
 		initTextArea();
@@ -796,6 +802,8 @@ function ButtonGroup(f) {
 		initUserBBCodeButtons(true);
 		convertInstructionsToSmilies();
 		initDeleteCookieLink();
+		// entferne die Introduction-Elemente zur Definition der Button
+		removeIntroductionElements();
 	}());
 }
 
