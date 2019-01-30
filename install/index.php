@@ -318,37 +318,173 @@ if(empty($action)) $action = 'install';
 
 header('Content-Type: text/html; charset='.$lang['charset']);
 
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang['language']; ?>">
+?><!DOCTYPE html>
+<html lang="<?php echo $lang['language']; ?>">
 <head>
-<title>my little forum - <?php echo $lang['installation_title']; ?></title>
-<meta http-equiv="content-type" content="text/html; charset=<?php echo $lang['charset']; ?>" />
-<link rel="shortcut icon" href="../themes/default/images/favicon.ico" />
-<style type="text/css">
-<!--
-body              { color:#000; background:#fff; margin:0; padding:0; font-family: verdana, arial, sans-serif; font-size:100.1%; }
-h1                { font-size:1.25em; }
-p,ul              { font-size:0.82em; line-height:1.45em; }
-#top              { margin:0; padding:0 20px 0 20px; color:#000000; background:#d2ddea; border-bottom: 1px solid #bacbdf; }
-#top h1           { font-size:2.2em; line-height:2em; margin:0; padding:0; color:#000080; }
-#content          { padding:20px; }
-table.admintab    { border: 1px solid #bacbdf; }
-td.admintab-hl    { width: 100%; vertical-align: top; font-family: verdana, arial, sans-serif; font-size: 13px; background:#e1eaf3; }
-td.admintab-hl h2 { margin: 3px 0px 3px 0px; font-size: 15px; font-weight: bold; }
-td.admintab-hl p  { font-size: 11px; line-height: 16px; margin: 0px 0px 3px 0px; padding: 0px; }
-td.admintab-l     { width: 50%; vertical-align: top; font-family: verdana, arial, sans-serif; font-size: 13px; background: #f5f5f5; }
-td.admintab-r     { width: 50%; vertical-align: top; font-family: verdana, arial, sans-serif; font-size: 13px; background: #f5f5f5; }
-.caution          { color: red; font-weight: bold; }
-.small            { font-size: 11px; line-height:16px; }
-a:link            { color: #0000cc; text-decoration: none; }
-a:visited         { color: #0000cc; text-decoration: none; }
-a:hover           { color: #0000ff; text-decoration: underline; }
-a:active          { color: #ff0000; text-decoration: none; }
-
--->
-</style>
+ <meta charset="<?php echo $lang['charset']; ?>">
+ <title>my little forum - <?php echo $lang['installation_title']; ?></title>
+ <link rel="shortcut icon" href="../themes/default/images/favicon.ico">
+ <style type="text/css">
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+body {
+  color: #000;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  font-family: verdana, arial, sans-serif;
+  font-size: 1em;
+  font-size: 1rem;
+}
+p, ul, button {
+  font-size: 1em;
+  line-height: 145%;
+}
+header, main {
+  margin: 0;
+}
+header {
+  background: #d2ddea;
+  background: linear-gradient(to bottom, #d2deec 0%, #edf2f5 100%);
+  border-bottom: 1px solid #bacbdf;
+}
+header h1 {
+  margin: 0  auto;
+  padding: 0;
+  min-width: 28em;
+  width: 60vw;
+}
+section, main > h2 {
+  margin: 1rem auto;
+  padding: 1rem;
+  min-width: 28em;
+  width: 60vw;
+}
+header > h1, main > h2 {
+  padding: 0.5rem 1rem;
+}
+section {
+  padding: 1rem;
+  border: 1px solid #bacbdf;
+  border-radius: 0.5rem;
+}
+h1, h2, h3 {
+  line-height: 140%;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  font-size: 1.5em;
+  color: #000080;
+}
+h2 {
+  font-size: 1.15em;
+}
+section h2 {
+  border-bottom: 1px solid #bacbdf;
+  padding: 0 0 0.5rem 0;
+}
+section > ul {
+  margin: 1rem 0 0 0;
+  padding: 0 0 0 1.5rem;
+}
+.error {
+  background-color: #ffb;
+  border-color: #c00;
+}
+.error h2 {
+  color: #c00;
+  border-color: #c00;
+}
+h2 + form {
+  margin-top: 1rem;
+}
+form h3, input[type="text"], input[type="password"], input[type="url"], input[type="email"], option {
+  font-size: 1em;
+}
+fieldset {
+  border: none;
+  padding: 0;
+}
+fieldset:not(:last-of-type) {
+  margin-bottom: 2.5rem;
+}
+legend {
+  display: block;
+  width: 100%;
+  padding: 0 0 0.5rem 0;
+  font-weight: bold;
+  font-size: 1.15em;
+  line-height: 140%;
+  border-bottom: 1px solid #bacbdf;
+}
+legend + p {
+  margin: 0.5rem 0 0.75rem 0;
+}
+fieldset div:not(:last-of-type) {
+  margin: 0 0 0.75rem 0;
+}
+label {
+  cursor: pointer;
+}
+.button-bar {
+  margin: 1rem 0 0 0;
+}
+#forum-install label:not(.for-selectors), .label-like {
+  display: block;
+  margin: 0 0 0.5rem 0;
+}
+#forum-install label h3, #forum-install label p, .label-like h3, .label-like p {
+  margin: 0;
+  font-size: 1em;
+}
+#forum-install input:not([type="checkbox"]) {
+  display: block;
+}
+#forum-install input[type="checkbox"] {
+  margin: 0 0.5rem 0 0;
+}
+#lang-select ul {
+  padding: 0;
+  list-style: none;
+  border: 1px solid #bacbdf;
+}
+#lang-select li:not(:last-child) {
+  border-bottom: 1px solid #bacbdf;
+}
+#lang-select input[type="radio"] {
+  display: none;
+}
+#lang-select label {
+  display: inline-block;
+  width: 100%;
+  padding: 0.35rem;
+  background: #fff;
+  color: #744;
+  cursor: pointer;
+}
+#lang-select input[type="radio"]:checked ~ label {
+  background: #aaffc8;
+  color: #000;
+}
+#lang-select input[type="radio"]:checked ~ label::after {
+  font-size: 0.8em;
+  content: ' ✔';
+}
+a {
+  color: #0000cc;
+  text-decoration: none;
+}
+a:focus, a:hover {
+  color: #0000ff;
+  text-decoration: underline;
+}
+a:active {
+  color: #ff0000;
+}
+ </style>
 </head>
-
 <body>
 
 <div id="top">
