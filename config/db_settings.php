@@ -30,5 +30,8 @@ $db_settings['tags_table']           = 'mlf2_tags';
 $db_settings['bookmark_tags_table']  = 'mlf2_bookmark_tags';
 $db_settings['entry_tags_table']     = 'mlf2_entry_tags';
 $db_settings['subscriptions_table']  = 'mlf2_subscriptions';
+$db_settings['b8_wordlist_table']    = 'mlf2_b8_wordlist';
+$db_settings['b8_rating_table']      = 'mlf2_b8_rating';
+$db_settings['akismet_rating_table'} = 'mlf2_akismet_rating';
 $db_settings['uploads_table']        = 'mlf2_uploads';
 ?>
