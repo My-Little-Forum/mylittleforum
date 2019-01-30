@@ -211,7 +211,8 @@ if(isset($_POST['install_submit']))
 								'subscriptions_table'  => 'subscriptions',
 								'b8_wordlist_table'    => 'b8_wordlist',
 								'b8_rating_table'      => 'b8_rating',
-								'akismet_rating_table' => 'akismet_rating'
+								'akismet_rating_table' => 'akismet_rating',
+								'uploads_table'        => 'uploads'
 							);
 
 		clearstatcache();
