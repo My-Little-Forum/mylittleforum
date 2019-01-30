@@ -13,8 +13,8 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 	if (isset($_FILES['probe']) && $_FILES['probe']['size'] != 0 && !$_FILES['probe']['error']) {
 		unset($errors);
 		$image_info = getimagesize($_FILES['probe']['tmp_name']);
-
-		if (!is_array($image_info) || $image_info[2] != 1 && $image_info[2] != 2 && $image_info[2] != 3) $errors[] = 'invalid_file_format';
+		if (!is_array($image_info) || $image_info[2] != 1 && $image_info[2] != 2 && $image_info[2] != 3)
+			$errors[] = 'invalid_file_format';
 
 		if (empty($errors)) {
 			if ($_FILES['probe']['size'] > $settings['upload_max_img_size'] * 1000 || $image_info[0] > $settings['upload_max_img_width'] || $image_info[1] > $settings['upload_max_img_height']) {
@@ -33,11 +33,9 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 					$new_width = $width;
 					$new_height = $height;
 				}
-
 				$img_tmp_name = uniqid(rand()).'.tmp';
-
 				for ($compression = 100; $compression > 1; $compression = $compression - 10) {
-					if(!resize_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
+					if (!resize_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
 						$file_size = $_FILES['probe']['size']; // @filesize($_FILES['probe']['tmp_name']);
 						break;
 					}
