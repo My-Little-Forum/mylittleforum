@@ -1044,7 +1044,7 @@ switch ($action) {
 						}
 						// save status of email notification
 						if ($email_notification == 1) {
-							@mysqli_query($connid, "INSERT INTO " . $db_settings['subscriptions_table'] . " (user_id, eid, unsubscribe_code, tstamp) VALUES (" . intval($field['user_id']) . ", " . intval($id) . ", UUID(), NOW()) ON DUPLICATE KEY UPDATE eid = eid AND user_id = user_id") or die(mysqli_error($connid));
+							@mysqli_query($connid, "INSERT INTO " . $db_settings['subscriptions_table'] . " (user_id, eid, unsubscribe_code, tstamp) VALUES (" . intval($field['user_id']) . ", " . intval($id) . ", UUID(), NOW()) ON DUPLICATE KEY UPDATE eid = eid, user_id = user_id") or die(mysqli_error($connid));
 						} else {
 							@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($id) . " AND user_id = " . intval($field['user_id'])) or die(mysqli_error($connid));
 						}
@@ -1057,7 +1057,7 @@ switch ($action) {
 						}
 						// save status of email notification
 						if ($email_notification == 1) {
-							@mysqli_query($connid, "INSERT INTO " . $db_settings['subscriptions_table'] . " (user_id, eid, unsubscribe_code, tstamp) VALUES (NULL, " . intval($id) . ", UUID(), NOW()) ON DUPLICATE KEY UPDATE eid = eid AND user_id = user_id") or die(mysqli_error($connid));
+							@mysqli_query($connid, "INSERT INTO " . $db_settings['subscriptions_table'] . " (user_id, eid, unsubscribe_code, tstamp) VALUES (NULL, " . intval($id) . ", UUID(), NOW()) ON DUPLICATE KEY UPDATE eid = eid, user_id = user_id") or die(mysqli_error($connid));
 						} else {
 							@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($id) . " AND user_id IS NULL") or die(mysqli_error($connid));
 						}
