@@ -841,7 +841,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET auto_login_code = ''");
 		}
 		$qSetChangeTime = "INSERT INTO " . $db_settings['temp_infos_table'] . " (name, value, time)
-		VALUES ('last_changes', NOW(), NOW()) ON DUPLICATE KEY UPDATE value = NOW(), time = NOW()";
+		VALUES ('last_changes', UNIX_TIMESTAMP(NOW()), NOW()) ON DUPLICATE KEY UPDATE value = UNIX_TIMESTAMP(NOW()), time = NOW()";
 		mysqli_query($connid, $qSetChangeTime);
 		if (isset($_POST['return_to']) and $_POST['return_to'] === 'advanced_settings') {
 			header("Location: index.php?mode=admin&action=advanced_settings&saved=true");
