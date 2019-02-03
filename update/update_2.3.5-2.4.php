@@ -282,6 +282,24 @@ switch($settings['version']) {
 		$update['items'][] = 'lang/english.lang';                                    // #445
 		$update['items'][] = 'lang/german.lang';                                     // #445
 		$update['items'][] = 'includes/functions.inc.php';                           // #446
+	case '2.4.18':
+		$update['items'][] = 'themes/default/style.css';                             // #447
+		$update['items'][] = 'themes/default/style.min.css';                         // #447
+		$update['items'][] = 'lang/english.lang';                                    // #448
+		$update['items'][] = 'lang/german.lang';                                     // #448
+		$update['items'][] = 'includes/admin.inc.php';                               // #449
+		$update['items'][] = 'includes/functions.inc.php';                           // #449
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #449
+		$update['items'][] = 'includes/posting.inc.php';                             // #455
+	case '2.4.18.1':
+		$update['items'][] = 'themes/default/style.css';                             // #447
+		$update['items'][] = 'themes/default/style.min.css';                         // #447
+		$update['items'][] = 'lang/english.lang';                                    // #448
+		$update['items'][] = 'lang/german.lang';                                     // #448
+		$update['items'][] = 'includes/admin.inc.php';                               // #449
+		$update['items'][] = 'includes/functions.inc.php';                           // #449
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #449
+		$update['items'][] = 'includes/posting.inc.php';                             // #455
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
