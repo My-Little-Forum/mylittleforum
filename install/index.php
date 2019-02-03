@@ -281,7 +281,7 @@ if(isset($_POST['install_submit']))
 					$errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
 				}
 			}
-			if(!@mysqli_query($connid, "INSERT INTO " . $db_settings['temp_infos_table'] . " VALUES ('version', '". mysqli_real_escape_string($connid, $newVersion) ."');")) {
+			if(!@mysqli_query($connid, "INSERT INTO " . $db_settings['temp_infos_table'] . " (`name`, `value`) VALUES ('version', '". mysqli_real_escape_string($connid, $newVersion) ."');")) {
 				$errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
 			}
 			@mysqli_query($connid, "COMMIT");
