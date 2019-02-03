@@ -1,6 +1,12 @@
 my little forum changelog
 -------------------------
 
+2.4.19 (2019-02-03)
+-------------------
+- fixed: when editing a posting, an activated subscription can not be saved in the database because of a syntax error on the database query
+- fixed: images, included in a posting, got elongated in the Ajax-preview of a posting
+- changed: a few settings moved to the table mlf2_temp_infos because they are no settings at all
+
 2.4.18.1 (2019-01-14)
 ---------------------
 - fixed: table name in install.sql MUST NOT be surrounded by backticks, this makes the prefix replacement during installation impossible; this is only relevant during first installation
