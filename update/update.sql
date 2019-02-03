@@ -389,4 +389,10 @@ ALTER TABLE `mlf2_subscriptions` CHANGE `user_id` `user_id` int UNSIGNED NULL;
 ALTER TABLE `mlf2_subscriptions` ADD UNIQUE INDEX `user_thread` (`user_id`, `eid`);
 ALTER TABLE `mlf2_subscriptions` ADD INDEX `entry` (`eid`);
 */
+--------------------------------------------------------------------------------
+-- 2.4.18 or 2.4.18.1 to 2.4.19
+/*
+INSERT INTO `mlf2_temp_infos` ('name', 'value') VALUES ('access_permission_checks', '0'), ('last_changes', '0'), ('next_daily_actions', '0'), ('version', '2.4.19'); --combined query for relocated settings and for new version string 
+DELETE FROM `mlf2_settings` WHERE name IN('access_permission_checks', 'last_changes', 'next_daily_actions', 'version')
+*/
 
