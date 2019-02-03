@@ -753,7 +753,7 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 	}
 }
 if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16', '2.4.17', '2.4.18', '2.4.18.1'))) {
-	if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['temp_infos_table']."` (`name`, `value`) VALUES ('access_permission_checks', '0'), ('last_changes', '0'), ('next_daily_actions', '0');")) {
+	if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['temp_infos_table']."` (`name`, `value`) VALUES ('access_permission_checks', '". mysqli_real_escape_string($connid, $settings['access_permission_checks']) ."'), ('last_changes', '". mysqli_real_escape_string($connid, $settings['last_changes']) ."'), ('next_daily_actions', '". mysqli_real_escape_string($connid, $settings['next_daily_actions']) ."');")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 	if (!@mysqli_query($connid, "DELETE FROM `".$db_settings['settings_table']."` WHERE name IN('access_permission_checks', 'last_changes', 'next_daily_actions', 'version')")) {
