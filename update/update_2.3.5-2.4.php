@@ -766,7 +766,7 @@ if(empty($update['errors'])) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 	else {
-		// Set new Version, taken ftrom VERSION file.
+		// Set new Version, taken from VERSION file.
 		$update['new_version'] = $newVersion;
 		// reenable the forum after update is done
 		if (empty($update['errors'])) {
