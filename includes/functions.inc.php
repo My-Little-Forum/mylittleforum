@@ -89,8 +89,7 @@ function daily_actions($current_time=0) {
 	$nda = mysqli_fetch_assoc($rNDA);
 	if($current_time==0)
 		$current_time = TIMESTAMP;
-	#if($current_time > $next_daily_actions['value']) {
-	if ($current_time > intval($nda[0]['value'])) {
+	if ($current_time > intval($nda['value'])) {
 		// clear up expired auto_login_codes:
 		if($settings['autologin'] == 1) {
 			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET auto_login_code='' WHERE auto_login_code != '' AND last_login < (NOW() - INTERVAL ".$settings['cookie_validity_days']." DAY)");
