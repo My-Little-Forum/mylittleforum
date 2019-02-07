@@ -1,6 +1,11 @@
 my little forum changelog
 -------------------------
 
+2.4.19.1 (2019-02-07)
+---------------------
+- fixed: reading the setting next_daily_action failed because of checking for a wrong structure, caused HTTP-status 500 every when and then
+- fixed: function mysqli_fetch_all is not available in every PHP-installation, caused error messages, HTTP-status 500 or white pages in such cases
+
 2.4.19 (2019-02-03)
 -------------------
 - fixed: when editing a posting, an activated subscription can not be saved in the database because of a syntax error on the database query
