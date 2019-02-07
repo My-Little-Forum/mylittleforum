@@ -1185,8 +1185,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('breadcrumbs',$breadcrumbs);
 			$smarty->assign('subnav_location','subnav_settings');
 			if (isset($_GET['saved'])) $smarty->assign('saved', true);
-			$rGetSettingsEdit = mysqli_fetch_all(mysqli_query($connid, "SELECT name, value FROM " . $db_settings['settings_table']), MYSQLI_ASSOC);
-			foreach ($rGetSettingsEdit as $line) {
+			$rGetSettingsEdit = mysqli_query($connid, "SELECT name, value FROM " . $db_settings['settings_table']);
+			while ($line = mysqli_fetch_assoc($rGetSettingsEdit)) {
 				$settings_array[$line['name']] = $line['value'];
 			}
 			$smarty->assign('edSet', $settings_array);
@@ -1214,8 +1214,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('breadcrumbs', $breadcrumbs);
 			$smarty->assign('subnav_location', 'subnav_advanced_settings');
 			if (isset($_GET['saved'])) $smarty->assign('saved', true);
-			$rGetSettingsEdit = mysqli_fetch_all(mysqli_query($connid, "SELECT name, value FROM " . $db_settings['settings_table'] ." ORDER BY name ASC"), MYSQLI_ASSOC);
-			foreach ($rGetSettingsEdit as $line) {
+			$rGetSettingsEdit = mysqli_query($connid, "SELECT name, value FROM " . $db_settings['settings_table'] ." ORDER BY name ASC");
+			while ($line = mysqli_fetch_assoc($rGetSettingsEdit)) {
 				$settings_array[$line['name']] = $line['value'];
 			}
 			$i=0;
