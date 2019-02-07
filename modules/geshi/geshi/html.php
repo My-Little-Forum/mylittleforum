@@ -58,68 +58,69 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         2 => array(
-            'a', 'abbr', 'address', 'article', 'area', 'aside', 'audio',
+            'a', 'abbr', 'address', 'area', 'article', 'aside', 'audio',
 
-            'base', 'bdo', 'blockquote', 'body', 'br', 'button', 'b',
+            'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button',
 
-            'caption', 'cite', 'code', 'colgroup', 'col', 'canvas', 'command', 'datalist', 'details',
+            'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'command',
 
-            'dd', 'del', 'dfn', 'div', 'dl', 'dt',
+            'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'div', 'dl', 'dt',
 
             'em', 'embed',
 
-            'fieldset', 'form', 'figcaption', 'figure', 'footer',
+            'fieldset', 'figcaption', 'figure', 'footer', 'form',
 
-            'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'hr', 'html', 'header', 'hgroup',
+            'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hr', 'html',
 
-            'iframe', 'ilayer', 'img', 'input', 'ins', 'isindex', 'i',
+            'i', 'iframe', 'img', 'input', 'ins',
 
             'kbd', 'keygen',
 
-            'label', 'legend', 'link', 'li',
+            'label', 'legend', 'li', 'link',
 
-            'map', 'meta', 'mark', 'meter',
+            'main', 'map', 'mark', 'math', 'meta', 'meter',
 
-            'noscript', 'nav',
+            'nav', 'noscript',
 
             'object', 'ol', 'optgroup', 'option', 'output',
 
-            'param', 'pre', 'p', 'progress',
+            'p', 'param', 'picture', 'pre', 'progress',
 
             'q',
 
             'rp', 'rt', 'ruby',
 
-            'samp', 'script', 'select', 'small', 'span', 'strong', 'style', 'sub', 'sup', 's', 'section', 'source', 'summary',
+            's', 'samp', 'script', 'section', 'select', 'slot', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'svg',
 
-            'table', 'tbody', 'td', 'textarea', 'text', 'tfoot', 'thead', 'th', 'title', 'tr', 'time',
+            'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track',
 
-            'ul',
+            'u', 'ul',
 
             'var', 'video',
 
             'wbr',
             ),
         3 => array(
-            'abbr', 'accept-charset', 'accept', 'accesskey', 'action', 'align', 'alink', 'alt', 'archive', 'axis', 'autocomplete', 'autofocus',
-            'background', 'bgcolor', 'border',
-            'cellpadding', 'cellspacing', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords', 'contenteditable', 'contextmenu',
-            'data', 'datetime', 'declare', 'defer', 'dir', 'disabled', 'draggable', 'dropzone',
+            'abbr', 'accept', 'accept-charset', 'accesskey', 'action', 'alt', 'async', 'autocomplete', 'autofocus', 'autoplay', 'autosave',
+            'buffered',
+            'charset', 'charset', 'checked', 'cite', 'class',  'cols', 'colspan', 'content', 'contenteditable', 'contextmenu', 'controls', 'coords', 'crossorigin',
+            'data', 'datetime', 'default', 'defer', 'dir', 'dirname', 'disabled', 'download', 'draggable', 'dropzone',
             'enctype',
-            'face', 'for', 'frame', 'frameborder', 'form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget',
-            'headers', 'height', 'href', 'hreflang', 'hspace', 'http-equiv', 'hidden',
-            'id', 'ismap',
-            'label', 'lang', 'language', 'link', 'longdesc',
-            'marginheight', 'marginwidth', 'maxlength', 'media', 'method', 'multiple', 'min', 'max',
-            'name', 'nohref', 'noresize', 'noshade', 'nowrap', 'novalidate',
-            'object', 'onblur', 'onchange', 'onclick', 'ondblclick', 'onfocus', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onmousedown', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onselect', 'onsubmit', 'onunload', 'onafterprint', 'onbeforeprint', 'onbeforeonload', 'onerror', 'onhaschange', 'onmessage', 'onoffline', 'ononline', 'onpagehide', 'onpageshow', 'onpopstate', 'onredo', 'onresize', 'onstorage', 'onundo', 'oncontextmenu', 'onformchange', 'onforminput', 'oninput', 'oninvalid', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onmousewheel', 'onscroll', 'oncanplay', 'oncanplaythrough', 'ondurationchange', 'onemptied', 'onended', 'onloadeddata', 'onloadedmetadata', 'onloadstart', 'onpause', 'onplay', 'onplaying', 'onprogress', 'onratechange', 'onreadystatechange', 'onseeked', 'onseeking', 'onstalled', 'onsuspend', 'ontimeupdate', 'onvolumechange', 'onwaiting',
-            'profile', 'prompt', 'pattern', 'placeholder',
-            'readonly', 'rel', 'rev', 'rowspan', 'rows', 'rules', 'required',
-            'scheme', 'scope', 'scrolling', 'selected', 'shape', 'size', 'span', 'src', 'standby', 'start', 'style', 'summary', 'spellcheck', 'step',
-            'tabindex', 'target', 'text', 'title', 'type',
+            'for', 'form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget',
+            'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'http-equiv',
+            'icon', 'id', 'ismap', 'itemid', 'itemprop', 'itemref', 'itemscope', 'itemtype',
+            'keytype', 'kind',
+            'label', 'lang', 'language', 'list', 'low',
+            'manifest', 'max', 'maxlength', 'media', 'mediagroup', 'method', 'min', 'multiple', 'muted',
+            'name', 'novalidate',
+            'object', 'onblur', 'onchange', 'onclick', 'ondblclick', 'onfocus', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onmousedown', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onselect', 'onsubmit', 'onunload', 'onafterprint', 'onbeforeprint', 'onbeforeonload', 'onerror', 'onhaschange', 'onmessage', 'onoffline', 'ononline', 'onpagehide', 'onpageshow', 'onpopstate', 'onredo', 'onresize', 'onstorage', 'onundo', 'oncontextmenu', 'onformchange', 'onforminput', 'oninput', 'oninvalid', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'onmousewheel', 'onscroll', 'oncanplay', 'oncanplaythrough', 'ondurationchange', 'onemptied', 'onended', 'onloadeddata', 'onloadedmetadata', 'onloadstart', 'onpause', 'onplay', 'onplaying', 'onprogress', 'onratechange', 'onreadystatechange', 'onseeked', 'onseeking', 'onstalled', 'onsuspend', 'ontimeupdate', 'onvolumechange', 'onwaiting', 'open', 'optimum',
+            'pattern', 'ping', 'placeholder', 'poster', 'preload',
+            'readonly', 'rel', 'required', 'reversed', 'role', 'rows', 'rowspan',
+            'sandbox', 'scope', 'selected', 'shape', 'size', 'sizes', 'span', 'src', 'srcdoc', 'srclang', 'srcset', 'spellcheck', 'start', 'step', 'style', 'summary', 'spellcheck', 'step',
+            'tabindex', 'target', 'title', 'type',
             'usemap',
-            'valign', 'value', 'valuetype', 'version', 'vlink', 'vspace',
-            'width'
+            'value',
+            'width', 'wrap'
             )
         ),
     'SYMBOLS' => array(
