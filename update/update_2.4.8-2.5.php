@@ -19,6 +19,39 @@ $update['version'] = array('2.4.8', '2.4.9');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
+/**
+ * comparision of version numbers
+ *
+ * @param array
+ * @return bool
+ */
+function compare_versions($versions) {
+	if (!is_array($versions)) return false;
+	if (!array_key_exists('old', $versions)) return false;
+	if (!array_key_exists('new', $versions)) return false;
+	$test['old'] = explode('.', $versions['old']);
+	$test['new'] = explode('.', $versions['new']);
+	$cntOld = count($test['old']);
+	$cntNew = count($test['new']);
+	if ($cntOld < $cntNew) {
+		$c = $cntNew - $cntOld;
+		for ($i = 0; $i < $c; $i++) {
+			$test['old'][] = '0';
+		}
+	}
+	if ($cntNew < $cntOld) {
+		$c = $cntOld - $cntNew;
+		for ($i = 0; $i < $c; $i++) {
+			$test['new'][] = '0';
+		}
+	}
+	$c = count($test['old']);
+	for ($i = 0; $i < $c; $i++) {
+		if ($test['new'][$i] > $test['old'][$i]) return true;
+	}
+	return false;
+}
+
 // changed files at the *end of the list* (folders followed by a slash like this: folder/):
 // Note: Do *NOT* add 'break;' to a single case!!!
 switch($settings['version']) {
