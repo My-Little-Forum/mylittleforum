@@ -1,7 +1,7 @@
 <?php
 /******************************************************************************
 * my little forum                                                             *
-* update file to update from version 2.4.8 to version 2.5.*                   *
+* update file to update from version 2.4.19.1 to version 2.5.*                *
 *                                                                             *
 * Update instructions:                                                        *
 * - Load up this file into the directory "update"                             *
@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16', '2.4.17', '2.4.18', '2.4.18.1', '2.4.19', '2.4.19.1');
+$update['version'] = array('2.4.19.1');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
