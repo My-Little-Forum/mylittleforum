@@ -131,7 +131,12 @@ if (empty($update['errors'])) {
 		$update['errors'][] = 'Error in line '.__LINE__.': This update file doesn\'t work with the current version.';
 	}
 }
-
+// disable the forum until database update is done
+if (empty($update['errors'])) {
+	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET  value = '0' WHERE name =  'forum_enabled'")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+}
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.8'))) {
 	if(!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('uploads_per_page', '20');")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
@@ -229,6 +234,12 @@ if(empty($update['errors'])) {
 	else {
 		// Set new Version, taken from VERSION file.
 		$update['new_version'] = $newVersion;
+		// reenable the forum after database update is done
+		if (empty($update['errors'])) {
+			if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+		}
 	}
 }
 
