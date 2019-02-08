@@ -124,7 +124,7 @@ if(!file_exists('config/VERSION')) {
 }
 if (empty($update['errors'])) {
 	$newVersion = trim(file_get_contents('config/VERSION'));
-	if ($newVersion <= $settings['version']) {
+	if (compare_versions(array('old' => $settings['version'], 'new' => $newVersion)) !== true) {
 		$update['errors'][] = 'Error in line '.__LINE__.': The version you want to install (see string in config/VERSION) must be greater than the current installed version. Current version: '. htmlspecialchars($settings['version']) .', version you want to install: '.  htmlspecialchars($newVersion) .'. Please check also if you uploaded the actual file version of config/VERSION. Search therefore for the file date and compare it with the date from the installation package.';
 	}
 	if (!in_array($settings['version'], $update['version'])) {
