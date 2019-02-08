@@ -55,118 +55,6 @@ function compare_versions($versions) {
 // changed files at the *end of the list* (folders followed by a slash like this: folder/):
 // Note: Do *NOT* add 'break;' to a single case!!!
 switch($settings['version']) {
-	case '2.4.8':
-		$update['items'][] = 'includes/admin.inc.php';                               // #352, #353
-		$update['items'][] = 'lang/';                                                // #352, #362, #370
-		$update['items'][] = 'themes/default/main.tpl';                              // #357
-		$update['items'][] = 'js/main.js';                                           // #360
-		$update['items'][] = 'js/main.min.js';                                       // #360
-		$update['items'][] = 'lang/german.lang';                                     // #363
-		$update['items'][] = 'themes/default/style.css';                             // #365
-		$update['items'][] = 'themes/default/style.min.css';                         // #370
-		$update['items'][] = 'includes/functions.inc.php';                           // #366, #368, #369
-	case '2.4.9':
-		$update['items'][] = 'lang/';                                                // #371, #375
-		$update['items'][] = 'includes/functions.inc.php';                           // #372, #373
-		$update['items'][] = 'modules/bad-behavior';                                 // #374
-		$update['items'][] = 'modules/geshi';                                        // #374
-		$update['items'][] = 'modules/smarty';                                       // #374
-		$update['items'][] = 'includes/admin.inc.php';                               // #375
-		$update['items'][] = 'includes/login.inc.php';                               // #375
-		$update['items'][] = 'includes/posting.inc.php';                             // #375
-		$update['items'][] = 'includes/register.inc.php';                            // #375, #378
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #375
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';          // #375
-		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #375
-		$update['items'][] = 'themes/default/subtemplates/user_agreement.inc.tpl';   // #375
-		$update['items'][] = 'themes/default/main.tpl';                              // #378
-		$update['items'][] = 'themes/default/style.css';                             // #379
-		$update['items'][] = 'themes/default/style.min.css';                         // #379
-	case '2.4.10':
-	case '2.4.11':
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #380
-		$update['items'][] = 'themes/default/subtemplates/user_agreement.inc.tpl';   // #381
-	case '2.4.12':
-		$update['items'][] = 'js/main.js';                                           // #384, #392, #393
-		$update['items'][] = 'js/main.min.js';                                       // #384, #395
-		$update['items'][] = 'includes/posting.inc.php';                             // #387, #388
-		$update['items'][] = 'includes/register.inc.php';                            // #387
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';          // #387
-		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #387
-		$update['items'][] = 'includes/functions.inc.php';                           // #389, #391, #394
-		$update['items'][] = 'lang/german.lang';                                     // #393
-	case '2.4.13':
-		$update['items'][] = 'includes/admin.inc.php';                               // #396, #397
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #396
-		$update['items'][] = 'includes/functions.inc.php';                           // #399
-		$update['items'][] = 'includes/posting.inc.php';                             // #399
-		$update['items'][] = 'lang/';                                                // #399, #400, #401, #403, #404, #405
-		$update['items'][] = 'themes/default/subtemplates/posting_unsubscribe.inc.tpl.'; // #399
-		$update['items'][] = 'includes/js_defaults.inc.php';                         // #403, #404
-		$update['items'][] = 'includes/register.inc.php';                            // #403
-		$update['items'][] = 'js/admin.js';                                          // #403
-		$update['items'][] = 'js/main.js';                                           // #403, #404
-		$update['items'][] = 'js/main.min.js';                                       // #403, #404
-		$update['items'][] = 'js/posting.js';                                        // #403
-		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #403
-		$update['items'][] = 'includes/upload_image.inc.php';                        // no pull request
-	case '2.4.14':
-		$update['items'][] = 'includes/admin.inc.php';                               // no pull request
-		$update['items'][] = 'includes/functions.inc.php';                           // no pull request
-		$update['items'][] = 'includes/posting.inc.php';                             // no pull request
-	case '2.4.15':
-		$update['items'][] = 'includes/bookmark.inc.php';                            // #419
-		$update['items'][] = 'includes/posting.inc.php';                             // #421
-	case '2.4.16':
-		$update['items'][] = 'includes/contact.inc.php';                             // #413, #423
-		$update['items'][] = 'includes/functions.inc.php';                           // #413
-		$update['items'][] = 'includes/posting.inc.php';                             // #413, #423
-		$update['items'][] = 'includes/register.inc.php';                            // #413, #423, #438, #439
-		$update['items'][] = 'index.php';                                            // #429
-		$update['items'][] = 'includes/admin.inc.php';                               // #430
-		$update['items'][] = 'lang/';                                                // #430, #434, #435, #438
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #430, #437
-		$update['items'][] = 'js/posting.js';                                        // #432
-		$update['items'][] = 'js/posting.min.js';                                    // #432
-		$update['items'][] = 'includes/user.inc.php';                                // #434, #435, #438, #439
-		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';        // #434
-		$update['items'][] = 'themes/default/subtemplates/user_remove_account.inc.tpl';// #434
-		$update['items'][] = 'themes/default/subtemplates/user_edit_pw.inc.tpl';     // #435, #438
-		$update['items'][] = 'js/admin.js';                                          // #437
-		$update['items'][] = 'js/admin.min.js';                                      // #437
-		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #438
-	case '2.4.17':
-		$update['items'][] = 'themes/default/subtemplates/posting_unsubscribe.inc.tpl.'; // #399
-		$update['items'][] = 'js/';                                                  // #411, no pull request
-		$update['items'][] = 'includes/register.inc.php';                            // #441
-		$update['items'][] = 'includes/user.inc.php';                                // #441
-		$update['items'][] = 'themes/default/style.css';                             // #442
-		$update['items'][] = 'themes/default/style.min.css';                         // #442
-		$update['items'][] = 'includes/contact.inc.php';                             // #443
-		$update['items'][] = 'lang/english.lang';                                    // #445
-		$update['items'][] = 'lang/german.lang';                                     // #445
-		$update['items'][] = 'includes/functions.inc.php';                           // #446
-	case '2.4.18':
-		$update['items'][] = 'themes/default/style.css';                             // #447
-		$update['items'][] = 'themes/default/style.min.css';                         // #447
-		$update['items'][] = 'lang/english.lang';                                    // #448
-		$update['items'][] = 'lang/german.lang';                                     // #448
-		$update['items'][] = 'includes/admin.inc.php';                               // #449
-		$update['items'][] = 'includes/functions.inc.php';                           // #449
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #449
-		$update['items'][] = 'includes/posting.inc.php';                             // #455
-	case '2.4.18.1':
-		$update['items'][] = 'themes/default/style.css';                             // #447
-		$update['items'][] = 'themes/default/style.min.css';                         // #447
-		$update['items'][] = 'lang/english.lang';                                    // #448
-		$update['items'][] = 'lang/german.lang';                                     // #448
-		$update['items'][] = 'includes/admin.inc.php';                               // #449
-		$update['items'][] = 'includes/functions.inc.php';                           // #449
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #449
-		$update['items'][] = 'includes/posting.inc.php';                             // #455
-	case '2.4.19':
-		$update['items'][] = 'includes/admin.inc.php';                               // #458
-		$update['items'][] = 'includes/functions.inc.php';                           // #458
 	case '2.4.19.1':
 		$update['items'][] = 'includes/admin.inc.php';                               // #364, #367, #390, #410, #427, #456
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #364, #390
@@ -251,7 +139,6 @@ if (empty($update['errors'])) {
 		$update['errors'][] = 'Error in line '.__LINE__.': This update file doesn\'t work with the current version.';
 	}
 }
-
 // disable the forum until database update is done
 if (empty($update['errors'])) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET  value = '0' WHERE name =  'forum_enabled'")) {
