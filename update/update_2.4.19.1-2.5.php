@@ -151,8 +151,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.8'))) 
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
-/** !!!TODO: Version array is not correct!!! **/
-if (empty($update['errors']) && in_array($settings['version'], array('2.4.8', '2.4.9'))) {
+
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1'))) {
 	$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
 	// add new database table
 	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
