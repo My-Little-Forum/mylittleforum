@@ -159,6 +159,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1')
 		$db_settings['b8_wordlist_table'] = $table_prefix . 'b8_wordlist';
 		$db_settings['b8_rating_table'] = $table_prefix . 'b8_rating';
 		$db_settings['akismet_rating_table'] = $table_prefix . 'akismet_rating';
+		$db_settings['uploads_table'] = $table_prefix . 'uploads';
 		$db_settings_file = @fopen("./config/db_settings.php", "w") or $update['errors'][] = str_replace("[CHMOD]", $chmod, $lang['error_overwrite_config_file']);
 		if (empty($update['errors'])) {
 			flock($db_settings_file, 2);
@@ -188,6 +189,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1')
 			fwrite($db_settings_file, "\$db_settings['b8_wordlist_table']    = '". addslashes($db_settings['b8_wordlist_table']) ."';\r\n");
 			fwrite($db_settings_file, "\$db_settings['b8_rating_table']      = '". addslashes($db_settings['b8_rating_table']) ."';\r\n");
 			fwrite($db_settings_file, "\$db_settings['akismet_rating_table'] = '". addslashes($db_settings['akismet_rating_table']) ."';\r\n");
+			fwrite($db_settings_file, "\$db_settings['uploads_table']        = '". addslashes($db_settings['uploads_table']) ."';\r\n");
 			fwrite($db_settings_file, "?>\r\n");
 			flock($db_settings_file, 3);
 			fclose($db_settings_file);
@@ -200,6 +202,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1')
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['b8_wordlist_table'] . "` (`token` varchar(255) character set utf8 collate utf8_bin NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp` datetime NULL, PRIMARY KEY (id)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			
