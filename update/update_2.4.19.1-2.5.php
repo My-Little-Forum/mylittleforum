@@ -156,8 +156,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1')
 	$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
 	// add new database table
 	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
-		$db_settings['subscriptions_table'] = $table_prefix . 'subscriptions';
 		$db_settings_file = @fopen("./config/db_settings.php", "w") or $update['errors'][] = str_replace("[CHMOD]",$chmod,$lang['error_overwrite_config_file']);
+		$db_settings['b8_wordlist_table'] = $table_prefix . 'b8_wordlist';
+		$db_settings['b8_rating_table'] = $table_prefix . 'b8_rating';
+		$db_settings['akismet_rating_table'] = $table_prefix . 'akismet_rating';
 		if (empty($update['errors'])) {
 			flock($db_settings_file, 2);
 			fwrite($db_settings_file, "<?php\r\n");
