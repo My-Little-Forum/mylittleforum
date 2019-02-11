@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14');
+$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16', '2.4.17', '2.4.18', '2.4.18.1', '2.4.19');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -249,6 +249,59 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/admin.inc.php';                               // no pull request
 		$update['items'][] = 'includes/functions.inc.php';                           // no pull request
 		$update['items'][] = 'includes/posting.inc.php';                             // no pull request
+	case '2.4.15':
+		$update['items'][] = 'includes/bookmark.inc.php';                            // #419
+		$update['items'][] = 'includes/posting.inc.php';                             // #421
+	case '2.4.16':
+		$update['items'][] = 'includes/contact.inc.php';                             // #413, #423
+		$update['items'][] = 'includes/functions.inc.php';                           // #413
+		$update['items'][] = 'includes/posting.inc.php';                             // #413, #423
+		$update['items'][] = 'includes/register.inc.php';                            // #413, #423, #438, #439
+		$update['items'][] = 'index.php';                                            // #429
+		$update['items'][] = 'includes/admin.inc.php';                               // #430
+		$update['items'][] = 'lang/';                                                // #430, #434, #435, #438
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #430, #437
+		$update['items'][] = 'js/posting.js';                                        // #432
+		$update['items'][] = 'js/posting.min.js';                                    // #432
+		$update['items'][] = 'includes/user.inc.php';                                // #434, #435, #438, #439
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';        // #434
+		$update['items'][] = 'themes/default/subtemplates/user_remove_account.inc.tpl';// #434
+		$update['items'][] = 'themes/default/subtemplates/user_edit_pw.inc.tpl';     // #435, #438
+		$update['items'][] = 'js/admin.js';                                          // #437
+		$update['items'][] = 'js/admin.min.js';                                      // #437
+		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';         // #438
+	case '2.4.17':
+		$update['items'][] = 'themes/default/subtemplates/posting_unsubscribe.inc.tpl.'; // #399
+		$update['items'][] = 'js/';                                                  // #411, no pull request
+		$update['items'][] = 'includes/register.inc.php';                            // #441
+		$update['items'][] = 'includes/user.inc.php';                                // #441
+		$update['items'][] = 'themes/default/style.css';                             // #442
+		$update['items'][] = 'themes/default/style.min.css';                         // #442
+		$update['items'][] = 'includes/contact.inc.php';                             // #443
+		$update['items'][] = 'lang/english.lang';                                    // #445
+		$update['items'][] = 'lang/german.lang';                                     // #445
+		$update['items'][] = 'includes/functions.inc.php';                           // #446
+	case '2.4.18':
+		$update['items'][] = 'themes/default/style.css';                             // #447
+		$update['items'][] = 'themes/default/style.min.css';                         // #447
+		$update['items'][] = 'lang/english.lang';                                    // #448
+		$update['items'][] = 'lang/german.lang';                                     // #448
+		$update['items'][] = 'includes/admin.inc.php';                               // #449
+		$update['items'][] = 'includes/functions.inc.php';                           // #449
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #449
+		$update['items'][] = 'includes/posting.inc.php';                             // #455
+	case '2.4.18.1':
+		$update['items'][] = 'themes/default/style.css';                             // #447
+		$update['items'][] = 'themes/default/style.min.css';                         // #447
+		$update['items'][] = 'lang/english.lang';                                    // #448
+		$update['items'][] = 'lang/german.lang';                                     // #448
+		$update['items'][] = 'includes/admin.inc.php';                               // #449
+		$update['items'][] = 'includes/functions.inc.php';                           // #449
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #449
+		$update['items'][] = 'includes/posting.inc.php';                             // #455
+	case '2.4.19':
+		$update['items'][] = 'includes/admin.inc.php';                               // #458
+		$update['items'][] = 'includes/functions.inc.php';                           // #458
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
@@ -277,7 +330,7 @@ if (!empty($folders)) {
 	// Remove sub-folders from folder list
 	$tmp = $folders;
 	foreach ($folders as $folder) {
-	    $removeFolders = preg_grep("/^".preg_quote($folder, "/").".+/i", $folders);
+		$removeFolders = preg_grep("/^".preg_quote($folder, "/").".+/i", $folders);
 		if (empty($removeFolders))
 			continue;
 		$tmp = array_diff($tmp, $removeFolders);
@@ -312,26 +365,26 @@ if (empty($update['errors'])) {
 		$update['errors'][] = 'Error in line '.__LINE__.': This update file doesn\'t work with the current version.';
 	}
 }
-
-if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3'))) {
-	if(!@mysqli_query($connid, "INSERT INTO ".$db_settings['settings_table']." VALUES ('stop_forum_spam', '0')")) {
+// disable the forum until database update is done
+if (empty($update['errors'])) {
+	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET  value = '0' WHERE name =  'forum_enabled'")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
 
-if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3','2.3.1','2.3.2','2.3.3','2.3.4','2.3.5 RC','2.3.5'))) {
+if(empty($update['errors']) && in_array($settings['version'],array('2.3.5 RC','2.3.5'))) {
 	if(!@mysqli_query($connid, "ALTER TABLE ".$db_settings['userdata_table']." CHANGE last_login last_login timestamp NULL default CURRENT_TIMESTAMP")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
  
-if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3','2.3.1','2.3.2','2.3.3','2.3.4','2.3.5 RC','2.3.5','2.3.6','2.3.6.1'))) {
+if(empty($update['errors']) && in_array($settings['version'],array('2.3.5 RC','2.3.5','2.3.6','2.3.6.1'))) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET `value` = 10 WHERE `name` = 'temp_block_ip_after_repeated_failed_logins' AND `value` > 0")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
 
-if(empty($update['errors']) && in_array($settings['version'],array('2.0 RC 1','2.0 RC 2','2.0 RC 3','2.0 RC 4','2.0 RC 5','2.0 RC 6','2.0 RC 7','2.0 RC 8','2.0','2.0.1','2.0.2','2.1 beta 1','2.1 beta 2','2.1 beta 3','2.1 beta 4','2.1 beta 5','2.1 beta 6','2.1 beta 7','2.1 beta 8','2.1','2.1.1','2.1.2','2.1.3','2.1.4','2.2','2.2.1','2.2.2','2.2.3','2.2.4','2.2.5','2.2.6','2.2.7','2.2.8','2.3','2.3.1','2.3.2','2.3.3','2.3.4','2.3.5 RC','2.3.5','2.3.6','2.3.6.1','2.3.7'))) {
+if(empty($update['errors']) && in_array($settings['version'],array('2.3.5 RC','2.3.5','2.3.6','2.3.6.1','2.3.7'))) {
 	$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
 	// add new database table
 	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
@@ -626,7 +679,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.10', '
 		}
 	}
 }
-if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13'))) {
+if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13'))) {
 	$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
 	// add new database table
 	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
@@ -661,7 +714,7 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3
 			flock($db_settings_file, 3);
 			fclose($db_settings_file);
 			// new tables
-			if(!@mysqli_query($connid, "CREATE TABLE ". $db_settings['subscriptions_table'] ." (`user_id` int(12) UNSIGNED NOT NULL, `eid` int(12) UNSIGNED NOT NULL, `unsubscribe_code` varchar(36) NOT NULL, `tstamp` datetime DEFAULT NULL, PRIMARY KEY `user_thread` (`user_id`,`eid`), KEY `hash` (`unsubscribe_code`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci")) {
+			if (!@mysqli_query($connid, "CREATE TABLE ". $db_settings['subscriptions_table'] ." (`user_id` int(12) UNSIGNED NOT NULL, `eid` int(12) UNSIGNED NOT NULL, `unsubscribe_code` varchar(36) NOT NULL, `tstamp` datetime DEFAULT NULL, PRIMARY KEY `user_thread` (`user_id`,`eid`), KEY `hash` (`unsubscribe_code`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			if (empty($update['errors'])) {
@@ -682,14 +735,47 @@ if(empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3
 		$update['errors'][] = "File ./config/db_settings.php not found or unwritable. New database table '" . htmlspecialchars($table_prefix) . "subscriptions' could not be added!";
 	}
 }
+if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16'))) {
+	if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['settings_table']."` (`name`, `value`) VALUES ('min_posting_time', '5'), ('min_register_time', '5'), ('min_email_time', '5'), ('max_posting_time', '10800'), ('max_register_time', '10800'), ('max_email_time', '10800'), ('min_pw_digits', '0'), ('min_pw_lowercase_letters', '0'), ('min_pw_uppercase_letters', '0'), ('min_pw_special_characters', '0')")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+}
+if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16', '2.4.17'))) {
+	if (!@mysqli_query($connid, "ALTER TABLE `".$db_settings['subscriptions_table']."` DROP PRIMARY KEY;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `".$db_settings['subscriptions_table']."` CHANGE `user_id` `user_id` int UNSIGNED NULL;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `".$db_settings['subscriptions_table']."` ADD UNIQUE INDEX `user_thread` (`user_id`, `eid`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `".$db_settings['subscriptions_table']."` ADD INDEX `entry` (`eid`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+}
+if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16', '2.4.17', '2.4.18', '2.4.18.1'))) {
+	if (!@mysqli_query($connid, "INSERT INTO `".$db_settings['temp_infos_table']."` (`name`, `value`) VALUES ('access_permission_checks', '". mysqli_real_escape_string($connid, $settings['access_permission_checks']) ."'), ('last_changes', '". mysqli_real_escape_string($connid, $settings['last_changes']) ."'), ('next_daily_actions', '". mysqli_real_escape_string($connid, $settings['next_daily_actions']) ."'), ('version', '". mysqli_real_escape_string($connid, $settings['version']) ."');")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "DELETE FROM `".$db_settings['settings_table']."` WHERE name IN('access_permission_checks', 'last_changes', 'next_daily_actions', 'version')")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+}
 
-if(empty($update['errors'])) {
-	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
+if (empty($update['errors'])) {
+	if(!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 	else {
-		// Set new Version, taken ftrom VERSION file.
+		// Set new Version, taken from VERSION file.
 		$update['new_version'] = $newVersion;
+		// reenable the forum after database update is done
+		if (empty($update['errors'])) {
+			if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+		}
 	}
 }
 

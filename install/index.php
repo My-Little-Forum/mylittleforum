@@ -586,7 +586,7 @@ case 'install': ?>
       <input id="dont_overwrite_settings" type="checkbox" name="dont_overwrite_settings" value="true"<?php if (isset($_POST['dont_overwrite_settings'])) echo ' checked'; ?>><label for="dont_overwrite_settings" class="for-selectors"><?php echo $lang['dont_overwrite_settings']; ?></label>
      </div>
     </fieldset>
-    <p class="button-bar"><button name="submit"><?php echo $lang['forum_install_ok']; ?></button></p>
+    <p class="button-bar"><button name="install_submit" value="<?php echo $lang['forum_install_ok']; ?>"><?php echo $lang['forum_install_ok']; ?></button></p>
    </form>
   </section>
 <?php

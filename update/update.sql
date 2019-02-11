@@ -361,16 +361,45 @@ DELETE FROM mlf2_settings WHERE name = 'read_state_expiration_date'
 CREATE TABLE mlf2_bookmark_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_entry_tags (`bid` int(11) NOT NULL, `tid` int(11) NOT NULL, PRIMARY KEY (`bid`,`tid`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE mlf2_tags (`id` int(11) NOT NULL AUTO_INCREMENT, `tag` varchar(255) NOT NULL, PRIMARY KEY (`id`), UNIQUE KEY `tag` (`tag`)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
-
 */
 --------------------------------------------------------------------------------
 -- 2.4.8 to 2.4.9
 /*
-INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20');
 */
 --------------------------------------------------------------------------------
--- 2.4.9 to 2.5
+-- 2.4.9 to 2.4.10
 /*
-INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
+ALTER TABLE mlf2_userdata ADD tou_accepted DATETIME NULL DEFAULT NULL, ADD dps_accepted DATETIME NULL DEFAULT NULL;
+INSERT INTO mlf2_settings VALUES ('data_privacy_agreement', '0');
+INSERT INTO mlf2_settings VALUES ('data_privacy_statement_url', '');
+*/
+--------------------------------------------------------------------------------
+-- 2.4.13 to 2.4.14
+/*
+CREATE TABLE `mlf2_subscriptions` (`user_id` int(12) UNSIGNED NOT NULL, `eid` int(12) UNSIGNED NOT NULL, `unsubscribe_code` varchar(36) NOT NULL, `tstamp` datetime DEFAULT NULL, PRIMARY KEY `user_thread` (`user_id`,`eid`), KEY `hash` (`unsubscribe_code`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE mlf2_entries DROP COLUMN `email_notification`;
+*/
+--------------------------------------------------------------------------------
+-- 2.4.16 to 2.4.17
+/*
 INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('min_posting_time', '5'), ('min_register_time', '5'), ('min_email_time', '5'), ('max_posting_time', '10800'), ('max_register_time', '10800'), ('max_email_time', '10800');
+*/
+--------------------------------------------------------------------------------
+-- 2.4.17 to 2.4.18
+/*
+ALTER TABLE `mlf2_subscriptions` DROP PRIMARY KEY;
+ALTER TABLE `mlf2_subscriptions` CHANGE `user_id` `user_id` int UNSIGNED NULL;
+ALTER TABLE `mlf2_subscriptions` ADD UNIQUE INDEX `user_thread` (`user_id`, `eid`);
+ALTER TABLE `mlf2_subscriptions` ADD INDEX `entry` (`eid`);
+*/
+--------------------------------------------------------------------------------
+-- 2.4.18 or 2.4.18.1 to 2.4.19
+/*
+INSERT INTO `mlf2_temp_infos` (`name`, `value`) VALUES ('access_permission_checks', '0'), ('last_changes', '0'), ('next_daily_actions', '0'), ('version', '2.4.19'); --combined query for relocated settings and for new version string 
+DELETE FROM `mlf2_settings` WHERE name IN('access_permission_checks', 'last_changes', 'next_daily_actions', 'version')
+*/
+-- to 2.5
+/*
+INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20');
+INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
 */
