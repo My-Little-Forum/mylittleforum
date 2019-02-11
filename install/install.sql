@@ -166,6 +166,6 @@ INSERT INTO mlf2_smilies VALUES (6, 6, 'frown.png', ':-(', '', '', '', '', '');
 
 INSERT INTO mlf2_b8_wordlist (`token`, `count_ham`, `count_spam`) VALUES ('b8*dbversion', '3', NULL), ('b8*texts', '0', '0');
 
-INSERT INTO mlf2_userdata VALUES (1, 2, 'admin', '', 0, NULL, 'c3ccb88dc0a985b9b5da20bb9333854194dfbc7767d91c6936', 'admin@example.com', 1, '', '', '', '', 0, NULL, NULL, '', NOW(), NULL, 0, 0, 1, 0, 0, 0, 0, 0, '', '', '', '', '', 0, '');
+INSERT INTO mlf2_userdata (user_type, user_name, user_pw, user_email, email_contact, profile, logins, last_login, last_logout, registered, pwf_code, theme) VALUES (2, 'admin', 'c3ccb88dc0a985b9b5da20bb9333854194dfbc7767d91c6936', 'admin@example.com', 1, '', 0, NULL, NULL, NOW(), '', '');
 
 
