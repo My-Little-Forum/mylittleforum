@@ -95,7 +95,6 @@ function MyLittleAdmin() {
 	 * Initialisiert die moeglichen Admin-Funktionen
 	 */
 	(function() {
-		initGlobalSettings();
 		initBackupControls();
 	}());
 }
