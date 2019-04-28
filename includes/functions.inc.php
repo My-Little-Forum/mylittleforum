@@ -2208,18 +2208,6 @@ function my_quoted_printable_encode($input, $line_max=76, $space_conv = false ) 
 }
 
 /**
- * tries to find a simpler character encoding to encode the e-mail
- *
- * @param string $string
- * @return string
- */
-function get_mail_encoding($string)
- {
-  if(preg_match('%^(?:[\x09\x0A\x0D\x20-\x7E])*$%xs', $string)) return 'US-ASCII';
-  else return strtoupper(CHARSET);
- }
-
-/**
  * sends an email
  *
  * @param string $to
@@ -2228,52 +2216,37 @@ function get_mail_encoding($string)
  * @param string $headers
  * @return string
  */
-function my_mail($to, $subject, $message, $from='')
- {
-  global $settings;
-  $mail_header_separator = "\n"; // "\r\n" complies with RFC 2822 but might cause problems in some cases (see http://php.net/manual/en/function.mail.php)
+function my_mail($to, $subject, $message, $from='') {
+	global $settings;
+	$mail_header_separator = "\n"; // "\r\n" complies with RFC 2822 but might cause problems in some cases (see http://php.net/manual/en/function.mail.php)
 
-  if($from=='') $mail_charset = get_mail_encoding($subject.$message.$settings['forum_name'].$settings['forum_email']);
-  else $mail_charset = get_mail_encoding($subject.$message.$from);
+	$mail_charset = strtoupper(CHARSET);
 
-  $to = mail_header_filter($to);
-  $subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q", $mail_header_separator);
-  $message = my_quoted_printable_encode($message);
+	$to = mail_header_filter($to);
+	$subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q", $mail_header_separator);
+	$message = my_quoted_printable_encode($message);
+	
+	$headers = "From: " . encode_mail_name($settings['forum_name'], $mail_charset, $mail_header_separator)." <".$settings['forum_email'].">". $mail_header_separator;
+	if ($from != '') 
+		$headers .= "Reply-to: " . mail_header_filter($from) . $mail_header_separator;
+	
+	$headers .= "MIME-Version: 1.0" . $mail_header_separator;
+	$headers .= "X-Sender-IP: ". $_SERVER['REMOTE_ADDR'] . $mail_header_separator;
+	$headers .= "Content-Type: text/plain; charset=" . $mail_charset . $mail_header_separator;
+	$headers .= "Content-Transfer-Encoding: quoted-printable";
 
-  $headers = "From: " . encode_mail_name($settings['forum_name'], $mail_charset, $mail_header_separator)." <".$settings['forum_email'].">". $mail_header_separator;
-  if ($from != '')
-   {
-    $headers .= "Reply-to: " . mail_header_filter($from) . $mail_header_separator;
-   }
-
-  $headers .= "MIME-Version: 1.0" . $mail_header_separator;
-  $headers .= "X-Sender-IP: ". $_SERVER['REMOTE_ADDR'] . $mail_header_separator;
-  $headers .= "Content-Type: text/plain; charset=" . $mail_charset . $mail_header_separator;
-  $headers .= "Content-Transfer-Encoding: quoted-printable";
-
-  if($settings['mail_parameter']!='')
-   {
-    if(@mail($to, $subject, $message, $headers, $settings['mail_parameter']))
-     {
-      return true;
-     }
-    else
-     {
-      return false;
-     }
-   }
-  else
-   {
-    if(@mail($to, $subject, $message, $headers))
-     {
-      return true;
-     }
-    else
-     {
-      return false;
-     }
-   }
- }
+	if ($settings['mail_parameter'] != '') {
+		if (@mail($to, $subject, $message, $headers, $settings['mail_parameter'])) {
+			return true;
+		}
+	}
+	else {
+		if (@mail($to, $subject, $message, $headers)) {
+			return true;
+		}
+	}
+	return false;
+}
 
 /**
  * checks if the IP of the user is banned
