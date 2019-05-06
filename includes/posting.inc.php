@@ -1452,7 +1452,7 @@ switch ($action) {
 		$field = mysqli_fetch_array($delete_check_result);
 		mysqli_free_result($delete_check_result);
 		$authorization = get_edit_authorization(intval($_REQUEST['delete_posting']), $field['user_id'], $field['edit_key'], $field['time'], $field['locked']);
-		if ($authorization['delete'] == true) { // No check for csrf_token because of JS delete function $_POST['csrf_token'] === $_SESSION['csrf_token']
+		if ($authorization['delete'] == true && isset($_REQUEST['csrf_token']) && $_REQUEST['csrf_token'] === $_SESSION['csrf_token']) {
 			if (isset($_REQUEST['back'])) {
 				$result = @mysqli_query($connid, "SELECT pid FROM " . $db_settings['forum_table'] . " WHERE id=" . intval($_REQUEST['delete_posting']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				if (mysqli_num_rows($result) == 1) {
