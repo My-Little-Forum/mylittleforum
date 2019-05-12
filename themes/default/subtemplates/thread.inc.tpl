@@ -32,7 +32,7 @@
 {assign var=name value=$data.$element.name}
 {/if}
 
-{if ($user || $settings.user_area_public==1) && $data.$element.user_id>0}
+{if (($settings.user_area_access == 0 and ($admin or $mod)) or ($settings.user_area_access == 1 and $user) or $settings.user_area_access == 2) && $data.$element.user_id>0}
 {assign var=posting_user_id value=$data.$element.user_id}
 {assign var=name value="<a href=\"index.php?mode=user&amp;show_user=$posting_user_id\">$name</a>"}
 {/if}

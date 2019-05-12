@@ -795,6 +795,7 @@ user_area =                       'Пользовательский раздел
 user_area_desc =                  'Для кого доступен пользовательский раздел (список пользователей, их профили)?'
 public_accessible =               'общедоступен'
 accessible_reg_users_only =       'только для зарегистрированных пользователей'
+accessible_team_users_only =      '<!-- TODO -->accessible by administrators and moderators only'
 latest_postings =                 'Последние сообщения'
 latest_postings_desc =            'Количество последних сообщений, отображаемых в списке на индексной странице форума (0 =       отключено)'
 tag_cloud =                       'Панель тэгов'

@@ -39,7 +39,7 @@ INSERT INTO mlf2_settings VALUES ('access_for_users_only', '0');
 INSERT INTO mlf2_settings VALUES ('entries_by_users_only', '0');
 INSERT INTO mlf2_settings VALUES ('register_mode', '0');
 INSERT INTO mlf2_settings VALUES ('default_email_contact', '0');
-INSERT INTO mlf2_settings VALUES ('user_area_public', '0');
+INSERT INTO mlf2_settings VALUES ('user_area_access', '1');
 INSERT INTO mlf2_settings VALUES ('rss_feed', '1');
 INSERT INTO mlf2_settings VALUES ('rss_feed_max_items', '20');
 INSERT INTO mlf2_settings VALUES ('session_prefix', 'mlf2_');
