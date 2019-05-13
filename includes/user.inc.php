@@ -5,7 +5,7 @@ if (!defined('IN_INDEX')) {
 }
 
 // only team members ($settings['user_area_access'] = 2) or registered users ($settings['user_area_access'] = 1) have access to this section or the user area is public ($settings['user_area_access'] = 0):
-if ($settings['user_area_access'] == 0 || ($settings['user_area_access'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_id'])) || ($settings['user_area_access'] == 2 && isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && in_array($_SESSION[$settings['session_prefix'].'user_type'], array(1, 2)))) {
+if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_id'])) || ($settings['user_area_access'] == 0 && isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && in_array($_SESSION[$settings['session_prefix'].'user_type'], array(1, 2)))) {
 	if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
 	else $action = 'main';
 
