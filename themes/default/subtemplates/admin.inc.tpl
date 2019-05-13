@@ -101,8 +101,9 @@
 </tr>
 <tr>
 <td class="c"><strong>{#user_area#}</strong><br /><span class="small">{#user_area_desc#}</span></td>
-<td class="d"><input id="public" type="radio" name="user_area_public" value="1"{if $edSet.user_area_public==1} checked="checked"{/if} /><label for="public">{#public_accessible#}</label><br />
-<input id="not_public" type="radio" name="user_area_public" value="0"{if $edSet.user_area_public==0} checked="checked"{/if} /><label for="not_public">{#accessible_reg_users_only#}</label></td>
+<td class="d"><input id="public" type="radio" name="user_area_access" value="2"{if $edSet.user_area_access==2} checked="checked"{/if} /><label for="public">{#public_accessible#}</label><br />
+<input id="restricted_2_users" type="radio" name="user_area_access" value="1"{if $edSet.user_area_access==1} checked="checked"{/if} /><label for="restricted_2_users">{#accessible_reg_users_only#}</label><br />
+<input id="restricted_2_team" type="radio" name="user_area_access" value="0"{if $edSet.user_area_access==0} checked="checked"{/if} /><label for="restricted_2_team">{#accessible_team_users_only#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#latest_postings#}</strong><br /><span class="small">{#latest_postings_desc#}</span></td>
