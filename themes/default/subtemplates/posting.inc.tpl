@@ -243,9 +243,15 @@ JavaScript isn't available.
 {/if}
 
 {if $provide_sticky}
-<p>
-<input id="sticky" type="checkbox" name="sticky" value="1"{if $sticky && $sticky==1} checked="checked"{/if} />&nbsp;<label for="sticky">{#sticky_thread#}</label>
-</p>
+<ul>
+ <li><input id="sticky_none" type="radio" name="sticky" value="0"{if !$sticky or ($sticky && $sticky==0)} checked="checked"{/if} />&nbsp;<label for="sticky_none">{#sticky_none#}</label></li>
+{if $categories}
+ <li><input id="sticky_cat" type="radio" name="sticky" value="1"{if $sticky && $sticky==1} checked="checked"{/if} />&nbsp;<label for="sticky_cat">{#sticky_single_cat#}</label></li>
+ <li><input id="sticky_all" type="radio" name="sticky" value="2"{if $sticky && $sticky==2} checked="checked"{/if} />&nbsp;<label for="sticky_all">{#sticky_all_cats#}</label></li>
+{else}
+ <li><input id="sticky_nocat" type="radio" name="sticky" value="1"{if $sticky && $sticky==1} checked="checked"{/if} />&nbsp;<label for="sticky_nocat">{#sticky_thread#}</label></li>
+{/if}
+</ul>
 {/if}
 
 {if $terms_of_use_agreement}

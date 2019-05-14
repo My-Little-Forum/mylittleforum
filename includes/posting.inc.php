@@ -601,8 +601,11 @@ switch ($action) {
 			} else {
 				$show_signature = isset($_POST['show_signature']) && intval($_POST['show_signature'] == 1) ? 1 : 0;
 			}
-			
-			$sticky = isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && isset($_POST['sticky']) && intval($_POST['sticky'] == 1) ? 1 : 0;
+			if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && isset($_POST['sticky']) && in_array(intval($_POST['sticky']), array(0, 1, 2))) {
+				$sticky = intval($_POST['sticky']);
+			} else {
+				$sticky = 0;
+			}
 			if ($id != 0 && $posting_mode == 0 || $posting_mode == 1 && $pid > 0) {
 				// get category of parent posting:
 				$c_result = @mysqli_query($connid, "SELECT category FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
