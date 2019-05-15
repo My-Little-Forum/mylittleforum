@@ -1,6 +1,12 @@
 my little forum changelog
 -------------------------
 
+2.4.20 (2019-05-15)
+-------------------
+- fixed: call for a removed function in the JS-code
+- fixed: inconsistend mail encoding, depended on an input string and could therefore result in wrong encoding, now fixed to the encoding, provided in the language file (normally UTF-8)
+- fixed: missing CSRF-token in case of deleting postings
+
 2.4.19.1 (2019-02-07)
 ---------------------
 - fixed: reading the setting next_daily_action failed because of checking for a wrong structure, caused HTTP-status 500 every when and then
