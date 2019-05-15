@@ -303,6 +303,16 @@ switch($settings['version']) {
 	case '2.4.19':
 		$update['items'][] = 'includes/admin.inc.php';                               // #458
 		$update['items'][] = 'includes/functions.inc.php';                           // #458
+	case '2.4.19.1':
+		$update['items'][] = 'js/admin.js';                                          // #466
+		$update['items'][] = 'js/admin.min.js';                                      // #466
+		$update['items'][] = 'includes/functions.inc.php';                           // #467
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';            // #469
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';            // #469
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';      // #469
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';           // #469
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';    // #469
+		$update['items'][] = 'includes/posting.inc.php';                             // #469
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
@@ -764,7 +774,7 @@ if (empty($update['errors']) && in_array($settings['version'],array('2.3.5', '2.
 	}
 }
 
-if(empty($update['errors'])) {
+if (empty($update['errors'])) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
