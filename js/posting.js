@@ -707,7 +707,6 @@ function ButtonGroup(f) {
 				}
 			}
 			if (label) {
-				label.appendChild( document.createTextNode( String.fromCharCode(160) ) );
 				var quoteButton = document.createElementWithAttributes("button", {"type": "button", "id": "insert-quote", "title": lang["quote_title"], "tabIndex": -1});
 				quoteButton.onclick = function(e) {
 					textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; 
