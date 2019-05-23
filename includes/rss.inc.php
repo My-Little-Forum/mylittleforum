@@ -54,7 +54,7 @@ if ($settings['rss_feed'] == 1 && $settings['forum_enabled'] == 1) {
 			} else {
 				$rss_items[$i]['text'] = $row['cache_text'];
 			}
-
+			$rss_items[$i]['text'] = str_replace('src="images', 'src="'. htmlspecialchars($settings['forum_address']) .'images', $rss_items[$i]['text']);
 			$rss_items[$i]['title'] = htmlspecialchars(filter_control_characters($row['subject']));
 
 			if ($categories != false && isset($categories[$row['category']]) && $categories[$row['category']] != '') $rss_items[$i]['category'] = $categories[$row['category']];
