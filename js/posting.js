@@ -707,9 +707,15 @@ function ButtonGroup(f) {
 				}
 			}
 			if (label) {
-				label.appendChild( document.createTextNode( String.fromCharCode(160) ) );
-				var quoteLink = document.createElementWithAttributes("a", {"onclick": function(e) {textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; this.classList.add("js-display-none"); textarea.focus(); return false;}, "id": "insert-quote", "href": window.location.href, "title": lang["quote_title"], "tabIndex": -1 }, label);
-				quoteLink.appendChild( document.createTextNode(lang["quote_label"]) );
+				var quoteButton = document.createElementWithAttributes("button", {"type": "button", "id": "insert-quote", "title": lang["quote_title"], "tabIndex": -1});
+				quoteButton.onclick = function(e) {
+					textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; 
+					this.classList.add("js-display-none"); 
+					textarea.focus(); 
+					return false;
+				};
+				quoteButton.appendChild( document.createTextNode(lang["quote_label"]) )
+				label.parentNode.insertBefore(quoteButton, label.nextSibling);
 			}
 		}
 		
