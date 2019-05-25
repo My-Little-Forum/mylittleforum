@@ -250,7 +250,8 @@ p.userdata{margin:0}
 #postingform label.input{display:block;float:left;width:8em;font-weight:700}
 #postingform label.textarea{font-weight:700}
 #postingform input.checkbox{margin-left:8em}
-#postingform #insert-quote{margin:0 0 0 .5em;font-weight:400;font-size:.82em;padding:0 0 0 14px;background:url(images/quote_message.png) no-repeat left center}
+#postingform #insert-quote{margin:0 0 0 .5em;font-weight:400;font-size:.82em;padding:0 0 0 14px;background:url(images/quote_message.png) no-repeat left center transparent;border:none;color:#00c}
+#postingform #insert-quote:focus,#postingform #insert-quote:hover{color:#00f}
 #postingform #text{width:700px;height:400px;float:left}
 #postingform #format-bar{margin-left:720px}
 #postingform{font-size:.82em}

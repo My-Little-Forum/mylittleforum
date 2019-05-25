@@ -356,7 +356,10 @@ p.userdata               { margin:0; }
                          { margin-left:8em; }
 
 #postingform #insert-quote
-                         { margin: 0 0 0 0.5em; font-weight:normal; font-size:0.82em; padding:0 0 0 14px; background:url(images/quote_message.png) no-repeat left center; }
+                         { margin:0 0 0 0.5em; font-weight:normal; font-size:0.82em; padding:0 0 0 14px; background:url(images/quote_message.png) no-repeat left center transparent; border:none; color:#00c; }
+#postingform #insert-quote:focus,
+#postingform #insert-quote:hover
+                         { color:#00f; }
 
 #postingform #text       { width:700px; height:400px; float:left; }
 #postingform #format-bar { margin-left:720px; }
