@@ -195,7 +195,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1')
 			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['b8_rating_table'] . "` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `training_type` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`)) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['b8_wordlist_table'] . "` (`token` varchar(255) character set utf8 collate utf8_bin NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['b8_wordlist_table'] . "` (`token` varchar(255) character set utf8mb4 collate utf8mb4_bin NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp` datetime NULL, PRIMARY KEY (id)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
@@ -235,6 +235,36 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1')
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` DROP `spam`, DROP `spam_check_status`;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['banlists_table'] . "` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['entry_cache_table'] . "` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_name` `user_name` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+			if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_cache_table'] . "` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 		}
