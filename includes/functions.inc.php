@@ -14,14 +14,12 @@ if(!defined('IN_INDEX'))
  * @param string $db
  * @return resource
  */
-function connect_db($host,$user,$pw,$db)
- {
-  $connid = @mysqli_connect($host, $user, $pw) or raise_error('mysql_connect',mysqli_connect_error());
-  @mysqli_select_db($connid, $db) or raise_error('mysql_select_db',mysqli_error($connid));
-  @mysqli_query($connid, 'SET NAMES utf8mb4');
-  //@mysqli_query($connid, "SET time_zone='+00:00'");
-  return $connid;
- }
+function connect_db($host, $user, $pw, $db) {
+	$connid = @mysqli_connect($host, $user, $pw) or raise_error('mysql_connect', mysqli_connect_error());
+	@mysqli_select_db($connid, $db) or raise_error('mysql_select_db', mysqli_error($connid));
+	@mysqli_query($connid, 'SET NAMES utf8mb4');
+	return $connid;
+}
 
 /**
  * logs a user out, saves log out time and removes user from user online table
