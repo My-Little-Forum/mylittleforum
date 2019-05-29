@@ -35,7 +35,7 @@ if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 &&
 
 			// who is online:
 			if ($settings['count_users_online'] > 0) {
-				$useronline_result = mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_name COLLATE utf8_general_ci AS user_name, ".$db_settings['useronline_table'].".user_id
+				$useronline_result = mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_name COLLATE utf8mb4_general_ci AS user_name, ".$db_settings['useronline_table'].".user_id
 					FROM ".$db_settings['useronline_table']."
 					LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ".$db_settings['useronline_table'].".user_id
 					WHERE ".$db_settings['useronline_table'].".user_id > 0
@@ -68,12 +68,12 @@ if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 &&
 			$category_query_add = '';
 
 			if (isset($search_user)) {
-				$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
+				$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
 					FROM ".$db_settings['userdata_table']."
 					WHERE activate_code = ''". $category_query_add ." AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'
 					ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
 			} else {
-				$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
+				$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
 					FROM ".$db_settings['userdata_table']."
 					WHERE activate_code = ''". $category_query_add ."
 					ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
