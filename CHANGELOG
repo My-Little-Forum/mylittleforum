@@ -1,6 +1,17 @@
 my little forum changelog
 -------------------------
 
+2.4.99.0 (2019-02-11)
+---------------------
+
+- feature: upload management page in the admin area, list all uploaded images, delete images groupwise
+- feature: information about the user who uploads a new image gets stored in a database table
+- feature: Bayes based spam filter
+- feature: optional TeX support through MathJax library (has to be linked manually)
+- removed: optional TeX support through the Google online service, service got abandoned
+- removed: flash button and flash bb-code
+- fixed: replace while loops with deprecated PHP-function "each" with foreach loops
+
 2.4.20 (2019-05-15)
 -------------------
 - fixed: call for a removed function in the JS-code
