@@ -1,6 +1,17 @@
 my little forum changelog
 -------------------------
 
+2.4.99.1 (2019-06-01)
+---------------------
+
+- feature: restrict access to the user list to the forum team (administrators and moderators)
+- feature: allow topics to be pinned/sticked to the certain category or to all categories
+- feature: change the charset of most of the tables to support 4-byte-characters, i.e. emojis
+- fixed: unify mail encoding, was different depending of the checked characters
+- fixed: added a CSRF-token to posting delete function calls
+- fixed: relative pathes in the src-attribute of images in the RSS feed made the images inaccessible in the feed
+- changed: the quote-message-link is now a button
+
 2.4.99.0 (2019-02-11)
 ---------------------
 
