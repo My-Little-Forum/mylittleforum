@@ -1,6 +1,118 @@
 my little forum changelog
 -------------------------
 
+2.4.20 (2019-05-15)
+-------------------
+- fixed: call for a removed function in the JS-code
+- fixed: inconsistend mail encoding, depended on an input string and could therefore result in wrong encoding, now fixed to the encoding, provided in the language file (normally UTF-8)
+- fixed: missing CSRF-token in case of deleting postings
+
+2.4.19.1 (2019-02-07)
+---------------------
+- fixed: reading the setting next_daily_action failed because of checking for a wrong structure, caused HTTP-status 500 every when and then
+- fixed: function mysqli_fetch_all is not available in every PHP-installation, caused error messages, HTTP-status 500 or white pages in such cases
+
+2.4.19 (2019-02-03)
+-------------------
+- fixed: when editing a posting, an activated subscription can not be saved in the database because of a syntax error on the database query
+- fixed: images, included in a posting, got elongated in the Ajax-preview of a posting
+- changed: a few settings moved to the table mlf2_temp_infos because they are no settings at all
+
+2.4.18.1 (2019-01-14)
+---------------------
+- fixed: table name in install.sql MUST NOT be surrounded by backticks, this makes the prefix replacement during installation impossible; this is only relevant during first installation
+
+2.4.18 (2019-01-13)
+-------------------
+- fixed: unregistered users was not able to subscribe to their own postings because of field user_id being NOT NULL in the subscriptions table
+- fixed: because of failing subscriptions of unregistered users for thread opening postings the thread in itself was broken and not deletable
+- fixed: sending e-mails over the contact form failed because of forgotten function call for form time handling
+- fixed: deleting a posting with subscriptions left orphaned subscriptions because they got not removed from the database
+- fixed: the check for password strength failed when more than one char in a category was required and these chars did not follow one after the other
+- fixed: if one used the thumbnail funtion to include an image to a posting, the image got the right width but was elongated to the complete possible height of the posting.
+- change: the default protocol, used in the JS-prompts for links and images when creating a posting is from now on "https://" instead "http://"
+- change: changed the language strings, key: show_spam_link, for english and german language, led to danger of confusion ("show spam (no. of entries)" vs. "list spam") (enahncement for admins and mods)
+- change: the update script disables the forum during the database operations of the update and reenables it afterwards (admin only feature), at the moment it got enabled before one updates the files and folders; @admins: please check the status after an update in the settings page
+
+2.4.17 (2019-01-06)
+-------------------
+- fixed: set the decimal point as fix char because different decimal separators (i.e. comma in german language) causes errors in floating number operations in PHP
+- fixed: the checkbox for the Flash-bb-code-setting got reintroduced (will definitely get removed with version 2.5, change was removed by accident in the 2.4.x-branch)
+- fixed: remove the confirm-password-field from the form for change ones own password, function was removed for the other forms in versions 2.4.16
+- feature: minimal and maximal time between requesting a form and sending the filled form back to the forum-server as separate settings for posting form, e-mail form and registration form
+- feature: a user is from now on able to close her/his own forum account, until now this was only possible for the admin/forum operator
+- feature: a by the registered users granted acceptance to the terms of use and/or the data privacy statement can be recalled and a newly acceptance can be enforced for the case of changes in the terms of use and/or the data privacy statement
+- feature: further possible requirements for password quality (enforce a number of lowercase and/or capital letters, ciphers and/or "special" chars), disabled by default
+- change: removed the JS-function to create the bb-code [msg] for forum entries, it needed a blacklist of not covered exceptions that was incomplete; entries will from now on handled as [link] or [url] like all other links; existing msg-bb-codes will still get interpreted
+- change: not selected checkboxes and radio buttons in the settings forms of the admin panel will not grayed out from now on, was a misleading UI-feature because the form fields looked like disabled but was still accessible
+
+2.4.16 (2018-12-07)
+-------------------
+- fixed: do not create a list item for a non existing bookmark tag for the users bookmark list
+- fixed: errorneous use of a hardcoded table name that led to failing read attempts of a users subscriptions
+
+2.4.15 (2018-11-30)
+-------------------
+- fixed: entries could not be edited
+- fixed: subscribung to or unsubscribing from an entry was not possible when saving the edit of an entry
+
+2.4.14 (2018-11-26)
+-------------------
+- fixed: several forms in the admin area lacked the CSRF-token
+- fixed: remove underscores from "data privacy statement" in the language files
+- fixed: removed the workaround of setting the language to en-us in the turkish language file, underlying problem was solved with PHP5.2
+- feature: add a checkbox to make the password visible for input verification during registration, remove therefore the second password field
+- feature: add a unsubscribe link to the e-mails with a notification about a new reply
+- feature: add a new table to store the subscriptions independent from the entry in itself
+- feature: allow SVG-graphics as smilies, graphics have to be uploaded per FTP
+- update: danish language file updated by project-forum-user Tommy Nillson
+- update: norwegian language file updated by Github-user @flatnick
+
+2.4.13 (2018-08-12)
+-------------------
+- fixed: icon for Ajax-preview of an entry was not displayed, if the entry is locked
+- fixed: reordering registration-form fields because firefox users could be unable to register dependent from the browser settings (prefilled form fields)
+- fixed: status of the checkbox for accepting the data privacy statement got lost when previewing the entry
+- fixed: display data privacy statement in a popup like the terms of use in case of an entry from an unregistered user
+- fixed: missing fields for the dates of the acceptance of the terms of use and the data privacy statement in the backup script for the user data
+- fixed: set a birthday date in single quotes in the backup script for the user data
+- fixed: remove field mlf2_entries.tags from the backup script for the forum entries because it does no longer exist
+- fixed: masked an occurence of single quotes in the german language file
+- fixed: set the forums own e-mail-address as sender of an e-mail in every case, set a possibly given divergent address as Reply-To-header; prevents not sending e-mails because of not matching domain names (forum domain versus domain part of an e-mail-address)
+
+2.4.12 (2018-06-29)
+-------------------
+- fixed array of update targets for versions 2.4.10 and 2.4.11 because versions from 2.3.5 to 2.3.7 got no update of the table structure
+
+2.4.11 (2018-06-25)
+-------------------
+- fixed: used the wrong setting for the terms-of-use-URL in the new template user_agreement.inc.tpl because of a copy'n'paste error, one was unable to read the terms of use before accepting it
+- fixed: a lost underscore in the admin template
+
+2.4.10 (2018-06-13)
+-------------------
+- fixed: the russian language had a few syntax errors, introduced with the reformatting of the language files (2.4.7)
+- fixed: the version check in the admin panel was broken, when the update was executed before the forum itself found the new version on Github
+- fixed: the meta element for the charset definition moved to top of the title to apply also for the title
+- feature: make it possible to force an agreement to a data privacy statement in the same manner as with the terms of rules
+- feature: store the date of the agreement (data privacy statement and/or terms of use) with the users data
+- feature: enforce a new agreement to adata privacy statement and/or terms of use with the deletion of the timestamp of the old agreement (no user interface yet!)
+- change: actualised Bad Behavior from 2.2.19 to version 2.2.20
+- change: actualised GesHi from 1.0.8.11 to version 1.0.9
+- change: actualised Smarty from 3.1.30 to version 3.1.32
+- change: because of the minimal system requirement for Bad Behavior the minimal MySQL version raises to 5.0
+
+2.4.9 (2018-04-13)
+------------------
+- fixed: use the function get_avatar also in the admin panel, used before only the code for the old file name scheme whcih leads to only displaying avatars with names in this old name scheme
+- fixed: avatar field in the user data form of the admin panel had no label because of missing string in the language files
+- fixed: adapt changed URL-parameter behaviour for folding threads to the JS-sources, didn't work with the switch instead the toggle
+- fixed: changed long date format for german language to month as number with leading zero, out written month name "März" can cause encoding problem on some servers
+- fixed: the deletion of entries about read postings was broken in the case of deletion after X days, used the old and removed setting name read_state_expiration_date instead read_state_expiration_value
+- added: sentence about automatic generation of e-mails to inform about new entries
+- added: make the mouse cursor a hand (pointer) when hovering over a (visible) label element
+- added: put pixel dimensions of uploaded images into the HTMl source, when included in entries, prevents page jumping during load process for only this case(!)
+
 2.4.8 (2018-02-18)
 ------------------
 - fixed double closing tag of a select in the admin.inc.tpl
