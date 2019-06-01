@@ -7,7 +7,7 @@
  * @author Michael Lösler (https://github.com/loesler)
  * @author Heiko August (https://github.com/auge8472)
  * @copyright 2006-2018 Mark Alexander Hoschek
- * @version 2.4.16 (2018-12-07)
+ * @version 2.4.99.1 (2019-06-01)
  * @link https://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
