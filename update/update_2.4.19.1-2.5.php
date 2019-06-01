@@ -56,6 +56,7 @@ function compare_versions($versions) {
 // Note: Do *NOT* add 'break;' to a single case!!!
 switch($settings['version']) {
 	case '2.4.19.1':
+	case '2.4.20':
 		$update['items'][] = 'includes/admin.inc.php';                               // #364, #367, #390, #410, #427, #456
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #364, #390
 		$update['items'][] = 'themes/default/images/image.png';                      // #364
@@ -77,6 +78,31 @@ switch($settings['version']) {
 		$update['items'][] = 'modules/b8/';                                          // #427
 		$update['items'][] = 'themes/default/';                                      // #427
 		$update['items'][] = 'includes/upload_image.inc.php';                        // #451, #454
+	case '2.4.99.0':
+		$update['items'][] = 'themes/default/style.min.css';                         // #461, #477
+		$update['items'][] = 'includes/upload_image.inc.php';                        // #462
+		$update['items'][] = 'modules/b8/';                                          // #463
+		$update['items'][] = 'js/admin.js';                                          // #466
+		$update['items'][] = 'js/admin.min.js';                                      // #466
+		$update['items'][] = 'includes/functions.inc.php';                           // #467, #478
+		$update['items'][] = 'includes/posting.inc.php';                             // #469, #471
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';            // #469, #470
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';            // #469, #471
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';      // #469, #471
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';           // #469, #470
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';    // #469, #470
+		$update['items'][] = 'includes/user.inc.php';                                // #470
+		$update['items'][] = 'lang/';                                                // #470, #471
+		$update['items'][] = 'themes/default/main.tpl';                              // #470
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #470
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';          // #471
+		$update['items'][] = 'includes/index.inc.php';                               // #472
+		$update['items'][] = 'js/posting.js';                                        // #475
+		$update['items'][] = 'js/posting.min.js';                                    // #475
+		$update['items'][] = 'includes/rss.inc.php';                                 // #476
+		$update['items'][] = 'themes/default/style.css';                             // #477
+		$update['items'][] = 'includes/admin.inc.php';                               // #478
+		$update['items'][] = 'includes/user.inc.php';                                // #478
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
