@@ -237,6 +237,9 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 				if (($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $data['akismet_spam'] == 1 && $data['spam_check_status'] > 0) || ($settings['b8_entry_check'] == 1 && $data['b8_spam'] == 1 || $data['training_type'] == 0))
 					$data['options']['flag_ham'] = true;
 			}
+			if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $settings['reports_by_registered'] == 1) {
+				$data['options']['report_entry'] = true;
+			}
 			if ($settings['count_views'] == 1) {
 				$views = $data['views'] - 1; // this subtracts the first view by the author after posting
 				if ($views < 0)
