@@ -1816,9 +1816,15 @@ switch ($action) {
 				if ($language_file != $settings['language_file'])
 					setlocale(LC_ALL, $lang['locale']);
 				
-				// send confirm mails as they haven't been seent in spam status: (2nd parameter "true" adds a delayed message)
-				emailNotification2ParentAuthor($id, true);
-				emailNotification2ModsAndAdmins($id, true);
+				// check, if entry was flagged as spam, and send message (do not send messages if entry was flaged as ham)
+				if (($settings['akismet_entry_check'] == 0 && $settings['b8_entry_check'] == 0) || 
+						( ($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $data['spam_check_status'] == 1 && $data['akismet_spam'] != 0) ||
+						($settings['b8_entry_check'] == 1 && $data['b8_spam'] != 0) )) {
+
+					// send confirm mails as they haven't been seent in spam status: (2nd parameter "true" adds a delayed message)
+					emailNotification2ParentAuthor($id, true);
+					emailNotification2ModsAndAdmins($id, true);
+				}
 				
 				if (isset($_POST['report_flag_ham_submit'])) {
 					if ($settings['akismet_entry_check'] == 1 || $settings['b8_entry_check'] == 1) {
