@@ -402,4 +402,17 @@ DELETE FROM `mlf2_settings` WHERE name IN('access_permission_checks', 'last_chan
 /*
 INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20');
 INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
+
+ALTER TABLE mlf2_banlists ENGINE=InnoDB;
+ALTER TABLE mlf2_categories ENGINE=InnoDB;
+ALTER TABLE mlf2_entries ENGINE=InnoDB;
+ALTER TABLE mlf2_smilies ENGINE=InnoDB;
+ALTER TABLE mlf2_userdata ENGINE=InnoDB;
+ALTER TABLE mlf2_pages ENGINE=InnoDB;
+ALTER TABLE mlf2_useronline ENGINE=InnoDB;
+ALTER TABLE mlf2_logincontrol ENGINE=InnoDB;
+ALTER TABLE mlf2_entries_cache ENGINE=InnoDB;
+ALTER TABLE mlf2_userdata_cache ENGINE=InnoDB;
+ALTER TABLE mlf2_b8_rating ENGINE=InnoDB;
+ALTER TABLE mlf2_akismet_rating ENGINE=InnoDB;
 */
