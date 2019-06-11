@@ -478,6 +478,14 @@ report_flag_ham_submit =          'Rapportera och markera som icke spam'
 flag_ham_submit =                 'Endast markera som ham'
 no_authorisation_delete =         'Inlägget kan inte ändras! Möjligen har tiden för editering utgått, tråden är låst eller så finns det svar på inlägget!'
 
+[report_posting]
+report_posting_hl =               '<!-- TODO -->Report entry'
+report_posting_warning =          '<!-- TODO -->Please report the entry only in the case of suspicion of spam, forum rules violation or a judicial relevant statement.'
+report_reason_spam =              '<!-- TODO -->suspicion of spam'
+report_reason_tos =               '<!-- TODO -->suspicion of forum rules violation'
+report_reason_legal =             '<!-- TODO -->suspicion of a judicial relevant content'
+report_posting_submit =           '<!-- TODO -->Report entry'
+
 [unsubscribe_posting]
 unsubscribed_hl =                 'Avslutade prenumation'
 unsubscribed_message =            'Prenumationen med information om svar på ditt inlägg har avslutats. Du kommer inte få några fler e-post meddelande angående detta inlägg. Prenumerationer på framtida inlägg kommer inte påverkas av detta valet.'

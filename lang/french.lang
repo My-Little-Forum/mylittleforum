@@ -481,6 +481,14 @@ report_flag_ham_submit =          'Déclarer et valider comme non spam'
 flag_ham_submit =                 'Déclarer comme non spam seulement'
 no_authorisation_delete =         'Le message ne peut être supprimé ! Il se peut que le délai de suppression des messages soit dépassé, ou que le fil soit verrouillé, ou qu\'il y ait déjà des réponses à ce message.'
 
+[report_posting]
+report_posting_hl =               '<!-- TODO -->Report entry'
+report_posting_warning =          '<!-- TODO -->Please report the entry only in the case of suspicion of spam, forum rules violation or a judicial relevant statement.'
+report_reason_spam =              '<!-- TODO -->suspicion of spam'
+report_reason_tos =               '<!-- TODO -->suspicion of forum rules violation'
+report_reason_legal =             '<!-- TODO -->suspicion of a judicial relevant content'
+report_posting_submit =           '<!-- TODO -->Report entry'
+
 [unsubscribe_posting]
 unsubscribed_hl =                 'Désinscrit'
 unsubscribed_message =            'La liste des souscription desquelles vous vous êtes désinscrit. Vous ne recevrez plus d\'email pour ce message. Les souscriptions futures ne seront pas affectées par cette action.'

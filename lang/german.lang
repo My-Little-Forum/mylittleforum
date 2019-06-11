@@ -478,6 +478,14 @@ report_flag_ham_submit =          'als Ham (kein Spam) kennzeichnen und als Trai
 flag_ham_submit =                 'nur als Ham (kein Spam) kennzeichnen'
 no_authorisation_delete =         'Der Eintrag kann nicht gelöscht werden! Entweder der Löschzeitraum ist abgelaufen, der Thread ist gesperrt oder es gibt bereits eine Antwort auf diesen Eintrag.'
 
+[report_posting]
+report_posting_hl =               'Eintrag melden'
+report_posting_warning =          'Bitte den Eintrag nur melden, wenn der Verdacht auf Spam, Verstoß gegen die Forumsregeln oder strafrechtlich relevante Aussagen besteht.'
+report_reason_spam =              'Spamverdacht'
+report_reason_tos =               'Verdacht auf Verstoß gegen die Forumsregeln'
+report_reason_legal =             'Verdacht auf gesetzwidrigen Inhalt'
+report_posting_submit =           'Eintrag melden'
+
 [unsubscribe_posting]
 unsubscribed_hl =                 'Benachrichtigung ausgeschaltet'
 unsubscribed_message =            'Die Benachrichtigung über Antworten auf deinen Eintrag wurde ausgeschaltet. Es werden keine weiteren E-Mails gesendet, um dich über Antworten auf den nämlichen Eintrag zu informieren. Weitere aktivierte Benachrichtigungen über Antworten auf andere Einträge sind von dieser Aktion nicht betroffen.'

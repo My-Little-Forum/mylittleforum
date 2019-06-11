@@ -479,6 +479,14 @@ report_flag_ham_submit =          'Reportar y marcar como spam'
 flag_ham_submit =                 'Marcar como bueno (ham)'
 no_authorisation_delete =         'El mensaje no se puede eliminar! Tal vez el plazo de para suprimir mensajes ha expirado, el hilo está bloqueado o ya hay respuestas a este anuncio.'
 
+[report_posting]
+report_posting_hl =               '<!-- TODO -->Report entry'
+report_posting_warning =          '<!-- TODO -->Please report the entry only in the case of suspicion of spam, forum rules violation or a judicial relevant statement.'
+report_reason_spam =              '<!-- TODO -->suspicion of spam'
+report_reason_tos =               '<!-- TODO -->suspicion of forum rules violation'
+report_reason_legal =             '<!-- TODO -->suspicion of a judicial relevant content'
+report_posting_submit =           '<!-- TODO -->Report entry'
+
 [unsubscribe_posting]
 unsubscribed_hl =                 'Subscripción cancelada'
 unsubscribed_message =            'La subscripción para la notificación de respuestas para tu entrada fue cancelada. No recibirás más e-mails sobre esta entrada específica. Las subscripciones para notificación de futuras entradas no se verán afectadas por esta acción.'

@@ -104,6 +104,8 @@ if (isset($_GET['unlock_thread']))
 	$action = 'unlock_thread';
 if (isset($_GET['edit']))
 	$action = 'edit';
+if (isset($_GET['report_entry']))
+	$action = 'report_entry';
 if (isset($_GET['report_spam']))
 	$action = 'report_spam';
 if (isset($_GET['flag_ham']))
@@ -1972,6 +1974,45 @@ switch ($action) {
 		$smarty->assign("subnav_link", $subnav_link);
 		$smarty->assign("unsubscribe_status", false);
 		$smarty->assign('subtemplate', 'posting_unsubscribe.inc.tpl');
+		break;
+	case 'report_entry';
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_id']) && $settings['reports_by_registered'] == 1) {
+			$id = intval($_GET['report_entry']);
+			$report_result = mysqli_query($connid, "SELECT subject, name, user_name, time FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = " . $db_settings['forum_table'] . ".user_id WHERE " . $db_settings['forum_table'] . ".id = " . $id . " LIMIT 1");
+			if (!$report_result)
+				raise_error('database_error', mysqli_error($connid));
+			$field = mysqli_fetch_assoc($report_result);
+			mysqli_free_result($report_result);
+			if (empty($field['name']) and !empty($field['user_name']))
+				$field['name'] = $field['user_name'];
+			$smarty->configLoad($language_file, 'report_posting');
+			if (!empty($smarty->getConfigVars('report_reason_spam')))
+				$report_reasons[] = array("id"=>"1", "val"=>$smarty->getConfigVars('report_reason_spam'));
+			if (!empty($smarty->getConfigVars('report_reason_tos')))
+				$report_reasons[] = array("id"=>"2", "val"=>$smarty->getConfigVars('report_reason_tos'));
+			if (!empty($smarty->getConfigVars('report_reason_legal')))
+				$report_reasons[] = array("id"=>"3", "val"=>$smarty->getConfigVars('report_reason_legal'));
+			if ($field['name'])
+				$smarty->assign('name_repl_subnav', htmlspecialchars($field['name']));
+			else
+				$smarty->assign('name_repl_subnav', $lang['unknown_user']);
+			$subnav_link = array(
+				'mode' => $back,
+				'id' => $id,
+				'title' => 'back_to_entry_link_title',
+				'name' => 'back_to_entry_link'
+			);
+			$smarty->assign("subnav_link", $subnav_link);
+			$smarty->assign("id", $id);
+			$smarty->assign("subject", $field['subject']);
+			$smarty->assign("name", $field['name']);
+			$smarty->assign("disp_time", $field['time']);
+			$smarty->assign("report_reasons", $report_reasons);
+			$smarty->assign('subtemplate', 'posting_user_report.inc.tpl');
+		} else {
+			header("location: index.php?mode=" . $back . "&id=" . intval($_GET['report_entry']));
+			exit;
+		}
 		break;
 }
 

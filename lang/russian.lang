@@ -488,6 +488,14 @@ report_flag_ham_submit =          'Сообщить и пометить как �
 flag_ham_submit =                 'Только пометить как разрешённое'
 no_authorisation_delete =         'Сообщение не может быть удалено! Возможно, истёк период времени для удаления сообщения, тема заблокирована или уже имеются ответы на данное сообщение.'
 
+[report_posting]
+report_posting_hl =               '<!-- TODO -->Report entry'
+report_posting_warning =          '<!-- TODO -->Please report the entry only in the case of suspicion of spam, forum rules violation or a judicial relevant statement.'
+report_reason_spam =              '<!-- TODO -->suspicion of spam'
+report_reason_tos =               '<!-- TODO -->suspicion of forum rules violation'
+report_reason_legal =             '<!-- TODO -->suspicion of a judicial relevant content'
+report_posting_submit =           '<!-- TODO -->Report entry'
+
 [unsubscribe_posting]
 unsubscribed_hl =                 'Подписка прекращена'
 unsubscribed_message =            'Подписка на получение информации об ответах на ваше сообщение прекращена. Вы больше не будете получать по электронной почте какие-либо уведомления об этом сообщении. Это действие не влияет на подписку на получение уведомлений о дальнейших сообщениях.'
