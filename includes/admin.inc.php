@@ -1457,6 +1457,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('auto_delete_spam', $settings['auto_delete_spam']);
 			$smarty->assign('spam_check_registered', $settings['spam_check_registered']);			
 			$smarty->assign('b8_entry_check', $settings['b8_entry_check']);
+			$smarty->assign('b8_mail_check', $settings['b8_mail_check']);
 			$smarty->assign('b8_auto_training', $settings['b8_auto_training']);
 			$smarty->assign('b8_spam_probability_threshold', $settings['b8_spam_probability_threshold']);
 		break;
@@ -1573,6 +1574,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (empty($_POST['save_spam'])) $save_spam = 0; else $save_spam = 1;
 			if (empty($_POST['spam_check_registered'])) $spam_check_registered = 0; else $spam_check_registered = 1;
 			if (empty($_POST['b8_entry_check'])) $b8_entry_check = 0; else $b8_entry_check = 1;
+			if (empty($_POST['b8_mail_check'])) $b8_mail_check = 0; else $b8_mail_check = 1;
 			if (empty($_POST['b8_auto_training'])) $b8_auto_training = 0; else $b8_auto_training = 1;
 			if (isset($_POST['b8_spam_probability_threshold']))	$b8_spam_probability_threshold = intval($_POST['b8_spam_probability_threshold']);
 			$b8_spam_probability_threshold = min(100, max(0, $b8_spam_probability_threshold));
@@ -1643,6 +1645,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				mysqli_query($connid, "UPDATE ".$db_settings['banlists_table']." SET list = '". mysqli_real_escape_string($connid, $not_accepted_words) ."' WHERE name = 'words'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($spam_check_registered) ."' WHERE name = 'spam_check_registered'");	
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_entry_check) ."' WHERE name = 'b8_entry_check'");	
+				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_mail_check) ."' WHERE name = 'b8_mail_check'");	
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_auto_training) ."' WHERE name = 'b8_auto_training'");	
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_spam_probability_threshold) ."' WHERE name = 'b8_spam_probability_threshold'");
 
@@ -1669,6 +1672,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$smarty->assign('not_accepted_words', htmlspecialchars($_POST['not_accepted_words']));
 				$smarty->assign('spam_check_registered', $spam_check_registered);			
 				$smarty->assign('b8_entry_check', $b8_entry_check);
+				$smarty->assign('b8_mail_check', $b8_mail_check);
 				$smarty->assign('b8_auto_training', $b8_auto_training);
 				$smarty->assign('b8_spam_probability_threshold', $b8_spam_probability_threshold);
 				$smarty->assign('errors', $errors);

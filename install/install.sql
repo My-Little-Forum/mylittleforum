@@ -148,6 +148,7 @@ INSERT INTO mlf2_settings VALUES ('max_register_time', '10800');
 INSERT INTO mlf2_settings VALUES ('max_email_time', '10800');
 INSERT INTO mlf2_settings VALUES ('b8_entry_check', '1');
 INSERT INTO mlf2_settings VALUES ('b8_auto_training', '1');
+INSERT INTO mlf2_settings VALUES ('b8_mail_check', '0');
 INSERT INTO mlf2_settings VALUES ('b8_spam_probability_threshold', '80');
 INSERT INTO mlf2_settings VALUES ('spam_check_registered', '0');
 INSERT INTO mlf2_settings VALUES ('min_pw_digits', '0');

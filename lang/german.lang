@@ -702,7 +702,7 @@ error_message_no_subject =        'kein Betreff angegeben'
 error_email_invalid =             'die E-Mail-Adresse ist ungültig'
 error_email_subject_too_long =    'der Betreff ist zu lang'
 error_email_text_too_long =       'die Nachricht ist zu lang ([text_length] Zeichen - nur [text_maxlength] Zeichen erlaubt)'
-error_spam_suspicion =            'Spam-Verdacht! Bitte Nachricht verändern (z.B. Links löschen)'
+error_email_spam_suspicion =      'Spam-Verdacht! Bitte Nachricht verändern (z.B. Links löschen)'
 
 [admin]
 enabled =                         'aktiviert'
@@ -961,7 +961,8 @@ gr_captcha_not_available =        'graphisches CAPTCHA nicht verfügbar (GD Lib 
 gr_captcha_no_font =              'keine Schrift verfügbar, CAPTCHA kann nicht ideal angezeigt werden'
 b8 =                              'B8'
 b8_desc =                         'Bayes-basierter Spamschutz <a href="https://nasauber.de/opensource/b8/">B8</a> mit Foren-spezifischen Trainingsdaten'
-b8_entry_check_enable =           'B8 aktivieren'
+b8_entry_check_enable =           'Eintrags-Formular prüfen'
+b8_mail_check_enable =            'E-Mail-Formular prüfen'
 b8_auto_training_enable =         'Automatisch Trainingsdaten erzeugen (Nur nach ausreichendem manuellem Training mit Spam und Ham Einträgen sinnvoll möglich)'
 b8_spam_probability_threshold =   'Grenzwert zwischen 0&nbsp;% und 100&nbsp;% zur Spam Erkennung, hierbei entspricht z.B. 80&nbsp;% der Sicherheitswahrscheinlichkeit für den Fehler 1. Art (80&nbsp;% bedeutet, von 100 Einträgen werden statistisch gesehen 20 Einträge als Spam klassifiziert, die kein Spam sind)'
 stop_forum_spam =                 'Stop Forum Spam'
