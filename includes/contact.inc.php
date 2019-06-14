@@ -4,6 +4,35 @@ if (!defined('IN_INDEX')) {
 	exit;
 }
 
+/** config for b8 filter **/
+define('B8_CONFIG_LEXER', array(
+	'min_size'      => 3,
+	'max_size'      => 30,
+	'allow_numbers' => FALSE,
+	'old_get_html'  => FALSE,
+	'get_html'      => TRUE,
+	'get_uris'      => TRUE,
+	'get_bbcode'    => FALSE
+));
+
+define('B8_CONFIG_DEGENERATOR', array(
+	'encoding'  => isset($lang['charset']) ? $lang['charset'] : 'UTF-8',
+	'multibyte' => function_exists('mb_strtolower') && function_exists('mb_strtoupper') && function_exists('mb_substr')
+));
+
+define('B8_CONFIG_DATABASE', array(
+	'storage' => 'mysqli'
+));
+
+define('B8_CONFIG_AUTHENTICATION', array(
+	'database'   => $db_settings['database'],
+	'table_name' => $db_settings['b8_wordlist_table'],
+	'host'       => $db_settings['host'],
+	'user'       => $db_settings['user'],
+	'pass'       => $db_settings['password']
+));
+/** config for b8 filter **/
+
 if (empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha_email'] > 0) {
 	require('modules/captcha/captcha.php');
 	$captcha = new Captcha();
@@ -134,15 +163,17 @@ switch($action) {
 			unset($_SESSION['captcha_session']);
 		}
 
-		// Akismet spam check:
-		if (empty($errors) && $settings['akismet_key'] != '' && $settings['akismet_mail_check'] == 1) {
-			if (empty($_SESSION[$settings['session_prefix'].'user_id']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] == 0 && $settings['akismet_check_registered'] == 1) {
+		// Spam check: 
+		if (empty($errors) && (empty($_SESSION[$settings['session_prefix'].'user_id']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] == 0 && $settings['spam_check_registered'] == 1)) {
+			$mail_parts = explode("@", $sender_email);
+			$sender_name = $mail_parts[0];
+			$check_mail['author'] = $mail_parts[0];
+			$check_mail['email'] = $sender_email;
+			$check_mail['body'] = $text;
+				
+			// Akismet spam check: 
+			if ($settings['akismet_key'] != '' && $settings['akismet_mail_check'] == 1) {
 				require('modules/akismet/akismet.class.php');
-				$mail_parts = explode("@", $sender_email);
-				$sender_name = $mail_parts[0];
-				$check_mail['author'] = $mail_parts[0];
-				$check_mail['email'] = $sender_email;
-				$check_mail['body'] = $text;
 				$akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_mail);
 				// test for errors
 				if ($akismet->errorsExist()) {
@@ -157,63 +188,82 @@ switch($action) {
 				} else {
 					// No errors, check for spam
 					if ($akismet->isSpam()) {
-						$errors[] = 'error_spam_suspicion';
+						$errors[] = 'error_email_spam_suspicion';
 					}
+				}
+			}
+		
+			// B8 spam check: 
+			if ($settings['b8_mail_check'] == 1) {
+				try {
+					require('modules/b8/b8.php');
+					$b8 = new b8(B8_CONFIG_DATABASE, B8_CONFIG_AUTHENTICATION, B8_CONFIG_LEXER, B8_CONFIG_DEGENERATOR);
+					$check_text = implode("\r\n", $check_mail);
+							
+					$b8_spam_probability = 100.0 * $b8->classify($check_text);
+					if ($b8_spam_probability > intval($settings['b8_spam_probability_threshold']))
+						$errors[] = 'error_email_spam_suspicion';
+				}
+				catch(Exception $e) {
+					raise_error('database_error', $e->getMessage()); // What should we do here?
+					$b8_spam = 0;
 				}
 			}
 		}
 
-		if (isset($id)) {
-			// get email address from entry:
-			$result = @mysqli_query($connid, "SELECT user_id, name, email FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-			if(mysqli_num_rows($result) != 1) {
-				header('Location: index.php');
-				exit;
-			}
-			$data = mysqli_fetch_array($result);
-			mysqli_free_result($result);
-			if ($data['user_id'] > 0) {
-				// registered user, get  data from userdata table:
-				$result = @mysqli_query($connid, "SELECT user_email, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['user_id'])." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+		if (empty($errors)) {
+			if (isset($id)) {
+				// get email address from entry:
+				$result = @mysqli_query($connid, "SELECT user_id, name, email FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+				if(mysqli_num_rows($result) != 1) {
+					header('Location: index.php');
+					exit;
+				}
+				$data = mysqli_fetch_array($result);
+				mysqli_free_result($result);
+				if ($data['user_id'] > 0) {
+					// registered user, get  data from userdata table:
+					$result = @mysqli_query($connid, "SELECT user_email, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['user_id'])." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+					$userdata = mysqli_fetch_array($result);
+					mysqli_free_result($result);
+					if ($userdata['email_contact'] != 1) {
+						$errors[] = TRUE;
+						$smarty->assign('error_message', 'impossible_to_contact');
+					} else {
+						$smarty->assign('recipient_name', htmlspecialchars($userdata['user_name']));
+						$recipient_email = $data['user_email'];
+					}
+				} else {
+					// not registered user, get data from forum table:
+					if ($data['email'] == '') {
+						$errors[] = TRUE;
+						$smarty->assign('error_message','impossible_to_contact');
+					} else {
+						$recipient_name = htmlspecialchars($data['name']);
+						$recipient_email = $data['email'];
+						$smarty->assign('recipient_name', $recipient_name);
+					}
+				}
+			} elseif (isset($user_id)) {
+				$result = @mysqli_query($connid, "SELECT user_name, user_email, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($user_id)."' LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+				if (mysqli_num_rows($result) != 1) {
+					header('Location: index.php');
+					exit;
+				}
 				$userdata = mysqli_fetch_array($result);
 				mysqli_free_result($result);
 				if ($userdata['email_contact'] != 1) {
 					$errors[] = TRUE;
 					$smarty->assign('error_message', 'impossible_to_contact');
 				} else {
-					$smarty->assign('recipient_name', htmlspecialchars($userdata['user_name']));
-					$recipient_email = $data['user_email'];
-				}
-			} else {
-				// not registered user, get data from forum table:
-				if ($data['email'] == '') {
-					$errors[] = TRUE;
-					$smarty->assign('error_message','impossible_to_contact');
-				} else {
-					$recipient_name = htmlspecialchars($data['name']);
-					$recipient_email = $data['email'];
+					$recipient_name = htmlspecialchars($userdata['user_name']);
+					$recipient_email = $userdata['user_email'];
 					$smarty->assign('recipient_name', $recipient_name);
 				}
-			}
-		} elseif (isset($user_id)) {
-			$result = @mysqli_query($connid, "SELECT user_name, user_email, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($user_id)."' LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-			if (mysqli_num_rows($result) != 1) {
-				header('Location: index.php');
-				exit;
-			}
-			$userdata = mysqli_fetch_array($result);
-			mysqli_free_result($result);
-			if ($userdata['email_contact'] != 1) {
-				$errors[] = TRUE;
-				$smarty->assign('error_message', 'impossible_to_contact');
 			} else {
-				$recipient_name = htmlspecialchars($userdata['user_name']);
-				$recipient_email = $userdata['user_email'];
-				$smarty->assign('recipient_name', $recipient_name);
+				$recipient_name = $settings['forum_name'];
+				$recipient_email = $settings['forum_email'];
 			}
-		} else {
-			$recipient_name = $settings['forum_name'];
-			$recipient_email = $settings['forum_email'];
 		}
 
 		if (empty($errors)) {

@@ -103,6 +103,12 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/style.css';                             // #477
 		$update['items'][] = 'includes/admin.inc.php';                               // #478
 		$update['items'][] = 'includes/user.inc.php';                                // #478
+	case '2.4.99.1':	
+		$update['items'][] = 'lang/';                                                // #489
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #489
+		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';          // #489
+		$update['items'][] = 'includes/admin.inc.php';                               // #489
+		$update['items'][] = 'includes/contact.inc.php';                             // #489
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
@@ -300,6 +306,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 	if(!@mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "` WHERE name = 'user_area_public';")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+}
+
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.99.0', '2.4.99.1'))) {
+	// changed tables
+	if(!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('b8_mail_check', '0');")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }

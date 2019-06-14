@@ -776,6 +776,7 @@
 <td class="d">
 	<p>
 		<input id="b8_entry_check" type="checkbox" name="b8_entry_check" value="1"{if $b8_entry_check==1} checked="checked"{/if} /><label for="b8_entry_check">{#b8_entry_check_enable#}</label><br />
+		<input id="b8_mail_check" type="checkbox" name="b8_mail_check" value="1"{if $b8_mail_check==1} checked="checked"{/if} /><label for="b8_mail_check">{#b8_mail_check_enable#}</label><br />
 		<input id="b8_auto_training" type="checkbox" name="b8_auto_training" value="1"{if $b8_auto_training==1} checked="checked"{/if} /><label for="b8_auto_training">{#b8_auto_training_enable#}</label><br />
 		<p>{#b8_spam_probability_threshold#}<br />
 		<input id="b8_spam_probability_threshold" type="input" name="b8_spam_probability_threshold" value="{$b8_spam_probability_threshold}" size="25" />
@@ -795,8 +796,7 @@
 <td class="d"><p>{#akismet_key#}<br />
 <input type="text" name="akismet_key" value="{$akismet_key}" size="25" /></p>
 <p><input id="akismet_entry_check" type="checkbox" name="akismet_entry_check" value="1"{if $akismet_entry_check==1} checked="checked"{/if} /><label for="akismet_entry_check">{#akismet_entry#}</label><br />
-<input id="akismet_mail_check" type="checkbox" name="akismet_mail_check" value="1"{if $akismet_mail_check==1} checked="checked"{/if} /><label for="akismet_mail_check">{#akismet_mail#}</label><br />
-<p><input id="save_spam" type="checkbox" name="save_spam" value="1"{if $save_spam==1} checked="checked"{/if} /><label for="save_spam">{#akismet_save_spam#}</label></p></td>
+<input id="akismet_mail_check" type="checkbox" name="akismet_mail_check" value="1"{if $akismet_mail_check==1} checked="checked"{/if} /><label for="akismet_mail_check">{#akismet_mail#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#spam_check_registered#}</strong><br /><span class="small">{#spam_check_registered_desc#}</span></td>
@@ -804,8 +804,9 @@
 </tr>
 <tr>
 <td class="c"><strong>{#auto_delete_spam#}</strong><br /><span class="small">{#auto_delete_spam_desc#}</span></td>
-<td class="d">{#auto_delete_spam_timespan#}<br />
-<input type="text" name="auto_delete_spam" value="{$auto_delete_spam}" size="5" /></td>
+<td class="d"><input id="save_spam" type="checkbox" name="save_spam" value="1"{if $save_spam==1} checked="checked"{/if} /><label for="save_spam">{#akismet_save_spam#}</label><br />
+<p>{#auto_delete_spam_timespan#}<br />
+<input type="text" name="auto_delete_spam" value="{$auto_delete_spam}" size="5" /></p></td>
 </tr>
 <tr>
 <td class="c"><strong>{#not_accepted_words#}</strong><br /><span class="small">{#not_accepted_words_desc#}</span></td>

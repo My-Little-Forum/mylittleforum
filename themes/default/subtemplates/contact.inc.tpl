@@ -11,7 +11,7 @@
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
-<li>{$smarty.config.$error|replace:"[text_length]":$text_length|replace:"[text_maxlength]":$settings.email_text_maxlength|replace:"[not_accepted_word]":$not_accepted_word|replace:"[not_accepted_words]":$not_accepted_words}</li>
+<li>{$smarty.config.$error}  {$smarty.config.$error|replace:"[text_length]":$text_length|replace:"[text_maxlength]":$settings.email_text_maxlength|replace:"[not_accepted_word]":$not_accepted_word|replace:"[not_accepted_words]":$not_accepted_words}</li>
 {/section}
 </ul>
 {/if}
