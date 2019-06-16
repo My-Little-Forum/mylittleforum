@@ -1082,7 +1082,8 @@ switch ($action) {
 						$cookie_data = urlencode($name) . '|' . urlencode($email) . '|' . urlencode($hp) . '|' . urlencode($location);
 						setcookie($settings['session_prefix'] . 'userdata', $cookie_data, TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 					}
-					if (isset($back) && $back == 'thread')
+					// If the posting is classified as SPAM, redirect the user to the single entry view, which contains the SPAM warning message
+					if (isset($back) && $back == 'thread' && $spam == 0)
 						header('Location: index.php?mode=thread&id=' . $new_data['id'] . '#p' . $new_data['id']);
 					else
 						header('Location: index.php?id=' . $new_data['id']);
