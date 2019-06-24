@@ -61,6 +61,8 @@ if ($lang['locale_charset'] != $lang['charset'])
 setlocale(LC_ALL, $lang['locale']);
 setlocale(LC_NUMERIC, "C");
 
+include('config/b8_config.php');
+
 $smarty->assign('settings', $settings);
 
 $smarty->assign('forum_time', format_time($lang['time_format'], TIMESTAMP + intval($time_difference) * 60));
