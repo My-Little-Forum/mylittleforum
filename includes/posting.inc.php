@@ -316,7 +316,34 @@ if ($action == 'unsubscribe' and !empty($_GET['unsubscribe'])) {
 	}
 }
 
-// generate the variable input field names
+if ($action == 'report_entry' && isset($_SESSION[$settings['session_prefix'] . 'user_id']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+	$qGetEarlierReport = "SELECT COUNT(*) AS earlierReport
+		FROM ". $db_settings['entries_reports_table'] ."
+		WHERE eid = ". intval($_POST['id']);
+	$rGetEarlierReport = @mysqli_query($connid, $qGetEarlierReport);
+	$countEarlierReport = mysqli_fetch_assoc($rGetEarlierReport);
+	mysqli_free_result($rGetEarlierReport);
+	if ($countEarlierReport['earlierReport'] == 0) {
+		$qSetReport = "INSERT INTO ". $db_settings['entries_reports_table'] ." (eid, user_id, reason)
+			VALUES (". intval($_POST['id']) .", ". intval($_SESSION[$settings['session_prefix'] . 'user_id']) .", ". intval($_POST['posting_report_reason']).")";
+		$rSetReport = mysqli_query($connid, $qSetReport);
+		if ($rSetReport === true) {
+			# success message
+			$param = 'report_entry_successful';
+		} else {
+			# error message
+			$param = 'report_entry_error';
+		}
+	} else {
+		# reported before message
+		$param = 'report_entry_before';
+	}
+	$action = 'report_entry_done';
+	header('Location: index.php?report_message='. $param .'&id=' . intval($_POST['id']));
+	exit;
+}
+
+# generate the variable input field names
 $fname_user = hash("sha256", 'user_name' . $_SESSION['csrf_token']);
 $fname_email = hash("sha256", 'user_email' . $_SESSION['csrf_token']);
 $fname_phone = hash("sha256", 'phone' . $_SESSION['csrf_token']);
@@ -2013,6 +2040,42 @@ switch ($action) {
 			header("location: index.php?mode=" . $back . "&id=" . intval($_GET['report_entry']));
 			exit;
 		}
+		break;
+	case 'report_entry_successful':
+		$subnav_link = array(
+			'mode' => $back,
+			'id' => $id,
+			'title' => 'back_to_entry_link_title',
+			'name' => 'back_to_entry_link'
+		);
+		$smarty->assign('lang_section', 'report_posting');
+		$smarty->assign('message', 'report_already_reported');
+		$smarty->assign('subnav_location', $subnav_link);
+		$smarty->assign('subtemplate', 'info.inc.tpl');
+		break;
+	case 'report_entry_error':
+		$subnav_link = array(
+			'mode' => $back,
+			'id' => $id,
+			'title' => 'back_to_entry_link_title',
+			'name' => 'back_to_entry_link'
+		);
+		$smarty->assign('lang_section', 'report_posting');
+		$smarty->assign('message', 'report_already_reported');
+		$smarty->assign('subnav_location', $subnav_link);
+		$smarty->assign('subtemplate', 'info.inc.tpl');
+		break;
+	case 'report_entry_before':
+		$subnav_link = array(
+			'mode' => $back,
+			'id' => $id,
+			'title' => 'back_to_entry_link_title',
+			'name' => 'back_to_entry_link'
+		);
+		$smarty->assign('lang_section', 'report_posting');
+		$smarty->assign('message', 'report_already_reported');
+		$smarty->assign('subnav_location', $subnav_link);
+		$smarty->assign('subtemplate', 'info.inc.tpl');
 		break;
 }
 
