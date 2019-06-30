@@ -14,7 +14,8 @@
 			<input type="hidden" name="id" value="{$id}" />
 			<input type="hidden" name="reporter" value="{$user_id}" />
 			<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-{if $back}			<input type="hidden" name="back" value="{$back}" />{/if}
+{if $back}			<input type="hidden" name="back" value="{$back}" />
+{/if}
 			<select size="1" name="posting_report_reason">
 {foreach $report_reasons as $reason}
 				<option value="{$reason.id}">{$reason.val}</option>
