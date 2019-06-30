@@ -126,6 +126,8 @@ if (isset($_POST['delete_marked_submit']))
 	$action = 'delete_marked_submit';
 if (isset($_POST['delete_spam_submit']))
 	$action = 'delete_spam_submit';
+if (isset($_POST['report_posting_submit']))
+	$action = 'report_posting_submit';
 if (isset($_POST['save_entry']) || isset($_POST['preview']))
 	$action = 'posting_submitted';
 if (isset($_REQUEST['mark']))
@@ -316,7 +318,7 @@ if ($action == 'unsubscribe' and !empty($_GET['unsubscribe'])) {
 	}
 }
 
-if ($action == 'report_entry' && isset($_SESSION[$settings['session_prefix'] . 'user_id']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+if ($action == 'report_posting_submit' && isset($_SESSION[$settings['session_prefix'] . 'user_id']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 	$qGetEarlierReport = "SELECT COUNT(*) AS earlierReport
 		FROM ". $db_settings['entries_reports_table'] ."
 		WHERE eid = ". intval($_POST['id']);
