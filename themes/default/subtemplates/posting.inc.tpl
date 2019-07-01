@@ -133,7 +133,13 @@
 <input id="subject" type="text" size="50" name="{$fld_subject}" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" tabindex="6" />
 </p>
 
-{if ($admin ||$mod) && $settings.tags}
+{* Tags
+	0 == Off
+	1 == Admins/Mods
+	2 == reg. Users
+	3 == everyone
+*}
+{if $settings.tags > 0 && ( ($settings.tags == 1 && ($admin || $mod)) || ($settings.tags == 2 && ($user_type === 0 || $admin || $mod)) || $settings.tags > 2 )}
 <p>
 <label for="tags" class="input">{#tags_marking#}</label>
 <input id="tags" type="text" size="50" name="tags" value="{$tags|default:""}" maxlength="253" tabindex="-1" />&nbsp;<span class="xsmall">{#tags_note#}</span>
