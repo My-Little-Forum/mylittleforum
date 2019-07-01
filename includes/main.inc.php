@@ -240,8 +240,8 @@ if (isset($category_ids) && isset($_SESSION[$settings['session_prefix'].'userset
 $display_spam_query_and   = " AND (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) ";
 $display_spam_query_where = " WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) ";
 if (isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) {
-	$display_spam_query_and   = " AND (" . $db_settings['akismet_rating_table'] . ".spam = 1 OR " . $db_settings['b8_rating_table'] . ".spam = 1) ";
-	$display_spam_query_where = " WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 1 OR " . $db_settings['b8_rating_table'] . ".spam = 1) ";
+	$display_spam_query_and   = " AND   ( `tid` IN (SELECT DISTINCT `tid` FROM `" . $db_settings['forum_table'] ."` JOIN `" . $db_settings['akismet_rating_table'] . "` ON `id` = `" . $db_settings['akismet_rating_table'] . "`.`eid` JOIN `" . $db_settings['b8_rating_table'] . "` ON `id` = `" . $db_settings['b8_rating_table'] . "`.`eid` WHERE `" . $db_settings['akismet_rating_table'] . "`.`spam` = 1 OR `" . $db_settings['b8_rating_table'] . "`.`spam` = 1 ) ) ";
+	$display_spam_query_where = " WHERE ( `tid` IN (SELECT DISTINCT `tid` FROM `" . $db_settings['forum_table'] ."` JOIN `" . $db_settings['akismet_rating_table'] . "` ON `id` = `" . $db_settings['akismet_rating_table'] . "`.`eid` JOIN `" . $db_settings['b8_rating_table'] . "` ON `id` = `" . $db_settings['b8_rating_table'] . "`.`eid` WHERE `" . $db_settings['akismet_rating_table'] . "`.`spam` = 1 OR `" . $db_settings['b8_rating_table'] . "`.`spam` = 1 ) ) ";
 }
 
 // count postings, threads, users and users online:
