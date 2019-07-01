@@ -726,7 +726,17 @@ switch ($action) {
 			}
 			
 			// check data:
-			if (isset($_POST['tags']) && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && ($_SESSION[$settings['session_prefix'] . 'user_type'] > 0)) {
+			/* Tags
+				0 == Off
+				1 == Admins/Mods
+				2 == reg. Users
+				3 == everyone
+			*/
+			if (isset($_POST['tags']) && isset($settings['tags']) && $settings['tags'] > 0 &&
+					(($settings['tags'] > 2) ||
+					($settings['tags'] == 2 && isset($_SESSION[$settings['session_prefix'] . 'user_type'])) ||
+					($settings['tags'] == 1 && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && ($_SESSION[$settings['session_prefix'] . 'user_type'] > 0))
+				)) {
 				$tagStr = trim($_POST['tags']);
 				$tagsArray = array_filter(array_map('trim', explode(',', $tagStr)), function($value) { return $value !== ''; });
 
@@ -1180,6 +1190,8 @@ switch ($action) {
 				$smarty->assign('name', htmlspecialchars($name));
 				$smarty->assign('subject', htmlspecialchars($subject));
 				$smarty->assign('text', htmlspecialchars($text));
+				if (isset($_SESSION[$settings['session_prefix'] . 'user_type']))
+					$smarty->assign('user_type', htmlspecialchars($_SESSION[$settings['session_prefix'] . 'user_type']));
 				if (isset($_POST['repeat_email']))
 					$smarty->assign('honey_pot_email',  htmlspecialchars($_POST['repeat_email']));
 				if (isset($_POST['phone']))
