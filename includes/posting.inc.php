@@ -897,7 +897,8 @@ switch ($action) {
 			
 			// Akismet and B8 spam check:
 			if (empty($errors) && isset($_POST['save_entry'])) {
-				if (empty($_SESSION[$settings['session_prefix'] . 'user_id']) || isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] == 0 && $settings['spam_check_registered'] == 1) {
+				if (empty($_SESSION[$settings['session_prefix'] . 'user_id']) || isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $settings['spam_check_registered'] == 1) {
+					$is_mod_or_admin = isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0;
 					// fetch user data if registered user:
 					$check_posting = [];
 					if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
@@ -915,7 +916,8 @@ switch ($action) {
 					$check_posting['author'] = $name;
 					$check_posting['body']   = $text;
 					
-					if ($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1) {
+					// check only postings of users
+					if ($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && !$is_mod_or_admin) {
 						require('modules/akismet/akismet.class.php');
 						$akismet = new Akismet($settings['forum_address'], $settings['akismet_key'], $check_posting);
 						// test for errors
@@ -949,7 +951,7 @@ switch ($action) {
 							}
 						}
 					}
-					
+
 					if ($settings['b8_entry_check'] == 1) {
 						try {
 							require('modules/b8/b8.php');
@@ -957,14 +959,16 @@ switch ($action) {
 							$check_text = implode("\r\n", $check_posting);
 							
 							$b8_spam_probability = 100.0 * $b8->classify($check_text);
-							$b8_spam = $b8_spam_probability > intval($settings['b8_spam_probability_threshold']);
-										
+							// postings of admins/mods are always HAM, postings of users are checked
+							$b8_spam = $b8_spam_probability >           intval($settings['b8_spam_probability_threshold'])  && !$is_mod_or_admin;
+							$b8_ham  = $b8_spam_probability <= (100.0 - intval($settings['b8_spam_probability_threshold'])) ||  $is_mod_or_admin;
+
 							if ($settings['b8_auto_training'] == 1) {
 								if ($b8_spam) {
 									$b8_spam_rating = 2;  // SPAM
 									$b8->learn($check_text, b8::SPAM);
 								}
-								elseif ($b8_spam_probability < (100.0 - intval($settings['b8_spam_probability_threshold']))) {
+								elseif ($b8_ham) {
 									$b8_spam_rating = 1;  // HAM
 									$b8->learn($check_text, b8::HAM);
 								}
