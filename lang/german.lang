@@ -485,6 +485,9 @@ report_reason_spam =              'Spamverdacht'
 report_reason_tos =               'Verdacht auf Verstoß gegen die Forumsregeln'
 report_reason_legal =             'Verdacht auf gesetzwidrigen Inhalt'
 report_posting_submit =           'Eintrag melden'
+report_already_reported =         'Der Eintrag wurde bereits von anderer Seite gemeldet. Danke für die Aufmerksamkeit.'
+report_successful_reported =      'Der Eintrag wurde erfolgreich gemeldet. Danke für die Aufmerksamkeit.'
+report_failed_report =            'Der Eintrag konnte aus technischen Gründen nicht gemeldet werden. Bitte wende dich zur Klärung an das Forenteam.'
 
 [unsubscribe_posting]
 unsubscribed_hl =                 'Benachrichtigung ausgeschaltet'

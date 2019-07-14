@@ -280,6 +280,9 @@
 	$smarty->assign('ip', $entrydata['ip']);
 	if ($entrydata['akismet_spam'] == 1 || $entrydata['b8_spam'] == 1)
 		$smarty->assign('spam', true);
+	if (isset($_GET['report_message']) && in_array($_GET['report_message'], array('report_entry_successful', 'report_entry_error', 'report_entry_before'))) {
+		$smarty->assign('report', $_GET['report_message']);
+	}
 	if (isset($categories[$entrydata["category"]]) && $categories[$entrydata['category']] != '') {
 		$smarty->assign('category_name', $categories[$entrydata["category"]]);
 	}

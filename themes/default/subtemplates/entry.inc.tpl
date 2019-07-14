@@ -1,4 +1,5 @@
 {config_load file=$language_file section="entry"}
+{config_load file=$language_file section="report_posting"}
 {assign var=email_alt value=$smarty.config.email}
 {assign var=homepage_alt value=$smarty.config.homepage}
 {if $hp && !$email}
@@ -26,6 +27,9 @@
 {/if}
 <article class="posting{if $is_read} read{/if}">
 <header class="header">{if $spam}<p class="notice spam">{#spam_note#}</p>{/if}
+{if $report && $report == 'report_entry_before'}<p class="ok">{#report_already_reported#}</p>{/if}
+{if $report && $report == 'reported_successful'}<p class="ok">{#report_successful_reported#}</p>{/if}
+{if $report && $report == 'reported_failed'}<p class="caution">{#report_failed_report#}</p>{/if}
 {if $avatar}<img class="avatar" src="{$avatar.image}" alt="{#avatar_img_alt#}" width="{$avatar.width}" height="{$avatar.height}" />{/if}
 <h1>{$subject}{if $category_name} <span class="category">({$category_name})</span>{/if}</h1>
 <p class="author">{if $location}{#posted_by_location#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[location]":$location}{else}{#posted_by#|replace:"[name]":$name|replace:"[email_hp]":$email_hp}{/if} <time datetime="{$ISO_time}">{*{assign var=formated_time value=$disp_time|date_format:#time_format_full#}*}{$formated_time}</time> <span class="ago">({if $ago.days>1}{#posting_several_days_ago#|replace:"[days]":$ago.days_rounded}{else}{if $ago.days==0 && $ago.hours==0}{#posting_minutes_ago#|replace:"[minutes]":$ago.minutes}{elseif $ago.days==0 && $ago.hours!=0}{#posting_hours_ago#|replace:"[hours]":$ago.hours|replace:"[minutes]":$ago.minutes}{else}{#posting_one_day_ago#|replace:"[hours]":$ago.hours|replace:"[minutes]":$ago.minutes}{/if}{/if})</span>{if $admin && $ip} <span class="ip">({$ip})</span>{/if}{if $pid!=0} <span class="op-link"><a href="index.php?id={$pid}" title="{#original_posting_linktitle#|replace:"[name]":$data.$pid.name}">@ {$data.$pid.name}</a></span>{/if}

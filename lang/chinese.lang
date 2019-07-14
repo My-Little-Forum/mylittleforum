@@ -484,6 +484,9 @@ report_reason_spam =              '<!-- TODO -->suspicion of spam'
 report_reason_tos =               '<!-- TODO -->suspicion of forum rules violation'
 report_reason_legal =             '<!-- TODO -->suspicion of a judicial relevant content'
 report_posting_submit =           '<!-- TODO -->Report entry'
+report_already_reported =         '<!-- TODO -->The entry was already reported before. Thank you for your attention.'
+report_successful_reported =      '<!-- TODO -->The entry was succesfully reported. Thank you for your attention.'
+report_failed_report =            '<!-- TODO -->The entry couldn\'t get reported because of technical reasons. Please contact the forum team for clearance.'
 
 [unsubscribe_posting]
 unsubscribed_hl =                 '退出订阅'
