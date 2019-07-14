@@ -902,7 +902,7 @@ switch ($action) {
 					// fetch user data if registered user:
 					$check_posting = [];
 					if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
-						$akismet_userdata_result = @mysqli_query($connid, "SELECT user_email, user_hp FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($_SESSION[$settings['session_prefix'] . 'user_id']) . " LIMIT 1") or die(mysqli_error($connid));
+						$akismet_userdata_result = mysqli_query($connid, "SELECT user_email, user_hp FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($_SESSION[$settings['session_prefix'] . 'user_id']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 						$akismet_userdata_data = mysqli_fetch_array($akismet_userdata_result);
 						mysqli_free_result($akismet_userdata_result);
 						if ($akismet_userdata_data['user_hp'] != '')
@@ -956,8 +956,29 @@ switch ($action) {
 						try {
 							require('modules/b8/b8.php');
 							$b8 = new b8(B8_CONFIG_DATABASE, B8_CONFIG_AUTHENTICATION, B8_CONFIG_LEXER, B8_CONFIG_DEGENERATOR);
+
+							// unlearn edited posting to avoid redundantly training data 
+							if ($posting_mode == 1) { // edited posting
+								$b8_spam_or_ham_result = mysqli_query($connid, "SELECT `training_type` FROM `" . $db_settings['b8_rating_table'] . "` WHERE `eid` = " . intval($id) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+								$b8_spam_or_ham_data   = mysqli_fetch_array($b8_spam_or_ham_result);
+								mysqli_free_result($b8_spam_or_ham_result);
+								
+								if (isset($b8_spam_or_ham_data['training_type']) && $b8_spam_or_ham_data['training_type'] != 0) { // 0 == no decision, 1 == learn(ed) ham, 2 == learn(ed) spam
+									$original_unedited_posting = [];
+									$original_unedited_posting['author']  = empty($field['name']) ? $name : $field['name'];
+									$original_unedited_posting['email']   = $field['email'];
+									$original_unedited_posting['website'] = $field['hp'];
+									$original_unedited_posting['body']    = $field['text'];
+									$original_unedited_text = implode("\r\n", $original_unedited_posting);
+									
+									if ($b8_spam_or_ham_data['training_type'] == 1)  // original (unedited) entry was flaged as HAM
+										$b8->unlearn($original_unedited_text, b8::HAM);
+									elseif ($b8_spam_or_ham_data['training_type'] == 2) // original (unedited) entry was flaged as SPAM
+										$b8->unlearn($original_unedited_text, b8::SPAM);
+								}
+							}
+													
 							$check_text = implode("\r\n", $check_posting);
-							
 							$b8_spam_probability = 100.0 * $b8->classify($check_text);
 							// postings of admins/mods are always HAM, postings of users are checked
 							$b8_spam = $b8_spam_probability >           intval($settings['b8_spam_probability_threshold'])  && !$is_mod_or_admin;
