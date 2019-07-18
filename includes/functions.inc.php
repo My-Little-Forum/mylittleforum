@@ -2215,32 +2215,56 @@ function my_quoted_printable_encode($input, $line_max=76, $space_conv = false ) 
  * @return string
  */
 function my_mail($to, $subject, $message, $from='') {
-	global $settings;
-	$mail_header_separator = "\n"; // "\r\n" complies with RFC 2822 but might cause problems in some cases (see http://php.net/manual/en/function.mail.php)
+	global $settings, $PHP_MAILER;
 
-	$mail_charset = strtoupper(CHARSET);
+	if (isset($settings['php_mailer']) && $settings['php_mailer'] == 1 && isset($PHP_MAILER)) {
+		$PHP_MAILER->setFrom($settings['forum_email'], $settings['forum_name']);
+		$PHP_MAILER->addAddress($to, '');
+		
+		if ($from != '') 
+			$PHP_MAILER->addReplyTo($from, '');
+		
+		$PHP_MAILER->Subject = $subject;
+		$PHP_MAILER->Body    = $message;
+		if ($PHP_MAILER->ContentType != $PHP_MAILER::CONTENT_TYPE_PLAINTEXT)
+			$PHP_MAILER->AltBody = strip_tags($message);
 
-	$to = mail_header_filter($to);
-	$subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q", $mail_header_separator);
-	$message = my_quoted_printable_encode($message);
-	
-	$headers = "From: " . encode_mail_name($settings['forum_name'], $mail_charset, $mail_header_separator)." <".$settings['forum_email'].">". $mail_header_separator;
-	if ($from != '') 
-		$headers .= "Reply-to: " . mail_header_filter($from) . $mail_header_separator;
-	
-	$headers .= "MIME-Version: 1.0" . $mail_header_separator;
-	$headers .= "X-Sender-IP: ". $_SERVER['REMOTE_ADDR'] . $mail_header_separator;
-	$headers .= "Content-Type: text/plain; charset=" . $mail_charset . $mail_header_separator;
-	$headers .= "Content-Transfer-Encoding: quoted-printable";
-
-	if ($settings['mail_parameter'] != '') {
-		if (@mail($to, $subject, $message, $headers, $settings['mail_parameter'])) {
+		//send the message, check for errors
+		if  (!$PHP_MAILER->send()) {
+			// remove comment for debugging and config e.g. 'SMTPDebug' => {1,2,3,4}
+			//echo $PHP_MAILER->ErrorInfo;
+		} 
+		else {
 			return true;
 		}
 	}
 	else {
-		if (@mail($to, $subject, $message, $headers)) {
-			return true;
+		$mail_header_separator = "\n"; // "\r\n" complies with RFC 2822 but might cause problems in some cases (see http://php.net/manual/en/function.mail.php)
+	
+		$mail_charset = strtoupper(CHARSET);
+	
+		$to = mail_header_filter($to);
+		$subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q", $mail_header_separator);
+		$message = my_quoted_printable_encode($message);
+		
+		$headers = "From: " . encode_mail_name($settings['forum_name'], $mail_charset, $mail_header_separator)." <".$settings['forum_email'].">". $mail_header_separator;
+		if ($from != '') 
+			$headers .= "Reply-to: " . mail_header_filter($from) . $mail_header_separator;
+		
+		$headers .= "MIME-Version: 1.0" . $mail_header_separator;
+		$headers .= "X-Sender-IP: ". $_SERVER['REMOTE_ADDR'] . $mail_header_separator;
+		$headers .= "Content-Type: text/plain; charset=" . $mail_charset . $mail_header_separator;
+		$headers .= "Content-Transfer-Encoding: quoted-printable";
+	
+		if ($settings['mail_parameter'] != '') {
+			if (@mail($to, $subject, $message, $headers, $settings['mail_parameter'])) {
+				return true;
+			}
+		}
+		else {
+			if (@mail($to, $subject, $message, $headers)) {
+				return true;
+			}
 		}
 	}
 	return false;
@@ -2794,73 +2818,78 @@ function setReceiptTimestamp($offset = 0) {
  *
  * @param string $status_code
  */
-function raise_error($error,$error_message='')
- {
-  global $settings, $lang;
-  if(empty($lang['language'])) $lang['language'] ='en';
-  if(empty($lang['charset'])) $lang['charset'] ='utf-8';
-  if(empty($lang['db_error'])) $lang['db_error'] = 'Database error';
-  if(empty($settings['forum_name'])) $settings['forum_name'] = 'my little forum';
-  $title = 'Error';
-  $message = '';
-  switch($error)
-   {
-    case '403':
-     header($_SERVER['SERVER_PROTOCOL'] . " 403 Forbidden");
-     header("Status: 403 Forbidden");
-     $title = '403 Forbidden';
-     $message = 'You don\'t have permission to access this page.';
-     break;
-    case 'mysql_connect':
-     header($_SERVER['SERVER_PROTOCOL'] . " 503 Service Unavailable");
-     header("Status: 503 Service Unavailable");
-     $title = 'Database error';
-     $message = 'Could not connect to the MySQL database. The forum is probably not installed yet.';
-     if($error_message!='') $message .= '<br />MySQL error message: '.$error_message;
-     break;
-    case 'mysql_select_db':
-     header($_SERVER['SERVER_PROTOCOL'] . " 503 Service Unavailable");
-     header("Status: 503 Service Unavailable");
-     $title = 'Database error';
-     $message = 'The Database could not be selected. The script is probably not installed yet.';
-     if($error_message!='') $message .= '<br />MySQL error message: '.$error_message;
-     break;
-    case 'database_error':
-     header($_SERVER['SERVER_PROTOCOL'] . " 503 Service Unavailable");
-     header("Status: 503 Service Unavailable");
-     $title = $lang['db_error'];
-     if($error_message!='') $message = $error_message;
-     break;
-    default:
-     header($_SERVER['SERVER_PROTOCOL'] . " 503 Service Unavailable");
-     header("Status: 503 Service Unavailable");
-     break;
-   }
-  ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang['language']; ?>">
-  <head>
-  <title><?php echo $settings['forum_name'].' - '.$title; ?></title>
-  <meta http-equiv="content-type" content="text/html; charset=<?php echo $lang['charset']; ?>" />
-  <style type="text/css">
-  <!--
-  body              { color:#000; background:#fff; margin:0; padding:0; font-family: verdana, arial, sans-serif; font-size:100.1%; }
-  h1                { font-size:1.25em; }
-  p,ul              { font-size:0.82em; line-height:1.45em; }
-  #top              { margin:0; padding:0 20px 0 20px; height:4.4em; color:#000000; background:#d2ddea; border-bottom: 1px solid #bacbdf; line-height:4.4em;}
-  #top h1           { font-size:1.7em; margin:0; padding:0; color:#000080; }
-  #content          { padding:20px; }
-  -->
-  </style>
-  </head>
-  <body>
-  <div id="top"><h1><?php echo $settings['forum_name']; ?></h1></div>
-  <div id="content">
-  <h1><?php echo $title; ?></h1>
-  <p><?php echo $message; ?></p>
-  </div>
-  </body>
-  </html><?php
-  exit;
+function raise_error($error,$error_message='') {
+	global $settings, $lang;
+	if(empty($lang['language'])) 
+		$lang['language'] ='en';
+	if(empty($lang['charset'])) 
+		$lang['charset'] ='utf-8';
+	if(empty($lang['db_error'])) 
+		$lang['db_error'] = 'Database error';
+	if(empty($settings['forum_name'])) 
+		$settings['forum_name'] = 'my little forum';
+	$title = 'Error';
+	$message = '';
+	switch($error){
+		case '403':
+			header($_SERVER['SERVER_PROTOCOL'] . " 403 Forbidden");
+			header("Status: 403 Forbidden");
+			$title = '403 Forbidden';
+			$message = 'You don\'t have permission to access this page.';
+		break;
+		case 'mysql_connect':
+			header($_SERVER['SERVER_PROTOCOL'] . " 503 Service Unavailable");
+			header("Status: 503 Service Unavailable");
+			$title = 'Database error';
+			$message = 'Could not connect to the MySQL database. The forum is probably not installed yet.';
+			if($error_message!='') 
+				$message .= '<br />MySQL error message: '.$error_message;
+			break;
+		case 'mysql_select_db':
+			header($_SERVER['SERVER_PROTOCOL'] . " 503 Service Unavailable");
+			header("Status: 503 Service Unavailable");
+			$title = 'Database error';
+			$message = 'The Database could not be selected. The script is probably not installed yet.';
+			if($error_message!='') 
+				$message .= '<br />MySQL error message: '.$error_message;
+			break;
+		case 'database_error':
+			header($_SERVER['SERVER_PROTOCOL'] . " 503 Service Unavailable");
+			header("Status: 503 Service Unavailable");
+			$title = $lang['db_error'];
+			if($error_message!='') 
+				$message = $error_message;
+			break;
+		default:
+			header($_SERVER['SERVER_PROTOCOL'] . " 503 Service Unavailable");
+			header("Status: 503 Service Unavailable");
+		break;
+	}
+	?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang['language']; ?>">
+	<head>
+	<title><?php echo $settings['forum_name'].' - '.$title; ?></title>
+	<meta http-equiv="content-type" content="text/html; charset=<?php echo $lang['charset']; ?>" />
+	<style type="text/css">
+	<!--
+	body              { color:#000; background:#fff; margin:0; padding:0; font-family: verdana, arial, sans-serif; font-size:100.1%; }
+	h1                { font-size:1.25em; }
+	p,ul              { font-size:0.82em; line-height:1.45em; }
+	#top              { margin:0; padding:0 20px 0 20px; height:4.4em; color:#000000; background:#d2ddea; border-bottom: 1px solid #bacbdf; line-height:4.4em;}
+	#top h1           { font-size:1.7em; margin:0; padding:0; color:#000080; }
+	#content          { padding:20px; }
+	-->
+	</style>
+	</head>
+	<body>
+	<div id="top"><h1><?php echo $settings['forum_name']; ?></h1></div>
+	<div id="content">
+	<h1><?php echo $title; ?></h1>
+	<p><?php echo $message; ?></p>
+	</div>
+	</body>
+	</html><?php
+	exit;
  }
 
 ?>
