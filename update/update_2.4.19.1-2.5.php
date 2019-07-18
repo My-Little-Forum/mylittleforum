@@ -111,6 +111,13 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/admin.inc.php';                               // #489
 		$update['items'][] = 'includes/contact.inc.php';                             // #489
 		$update['items'][] = 'includes/posting.inc.php';                             // #491, #494
+		$update['items'][] = 'index.php';                                            // #498
+		$update['items'][] = 'includes/functions.inc.php';                           // #498
+		$update['items'][] = 'includes/mailer.inc.php';                              // #498
+		$update['items'][] = 'modules/phpmailer/';                                   // #498
+		$update['items'][] = 'config/php_mailer.php';                                // #498
+		$update['items'][] = 'config/b8_config.php';                                 // #493
+		
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
@@ -314,7 +321,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.99.0', '2.4.99.1'))) {
 	// changed tables
-	if(!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('b8_mail_check', '0');")) {
+	if(!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('b8_mail_check', '0'), ('php_mailer', '0');")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
