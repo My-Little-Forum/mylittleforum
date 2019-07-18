@@ -31,6 +31,7 @@ define('THEMES_DIR', 'themes');
 session_start();
 
 include('config/db_settings.php');
+include('includes/mailer.inc.php');
 include('includes/functions.inc.php');
 include('includes/main.inc.php');
 
