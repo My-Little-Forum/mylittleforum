@@ -19,10 +19,10 @@
 <div>
 <input type="hidden" name="mode" value="contact" />
 {if $id}<input type="hidden" name="id" value="{$id}" />{/if}
-{if $recipient_user_id}<input type="hidden" name="user_id" value="{$recipient_user_id}" />{/if}
+{if $recipient_user_id}<input type="hidden" name="recipient_user_id" value="{$recipient_user_id}" />{/if}
 {if $session}<input type="hidden" name="{$session.name}" value="{$session.id}" />{/if}
-<p><label for="sender_email">{#sender_address_caption#}</label><br />
-<input id="sender_email" type="text" name="sender_email" value="{$sender_email}" size="50" /></p>
+{if not $user_id}<p><label for="sender_email">{#sender_address_caption#}</label><br />
+<input id="sender_email" type="text" name="sender_email" value="" size="50" /></p>{/if}
 <p><label for="subject">{#subject_caption#}</label><br />
 <input id="subject" type="text" name="subject" value="{$subject|default:""}" size="50" maxlength="{$settings.email_subject_maxlength}" /></p>
 <p><label for="message">{#message_caption#}</label><br />
@@ -37,6 +37,7 @@
 <label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" /></p>
 {/if}
 {/if}
+{if $user_id}<p><input id="confirmation_email" type="checkbox" name="confirmation_email" value="1" />&nbsp;<label for="confirmation_email">{#sender_confirmation_caption#}</label></p>{/if}
 <p><input type="submit" name="message_submit" value="{#message_submit_caption#}" onclick="document.getElementById('throbber-submit').classList.remove('js-visibility-hidden');" /> <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
 </div>
 </form>

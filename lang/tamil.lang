@@ -689,6 +689,7 @@ contact_user_hl =                 '[recipient_name] உடையா மின்
 impossible_to_contact =           'தொடர்பு கொள்ள முடியாதவர்!'
 contact_doesnt_exist =            'விலாசம் சரியானது அல்ல'
 sender_address_caption =          'அநுப்புவோர் மின்-அசல்:'
+sender_confirmation_caption =     '<!-- TODO -->Send me a copy of my message'
 subject_caption =                 'பாடம்:'
 message_caption =                 'செய்தி:'
 message_submit_caption =          'சரி - செய்தியை அநுப்பலாம்'
