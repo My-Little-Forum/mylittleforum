@@ -276,6 +276,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 			}
 		}
 	}
+	else {
+		$update['errors'][] = 'Error, file "./config/db_settings.php" not found in line '.__LINE__.'!';
+	}
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.99.0'))) {
