@@ -2218,6 +2218,7 @@ function my_mail($to, $subject, $message, $from='') {
 	global $settings, $PHP_MAILER;
 
 	if (isset($settings['php_mailer']) && $settings['php_mailer'] == 1 && isset($PHP_MAILER)) {
+		$PHP_MAILER->clearAllRecipients();
 		$PHP_MAILER->setFrom($settings['forum_email'], $settings['forum_name']);
 		$PHP_MAILER->addAddress($to, '');
 		
@@ -2229,8 +2230,11 @@ function my_mail($to, $subject, $message, $from='') {
 		if ($PHP_MAILER->ContentType != $PHP_MAILER::CONTENT_TYPE_PLAINTEXT)
 			$PHP_MAILER->AltBody = strip_tags($message);
 
+		$isSend = $PHP_MAILER->send();
+		$PHP_MAILER->clearAllRecipients();
+		
 		//send the message, check for errors
-		if  (!$PHP_MAILER->send()) {
+		if  (!$isSend) {
 			// remove comment for debugging and config e.g. 'SMTPDebug' => {1,2,3,4}
 			//echo $PHP_MAILER->ErrorInfo;
 		} 
