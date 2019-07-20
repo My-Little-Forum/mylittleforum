@@ -707,6 +707,7 @@ contact_user_hl =                 'Ортправить e-mail пользова�
 impossible_to_contact =           'Невозможно связаться с этим пользователем!'
 contact_doesnt_exist =            'Этот контакт не существует!'
 sender_address_caption =          'Адрес e-mail отправителя:'
+sender_confirmation_caption =     '<!-- TODO -->Send me a copy of my message'
 subject_caption =                 'Заголовок:'
 message_caption =                 'Сообщение:'
 message_submit_caption =          'Да, отправить'

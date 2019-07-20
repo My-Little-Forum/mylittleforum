@@ -692,6 +692,7 @@ contact_user_hl =                 'E-posta gönderilecek alıcı: [recipient_nam
 impossible_to_contact =           'Bu kullanıcı ile iletişim sağlanamaz!'
 contact_doesnt_exist =            'Bu kişi mevcut değil!'
 sender_address_caption =          'Gönderen e-posta:'
+sender_confirmation_caption =     '<!-- TODO -->Send me a copy of my message'
 subject_caption =                 'Konu:'
 message_caption =                 'Mesaj:'
 message_submit_caption =          'Tamam - Mesajı gönder'
