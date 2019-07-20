@@ -108,6 +108,7 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #489
 		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';          // #489, #501
 		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';          // #494
+		$update['items'][] = 'themes/default/main.tpl';                              // #503
 		$update['items'][] = 'includes/admin.inc.php';                               // #489
 		$update['items'][] = 'includes/contact.inc.php';                             // #489, #501
 		$update['items'][] = 'includes/posting.inc.php';                             // #491, #494
