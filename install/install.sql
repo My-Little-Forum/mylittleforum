@@ -155,6 +155,7 @@ INSERT INTO mlf2_settings VALUES ('min_pw_digits', '0');
 INSERT INTO mlf2_settings VALUES ('min_pw_lowercase_letters', '0');
 INSERT INTO mlf2_settings VALUES ('min_pw_uppercase_letters', '0');
 INSERT INTO mlf2_settings VALUES ('min_pw_special_characters', '0');
+INSERT INTO mlf2_settings VALUES ('php_mailer', '0');
 
 INSERT INTO mlf2_temp_infos (`name`, `value`) VALUES ('access_permission_checks', '0'), ('last_changes', '0'), ('next_daily_actions', '0');
 
