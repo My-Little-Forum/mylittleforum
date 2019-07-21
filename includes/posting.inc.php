@@ -44,6 +44,9 @@ if (isset($_POST['p_category']))
 else
 	$p_category = 0;
 
+$isUser = isset($_SESSION[$settings['session_prefix'].'user_type']) && isset($_SESSION[$settings['session_prefix'].'user_id']);
+$isModOrAdmin = $isUser && ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2);
+
 // determine mode:
 if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 	// registered user
@@ -1168,7 +1171,7 @@ switch ($action) {
 					$pr_result = @mysqli_query($connid, "SELECT email_contact, user_hp, user_location, signature FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($posting_user_id) . " LIMIT 1") or die(mysqli_error($connid));
 					$pr_data = mysqli_fetch_array($pr_result);
 					mysqli_free_result($pr_result);
-					if ($pr_data['email_contact'] != 0)
+					if ($isModOrAdmin || $isUser && $pr_data['email_contact'] > 0 || $pr_data['email_contact'] == 2)
 						$smarty->assign('email', true);
 					if (trim($pr_data['user_hp']) != '') {
 						$smarty->assign('preview_hp', htmlspecialchars(add_http_if_no_protocol($pr_data['user_hp'])));

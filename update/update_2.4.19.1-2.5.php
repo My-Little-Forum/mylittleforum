@@ -106,19 +106,21 @@ switch($settings['version']) {
 	case '2.4.99.1':	
 		$update['items'][] = 'lang/';                                                // #489, #501
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #489
-		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';          // #489, #501
+		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';          // #489, #501, #505
 		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';          // #494
 		$update['items'][] = 'themes/default/main.tpl';                              // #503, #504
 		$update['items'][] = 'includes/admin.inc.php';                               // #489
-		$update['items'][] = 'includes/contact.inc.php';                             // #489, #501
-		$update['items'][] = 'includes/posting.inc.php';                             // #491, #494
-		$update['items'][] = 'index.php';                                            // #498
+		$update['items'][] = 'includes/contact.inc.php';                             // #489, #501, #505
+		$update['items'][] = 'includes/posting.inc.php';                             // #491, #494, #505
+		$update['items'][] = 'includes/user.inc.php';                                // #505
+		$update['items'][] = 'includes/entry.inc.php';                               // #505
+		$update['items'][] = 'includes/thread.inc.php';                              // #505
 		$update['items'][] = 'includes/functions.inc.php';                           // #498, #499
 		$update['items'][] = 'includes/mailer.inc.php';                              // #498
 		$update['items'][] = 'modules/phpmailer/';                                   // #498
 		$update['items'][] = 'config/php_mailer.php';                                // #498
 		$update['items'][] = 'config/b8_config.php';                                 // #493
-		
+		$update['items'][] = 'index.php';                                            // #498		
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!

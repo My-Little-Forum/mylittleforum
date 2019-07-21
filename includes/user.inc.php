@@ -18,6 +18,9 @@ if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 &&
 	if (isset($_POST['remove_account_submit'])) $action = 'remove_account_submitted';
 
 	if(isset($_REQUEST['id'])) $id = $_REQUEST['id'];
+	
+	$isUser = isset($_SESSION[$settings['session_prefix'].'user_type']) && isset($_SESSION[$settings['session_prefix'].'user_id']);
+	$isModOrAdmin = $isUser && ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2);
 
 	switch($action) {
 		case 'main':
@@ -83,7 +86,8 @@ if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 &&
 			while ($row = mysqli_fetch_array($result)) {
 				$userdata[$i]['user_id'] = intval($row['user_id']);
 				$userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
-				if ($row['email_contact'] == 1) $userdata[$i]['user_email'] = TRUE;
+				if ($isModOrAdmin || $isUser && $row['email_contact'] > 0 || $row['email_contact'] == 2) 
+					$userdata[$i]['user_email'] = TRUE;
 				$userdata[$i]['user_hp'] = htmlspecialchars($row['user_hp']);
 				if (trim($userdata[$i]['user_hp']) != '') {
 					$userdata[$i]['user_hp'] = add_http_if_no_protocol($userdata[$i]['user_hp']);
@@ -174,7 +178,8 @@ if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 &&
 					$smarty->assign('birthdate', $birthdate);
 					$smarty->assign('years', $years);
 				}
-				if ($row['email_contact'] == 1) $smarty->assign('user_email', TRUE);
+				if ($isModOrAdmin || $isUser && $row['email_contact'] > 0 || $row['email_contact'] == 2) 
+					$smarty->assign('user_email', TRUE);
 				if (trim($row['user_hp']) != '') {
 					$row['user_hp'] = add_http_if_no_protocol($row['user_hp']);
 				}
@@ -352,7 +357,8 @@ if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 &&
 				if ($time_difference_minutes > 0) $user_time_difference .= ':'.$time_difference_minutes;
 				$smarty->assign('user_time_difference', $user_time_difference);
 
-				if (isset($_GET['msg'])) $smarty->assign('msg', htmlspecialchars($_GET['msg']));
+				if (isset($_GET['msg'])) 
+					$smarty->assign('msg', htmlspecialchars($_GET['msg']));
 				$smarty->assign('user_name', htmlspecialchars($row['user_name']));
 				$smarty->assign('user_real_name', htmlspecialchars($row['user_real_name']));
 				$smarty->assign('user_gender', $row['gender']);
@@ -364,8 +370,10 @@ if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 &&
 				$profile = htmlspecialchars($row['profile']);
 				$smarty->assign('profile', htmlspecialchars($row['profile']));
 				$smarty->assign('signature', htmlspecialchars($row['signature']));
-				if ($row['auto_login_code'] != '') $smarty->assign('auto_login', 1);
-				else $smarty->assign('auto_login', 0);
+				if ($row['auto_login_code'] != '') 
+					$smarty->assign('auto_login', 1);
+				else 
+					$smarty->assign('auto_login', 0);
 
 				if($settings['avatars'] > 0) {
 					$avatarInfo = getAvatar($_SESSION[$settings['session_prefix'].'user_id']);
@@ -393,10 +401,12 @@ if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 &&
 		case 'edit_userdata':
 			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']){
 				$id = $_SESSION[$settings['session_prefix'].'user_id'];
-				if (empty($_POST['email_contact'])) 
-					$email_contact = 0;
+				if (isset($_POST['email_contact'])) 
+					$email_contact = intval($_POST['email_contact']);
 				else 
-					$email_contact = 1;
+					$email_contact = 0;
+				if ($email_contact < 0 || $email_contact > 2) 
+					$email_contact = 0;
 				$user_hp = trim($_POST['user_hp']);
 				$user_real_name = trim($_POST['user_real_name']);
 				$user_birthday = trim($_POST['user_birthday']);
@@ -573,11 +583,13 @@ if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 &&
 					$smarty->assign('user_location', htmlspecialchars($user_location));
 					$smarty->assign('profile', htmlspecialchars($profile));
 					$smarty->assign('signature', htmlspecialchars($signature));
-					if (isset($_POST['user_time_difference'])) $smarty->assign('user_time_difference', htmlspecialchars($_POST['user_time_difference']));
+					if (isset($_POST['user_time_difference'])) 
+						$smarty->assign('user_time_difference', htmlspecialchars($_POST['user_time_difference']));
 					$smarty->assign('auto_login', $auto_login);
 					$smarty->assign('new_posting_notification', $new_posting_notification);
 					$smarty->assign('new_user_notification', $new_user_notification);
-					if (isset($_POST['category_selection']) && is_array($_POST['category_selection'])) $smarty->assign('category_selection', $_POST['category_selection']);
+					if (isset($_POST['category_selection']) && is_array($_POST['category_selection'])) 
+						$smarty->assign('category_selection', $_POST['category_selection']);
 					$smarty->assign('time_difference_array', $user_time_difference_array);
 					$breadcrumbs[0]['link'] = 'index.php?mode=user';
 					$breadcrumbs[0]['linkname'] = 'subnav_userarea';

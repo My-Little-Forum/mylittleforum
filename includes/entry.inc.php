@@ -27,6 +27,9 @@
 		$tmp_user_id = 0;
 	}
 	
+	$isUser = isset($_SESSION[$settings['session_prefix'].'user_type']) && isset($_SESSION[$settings['session_prefix'].'user_id']);
+	$isModOrAdmin = $isUser && ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2);
+	
 	if (isset($id) && $id > 0) {
 		$result = @mysqli_query($connid, "SELECT ft.id, ft.pid, ft.tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
                          UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . $time_difference . " MINUTE) AS edit_time,
@@ -95,11 +98,10 @@
 				}
 				
 				$entrydata['email']    = $entrydata['user_email'];
-				#$entrydata['email_contact'] = $userdata['email_contact'];
 				$entrydata['location'] = $entrydata['user_location'];
 				$entrydata['hp']       = $entrydata['user_hp'];
 			} else
-				$entrydata['email_contact'] = 1;
+				$entrydata['email_contact'] = 2;
 		} else {
 			header("Location: index.php");
 			exit;
@@ -278,7 +280,7 @@
 		$entrydata['hp'] = add_http_if_no_protocol($entrydata['hp']);
 		$smarty->assign('hp', $entrydata["hp"]);
 	}
-	if ($entrydata['email'] != '' && $entrydata["email_contact"] == 1)
+	if ($entrydata['email'] != '' && ($isModOrAdmin || $isUser && $entrydata['email_contact'] > 0 || $entrydata['email_contact'] == 2))
 		$smarty->assign('email', true);
 	if ($entrydata['location'] != '')
 		$smarty->assign('location', htmlspecialchars($entrydata['location']));

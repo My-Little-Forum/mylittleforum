@@ -34,6 +34,9 @@ if (isset($_GET['order']) && $_GET['order'] == 'last_reply')
 else
 	$order = 'time';
 
+$isUser = isset($_SESSION[$settings['session_prefix'].'user_type']) && isset($_SESSION[$settings['session_prefix'].'user_id']);
+$isModOrAdmin = $isUser && ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2);
+
 // tid, subject and category of starting posting:
 $result = mysqli_query($connid, "SELECT tid, subject, category FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($id) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 if (mysqli_num_rows($result) != 1) {
@@ -145,7 +148,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 					}
 				}
 			} else {
-				$data["email_contact"] = 1;
+				$data["email_contact"] = 2;
 			}
 			
 			if ($data['edited_diff'] > 0 && $data["edited_diff"] > $data["time"] && $settings['show_if_edited'] == 1) {
@@ -206,7 +209,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 				$data['hp'] = add_http_if_no_protocol($data['hp']);
 			}
 			
-			if ($data['email'] != '' && $data['email_contact'] == 1)
+			if ($data['email'] != '' && ($isModOrAdmin || $isUser && $data['email_contact'] > 0 || $data['email_contact'] == 2))
 				$data['email'] = true;
 			else
 				$data['email'] = false;
