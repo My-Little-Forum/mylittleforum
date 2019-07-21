@@ -33,8 +33,14 @@
 </tr>
 <tr>
 <td class="c"><strong>{#edit_user_email#}</strong></td>
-<td class="d"><!--<a href="mailto:{$user_email}">-->{$user_email}<!--</a>--> &nbsp;<span class="small">[ <a href="index.php?mode=user&amp;action=edit_email">{#edit_email#}</a> ]</span><br />
-<span class="small"><input id="email_contact" type="checkbox" name="email_contact" value="1"{if $email_contact==1} checked="checked"{/if} /><label for="email_contact">{#edit_user_email_contact#}</label></span></td>
+<td class="d"><!--<a href="mailto:{$user_email}">-->{$user_email}<!--</a>--> &nbsp;<span class="small">[ <a href="index.php?mode=user&amp;action=edit_email">{#edit_email#}</a> ]</span></td>
+</tr>
+<tr>
+<td class="c"><strong>{#edit_user_contacting#}</strong></td>
+<td class="d">
+<input id="email_contact_disabled"   type="radio" name="email_contact" value="0"{if $email_contact=="0"} checked="checked"{/if} /><label for="email_contact_disabled">{#edit_user_contacting_disabled#}</label><br/>
+<input id="email_contact_registered" type="radio" name="email_contact" value="1"{if $email_contact=="1"} checked="checked"{/if} /><label for="email_contact_registered">{#edit_user_contacting_registered#}</label><br/>
+<input id="email_contact_public"     type="radio" name="email_contact" value="2"{if $email_contact=="2"} checked="checked"{/if} /><label for="email_contact_public">{#edit_user_contacting_public#}</label></td>
 </tr>
 <tr>
 <td class="c"><label for="user_hp"><strong>{#edit_user_hp#}</strong></label></td>

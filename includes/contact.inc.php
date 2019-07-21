@@ -9,10 +9,16 @@ if (empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captch
 	$captcha = new Captcha();
 }
 
-if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
-else $action = 'main';
+if (isset($_REQUEST['action'])) 
+	$action = $_REQUEST['action'];
+else 
+	$action = 'main';
 
-if(isset($_POST['message_submit'])) $action = 'message_submit';
+if(isset($_POST['message_submit'])) 
+	$action = 'message_submit';
+
+$isUser = isset($_SESSION[$settings['session_prefix'].'user_type']) && isset($_SESSION[$settings['session_prefix'].'user_id']);
+$isModOrAdmin = $isUser && ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2);
 
 switch($action) {
 	case 'main':
@@ -36,11 +42,11 @@ switch($action) {
 				$result = @mysqli_query($connid, "SELECT user_name, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['recipient_user_id'])." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$userdata = mysqli_fetch_array($result);
 				mysqli_free_result($result);
-				if ($userdata['email_contact'] != 1) {
-					$smarty->assign('error_message', 'impossible_to_contact');
-				} else {
+				if ($isModOrAdmin || $isUser && $userdata['email_contact'] > 0 || $userdata['email_contact'] == 2) {
 					$smarty->assign('recipient_name', htmlspecialchars($userdata['user_name']));
 					$smarty->assign('recipient_user_id', intval($data['recipient_user_id']));
+				} else {
+					$smarty->assign('error_message', 'impossible_to_contact');
 				}
 			} else {
 				// not registered user, get data from forum table:
@@ -59,11 +65,11 @@ switch($action) {
 			}
 			$userdata = mysqli_fetch_array($result);
 			mysqli_free_result($result);
-			if ($userdata['email_contact'] != 1) {
-				$smarty->assign('error_message', 'impossible_to_contact');
-			} else {
+			if ($isModOrAdmin || $isUser && $userdata['email_contact'] > 0 || $userdata['email_contact'] == 2) {
 				$smarty->assign('recipient_name', htmlspecialchars($userdata['user_name']));
 				$smarty->assign('recipient_user_id', intval($_REQUEST['recipient_user_id']));
+			} else {
+				$smarty->assign('error_message', 'impossible_to_contact');
 			}
 		}
 	break;
@@ -206,12 +212,12 @@ switch($action) {
 					$result = @mysqli_query($connid, "SELECT user_email, email_contact FROM ".$db_settings['userdata_table']." WHERE user_id = ".intval($data['recipient_user_id'])." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 					$userdata = mysqli_fetch_array($result);
 					mysqli_free_result($result);
-					if ($userdata['email_contact'] != 1) {
-						$errors[] = TRUE;
-						$smarty->assign('error_message', 'impossible_to_contact');
-					} else {
+					if ($isModOrAdmin || $isUser && $userdata['email_contact'] > 0 || $userdata['email_contact'] == 2) {
 						$smarty->assign('recipient_name', htmlspecialchars($userdata['user_name']));
 						$recipient_email = $data['user_email'];
+					} else {
+						$errors[] = TRUE;
+						$smarty->assign('error_message', 'impossible_to_contact');
 					}
 				} else {
 					// not registered user, get data from forum table:
@@ -232,13 +238,13 @@ switch($action) {
 				}
 				$userdata = mysqli_fetch_array($result);
 				mysqli_free_result($result);
-				if ($userdata['email_contact'] != 1) {
-					$errors[] = TRUE;
-					$smarty->assign('error_message', 'impossible_to_contact');
-				} else {
+				if ($isModOrAdmin || $isUser && $userdata['email_contact'] > 0 || $userdata['email_contact'] == 2) {
 					$recipient_name = htmlspecialchars($userdata['user_name']);
 					$recipient_email = $userdata['user_email'];
 					$smarty->assign('recipient_name', $recipient_name);
+				} else {
+					$errors[] = TRUE;
+					$smarty->assign('error_message', 'impossible_to_contact');
 				}
 			} else {
 				$recipient_name = $settings['forum_name'];
