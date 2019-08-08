@@ -1,6 +1,18 @@
 my little forum changelog
 -------------------------
 
+2.4.99.2 (2019-08-08)
+---------------------
+
+- feature: send the notification mail about a new entry after an entry was manually classified as ham
+- feature: tags can be inserted not only by admins and moderators but also from unregistered and registered users from now on (optional setting)
+- feature: e-mails can be sent with a SMTP-class or via PHP's own mail()-function
+- feature: a regsitered user can decide, if he is contactable for the forum team, for all registered users or for all users and visitors of a forum
+- fixed: the column size of mlf2_tags.tag exceeded the possible index size (768 bytes) when the charset of the column is utf8mb4, limit the column size to 128 chars
+- changed: create all tables with the engine InnoDB
+- changed: list the spam entries in the main view with all elements for manipulation instead listing the entries in the search view
+- changed: when an entry was detected as spam redirect the user to the single-entry-view because the notification can be placed reproducible inside the viewport
+
 2.4.99.1 (2019-06-01)
 ---------------------
 
