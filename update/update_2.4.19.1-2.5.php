@@ -333,6 +333,42 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 	if (!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('b8_mail_check', '0'), ('php_mailer', '0');")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['banlists_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['entry_cache_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_cache_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "` ENGINE=InnoDB;")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
 }
 
 if (empty($update['errors'])) {
