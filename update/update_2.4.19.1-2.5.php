@@ -103,7 +103,7 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/style.css';                             // #477
 		$update['items'][] = 'includes/admin.inc.php';                               // #478
 		$update['items'][] = 'includes/user.inc.php';                                // #478
-	case '2.4.99.1':	
+	case '2.4.99.1':
 		$update['items'][] = 'lang/';                                                // #489, #501
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #489
 		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';          // #489, #501, #505
@@ -120,7 +120,7 @@ switch($settings['version']) {
 		$update['items'][] = 'modules/phpmailer/';                                   // #498
 		$update['items'][] = 'config/php_mailer.php';                                // #498
 		$update['items'][] = 'config/b8_config.php';                                 // #493
-		$update['items'][] = 'index.php';                                            // #498		
+		$update['items'][] = 'index.php';                                            // #498
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
