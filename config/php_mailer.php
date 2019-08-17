@@ -7,7 +7,7 @@ if (!defined('IN_INDEX')) {
 /** config for PHPMailer **/
 // Please read https://github.com/PHPMailer/PHPMailer/blob/master/src/PHPMailer.php 
 // for further configuration properties
-define('PHP_MAILER_CONFIG', array(
+$PHP_MAILER_CONFIG = array(
 	'Mailer'		=> 'smtp',				// 'smtp', 'mail', 'sendmail' or 'qmail'
 	'Port'			=> '587',				// well-known ports are 25 (default), 587 (TLS) or 465 (SSL)
 	'SMTPSecure'	=> 'tls',				// '', 'tls' or 'ssl'
@@ -18,7 +18,6 @@ define('PHP_MAILER_CONFIG', array(
 	'Host'			=> 'smtp.example.org',  	
 	'Username'		=> 'mail@example.org', 
 	'Password'		=> 'secret password'			
-));
+);
 /** config for PHPMailer **/
-
 ?>

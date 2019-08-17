@@ -182,11 +182,8 @@ switch($action) {
 			// B8 spam check: 
 			if ($settings['b8_mail_check'] == 1) {
 				try {
-					require('modules/b8/b8.php');
-					$b8 = new b8(B8_CONFIG_DATABASE, B8_CONFIG_AUTHENTICATION, B8_CONFIG_LEXER, B8_CONFIG_DEGENERATOR);
 					$check_text = implode("\r\n", $check_mail);
-							
-					$b8_spam_probability = 100.0 * $b8->classify($check_text);
+					$b8_spam_probability = 100.0 * $B8_BAYES_FILTER->classify($check_text);
 					if ($b8_spam_probability > intval($settings['b8_spam_probability_threshold']))
 						$errors[] = 'error_email_spam_suspicion';
 				}

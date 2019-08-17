@@ -62,7 +62,7 @@ if ($lang['locale_charset'] != $lang['charset'])
 setlocale(LC_ALL, $lang['locale']);
 setlocale(LC_NUMERIC, "C");
 
-include('config/b8_config.php');
+include('includes/b8.inc.php');
 
 $smarty->assign('settings', $settings);
 
