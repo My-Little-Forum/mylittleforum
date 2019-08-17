@@ -25,7 +25,7 @@ require 'config/php_mailer.php';
 $PHP_MAILER = new PHPMailer;
 
 // add specified properties
-foreach(PHP_MAILER_CONFIG as $key => $value) {
+foreach($PHP_MAILER_CONFIG as $key => $value) {
 	$PHP_MAILER->set($key, $value);
 }
 ?>
