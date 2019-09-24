@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.4.19.1', '2.4.20', '2.4.99.0', '2.4.99.1');
+$update['version'] = array('2.4.19.1', '2.4.20', '2.4.99.0', '2.4.99.1', '2.4.99.2');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
