@@ -6,8 +6,8 @@
  * @author Mark Alexander Hoschek < alex at mylittleforum dot net >
  * @author Michael Lösler (https://github.com/loesler)
  * @author Heiko August (https://github.com/auge8472)
- * @copyright 2006-2018 Mark Alexander Hoschek
- * @version 2.4.99.2 (2019-08-08)
+ * @copyright 2006-2019 Mark Alexander Hoschek
+ * @version 2.4.99.3 (2019-09-24)
  * @link https://mylittleforum.net/
  *
  * This program is free software: you can redistribute it and/or modify
