@@ -132,10 +132,11 @@
 		exit;
 	}
 	
-	// thread-data:
+	// Select data for thread-tree
 	$thread = $entrydata['tid'];
-	if ($entrydata['akismet_spam'] == 1 || $entrydata['b8_spam'] == 1)
-		$display_spam_query_and = '';
+	// Override '$display_spam_query_and' variable, which was set in main.inc.php, to display current message in tree
+	if ($entrydata['spam'] == 1 && isset($id))
+		$display_spam_query_and .= " OR `ft`.`id` = " . intval($id);
 	$result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
                         UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, category, marked, text, rst.user_id AS req_user,
 						" . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam,
