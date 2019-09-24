@@ -799,6 +799,30 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				echo 'Deleting table <strong>'.$db_settings['temp_infos_table'].'</strong>... ';
 				if (@mysqli_query($connid, "DROP TABLE ".$db_settings['temp_infos_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('. mysqli_error($connid) .')';
 				echo '</pre>';
+				echo 'Deleting table <strong>'.$db_settings['akismet_rating_table'].'</strong>... ';
+				if (@mysqli_query($connid, "DROP TABLE ".$db_settings['akismet_rating_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('. mysqli_error($connid) .')';
+				echo '</pre>';
+				echo 'Deleting table <strong>'.$db_settings['b8_rating_table'].'</strong>... ';
+				if (@mysqli_query($connid, "DROP TABLE ".$db_settings['b8_rating_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('. mysqli_error($connid) .')';
+				echo '</pre>';
+				echo 'Deleting table <strong>'.$db_settings['b8_wordlist_table'].'</strong>... ';
+				if (@mysqli_query($connid, "DROP TABLE ".$db_settings['b8_wordlist_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('. mysqli_error($connid) .')';
+				echo '</pre>';
+				echo 'Deleting table <strong>'.$db_settings['bookmark_tags_table'].'</strong>... ';
+				if (@mysqli_query($connid, "DROP TABLE ".$db_settings['bookmark_tags_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('. mysqli_error($connid) .')';
+				echo '</pre>';
+				echo 'Deleting table <strong>'.$db_settings['entry_tags_table'].'</strong>... ';
+				if (@mysqli_query($connid, "DROP TABLE ".$db_settings['entry_tags_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('. mysqli_error($connid) .')';
+				echo '</pre>';
+				echo 'Deleting table <strong>'.$db_settings['tags_table'].'</strong>... ';
+				if (@mysqli_query($connid, "DROP TABLE ".$db_settings['tags_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('. mysqli_error($connid) .')';
+				echo '</pre>';
+				echo 'Deleting table <strong>'.$db_settings['subscriptions_table'].'</strong>... ';
+				if (@mysqli_query($connid, "DROP TABLE ".$db_settings['subscriptions_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('. mysqli_error($connid) .')';
+				echo '</pre>';
+				echo 'Deleting table <strong>'.$db_settings['uploads_table'].'</strong>... ';
+				if (@mysqli_query($connid, "DROP TABLE ".$db_settings['uploads_table'])) echo '<b style="color:green;">OK</b>'; else echo '<b style="color:red;">FAILED</b> ('. mysqli_error($connid) .')';
+				echo '</pre>';
 				exit;
 			}
 		}
