@@ -1,6 +1,12 @@
 my little forum changelog
 -------------------------
 
+2.4.99.3 (2019-09-24)
+---------------------
+
+- fixed: show spam entries in the thread tree not for authors of spammy postings
+- fixed: delete the new tables when uninstalling the forum
+
 2.4.99.2 (2019-08-08)
 ---------------------
 
