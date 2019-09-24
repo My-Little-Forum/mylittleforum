@@ -121,6 +121,10 @@ switch($settings['version']) {
 		$update['items'][] = 'config/php_mailer.php';                                // #498
 		$update['items'][] = 'config/b8_config.php';                                 // #493
 		$update['items'][] = 'index.php';                                            // #498
+	case '2.4.99.2':
+		$update['items'][] = 'index.php';                                            // without pull request
+		$update['items'][] = 'includes/admin.inc.php';                               // without pull request
+		$update['items'][] = 'includes/entry.inc.php';                               // #509
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
