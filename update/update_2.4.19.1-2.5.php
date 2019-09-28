@@ -125,7 +125,10 @@ switch($settings['version']) {
 		$update['items'][] = 'index.php';                                            // without pull request
 		$update['items'][] = 'includes/admin.inc.php';                               // without pull request
 		$update['items'][] = 'includes/entry.inc.php';                               // #509
-		
+	case '2.4.99.3':
+		$update['items'][] = 'includes/main.inc.php';                                // #510
+		$update['items'][] = 'modules/bad-behavior/';                                // #511	
+
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
 		break;
