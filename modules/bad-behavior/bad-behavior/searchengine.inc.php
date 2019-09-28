@@ -11,7 +11,7 @@ function bb2_google($package)
 		return false;	# Soft fail, must pass other screening
 		#return "f1182195";	# Hard fail
 	}
-#	Disabled due to http://bugs.php.net/bug.php?id=53092
+#	Disabled due to https://bugs.php.net/bug.php?id=53092
 #	if (!bb2_roundtripdns($package['ip'], "googlebot.com")) {
 #		return "f1182195";
 #	}
@@ -27,7 +27,7 @@ function bb2_msnbot($package)
 		return false;	# Soft fail, must pass other screening
 		#return "e4de0453";	# Hard fail
 	}
-#	Disabled due to http://bugs.php.net/bug.php?id=53092
+#	Disabled due to https://bugs.php.net/bug.php?id=53092
 #	if (!bb2_roundtripdns($package['ip'], "msn.com")) {
 #		return "e4de0453";
 #	}
@@ -43,7 +43,7 @@ function bb2_yahoo($package)
 		return false;	# Soft fail, must pass other screening
 		#return '71436a15';	# Hard fail
 	}
-#	Disabled due to http://bugs.php.net/bug.php?id=53092
+#	Disabled due to https://bugs.php.net/bug.php?id=53092
 #	if (!bb2_roundtripdns($package['ip'], "crawl.yahoo.net")) {
 #		return "71436a15";
 #	}

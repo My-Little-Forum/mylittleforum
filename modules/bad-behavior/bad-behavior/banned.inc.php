@@ -53,7 +53,7 @@ function bb2_display_denial($settings, $package, $key, $previous_key = false)
 <?php echo htmlspecialchars($request_uri) ?> on this server.</p>
 <p><?php echo $response['explanation']; ?></p>
 <p>Your technical support key is: <strong><?php echo $support_key; ?></strong></p>
-<p>You can use this key to <a href="http://www.ioerror.us/bb2-support-key?key=<?php echo $support_key; ?>">fix this problem yourself</a>.</p>
+<p>You can use this key to <a href="https://www.ioerror.us/bb2-support-key?key=<?php echo $support_key; ?>">fix this problem yourself</a>.</p>
 <p>If you are unable to fix the problem yourself, please contact <a href="mailto:<?php echo htmlspecialchars(str_replace("@", "+nospam@nospam.", bb2_email())); ?>"><?php echo htmlspecialchars(str_replace("@", " at ", bb2_email())); ?></a> and be sure to provide the technical support key shown above.</p>
 <?php
 }
