@@ -1596,8 +1596,7 @@ function tag_cloud($days, $scale_min, $scale_max) {
 				$tags_array[$tag] = 1;
 		}
 		
-		ksort($tags_array);
-
+		ksort($tags_array, SORT_NATURAL | SORT_FLAG_CASE);
 		// minimum and maximum value:
 		foreach ($tags_array as $tag) {
 			if (empty($max))
