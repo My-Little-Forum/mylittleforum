@@ -70,6 +70,23 @@
 				$rstatus = save_read_status($connid, $user_id, $id);
 			}
 			
+			if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
+				// vote handling
+				$user_id = $_SESSION[$settings['session_prefix'] . 'user_id'];
+				$vote_result = mysqli_query($connid, "SELECT TRUE AS 'vote' FROM " . $db_settings['vote_table'] . " WHERE `user_id` = " . intval($user_id) . " AND `posting_id` = " . intval($id) . "") or raise_error('database_error', mysqli_error($connid));
+				$vote = mysqli_fetch_row($vote_result);
+				mysqli_free_result($vote_result);
+				if (isset($vote) && intval($vote) == 1) {
+          # vote is existing -> allow deletion
+          $options['delete_vote'] = true;
+        } else {
+          # vote not existing and not own entry -> allow voting
+          if ($user_id != $entrydata['user_id']) {
+        	  $options['add_vote'] = true;
+          }
+        }
+			}
+
 			if ($entrydata['req_user'] !== NULL and is_numeric($entrydata['req_user'])) {
 				$entrydata['is_read'] = true;
 			} else {
@@ -134,9 +151,10 @@
 	if ($entrydata['spam'] == 1)
 		$display_spam_query_and = '';
 	$result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
-                        UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, category, marked, text, spam, rst.user_id AS req_user FROM " . $db_settings['forum_table'] . " AS ft
+                        UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, category, marked, text, spam, rst.user_id AS req_user, sct.score FROM " . $db_settings['forum_table'] . " AS ft
                         LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id=ft.user_id
                         LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
+                  			LEFT JOIN " . $db_settings['score_table'] . " AS sct ON sct.posting_id = ft.id
                         WHERE tid = " . $thread . $display_spam_query_and . " ORDER BY time ASC");
 	if (!$result)
 		raise_error('database_error', mysqli_error($connid));
