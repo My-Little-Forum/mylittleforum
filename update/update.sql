@@ -395,4 +395,11 @@ ALTER TABLE `mlf2_subscriptions` ADD INDEX `entry` (`eid`);
 INSERT INTO `mlf2_temp_infos` ('name', 'value') VALUES ('access_permission_checks', '0'), ('last_changes', '0'), ('next_daily_actions', '0'), ('version', '2.4.19'); --combined query for relocated settings and for new version string 
 DELETE FROM `mlf2_settings` WHERE name IN('access_permission_checks', 'last_changes', 'next_daily_actions', 'version')
 */
-
+--------------------------------------------------------------------------------
+-- 2.4.19 to 2.4.20
+/*
+CREATE TABLE `mlf2_scores` (`posting_id` int(11) NOT NULL, `score` int(11) NOT NULL DEFAULT '0') CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE `mlf2_votes` (`user_id` int(11) NOT NULL, `posting_id` int(11) NOT NULL, `vote` int(11) NOT NULL, `tstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP) CHARSET=utf8 COLLATE=utf8_general_ci;
+ALTER TABLE `mlf2_scores` ADD PRIMARY KEY (`posting_id`);
+ALTER TABLE `mlf2_votes` ADD PRIMARY KEY (`posting_id`,`user_id`,`vote`), ADD KEY `ix_posting_id` (`posting_id`), ADD KEY `ix_user_id` (`user_id`);
+/*
