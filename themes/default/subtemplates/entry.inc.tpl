@@ -47,6 +47,8 @@
 {if $views}<span class="views">{if $views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$views}{/if}</span>{else}&nbsp;{/if}
 {if $options}
 <ul class="options">
+{if $options.add_vote}<li><a href="index.php?mode=posting&amp;vote={$id}&amp;back=entry" class="add-vote" title="{#add_vote_message_linktitle#}">{#add_vote_message_linkname#}</a></li>{/if}
+{if $options.delete_vote}<li><a href="index.php?mode=posting&amp;vote={$id}&amp;back=entry" class="delete-vote" title="{#delete_vote_message_linktitle#}">{#delete_vote_message_linkname#}</a></li>{/if}
 {if $options.add_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$id}&amp;back=entry" class="add-bookmark" title="{#add_bookmark_message_linktitle#}">{#add_bookmark_message_linkname#}</a></li>{/if}
 {if $options.delete_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$id}&amp;back=entry" class="delete-bookmark" title="{#delete_bookmark_message_linktitle#}">{#delete_bookmark_message_linkname#}</a></li>{/if}
 {if $options.edit}<li><a href="index.php?mode=posting&amp;edit={$id}&amp;back=entry" class="edit" title="{#edit_message_linktitle#}">{#edit_message_linkname#}</a></li>{/if}
@@ -78,6 +80,15 @@
 {/if}
 
 <span id="p{$data.$element.id}" class="tail">{$data.$element.formated_time}{if $data.$element.pid==0} <a href="index.php?mode=thread&amp;id={$data.$element.id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" title="{#open_whole_thread#}" alt="[*]" width="11" height="11" /></a>{/if}{if $admin || $mod} <a id="marklink_{$data.$element.id}" href="index.php?mode=posting&amp;mark={$data.$element.id}&amp;back={$id}" title="{#mark_linktitle#}" onclick="mark({$data.$element.id},'{$THEMES_DIR}/{$theme}/images/marked.png','{$THEMES_DIR}/{$theme}/images/unmarked.png','{$THEMES_DIR}/{$theme}/images/mark_process.png','{#mark_linktitle#}','{#unmark_linktitle#}'); return false">{if $data.$element.marked==0}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/unmarked.png" title="{#mark_linktitle#}" alt="[○]" width="11" height="11" />{else}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/marked.png" title="{#unmark_linktitle#}" alt="[●]" width="11" height="11" title="{#unmark_linktitle#}" />{/if}</a> <a href="index.php?mode=posting&amp;delete_posting={$data.$element.id}&amp;csrf_token={$CSRF_TOKEN}&amp;back=entry" title="{#delete_posting_title#}" onclick="return delete_posting_confirm(this, '{$smarty.config.delete_posting_confirm|escape:"url"}')"><img src="{$THEMES_DIR}/{$theme}/images/delete_posting.png" alt="[x]" width="9" height="9" /></a>{/if}</span>
+
+{if $data.$element.score >= 3}
+<img src="{$THEMES_DIR}/{$theme}/images/score_3.png" title="" alt="[OOO]" width="30" height="9" />
+{elseif $data.$element.score >= 2}
+<img src="{$THEMES_DIR}/{$theme}/images/score_2.png" title="" alt="[OO]" width="20" height="9" />
+{elseif $data.$element.score >= 1}
+<img src="{$THEMES_DIR}/{$theme}/images/score_1.png" title="" alt="[O]" width="9" height="9" />
+{/if}
+
 {if is_array($child_array[$element])}
 <ul class="{if $level<$settings.deep_reply}reply{elseif $level>=$settings.deep_reply&&$level<$settings.very_deep_reply}deep-reply{else}very-deep-reply{/if}">{foreach from=$child_array[$element] item=child}{tree element=$child level=$level+1}{/foreach}</ul>{/if}</li>
 {/function}

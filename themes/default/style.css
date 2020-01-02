@@ -197,6 +197,10 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
                          { display:inline; margin:0 0 0 1em; }
 .posting-footer a.edit   { padding-left:16px; background:url(images/bg_sprite_3.png) no-repeat 0 2px; }
 .posting-footer a.delete { padding-left:13px; background:url(images/bg_sprite_3.png) no-repeat 0 -47px; }
+.posting-footer a.add-vote
+						 { padding-left:18px; background:url(images/vote_up.png) no-repeat; }
+.posting-footer a.delete-vote
+						 { padding-left:18px; background:url(images/vote_down.png) no-repeat; }
 .posting-footer a.add-bookmark
 						 { padding-left:14px; background:url(images/bg_sprite_3.png) no-repeat 0 -97px; }
 .posting-footer a.delete-bookmark
