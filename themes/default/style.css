@@ -179,7 +179,7 @@ input[name=sort_of_agreement] + iframe { height: 400px; height: 60vh; }
 .posting li              { font-size:0.82em; line-height:1.5em; }
 .posting li li           { font-size:1em; }
 .quote                   { color:#6f6f6f; font-style:italic; }
-.edited, .ago            { font-size:0.82em; color:#808080; }
+.edited, .ago, .score    { font-size:0.82em; color:#808080; }
 img.no-text              { cursor:help; }
 pre                      { max-width:100%; overflow:auto; }
 code                     { font-family:"courier new",courier; color:#000080; }
