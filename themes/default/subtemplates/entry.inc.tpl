@@ -25,8 +25,11 @@
 <div class="posting{if $is_read} read{/if}">{if $spam}<p class="spam-note">{#spam_note#}</p>{/if}
 {if $avatar}<img class="avatar" src="{$avatar.image}" alt="{#avatar_img_alt#}" width="{$avatar.width}" height="{$avatar.height}" />{/if}
 <h1>{$subject}{if $category_name} <span class="category">({$category_name})</span>{/if}</h1>
-<p class="author">{*{assign var=formated_time value=$disp_time|date_format:#time_format_full#}*}{if $location}{#posted_by_location#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[location]":$location|replace:"[time]":$formated_time}{else}{#posted_by#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[time]":$formated_time}{/if} <span class="ago">({if $ago.days>1}{#posting_several_days_ago#|replace:"[days]":$ago.days_rounded}{else}{if $ago.days==0 && $ago.hours==0}{#posting_minutes_ago#|replace:"[minutes]":$ago.minutes}{elseif $ago.days==0 && $ago.hours!=0}{#posting_hours_ago#|replace:"[hours]":$ago.hours|replace:"[minutes]":$ago.minutes}{else}{#posting_one_day_ago#|replace:"[hours]":$ago.hours|replace:"[minutes]":$ago.minutes}{/if}{/if})</span>{if $admin && $ip} <span class="ip">({$ip})</span>{/if}{if $pid!=0} <span class="op-link"><a href="index.php?id={$pid}" title="{#original_posting_linktitle#|replace:"[name]":$data.$pid.name}">@ {$data.$pid.name}</a></span>{/if}{if $edited}{*{assign var=formated_edit_time value=$edit_time|date_format:#time_format_full#}*}<br />
-<span class="edited">{#edited_by#|replace:"[name]":$edited_by|replace:"[time]":$formated_edit_time}</span>{/if}</p>
+<p class="author">{*{assign var=formated_time value=$disp_time|date_format:#time_format_full#}*}{if $location}{#posted_by_location#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[location]":$location|replace:"[time]":$formated_time}{else}{#posted_by#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[time]":$formated_time}{/if} <span class="ago">({if $ago.days>1}{#posting_several_days_ago#|replace:"[days]":$ago.days_rounded}{else}{if $ago.days==0 && $ago.hours==0}{#posting_minutes_ago#|replace:"[minutes]":$ago.minutes}{elseif $ago.days==0 && $ago.hours!=0}{#posting_hours_ago#|replace:"[hours]":$ago.hours|replace:"[minutes]":$ago.minutes}{else}{#posting_one_day_ago#|replace:"[hours]":$ago.hours|replace:"[minutes]":$ago.minutes}{/if}{/if})</span>{if $admin && $ip} <span class="ip">({$ip})</span>{/if}{if $pid!=0} <span class="op-link"><a href="index.php?id={$pid}" title="{#original_posting_linktitle#|replace:"[name]":$data.$pid.name}">@ {$data.$pid.name}</a></span>{/if}
+{if $own_entry || $admin || $mod || $settings.voting_score_public==1}{if $score==1}<span class="score">, {#message_score1#}</span>{/if}{if $score > 1}<span class="score">, {#message_score#|replace:"[score]":$score}</span>{/if}{/if}
+{if $edited}{*{assign var=formated_edit_time value=$edit_time|date_format:#time_format_full#}*}<br />
+<span class="edited">{#edited_by#|replace:"[name]":$edited_by|replace:"[time]":$formated_edit_time}</span>{/if}
+</p>
 {if $posting}
 {$posting}
 {else}
@@ -81,12 +84,12 @@
 
 <span id="p{$data.$element.id}" class="tail">{$data.$element.formated_time}{if $data.$element.pid==0} <a href="index.php?mode=thread&amp;id={$data.$element.id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" title="{#open_whole_thread#}" alt="[*]" width="11" height="11" /></a>{/if}{if $admin || $mod} <a id="marklink_{$data.$element.id}" href="index.php?mode=posting&amp;mark={$data.$element.id}&amp;back={$id}" title="{#mark_linktitle#}" onclick="mark({$data.$element.id},'{$THEMES_DIR}/{$theme}/images/marked.png','{$THEMES_DIR}/{$theme}/images/unmarked.png','{$THEMES_DIR}/{$theme}/images/mark_process.png','{#mark_linktitle#}','{#unmark_linktitle#}'); return false">{if $data.$element.marked==0}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/unmarked.png" title="{#mark_linktitle#}" alt="[○]" width="11" height="11" />{else}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/marked.png" title="{#unmark_linktitle#}" alt="[●]" width="11" height="11" title="{#unmark_linktitle#}" />{/if}</a> <a href="index.php?mode=posting&amp;delete_posting={$data.$element.id}&amp;csrf_token={$CSRF_TOKEN}&amp;back=entry" title="{#delete_posting_title#}" onclick="return delete_posting_confirm(this, '{$smarty.config.delete_posting_confirm|escape:"url"}')"><img src="{$THEMES_DIR}/{$theme}/images/delete_posting.png" alt="[x]" width="9" height="9" /></a>{/if}</span>
 
-{if $data.$element.score >= 3}
-<img src="{$THEMES_DIR}/{$theme}/images/score_3.png" title="" alt="[OOO]" width="30" height="9" />
-{elseif $data.$element.score >= 2}
-<img src="{$THEMES_DIR}/{$theme}/images/score_2.png" title="" alt="[OO]" width="20" height="9" />
-{elseif $data.$element.score >= 1}
-<img src="{$THEMES_DIR}/{$theme}/images/score_1.png" title="" alt="[O]" width="9" height="9" />
+{if $data.$element.score >= $score_threshold_3}
+<img src="{$THEMES_DIR}/{$theme}/images/score_3.png" title="{#score_above_threshold#}" alt="[OOO]" width="30" height="9" />
+{elseif $data.$element.score >= $score_threshold_2}
+<img src="{$THEMES_DIR}/{$theme}/images/score_2.png" title="{#score_above_threshold#}" alt="[OO]" width="20" height="9" />
+{elseif $data.$element.score >= $score_threshold_1}
+<img src="{$THEMES_DIR}/{$theme}/images/score_1.png" title="{#score_above_threshold#}" alt="[O]" width="9" height="9" />
 {/if}
 
 {if is_array($child_array[$element])}

@@ -556,7 +556,7 @@
 {/if}
 
 <tr>
-<td class="c"><strong>{#edit_user_time_zone#}</strong></td>
+<td class="c"><strong>{#default_time_zone#}</strong><br /><span class="small">{#default_time_zone_desc#}</span></td>
 <td class="d">
 {if $time_zones}
 <p>
@@ -585,6 +585,20 @@
 </td>
 </tr>
 {/if}
+<td class="c"><strong>{#edit_user_birthday#}</strong></td>
+<td class="d"><input type="text" size="40" name="user_birthday" value="{$user_birthday}" /> <span class="small">({#birthday_format#})</span></td>
+
+<tr>
+<td class="c"><label for="user_voting"><strong>{#edit_user_voting#}</strong></label></td>
+<td class="d">
+<select id="user_voting" name="user_voting" size="1">
+  <option value="-1"{if $voting_allowed==-1} selected="selected"{/if}>{#voting_option_0#}</option>
+  <option value="0"{if $voting_allowed==0} selected="selected"{/if}>{#voting_option_1#}</option>
+  <option value="1"{if $voting_allowed==1} selected="selected"{/if}>{#voting_option_2#}</option>
+  <option value="2"{if $voting_allowed==2} selected="selected"{/if}>{#voting_option_3#}</option>
+</select>
+</td>
+</tr>
 
 {if $edit_user_type==2 || $edit_user_type==1}
 <tr>

@@ -42,12 +42,12 @@
 <h{if $element.pid==0}1{else}2{/if} id="headline-{$element.id}">{$element.subject}{if $element.pid==0 && $category_name} <span class="category">({$category_name})</span>{/if}</h{if $element.pid==0}1{else}2{/if}>
 <p class="author">{if $element.location}{#posted_by_location#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[location]":$element.location|replace:"[time]":$element.formated_time}{else}{#posted_by#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[time]":$element.formated_time}{/if} <span class="ago">({if $element.ago.days>1}{#posting_several_days_ago#|replace:"[days]":$element.ago.days_rounded}{else}{if $element.ago.days==0 && $element.ago.hours==0}{#posting_minutes_ago#|replace:"[minutes]":$element.ago.minutes}{elseif $element.ago.days==0 && $element.ago.hours!=0}{#posting_hours_ago#|replace:"[hours]":$element.ago.hours|replace:"[minutes]":$element.ago.minutes}{else}{#posting_one_day_ago#|replace:"[hours]":$element.ago.hours|replace:"[minutes]":$element.ago.minutes}{/if}{/if})</span>{if $admin && $element.ip} <span class="ip">({$element.ip})</span>{/if}{if $element.pid!=0}{assign var="parent_posting" value=$element.pid} <span class="op-link"><a href="#p{$element.pid}" title="{#original_posting_linktitle#|replace:"[name]":$data.$parent_posting.name}">@ {$data.$parent_posting.name}</a></span>{/if}
 <span>
-{if $element.score >= 3}
-<img src="{$THEMES_DIR}/{$theme}/images/score_3.png" title="" alt="[OOO]" width="30" height="9" />
-{elseif $element.score >= 2}
-<img src="{$THEMES_DIR}/{$theme}/images/score_2.png" title="" alt="[OO]" width="20" height="9" />
-{elseif $element.score >= 1}
-<img src="{$THEMES_DIR}/{$theme}/images/score_1.png" title="" alt="[O]" width="9" height="9" />
+{if $element.score >= $score_threshold_3}
+<img src="{$THEMES_DIR}/{$theme}/images/score_3.png" title="{#score_above_threshold#}" alt="[OOO]" width="30" height="9" />
+{elseif $element.score >= $score_threshold_2}
+<img src="{$THEMES_DIR}/{$theme}/images/score_2.png" title="{#score_above_threshold#}" alt="[OO]" width="20" height="9" />
+{elseif $element.score >= $score_threshold_1}
+<img src="{$THEMES_DIR}/{$theme}/images/score_1.png" title="{#score_above_threshold#}" alt="[O]" width="9" height="9" />
 {/if}
 </span>
 {if $element.edited}<br />
