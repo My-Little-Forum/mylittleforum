@@ -242,21 +242,31 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 				$rstatus = save_read_status($connid, $user_id, $data['id']);
 			}
 
-			if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
+			if (isset($_SESSION[$settings['session_prefix'] . 'user_id']) && intval($data['locked'])==0) {
 				// vote handling
 				$user_id = $_SESSION[$settings['session_prefix'] . 'user_id'];
-				$vote_result = mysqli_query($connid, "SELECT TRUE AS 'vote' FROM " . $db_settings['vote_table'] . " WHERE `user_id` = " . intval($user_id) . " AND `posting_id` = " . intval($data['id']) . "") or raise_error('database_error', mysqli_error($connid));
-				$vote = mysqli_fetch_row($vote_result);
-				mysqli_free_result($vote_result);
-				if (isset($vote) && intval($vote) == 1) {
-          # vote is existing -> allow deletion
-          $data['options']['delete_vote'] = true;
-        } else {
-          # vote not existing and not own entry -> allow voting
-          if ($user_id != $data['user_id']) {
-        	  $data['options']['add_vote'] = true;
+        $vote_result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($user_id) . " AND voting_allowed >= 1 LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+  			$vote = mysqli_fetch_row($vote_result);
+  			mysqli_free_result($vote_result);
+  			if (isset($vote) && intval($vote) == 1) {
+  				$vote_result = mysqli_query($connid, "SELECT TRUE AS 'vote' FROM " . $db_settings['vote_table'] . " WHERE `user_id` = " . intval($user_id) . " AND `posting_id` = " . intval($data['id']) . "") or raise_error('database_error', mysqli_error($connid));
+  				$vote = mysqli_fetch_row($vote_result);
+  				mysqli_free_result($vote_result);
+  				if (isset($vote) && intval($vote) == 1) {
+            # vote is existing -> allow deletion
+            $data['options']['delete_vote'] = true;
+          } else {
+            if ($user_id != $data['user_id']) {
+              # vote is not existing and not own entry -> allow voting
+          	  $data['options']['add_vote'] = true;
+            } else {
+              # vote is not existing, but own entry -> do not allow voting
+              # do nothing
+            }
           }
-          $data['options']['delete_vote'] = false;
+        } else {
+          # voting for user not allowed
+          # do nothing
         }
 			}
 
@@ -285,6 +295,9 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 	$smarty->assign('page', $page);
 	$smarty->assign('order', $order);
 	$smarty->assign('category', $category);
+  $smarty->assign("score_threshold_1",$settings['voting_score_threshold_1']);
+  $smarty->assign("score_threshold_2",$settings['voting_score_threshold_2']);
+  $smarty->assign("score_threshold_3",$settings['voting_score_threshold_3']);
 	if ($thread_display == 0)
 		$smarty->assign('subtemplate', 'thread.inc.tpl');
 	else

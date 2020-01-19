@@ -326,38 +326,45 @@ switch ($action) {
 	case 'vote_posting':
 		if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 			$user_id = intval($_SESSION[$settings['session_prefix'] . 'user_id']);
-
-			$result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM " . $db_settings['vote_table'] . " WHERE user_id = " . intval($user_id) . " AND posting_id = " . intval($_GET['vote']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+      $result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($user_id) . " AND voting_allowed >= 1 LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			$exists = mysqli_fetch_row($result);
 			mysqli_free_result($result);
 			if (isset($exists) && intval($exists) == 1) {
-        # remove existing vote
-        # if existing in vote table
-        @mysqli_query($connid, "DELETE FROM " . $db_settings['vote_table'] . " WHERE `user_id` = " . intval($user_id) . " AND `posting_id` =  " . intval($_GET['vote'])) or raise_error('database_error', mysqli_error($connid));
-        # decrement score in forum table
-        @mysqli_query($connid, "UPDATE " . $db_settings['score_table'] . " SET Score = Score - 1 WHERE `posting_id` =  " . intval($_GET['vote'])) or raise_error('database_error', mysqli_error($connid));
-      } else {
-        # add new vote
-        # if entry is existing in forum table, but not for own entries
-  			$result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM " . $db_settings['forum_table'] . " WHERE user_id <> " . intval($user_id) . " AND id = " . intval($_GET['vote']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+        # voting for user allowed
+        $result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM " . $db_settings['vote_table'] . " WHERE user_id = " . intval($user_id) . " AND posting_id = " . intval($_GET['vote']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
   			$exists = mysqli_fetch_row($result);
   			mysqli_free_result($result);
   			if (isset($exists) && intval($exists) == 1) {
-          @mysqli_query($connid, "INSERT INTO " . $db_settings['vote_table'] . " (user_id, posting_id, vote) VALUES (" . intval($user_id) . ", " . intval($_GET['vote']) . ", " . "1" . ")") or raise_error('database_error', mysqli_error($connid));
-          # increment score in score table
-    			$result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM " . $db_settings['score_table'] . " WHERE posting_id = " . intval($_GET['vote']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+          # remove existing vote
+          # delete from vote table
+          @mysqli_query($connid, "DELETE FROM " . $db_settings['vote_table'] . " WHERE `user_id` = " . intval($user_id) . " AND `posting_id` =  " . intval($_GET['vote'])) or raise_error('database_error', mysqli_error($connid));
+          # decrement score in forum table
+          @mysqli_query($connid, "UPDATE " . $db_settings['score_table'] . " SET Score = Score - 1 WHERE `posting_id` =  " . intval($_GET['vote'])) or raise_error('database_error', mysqli_error($connid));
+        } else {
+          # add new vote
+          # if entry is existing in forum table, but not for own entries
+    			$result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM " . $db_settings['forum_table'] . " WHERE user_id <> " . intval($user_id) . " AND id = " . intval($_GET['vote']) . " AND locked = 0 LIMIT 1") or raise_error('database_error', mysqli_error($connid));
     			$exists = mysqli_fetch_row($result);
     			mysqli_free_result($result);
     			if (isset($exists) && intval($exists) == 1) {
-            # score already existing
-            @mysqli_query($connid, "UPDATE " . $db_settings['score_table'] . " SET Score = Score + 1 WHERE `posting_id` =  " . intval($_GET['vote'])) or raise_error('database_error', mysqli_error($connid));
-          } else {
-            # score not existing
-            @mysqli_query($connid, "INSERT INTO " . $db_settings['score_table'] . " (posting_id, score) VALUES (". intval($_GET['vote']) . ", 1)") or raise_error('database_error', mysqli_error($connid));
+            @mysqli_query($connid, "INSERT INTO " . $db_settings['vote_table'] . " (user_id, posting_id, vote) VALUES (" . intval($user_id) . ", " . intval($_GET['vote']) . ", " . "1" . ")") or raise_error('database_error', mysqli_error($connid));
+            # increment score in score table
+      			$result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM " . $db_settings['score_table'] . " WHERE posting_id = " . intval($_GET['vote']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+      			$exists = mysqli_fetch_row($result);
+      			mysqli_free_result($result);
+      			if (isset($exists) && intval($exists) == 1) {
+              # score already existing
+              @mysqli_query($connid, "UPDATE " . $db_settings['score_table'] . " SET Score = Score + 1 WHERE `posting_id` =  " . intval($_GET['vote'])) or raise_error('database_error', mysqli_error($connid));
+            } else {
+              # score not existing
+              @mysqli_query($connid, "INSERT INTO " . $db_settings['score_table'] . " (posting_id, score) VALUES (". intval($_GET['vote']) . ", 1)") or raise_error('database_error', mysqli_error($connid));
+            }
           }
-        }
-      } 
-
+        } 
+      } else {
+        # voting for user not allowed
+        # do nothing
+      }
 			header("location: index.php?mode=" . $back . "&id=" . intval($_GET['vote']));
     }
 		break;

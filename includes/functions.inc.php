@@ -111,6 +111,8 @@ function daily_actions($current_time=0) {
 		if ($settings['read_state_expiration_method'] == 2 and $settings['read_state_expiration_value'] > 0) {
 			@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['read_state_expiration_value']) ." DAY)");
 		}
+    // voting permissions
+    updateVotingPermissions();
 		// if possible, load new version info from Github
 		if (isset($settings) && isset($settings['version'])) {
 			// select stored version number from temp_infos_table (instead of the use of installed version)
@@ -2736,6 +2738,26 @@ function getAvatar($user_id) {
 		}
 	}
 	return false;
+}
+
+/**
+ * Update voting permissions
+ *
+ * @param none
+ * @return none
+ */ 
+
+function updateVotingPermissions() {
+    global $connid, $settings, $db_settings;
+    $voting_min_registered_days = $settings['voting_min_registered_days'];
+    $voting_min_threadcount = $settings['voting_min_threadcount'];
+    $voting_min_postcount = $settings['voting_min_postcount'];
+    $voting_min_ownscore = $settings['voting_min_ownscore'];
+    # set, if all conditions are fullfilled
+		mysqli_query($connid, "UPDATE " . $db_settings['userdata_table']. " SET voting_allowed = 1 WHERE voting_allowed = 0 AND user_id IN (SELECT user_id FROM " . $db_settings['threadcount_view'] . " WHERE thread_cnt >= " . $voting_min_threadcount . ") AND user_id IN (SELECT user_id FROM " . $db_settings['postcount_view'] . " WHERE post_cnt >= " . $voting_min_postcount . ") AND user_id IN (SELECT user_id FROM " . $db_settings['totalscore_view'] . " WHERE totalScore >= " . $voting_min_ownscore . ") AND registered <= (NOW() - INTERVAL " . $voting_min_registered_days . " DAY)");
+    # revoke, if at least one condition is not fullfilled
+		mysqli_query($connid, "UPDATE " . $db_settings['userdata_table']. " SET voting_allowed = 0 WHERE voting_allowed = 1 AND (user_id IN (SELECT user_id FROM " . $db_settings['threadcount_view'] . " WHERE thread_cnt < " . $voting_min_threadcount . ") OR user_id IN (SELECT user_id FROM " . $db_settings['postcount_view'] . " WHERE post_cnt < " . $voting_min_postcount . ") OR user_id IN (SELECT user_id FROM " . $db_settings['totalscore_view'] . " WHERE totalScore < " . $voting_min_ownscore . ") OR registered > (NOW() - INTERVAL " . $voting_min_registered_days . " DAY))");
+    return true;
 }
 
 /**

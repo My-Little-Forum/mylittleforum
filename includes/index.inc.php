@@ -221,6 +221,9 @@ $smarty->assign("items_per_page",$settings['threads_per_page']);
 $smarty->assign("thread_order",$thread_order);
 $smarty->assign("descasc",$descasc);
 $smarty->assign('fold_threads',$fold_threads);
+$smarty->assign("score_threshold_1",$settings['voting_score_threshold_1']);
+$smarty->assign("score_threshold_2",$settings['voting_score_threshold_2']);
+$smarty->assign("score_threshold_3",$settings['voting_score_threshold_3']);
 
 if ($category != 0) $cqsa = '&amp;category='.$category;
 else $cqsa = '';
