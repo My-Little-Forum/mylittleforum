@@ -99,11 +99,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$smarty->assign('new_posting_notification', intval($field["new_posting_notification"]));
 		$smarty->assign('new_user_notification', intval($field["new_user_notification"]));
 		$smarty->assign('voting_allowed', intval($field["voting_allowed"]));
-    $vote_options[0]['identifier'] = '-1'; $vote_options[0]['title'] = 'nein';
-    $vote_options[1]['identifier'] = '0'; $vote_options[1]['title'] = 'nein (Automatik)';
-    $vote_options[2]['identifier'] = '1'; $vote_options[2]['title'] = 'ja (Automatik)';
-    $vote_options[3]['identifier'] = '2'; $vote_options[3]['title'] = 'ja';
-		$smarty->assign('vote_options', $vote_options);
 		if (trim($field['activate_code']) != '') $smarty->assign('inactive', true);
 
 		$avatarInfo = getAvatar($edit_user_id);
