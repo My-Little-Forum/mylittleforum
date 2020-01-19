@@ -402,4 +402,8 @@ CREATE TABLE `mlf2_scores` (`posting_id` int(11) NOT NULL, `score` int(11) NOT N
 CREATE TABLE `mlf2_votes` (`user_id` int(11) NOT NULL, `posting_id` int(11) NOT NULL, `vote` int(11) NOT NULL, `tstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP) CHARSET=utf8 COLLATE=utf8_general_ci;
 ALTER TABLE `mlf2_scores` ADD PRIMARY KEY (`posting_id`);
 ALTER TABLE `mlf2_votes` ADD PRIMARY KEY (`posting_id`,`user_id`,`vote`), ADD KEY `ix_posting_id` (`posting_id`), ADD KEY `ix_user_id` (`user_id`);
+INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('voting_min_ownscore', '0'), ('voting_min_postcount', '0'), ('voting_min_registered_days', '0'), ('voting_min_threadcount', '0'), ('voting_score_public', '1'), ('voting_score_threshold_1', '10'), ('voting_score_threshold_2', '20'), ('voting_score_threshold_3', '30');
+CREATE VIEW `mlf2_v_postcount` AS select `a`.`user_id` AS `user_id`,count(`b`.`id`) AS `post_cnt` from (`mlf2_userdata` `a` left join `mlf2_entries` `b` on((`a`.`user_id` = `b`.`user_id`))) group by `a`.`user_id` ;
+CREATE VIEW `mlf2_v_threadcount`  AS  select `a`.`user_id` AS `user_id`,count(`b`.`pid`) AS `thread_cnt` from (`mlf2_userdata` `a` left join `mlf2_entries` `b` on(((`a`.`user_id` = `b`.`user_id`) and (`b`.`pid` = 0)))) group by `a`.`user_id` ; 
+CREATE VIEW `mlf2_v_totalscore`  AS  select `a`.`user_id` AS `user_id`,coalesce(sum(`c`.`score`),0) AS `totalScore` from ((`mlf2_userdata` `a` left join `mlf2_entries` `b` on((`a`.`user_id` = `b`.`user_id`))) left join `mlf2_scores` `c` on((`b`.`id` = `c`.`posting_id`))) where (`a`.`user_id` > 0) group by `a`.`user_id` ; 
 /*
