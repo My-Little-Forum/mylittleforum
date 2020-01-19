@@ -32,4 +32,7 @@ $db_settings['entry_tags_table']     = 'mlf2_entry_tags';
 $db_settings['subscriptions_table']  = 'mlf2_subscriptions';
 $db_settings['vote_table']           = 'mlf2_votes';
 $db_settings['score_table']          = 'mlf2_scores';
+$db_settings['threadcount_view']     = 'mlf2_v_threadcount';
+$db_settings['postcount_view']       = 'mlf2_v_postcount';
+$db_settings['totalscore_view']      = 'mlf2_v_totalscore';
 ?>
