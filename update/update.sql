@@ -398,6 +398,7 @@ DELETE FROM `mlf2_settings` WHERE name IN('access_permission_checks', 'last_chan
 --------------------------------------------------------------------------------
 -- 2.4.19 to 2.4.20
 /*
+ALTER TABLE `mlf2_userdata` ADD voting_allowed TINYINT(4) NOT NULL DEFAULT '0';
 CREATE TABLE `mlf2_scores` (`posting_id` int(11) NOT NULL, `score` int(11) NOT NULL DEFAULT '0') CHARSET=utf8 COLLATE=utf8_general_ci;
 CREATE TABLE `mlf2_votes` (`user_id` int(11) NOT NULL, `posting_id` int(11) NOT NULL, `vote` int(11) NOT NULL, `tstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP) CHARSET=utf8 COLLATE=utf8_general_ci;
 ALTER TABLE `mlf2_scores` ADD PRIMARY KEY (`posting_id`);
