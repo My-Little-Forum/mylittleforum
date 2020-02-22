@@ -1,5 +1,5 @@
 <?php if (!defined('BB2_CWD')) die("I said no cheating!");
-define('BB2_VERSION', "2.2.22");
+define('BB2_VERSION', "2.2.24");
 
 // Bad Behavior entry point is bb2_start()
 // If you're reading this, you are probably lost.
