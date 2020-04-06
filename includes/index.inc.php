@@ -260,7 +260,7 @@ if ($total_spam > 0) {
 }
 // if no SPAM exists but the option to show SPAM threads is enabled, remove this option
 elseif(isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) {
-	$_SESSION[$settings['session_prefix'].'usersettings']['show_spam'] = false;
+	unset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam']);
 }
 
 $smarty->assign("subnav_link", $subnav_link);
