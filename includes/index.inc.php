@@ -250,9 +250,18 @@ if ($page < $page_count) {
 	$smarty->assign('link_rel_last', 'index.php?mode=index&amp;page='.$page_count.$cqsa);
 }
 
-if ($total_spam > 0 && !isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) $smarty->assign('show_spam_link', true);
-elseif($total_spam > 0 && isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) $smarty->assign('hide_spam_link',true);
-if ($total_spam > 0) $smarty->assign('delete_spam_link', true);
+// check if SPAM exists and show a link to switch between HAM and SPAM threads
+if ($total_spam > 0) {
+	if (!isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) 
+		$smarty->assign('show_spam_link', true);
+	else //if(isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) 
+		$smarty->assign('hide_spam_link',true);
+	$smarty->assign('delete_spam_link', true);
+}
+// if no SPAM exists but the option to show SPAM threads is enabled, remove this option
+elseif(isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) {
+	unset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam']);
+}
 
 $smarty->assign("subnav_link", $subnav_link);
 if ($user_view == 1) $smarty->assign('subtemplate', 'index_table.inc.tpl');
