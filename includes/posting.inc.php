@@ -996,6 +996,10 @@ switch ($action) {
 								else
 									$b8_spam_rating = 0;  // No Decision
 							}
+							
+							// check, if SPAM should stored to DB
+							if ($b8_spam && $settings['save_spam'] == 0)
+								$errors[] = 'error_spam_suspicion';
 						}
 						catch(Exception $e) {
 							raise_error('database_error', $e->getMessage()); // What should we do here?
