@@ -892,7 +892,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			mysqli_free_result($name_result);
 
 			if (!is_valid_email($ar_email)) 
-				$errors[] = 'error_email_wrong';
+				$errors[] = 'admin_reg_error_email_wrong';
 			if ($ar_pw == "" && !isset($ar_send_userdata)) 
 				$errors[] = 'error_send_userdata';
 
