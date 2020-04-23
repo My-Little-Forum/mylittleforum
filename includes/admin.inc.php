@@ -870,8 +870,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (mysqli_num_rows($name_result) > 0) $errors[] = 'user_name_already_exists';
 			mysqli_free_result($name_result);
 
-			if (!is_valid_email($ar_email)) $errors[] = 'error_email_wrong';
-			if (($ar_pw == "" or $ar_pw_conf == "") && !isset($ar_send_userdata)) $errors[] = 'error_send_userdata';
+			if (!is_valid_email($ar_email)) 
+				$errors[] = 'admin_reg_error_email_wrong';
+			if ($ar_pw == "" && !isset($ar_send_userdata)) 
+				$errors[] = 'error_send_userdata';
 
 			if (my_strlen($ar_username, $lang['charset']) > $settings['name_maxlength'])
 				$errors[] = $lang['name_marking'] . " " .$lang['error_username_too_long'];
