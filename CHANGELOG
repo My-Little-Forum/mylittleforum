@@ -4,6 +4,7 @@ my little forum changelog
 2.4.21 (2020-04-25)
 -------------------
 - fixed: regex for e-mail-validation followed a lazy syntax style, that invalidated with PRCE2. which was introduced with PHP 7.3; because of that one was unable to register a new account when running MLF 2.4.x under PHP 7.3 or newer
+- fixed: image URLs in the RSS-feed was specified with only the local, relative path on the domain, we do need a complete URl with protocol, domain and path because the feed reader requests the feed from outside the domain
 
 2.4.20 (2019-05-15)
 -------------------
