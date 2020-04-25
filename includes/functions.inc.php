@@ -397,7 +397,7 @@ function is_valid_url($url)
  * @return bool
  */
 function is_valid_email($email) {
-	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	if (!preg_match("/^([\w\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,}|[0-9]{1,3})(\]?)$/", $email)) {
 		return false;
 	}
 	if (contains_invalid_string($email)) {
