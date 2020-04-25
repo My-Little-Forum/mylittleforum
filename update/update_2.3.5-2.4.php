@@ -313,6 +313,8 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';           // #469
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';    // #469
 		$update['items'][] = 'includes/posting.inc.php';                             // #469
+	case '2.4.20':
+		$update['items'][] = 'includes/functions.inc.php';                           // adaption of #524
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
