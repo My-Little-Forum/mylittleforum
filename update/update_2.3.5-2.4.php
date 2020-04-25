@@ -315,6 +315,7 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/posting.inc.php';                             // #469
 	case '2.4.20':
 		$update['items'][] = 'includes/functions.inc.php';                           // adaption of #524
+		$update['items'][] = 'includes/rss.inc.php';                                 // no pull request
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
