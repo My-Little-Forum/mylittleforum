@@ -1192,6 +1192,19 @@ Tema: [subject]
 
 ---
 Ovaj je e-mail poslan sa foruma na adresi [forum_address]."""
+email_notify_inactive_user_subject = '<!-- TODO -->Inactivity notification [name]'
+email_notify_inactive_user_text =    """Hello [name],
+
+we have noticed that your last log-in to the forum at [forum_address] is more than [inactive_time_span] years ago. 
+The DSGVO does not permit an unlimited storing of user data. According to the DSGVO, we delete inactive user accounts in regular intervals.
+
+To prevent the account from being deleted by us, just log-in to the forum within the next [days_until_delete] days.
+Otherwise, we will delete your account. Your postings will be retained, but will be assigned to an anonymous user having randomly chosen your username.
+
+Kind regards
+
+---
+This is an automatically generated information message, please do not reply to this email."""
 
 [install]
 installation_title =              'Instalacija'
