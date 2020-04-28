@@ -32,7 +32,7 @@ function log_out($user_id,$mode='')
   global $connid, $settings, $db_settings;
   if(isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime'])) setcookie($settings['session_prefix'].'last_visit',$_SESSION[$settings['session_prefix'].'usersettings']['newtime'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['newtime'],$_SESSION[$settings['session_prefix'].'usersettings']['newtime']+(3600*24*$settings['cookie_validity_days']));
   session_destroy();
-  $update_result = @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, last_logout=NOW(), registered=registered WHERE user_id=".intval($user_id)); // auto_login_code=''
+  $update_result = @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login=last_login, last_logout=NOW(), registered=registered, inactivity_notification = FALSE WHERE user_id=".intval($user_id)); // auto_login_code=''
   setcookie($settings['session_prefix'].'auto_login','',0);
   if($db_settings['useronline_table'] != '') @mysqli_query($connid, "DELETE FROM ".$db_settings['useronline_table']." WHERE ip = 'uid_".intval($user_id)."'");
   if($mode!='') header('Location: index.php?mode='.$mode);
@@ -134,6 +134,10 @@ function daily_actions($current_time=0) {
 				@mysqli_query($connid, "INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`) VALUES ('last_version_uri', '" . mysqli_real_escape_string($connid, $latestRelease->uri) . "') ON DUPLICATE KEY UPDATE `value` = '" . mysqli_real_escape_string($connid, $latestRelease->uri) . "';");
 			}
 		}
+		
+		if (isset($settings) && isset($settings['notify_inactive_users']) && isset($settings['delete_inactive_users']) && $settings['notify_inactive_users'] > 0 && $settings['delete_inactive_users'] > 0)
+			handleInactiveUsers();
+		
 		// set time of next daily actions:
 		if($today_beginning = mktime(0,0,0, date("n"), date("j"), date("Y"))) {
 			$time_parts = explode(':',$settings['daily_actions_time']);
@@ -148,6 +152,64 @@ function daily_actions($current_time=0) {
 		}
 		#@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($next_daily_actions)."' WHERE name='next_daily_actions'");
 		@mysqli_query($connid, "UPDATE " . $db_settings['temp_infos_table'] . " SET value='" . intval($next_daily_actions) . "', time = NOW() WHERE name='next_daily_actions'");
+	}
+}
+
+function handleInactiveUsers() {
+	global $settings, $db_settings, $connid;
+	
+	// delete inactive users
+	$result = mysqli_query($connid, "SELECT `user_id`, `user_name` FROM `".$db_settings['userdata_table']."` WHERE `user_type` = 0 AND `inactivity_notification` = TRUE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR - INTERVAL ". intval($settings['delete_inactive_users']) ." DAY)) < 0");
+	if (!$result)
+		return; // daily action no need to raise an error message
+
+	while ($user = mysqli_fetch_array($result)) {
+		$user_id      = $user['user_id'];
+		$display_name = $user['user_name'];
+
+		deleteUser($user_id, $display_name);
+	}
+	
+	// notify inactive users
+	$result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `".$db_settings['userdata_table']."` WHERE `user_type` = 0 AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR)) < 0");
+	if (!$result)
+		return; // daily action no need to raise an error message
+	
+	while ($user = mysqli_fetch_array($result)) {
+		$user_id = $user['user_id'];
+		$name    = $user['user_name'];
+		$email   = $user['user_email'];
+
+		$emailbody = str_replace("[name]", $name, $lang['email_notify_inactive_user_text']);
+		$emailbody = str_replace("[inactive_time_span]", $settings['delete_inactive_users'], $emailbody); 
+		$emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
+	
+		my_mail($email, $lang['email_notify_inactive_user_subject'], $emailbody);
+		
+		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET `last_login` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `inactivity_notification` = TRUE WHERE `user_id` = " . intval($user_id) . " AND `user_type` = 0");
+	}
+	mysqli_free_result($result);
+}
+
+function deleteUser($user_id = 0, $display_name = 'Unnamed') {
+	global $settings, $db_settings, $connid;
+	
+	// set "edited_by" in own edited postings to 0:
+	@mysqli_query($connid, "UPDATE `".$db_settings['forum_table']."` SET `edited_by` = 0 WHERE `edited_by` = ". intval($user_id));
+	// save user name in forum table (like unregistered users) and set user_id = 0:
+	@mysqli_query($connid, "UPDATE `".$db_settings['forum_table']."` SET `user_id` = 0, `name` = '". mysqli_real_escape_string($connid, $display_name) ."' WHERE `user_id` = ". intval($user_id));
+	
+	@mysqli_query($connid, "DELETE FROM `".$db_settings['userdata_table']."`       WHERE `user_id`  = ". intval($user_id));
+	@mysqli_query($connid, "DELETE FROM `".$db_settings['userdata_cache_table']."` WHERE `cache_id` = ". intval($user_id));
+	@mysqli_query($connid, "DELETE FROM `".$db_settings['bookmark_table']."`       WHERE `user_id`  = ". intval($user_id));
+	@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."`    WHERE `user_id`  = ". intval($user_id));
+	
+	// delete avatar:
+	$avatarInfo = getAvatar(intval($user_id));
+	$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
+	if (isset($avatar) && $avatar['image'] !== false && file_exists($avatar['image'])) {
+		@chmod($avatar['image'], 0777);
+		@unlink($avatar['image']);
 	}
 }
 
