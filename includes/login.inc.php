@@ -121,9 +121,9 @@ switch ($action) {
 					$_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
 
 					if(isset($save_auto_login)) {
-						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', auto_login_code = '". mysqli_real_escape_string($connid, $auto_login_code) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ". intval($user_id));
+						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), inactivity_notification = FALSE, user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', auto_login_code = '". mysqli_real_escape_string($connid, $auto_login_code) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ". intval($user_id));
 					} else {
-						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ".intval($user_id));
+						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), inactivity_notification = FALSE, user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ".intval($user_id));
 					}
 
 					if ($db_settings['useronline_table'] != "") {
