@@ -4,24 +4,36 @@ if (!defined('IN_INDEX')) {
 	exit;
 }
 
-// only team members ($settings['user_area_access'] = 2) or registered users ($settings['user_area_access'] = 1) have access to this section or the user area is public ($settings['user_area_access'] = 0):
-if ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_id'])) || ($settings['user_area_access'] == 0 && isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && in_array($_SESSION[$settings['session_prefix'].'user_type'], array(1, 2)))) {
-	if (isset($_REQUEST['action'])) $action = $_REQUEST['action'];
-	else $action = 'main';
+if (isset($_REQUEST['action']))
+	$action = $_REQUEST['action'];
+else 
+	$action = 'main';
 
-	if (isset($_GET['user_lock'])) $action = 'user_lock';
-	if (isset($_GET['show_user'])) $action = 'show_user';
-	if (isset($_GET['show_posts'])) $action = 'show_posts';
-	if (isset($_POST['edit_user_submit'])) $action = 'edit_userdata';
-	if (isset($_POST['edit_pw_submit'])) $action = 'edit_pw_submitted';
-	if (isset($_POST['edit_email_submit'])) $action = 'edit_email_submit';
-	if (isset($_POST['remove_account_submit'])) $action = 'remove_account_submitted';
+if (isset($_GET['user_lock'])) 
+	$action = 'user_lock';
+if (isset($_GET['show_user'])) 
+	$action = 'show_user';
+if (isset($_GET['show_posts'])) 
+	$action = 'show_posts';
+if (isset($_POST['edit_user_submit'])) 
+	$action = 'edit_userdata';
+if (isset($_POST['edit_pw_submit'])) 
+	$action = 'edit_pw_submitted';
+if (isset($_POST['edit_email_submit'])) 
+	$action = 'edit_email_submit';
+if (isset($_POST['remove_account_submit'])) 
+	$action = 'remove_account_submitted';
 
-	if(isset($_REQUEST['id'])) $id = $_REQUEST['id'];
-	
-	$isUser = isset($_SESSION[$settings['session_prefix'].'user_type']) && isset($_SESSION[$settings['session_prefix'].'user_id']);
-	$isModOrAdmin = $isUser && ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2);
+if(isset($_REQUEST['id'])) 
+	$id = $_REQUEST['id'];
 
+$isUser = isset($_SESSION[$settings['session_prefix'].'user_type']) && isset($_SESSION[$settings['session_prefix'].'user_id']);
+$isModOrAdmin = $isUser && ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2);
+
+// on action event main *AND* only team members ($settings['user_area_access'] = 0) or registered users ($settings['user_area_access'] = 1) have access to this section or the user area is public ($settings['user_area_access'] = 2):
+$hasUserAreaAccess = $action == 'main' && ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 && $isUser) || ($settings['user_area_access'] == 2 && $isModOrAdmin));
+
+if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAccess) {
 	switch($action) {
 		case 'main':
 			if (isset($_GET['search_user']) && trim($_GET['search_user']) != '') $search_user = trim($_GET['search_user']);
