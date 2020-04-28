@@ -220,4 +220,10 @@ if (isset($_SESSION[$settings['session_prefix'] . 'usersettings']['theme']) && $
 }
 $smarty->assign('theme', $theme);
 $smarty->display($theme . '/' . $template);
+
+// daily actions needs content from lang-file to create email 
+$smarty->configLoad($settings['language_file'], 'emails');
+$lang = $smarty->getConfigVars();
+// do daily actions:
+daily_actions(TIMESTAMP);
 ?>
