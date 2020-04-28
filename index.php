@@ -222,8 +222,11 @@ $smarty->assign('theme', $theme);
 $smarty->display($theme . '/' . $template);
 
 // daily actions needs content from lang-file to create email 
+// load e-mail strings from language file:
 $smarty->configLoad($settings['language_file'], 'emails');
 $lang = $smarty->getConfigVars();
+if ($language_file != $settings['language_file'])
+	setlocale(LC_ALL, $lang['locale']);
 // do daily actions:
 daily_actions(TIMESTAMP);
 ?>
