@@ -96,7 +96,7 @@ if (function_exists('date_default_timezone_set')) {
 }
 
 // do daily actions:
-daily_actions(TIMESTAMP);
+//daily_actions(TIMESTAMP);
 
 $categories = get_categories();
 $category_ids = get_category_ids($categories);
