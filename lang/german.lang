@@ -1194,15 +1194,15 @@ Betreff: [subject]
 
 -- 
 Diese E-Mail wurde über das Forum auf [forum_address] gesendet."""
-email_notify_inactive_user_subject = Inaktivitätswarnung
-email_notify_inactive_user_text    =     """Hallo [name],
+email_notify_inactive_user_subject = 'Inaktivitätswarnung [name]'
+email_notify_inactive_user_text =    """Hallo [name],
 
 wir haben festgestellt, dass die letzte Anmeldung im Forum [forum_address] mehr als [inactive_time_span] Jahre zurückliegt. 
 Entsprechend der DSGVO, die ein zeitlich unbegrenztes Speichern persönlicher Daten verbietet, entfernen wir in regelmäßigen Abständen alle inaktiven Benutzerkonten.
 
 Um zu verhindern, dass der Account von uns gelöscht wird, ist lediglich eine Anmeldung innerhalb der nächsten [days_until_delete] Tage notwendig.
 Unterbleibt dies, so gehen wir davon aus, dass eine weitere Nutzung des Accounts nicht beabsichtigt ist und das Benutzerkonto entfernt werden kann.
-Bisherige Beiträge bleiben hierbei erhalten, werden jedoch einem anonymen Benutzer zugeordnet, der zufällig Ihren Benutzernamen gewählt hat.
+Bisherige Beiträge bleiben hierbei erhalten, werden jedoch einem anonymen Benutzer zugeordnet, der zufällig den selben Benutzernamen gewählt hat.
 
 Viele Grüße
 
