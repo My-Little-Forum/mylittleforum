@@ -65,7 +65,7 @@ if (empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$s
 				$_SESSION[$settings['session_prefix'].'user_type'] = $user_type;
 				$_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
 
-				@mysqli_query($connid, "UPDATE ". $db_settings['userdata_table'] ." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), user_ip='". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', pwf_code='', language='". mysqli_real_escape_string($connid, $language_update) ."', time_zone='". mysqli_real_escape_string($connid, $time_zone_update) ."', theme='". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id=". intval($user_id));
+				@mysqli_query($connid, "UPDATE ". $db_settings['userdata_table'] ." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), `inactivity_notification` = FALSE, user_ip='". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', pwf_code='', language='". mysqli_real_escape_string($connid, $language_update) ."', time_zone='". mysqli_real_escape_string($connid, $time_zone_update) ."', theme='". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id=". intval($user_id));
 
 				setcookie($settings['session_prefix'].'auto_login', $_COOKIE[$settings['session_prefix'].'auto_login'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 				if ($db_settings['useronline_table'] != "") {
