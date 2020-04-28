@@ -402,6 +402,9 @@ DELETE FROM `mlf2_settings` WHERE name IN('access_permission_checks', 'last_chan
 /*
 INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20');
 INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
+ALTER TABLE `mlf2_userdata` ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE;
+INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('delete_inactive_users', '30'), ('notify_inactive_users', '3');
+
 
 ALTER TABLE mlf2_banlists ENGINE=InnoDB;
 ALTER TABLE mlf2_categories ENGINE=InnoDB;
