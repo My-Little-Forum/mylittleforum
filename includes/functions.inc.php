@@ -156,8 +156,8 @@ function daily_actions($current_time=0) {
 }
 
 function handleInactiveUsers() {
-	global $settings, $db_settings, $connid;
-	
+	global $settings, $db_settings, $lang, $connid;
+
 	// delete inactive users
 	$result = mysqli_query($connid, "SELECT `user_id`, `user_name` FROM `".$db_settings['userdata_table']."` WHERE `user_type` = 0 AND `inactivity_notification` = TRUE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR - INTERVAL ". intval($settings['delete_inactive_users']) ." DAY)) < 0");
 	if (!$result)
@@ -171,7 +171,7 @@ function handleInactiveUsers() {
 	}
 	
 	// notify inactive users
-	$result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `".$db_settings['userdata_table']."` WHERE `user_type` = 0 AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR)) < 0");
+	$result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `".$db_settings['userdata_table']."` WHERE `user_type` = 0 AND `inactivity_notification` = FALSE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR)) < 0");
 	if (!$result)
 		return; // daily action no need to raise an error message
 	
@@ -181,12 +181,14 @@ function handleInactiveUsers() {
 		$email   = $user['user_email'];
 
 		$emailbody = str_replace("[name]", $name, $lang['email_notify_inactive_user_text']);
-		$emailbody = str_replace("[inactive_time_span]", $settings['delete_inactive_users'], $emailbody); 
+		$emailbody = str_replace("[inactive_time_span]", $settings['notify_inactive_users'], $emailbody); 
+		$emailbody = str_replace("[days_until_delete]", $settings['delete_inactive_users'], $emailbody); 
 		$emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
 	
-		my_mail($email, $lang['email_notify_inactive_user_subject'], $emailbody);
-		
-		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET `last_login` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `inactivity_notification` = TRUE WHERE `user_id` = " . intval($user_id) . " AND `user_type` = 0");
+		$emailsubject = str_replace("[name]", $name, $lang['email_notify_inactive_user_subject']);
+
+		if (my_mail($email, $emailsubject, $emailbody))
+			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET `last_login` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `last_logout` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `inactivity_notification` = TRUE WHERE `user_id` = " . intval($user_id) . " AND `user_type` = 0 AND `inactivity_notification` = FALSE");
 	}
 	mysqli_free_result($result);
 }
@@ -2328,7 +2330,7 @@ function my_mail($to, $subject, $message, $from='') {
 	else {
 		$mail_header_separator = "\n"; // "\r\n" complies with RFC 2822 but might cause problems in some cases (see http://php.net/manual/en/function.mail.php)
 	
-		$mail_charset = strtoupper(CHARSET);
+		$mail_charset = defined(CHARSET) ? strtoupper(CHARSET) : 'UTF-8';
 	
 		$to = mail_header_filter($to);
 		$subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q", $mail_header_separator);
