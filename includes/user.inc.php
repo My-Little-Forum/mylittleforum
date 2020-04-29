@@ -683,23 +683,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 					$user_name = $row['user_name'];
 					// checking password
 					if (isset($_POST['user_password']) && is_pw_correct($_POST['user_password'], $row['user_pw'])) {
-						// set "edited_by" in own edited postings to 0:
-						@mysqli_query($connid, "UPDATE `".$db_settings['forum_table']."` SET `edited_by` = 0 WHERE `edited_by` = ". intval($user_id));
-						// save user name in forum table (like unregistered users) and set user_id = 0:
-						@mysqli_query($connid, "UPDATE `".$db_settings['forum_table']."` SET `user_id` = 0, `name` = '". mysqli_real_escape_string($connid, $user_name) ."' WHERE `user_id` = ". intval($user_id));
-	
-						@mysqli_query($connid, "DELETE FROM `".$db_settings['userdata_table']."`       WHERE `user_id` = ". intval($user_id));
-						@mysqli_query($connid, "DELETE FROM `".$db_settings['userdata_cache_table']."` WHERE `cache_id` = ". intval($user_id));
-						@mysqli_query($connid, "DELETE FROM `".$db_settings['bookmark_table']."`       WHERE `user_id` = ". intval($user_id));
-						@mysqli_query($connid, "DELETE FROM `".$db_settings['read_status_table']."`    WHERE `user_id` = ". intval($user_id));
-	
-						// delete avatar:
-						$avatarInfo = getAvatar(intval($user_id));
-						$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
-						if (isset($avatar) && $avatar['image'] !== false && file_exists($avatar['image'])) {
-							@chmod($avatar['image'], 0777);
-							@unlink($avatar['image']);
-						}
+						// delete user, remove avatar, etc.
+						deleteUser($user_id, $user_name);
+						
 						$_SESSION[$settings['session_prefix'].'user_id'] = false;
 						$_SESSION[$settings['session_prefix'].'user_name'] = '';
 						$_SESSION[$settings['session_prefix'].'user_type'] = 0;
