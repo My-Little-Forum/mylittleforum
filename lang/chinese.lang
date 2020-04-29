@@ -1165,7 +1165,8 @@ pwf_activating_email_txt =        """您好 [name],
 [activating_link]
 
 This is an automatically generated information message, please do not reply to this email."""
-new_pw_email_sj =                 '<!-- TODO -->New user data for the forum'
+# <!-- TODO --> #
+new_pw_email_sj =                 'New user data for the forum'
 new_pw_email_txt =                """您好 [name],
 新的用户信息:
  
@@ -1186,7 +1187,8 @@ contact_email_txt_user =          """[message]
  
 -- 
 This e-mail has been sent by [user] via forum on [forum_address]."""
-contact_notification_sj =         '<!-- TODO -->Copy of sent e-mail: [subject]'
+# <!-- TODO --> #
+contact_notification_sj =         'Copy of sent e-mail: [subject]'
 contact_notification_txt =        """This e-mail has been sent with your e-mail address to [recipient]:
  
 Subject: [subject]
@@ -1194,7 +1196,8 @@ Subject: [subject]
  
 -- 
 This e-mail has been sent via forum on [forum_address]."""
-email_notify_inactive_user_subject = '<!-- TODO -->Inactivity notification [name]'
+# <!-- TODO --> #
+email_notify_inactive_user_subject = 'Inactivity notification [name]'
 email_notify_inactive_user_text =    """Hello [name],
 
 we have noticed that your last log-in to the forum at [forum_address] is more than [inactive_time_span] years ago. 
