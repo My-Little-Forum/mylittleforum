@@ -1193,7 +1193,8 @@ Konu: [subject]
 
 -- 
 Bu e-posta [forum_address] forumu tarafından gönderildi."""
-email_notify_inactive_user_subject = '<!-- TODO -->Inactivity notification [name]'
+# <!-- TODO --> #
+email_notify_inactive_user_subject = 'Inactivity notification [name]'
 email_notify_inactive_user_text =    """Hello [name],
 
 we have noticed that your last log-in to the forum at [forum_address] is more than [inactive_time_span] years ago. 
