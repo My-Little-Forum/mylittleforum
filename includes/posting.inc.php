@@ -1035,6 +1035,15 @@ switch ($action) {
 					@mysqli_query($connid, "INSERT INTO " . $db_settings['forum_table'] . " (pid, tid, uniqid, time, last_reply, user_id, name, subject, email, hp, location, ip, text, show_signature, category, locked, sticky, edit_key) VALUES (" . intval($id) . ", " . intval($thread) . ", '" . mysqli_real_escape_string($connid, $uniqid) . "', NOW(), NOW()," . intval($user_id) . ", '" . mysqli_real_escape_string($connid, $savename) . "', '" . mysqli_real_escape_string($connid, $subject) . "', '" . mysqli_real_escape_string($connid, $email) . "', '" . mysqli_real_escape_string($connid, $hp) . "', '" . mysqli_real_escape_string($connid, $location) . "', '" . mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) . "', '" . mysqli_real_escape_string($connid, $text) . "', " . intval($show_signature) . ", " . intval($p_category) . ", " . intval($locked) . ", " . intval($sticky) . ", '" . mysqli_real_escape_string($connid, $edit_key_hash) . "')") or raise_error('database_error', mysqli_error($connid));
 					$newID = mysqli_insert_id($connid);
 					
+					if ($id == 0) {
+						// new thread, set thread id:
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET tid = id, time = time WHERE id = " . intval($newID)) or raise_error('database_error', mysqli_error($connid));
+					}
+					// reply, set last reply:
+					if ($id != 0 && $spam == 0) {
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = NOW() WHERE tid = " . $thread) or raise_error('database_error', mysqli_error($connid));
+					}
+					
 					if (intval($newID) > 0) {
 						// save spam rating
 						@mysqli_query($connid, "INSERT INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($newID) . ", " . intval($akismet_spam) . ", " . intval($akismet_spam_check_status) . ")") or raise_error('database_error', mysqli_error($connid));
@@ -1044,14 +1053,7 @@ switch ($action) {
 					if (intval($email_notification) === 1 and intval($newID) > 0) {
 						@mysqli_query($connid, "INSERT INTO " .$db_settings['subscriptions_table']. " (user_id, eid, unsubscribe_code, tstamp) VALUES (" . ($user_id > 0 ? intval($user_id) : "NULL") . ", " . intval($newID) . ", UUID(), NOW());") or raise_error('database_error', mysqli_error($connid));
 					}
-					if ($id == 0) {
-						// new thread, set thread id:
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET tid = id, time = time WHERE id = " . intval($newID)) or raise_error('database_error', mysqli_error($connid));
-					}
-					// reply, set last reply:
-					if ($id != 0 && $spam == 0) {
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = NOW() WHERE tid = " . $thread) or raise_error('database_error', mysqli_error($connid));
-					}
+					
 					// get last entry:
 					$result_new = mysqli_query($connid, "SELECT tid, pid, id FROM " . $db_settings['forum_table'] . " WHERE id = " . intval($newID));
 					$new_data   = mysqli_fetch_array($result_new);
