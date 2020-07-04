@@ -111,12 +111,32 @@ function daily_actions($current_time=0) {
 		}
 		
 		// auto delete spam:
-		if ($settings['auto_delete_spam'] > 0)
-			@mysqli_query($connid, "DELETE FROM `". $db_settings['forum_table'] ."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['auto_delete_spam']) ." HOUR) AND 
+		if ($settings['auto_delete_spam'] > 0) {
+			//@mysqli_query($connid, "DELETE FROM `". $db_settings['forum_table'] ."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['auto_delete_spam']) ." HOUR) AND 
+			//						`id` IN (SELECT `". $db_settings['akismet_rating_table'] ."`.`eid` 
+			//						FROM `". $db_settings['akismet_rating_table'] ."` 
+			//						JOIN `". $db_settings['b8_rating_table'] ."` ON `". $db_settings['akismet_rating_table'] ."`.`eid` = `". $db_settings['b8_rating_table'] ."`.`eid` 
+			//						WHERE `". $db_settings['akismet_rating_table'] ."`.`spam` = 1 OR `". $db_settings['b8_rating_table'] ."`.`spam` = 1); ");
+			//						
+			// delete dependent entries - see, e.g., delete_posting_recursive()
+			//@mysqli_query($connid, "DELETE FROM `". $db_settings['entry_cache_table'] ."`    WHERE `cache_id`   NOT IN (SELECT `id` FROM `". $db_settings['forum_table'] ."`); ");									
+			//@mysqli_query($connid, "DELETE FROM `". $db_settings['bookmark_table'] ."`       WHERE `posting_id` NOT IN (SELECT `id` FROM `". $db_settings['forum_table'] ."`); ");
+			//@mysqli_query($connid, "DELETE FROM `". $db_settings['read_status_table'] ."`    WHERE `posting_id` NOT IN (SELECT `id` FROM `". $db_settings['forum_table'] ."`); ");
+			//@mysqli_query($connid, "DELETE FROM `". $db_settings['entry_tags_table'] ."`     WHERE `bid`        NOT IN (SELECT `id` FROM `". $db_settings['forum_table'] ."`); ");
+			//@mysqli_query($connid, "DELETE FROM `". $db_settings['subscriptions_table'] ."`  WHERE `eid`        NOT IN (SELECT `id` FROM `". $db_settings['forum_table'] ."`); ");
+			//@mysqli_query($connid, "DELETE FROM `". $db_settings['akismet_rating_table'] ."` WHERE `eid`        NOT IN (SELECT `id` FROM `". $db_settings['forum_table'] ."`); ");
+			//@mysqli_query($connid, "DELETE FROM `". $db_settings['b8_rating_table'] ."`      WHERE `eid`        NOT IN (SELECT `id` FROM `". $db_settings['forum_table'] ."`); ");
+					
+			$spam_ids_result = mysqli_query($connid, "SELECT `id` FROM `" . $db_settings['forum_table'] ."` WHERE `time` < (NOW() - INTERVAL ". intval($settings['auto_delete_spam']) ." HOUR) AND 
 									`id` IN (SELECT `". $db_settings['akismet_rating_table'] ."`.`eid` 
 									FROM `". $db_settings['akismet_rating_table'] ."` 
 									JOIN `". $db_settings['b8_rating_table'] ."` ON `". $db_settings['akismet_rating_table'] ."`.`eid` = `". $db_settings['b8_rating_table'] ."`.`eid` 
 									WHERE `". $db_settings['akismet_rating_table'] ."`.`spam` = 1 OR `". $db_settings['b8_rating_table'] ."`.`spam` = 1); ");
+									
+			while ($spam_ids_data = mysqli_fetch_array($spam_ids_result)) {
+				delete_posting_recursive(intval($spam_ids_data['id']));
+			}
+		}
 
 		// if possible, load new version info from Github
 		if (isset($settings) && isset($settings['version'])) {
