@@ -108,6 +108,8 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #footermenu li a         { padding-left:5px; }
 #footermenu li:first-child a 
                          { padding-left:15px; }
+#footermenu a.go-to-top-link
+                         { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
 
 #pbmlf                   { clear:both; margin:0; padding:0 20px 11px 20px; text-align:center; font-size:0.69em; color:#808080; }
 #pbmlf a                 { color:#808080; text-decoration:none; }
@@ -197,6 +199,8 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
                          { display:inline; margin:0 0 0 1em; }
 .posting-footer a.edit   { padding-left:16px; background:url(images/bg_sprite_3.png) no-repeat 0 2px; }
 .posting-footer a.delete { padding-left:13px; background:url(images/bg_sprite_3.png) no-repeat 0 -47px; }
+.posting-footer a.go-to-top-link
+						 { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; text-transform: lowercase; }
 .posting-footer a.add-bookmark
 						 { padding-left:14px; background:url(images/bg_sprite_3.png) no-repeat 0 -97px; }
 .posting-footer a.delete-bookmark
