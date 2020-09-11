@@ -65,6 +65,7 @@
 {if $data.$element.views}<span class="views">{if $data.$element.views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$data.$element.views}{/if}</span>{/if}
 {if $data.$element.options}
 <ul class="options">
+<li><a href="#top" class="go-to-top-link" title="{#back_to_top_link_title#}">{#back_to_top_link#}</a></li>
 {if $data.$element.options.add_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$data.$element.id}&amp;back=thread" class="add-bookmark" title="{#add_bookmark_message_linktitle#}">{#add_bookmark_message_linkname#}</a></li>{/if}
 {if $data.$element.options.delete_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$data.$element.id}&amp;back=thread" class="delete-bookmark" title="{#delete_bookmark_message_linktitle#}">{#delete_bookmark_message_linkname#}</a></li>{/if}
 {if $data.$element.options.edit}<li><a href="index.php?mode=posting&amp;edit={$data.$element.id}&amp;back=thread" class="edit" title="{#edit_message_linktitle#}">{#edit_message_linkname#}</a></li>{/if}
