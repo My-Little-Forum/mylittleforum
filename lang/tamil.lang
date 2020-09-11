@@ -212,6 +212,7 @@ show_spam_link =                  'நம்பத்தகாதவரை க�
 hide_spam_link =                  'நம்பத்தகாததை மரை'
 delete_spam_link =                'நம்பத்தகாததை அழி'
 list_spam_link =                  '<!-- TODO -->List spam'
+show_reports_link =               '<!-- TODO -->[number] reports'
 no_replies =                      'பதில் இல்லை'
 one_reply =                       '1 பதில்'
 several_replies =                 '[replies] பதில்கள்'
