@@ -1788,7 +1788,7 @@ function create_backup_file($mode=0)
       $data['description'] = mysqli_real_escape_string($connid, $data['description']);
       $data['description'] = str_replace("\r", "\\r", $data['description']);
       $data['description'] = str_replace("\n",  "\\n", $data['description']);
-      $backup->assign("INSERT INTO ".$db_settings['category_table']." VALUES (".$data['id'].", ".$data['order_id'].", '".$data['category']."', '".$data['description']."', ".$data['accession'].");\n");
+      $backup->assign("INSERT INTO ".$db_settings['category_table']." (`id`, `order_id`, `category`, `description`, `accession`) VALUES (".$data['id'].", ".$data['order_id'].", '".$data['category']."', '".$data['description']."', ".$data['accession'].");\n");
      }
     mysqli_free_result($result);
    }
