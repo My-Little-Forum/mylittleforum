@@ -1807,7 +1807,7 @@ function create_backup_file($mode=0)
       $data['content'] = str_replace("\r", "\\r", $data['content']);
       $data['content'] = str_replace("\n",  "\\n", $data['content']);
       $data['menu_linkname'] = mysqli_real_escape_string($connid, $data['menu_linkname']);
-      $backup->assign("INSERT INTO ".$db_settings['pages_table']." VALUES (".$data['id'].", ".$data['order_id'].", '".$data['title']."', '".$data['content']."', '".$data['menu_linkname']."', ".$data['access'].");\n");
+      $backup->assign("INSERT INTO ".$db_settings['pages_table']." (`id`, `order_id`, `title`, `content`, `menu_linkname`, `access`) VALUES (".$data['id'].", ".$data['order_id'].", '".$data['title']."', '".$data['content']."', '".$data['menu_linkname']."', ".$data['access'].");\n");
      }
     mysqli_free_result($result);
    }
