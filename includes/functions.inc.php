@@ -1828,7 +1828,7 @@ function create_backup_file($mode=0)
       $data['code_4'] = mysqli_real_escape_string($connid, $data['code_4']);
       $data['code_5'] = mysqli_real_escape_string($connid, $data['code_5']);
       $data['title'] = mysqli_real_escape_string($connid, $data['title']);
-      $backup->assign("INSERT INTO ".$db_settings['smilies_table']." VALUES (".$data['id'].", ".$data['order_id'].", '".$data['file']."', '".$data['code_1']."', '".$data['code_2']."', '".$data['code_3']."', '".$data['code_4']."', '".$data['code_5']."', '".$data['title']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['smilies_table']." (`id`, `order_id`, `file`, `code_1`, `code_2`, `code_3`, `code_4`, `code_5`, `title`) VALUES (".$data['id'].", ".$data['order_id'].", '".$data['file']."', '".$data['code_1']."', '".$data['code_2']."', '".$data['code_3']."', '".$data['code_4']."', '".$data['code_5']."', '".$data['title']."');\n");
      }
     mysqli_free_result($result);
    }
