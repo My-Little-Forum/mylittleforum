@@ -1860,7 +1860,7 @@ function create_backup_file($mode=0)
      {
       $data['time'] = mysqli_real_escape_string($connid, $data['time']);
       $data['subject'] = mysqli_real_escape_string($connid, $data['subject']);
-      $backup->assign("INSERT INTO ".$db_settings['bookmark_table']." VALUES (".$data['id'].", ".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."', '".$data['subject']."', ".$data['order_id'].");\n");
+      $backup->assign("INSERT INTO ".$db_settings['bookmark_table']." (`id`, `user_id`, `posting_id`, `time`, `subject`, `order_id`) VALUES (".$data['id'].", ".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."', '".$data['subject']."', ".$data['order_id'].");\n");
      }
     mysqli_free_result($result);
    }
