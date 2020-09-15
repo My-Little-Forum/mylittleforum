@@ -1844,7 +1844,7 @@ function create_backup_file($mode=0)
      {
       $data['name'] = mysqli_real_escape_string($connid, $data['name']);
       $data['list'] = mysqli_real_escape_string($connid, $data['list']);
-      $backup->assign("INSERT INTO ".$db_settings['banlists_table']." VALUES ('".$data['name']."', '".$data['list']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['banlists_table']." (`name`, `list`) VALUES ('".$data['name']."', '".$data['list']."');\n");
      }
     mysqli_free_result($result);
    }
