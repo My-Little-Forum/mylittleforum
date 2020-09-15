@@ -1770,7 +1770,7 @@ function create_backup_file($mode=0)
      {
       $data['name'] = mysqli_real_escape_string($connid, $data['name']);
       $data['value'] = mysqli_real_escape_string($connid, $data['value']);
-      $backup->assign("INSERT INTO ".$db_settings['settings_table']." VALUES ('".$data['name']."', '".$data['value']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['settings_table']." (`name`, `value`) VALUES ('".$data['name']."', '".$data['value']."');\n");
      }
     mysqli_free_result($result);
    }
