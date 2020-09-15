@@ -1753,6 +1753,7 @@ function create_backup_file($mode=0)
     case 8: $filename = 'mlf_backup_bookmarks_'.gmdate("YmdHis").'.sql'; break;
     case 9: $filename = 'mlf_backup_read_status_'.gmdate("YmdHis").'.sql'; break;
     case 10: $filename = 'mlf_backup_temp_infos_'.gmdate("YmdHis").'.sql'; break;
+    case 11: $filename = 'mlf_backup_subscriptions_'.gmdate("YmdHis").'.sql'; break;
    }
 
   $backup->set_file('backup/'.$filename);
@@ -1893,6 +1894,23 @@ function create_backup_file($mode=0)
       $data['value'] = mysqli_real_escape_string($connid, $data['value']);
       $data['time'] = !is_null($data['time']) ? "'".mysqli_real_escape_string($connid, $data['time']) "'" : 'NULL';
       $backup->assign("INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`, `time`) VALUES ('".$data['name']."', '".$data['value']."', ".$data['time'].");\n");
+     }
+    mysqli_free_result($result);
+   }
+
+  if($mode==0 || $mode==11) // subscriptions
+   {
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['subscriptions_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['subscriptions_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT user_id, eid, unsubscribe_code, tstamp FROM ".$db_settings['subscriptions_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+      $data['user_id'] = !is_null($data['user_id']) ? intval($data['user_id']) : 'NULL';
+      $data['unsubscribe_code'] = mysqli_real_escape_string($connid, $data['unsubscribe_code']);
+      $data['tstamp'] = !is_null($data['tstamp']) ? mysqli_real_escape_string($connid, $data['tstamp']) : 'NULL';
+      $backup->assign("INSERT INTO ".$db_settings['subscriptions_table']." (`user_id`, `eid`, `unsubscribe_code`, `tstamp`) VALUES (".$data['user_id'].", ".$data['eid'].", '".$data['unsubscribe_code']."', ".$data['tstamp'].");\n");
      }
     mysqli_free_result($result);
    }
