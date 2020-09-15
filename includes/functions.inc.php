@@ -1875,7 +1875,7 @@ function create_backup_file($mode=0)
     while($data = mysqli_fetch_array($result))
      {
       $data['time'] = mysqli_real_escape_string($connid, $data['time']);
-      $backup->assign("INSERT INTO ".$db_settings['read_status_table']." VALUES (".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['read_status_table']." (`user_id`, `posting_id`, `time`) VALUES (".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."');\n");
      }
     mysqli_free_result($result);
    }
