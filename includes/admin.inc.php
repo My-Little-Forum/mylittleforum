@@ -1278,7 +1278,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				foreach ($files as $key => $val) {
 					$backup_files[$i]['file'] = htmlspecialchars($key);
 					$backup_files[$i]['date'] = $val;
-					$backup_files[$i]['size'] = number_format(filesize('backup/'.$key) / 1048576,2) .' MB';
+					$backup_files[$i]['size'] = number_format(round(filesize('backup/'.$key) / 1048576, 4, PHP_ROUND_HALF_UP), 4) .' MB';
 					$i++;
 				}
 				$smarty->assign('backup_files',$backup_files);
