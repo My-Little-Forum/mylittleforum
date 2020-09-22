@@ -1754,6 +1754,7 @@ function create_backup_file($mode=0)
     case 9: $filename = 'mlf_backup_read_status_'.gmdate("YmdHis").'.sql'; break;
     case 10: $filename = 'mlf_backup_temp_infos_'.gmdate("YmdHis").'.sql'; break;
     case 11: $filename = 'mlf_backup_subscriptions_'.gmdate("YmdHis").'.sql'; break;
+    case 12: $filename = 'mlf_backup_tags_'.gmdate("YmdHis").'.sql'; break;
    }
 
   $backup->set_file('backup/'.$filename);
@@ -1911,6 +1912,51 @@ function create_backup_file($mode=0)
       $data['unsubscribe_code'] = mysqli_real_escape_string($connid, $data['unsubscribe_code']);
       $data['tstamp'] = !is_null($data['tstamp']) ? mysqli_real_escape_string($connid, $data['tstamp']) : 'NULL';
       $backup->assign("INSERT INTO ".$db_settings['subscriptions_table']." (`user_id`, `eid`, `unsubscribe_code`, `tstamp`) VALUES (".$data['user_id'].", ".$data['eid'].", '".$data['unsubscribe_code']."', ".$data['tstamp'].");\n");
+     }
+    mysqli_free_result($result);
+   }
+
+  if($mode==0 || $mode==12) // tags
+   {
+    # tag table
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['tags_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['tags_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT id, tag FROM ".$db_settings['tags_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+     	$data['id'] = intval($data['id']);
+      $data['tag'] = mysqli_real_escape_string($connid, $data['tag']);
+      $backup->assign("INSERT INTO ".$db_settings['tags_table']." (`id`, `tag`) VALUES (".$data['id'].", '".$data['tag']."');\n");
+     }
+    mysqli_free_result($result);
+    # bookmark tag table
+    $backup->assign("\n");
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['bookmark_tags_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['bookmark_tags_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT bid, tid FROM ".$db_settings['bookmark_tags_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+     	$data['bid'] = intval($data['bid']);
+     	$data['tid'] = intval($data['tid']);
+      $backup->assign("INSERT INTO ".$db_settings['bookmark_tags_table']." (`bid`, `tid`) VALUES (".$data['bid'].", ".$data['tid'].");\n");
+     }
+    mysqli_free_result($result);
+    # entries tag table
+    $backup->assign("\n");
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['entry_tags_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['entry_tags_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT bid, tid FROM ".$db_settings['entry_tags_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+     	$data['bid'] = intval($data['bid']);
+     	$data['tid'] = intval($data['tid']);
+      $backup->assign("INSERT INTO ".$db_settings['entry_tags_table']." (`bid`, `tid`) VALUES (".$data['bid'].", ".$data['tid'].");\n");
      }
     mysqli_free_result($result);
    }
