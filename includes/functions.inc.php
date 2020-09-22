@@ -2010,7 +2010,7 @@ function create_backup_file($mode=0)
     $backup->assign("#\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['forum_table'].";\n");
     $backup->assign("TRUNCATE TABLE ".$db_settings['entry_cache_table'].";\n");
-    $result = @mysqli_query($connid, "SELECT id,pid,tid,uniqid,time,last_reply,edited,edited_by,user_id,name,subject,category,email,hp,location,ip,text,show_signature,email_notification,marked,locked,sticky,views,spam,spam_check_status,edit_key FROM ".$db_settings['forum_table']) or $error=true;
+    $result = @mysqli_query($connid, "SELECT id,pid,tid,uniqid,time,last_reply,edited,edited_by,user_id,name,subject,category,email,hp,location,ip,text,show_signature,marked,locked,sticky,views,spam,spam_check_status,edit_key FROM ".$db_settings['forum_table']) or $error=true;
     $time_start = TIMESTAMP;
     while($data = mysqli_fetch_array($result))
      {
@@ -2028,9 +2028,8 @@ function create_backup_file($mode=0)
       $data['text'] = mysqli_real_escape_string($connid, $data['text']);
       $data['text'] = str_replace("\r", "\\r", $data['text']);
       $data['text'] = str_replace("\n",  "\\n", $data['text']);
-      $data['email_notification'] = intval($data['email_notification']);
       $data['edit_key'] = mysqli_real_escape_string($connid, $data['edit_key']);
-      $backup->assign("INSERT INTO ".$db_settings['forum_table']." (`id`, `pid`, `tid`, `uniqid`, `time`, `last_reply`, `edited`, `edited_by`, `user_id`, `name`, `subject`, `category`, `email`, `hp`, `location`, `ip`, `text`, `show_signature`, `email_notification`, `marked`, `locked`, `sticky`, `views`, `spam`, `spam_check_status`, `edit_key`) VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', ".$data['time'].", ".$data['last_reply'].", ".$data['edited'].", ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', ".$data['show_signature'].", ".$data['email_notification'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", ".$data['spam'].", ".$data['spam_check_status'].", '".$data['edit_key']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['forum_table']." (`id`, `pid`, `tid`, `uniqid`, `time`, `last_reply`, `edited`, `edited_by`, `user_id`, `name`, `subject`, `category`, `email`, `hp`, `location`, `ip`, `text`, `show_signature`, `marked`, `locked`, `sticky`, `views`, `spam`, `spam_check_status`, `edit_key`) VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', ".$data['time'].", ".$data['last_reply'].", ".$data['edited'].", ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', ".$data['show_signature'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", ".$data['spam'].", ".$data['spam_check_status'].", '".$data['edit_key']."');\n");
      }
     mysqli_free_result($result);
    }
