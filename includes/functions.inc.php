@@ -1910,7 +1910,7 @@ function create_backup_file($mode=0)
      {
       $data['user_id'] = !is_null($data['user_id']) ? intval($data['user_id']) : 'NULL';
       $data['unsubscribe_code'] = mysqli_real_escape_string($connid, $data['unsubscribe_code']);
-      $data['tstamp'] = !is_null($data['tstamp']) ? mysqli_real_escape_string($connid, $data['tstamp']) : 'NULL';
+      $data['tstamp'] = !is_null($data['tstamp']) ? "'".mysqli_real_escape_string($connid, $data['tstamp'])."'" : 'NULL';
       $backup->assign("INSERT INTO ".$db_settings['subscriptions_table']." (`user_id`, `eid`, `unsubscribe_code`, `tstamp`) VALUES (".$data['user_id'].", ".$data['eid'].", '".$data['unsubscribe_code']."', ".$data['tstamp'].");\n");
      }
     mysqli_free_result($result);
