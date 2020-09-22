@@ -1893,7 +1893,7 @@ function create_backup_file($mode=0)
      {
       $data['name'] = mysqli_real_escape_string($connid, $data['name']);
       $data['value'] = mysqli_real_escape_string($connid, $data['value']);
-      $data['time'] = !is_null($data['time']) ? "'".mysqli_real_escape_string($connid, $data['time']) "'" : 'NULL';
+      $data['time'] = !is_null($data['time']) ? "'".mysqli_real_escape_string($connid, $data['time'])."'" : 'NULL';
       $backup->assign("INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`, `time`) VALUES ('".$data['name']."', '".$data['value']."', ".$data['time'].");\n");
      }
     mysqli_free_result($result);
