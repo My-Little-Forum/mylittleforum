@@ -1,6 +1,16 @@
 my little forum changelog
 -------------------------
 
+2.4.22 (2020-09-29)
+-------------------
+- fixed: broken backup restoring function for the entries table, rework of the backup function for better code readability
+- fixed: corrected file size computation for the list of backup files; very small file sizes (up to a few hundred bytes) was shown as "0.00 MB" instead i.e. "0.0006 MB"
+- fixed: remove of since PHP 7.2 deprecated function each(), replaced with foreach()
+- fixed: wrong key name for error message in admin area about an incorrect e-mail-address
+- added: link to top of the page in the page footer and in the options menu of every entry
+- added: backup function for subscriptions and tags
+- added: natural sorting of the tag list, makes sorting case insensitive
+
 2.4.21 (2020-04-25)
 -------------------
 - fixed: regex for e-mail-validation followed a lazy syntax style, that invalidated with PRCE2. which was introduced with PHP 7.3; because of that one was unable to register a new account when running MLF 2.4.x under PHP 7.3 or newer
