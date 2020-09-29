@@ -81,7 +81,7 @@ img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -2
 #subnavmenu a.hierarchic { padding-left:13px; background:url(images/bg_sprite_1.png) no-repeat 0 -948px; }
 #subnavmenu a.fold-postings
                          { padding-left:13px; background:url(images/bg_sprite_1.png) no-repeat 0 -998px; }
-a.rss                    { padding-left:13px; background:url(images/bg_sprite_1.png) no-repeat 0 -1048px; }
+a.rss                    { background:url(images/bg_sprite_1.png) no-repeat 3px -1048px; }
 
 input.small,
 select.small             { font-family:verdana,arial,sans-serif; font-size:0.82em; }
@@ -106,7 +106,7 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #footermenu li:first-child:before
                          { content:""; }
 #footermenu li a         { padding-left:5px; }
-#footermenu li:first-child a 
+#footermenu li:first-child a, #footermenu li a.rss
                          { padding-left:15px; }
 #footermenu a.go-to-top-link
                          { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
