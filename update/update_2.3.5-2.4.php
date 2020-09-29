@@ -321,9 +321,9 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/functions.inc.php';                           // #410, #512, backup related changes
 		$update['items'][] = 'includes/posting.inc.php';                             // #410
 		$update['items'][] = 'lang/';                                                // #523, #530, backup related changes
-		$update['items'][] = 'themes/default/main.tpl';                              // #530
-		$update['items'][] = 'themes/default/style.tpl';                             // #530
-		$update['items'][] = 'themes/default/style-min.tpl';                         // #530
+		$update['items'][] = 'themes/default/main.tpl';                              // #530, #531
+		$update['items'][] = 'themes/default/style.tpl';                             // #530, #531
+		$update['items'][] = 'themes/default/style-min.tpl';                         // #530, #531
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // backup related changes
 		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';            // #530
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';           // #530
