@@ -316,6 +316,18 @@ switch($settings['version']) {
 	case '2.4.20':
 		$update['items'][] = 'includes/functions.inc.php';                           // adaption of #524
 		$update['items'][] = 'includes/rss.inc.php';                                 // no pull request
+	case '2.4.21':
+		$update['items'][] = 'includes/admin.inc.php';                               // #410, #523, backup related changes
+		$update['items'][] = 'includes/functions.inc.php';                           // #410, #512, backup related changes
+		$update['items'][] = 'includes/posting.inc.php';                             // #410
+		$update['items'][] = 'lang/';                                                // #523, #530, backup related changes
+		$update['items'][] = 'themes/default/main.tpl';                              // #530
+		$update['items'][] = 'themes/default/style.tpl';                             // #530
+		$update['items'][] = 'themes/default/style-min.tpl';                         // #530
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // backup related changes
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';            // #530
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';           // #530
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';    // #530
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
