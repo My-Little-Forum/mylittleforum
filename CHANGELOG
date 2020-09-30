@@ -1,6 +1,11 @@
 my little forum changelog
 -------------------------
 
+2.4.23 (2020-09-30)
+-------------------
+- fixed: wrong formatting of the link for a threads own RSS-feed, got broken by the work on formatting the RSS-links in the page footer
+- fixed: the non-English and non-German strings for the to-top-of-page-links had a broken comment part
+
 2.4.22 (2020-09-29)
 -------------------
 - fixed: broken backup restoring function for the entries table, rework of the backup function for better code readability
