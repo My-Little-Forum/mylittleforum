@@ -328,6 +328,10 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';            // #530
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';           // #530
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';    // #530
+	case '2.4.22':
+		$update['items'][] = 'lang/';                                                // #532
+		$update['items'][] = 'themes/default/style.tpl';                             // #533
+		$update['items'][] = 'themes/default/style-min.tpl';                         // #533
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
