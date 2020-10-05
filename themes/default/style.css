@@ -82,7 +82,8 @@ img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -2
 #subnavmenu a.fold-postings
                          { padding-left:13px; background:url(images/bg_sprite_1.png) no-repeat 0 -998px; }
 a.rss                    { background:url(images/bg_sprite_1.png) no-repeat 3px -1048px; }
-p.right a.rss            { padding-left:15px; }
+p.right a.rss, 
+div.small a.rss          { padding-left:15px; }
 
 input.small,
 select.small             { font-family:verdana,arial,sans-serif; font-size:0.82em; }
