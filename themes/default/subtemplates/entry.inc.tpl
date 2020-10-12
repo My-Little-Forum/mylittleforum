@@ -73,7 +73,11 @@
 {function name=tree level=0}
 <li>{if $data.$element.id!=$id}<a class="{if $data.$element.pid==0&&$data.$element.new}threadnew{elseif $data.$element.pid==0}thread{elseif $data.$element.pid!=0&&$data.$element.new}replynew{else}reply{/if}{if $data.$element.is_read} read{/if}" href="index.php?id={$data.$element.id}">{$data.$element.subject}</a>{else}<span class="{if $data.$element.pid==0}{if $data.$element.new}currentthreadnew{else}currentthread{/if}{else}{if $data.$element.new}currentreplynew{else}currentreply{/if}{/if}">{$data.$element.subject}</span>{/if}{if $data.$element.no_text} <img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="[ {#no_text_alt#} ]" width="11" height="9" />{/if} - 
 
-{if $data.$element.user_id>0}
+{if $data.$element.user_type==2}
+<strong class="admin registered_user">{$data.$element.name}</strong>, 
+{elseif $data.$element.user_type==1}
+<strong class="mod registered_user">{$data.$element.name}</strong>, 
+{elseif $data.$element.user_id>0}
 <strong class="registered_user">{$data.$element.name}</strong>, 
 {else}
 <strong>{$data.$element.name}</strong>, 

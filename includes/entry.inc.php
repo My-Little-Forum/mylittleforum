@@ -138,7 +138,7 @@
 	if ($entrydata['spam'] == 1 && isset($id))
 		$display_spam_query_and .= " OR `ft`.`id` = " . intval($id);
 	$result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
-                        UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, category, marked, text, rst.user_id AS req_user,
+                        UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, user_type, subject, category, marked, text, rst.user_id AS req_user,
 						" . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam,
 						" . $db_settings['b8_rating_table'] . ".spam AS b8_spam					
 						FROM " . $db_settings['forum_table'] . " AS ft
