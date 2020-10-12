@@ -1,6 +1,12 @@
 my little forum changelog
 -------------------------
 
+2.4.24 (2020-10-12)
+-------------------
+- fixed: broken layout of the links to the RSS-feed of a single thread in thread.inc.tpl and thread_linear.inc.tpl
+- fixed: unintended text-transform: lowercase; for the link to top of the page in the options of an entry
+- added: add classes for the user type to the thread tree below the entry in the single-entry-view
+
 2.4.23 (2020-09-30)
 -------------------
 - fixed: wrong formatting of the link for a threads own RSS-feed, got broken by the work on formatting the RSS-links in the page footer
