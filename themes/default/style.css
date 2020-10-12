@@ -82,8 +82,7 @@ img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -2
 #subnavmenu a.fold-postings
                          { padding-left:13px; background:url(images/bg_sprite_1.png) no-repeat 0 -998px; }
 a.rss                    { background:url(images/bg_sprite_1.png) no-repeat 3px -1048px; }
-p.right a.rss, 
-div.small a.rss          { padding-left:15px; }
+p.right a.rss,           { padding-left:15px; }
 
 input.small,
 select.small             { font-family:verdana,arial,sans-serif; font-size:0.82em; }
@@ -202,7 +201,7 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
 .posting-footer a.edit   { padding-left:16px; background:url(images/bg_sprite_3.png) no-repeat 0 2px; }
 .posting-footer a.delete { padding-left:13px; background:url(images/bg_sprite_3.png) no-repeat 0 -47px; }
 .posting-footer a.go-to-top-link
-						 { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; text-transform: lowercase; }
+						 { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
 .posting-footer a.add-bookmark
 						 { padding-left:14px; background:url(images/bg_sprite_3.png) no-repeat 0 -97px; }
 .posting-footer a.delete-bookmark
