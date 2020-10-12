@@ -88,4 +88,6 @@
 </div>
 {/function}
 {tree element=$tid}
-{if $settings.rss_feed==1}<div class="small" style="text-align:right;"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}" title="{#rss_feed_thread_title#}">{#rss_feed_thread#}</a></div>{/if}
+{if $settings.rss_feed==1}<div class="complete-thread">
+<p class="right"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}" title="{#rss_feed_thread_title#}">{#rss_feed_thread#}</a></p>
+</div>{/if}
