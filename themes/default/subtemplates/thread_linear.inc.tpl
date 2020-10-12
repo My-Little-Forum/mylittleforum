@@ -85,5 +85,5 @@
 {/foreach}
 </div>
 {if $settings.rss_feed==1}<div class="complete-thread">
-<p class="right"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}">{#rss_feed_thread#}</a></p>
+<p class="right"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}" title="{#rss_feed_thread_title#}">{#rss_feed_thread#}</a></p>
 </div>{/if}
