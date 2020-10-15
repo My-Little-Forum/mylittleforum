@@ -1050,7 +1050,7 @@ update_instructions =             'es wird empfohlen, das Forum während des Upd
 update_instructions =             'neue Version von <a href="http://mylittleforum.net/">mylittleforum.net</a> herunterladen'
 update_instructions =             'Skript-Paket entpacken.'
 update_instructions =             'Die entsprechende Update-Datei aus dem Unterverzeichnis "update" auf den Server in das Unterverzeichnis "update" hochladen.'
-update_instructions =             'Die Datei "VERSION" aus dem Unterverzeichnis "config" in das Unterverzeichnis "config" auf dem Server hochladen.'
+update_instructions =             'Die Datei "VERSION" aus dem Unterverzeichnis "config" in das Unterverzeichnis "config" auf den Server hochladen.'
 update_instructions =             'diese Seite neu laden und die Update-Datei sollte unten erscheinen'
 update_instructions =             'Datei anklicken und den weiteren Anweisungen folgen'
 update_instructions =             'nach dem Ausführen wird eine Liste mit den Dateien/Ordnern angezeigt, die hinzugefügt bzw. ersetzt werden müssen'
