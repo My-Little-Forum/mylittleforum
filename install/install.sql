@@ -158,6 +158,7 @@ INSERT INTO mlf2_settings VALUES ('min_pw_special_characters', '0');
 INSERT INTO mlf2_settings VALUES ('php_mailer', '0');
 INSERT INTO mlf2_settings VALUES ('delete_inactive_users', '30');
 INSERT INTO mlf2_settings VALUES ('notify_inactive_users', '3');
+INSERT INTO mlf2_settings VALUES ('link_open_target', '0');
 
 INSERT INTO mlf2_temp_infos (`name`, `value`) VALUES ('access_permission_checks', '0'), ('last_changes', '0'), ('next_daily_actions', '0');
 
