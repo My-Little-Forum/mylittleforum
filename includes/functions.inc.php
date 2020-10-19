@@ -404,9 +404,14 @@ function pagination($page_count,$page,$browse_range=3,$show_last=1)
  */
 function make_link($string)
  {
+ global $settings;
   $string = ' ' . $string;
   $string = preg_replace_callback("#(^|[\n ])([\w]+?://.*?[^ \"\n\r\t<]*)#is", "shorten_link", $string);
-  $string = preg_replace("#(^|[\n ])((www|ftp)\.[\w\-]+\.[\w\-.\~]+(?:/[^ \"\t\n\r<]*)?)#is", "$1<a href=\"http://$2\">$2</a>", $string);
+  if ($settings['link_open_target'] == 1) {
+    $string = preg_replace("#(^|[\n ])((www|ftp)\.[\w\-]+\.[\w\-.\~]+(?:/[^ \"\t\n\r<]*)?)#is", "$1<a href=\"http://$2\" target=\"_blank\">$2</a>", $string);
+  } else {
+    $string = preg_replace("#(^|[\n ])((www|ftp)\.[\w\-]+\.[\w\-.\~]+(?:/[^ \"\t\n\r<]*)?)#is", "$1<a href=\"http://$2\">$2</a>", $string);
+  }
   $string = my_substr($string, 1, my_strlen($string, CHARSET), CHARSET);
   return $string;
  }
@@ -509,6 +514,7 @@ function contains_invalid_string($string)
  */
 function do_bbcode_url ($action, $attributes, $content, $params, $node_object)
  {
+ global $settings;
   // 1) the code is validated
   if ($action == 'validate')
    {
@@ -525,10 +531,17 @@ function do_bbcode_url ($action, $attributes, $content, $params, $node_object)
   // 2) the code is outputed
   else
    {
-    // the code has been eneterd like this: [url]http://.../[/url]
-    if(!isset ($attributes['default'])) return '<a href="'.htmlspecialchars($content).'">'.htmlspecialchars(shorten_url($content)).'</a>';
-    // the code has been eneterd like this: [url=http://.../]Text[/url]
-    return '<a href="'.htmlspecialchars ($attributes['default']).'">'.$content.'</a>';
+     if ($settings['link_open_target'] == 1) {
+       // the code has been eneterd like this: [url]http://.../[/url]
+       if(!isset ($attributes['default'])) return '<a href="'.htmlspecialchars($content).'" target="_blank">'.htmlspecialchars(shorten_url($content)).'</a>';
+       // the code has been eneterd like this: [url=http://.../]Text[/url]
+       return '<a href="'.htmlspecialchars ($attributes['default']).'" target="_blank">'.$content.'</a>';
+     } else {
+       // the code has been eneterd like this: [url]http://.../[/url]
+       if(!isset ($attributes['default'])) return '<a href="'.htmlspecialchars($content).'">'.htmlspecialchars(shorten_url($content)).'</a>';
+       // the code has been eneterd like this: [url=http://.../]Text[/url]
+       return '<a href="'.htmlspecialchars ($attributes['default']).'">'.$content.'</a>';
+     }
    }
  }
 
