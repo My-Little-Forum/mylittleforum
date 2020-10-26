@@ -99,7 +99,7 @@ document.createElementWithAttributes = function(tagName, attributes, parentEleme
 	var el = document.createElement(tagName);
 	
 	for (var attribute in attributes) 
-		el.setAttribute(attribute, attributes[attribute]);
+		el[attribute] = attributes[attribute]; //el.setAttribute(attribute, attributes[attribute]); cannot used because function are evaluated in attributes e.g. {"onclick": function(e) { return false; }}
 
 	if (parentElement) 
 		parentElement.appendChild(el);
@@ -158,7 +158,7 @@ document.getElementPoSi = function(el){
     if(!el || typeof(el) != 'object') 
 		return r;
  
-    if(typeof(el.offsetTop) != 'undefined')    {
+    if(typeof(el.offsetTop) != 'undefined') {
          r.height = el.offsetHeight;
          r.width  = el.offsetWidth;
          r.left   = r.top = 0;
@@ -540,7 +540,6 @@ var ready = new (function () {
 
 	/**
 	 * Create a HTTP request the returned values are handeled by calling a handling function (func)
-	 * als XML oder String
 	 *
 	 * @param uri
 	 * @param method
