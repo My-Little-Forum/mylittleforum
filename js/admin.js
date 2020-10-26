@@ -97,7 +97,7 @@ function MyLittleAdmin() {
 	}());
 }
 
-window.ready.push(function() {
+document.addEventListener("DOMContentLoaded", function(e) {
 	new MyLittleAdmin();
 	new DragAndDropTable(document.getElementById("sortable"), "admin", "action");
 });
