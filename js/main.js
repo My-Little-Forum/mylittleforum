@@ -30,52 +30,20 @@
 ***********************************************************************/
 
 /**
- * Liefert die CSS-Eigenschaften eines Elements
+ * Returns the CSS properties, e.g. the text color, of the element
  *
  * @param el
- * @param cssProp
- * @return cssValue
+ * @param propertyName
+ * @return propertyValue
  */
-document.getStyle = function(el,styleProp) {
-	if (el.currentStyle)
-		return el.currentStyle[styleProp];
-	else if (window.getComputedStyle)
-		return document.defaultView.getComputedStyle(el,null).getPropertyValue(styleProp);
-	return false;
+document.getStyle = function(el,propertyName) {
+	return document.defaultView.getComputedStyle(el,null).getPropertyValue(propertyName);
 };
 
 /**
- * Liefert eine Liste mit Elementen, die die
- * selbe CSS-Klasse haben
- *
- * @param class_name
- * @return node_list
- */
-if(typeof document.getElementsByClassName != 'function') {  
-	document.getElementsByClassName = function (class_name) {
-	var all_obj,ret_obj=new Array(),j=0,teststr;
-	if(this.all)
-		all_obj=this.all;
-	else if(this.getElementsByTagName && !this.all)
-		all_obj=this.getElementsByTagName("*");
-	var len=all_obj.length;
-	for(var i=0;i<len;i++) {
-		if(all_obj[i].className.indexOf(class_name)!=-1) {
-			teststr=","+all_obj[i].className.split(" ").join(",")+",";
-			if(teststr.indexOf(","+class_name+",")!=-1) {
-				ret_obj[j]=all_obj[i];
-				j++;
-			}
-		} 
-	}
-	return ret_obj;
-	};
-}
-
-/**
- * Funktion zum Vorladen von Bildern
- * Sollte am Ende eines ONLOAD aufgerufen werden,
- * sodass das Bildladen das Script nicht blockiert
+ * Pre-load images of a given file path. 
+ * Please note: This fuction needs runtime and should, thus, 
+ * be called at the end of ONLOAD
  *
  * @param images
  * @param path
@@ -92,8 +60,8 @@ document.preloadImages = function(images, path) {
 };
 
 /**
- * Liefert das Element, auf dem das Event ausgeloest wurde
- * @return tar
+ * Returns the element, which fires the event
+ * @return target
  */
 document.getTarget = function(e) {
 	e = e || window.event;
@@ -101,9 +69,8 @@ document.getTarget = function(e) {
 };
 
 /**
- * Prueft, ob ein Element in einem anderen
- * enthalten ist
- * @return conatinsElement
+ * Checks, if an element contains an element
+ * @return contains
  * @see http://forum.de.selfhtml.org/archiv/2010/2/t195270/#m1306879
  */
 if (window.Node && Node.prototype && !Node.prototype.contains) {
@@ -118,75 +85,21 @@ if (window.Node && Node.prototype && !Node.prototype.contains) {
 }
 
 /**
- * Erzeugt ein INPUT/BUTTON-Element mit zusaetzlichen Attributen
- * Attribute werden als einfaches Objekt uebergeben
- * {"type": "text", "class": "foo"}
- * Optional kann das Elternelement angegeben werden,
- * um das neue Element einzuhaengen
- * Funktion ist notwendig, da der IE (korrekterweise) 
- * das TYPE-Attribut bei diesen Elementen nicht setzt,
- * wenn das Element bereits im DOM ist
- *
- * @param tagName
- * @param att
- * @param par
- * @return el 
- * @see http://forum.de.selfhtml.org/archiv/2007/4/t151146/#m982711
- * @see http://forum.de.selfhtml.org/archiv/2011/3/t204212/#m1382727
- */
-document.createInputElementWithAttributes = function(tagName, attributes, parentElement) {
-	if (tagName.toLowerCase() != "input" && tagName.toLowerCase() != "button") 
-		return document.createElementWithAttributes(tagName, attributes, parentElement);
- 
-	var type = attributes["type"] || false;
-	var name = attributes["name"] || false;
-	var el   = false;
- 
-	if (type) {
-		try {
-			el = document.createElement(tagName);
-			el.type = type;
-			if (name)
-				el.name = name;
-		}
-		catch(err) {
-			var attr = " type=" + type +(name?" name=" + name : "");
-			//el = document.createElement('<'+tagName+' type="'+type+'">');
-			el = document.createElement("<" + tagName + attr + ">");
-		}
-	}
-	el = el || document.createElement(tagName);
- 
-	for (var attribute in attributes)  
-		if (attribute.toLowerCase() != "type" && attribute.toLowerCase() != "name")
-			el[attribute] = attributes[attribute];
- 
-	if (parentElement) 
-		parentElement.appendChild(el);
- 
-	return el;
-};
-
-/**
- * Erzeugt ein Element mit zusaetzlichen Attributen
- * Attribute werden als einfache Objekte uebergeben
- * {"class": "foo", "href": "#"}
- * Optional kann das Elternelement angegeben werden,
- * um das neue Element einzuhaengen
+ * Creates and returns an element with further attributes
+ * attributes are specified by an object-list like e.g.
+ * {"type": "text", "class": "foo", "name": "bar", "href": "#"}
+ * Optionally the parent element can be specified.
  *
  * @param tagName
  * @param attributes
  * @param parentElement
- * @return el 
- * @see http://forum.de.selfhtml.org/archiv/2011/3/t204212/#m1382727
+ * @return element
  */
 document.createElementWithAttributes = function(tagName, attributes, parentElement) {
-	if (tagName.toLowerCase() == "input" || tagName.toLowerCase() == "button") 
-		return document.createInputElementWithAttributes(tagName, attributes, parentElement);
-	
 	var el = document.createElement(tagName);
+	
 	for (var attribute in attributes) 
-		el[attribute] = attributes[attribute];
+		el.setAttribute(attribute, attributes[attribute]);
 
 	if (parentElement) 
 		parentElement.appendChild(el);
@@ -195,26 +108,16 @@ document.createElementWithAttributes = function(tagName, attributes, parentEleme
 };
 
 /**
- * Liefert die Scroll-Position des aktuellen
- * Fensters
- * @return scrollPos
- * @see http://forum.de.selfhtml.org/archiv/2005/4/t106392/#m659379
+ * Returns the current scroll position of the window
+ * @return [left top]
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
  */
 document.getScrollPosition = function() {
 	var l = 0, t = 0;
 	if( typeof window.pageYOffset == "number" ) {
-		t = window.pageYOffset;
-		l = window.pageXOffset;
+		t = window.pageYOffset; // window.scrollY
+		l = window.pageXOffset; // window.scrollX
 	} 
-	// else if( document.documentElement && typeof document.documentElement.scrollLeft == "number" && typeof document.documentElement.scrollTop  == "number" ) 
-	else if (document.compatMode && document.compatMode == "CSS1Compat") {
-		t = document.documentElement.scrollTop;
-		l = document.documentElement.scrollLeft;
-	} 
-	else if( document.body && typeof document.body.scrollLeft == "number" && typeof document.body.scrollTop == "number" ) {
-		t = document.body.scrollTop;
-		l = document.body.scrollLeft;
-	}
 	return {
 		left: l,
 		top: t
@@ -222,68 +125,31 @@ document.getScrollPosition = function() {
 };
 
 /**
- * Liefert die Groesse des Dokuments
- * @return docSize
- * @see http://forum.de.selfhtml.org/archiv/2009/1/t181640/
+ * Returns an array containing the window size as well as the page size
+ * @return [pageWidth, pageHeight, windowWidth, windowHeight]
  */
 document.getWindowSize = function() {
-	var l, t, windowWidth, windowHeight;
-	if (window.innerHeight && window.scrollMaxY) {
-		l = document.body.scrollWidth;
-		t = window.innerHeight + window.scrollMaxY;
-	} 
-	else if (document.body.scrollHeight > document.body.offsetHeight){
-		l = document.body.scrollWidth;
-		t = document.body.scrollHeight;
-	} 
-	else {
-		l = document.getElementsByTagName("html").item(0).offsetWidth;
-		t = document.getElementsByTagName("html").item(0).offsetHeight;
-		l = (l < document.body.offsetWidth) ? document.body.offsetWidth : l;
-		t = (t < document.body.offsetHeight) ? document.body.offsetHeight : t;
-	}
-	if (window.innerHeight) {
-		windowWidth  = window.innerWidth;
-		windowHeight = window.innerHeight;
-	} 
-	//else if (document.documentElement && document.documentElement.clientHeight) {
-	else if (document.compatMode && document.compatMode == "CSS1Compat") {
-		windowWidth  = document.documentElement.clientWidth;
-		windowHeight = document.documentElement.clientHeight;
-	} 
-	else if (document.body) {
-		windowWidth  = document.getElementsByTagName("html").item(0).clientWidth;
-		windowHeight = document.getElementsByTagName("html").item(0).clientHeight;
-		windowWidth  = (windowWidth == 0) ? document.body.clientWidth : windowWidth;
-		windowHeight = (windowHeight == 0) ? document.body.clientHeight : windowHeight;
-	}
-	var pageHeight = (t < windowHeight) ? windowHeight : t;
-	var pageWidth = (l < windowWidth) ? windowWidth : l;
+	var pageWidth  = document.body.scrollWidth;
+	var pageHeight = document.body.scrollHeight;
+
+	var windowWidth  = window.innerWidth;
+	var windowHeight = window.innerHeight;
+
+	pageHeight = pageHeight < windowHeight ? windowHeight : pageHeight;
+	pageWidth  = pageWidth  < windowWidth  ? windowWidth  : pageWidth;
 	
 	return {
-		pageWidth: pageWidth,
-		pageHeight: pageHeight,
-		windowWidth: windowWidth,
+		pageWidth:    pageWidth,
+		pageHeight:   pageHeight,
+		windowWidth:  windowWidth,
 		windowHeight: windowHeight
 	};
 };
 
 /**
- * Liefert den zum Tastendruck gehoerenden Event-Key
- * return keyCode
- */
-document.getKeyCode = function(ev) {
-	ev = ev || window.event;
-	if ((typeof ev.which == "undefined" || (typeof ev.which == "number" && ev.which == 0)) && typeof ev.keyCode  == "number")
-		return ev.keyCode;
-	else	
-		return ev.which;
-};
-
-/**
- * Liefert die Position und Groesse eines Elements im Dokument
+ * Returns the position and the dimension of an element
  * @param el
- * @return elPositionAndSize
+ * @return elemPosDim
  * @see http://www.quirksmode.org/js/findpos.html
  */
 document.getElementPoSi = function(el){
@@ -307,8 +173,8 @@ document.getElementPoSi = function(el){
 };
 
 /**
- * Liefert das erste direkte Kindelement eines Elternknotens,
- * welches optionale eine bestimmte CSS-Klasse haben muss
+ * Returns the first child element of a parent (optionally: having a css class).
+ * If no child exists, the function returns null.
  *
  * @param par
  * @param tagName
@@ -338,34 +204,20 @@ document.getFirstChildByElement = function(par, tagName, cssClasses) {
 };
 
 /**
- * Liefert die Koordinaten 
- * des letzten Maus-Klicks
+ * Returns the coordinates of the mouse event
  * @param e
- * @return pos
+ * @return position
  * @see http://forum.de.selfhtml.org/archiv/2006/1/t121722/#m782727
  */
-document.getMousePos = function(e) {
-	e =  e || window.event;
-	var body = (window.document.compatMode && window.document.compatMode == "CSS1Compat") ? 
-	window.document.documentElement : window.document.body;
+document.getMousePosition = function(e) {
 	return {
-		top: e.pageY ? e.pageY : e.clientY + body.scrollTop - body.clientTop,
-		left: e.pageX ? e.pageX : e.clientX + body.scrollLeft  - body.clientLeft
+		top: e.pageY,
+		left: e.pageX
 	};
 };
 
 /**
- * Entfernt White-Spaces am Anfang und Ende eines Strings
- * (ist im FF schon drin, daher die Bedingung)
- */
-if(typeof String.prototype.trim != "function") { 
-	String.prototype.trim = function() {
-		return this.replace(/^\s+|\s+$/g,"");
-	};
-}
-
-/**
- * Liefert true, wenn der String mind. einen Zeilenumbruch enthaelt
+ * Returns true, if the string contains a line break
  * @return lineBreak
  */
 String.prototype.containsLineBreak = function() {
@@ -374,7 +226,7 @@ String.prototype.containsLineBreak = function() {
 }
 
 /**
- * Entfernt Slashes in eimem String vgl. gleichnamige PHP-Funktion
+ * Removes slashes of a string like the PHP function stripslashes()
  * @return str
  */
 String.prototype.stripslashes = function() {
@@ -387,8 +239,7 @@ String.prototype.stripslashes = function() {
 };
 
 /**
- * DragAndDropTable ermoeglicht das Tauschen von 
- * Zeilen (TR) innerhalb von TBODY
+ * Drag and drop table, which allows for changing the order of the rows (TR elements) of the TBODY.
  *
  * @param table
  * @see http://www.isocra.com/2007/07/dragging-and-dropping-table-rows-in-javascript/
@@ -460,7 +311,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				oldOnMouseMoveFunc(e);
 			if (!dragObject)
 				return;
-			var mPos = document.getMousePos(e);
+			var mPos = document.getMousePosition(e);
 			var currentTop = mPos.top - dragObject.handlePos.top + dragObject.elementPos.top;
             var currentRow = findDropTargetRow( currentTop );
             if (tableTop != currentTop && currentRow && dragObject != currentRow) {
@@ -518,7 +369,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				return false;
 			this.className = "drag";
 			this.elementPos = document.getElementPoSi(this);
-			this.handlePos  = document.getMousePos(e);
+			this.handlePos  = document.getMousePosition(e);
 			dragObject = this; 
 			start();
 			return false;  
@@ -673,7 +524,7 @@ var ready = new (function () {
 /************************ MyLittleForum-Objekte *************************************/
 
 	/**
-	 *	Erzeugt einen Query als Schluessel-Wert-Paar
+	 *	Query-Object having a key and a value
 	 *	@param k
 	 *	@param v
 	 */
@@ -688,18 +539,19 @@ var ready = new (function () {
 	};
 
 	/**
-	 * Erzeugt eine Anfrage und uebergibt die Antwort an eine Funktion
+	 * Create a HTTP request the returned values are handeled by calling a handling function (func)
 	 * als XML oder String
 	 *
 	 * @param uri
-	 * @param m
+	 * @param method
+	 * @param query
 	 * @param obj
 	 * @param func
 	 * @param resXML
 	 * @param mimeType
 	 *
 	 */
-	function Request(uri,m,q,obj,func,args,resXML,mimeType){
+	function Request(uri,method,q,obj,func,args,resXML,mimeType){
 		args = args?(typeof args == "object"||typeof args == "function"?args:[args]):[];
 		resXML  = resXML || false;
 		mimeType = mimeType?mimeType:resXML?"text/xml":"text/plain";
@@ -747,7 +599,7 @@ var ready = new (function () {
 				httpRequest = false;
 			}
 		};
-		if (m.toLowerCase() == "post"){
+		if (method.toLowerCase() == "post"){
 			httpRequest.open("POST", uri, true);
 			httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			httpRequest.send( qStr );
@@ -759,7 +611,7 @@ var ready = new (function () {
 	};
 	
 	/**
-	 * Sidebar-Objekt
+	 * The sidbar object
 	 * @param templatePath
 	 */
 	function Sidebar(templatePath) {
@@ -799,10 +651,10 @@ var ready = new (function () {
 	};
 		
 	/**
-	 * Erzeugt aus einem UL oder dessen ID ein Thread-Objekt,
-	 * welches zum Ein- und Ausklappen des Baums
-	 * aufgerufen werden kann
-	 * @param ul (UL-Element oder UL-ID)
+	 * Thread object, which is created by an UL element or the numerical ID of the UL element,
+	 * which is used to collapse the tree
+	 *
+	 * @param ul or id
 	 * @param templatePath
 	 */
 	function Thread(ul, templatePath) {
@@ -906,7 +758,7 @@ var ready = new (function () {
 	};
 	
 	/**
-	 * Erzeugt aus einer ID ein Posting, welches ein- und ausgeklappt werden kann
+	 * Posting object with collapse property, which is created by a nummeric posting id
 	 * @param pid
 	 */
 	function Posting(pid) {
@@ -936,14 +788,15 @@ var ready = new (function () {
 		this.setFold(this.isFold());
 	};
 	
-	
+	/**
+	 * Create a full-size image object within an element 
+	 * @param el
+	 */
 	function FullSizeImage(els) {
 		if (!els) return;
 		els = (typeof els == "object" || typeof els == "function") && typeof els.length == "number"?els:[els];
 		var hashTrigger = null;
 		var body = document.body;
-		// http://aktuell.de.selfhtml.org/weblog/kompatibilitaetsmodus-im-internet-explorer-8
-		var isIELower8 = /*@cc_on!@*/false && !(document.documentMode && document.documentMode >= 8);
    		var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", {"id": "image-canvas"}, body);	
 		imageCanvas.setVisible = function(visible) {
 			if (visible)
@@ -955,10 +808,7 @@ var ready = new (function () {
 			if (hashTrigger) {
 				window.clearInterval(hashTrigger);
 				var scrollPos = document.getScrollPosition();
-				if (!isIELower8)
-					window.history.back();
-				else
-					window.location.hash="GET_OPERA";
+				window.history.back();
 				// Fuer den Fall, dass man bei eingeblendeten Bild gescrollt hat
 				window.scrollTo(scrollPos.left, scrollPos.top);	
 			}
@@ -966,8 +816,7 @@ var ready = new (function () {
 		
 		var oldOnKeyPressFunc = window.document.onkeypress;
 		window.document.onkeypress = function(e) { 
-			var keyCode = document.getKeyCode(e);
-			if (keyCode == 27) {
+			if (e.key == "Esc") {
 				imageCanvas.setVisible(false);
 				stopTrigger();
 			}
@@ -1010,9 +859,8 @@ var ready = new (function () {
 	}
 		
 	/**
-	 * Erzeugt anhand eines HTML-Strings ein Geruest fuer
-	 * ein Vorschaufenster und haengt dieses im Dokument
-	 * ein
+	 * Preview window for ajax requests to e.g. postings. The window contains the given HTML structure
+	 * 
 	 * @param structure
 	 * @param templatePath
 	 */
@@ -1046,8 +894,7 @@ var ready = new (function () {
 
 		var oldOnKeyPressFunc = window.document.onkeypress;
 		window.document.onkeypress = function(e) { 
-			var keyCode = document.getKeyCode(e);
-			if (keyCode == 27) {
+			if (e.key == "Esc") {
 				self.setVisible(false);	
 			}
 			if (typeof oldOnKeyPressFunc == "function")
@@ -1075,7 +922,7 @@ var ready = new (function () {
 			if (self.isVisible() && imgCanvas && imgCanvas.classList.contains("js-display-none")) {
 				var obj = document.getTarget(e);
 				if (obj && obj != self.getOpener().firstChild && obj != self.getContentElement() && obj != self.getMainElement()) {
-					var evtPos = document.getMousePos(e);
+					var evtPos = document.getMousePosition(e);
 					var posX = evtPos.left;
 					var posY = evtPos.top;
 					var boxX = self.getDocumentPosition().left;
@@ -1199,7 +1046,7 @@ var ready = new (function () {
 	}	
 	
 	/**
-	 * Hauptfunktion des Forums
+	 * Main object of the forum
 	 */
 	function MyLittleJavaScript() {
 		var templatePath      = null;
@@ -1212,7 +1059,7 @@ var ready = new (function () {
 		var self = this;
 		
 		/**
-		 * Ermittelt die Posting ID aus einer URI
+		 * Returns the posting id given by the URI
 		 * @param link
 		 * @return id
 		 */
@@ -1225,8 +1072,8 @@ var ready = new (function () {
 		}
 		
 		/**
-		 * Liefert den Pfad zum gewaehlten Template,
-		 * welcher aus einem LINK-Element ermittelt wird.
+		 * Returns the path to the template,
+		 * which was extracted by a LINK element.
 		 * @return path
 		 */
 		this.getTemplatePath = function() {
@@ -1242,8 +1089,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Erstellt einen Link (mit Bild), der, wenn er geklickt wird,
-		 * oeffnet das Vorschaufenster
+		 * Create a link to open the ajax preview window
 		 * @param id
 		 * @return link
 		 */
@@ -1254,8 +1100,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Erzeugt den Link zum Vorschaufenster
-		 * im Nutzerprofil, welches einem Element el hinzugefuegt wird
+		 * Set the preview window to the user profile. The link is added to the specified element 
 		 * @param el
 		 */
 		var setPreviewBoxToProfil = function(el) {
@@ -1269,8 +1114,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Erzeugt den Link zum Vorschaufenster
-		 * auf der Antwortseite, welches einem Element el hinzugefuegt wird
+		 * Set the preview window to the posting page of an entry. The link is added to the specified element 
 		 * @param el
 		 */
 		var setPreviewBoxToReplyPage = function(el) {
@@ -1289,7 +1133,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Markiert ein Posting ADMIN-Funktion
+		 * Marked an posting. Please note: This is an admin function.
 		 * @param param1 id || xml
 		 * @param param2 null || args
 		 */
@@ -1330,7 +1174,7 @@ var ready = new (function () {
 		};
 
 		/**
-		 * Oeffnet/Schliesst alle Threads
+		 * Collape/expand all threads
 		 * @param expand
 		 */
 		var expandAllThreads = function(expand) {
@@ -1377,9 +1221,8 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Erzeugt die Links (Sprechblase) zum Vorschaufenster
-		 * auf der Forenhauptseite an den gewuenschten Elementen,
-		 * sofern das Posting Inhalt besitzt.
+		 * Add a links to the preview window of the main page, if and only if, the posting contains content.
+		 * Links are added to els
 		 * @param els
 		 */
 		var setPreviewBoxToMainPage = function(els) {
@@ -1461,11 +1304,14 @@ var ready = new (function () {
 			new FullSizeImage(pEls);
 		};
 
+		/**
+		 * Set the default value to an INPUT element
+		 */
 		var setDefaultInputValue = function(id) {
 			var inp = document.getElementById(id);
 			if (!inp) 
 				return;
-			//var value = inp.value;
+
 			var value = (inp.alt) ? inp.alt : inp.value;
 			inp.onfocus = function(e) {
 				if (this.value == value) 
@@ -1478,13 +1324,12 @@ var ready = new (function () {
 		};
 
 		/**
-		 * Durchsucht Seite nach einem Formular innerhalb von 
-		 * >CONTENT< und setzt den Fokus auf das erste INPUT
-		 * Trift auf Anmeldung und Antworten zu
+		 * Set focus to first INPUT element on the page, if exists
 		 */
 		var setFocusToContentForm = function() {
-			if (document.getElementById("content")) {
-				var f = document.getElementById("content").getElementsByTagName("form");
+			var par = document.getElementById("content");
+			if (par) {
+				var f = par.getElementsByTagName("form");
 				if (f && f.length>0) {
 					for (var i=0; i<f[0].elements.length; i++) {
 						if (f[0].elements[i].type == "text" && f[0].elements[i].name != "search_user" && f[0].elements[i].name != "smiley_code" && f[0].elements[i].name != "new_category") {
@@ -1497,10 +1342,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Durchsucht Seite nach Formularen mit Passwort-Feldern im
-		 * >CONTENT< Bereich und fuegt eine Checkbox hinter dem 
-		 * jeweiligen Passwort-Feld hinzu. Ist die Checkbox ausgewaehlt,
-		 * so wird das Passwort im Klartext angezeigt ansonsten nicht.
+		 * Add a checkbox to a INPUT element of type PASSWORD to show/hid the entered password
 		 */
 		var togglePasswordVisibility = function() {
 			if (document.getElementById("content")) {
@@ -1528,7 +1370,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Oeffnet/Schliesst alle Antworten in einem Thread
+		 * Collape/expand all replies of a posting
 		 * @param expand
 		 */
 		var expandAllPostings = function(expand) {
@@ -1539,7 +1381,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Initialisiert die Option zum Ein/Ausklappen der einzelnen Threads
+		 * Init. option to collape/expand threads
 		 * @param els
 		 */
 		var initPostingFolding = function(els) {
@@ -1569,8 +1411,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Initialisiert PopUp-Aufrufe 
-		 * bei einem Link
+		 * Init. pop-up window for e.g. terms of use
 		 */
 		var initPopUpLinks = function() {
 			var els = [[document.getElementById("terms_of_use") || false, settings["terms_of_use_popup_width"], settings["terms_of_use_popup_height"]],
@@ -1593,7 +1434,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Tauscht bzw. aktualisiert den Inhalt des Vorschaufensters
+		 * Refresh content of preview window
 		 * @param xml
 		 */
 		this.updateAjaxPreviewWindow = function(xml) {
@@ -1618,11 +1459,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Zeigt das Vorschaufenster an. Erwartet das Objekt, 
-		 * welches den Aufruf hervorgerufen hat (Opener), und 
-		 * ob das Fesnster geoffnet bleiben soll (pin).
-		 * Schliesst das Fenster, wenn auf den selben Opener
-		 * erneut geklickt wird.
+		 * Set the preview window visible and pin the window, if desired
 		 * @param obj
 		 * @param pin
 		 */
@@ -1656,7 +1493,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Liefert das Vorschaufenster
+		 * Returns the current preview window
 		 * @return win
 		 */
 		this.getAjaxPreviewWindow = function() {
@@ -1664,8 +1501,7 @@ var ready = new (function () {
 		}
 
 		/**
-		 * Sendet das Formular im Submenue ab, wenn sich der
-		 * Wert im Drop-Down-Menue aendert
+		 * Submit the form, if the value of a drop down menu is changed
 		 */
 		var setAutoSubmitSubNaviForms = function() {
 			var subNav = document.getElementById("subnav-2");
@@ -1682,7 +1518,7 @@ var ready = new (function () {
 		};
 		
 		/**
-		 * Initialisiert MyLittelJavaScript
+		 * Init. MyLittelJavaScript
 		 * @param ajaxPreviewStructure
 		 */
 		this.init = function( ajaxPreviewStructure ) {
