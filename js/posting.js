@@ -30,7 +30,7 @@
 ***********************************************************************/
 
 /**
- * Klasse fuer BB-Code Schaltflaechen
+ * BB-Code button object
  * @param el
  */
 function BBCodeButton(el) {
@@ -79,7 +79,7 @@ function BBCodeButton(el) {
 };
 
 /**
- * Sonderbutton - LINK 
+ * Special button for link elements
  * @param el
  */
 function BBCodeLinkButton(el) {
@@ -111,7 +111,7 @@ function BBCodeLinkButton(el) {
 };
 
 /**
- * Sonderbutton mit Promt-Box
+ * Special button with PROMT option
  * @param el
  * @param quest
  * @param par
@@ -140,7 +140,7 @@ function BBCodePromtButton(el, quest, par) {
 };
 
 /**
- * Sonderbutton - COLOR
+ * Special Color-Picker button
  * @param el
  */
 function BBCodeColorChooserButton(el) {
@@ -196,7 +196,7 @@ function BBCodeColorChooserButton(el) {
 };
 
 /**
- * Sonderbutton mit zusaetzlichen Optionen
+ * Special button which provides additional options e.g. font-size [small large]
  * @param el
  * @param list
  * @param quest
@@ -256,7 +256,7 @@ function BBCodeOptionButton(el, list, quest, par) {
 };
 
 /**
- * Sonderbutton - LIST
+ * Special button to create a LIST
  * @param el
  */
 function BBCodeListButton(el) {
@@ -280,7 +280,7 @@ function BBCodeListButton(el) {
 };
 
 /**
- * Sonderbutton - einzelnes Smilies
+ * Special button for emotional icon
  * @param el
  */
 function BBCodeSingleSmilieButton(el) {
@@ -297,7 +297,7 @@ function BBCodeSingleSmilieButton(el) {
 };
 
 /**
- * Sonderbutton - Smilies
+ * Special button for larger list of emotional icons
  * @param el
  * @param list
  */
@@ -310,10 +310,6 @@ function BBCodeSmilieButton(el, list) {
 	for (var i=0; i<list.length; i++) {
 		var link = document.createElementWithAttributes("a", {"href": "#", "title": list[i].title, "code": list[i].code, "onclick": function(e) { self.insertOptionCode(this); return false; } }, smilies);
 		link.appendChild( list[i].label );
-		//if ((i+1)%5==0)
-		//	document.createElementWithAttributes("br", {}, smilies);
-		//else
-		//smilies.appendChild( document.createTextNode( String.fromCharCode(32) ) );
 	}
 		
 	this.insertOptionCode = function(obj) {
@@ -330,8 +326,6 @@ function BBCodeSmilieButton(el, list) {
 		if (!this.canInsert()) 
 			return;
 		var buttonGroup = this.getButtonGroup();	
-		//var txtarea = buttonGroup.getTextArea();
-		//selectionRange = txtarea.getSelection();
 		var objPos = document.getElementPoSi(obj);
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(smilies);
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	
@@ -339,7 +333,7 @@ function BBCodeSmilieButton(el, list) {
 };
 
 /**
- * Sonderbutton mit Zusatzfenster
+ * Special button to open a pop-up
  * @param el
  * @param uri
  * @param width
@@ -374,7 +368,7 @@ BBCodePopUpButton.prototype   = new BBCodeButton;
 BBCodePromtButton.prototype  = new BBCodeButton;
 
 /**
- * ButtonGroup, die alle BB-Code-Button verwaltet
+ * ButtonGroup, which handles the created BB-code buttons
  * @param form
  */
 function ButtonGroup(f) {
@@ -392,8 +386,8 @@ function ButtonGroup(f) {
 	var self = this;
 		
 	/**
-	 * Pruefe das Formaular, ob alle notwendigen Felder ausgefuellt sind!
-	 * return isComplete
+	 * Check form
+	 * return complete
 	 */
 	f.onsubmit = function(e) {
 		var error_message = '';
@@ -421,7 +415,7 @@ function ButtonGroup(f) {
 	};
 	
 	/**
-	 * Wandelt die Smilie-Anleitung in klickbare Elemente um
+	 * Transform introduction (for adding emotional icons) into button elements
 	 */
 	var convertInstructionsToSmilies = function() {
 		if (!document.getElementById("smiley-bar"))
@@ -466,7 +460,7 @@ function ButtonGroup(f) {
 	}
 	
 	/**
-	 * Wandelt die BB-Code-Anleitung in klickbare Elemente um
+	 * WTransform introduction (for adding source code) into button elements
 	 */
 	var convertInstructionsToButton = function() {
 		if (!document.getElementById("bbcode-bar"))
@@ -504,7 +498,7 @@ function ButtonGroup(f) {
 	};
 	
 	/**
-	 * Fuegt einen BB-Button dem Dokument hinzu.
+	 * Add a bb code button element to the document
 	 * @param button
 	 * @param isUserButton
 	 */
@@ -529,8 +523,7 @@ function ButtonGroup(f) {
 	}
 	
 	/**
-	 * Erzeugt einen einfachen Klick-Button, der ein SPAN-Element enthaelt
-	 * aus einem spezifischen Objekt
+	 * Creates a simple button, which contains a SPAN element for labeling
 	 * @param obj
 	 * @param buttonBar
 	 */
@@ -553,8 +546,8 @@ function ButtonGroup(f) {
 	};
 	
 	/**
-	 * Erzeugt aus einem normalen Klick-Button ein
-	 * BBCodeButton-Objekt (ggf. mit Zusatzoptionen)
+	 * Transform a normal button element to a bb-code button elemement
+	 *
 	 * @param button
 	 * @param list
 	 * @return button
@@ -600,8 +593,7 @@ function ButtonGroup(f) {
 	};
 		
 	/** 
-	 * Erzeugt ein Fenster, in dem die Zusatzoptionen
-	 * angezeigt werden koennen
+	 * Creates a window to show further options of the clicked button
 	 * @return win
 	 */
 	var createAdditionalOptionsWindow = function() {
@@ -647,8 +639,7 @@ function ButtonGroup(f) {
 		
 		var oldOnKeyPressFunc = window.document.onmousedown;
 		window.document.onkeypress = function(e) { 
-			var keyCode = document.getKeyCode(e);
-			if (keyCode == 27)
+			if (e.key == "Esc")
 				self.enableOptionList(false);	
 				
 			if (typeof oldOnKeyPressFunc == "function")
@@ -659,8 +650,7 @@ function ButtonGroup(f) {
 	};
 	
 	/**
-	 * Sucht nach Button, die der Nutzer
-	 * ins Dokument eingefuegt hat
+	 * Search for added buttons within the document
 	 * @param isSmilie
 	 */
 	var initUserBBCodeButtons = function(isSmilie) {
@@ -680,9 +670,7 @@ function ButtonGroup(f) {
 	};
 	
 	/**
-	 * Initialisiert die Textarea
-	 * und setzt Funktionen zum Ermitteln 
-	 * des selektierten Textes
+	 *  Init. text area of the posting form
 	 */
 	var initTextArea = function() {
 		// Sichert den (alten) Text in der Area
@@ -755,7 +743,7 @@ function ButtonGroup(f) {
 	};
 	
 	/**
-	 * Liefert die Textarea
+	 * Returns the text area of the form
 	 * @return area
 	 */
 	this.getTextArea = function() {
@@ -763,7 +751,7 @@ function ButtonGroup(f) {
 	};	
 	
 	/**
-	 * Liefert das Option-Window
+	 * Returns the property window of the button
 	 * @return win
 	 */
 	this.getAdditionalOptionsWindow = function() {
@@ -794,10 +782,6 @@ function ButtonGroup(f) {
 		}
 	};
 
-	/**
-	 * Initialisiert ButtonGroup
-	 *
-	 */
 	(function() {
 		additionalOptionsWindow = createAdditionalOptionsWindow();
 		// Erzeuge Textarea

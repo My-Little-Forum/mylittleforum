@@ -30,14 +30,12 @@
 ***********************************************************************/
 
 /**
- * Kleiner Feature im Adminbereich werden
- * von diesem Objekt realisiert.
- * Hauptsaechlich handelt es sich um Sicherheitsabfragen
+ * Admin object to handle critical actions like deleting the back-up
  */
 function MyLittleAdmin() {
 
 	/**
-	 * Initialisiert die Backup-Loesch-Abfragen
+	 * Confirmation message for deleting back-up
 	 *
 	 */
 	var initBackupControls = function() {
@@ -92,7 +90,7 @@ function MyLittleAdmin() {
 	};
 	
 	/**
-	 * Initialisiert die moeglichen Admin-Funktionen
+	 * Init. all admin functions
 	 */
 	(function() {
 		initBackupControls();
