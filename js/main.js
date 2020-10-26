@@ -217,6 +217,17 @@ document.getMousePosition = function(e) {
 };
 
 /**
+ * Checks, if string A contains string B
+ * @param str
+ * @return includes
+ */
+if (typeof String.prototype.includes != "function") {
+	String.prototype.includes = function(str) {
+		return this.indexOf(str) !== -1;
+	};
+}
+
+/**
  * Returns true, if the string contains a line break
  * @return lineBreak
  */
@@ -1481,8 +1492,9 @@ function DragAndDropTable(table,mode,queryKey) {
 	
 	}
 	
+	// TODO remove this test-values!
 	var user_settings = new Array();
-	user_settings["open_links_in_new_window"] = "EXTERNAL";  // EXTERNAL, ALL, NON
+	user_settings["open_links_in_new_window"] = "EXTERNAL";  // EXTERNAL, ALL, NON, DEFAULT
 	
 	document.addEventListener("DOMContentLoaded", function(e) {
 		var mlf = new MyLittleJavaScript();
