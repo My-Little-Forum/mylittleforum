@@ -405,122 +405,6 @@ function DragAndDropTable(table,mode,queryKey) {
 	}());
 };
 
-/**
- *
- * Author: Torben Brodt
- * Summary: Cross-browser wrapper for DOMContentLoaded
- * Updated: 07/09/2009
- * License: MIT / GPL
- * Version: 1.1
- *
- * URL:
- * @see http://www.easy-coding.de
- * @see http://jquery.com/dev/svn/trunk/jquery/MIT-LICENSE.txt
- * @see http://jquery.com/dev/svn/trunk/jquery/GPL-LICENSE.txt
- *
- * A page has loaded after all external resources like images have been loaded.
- * Should all scripts wait for that? a better bevaviour is to wait for the dom content being ready.
- *
- * This script has workarounds for all the big browsers meaning the major versions of firefox, internet explorer, opera, safari and chrome.
- * You can use it without risk, since the normal "onload" behavior is the fallback solution.
- *
- * Most of the source is lended from jquery
- */
-var ready = new (function () {
-	var readyBound = 0, d = document, w = window, t = this, x;
-	t.isReady = 0;
-	t.readyList = [];
- 
-	function bindReady() {
-		if ( readyBound ) return;
-		readyBound = 1;
- 
-		// Mozilla, Opera and webkit nightlies currently support this event
-		if ( d.addEventListener ) {
-			// Use the handy event callback
-			x = "DOMContentLoaded";
-			d.addEventListener( x, function(){
-				d.removeEventListener( x, arguments.callee, false );
-				ready.ready();
-			}, false );
- 
-		// If IE event model is used
-		} else if ( d.attachEvent ) {
-			// ensure firing before onload,
-			// maybe late but safe also for iframes
-			x = "onreadystatechange";
-			d.attachEvent(x, function(){
-				if ( d.readyState === "complete" ) {
-					d.detachEvent( x, arguments.callee );
-					ready.ready();
-				}
-			});
- 
-			// If IE and not an iframe
-			// continually check to see if the document is ready
-			if ( d.documentElement.doScroll && w == w.top ) (function(){
-				if ( t.isReady ) return;
- 
-				try {
-					// If IE is used, use the trick by Diego Perini
-					// [url]http://javascript.nwbox.com/IEContentLoaded/[/url]
-					d.documentElement.doScroll("left");
-				} catch( error ) {
-					setTimeout( arguments.callee, 0 );
-					return;
-				}
- 
-				// and execute any waiting functions
-				ready.ready();
-			})();
-		}
- 
-		// A fallback to window.onload, that will always work
-		w.onload = ready.ready; // TODO: compliant? t.event.add( window, "load", t.ready );
-	};
- 
-	// Handle when the DOM is ready
-	t.ready = function() {
-		// Make sure that the DOM is not already loaded
-		if ( !t.isReady ) {
-			// Remember that the DOM is ready
-			t.isReady = 1;
- 
-			// If there are functions bound, to execute
-			if ( t.readyList ) {
-				// Execute all of them
-				for(var i=0; i<t.readyList.length; i++) {
-					t.readyList[i].call( w, t );
-				};
- 
-				// Reset the list of functions
-				t.readyList = null;
-			}
- 
-			// Trigger any bound ready events
-			d.loaded = true; // TODO: compliant? this(document).triggerHandler("ready");
-		}
-	};
- 
-	// adds funtion to readyList if not ready yet, otherwise call immediately
-	t.push = function(fn) {
-		// Attach the listeners
-		bindReady();
- 
-		// If the DOM is already ready
-		if ( t.isReady )
-			// Execute the function immediately
-			fn.call( w, t );
- 
-		// Otherwise, remember the function for later
-		else
-			// Add the function to the wait list
-			t.readyList.push( fn );
- 
-		return t;
-	};
-})();	
-
 /************************ MyLittleForum-Objekte *************************************/
 
 	/**
@@ -1545,9 +1429,8 @@ var ready = new (function () {
 	
 	}
 	
-	var mlf = null;
-	window.ready.push(function() {
-		mlf = new MyLittleJavaScript();
+	document.addEventListener("DOMContentLoaded", function(e) {
+		var mlf = new MyLittleJavaScript();
 		var ajaxPreviewStructure = typeof settings != "undefined" && typeof settings["ajaxPreviewStructure"] == "string"?settings["ajaxPreviewStructure"]:false;
 		if (mlf && typeof lang == "object") 
 			mlf.init(ajaxPreviewStructure);

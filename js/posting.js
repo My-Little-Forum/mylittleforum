@@ -797,7 +797,7 @@ function ButtonGroup(f) {
 	}());
 }
 
-window.ready.push(function() {
+document.addEventListener("DOMContentLoaded", function(e) {
 	if (typeof settings == "object" && typeof lang == "object") 
 		new ButtonGroup( document.getElementById("postingform") );
 });
