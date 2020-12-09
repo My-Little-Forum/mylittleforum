@@ -144,6 +144,13 @@
 {/if}
 
 <tr>
+<td class="c"><strong>{#edit_user_where_to_open_links#}</strong></td>
+<td class="d">
+<input id="same-browser-window" type="radio" name="browser_link_open" value="0"{if $browser_link_open=="0"} checked="checked"{/if} /><label for="same-browser-window">{#where_to_open_links_same#}</label><br />
+<input id="new-browser-window" type="radio" name="browser_link_open" value="1"{if $browser_link_open=="1"} checked="checked"{/if} /><label for="new-browser-window">{#where_to_open_links_new#}</label></td>
+</td>
+</tr>
+<tr>
 <td class="c"><strong class="caution">{#remove_user_account#}</strong></td>
 <td class="d"><span class="small">[ <a href="index.php?mode=user&amp;action=remove_account">{#remove_user_account_link#}</a> ]</span></td>
 </tr>
