@@ -282,8 +282,15 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			$smarty->assign('pagination', pagination($total_pages, $page, 3));
 
 			if ($user_postings_count > 0) {
-				if ($categories == false) $result = @mysqli_query($connid, "SELECT id, pid, tid, user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, marked, sticky FROM ".$db_settings['forum_table']." WHERE user_id = ". intval($id) ." ORDER BY time DESC LIMIT ". intval($ul) .", ". intval($settings['search_results_per_page']));
-				else $result = @mysqli_query($connid, "SELECT id, pid, tid, user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, marked, sticky FROM ".$db_settings['forum_table']." WHERE user_id = ". intval($id) ." AND category IN (". $category_ids_query .") ORDER BY time DESC LIMIT ". intval($ul) .", ". intval($settings['search_results_per_page']));
+				$categories_restriction = $categories == false ? "" : " AND category IN (". $category_ids_query .") ";
+				$spam_restriction = $isModOrAdmin ? "" : " AND `id` NOT IN (SELECT `eid` FROM `" . $db_settings['b8_rating_table'] . "` WHERE `spam` = 1 AND `eid` = `id`) AND `id` NOT IN (SELECT `eid` FROM `" . $db_settings['akismet_rating_table'] . "` WHERE `spam` = 1 AND `eid` = `id`) ";
+				
+				$result = @mysqli_query($connid, "SELECT id, pid, tid, user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time, 
+												  UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, marked, sticky 
+												  FROM `" . $db_settings['forum_table'] . "` 
+												  WHERE user_id = ". intval($id) . " " . $categories_restriction . " " . $spam_restriction . " 
+												  ORDER BY time DESC LIMIT ". intval($ul) .", ". intval($settings['search_results_per_page']));
+				
 				$i = 0;
 				while ($row = mysqli_fetch_array($result)) {
 					$user_postings_data[$i]['id'] = intval($row['id']);
