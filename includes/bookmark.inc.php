@@ -26,7 +26,14 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		if ($filter !== false) {
 			// split search query at spaces, but not between double quotes:
 			$help_pattern = '[!/*/~/?]'; // pattern to hide spaces between quotes
-			$x_filter = preg_replace_callback("#\"(.+?)\"#is", create_function('$string', 'global $help_pattern; return str_replace(" ",$help_pattern,$string[1]);'), $filter);
+			$x_filter = preg_replace_callback(
+					"#\"(.+?)\"#is", 
+					function ($string) {
+						global $help_pattern; 
+						return str_replace(" ", $help_pattern,$string[1]);
+					},
+					$filter
+			);
 			$x_filter_array = explode(' ', my_strtolower($x_filter, $lang['charset']));
 			foreach($x_filter_array as $item)
 				$filter_array[] = mysqli_real_escape_string($connid, str_replace($help_pattern, ' ', $item));

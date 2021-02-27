@@ -27,7 +27,14 @@ if (isset($_GET['search'])) {
 	
 	// split search query at spaces, but not between double quotes:
 	$help_pattern = '[!/*/~/?]'; // pattern to hide spaces between quotes
-	$x_search     = preg_replace_callback("#\"(.+?)\"#is", create_function('$string', 'global $help_pattern; return str_replace(" ",$help_pattern,$string[1]);'), $search);
+	$x_search     = preg_replace_callback(
+			"#\"(.+?)\"#is", 
+			function ($string) {
+				global $help_pattern;
+				return str_replace(" ", $help_pattern,$string[1]);
+			},
+			$search
+	);
 	
 	$x_search_array = explode(' ', my_strtolower($x_search, $lang['charset']));
 	foreach ($x_search_array as $item) {
