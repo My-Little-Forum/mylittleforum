@@ -170,7 +170,6 @@ function daily_actions($current_time=0) {
 		else {
 			$next_daily_actions = $current_time + 86400;
 		}
-		#@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".intval($next_daily_actions)."' WHERE name='next_daily_actions'");
 		@mysqli_query($connid, "UPDATE " . $db_settings['temp_infos_table'] . " SET value='" . intval($next_daily_actions) . "', time = NOW() WHERE name='next_daily_actions'");
 	}
 }
@@ -573,7 +572,6 @@ function do_bbcode_img($action, $attributes, $content, $params, $node_object) {
 			$size = @getimagesize($content);
 			if ($size !== false && (is_numeric($size[0]) && $size[0] > 0) && (is_numeric($size[1]) && $size[1] > 0)) {
 				$strSize = $size[3];
-				#$strSize = 'width="256" height="256"';
 			}
 		}
 		if (isset($attributes['default']) && $attributes['default'] == 'left') return '<img src="'. htmlspecialchars($content) .'" class="left" alt="[image]" '. $strSize .' />';
@@ -638,10 +636,10 @@ function do_bbcode_color($action, $attributes, $content, $params, $node_object)
 function do_bbcode_size($action, $attributes, $content, $params, $node_object)
  {
   // font size definitions:
-  #$size['tiny'] = 'x-small';
+  // $size['tiny'] = 'x-small';
   $size['small'] = 'smaller';
   $size['large'] = 'large';
-  #$size['huge'] = 'x-large';
+  // $size['huge'] = 'x-large';
   // end font size definitions
 
   if($action == 'validate')
@@ -755,9 +753,9 @@ function do_bbcode_code($action, $attributes, $content, $params, $node_object)
   if ($action == 'validate')
    {
     // [code]...[/code]
-    #if(!isset($attributes['default'])) return true;
+    // if(!isset($attributes['default'])) return true;
     // [code=lang]image[/code]
-    #if(in_array(strtolower($attributes['default']),explode(',',$settings['syntax_highlighter_languages']))) return true;
+    // if(in_array(strtolower($attributes['default']),explode(',',$settings['syntax_highlighter_languages']))) return true;
     return true;
    }
   else
@@ -769,9 +767,9 @@ function do_bbcode_code($action, $attributes, $content, $params, $node_object)
      {
       include_once('modules/geshi/geshi.php');
       $geshi = new GeSHi($content, $attributes['default']);
-      #$geshi->set_header_type(GESHI_HEADER_NONE);
-      #$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, 1);
-      #$geshi->set_line_style('background:#f5f5f5;', 'background:#f9f9f9;');
+      // $geshi->set_header_type(GESHI_HEADER_NONE);
+      // $geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, 1);
+      // $geshi->set_line_style('background:#f5f5f5;', 'background:#f9f9f9;');
       $geshi->enable_keyword_links(false);
       $geshi->set_overall_class(false);
       return $geshi->parse_code();
@@ -992,7 +990,7 @@ function html_format($string){
 	$bbcode->setCodeFlag ('quote', 'closetag.after.newline', BBCODE_NEWLINE_IGNORE);
 	$bbcode->setCodeFlag ('quote', 'opentag.before.newline', BBCODE_NEWLINE_DROP);
 	$bbcode->setCodeFlag ('quote', 'closetag.before.newline', BBCODE_NEWLINE_DROP);
-	#$bbcode->setCodeFlag ('quote', 'closetag', BBCODE_CLOSETAG_OPTIONAL);
+	// $bbcode->setCodeFlag ('quote', 'closetag', BBCODE_CLOSETAG_OPTIONAL);
 	
 	$bbcode->addCode ('rtl', 'simple_replace', null, array ('start_tag' => '<div dir="rtl">', 'end_tag' => '</div>'), 'rtl', array ('block','rtl'), array ('ltr'));
 	$bbcode->setCodeFlag ('rtl', 'paragraphs', true);
@@ -1017,9 +1015,9 @@ function html_format($string){
 		$bbcode->addCode ('url', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('link', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('msg', 'usecontent?', 'do_bbcode_msg', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ('link'));
-		#$bbcode->setOccurrenceType ('img', 'image');
-		#$bbcode->setMaxOccurrences ('image', 2);
-		#$bbcode->addCode ('code', 'simple_replace', null, array ('start_tag' => '<pre><code>', 'end_tag' => '</code></pre>'), 'code', array ('block','quote'), array ());
+		// $bbcode->setOccurrenceType ('img', 'image');
+		// $bbcode->setMaxOccurrences ('image', 2);
+		// $bbcode->addCode ('code', 'simple_replace', null, array ('start_tag' => '<pre><code>', 'end_tag' => '</code></pre>'), 'code', array ('block','quote'), array ());
 		
 		$bbcode->addParser ('list', 'bbcode_stripcontents');
 		$bbcode->addCode ('list', 'simple_replace', null, array ('start_tag' => '<ul>', 'end_tag' => '</ul>'), 'list', array ('block', 'listitem', 'quote', 'rtl', 'ltr'), array ());
@@ -1029,7 +1027,7 @@ function html_format($string){
 		$bbcode->setCodeFlag ('list', 'closetag.before.newline', BBCODE_NEWLINE_DROP);
 		$bbcode->addCode ('*', 'simple_replace', null, array ('start_tag' => '<li>', 'end_tag' => '</li>'), 'listitem', array ('list'), array ());
 		$bbcode->setCodeFlag ('*', 'closetag', BBCODE_CLOSETAG_OPTIONAL);
-		#$bbcode->setCodeFlag ('*', 'paragraphs', true);
+		// $bbcode->setCodeFlag ('*', 'paragraphs', true);
 	
 		if($settings['bbcode_code']==1) {
 			$bbcode->addCode ('code', 'usecontent', 'do_bbcode_code', array (), 'code', array ('block', 'quote', 'rtl', 'ltr'), array ());
@@ -1040,7 +1038,7 @@ function html_format($string){
 			$bbcode->addCode('monospace', 'simple_replace', null, array ('start_tag' => '<code class="monospace">', 'end_tag' => '</code>'), 'monospace', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 			$bbcode->addCode('pre', 'simple_replace', null, array ('start_tag' => '<pre>', 'end_tag' => '</pre>'), 'pre', array ('block', 'quote', 'rtl', 'ltr'), array ());
 			$bbcode->setCodeFlag('pre', 'paragraph_type', BBCODE_PARAGRAPH_BLOCK_ELEMENT);
-			#$bbcode->addCode('inlinepre', 'simple_replace', null, array ('start_tag' => '<pre class="inline">', 'end_tag' => '</pre>'), 'inlinepre', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
+			// $bbcode->addCode('inlinepre', 'simple_replace', null, array ('start_tag' => '<pre class="inline">', 'end_tag' => '</pre>'), 'inlinepre', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		}
 		if($settings['bbcode_img']==1) {
 			$bbcode->addCode ('img', 'usecontent', 'do_bbcode_img', array (), 'image', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
@@ -1092,13 +1090,13 @@ function signature_format($string) {
 		$bbcode->addCode ('url', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('link', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('color', 'callback_replace', 'do_bbcode_color', array ('usecontent_param' => 'default'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
-		#$bbcode->setOccurrenceType ('img', 'image');
-		#$bbcode->setMaxOccurrences ('image', 2);
+		// $bbcode->setOccurrenceType ('img', 'image');
+		// $bbcode->setMaxOccurrences ('image', 2);
 		if($settings['bbcode_img'] == 1) {
 			$bbcode->addCode ('img', 'usecontent', 'do_bbcode_img', array (), 'image', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		}
 	}
-	#$bbcode->setRootParagraphHandling(true);
+	// $bbcode->setRootParagraphHandling(true);
 	$string = $bbcode->parse($string);
 	return $string;
 }
@@ -1132,7 +1130,7 @@ function email_format($string) {
 		$bbcode->addCode ('list', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'list', array ('block', 'listitem', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('*', 'simple_replace', null, array ('start_tag' => '* ', 'end_tag' => ''), 'listitem', array ('list'), array ());
 		$bbcode->setCodeFlag ('*', 'closetag', BBCODE_CLOSETAG_OPTIONAL);
-		#$bbcode->addCode ('code', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'code', array ('block', 'inline'), array ());
+		// $bbcode->addCode ('code', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'code', array ('block', 'inline'), array ());
 		if($settings['bbcode_code']==1){
 			$bbcode->addCode('code', 'usecontent', 'do_bbcode_code_email', array (), 'code', array ('block', 'quote', 'rtl', 'ltr'), array ());
 			$bbcode->addCode ('pre', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'pre', array ('block', 'quote', 'rtl', 'ltr'), array ());
@@ -1230,8 +1228,6 @@ function user_online($user_online_period=10)
   list($is_online) = @mysqli_fetch_row(@mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['useronline_table']." WHERE ip= '".$ip."'"));
   if ($is_online > 0) @mysqli_query($connid, "UPDATE ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', user_id='".$user_id."' WHERE ip='".$ip."'");
   else @mysqli_query($connid, "INSERT INTO ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', ip='".$ip."', user_id='".$user_id."'");
-  #list($user_online) = @mysqli_fetch_row(@mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['useronline_table']));
-  #return $user_online;
  }
 
 /**
@@ -1401,20 +1397,20 @@ function emailNotification2ParentAuthor($id, $delayed = false) {
 	$resultNewPosting = @mysqli_query($connid, $queryNewPosting);
 	$data = mysqli_fetch_assoc($resultNewPosting);
 	mysqli_free_result($resultNewPosting);
-	# overwrite $data['name'] with $data['user_name'] if registered user:
+	// overwrite $data['name'] with $data['user_name'] if registered user:
 	if ($data['user_id'] > 0) {
 		if (!$data['user_name']) $data['name'] = $lang['unknown_user'];
 		else $data['name'] = $data['user_name'];
 	}
-	# if it's a reply (pid!=0) check if notification was desired by parent posting author:
+	// if it's a reply (pid!=0) check if notification was desired by parent posting author:
 	if ($data['pid'] != 0) {
 		$parentSubscriptions = mysqli_query($connid, "SELECT user_id, eid, unsubscribe_code, 'child' AS type FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($data['pid']) . " UNION SELECT user_id, eid, unsubscribe_code, 'opener' AS type FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($data['tid']));
 		while ($parent_data = mysqli_fetch_assoc($parentSubscriptions)) {
 			if ($parent_data['user_id'] > 0) {
-				# user_id is greater than 0 and therefore we handle a subscription of a registered user
+				// user_id is greater than 0 and therefore we handle a subscription of a registered user
 				$queryEmailData = "SELECT user_id, user_name, user_email FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($parent_data['user_id']);
 			} else {
-				# user_id is 0 and therefore we handle a subscription of an unregistered user
+				// user_id is 0 and therefore we handle a subscription of an unregistered user
 				$queryEmailData = "SELECT user_id, name AS user_name, email AS user_email FROM ".$db_settings['forum_table']." WHERE id = " . intval($parent_data['eid']) . " LIMIT 1";
 			}
 			$resultEmailData = @mysqli_query($connid, $queryEmailData);
@@ -1691,7 +1687,6 @@ function get_edit_authorization($id, $posting_user_id, $edit_key, $time, $locked
 
   $reply_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE pid = ".intval($id));
   list($replies) = mysqli_fetch_row($reply_result);
-  #$authorization['replies'] = $replies;
 
   if($settings['edit_min_time_period'] != 0 && (TIMESTAMP - $settings['edit_min_time_period']*60) < $time) $edit_min_time_period_expired = false;
   else $edit_min_time_period_expired = true;
@@ -1750,7 +1745,7 @@ function get_edit_authorization($id, $posting_user_id, $edit_key, $time, $locked
 function create_backup_file($mode=0)
  {
   global $settings, $db_settings, $connid;
-  #@set_time_limit(30);
+  // @set_time_limit(30);
   $mode=intval($mode);
   if($mode<0 || $mode > 10) $mode = 0;
 
@@ -1978,7 +1973,6 @@ function create_backup_file($mode=0)
       $data['email'] = mysqli_real_escape_string($connid, $data['email']);
       $data['location'] = mysqli_real_escape_string($connid, $data['location']);
       $data['ip'] = mysqli_real_escape_string($connid, $data['ip']);
-      #$data['text'] = iconv("UTF-8","ISO-8859-1",$data['text']);
       $data['text'] = mysqli_real_escape_string($connid, $data['text']);
       $data['text'] = str_replace("\r", "\\r", $data['text']);
       $data['text'] = str_replace("\n",  "\\n", $data['text']);
@@ -2017,7 +2011,7 @@ function restore_backup($backup_file)
   @mysqli_query($connid, "START TRANSACTION") or die(mysqli_error($connid));
   while (!feof($handle))
    {
-    #$buffer = fgets($handle, 20480);
+    // $buffer = fgets($handle, 20480);
     $buffer = fgets($handle);
     $buffer = trim($buffer);
     if(my_substr($buffer, -1, my_strlen($buffer, CHARSET), CHARSET)==';') $buffer = my_substr($buffer,0,-1,CHARSET);
@@ -2635,7 +2629,6 @@ function checkUpdate($currentVersion = '0.0') {
 		$lastVersion                  = $xml->xpath("//atom:entry[1]/atom:id");
 		$updateDateOfInstalledVersion = $xml->xpath("//atom:entry/atom:id[substring(text(), string-length(text()) - string-length('" . htmlspecialchars($currentVersion) . "') + 1) = '" . htmlspecialchars($currentVersion) . "']/../atom:updated");	
 		$updateDateOfActualVersion = strtotime($updateDateOfActualVersion[0]);
-		//$lastVersion = preg_replace ("/.+\/v/u", "", $lastVersion[0]);
 		$lastVersion = preg_replace("/.*?([^\/v?]+$)/u", "$1", $lastVersion[0]);
 
 		if (empty($updateDateOfInstalledVersion))
@@ -2652,7 +2645,6 @@ function checkUpdate($currentVersion = '0.0') {
 				'title'   => (string)$title[0],
 				'content' => (string)$content[0],
 				'version' => (string)$lastVersion,
-				//'uri'     => $baseURI . (string)$releaseURI[0]->href
 				'uri'     => (string)$releaseURI[0]->href
 			);
 			return $release;
@@ -2667,13 +2659,13 @@ function checkUpdate($currentVersion = '0.0') {
  * @param string $string
  * @reurn bool
  */
-function contains_special_characters($string)
- {
-  #if(!preg_match("/^[a-zA-Z0-9_\- ]+$/", $string)) return true; // only alphanumeric characters, "-", "_" and " " allowed
-  if(preg_match("/([[:cntrl:]]|\p{Cf})/u", $string)) return true; // control characters and soft hyphen
-  if(preg_match("/(\x{200b})/u", $string)) return true; // zero width space
-  return false;
- }
+function contains_special_characters($string) {
+	if(preg_match("/([[:cntrl:]]|\p{Cf})/u", $string)) 
+		return true; // control characters and soft hyphen
+	if(preg_match("/(\x{200b})/u", $string)) 
+		return true; // zero width space
+	return false;
+}
 
 /**
  * gets available timezones
@@ -2981,12 +2973,12 @@ function raise_error($error,$error_message='') {
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo $lang['charset']; ?>" />
 	<style type="text/css">
 	<!--
-	body              { color:#000; background:#fff; margin:0; padding:0; font-family: verdana, arial, sans-serif; font-size:100.1%; }
-	h1                { font-size:1.25em; }
-	p,ul              { font-size:0.82em; line-height:1.45em; }
-	#top              { margin:0; padding:0 20px 0 20px; height:4.4em; color:#000000; background:#d2ddea; border-bottom: 1px solid #bacbdf; line-height:4.4em;}
-	#top h1           { font-size:1.7em; margin:0; padding:0; color:#000080; }
-	#content          { padding:20px; }
+	body               { color:#000; background:#fff; margin:0; padding:0; font-family: verdana, arial, sans-serif; font-size:100.1%; }
+	h1                 { font-size:1.25em; }
+	p,ul               { font-size:0.82em; line-height:1.45em; }
+	//top              { margin:0; padding:0 20px 0 20px; height:4.4em; color:#000000; background:#d2ddea; border-bottom: 1px solid #bacbdf; line-height:4.4em;}
+	//top h1           { font-size:1.7em; margin:0; padding:0; color:#000080; }
+	//content          { padding:20px; }
 	-->
 	</style>
 	</head>

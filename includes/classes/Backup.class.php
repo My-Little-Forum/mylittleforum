@@ -32,7 +32,6 @@ class Backup
 
   function assign($data)
    {
-    #$this->dump .= utf8_encode($data);
     $this->dump .= $data;
     $this->queries++;
 
@@ -70,9 +69,9 @@ class Backup
        }
       if($handle = @fopen($this->file, 'a+'))
        {
-        #flock($fp, 2);
+        // flock($fp, 2);
         @fwrite($handle, $this->dump);
-        #flock($fp, 3);
+        // flock($fp, 3);
         @fclose($handle);
         $this->dump = '';
        }

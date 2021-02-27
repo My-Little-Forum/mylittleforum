@@ -219,7 +219,6 @@ $page_count = ceil($total_threads / $settings['threads_per_page']);
 $subnav_link = array('mode'=>'posting', 'title'=>'new_topic_link_title', 'name'=>'new_topic_link');
 
 if (isset($data_array)) $smarty->assign('data', $data_array);
-#if (isset($tree)) $smarty->assign("tree", $tree);
 if (isset($threads)) {
 	$smarty->assign("threads", $threads);
 	$smarty->assign('replies', $replies);

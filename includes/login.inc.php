@@ -170,16 +170,16 @@ switch ($action) {
 		exit;
 	break;
 	case "dps":
-		# the user has to accept (again) the data privacy statement
+		// the user has to accept (again) the data privacy statement
 		if ($settings['data_privacy_agreement'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-			# user is logged in and accepting of the data privacy statement is necessary
+			// user is logged in and accepting of the data privacy statement is necessary
 			$resultDPS = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
 			$feld = mysqli_fetch_assoc($resultDPS);
 			if ($feld['dps_accepted'] === NULL) {
-				# display the form for accepting the data privacy statement
+				// display the form for accepting the data privacy statement
 				$action = 'show_dps';
 			} else {
-				# data privacy statement was accepted before, redirect
+				// data privacy statement was accepted before, redirect
 				if ($settings['terms_of_use_agreement'] == 1 && $feld['tou_accepted'] === NULL) {
 					$redir = 'index.php?mode=login&action=tou';
 				} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
@@ -191,22 +191,22 @@ switch ($action) {
 				exit;
 			}
 		} else {
-			# redirect to the index view
+			// redirect to the index view
 			header("location: index.php");
 			exit;
 		}
 	break;
 	case "tou":
-		# the user has to accept (again) the terms of use
+		// the user has to accept (again) the terms of use
 		if ($settings['terms_of_use_agreement'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-			# user is logged in and accepting of the terms of use agreement is necessary
+			// user is logged in and accepting of the terms of use agreement is necessary
 			$resultTOU = mysqli_query($connid, "SELECT dps_accepted, tou_accepted FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
 			$feld = mysqli_fetch_assoc($resultTOU);
 			if ($feld['tou_accepted'] === NULL) {
-				# display the form for accepting the terms of use agreement
+				// display the form for accepting the terms of use agreement
 				$action = 'show_tou';
 			} else {
-				# terms of use agreement was accepted before, redirect
+				// terms of use agreement was accepted before, redirect
 				if ($settings['data_privacy_agreement'] == 1 && $feld['dps_accepted'] === NULL) {
 					$redir = 'index.php?mode=login&action=dps';
 				} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
@@ -218,7 +218,7 @@ switch ($action) {
 				exit;
 			}
 		} else {
-			# redirect to the index view
+			// redirect to the index view
 			header("location: index.php");
 			exit;
 		}
@@ -230,7 +230,7 @@ switch ($action) {
 			if ($feld['dps_accepted'] === NULL) {
 				$writeDPS = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET dps_accepted = NOW() WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
 			}
-			# data privacy statement got accepted, redirect
+			// data privacy statement got accepted, redirect
 			if ($settings['terms_of_use_agreement'] == 1 && $feld['tou_accepted'] === NULL) {
 				$redir = 'index.php?mode=login&action=tou';
 			} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
@@ -257,7 +257,7 @@ switch ($action) {
 			if ($feld['tou_accepted'] === NULL) {
 				$writeTOU = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET tou_accepted = NOW() WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or raise_error('database_error', mysqli_error($connid));
 			}
-			# terms of use got accepted, redirect
+			// terms of use got accepted, redirect
 			if ($settings['data_privacy_agreement'] == 1 && $feld['dps_accepted'] === NULL) {
 				$redir = 'index.php?mode=login&action=dps';
 			} else if (isset($_SESSION[$settings['session_prefix'].'last_visited_uri'])) {
