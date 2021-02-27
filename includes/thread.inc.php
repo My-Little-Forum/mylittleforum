@@ -191,7 +191,6 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 						// cache signature:
 						$xxx = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['userdata_cache_table'] . " WHERE cache_id=" . intval($data['user_id'])) or die(mysqli_error($connid));
 						list($row_count) = mysqli_fetch_row($xxx);
-						#echo 'row count: '.$row_count.' user_id: '.$data['user_id'].'<br />';
 						if ($row_count == 1) {
 							@mysqli_query($connid, "UPDATE " . $db_settings['userdata_cache_table'] . " SET cache_signature='" . mysqli_real_escape_string($connid, $data['signature']) . "' WHERE cache_id=" . intval($data['user_id']));
 						} else {

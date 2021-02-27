@@ -314,7 +314,7 @@ if ($action == 'unsubscribe' and !empty($_GET['unsubscribe'])) {
 	}
 }
 
-# generate the variable input field names
+// generate the variable input field names
 $fname_user = hash("sha256", 'user_name' . $_SESSION['csrf_token']);
 $fname_email = hash("sha256", 'user_email' . $_SESSION['csrf_token']);
 $fname_phone = hash("sha256", 'phone' . $_SESSION['csrf_token']);
@@ -1339,7 +1339,7 @@ switch ($action) {
 		$field = mysqli_fetch_array($edit_result);
 		$field['tags'] = getEntryTags($id);
 		mysqli_free_result($edit_result);
-		# check for notification
+		// check for notification
 		if ($field['user_id'] > 0) {
 			$subscription = @mysqli_query($connid, "SELECT eid FROM " . $db_settings['subscriptions_table'] . " WHERE eid = " . intval($id) . " AND user_id = " . intval($field['user_id'])) or raise_error('database_error', mysqli_error($connid));
 		} else {

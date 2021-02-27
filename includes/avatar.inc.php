@@ -30,7 +30,6 @@ if ($settings['avatars'] > 0 && isset($_SESSION[$settings['session_prefix'].'use
 
 		if(empty($errors)) {
 			if($_FILES['probe']['size'] > $settings['avatar_max_filesize']*1000 || $image_info[0] > $settings['avatar_max_width'] || $image_info[1] > $settings['avatar_max_height']) {
-				#$compression = 10;
 				$width  = $image_info[0];
 				$height = $image_info[1];
 
