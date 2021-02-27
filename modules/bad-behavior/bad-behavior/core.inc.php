@@ -39,17 +39,17 @@ function bb2_approved($settings, $package)
 	}
 }
 
-# If this is reverse-proxied or load balanced, obtain the actual client IP
+// If this is reverse-proxied or load balanced, obtain the actual client IP
 function bb2_reverse_proxy($settings, $headers_mixed)
 {
-	# Detect if option is on when it should be off
+	// Detect if option is on when it should be off
 	$header = uc_all($settings['reverse_proxy_header']);
 	if (!array_key_exists($header, $headers_mixed)) {
 		return false;
 	}
 	
 	$addrs = @array_reverse(preg_split("/[\s,]+/", $headers_mixed[$header]));
-	# Skip our known reverse proxies and private addresses
+	// Skip our known reverse proxies and private addresses
 	if (!empty($settings['reverse_proxy_addresses'])) {
 		foreach ($addrs as $addr) {
 			if (!match_cidr($addr, $settings['reverse_proxy_addresses']) && !is_rfc1918($addr)) {
@@ -63,11 +63,11 @@ function bb2_reverse_proxy($settings, $headers_mixed)
 			}
 		}
 	}
-	# If we got here, someone is playing a trick on us.
+	// If we got here, someone is playing a trick on us.
 	return false;
 }
 
-# FIXME: Bug #12. But this code doesn't currently work.
+// FIXME: Bug #12. But this code doesn't currently work.
 function bb2_unpack_php_post_array($key, $value)
 {
 	$unpacked = array();
@@ -100,7 +100,7 @@ function bb2_start($settings)
 	if (isset($_SERVER['REQUEST_METHOD']) && (!strcasecmp($_SERVER['REQUEST_METHOD'], "POST") || !strcasecmp($_SERVER['REQUEST_METHOD'], "PUT"))) {
 		foreach ($_POST as $h => $v) {
 			if (is_array($v)) {
-				# Workaround, see Bug #12
+				// Workaround, see Bug #12
 				$v = "Array";
 			}
 			$request_entity[$h] = $v;
@@ -108,7 +108,7 @@ function bb2_start($settings)
 	}
 
 	$request_uri = $_SERVER["REQUEST_URI"];
-	if (!$request_uri) $request_uri = $_SERVER['SCRIPT_NAME'];	# IIS
+	if (!$request_uri) $request_uri = $_SERVER['SCRIPT_NAME'];	// IIS
 
 	if ($settings['reverse_proxy'] && $ip = bb2_reverse_proxy($settings, $headers_mixed)) {
 		$headers['X-Bad-Behavior-Remote-Address'] = $_SERVER['REMOTE_ADDR'];
@@ -147,7 +147,7 @@ function bb2_screen($settings, $package)
 		// Check the http:BL
 		require_once(BB2_CORE . "/blackhole.inc.php");
 		if ($r = bb2_httpbl($settings, $package)) {
-			if ($r == 1) return false;	# whitelisted
+			if ($r == 1) return false;	// whitelisted
 			return $r;
 		}
 
@@ -163,28 +163,28 @@ function bb2_screen($settings, $package)
 		if (stripos($ua, "bingbot") !== FALSE || stripos($ua, "msnbot") !== FALSE || stripos($ua, "MS Search") !== FALSE) {
 			require_once(BB2_CORE . "/searchengine.inc.php");
 			if ($r = bb2_msnbot($package)) {
-				if ($r == 1) return false;	# whitelisted
+				if ($r == 1) return false;	// whitelisted
 				return $r;
 			}
 			return false;
 		} elseif (stripos($ua, "Googlebot") !== FALSE || stripos($ua, "Mediapartners-Google") !== FALSE || stripos($ua, "Google Web Preview") !== FALSE) {
 			require_once(BB2_CORE . "/searchengine.inc.php");
 			if ($r = bb2_google($package)) {
-				if ($r == 1) return false;	# whitelisted
+				if ($r == 1) return false;	// whitelisted
 				return $r;
 			}
 			return false;
 		} elseif (stripos($ua, "Yahoo! Slurp") !== FALSE || stripos($ua, "Yahoo! SearchMonkey") !== FALSE) {
 			require_once(BB2_CORE . "/searchengine.inc.php");
 			if ($r = bb2_yahoo($package)) {
-				if ($r == 1) return false;	# whitelisted
+				if ($r == 1) return false;	// whitelisted
 				return $r;
 			}
 			return false;
 		} elseif (stripos($ua, "Baidu") !== FALSE) {
 			require_once(BB2_CORE . "/searchengine.inc.php");
 			if ($r = bb2_baidu($package)) {
-				if ($r == 1) return false;	# whitelisted
+				if ($r == 1) return false;	// whitelisted
 				return $r;
 			}
 			return false;

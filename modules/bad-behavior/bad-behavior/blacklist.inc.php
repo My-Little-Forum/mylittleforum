@@ -120,7 +120,7 @@ function bb2_blacklist($package) {
 		"Windows 98",		// too old; assumed robot
 		"Windows NT 4",		// too old; assumed robot
 		"Windows NT;",		// too old; assumed robot
-		#"Windows NT 4.0;)",	// wikispam bot
+		//"Windows NT 4.0;)",	// wikispam bot
 		"Windows NT 5.0;)",	// wikispam bot
 		"Windows NT 5.1;)",	// wikispam bot
 		"Windows XP 5",		// spam harvester

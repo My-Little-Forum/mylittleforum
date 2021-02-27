@@ -40,7 +40,7 @@ function bb2_display_denial($settings, $package, $key, $previous_key = false)
 	header("HTTP/1.1 " . $response['response'] . " Bad Behavior");
 	header("Status: " . $response['response'] . " Bad Behavior");
 	$request_uri = $_SERVER["REQUEST_URI"];
-	if (!$request_uri) $request_uri = $_SERVER['SCRIPT_NAME'];	# IIS
+	if (!$request_uri) $request_uri = $_SERVER['SCRIPT_NAME'];	// IIS
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--< html xmlns="http://www.w3.org/1999/xhtml">-->

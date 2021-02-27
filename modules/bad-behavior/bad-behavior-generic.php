@@ -19,9 +19,6 @@ Please report any problems to bad . bots AT ioerror DOT us
 https://bad-behavior.ioerror.us/
 */
 
-###############################################################################
-###############################################################################
-
 define('BB2_CWD', dirname(__FILE__));
 
 // Settings you can adjust for Bad Behavior.

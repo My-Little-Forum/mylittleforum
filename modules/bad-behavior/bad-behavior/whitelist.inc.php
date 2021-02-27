@@ -2,7 +2,7 @@
 
 function bb2_run_whitelist($package)
 {
-	# FIXME: Transitional, until port maintainters implement bb2_read_whitelist
+	// FIXME: Transitional, until port maintainters implement bb2_read_whitelist
 	if (function_exists('bb2_read_whitelist')) {
 		$whitelists = bb2_read_whitelist();
 	} else {

@@ -6,9 +6,9 @@ require_once(BB2_CORE . "/roundtripdns.inc.php");
 
 function bb2_cloudflare($package)
 {
-#	Disabled due to https://bugs.php.net/bug.php?id=53092
-#	if (!bb2_roundtripdns($package['cloudflare'], "cloudflare.com")) {
-#		return '70e45496';
-#	}
+//	Disabled due to https://bugs.php.net/bug.php?id=53092
+//	if (!bb2_roundtripdns($package['cloudflare'], "cloudflare.com")) {
+//		return '70e45496';
+//	}
 	return false;
 }
