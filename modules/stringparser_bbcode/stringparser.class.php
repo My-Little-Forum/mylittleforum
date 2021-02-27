@@ -6,7 +6,9 @@
  * memory structure. It would e.g. be possible to create an HTML parser based
  * upon this class.
  * 
- * Version: 0.3.3 - Modified by Michael Loesler: Fix PHP7 issue for __construct
+ * Version: 0.3.3 - Modified by Michael Loesler
+ * 	- Fix PHP7 issue for __construct
+ * 	- Fix PHP7/8 issue for offset access syntax with curly braces
  *
  * @author Christian Seiler <spam@christian-seiler.de>
  * @copyright Christian Seiler 2004-2008
@@ -469,7 +471,7 @@ class StringParser {
 		// if yes, how should this be achieved? Another member of
 		// StringParser_Node?
 		$this->_setStatus (0);
-		$res = $this->_appendText ($this->_text{$topelem->occurredAt});
+		$res = $this->_appendText ($this->_text[$topelem->occurredAt]);
 		if (!$res) {
 			return false;
 		}
@@ -578,7 +580,7 @@ class StringParser {
 				return false;
 			}
 			if (!$res) {
-				$res = $this->_appendText ($this->_text{$this->_cpos});
+				$res = $this->_appendText ($this->_text[$this->_cpos]);
 				if (!$res) {
 					return false;
 				}
