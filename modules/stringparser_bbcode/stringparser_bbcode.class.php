@@ -2,7 +2,9 @@
 /**
  * BB code string parsing class
  *
- * Version: 0.3.3
+ * Version: 0.3.3 - Modified by Michael Loesler
+ * 	- Fix PHP7 issue for __construct
+ * 	- Fix PHP7/8 issue for offset access syntax with curly braces
  *
  * @author Christian Seiler <spam@christian-seiler.de>
  * @copyright Christian Seiler 2004-2008
@@ -1053,12 +1055,12 @@ class StringParser_BBCode extends StringParser {
 			$ol = strlen ($output);
 			switch ($node->getFlag ('newlinemode.begin', 'integer', BBCODE_NEWLINE_PARSE)) {
 			case BBCODE_NEWLINE_IGNORE:
-				if ($ol && $output{0} == "\n") {
+				if ($ol && $output[0] == "\n") {
 					$before = "\n";
 				}
 				// don't break!
 			case BBCODE_NEWLINE_DROP:
-				if ($ol && $output{0} == "\n") {
+				if ($ol && $output[0] == "\n") {
 					$output = substr ($output, 1);
 					$ol--;
 				}
@@ -1066,12 +1068,12 @@ class StringParser_BBCode extends StringParser {
 			}
 			switch ($node->getFlag ('newlinemode.end', 'integer', BBCODE_NEWLINE_PARSE)) {
 			case BBCODE_NEWLINE_IGNORE:
-				if ($ol && $output{$ol-1} == "\n") {
+				if ($ol && $output[$ol-1] == "\n") {
 					$after = "\n";
 				}
 				// don't break!
 			case BBCODE_NEWLINE_DROP:
-				if ($ol && $output{$ol-1} == "\n") {
+				if ($ol && $output[$ol-1] == "\n") {
 					$output = substr ($output, 0, -1);
 					$ol--;
 				}
@@ -1450,11 +1452,11 @@ class StringParser_BBCode_Node_Paragraph extends StringParser_Node {
 			$f_end = $this->_children[0]->getFlag ('newlinemode.end', 'integer', BBCODE_NEWLINE_PARSE);
 			$content = $this->_children[0]->content;
 			// MiLo: Check for content lenght
-			if ($f_begin != BBCODE_NEWLINE_PARSE && strlen ($content) > 0 && $content{0} == "\n") {
+			if ($f_begin != BBCODE_NEWLINE_PARSE && strlen ($content) > 0 && $content[0] == "\n") {
 				$content = substr ($content, 1);
 			}
 			// MiLo: Check for content lenght
-			if ($f_end != BBCODE_NEWLINE_PARSE && strlen ($content) > 0 && $content{strlen($content)-1} == "\n") {
+			if ($f_end != BBCODE_NEWLINE_PARSE && strlen ($content) > 0 && $content[strlen($content)-1] == "\n") {
 				$content = substr ($content, 0, -1);
 			}
 			if (!strlen ($content)) {
