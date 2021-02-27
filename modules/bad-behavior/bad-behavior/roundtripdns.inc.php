@@ -1,12 +1,12 @@
 <?php if (!defined('BB2_CORE')) die("I said no cheating!");
 
-# Round trip DNS verification
-
-# Returns TRUE if DNS matches; FALSE on mismatch
-# Returns $ip if an error occurs
-# TODO: Not IPv6 safe
-# FIXME: Returns false on DNS server failure; PHP provides no distinction
-# between no records and error condition
+// Round trip DNS verification
+//
+// Returns TRUE if DNS matches; FALSE on mismatch
+// Returns $ip if an error occurs
+// TODO: Not IPv6 safe
+// FIXME: Returns false on DNS server failure; PHP provides no distinction
+// between no records and error condition
 function bb2_roundtripdns($ip,$domain)
 {
 	if (@is_ipv6($ip)) return $ip;
