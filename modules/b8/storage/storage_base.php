@@ -1,60 +1,122 @@
 <?php
+
+/* Copyright (C) 2006-2019 Tobias Leupold <tobias.leupold@gmx.de>
+
+   This file is part of the b8 package
+
+   This program is free software; you can redistribute it and/or modify it
+   under the terms of the GNU Lesser General Public License as published by
+   the Free Software Foundation in version 2.1 of the License.
+
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+   or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+   License for more details.
+
+   You should have received a copy of the GNU Lesser General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+*/
+
 /**
- *  Copyright (C) 2010-2014 Tobias Leupold <tobias.leupold@web.de>
+ * Abstract base class for storage backends
  *
- *  This file is part of the b8 package
- *
- *  This program is free software; you can redistribute it and/or modify it
- *  under the terms of the GNU Lesser General Public License as published by
- *  the Free Software Foundation in version 2.1 of the License.
- *
- *  This program is distributed in the hope that it will be useful, but
- *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- *  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
- *  License for more details.
- *
- *  You should have received a copy of the GNU Lesser General Public License
- *  along with this program; if not, write to the Free Software Foundation,
- *  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
- *
- *
- * Functions used by all storage backends
- * Copyright (C) 2010-2014 Tobias Leupold <tobias.leupold@web.de>
- * 
  * @license LGPL 2.1
- * @access public
  * @package b8
- * @author Tobias Leupold
+ * @author Tobias Leupold <tobias.leupold@gmx.de>
  */
 
-abstract class b8_storage_base
+namespace b8\storage;
+
+abstract class storage_base
 {
-
-    public $connected = false;
-
     protected $degenerator = null;
 
-    const INTERNALS_TEXTS     = 'b8*texts';
-    const INTERNALS_DBVERSION = 'b8*dbversion';
+    /**
+     * Sets up the backend
+     *
+     * @access public
+     * @param array The configuration for the respective backend
+     */
+    abstract protected function setup_backend(array $config);
 
     /**
-     * Checks if a b8 database is used and if it's version is okay.
+     * Does the actual interaction with the database when fetching data
      *
      * @access protected
-     * @return void throws an exception if something's wrong with the database
+     * @param array $tokens List of token names to fetch
+     * @return mixed Returns an array of the returned data in the format array(token => data)
+               or an empty array if there was no data.
      */
-    protected function checkDatabase()
-    {
-        $internals = $this->getInternals();
-        if (isset($internals['dbversion'])) {
-            if ($internals['dbversion'] == b8::DBVERSION) {
-                return;
-            }
-        }
+    abstract protected function fetch_token_data(array $tokens);
 
-        throw new Exception(
-            'b8_storage_base: The connected database is not a b8 v' . b8::DBVERSION . ' database.'
-        );
+    /**
+     * Stores a new token to the database
+     *
+     * @access protected
+     * @param string $token The token's name
+     * @param array $count The ham and spam counters [ \b8\b8::KEY_COUNT_HAM => int,
+                                                       \b8\b8::KEY_COUNT_SPAM => int ]
+     * @return bool true on success or false on failure
+     */
+    abstract protected function add_token(string $token, array $count);
+
+    /**
+     * Updates an existing token
+     *
+     * @access protected
+     * @param string $token The token's name
+     * @param array $count The ham and spam counters [ \b8\b8::KEY_COUNT_HAM => int,
+                                                       \b8\b8::KEY_COUNT_SPAM => int ]
+     * @return bool true on success or false on failure
+     */
+    abstract protected function update_token(string $token, array $count);
+
+    /**
+     * Removes a token from the database
+     *
+     * @access protected
+     * @param string $token The token's name
+     * @return bool true on success or false on failure
+     */
+    abstract protected function delete_token(string $token);
+
+    /**
+     * Starts a transaction (if the underlying database supports/needs this)
+     *
+     * @access protected
+     * @return void
+     */
+    abstract protected function start_transaction();
+
+    /**
+     * Finishes a transaction (if the underlying database supports/needs this)
+     *
+     * @access protected
+     * @return void
+     */
+    abstract protected function finish_transaction();
+
+    /**
+     * Passes the degenerator to the instance and calls the backend setup
+     *
+     * @access public
+     * @param array The respective backen's configuration
+     * @param object The degenerator to use
+     * @return void
+     */
+    public function __construct(array $config, object $degenerator)
+    {
+        $this->degenerator = $degenerator;
+        $this->setup_backend($config);
+
+        $internals = $this->get_internals();
+        if (! isset($internals[\b8\b8::KEY_DB_VERSION])
+            || $internals[\b8\b8::KEY_DB_VERSION] !== \b8\b8::DBVERSION) {
+
+            throw new \Exception(storage_base::class . ': The connected database is not a b8 v'
+                                 . \b8\b8::DBVERSION . ' database.');
+        }
     }
 
     /**
@@ -63,52 +125,44 @@ abstract class b8_storage_base
      * @access public
      * @return array Returns an array of all internals.
      */
-    public function getInternals()
+    public function get_internals()
     {
-        $internals = $this->_getQuery(
-            array(
-                self::INTERNALS_TEXTS,
-                self::INTERNALS_DBVERSION
-            )
-        );
+        $internals = $this->fetch_token_data([ \b8\b8::INTERNALS_TEXTS,
+                                               \b8\b8::INTERNALS_DBVERSION ]);
 
-        // Just in case this is called by checkDatabase() and
-        // it's not yet clear if we actually have a b8 database
-
+        // Just in case this is called by check_database() and it's not yet clear if we actually
+        // have a b8 database
         $texts_ham = null;
         $texts_spam = null;
         $dbversion = null;
+        if(isset($internals[\b8\b8::INTERNALS_TEXTS][\b8\b8::KEY_COUNT_HAM])) {
+            $texts_ham = (int) $internals[\b8\b8::INTERNALS_TEXTS][\b8\b8::KEY_COUNT_HAM];
+        }
+        if(isset($internals[\b8\b8::INTERNALS_TEXTS][\b8\b8::KEY_COUNT_SPAM])) {
+            $texts_spam = (int) $internals[\b8\b8::INTERNALS_TEXTS][\b8\b8::KEY_COUNT_SPAM];
+        }
+        if(isset($internals[\b8\b8::INTERNALS_DBVERSION][\b8\b8::KEY_COUNT_HAM])) {
+            $dbversion = (int) $internals[\b8\b8::INTERNALS_DBVERSION][\b8\b8::KEY_COUNT_HAM];
+        }
 
-        if(isset($internals[self::INTERNALS_TEXTS]['count_ham'])) {
-            $texts_ham = (int) $internals[self::INTERNALS_TEXTS]['count_ham'];
-        }
-        if(isset($internals[self::INTERNALS_TEXTS]['count_spam'])) {
-            $texts_spam = (int) $internals[self::INTERNALS_TEXTS]['count_spam'];
-        }
-        if(isset($internals[self::INTERNALS_DBVERSION]['count_ham'])) {
-            $dbversion = (int) $internals[self::INTERNALS_DBVERSION]['count_ham'];
-        }
-
-        return array(
-            'texts_ham'  => $texts_ham,
-            'texts_spam' => $texts_spam,
-            'dbversion'  => $dbversion
-        );
+        return [ \b8\b8::KEY_TEXTS_HAM  => $texts_ham,
+                 \b8\b8::KEY_TEXTS_SPAM => $texts_spam,
+                 \b8\b8::KEY_DB_VERSION => $dbversion ];
     }
 
     /**
-     * Get all data about a list of tags from the database.
+     * Get all data about a list of tokens from the database.
      *
      * @access public
-     * @param array $tokens
-     * @return mixed Returns false on failure, otherwise returns array of returned data
-               in the format array('tokens' => array(token => count),
-               'degenerates' => array(token => array(degenerate => count))).
+     * @param array The tokens list
+     * @return mixed Returns False on failure, otherwise returns array of returned data
+               in the format [ 'tokens'      => [ token => count ],
+                               'degenerates' => [ token => [ degenerate => count ] ] ].
      */
-    public function get($tokens)
+    public function get(array $tokens)
     {
-        // First we see what we have in the database.
-        $token_data = $this->_getQuery($tokens);
+        // First we see what we have in the database
+        $token_data = $this->fetch_token_data($tokens);
 
         // Check if we have to degenerate some tokens
         $missing_tokens = array();
@@ -120,7 +174,7 @@ abstract class b8_storage_base
 
         if (count($missing_tokens) > 0) {
             // We have to degenerate some tokens
-            $degenerates_list = array();
+            $degenerates_list = [];
 
             // Generate a list of degenerated tokens for the missing tokens ...
             $degenerates = $this->degenerator->degenerate($missing_tokens);
@@ -130,56 +184,54 @@ abstract class b8_storage_base
                 $degenerates_list = array_merge($degenerates_list, $token_degenerates);
             }
 
-            $token_data = array_merge($token_data, $this->_getQuery($degenerates_list));
+            $token_data = array_merge($token_data, $this->fetch_token_data($degenerates_list));
         }
 
         // Here, we have all available data in $token_data.
 
-        $return_data_tokens = array();
-        $return_data_degenerates = array();
+        $return_data_tokens = [];
+        $return_data_degenerates = [];
 
         foreach ($tokens as $token) {
-            if (isset($token_data[$token]) === true) {
+            if (isset($token_data[$token])) {
                 // The token was found in the database
                 $return_data_tokens[$token] = $token_data[$token];
             } else {
-                // The token was not found, so we look if we
-                // can return data for degenerated tokens
+                // The token was not found, so we look if we can return data for degenerated tokens
                 foreach ($this->degenerator->degenerates[$token] as $degenerate) {
-                    if (isset($token_data[$degenerate]) === true) {
-                        // A degeneration of the token way found in the database
+                    if (isset($token_data[$degenerate])) {
+                        // A degenertaed version of the token way found in the database
                         $return_data_degenerates[$token][$degenerate] = $token_data[$degenerate];
                     }
                 }
             }
         }
 
-        // Now, all token data directly found in the database is in $return_data_tokens
-        // and all data for degenerated versions is in $return_data_degenerates, so
-        return array(
-            'tokens'      => $return_data_tokens,
-            'degenerates' => $return_data_degenerates
-        );
+        // Now, all token data directly found in the database is in $return_data_tokens  and all
+        // data for degenerated versions is in $return_data_degenerates, so
+        return [ 'tokens'      => $return_data_tokens,
+                 'degenerates' => $return_data_degenerates ];
     }
 
     /**
      * Stores or deletes a list of tokens from the given category.
      *
      * @access public
-     * @param array $tokens
-     * @param const $category Either b8::HAM or b8::SPAM
-     * @param const $action Either b8::LEARN or b8::UNLEARN
+     * @param array The tokens list
+     * @param string Either \b8\b8::HAM or \b8\b8::SPAM
+     * @param string Either \b8\b8::LEARN or \b8\b8::UNLEARN
      * @return void
      */
-    public function processText($tokens, $category, $action)
+    public function process_text(array $tokens, string $category, string $action)
     {
         // No matter what we do, we first have to check what data we have.
 
         // First get the internals, including the ham texts and spam texts counter
-        $internals = $this->getInternals();
-
+        $internals = $this->get_internals();
         // Then, fetch all data for all tokens we have
-        $token_data = $this->_getQuery(array_keys($tokens));
+        $token_data = $this->fetch_token_data(array_keys($tokens));
+
+        $this->start_transaction();
 
         // Process all tokens to learn/unlearn
         foreach ($tokens as $token => $count) {
@@ -187,20 +239,20 @@ abstract class b8_storage_base
                 // We already have this token, so update it's data
 
                 // Get the existing data
-                $count_ham  = $token_data[$token]['count_ham'];
-                $count_spam = $token_data[$token]['count_spam'];
+                $count_ham  = $token_data[$token][\b8\b8::KEY_COUNT_HAM];
+                $count_spam = $token_data[$token][\b8\b8::KEY_COUNT_SPAM];
 
                 // Increase or decrease the right counter
-                if ($action === b8::LEARN) {
-                    if ($category === b8::HAM) {
+                if ($action === \b8\b8::LEARN) {
+                    if ($category === \b8\b8::HAM) {
                         $count_ham += $count;
-                    } elseif ($category === b8::SPAM) {
+                    } elseif ($category === \b8\b8::SPAM) {
                         $count_spam += $count;
                     }
-                } elseif ($action == b8::UNLEARN) {
-                    if ($category === b8::HAM) {
+                } elseif ($action == \b8\b8::UNLEARN) {
+                    if ($category === \b8\b8::HAM) {
                         $count_ham -= $count;
-                    } elseif ($category === b8::SPAM) {
+                    } elseif ($category === \b8\b8::SPAM) {
                         $count_spam -= $count;
                     }
                 }
@@ -215,57 +267,50 @@ abstract class b8_storage_base
 
                 // Now let's see if we have to update or delete the token
                 if ($count_ham != 0 or $count_spam != 0) {
-                    $this->_update(
-                        $token, array('count_ham' => $count_ham, 'count_spam' => $count_spam)
-                    );
+                    $this->update_token($token, [ \b8\b8::KEY_COUNT_HAM => $count_ham,
+                                                  \b8\b8::KEY_COUNT_SPAM => $count_spam ]);
                 } else {
-                    $this->_del($token);
+                    $this->delete_token($token);
                 }
             } else {
-                // We don't have the token. If we unlearn a text, we can't delete it
-                // as we don't have it anyway, so just do something if we learn a text
-                if ($action === b8::LEARN) {
-                    if ($category === b8::HAM) {
-                        $data = array('count_ham' => $count, 'count_spam' => 0);
-                    } elseif ($category === b8::SPAM) {
-                        $data = array('count_ham' => 0, 'count_spam' => $count);
+                // We don't have the token. If we unlearn a text, we can't delete it as we don't
+                // have it anyway, so just do something if we learn a text
+                if ($action === \b8\b8::LEARN) {
+                    if ($category === \b8\b8::HAM) {
+                        $this->add_token($token, [ \b8\b8::KEY_COUNT_HAM => $count,
+                                                   \b8\b8::KEY_COUNT_SPAM => 0 ]);
+                    } elseif ($category === \b8\b8::SPAM) {
+                        $this->add_token($token, [ \b8\b8::KEY_COUNT_HAM => 0,
+                                                   \b8\b8::KEY_COUNT_SPAM => $count ]);
                     }
-                    $this->_put($token, $data);
                 }
             }
         }
 
         // Now, all token have been processed, so let's update the right text
-        if ($action === b8::LEARN) {
-            if ($category === b8::HAM) {
-                $internals['texts_ham']++;
-            } elseif ($category === b8::SPAM) {
-                $internals['texts_spam']++;
+        if ($action === \b8\b8::LEARN) {
+            if ($category === \b8\b8::HAM) {
+                $internals[\b8\b8::KEY_TEXTS_HAM]++;
+            } elseif ($category === \b8\b8::SPAM) {
+                $internals[\b8\b8::KEY_TEXTS_SPAM]++;
             }
-        } elseif ($action == b8::UNLEARN) {
-            if ($category === b8::HAM) {
-                if ($internals['texts_ham'] > 0) {
-                    $internals['texts_ham']--;
+        } elseif ($action === \b8\b8::UNLEARN) {
+            if ($category === \b8\b8::HAM) {
+                if ($internals[\b8\b8::KEY_TEXTS_HAM] > 0) {
+                    $internals[\b8\b8::KEY_TEXTS_HAM]--;
                 }
-            } elseif ($category === b8::SPAM) {
-                if ($internals['texts_spam'] > 0) {
-                    $internals['texts_spam']--;
+            } elseif ($category === \b8\b8::SPAM) {
+                if ($internals[\b8\b8::KEY_TEXTS_SPAM] > 0) {
+                    $internals[\b8\b8::KEY_TEXTS_SPAM]--;
                 }
             }
         }
 
-        $this->_update(
-            self::INTERNALS_TEXTS,
-            array(
-                'count_ham' => $internals['texts_ham'],
-                'count_spam' => $internals['texts_spam']
-            )
-        );
+        $this->update_token(\b8\b8::INTERNALS_TEXTS,
+                            [ \b8\b8::KEY_COUNT_HAM  => $internals[\b8\b8::KEY_TEXTS_HAM],
+                              \b8\b8::KEY_COUNT_SPAM => $internals[\b8\b8::KEY_TEXTS_SPAM] ]);
 
-        // We're done and can commit all changes to the database now
-        $this->_commit();
+        $this->finish_transaction();
     }
 
 }
-
-?>
