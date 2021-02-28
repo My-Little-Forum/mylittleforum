@@ -20,17 +20,17 @@ $B8_CONFIG_DEGENERATOR = array(
 );
 
 /** config for new b8 version **/
-//$B8_CONFIG_DATABASE_TYPE = array(
-//	'storage' => 'mysql'
-//);
-//
-//$B8_CONFIG_STORAGE = array(
-//	'resource' => new mysqli($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database']),
-//	'table'    => $db_settings['b8_wordlist_table']
-//);
+$B8_CONFIG_DATABASE_TYPE = array(
+	'storage' => 'mysql'
+);
+
+$B8_CONFIG_STORAGE = array(
+	'resource' => new mysqli($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database']),
+	'table'    => $db_settings['b8_wordlist_table']
+);
 
 /** config for old b8 version **/
-$B8_CONFIG_DATABASE_TYPE = array(
+$B8_CONFIG_DATABASE = array(
 	'storage' => 'mysqli'
 );
 
@@ -41,7 +41,5 @@ $B8_CONFIG_AUTHENTICATION = array(
 	'user'       => $db_settings['user'],
 	'pass'       => $db_settings['password']
 );
-
-
 /** config for b8 filter **/
 ?>
