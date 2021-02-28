@@ -1,49 +1,48 @@
 <?php
-
-/* Copyright (C) 2006-2019 Tobias Leupold <tobias.leupold@gmx.de>
-
-   This file is part of the b8 package
-
-   This program is free software; you can redistribute it and/or modify it
-   under the terms of the GNU Lesser General Public License as published by
-   the Free Software Foundation in version 2.1 of the License.
-
-   This program is distributed in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-   or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
-   License for more details.
-
-   You should have received a copy of the GNU Lesser General Public License
-   along with this program; if not, write to the Free Software Foundation,
-   Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
-*/
-
 /**
- * A helper class to derive simplified tokens
+ *  Copyright (C) 2006-2014 Tobias Leupold <tobias.leupold@web.de>
  *
+ *  This file is part of the b8 package
+ *
+ *  This program is free software; you can redistribute it and/or modify it
+ *  under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation in version 2.1 of the License.
+ *
+ *  This program is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ *  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ *  License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with this program; if not, write to the Free Software Foundation,
+ *  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
+ *
+ *
+ * Copyright (C) 2006-2014 Tobias Leupold <tobias.leupold@web.de>
+ * 
  * @license LGPL 2.1
+ * @access public
  * @package b8
- * @author Tobias Leupold <tobias.leupold@gmx.de>
+ * @author Tobias Leupold
  */
 
-namespace b8\degenerator;
-
-class standard
+class b8_degenerator_default
 {
-    public $config = [ 'multibyte' => true,
-                       'encoding'  => 'UTF-8' ];
 
-    public $degenerates = [];
+    public $config = array(
+        'multibyte' => false,
+        'encoding'  => 'UTF-8'
+    );
+
+    public $degenerates = array();
 
     /**
      * Constructs the degenerator.
      *
      * @access public
-     * @param array $config The configuration: [ 'multibyte' => bool,
-                                                 'encoding'  => string ]
      * @return void
      */
-    public function __construct(array $config)
+    function __construct($config)
     {
         // Validate config data
         foreach ($config as $name => $value) {
@@ -55,8 +54,9 @@ class standard
                     $this->config[$name] = (string) $value;
                     break;
                 default:
-                    throw new \Exception(standard::class . ": Unknown configuration key: "
-                                         . "\"$name\"");
+                    throw new Exception(
+                        "b8_degenerator_default: Unknown configuration key: \"$name\""
+                    );
             }
         }
     }
@@ -65,15 +65,15 @@ class standard
      * Generates a list of "degenerated" words for a list of words.
      *
      * @access public
-     * @param array $words The words to degenerate
+     * @param array $tokens
      * @return array An array containing an array of degenerated tokens for each token
      */
     public function degenerate(array $words)
     {
-        $degenerates = [];
+        $degenerates = array();
 
         foreach ($words as $word) {
-            $degenerates[$word] = $this->degenerate_word($word);
+            $degenerates[$word] = $this->_degenerateWord($word);
         }
 
         return $degenerates;
@@ -83,13 +83,12 @@ class standard
      * Remove duplicates from a list of degenerates of a word.
      *
      * @access private
-     * @param string $word The word
      * @param array $list The list to process
      * @return array The list without duplicates
      */
-    private function delete_duplicates(string $word, array $list)
+    protected function _deleteDuplicates($word, $list)
     {
-        $list_processed = [];
+        $list_processed = array();
 
         // Check each upper/lower version
         foreach ($list as $alt_word) {
@@ -105,10 +104,10 @@ class standard
      * Builds a list of "degenerated" versions of a word.
      *
      * @access private
-     * @param string $word The word
+     * @param string $word
      * @return array An array of degenerated words
      */
-    private function degenerate_word(string $word)
+    protected function _degenerateWord($word)
     {
         // Check for any stored words so the process doesn't have to repeat
         if (isset($this->degenerates[$word]) === true) {
@@ -125,18 +124,20 @@ class standard
             // The multibyte upper/lower versions
             $lower = mb_strtolower($word, $this->config['encoding']);
             $upper = mb_strtoupper($word, $this->config['encoding']);
-            $first = mb_substr($upper, 0, 1, $this->config['encoding'])
-                     . mb_substr($lower, 1, mb_strlen($word), $this->config['encoding']);
+            $first = mb_substr(
+                $upper, 0, 1, $this->config['encoding']) .
+                mb_substr($lower, 1, mb_strlen($word), $this->config['encoding']
+            );
         }
 
         // Add the versions
-        $upper_lower = [];
+        $upper_lower = array();
         array_push($upper_lower, $lower);
         array_push($upper_lower, $upper);
         array_push($upper_lower, $first);
 
         // Delete duplicate upper/lower versions
-        $degenerate = $this->delete_duplicates($word, $upper_lower);
+        $degenerate = $this->_deleteDuplicates($word, $upper_lower);
 
         // Append the original word
         array_push($degenerate, $word);
@@ -163,9 +164,9 @@ class standard
             }
         }
 
-        // Some degenerates are the same as the original word. These don't have to be fetched, so we
-        // create a new array with only new tokens
-        $degenerate = $this->delete_duplicates($word, $degenerate);
+        // Some degenerates are the same as the original word. These don't have
+        // to be fetched, so we create a new array with only new tokens
+        $degenerate = $this->_deleteDuplicates($word, $degenerate);
 
         // Store the list of degenerates for the token to prevent unnecessary re-processing
         $this->degenerates[$word] = $degenerate;
@@ -174,3 +175,5 @@ class standard
     }
 
 }
+
+?>

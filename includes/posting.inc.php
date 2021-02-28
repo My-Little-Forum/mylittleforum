@@ -972,9 +972,9 @@ switch ($action) {
 									$original_unedited_text = implode("\r\n", $original_unedited_posting);
 									
 									if ($b8_spam_or_ham_data['training_type'] == 1)  // original (unedited) entry was flaged as HAM
-										$B8_BAYES_FILTER->unlearn($original_unedited_text, b8\b8::HAM);
+										$B8_BAYES_FILTER->unlearn($original_unedited_text, b8::HAM);
 									elseif ($b8_spam_or_ham_data['training_type'] == 2) // original (unedited) entry was flaged as SPAM
-										$B8_BAYES_FILTER->unlearn($original_unedited_text, b8\b8::SPAM);
+										$B8_BAYES_FILTER->unlearn($original_unedited_text, b8::SPAM);
 								}
 							}
 													
@@ -987,11 +987,11 @@ switch ($action) {
 							if ($settings['b8_auto_training'] == 1) {
 								if ($b8_spam) {
 									$b8_spam_rating = 2;  // SPAM
-									$B8_BAYES_FILTER->learn($check_text, b8\b8::SPAM);
+									$B8_BAYES_FILTER->learn($check_text, b8::SPAM);
 								}
 								elseif ($b8_ham) {
 									$b8_spam_rating = 1;  // HAM
-									$B8_BAYES_FILTER->learn($check_text, b8\b8::HAM);
+									$B8_BAYES_FILTER->learn($check_text, b8::HAM);
 								}
 								else
 									$b8_spam_rating = 0;  // No Decision
@@ -1719,9 +1719,9 @@ switch ($action) {
 						try {
 							$check_text = implode("\r\n", $check_posting);
 							if ($data['training_type'] == 1)  // wrongly flaged as HAM, remove it
-								$B8_BAYES_FILTER->unlearn($check_text, b8\b8::HAM);
+								$B8_BAYES_FILTER->unlearn($check_text, b8::HAM);
 
-							$B8_BAYES_FILTER->learn($check_text, b8\b8::SPAM); // train for SPAM
+							$B8_BAYES_FILTER->learn($check_text, b8::SPAM); // train for SPAM
 							//$b8_spam_probability = $B8_BAYES_FILTER->classify($check_text);
 							//$b8_spam        = 1;  // SPAM
 							//$b8_spam_rating = 2;  // SPAM
@@ -1870,9 +1870,9 @@ switch ($action) {
 								$check_text = implode("\r\n", $check_posting);
 
 								if ($data['training_type'] == 2)  // wrongly flaged as SPAM, remove it
-									$B8_BAYES_FILTER->unlearn($check_text, b8\b8::SPAM);
+									$B8_BAYES_FILTER->unlearn($check_text, b8::SPAM);
 	
-								$B8_BAYES_FILTER->learn($check_text, b8\b8::HAM); // train for HAM
+								$B8_BAYES_FILTER->learn($check_text, b8::HAM); // train for HAM
 								//$b8_spam_probability = $B8_BAYES_FILTER->classify($check_text);
 								//$b8_spam        = 0;  // HAM
 								//$b8_spam_rating = 1;  // HAM
