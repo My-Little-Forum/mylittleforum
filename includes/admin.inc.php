@@ -718,6 +718,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$field = mysqli_fetch_array($user_result);
 		mysqli_free_result($user_result);
 
+		$smarty->configLoad($settings['language_file'], 'emails');
+		$lang = $smarty->getConfigVars();
 		$lang['admin_activate_user_email_text'] = str_replace("[name]", htmlspecialchars($field['user_name']), $lang['admin_activate_user_email_text']);
 		$lang['admin_activate_user_email_text'] = str_replace("[login_link]", $settings['forum_address']."index.php?mode=login", $lang['admin_activate_user_email_text']);
 		if (!my_mail(htmlspecialchars($field['user_email']), $lang['admin_activate_user_email_subj'], $lang['admin_activate_user_email_text'])) {
