@@ -671,6 +671,7 @@ error_email_too_long =            'L\'indirizzo e-mail è troppo grande'
 error_identic_email =             'La nuova e-mail coincide con la vecchia!'
 error_email_invalid =             'L\'indirizzo e-mail non è valido'
 pw_wrong =                        'La password è sbagliata'
+error_email_collision =           '<!-- TODO -->The new e-mail already exists'
 
 [register]
 register_exp =                    'Scegli un nome utente, una password e fornisci un indirizzo e-mail valido. Una chiave d\'attivazione ti sarà spedita all\'indirizzo indicato. L\'account deve essere attivato entro un giorno.'

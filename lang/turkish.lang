@@ -672,6 +672,7 @@ error_email_too_long =            'E-posta adresi çok uzun'
 error_identic_email =             'Yeni e-posta adresi eskisi ile aynı'
 error_email_invalid =             'E-posta adresi geçersiz'
 pw_wrong =                        'Şifre geçersiz'
+error_email_collision =           '<!-- TODO -->The new e-mail already exists'
 
 [register]
 register_exp =                    'Lütfen dilediğiniz kullanıcı adınızı, şifrenizi ve geçerli bir e-posta adresinizi giriniz. E-posta adresinize aktivasyon kodu gönderilecek. Hesabınızı bir gün içinde aktif etmelisiniz.'

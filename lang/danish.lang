@@ -684,6 +684,7 @@ error_email_too_long =      'E-mail adressen er for lang'
 error_identic_email =       'Den nye e-mail er den samme som den gamle'
 error_email_invalid =       'E-mail adressen er ugyldig'
 pw_wrong =                  'Kodeordet er forkert'
+error_email_collision =           '<!-- TODO -->The new e-mail already exists'
 
 [register]
 register_exp =              'Angiv venligst det ønskede brugernavn, et kodeord og en gyldig e-mail adresse. En aktiverings nøgle vil blive sendt til denne e-mail adresse. Kontoen skal aktiveres indenfor det næste døgn.'

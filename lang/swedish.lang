@@ -683,6 +683,7 @@ error_email_too_long =            'Nya E-postadressen är för lång!'
 error_identic_email =             'Nya E-postadressen är samma som den gamla!'
 error_email_invalid =             'Nya E-postadressen är ogiltig!'
 pw_wrong =                        'Felaktigt lösenord!'
+error_email_collision =           '<!-- TODO -->The new e-mail already exists'
 
 [register]
 register_exp =                    'Vänligen ange önskat användarnamn, ett lösenord och en giltig E-postadress. En aktiveringsnyckel kommer att skickas till E-postadressen. Kontot måste aktiveras inom ett dygn.'

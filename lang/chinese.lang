@@ -673,6 +673,7 @@ error_email_too_long =            'E-mail地址过长'
 error_identic_email =             '新E-mail与原地址相同'
 error_email_invalid =             'E-mail地址非法'
 pw_wrong =                        '密码错误'
+error_email_collision =           '<!-- TODO -->The new e-mail already exists'
 
 [register]
 register_exp =                    '请指定用户名, 密码以及合法E-mail地址. 帐户激活代码将发送至这个地址. 帐户需在一日内激活.'

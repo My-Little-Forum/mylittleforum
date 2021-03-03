@@ -670,6 +670,7 @@ error_email_too_long =            'E-postadressen er for lang'
 error_identic_email =             'Den nye e-posten er identisk med den gamle'
 error_email_invalid =             'E-postadressen er ugyldig'
 pw_wrong =                        'Passordet er feil'
+error_email_collision =           '<!-- TODO -->The new e-mail already exists'
 
 [register]
 register_exp =                    'Skriv inn ønsket brukernavn, et passord og en gyldig e-postadresse. En aktiveringsnøkkel vil bli sendt til denne e-postadressen. Kontoen må aktiveres innen én dag. Dersom du ikke får e-posten, sjekk eventuelle spamfiltre, eller kontakt forumadministratoren.'

@@ -681,6 +681,7 @@ error_email_too_long =            'The e-mail address is too long'
 error_identic_email =             'The new e-mail is the same as the old one'
 error_email_invalid =             'The e-mail address is invalid'
 pw_wrong =                        'The password is wrong'
+error_email_collision =           'The new e-mail already exists'
 
 [register]
 register_exp =                    'Please specify the user name desired, a password and a valid e-mail address. An activation key will be sent to this e-mail address. The account has to be activated within one day.'

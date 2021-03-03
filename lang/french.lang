@@ -674,6 +674,7 @@ error_email_too_long =            'L\'adresse email est trop longue'
 error_identic_email =             'La nouvelle adresse email est la même que l\'ancienne'
 error_email_invalid =             'L\'adresse email est incorrecte'
 pw_wrong =                        'Le mot de passe est incorrect'
+error_email_collision =           '<!-- TODO -->The new e-mail already exists'
 
 [register]
 register_exp =                    'Veuillez indiquer le nom d\'utilisateur souhaité, un mot de passe et une adresse mail valide. Une clef d\'activation sera envoyée à cette adresse. Le compte doit être activé dans les 24 heures.'
