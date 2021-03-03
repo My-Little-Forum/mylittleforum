@@ -804,16 +804,24 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				$new_email_confirm = trim($_POST['new_email_confirm']);
 				$pw_new_email = $_POST['pw_new_email'];
 				// Check data:
-				$email_result = @mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_email FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id']) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+				$email_result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_pw`, `user_email`, (SELECT COUNT(*) FROM `".$db_settings['userdata_table']."` WHERE `user_email` = '". mysqli_real_escape_string($connid, $new_email) ."') > 0 AS `email_collision` FROM `".$db_settings['userdata_table']."` WHERE `user_id` = ". intval($_SESSION[$settings['session_prefix'].'user_id']) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$data = mysqli_fetch_array($email_result);
 				mysqli_free_result($email_result);
-				if ($pw_new_email == '' || $new_email == '') $errors[] = 'error_form_uncompl';
+				if ($pw_new_email == '' || $new_email == '') 
+					$errors[] = 'error_form_uncompl';
 				if (empty($errors)) {
-					if ($new_email != $new_email_confirm) $errors[] = 'error_email_confirmation';
-					if (my_strlen($new_email, $lang['charset']) > $settings['email_maxlength']) $errors[] = 'error_email_too_long';
-					if ($new_email == $data['user_email']) $errors[] = 'error_identic_email';
-					if (!is_valid_email($new_email)) $errors[] = 'error_email_invalid';
-					if (!is_pw_correct($pw_new_email, $data['user_pw'])) $errors[] = 'pw_wrong';
+					if ($new_email != $new_email_confirm) 
+						$errors[] = 'error_email_confirmation';
+					if (my_strlen($new_email, $lang['charset']) > $settings['email_maxlength']) 
+						$errors[] = 'error_email_too_long';
+					if ($new_email == $data['user_email']) 
+						$errors[] = 'error_identic_email';
+					if (!is_valid_email($new_email)) 
+						$errors[] = 'error_email_invalid';
+					if (!is_pw_correct($pw_new_email, $data['user_pw'])) 
+						$errors[] = 'pw_wrong';
+					if ($data['email_collision'] != 0) 
+						$errors[] = 'error_email_collision';
 				}
 				if (empty($errors)) {
 					$smarty->configLoad($settings['language_file'], 'emails');

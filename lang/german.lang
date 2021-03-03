@@ -672,6 +672,7 @@ error_email_too_long =            'die E-Mail-Adresse ist zu lang'
 error_identic_email =             'die neue E-Mail-Adresse ist gleich wie die alte'
 error_email_invalid =             'die E-Mail-Adresse ist ungültig'
 pw_wrong =                        'das Passwort ist falsch'
+error_email_collision =           'die neue E-Mail-Adresse existiert bereits'
 
 [register]
 register_exp =                    'Bitte gewünschten Benutzername, Passwort und eine eine gültige E-Mail-Adresse angeben. Nach dem Registrieren wird ein Aktivierungslink an diese E-Mail-Adresse gesendet. Das Konto muss dann innerhalb eines Tages aktiviert werden.'

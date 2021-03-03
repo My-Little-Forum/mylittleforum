@@ -673,6 +673,7 @@ error_email_too_long =            'El correo es demasiado largo'
 error_identic_email =             'El nuevo correo es igual que el antiguo correo'
 error_email_invalid =             'La direccion de correo no es valida'
 pw_wrong =                        'La contrasena es incorrecta'
+error_email_collision =           '<!-- TODO -->The new e-mail already exists'
 
 [register]
 register_exp =                    'Por favor, especifique el nombre de usuario, una contrasena y una direccion valida de correo de correo electronico. Una clave de activacion sera enviada a esta direccion de correo electronico. La cuenta tiene que ser activada en plazo de un dia!!!.'

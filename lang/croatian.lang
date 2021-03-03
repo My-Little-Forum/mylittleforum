@@ -670,6 +670,7 @@ error_email_too_long =            'E-mail adresa je predugačka'
 error_identic_email =             'Nova e-mail adresa je identična staroj'
 error_email_invalid =             'E-mail adresa je neispravna'
 pw_wrong =                        'Lozinka je neispravna'
+error_email_collision =           '<!-- TODO -->The new e-mail already exists'
 
 [register]
 register_exp =                    'Unesite željeno korisničko ime, lozinku i ispravnu e-mail adresu. Aktivacijski ključ će vam biti poslan na unesenu e-mail adresu. Korisnički račun morate aktivirati unutar jednog dana.'
