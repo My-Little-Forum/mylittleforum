@@ -418,4 +418,7 @@ ALTER TABLE mlf2_entries_cache ENGINE=InnoDB;
 ALTER TABLE mlf2_userdata_cache ENGINE=InnoDB;
 ALTER TABLE mlf2_b8_rating ENGINE=InnoDB;
 ALTER TABLE mlf2_akismet_rating ENGINE=InnoDB;
+
+ALTER TABLE mlf2_userdata DROP INDEX `user_name`, ADD UNIQUE `user_name` (`user_name`);
+ALTER TABLE mlf2_userdata ADD UNIQUE `user_email` (`user_email`);
 */
