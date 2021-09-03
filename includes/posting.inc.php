@@ -516,9 +516,6 @@ switch ($action) {
 		}
 		break;
 	case 'posting_submitted':
-		if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token'])
-			die('No authorisation!');
-		
 		if ($settings['forum_readonly'] == 1) {
 			$subnav_link = array(
 				'mode' => 'index',
@@ -529,7 +526,7 @@ switch ($action) {
 			$smarty->assign('no_authorisation', 'no_auth_readonly');
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
 		} 
-		elseif ($settings['entries_by_users_only'] != 0 && empty($_SESSION[$settings['session_prefix'] . 'user_name'])) {
+		elseif ($settings['entries_by_users_only'] != 0 && empty($_SESSION[$settings['session_prefix'] . 'user_name']) || !isset($_POST['csrf_token']) || $_POST['csrf_token'] != $_SESSION['csrf_token']) {
 			if (isset($_POST['text'])) {
 				$smarty->assign('no_authorisation', 'no_auth_session_expired');
 				$smarty->assign('text', htmlspecialchars($_POST['text']));
