@@ -321,7 +321,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 		case 'edit_profile':
 			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 				$id = $_SESSION[$settings['session_prefix'].'user_id'];
-				$result = mysqli_query($connid, "SELECT user_id, user_name, user_real_name, gender, birthday, user_email, email_contact, user_hp, user_location, signature, profile, new_posting_notification, new_user_notification, auto_login_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+				$result = mysqli_query($connid, "SELECT user_id, user_name, user_real_name, gender, birthday, user_email, email_contact, user_hp, user_location, signature, profile, new_posting_notification, new_user_notification, browser_window_target, auto_login_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$row = mysqli_fetch_array($result);
 				mysqli_free_result($result);
 				if (trim($row['birthday']) == '' || $row['birthday'] == '0000-00-00') $user_birthday = '';
@@ -389,9 +389,13 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				$profile = htmlspecialchars($row['profile']);
 				$smarty->assign('profile', htmlspecialchars($row['profile']));
 				$smarty->assign('signature', htmlspecialchars($row['signature']));
+				if (intval($row['browser_window_target']) == 1)
+					$smarty->assign('browser_link_open', 1)
+				else
+					$smarty->assign('browser_link_open', 0);
 				if ($row['auto_login_code'] != '') 
 					$smarty->assign('auto_login', 1);
-				else 
+				else
 					$smarty->assign('auto_login', 0);
 
 				if($settings['avatars'] > 0) {
