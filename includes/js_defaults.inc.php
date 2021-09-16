@@ -115,6 +115,15 @@ settings["marked_image"] =                 "<?php echo $theme_config['marked_ima
 settings["unmarked_image"] =               "<?php echo $theme_config['unmarked_image']; ?>";
 <?php endif; ?>
 
+var user_settings = new Array();
+<?php if (isset ($usersettings['browser_window_target']) and $usersettings['browser_window_target'] == 1): ?>
+user_settings["open_links_in_new_window"] = "EXTERNAL";
+<?php elseif (isset ($usersettings['browser_window_target']) and $usersettings['browser_window_target'] == 2): ?>
+user_settings["open_links_in_new_window"] = "ALL";
+<?php else: ?>
+user_settings["open_links_in_new_window"] = "NON";
+<?php endif; ?>
+
 <?php if(isset($theme_config['preload'])): ?>
 var preload = new Array();
 <?php foreach($theme_config['preload'] as $key => $val): ?>
