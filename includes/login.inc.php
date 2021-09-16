@@ -46,7 +46,7 @@ if ($settings['temp_block_ip_after_repeated_failed_logins'] > 0) {
 switch ($action) {
 	case "do_login":
 		if (isset($request_username) && isset($request_userpw)) {
-			$result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, tou_accepted, dps_accepted FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '". mysqli_real_escape_string($connid, my_strtolower($request_username, $lang['charset'])) ."'") or raise_error('database_error', mysqli_error($connid));
+			$result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, browser_window_target, category_selection, auto_login_code, activate_code, language, time_zone, time_difference, theme, tou_accepted, dps_accepted FROM ".$db_settings['userdata_table']." WHERE lower(user_name) = '". mysqli_real_escape_string($connid, my_strtolower($request_username, $lang['charset'])) ."'") or raise_error('database_error', mysqli_error($connid));
 			if (mysqli_num_rows($result) == 1) {
 				$feld = mysqli_fetch_array($result);
 				if (is_pw_correct($request_userpw, $feld['user_pw'])) {
@@ -79,6 +79,7 @@ switch ($action) {
 					$usersettings['page'] = 1;
 					$usersettings['category'] = 0;
 					$usersettings['latest_postings'] = 1;
+					$usersettings['browser_window_target'] = $feld['browser_window_target'];
 					if (!is_null($feld['category_selection'])) {
 						$category_selection = explode(',',$feld['category_selection']);
 						$usersettings['category_selection'] = $category_selection;
