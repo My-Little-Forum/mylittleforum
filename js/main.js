@@ -953,7 +953,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				var links = entryBodies[i].getElementsByTagName("a");
 				for (var j=0; j<links.length; j++) {
 
-					if (user_settings["open_links_in_new_window"].toUpperCase() == "NON") {
+					if (user_settings["open_links_in_new_window"].toUpperCase() == "NONE") {
 						links[j].target = ""; // this is not the default case, because the global forum settings may set _blank
 					}
 					else if (user_settings["open_links_in_new_window"].toUpperCase() == "EXTERNAL" || user_settings["open_links_in_new_window"].toUpperCase() == "ALL") {
@@ -1494,7 +1494,7 @@ function DragAndDropTable(table,mode,queryKey) {
 	
 	// TODO remove this test-values!
 	var user_settings = new Array();
-	user_settings["open_links_in_new_window"] = "EXTERNAL";  // EXTERNAL, ALL, NON, DEFAULT
+	user_settings["open_links_in_new_window"] = "EXTERNAL";  // EXTERNAL, ALL, NONE, DEFAULT
 	
 	document.addEventListener("DOMContentLoaded", function(e) {
 		var mlf = new MyLittleJavaScript();
