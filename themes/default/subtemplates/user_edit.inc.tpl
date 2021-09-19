@@ -146,8 +146,9 @@
 <tr>
 <td class="c"><strong>{#edit_user_where_to_open_links#}</strong></td>
 <td class="d">
-<input id="same-browser-window" type="radio" name="browser_link_open" value="0"{if $browser_link_open=="0"} checked="checked"{/if} /><label for="same-browser-window">{#where_to_open_links_same#}</label><br />
-<input id="new-browser-window" type="radio" name="browser_link_open" value="1"{if $browser_link_open=="1"} checked="checked"{/if} /><label for="new-browser-window">{#where_to_open_links_new#}</label></td>
+<input id="same-browser-window-no" type="radio" name="browser_link_open" value="0"{if $browser_link_open=="0"} checked="checked"{/if} /><label for="same-browser-window-no">{#where_to_open_links_same#}</label><br />
+<input id="new-browser-window-ext" type="radio" name="browser_link_open" value="1"{if $browser_link_open=="1"} checked="checked"{/if} /><label for="new-browser-window-ext">{#where_to_open_links_external#}</label><br />
+<input id="new-browser-window-all" type="radio" name="browser_link_open" value="2"{if $browser_link_open=="2"} checked="checked"{/if} /><label for="new-browser-window-all">{#where_to_open_links_all#}</label></td>
 </td>
 </tr>
 <tr>
