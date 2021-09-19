@@ -393,6 +393,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 					$smarty->assign('browser_link_open', 1)
 				elseif (intval($row['browser_window_target']) == 2)
 					$smarty->assign('browser_link_open', 2)
+				elseif (intval($row['browser_window_target']) == 3)
+					$smarty->assign('browser_link_open', 3)
 				else
 					$smarty->assign('browser_link_open', 0);
 				if ($row['auto_login_code'] != '') 
@@ -509,7 +511,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				} else {
 					$auto_login = 0;
 				}
-				if (isset($_POST['browser_link_open']) and in_array(array(0, 1, 2), $_POST['browser_link_open']))
+				if (isset($_POST['browser_link_open']) and in_array(array(0, 1, 2, 3), $_POST['browser_link_open']))
 					$browser_target = $_POST['browser_link_open'];
 				else
 					$browser_target = 0;

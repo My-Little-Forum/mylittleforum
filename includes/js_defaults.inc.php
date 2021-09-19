@@ -117,11 +117,13 @@ settings["unmarked_image"] =               "<?php echo $theme_config['unmarked_i
 
 var user_settings = new Array();
 <?php if (isset ($usersettings['browser_window_target']) and $usersettings['browser_window_target'] == 1): ?>
-user_settings["open_links_in_new_window"] = "EXTERNAL";
+user_settings["open_links_in_new_window"] = "NONE";
 <?php elseif (isset ($usersettings['browser_window_target']) and $usersettings['browser_window_target'] == 2): ?>
+user_settings["open_links_in_new_window"] = "EXTERNAL";
+<?php elseif (isset ($usersettings['browser_window_target']) and $usersettings['browser_window_target'] == 3): ?>
 user_settings["open_links_in_new_window"] = "ALL";
 <?php else: ?>
-user_settings["open_links_in_new_window"] = "NON";
+user_settings["open_links_in_new_window"] = "DEFAULT";
 <?php endif; ?>
 
 <?php if(isset($theme_config['preload'])): ?>
