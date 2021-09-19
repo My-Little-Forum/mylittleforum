@@ -178,7 +178,7 @@ function handleInactiveUsers() {
 	global $settings, $db_settings, $lang, $connid;
 
 	// delete inactive users
-	$result = mysqli_query($connid, "SELECT `user_id`, `user_name` FROM `".$db_settings['userdata_table']."` WHERE `user_type` = 0 AND `inactivity_notification` = TRUE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR - INTERVAL ". intval($settings['delete_inactive_users']) ." DAY)) < 0");
+	$result = mysqli_query($connid, "SELECT `user_id`, `user_name` FROM `".$db_settings['userdata_table']."` WHERE `user_lock` = 0 AND `user_type` = 0 AND `inactivity_notification` = TRUE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR - INTERVAL ". intval($settings['delete_inactive_users']) ." DAY)) < 0");
 	if (!$result)
 		return; // daily action no need to raise an error message
 
@@ -190,7 +190,7 @@ function handleInactiveUsers() {
 	}
 	
 	// notify inactive users
-	$result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `".$db_settings['userdata_table']."` WHERE `user_type` = 0 AND `inactivity_notification` = FALSE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR)) < 0");
+	$result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `".$db_settings['userdata_table']."` WHERE `user_lock` = 0 AND `user_type` = 0 AND `inactivity_notification` = FALSE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR)) < 0");
 	if (!$result)
 		return; // daily action no need to raise an error message
 	
@@ -207,7 +207,7 @@ function handleInactiveUsers() {
 		$emailsubject = str_replace("[name]", $name, $lang['email_notify_inactive_user_subject']);
 
 		if (my_mail($email, $emailsubject, $emailbody))
-			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET `last_login` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `last_logout` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `inactivity_notification` = TRUE WHERE `user_id` = " . intval($user_id) . " AND `user_type` = 0 AND `inactivity_notification` = FALSE");
+			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET `last_login` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `last_logout` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `inactivity_notification` = TRUE WHERE `user_id` = " . intval($user_id) . " AND `user_lock` = 0 AND `user_type` = 0 AND `inactivity_notification` = FALSE");
 	}
 	mysqli_free_result($result);
 }
