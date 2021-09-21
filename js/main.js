@@ -217,6 +217,17 @@ document.getMousePosition = function(e) {
 };
 
 /**
+ * Checks, if string A contains string B
+ * @param str
+ * @return includes
+ */
+if (typeof String.prototype.includes != "function") {
+	String.prototype.includes = function(str) {
+		return this.indexOf(str) !== -1;
+	};
+}
+
+/**
  * Returns true, if the string contains a line break
  * @return lineBreak
  */
@@ -926,7 +937,38 @@ function DragAndDropTable(table,mode,queryKey) {
 				replylinkLink.href = uri;
 			}
 		};
-	}	
+	}
+	
+	/**
+	 * Entry object, to handle link targtes of en entry depending on user preferences
+	 * @param el
+	 */
+	function Entry(el) {
+		if (!el) 
+			return;
+ 
+		this.setLinkTarget = function(trg) {
+			var entryBodies = el.getElementsByClassName("body");
+			for (var i=0; i<entryBodies.length; i++) {
+				var links = entryBodies[i].getElementsByTagName("a");
+				for (var j=0; j<links.length; j++) {
+
+					if (trg.toUpperCase() == "NONE") {
+						links[j].target = ""; // this is not the default case, because the global forum settings may set _blank
+					}
+					else if (trg.toUpperCase() == "EXTERNAL" || trg.toUpperCase() == "ALL") {
+						// skip internal links
+						if (trg.toUpperCase() == "EXTERNAL" && links[j].href.includes(window.document.location.origin))
+							continue;
+						links[j].target = "_blank";
+					}
+					else {
+						// default case
+					}
+				}
+			}
+		};
+	}
 	
 	/**
 	 * Main object of the forum
@@ -1401,6 +1443,26 @@ function DragAndDropTable(table,mode,queryKey) {
 		};
 		
 		/**
+		 * Add target to links in entries dependng on user preferences
+		 */
+		var addUserDefinedLinkTargetInEntries = function() {
+			var cEl = document.getElementById("content");
+			if (!cEl)
+				return;
+			
+			if (typeof settings == "object" && typeof settings["open_links_in_new_window"] == "string") {
+				var trg = settings["open_links_in_new_window"];
+				var pEls = cEl.getElementsByClassName("posting");
+				pEls = pEls.length > 0 ? pEls : cEl.getElementsByClassName("thread-posting");
+				pEls = (typeof pEls == "object" || typeof pEls == "function") && typeof pEls.length == "number"?pEls:[pEls];
+				for (var i=0; i<pEls.length; i++) {
+					var entry = new Entry(pEls[i]);
+					entry.setLinkTarget(trg); 
+				}
+			}
+		};
+		
+		/**
 		 * Init. MyLittelJavaScript
 		 * @param ajaxPreviewStructure
 		 */
@@ -1415,6 +1477,8 @@ function DragAndDropTable(table,mode,queryKey) {
 			setPreviewBoxToProfil( document.getElementById("user-last-posting") );
 			setPreviewBoxToReplyPage( document.getElementById("reply-to") );
 			setPreviewBoxToMainPage( document.getElementsByClassName("tail") );
+
+			addUserDefinedLinkTargetInEntries();
 			
 			initPostingFolding( document.getElementsByClassName("thread-posting") );
 			initPopUpLinks();
@@ -1428,7 +1492,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		};
 	
 	}
-	
+
 	document.addEventListener("DOMContentLoaded", function(e) {
 		var mlf = new MyLittleJavaScript();
 		var ajaxPreviewStructure = typeof settings != "undefined" && typeof settings["ajaxPreviewStructure"] == "string"?settings["ajaxPreviewStructure"]:false;
