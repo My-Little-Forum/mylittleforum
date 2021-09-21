@@ -947,18 +947,18 @@ function DragAndDropTable(table,mode,queryKey) {
 		if (!el) 
 			return;
  
-		this.setLinkTarget = function() {
+		this.setLinkTarget = function(trg) {
 			var entryBodies = el.getElementsByClassName("body");
 			for (var i=0; i<entryBodies.length; i++) {
 				var links = entryBodies[i].getElementsByTagName("a");
 				for (var j=0; j<links.length; j++) {
 
-					if (user_settings["open_links_in_new_window"].toUpperCase() == "NONE") {
+					if (trg.toUpperCase() == "NONE") {
 						links[j].target = ""; // this is not the default case, because the global forum settings may set _blank
 					}
-					else if (user_settings["open_links_in_new_window"].toUpperCase() == "EXTERNAL" || user_settings["open_links_in_new_window"].toUpperCase() == "ALL") {
+					else if (trg.toUpperCase() == "EXTERNAL" || trg.toUpperCase() == "ALL") {
 						// skip internal links
-						if (user_settings["open_links_in_new_window"].toUpperCase() == "EXTERNAL" && links[j].href.includes(window.document.location.origin))
+						if (trg.toUpperCase() == "EXTERNAL" && links[j].href.includes(window.document.location.origin))
 							continue;
 						links[j].target = "_blank";
 					}
@@ -1450,13 +1450,14 @@ function DragAndDropTable(table,mode,queryKey) {
 			if (!cEl)
 				return;
 			
-			if (typeof user_settings == "object" && typeof user_settings["open_links_in_new_window"] == "string") {
+			if (typeof settings == "object" && typeof settings["open_links_in_new_window"] == "string") {
+				var trg = settings["open_links_in_new_window"];
 				var pEls = cEl.getElementsByClassName("posting");
 				pEls = pEls.length > 0 ? pEls : cEl.getElementsByClassName("thread-posting");
 				pEls = (typeof pEls == "object" || typeof pEls == "function") && typeof pEls.length == "number"?pEls:[pEls];
 				for (var i=0; i<pEls.length; i++) {
 					var entry = new Entry(pEls[i]);
-					entry.setLinkTarget(); 
+					entry.setLinkTarget(trg); 
 				}
 			}
 		};
@@ -1491,11 +1492,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		};
 	
 	}
-	
-	// TODO remove this test-values!
-	var user_settings = new Array();
-	user_settings["open_links_in_new_window"] = "EXTERNAL";  // EXTERNAL, ALL, NONE, DEFAULT
-	
+
 	document.addEventListener("DOMContentLoaded", function(e) {
 		var mlf = new MyLittleJavaScript();
 		var ajaxPreviewStructure = typeof settings != "undefined" && typeof settings["ajaxPreviewStructure"] == "string"?settings["ajaxPreviewStructure"]:false;
