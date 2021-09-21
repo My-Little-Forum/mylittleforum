@@ -1450,8 +1450,8 @@ function DragAndDropTable(table,mode,queryKey) {
 			if (!cEl)
 				return;
 			
-			if (typeof settings == "object" && typeof settings["open_links_in_new_window"] == "string") {
-				var trg = settings["open_links_in_new_window"];
+			if (typeof user_settings == "object" && typeof user_settings["open_links_in_new_window"] == "string") {
+				var trg = user_settings["open_links_in_new_window"];
 				var pEls = cEl.getElementsByClassName("posting");
 				pEls = pEls.length > 0 ? pEls : cEl.getElementsByClassName("thread-posting");
 				pEls = (typeof pEls == "object" || typeof pEls == "function") && typeof pEls.length == "number"?pEls:[pEls];
