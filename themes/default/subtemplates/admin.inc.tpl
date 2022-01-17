@@ -22,6 +22,10 @@
 <td class="c"><strong>{#forum_email#}</strong><br /><span class="small">{#forum_email_desc#}</span></td>
 <td class="d"><input type="text" name="forum_email" value="{$edSet.forum_email|escape}" size="40" /></td>
 </tr>
+<tr>
+<td class="c"><strong>{#forum_target_name#}</strong><br /><span class="small">{#forum_target_name_desc#}</span></td>
+<td class="d"><input type="text" name="link_open_target" value="{$edSet.link_open_target|escape}" size="20" /></td>
+</tr>
 
 {if $languages}
 <tr>
