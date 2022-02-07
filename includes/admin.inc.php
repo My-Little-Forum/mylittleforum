@@ -854,6 +854,12 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if (empty($_POST['user_edit_if_no_replies'])) $_POST['user_edit_if_no_replies'] = 0;
 		if (empty($_POST['time_zone'])) $_POST['time_zone'] = '';
 		if (empty($_POST['read_state_expiration_method'])) $_POST['read_state_expiration_method'] = 0;
+		if ((!empty($_POST['link_open_target']) && (!in_array($_POST['link_open_target'], ['_self', '_parent', '_top']) || !preg_match("/^[a-z]{1}[a-z0-9\-\_]{1, 254}$/iu", $_POST['link_open_target']))) || empty($_POST['link_open_target'])) {
+			// allowed values: _self, _parent, _top or a freely chosen name
+			// (containing letters, ciphers, underscores and dashes; beginning with a latin letter)
+			// everything else should lead to an empty string
+			$_POST['link_open_target'] = '';
+		}
 
 		foreach ($settings as $key => $val) {
 			if (isset($_POST[$key])) mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". mysqli_real_escape_string($connid, $_POST[$key]) ."' WHERE name = '". mysqli_real_escape_string($connid, $key) ."' LIMIT 1");
