@@ -668,6 +668,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 					else unset($_SESSION[$settings['session_prefix'].'usersettings']['time_difference']);
 					if (!empty($user_theme)) $_SESSION[$settings['session_prefix'].'usersettings']['theme'] = $user_theme;
 					else unset($_SESSION[$settings['session_prefix'].'usersettings']['theme']);
+					if (!empty($browser_target)) $_SESSION[$settings['session_prefix'].'usersettings']['browser_window_target'] = $browser_target;
+					else unset($_SESSION[$settings['session_prefix'].'usersettings']['browser_window_target']);
 					header('Location: index.php?mode=user&action=edit_profile&msg=profile_saved');
 					exit;
 				}
