@@ -101,6 +101,9 @@ settings["ajax_preview_image"] =           "<?php echo $theme_config['ajax_previ
 settings["ajax_preview_throbber_image"] =  "<?php echo $theme_config['ajax_preview_throbber_image']; ?>";
 settings["ajax_preview_onmouseover"] =     <?php echo ($settings['ajax_preview'] > 1 ? 'true':'false'); ?>;
 <?php endif; ?>
+<?php if (!empty($settings['link_open_target']) && (in_array($settings['link_open_target'], ['_self', '_parent', '_top']) || preg_match("/^[a-z]{1}[a-z0-9\-\_]{1,254}$/iu", $settings['link_open_target']))): ?>
+settings["forum_based_link_target"] =      "<?php echo $settings['link_open_target']; ?>";
+<?php endif; ?>
 <?php if (isset($user_type) && $user_type>0 && $settings['upload_images'] > 0 || isset($user_type) && $settings['upload_images'] > 1 || $settings['upload_images'] > 2): ?>
 settings["upload_popup_width"] =           <?php echo $theme_config['upload_popup_width']; ?>;
 settings["upload_popup_height"] =          <?php echo $theme_config['upload_popup_height']; ?>;
