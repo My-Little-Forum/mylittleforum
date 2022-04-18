@@ -390,11 +390,11 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				$smarty->assign('profile', htmlspecialchars($row['profile']));
 				$smarty->assign('signature', htmlspecialchars($row['signature']));
 				if (intval($row['browser_window_target']) == 1)
-					$smarty->assign('browser_link_open', 1)
+					$smarty->assign('browser_link_open', 1);
 				elseif (intval($row['browser_window_target']) == 2)
-					$smarty->assign('browser_link_open', 2)
+					$smarty->assign('browser_link_open', 2);
 				elseif (intval($row['browser_window_target']) == 3)
-					$smarty->assign('browser_link_open', 3)
+					$smarty->assign('browser_link_open', 3);
 				else
 					$smarty->assign('browser_link_open', 0);
 				if ($row['auto_login_code'] != '') 
