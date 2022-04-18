@@ -511,7 +511,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				} else {
 					$auto_login = 0;
 				}
-				if (isset($_POST['browser_link_open']) and in_array(array(0, 1, 2, 3), $_POST['browser_link_open']))
+				if (isset($_POST['browser_link_open']) and in_array($_POST['browser_link_open'], array(0, 1, 2, 3)))
 					$browser_target = $_POST['browser_link_open'];
 				else
 					$browser_target = 0;
