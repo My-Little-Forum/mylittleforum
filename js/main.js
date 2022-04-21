@@ -940,14 +940,14 @@ function DragAndDropTable(table,mode,queryKey) {
 	}
 	
 	/**
-	 * Entry object, to handle link targtes of en entry depending on user preferences
+	 * Entry object, to handle link targets of an entry depending on user preferences/forum settings
 	 * @param el
 	 */
 	function Entry(el) {
 		if (!el) 
 			return;
  
-		this.setLinkTarget = function(trg) {
+		this.setLinkTarget = function(trg, defaultTarget) {
 			var entryBodies = el.getElementsByClassName("body");
 			for (var i=0; i<entryBodies.length; i++) {
 				var links = entryBodies[i].getElementsByTagName("a");
@@ -963,7 +963,7 @@ function DragAndDropTable(table,mode,queryKey) {
 						links[j].target = "_blank";
 					}
 					else {
-						// default case
+						links[j].target = defaultTarget; // default case - forum settings
 					}
 				}
 			}
@@ -1443,21 +1443,28 @@ function DragAndDropTable(table,mode,queryKey) {
 		};
 		
 		/**
-		 * Add target to links in entries dependng on user preferences
+		 * Add target to links in entries depending on user preferences
 		 */
 		var addUserDefinedLinkTargetInEntries = function() {
 			var cEl = document.getElementById("content");
 			if (!cEl)
 				return;
 			
-			if (typeof user_settings == "object" && typeof user_settings["open_links_in_new_window"] == "string") {
-				var trg = user_settings["open_links_in_new_window"];
+			var trg    = 'DEFAULT';
+			var dflTrg = '';
+			
+			if (typeof user_settings == "object" && typeof user_settings["open_links_in_new_window"] == "string")
+				trg = user_settings["open_links_in_new_window"];
+			if (typeof settings == "object" && typeof settings["forum_based_link_target"] == "string")
+				dflTrg = settings["forum_based_link_target"];
+			
+			if (trg != 'DEFAULT' || dflTrg != '') {
 				var pEls = cEl.getElementsByClassName("posting");
 				pEls = pEls.length > 0 ? pEls : cEl.getElementsByClassName("thread-posting");
 				pEls = (typeof pEls == "object" || typeof pEls == "function") && typeof pEls.length == "number"?pEls:[pEls];
 				for (var i=0; i<pEls.length; i++) {
 					var entry = new Entry(pEls[i]);
-					entry.setLinkTarget(trg); 
+					entry.setLinkTarget(trg, dflTrg); 
 				}
 			}
 		};

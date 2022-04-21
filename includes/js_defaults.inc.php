@@ -114,6 +114,12 @@ settings["mark_process_image"] =           "<?php echo $theme_config['mark_proce
 settings["marked_image"] =                 "<?php echo $theme_config['marked_image']; ?>";
 settings["unmarked_image"] =               "<?php echo $theme_config['unmarked_image']; ?>";
 <?php endif; ?>
+<?php if (!empty($settings['link_open_target']) && (in_array($settings['link_open_target'], ['_self', '_parent', '_top']) || preg_match("/^[a-z]{1}[a-z0-9\-\_]{1,254}$/iu", $settings['link_open_target']))): ?>
+settings["forum_based_link_target"] =      "<?php echo $settings['link_open_target']; ?>";
+<?php else: ?>
+settings["forum_based_link_target"] =      "";
+<?php endif; ?>
+
 <?php if (isset ($_SESSION[$settings['session_prefix'].'usersettings']['browser_window_target'])): ?>
 var user_settings = new Array();
 	<?php if ($_SESSION[$settings['session_prefix'].'usersettings']['browser_window_target'] == 1): ?>
@@ -126,9 +132,8 @@ user_settings["open_links_in_new_window"] = "ALL";
 user_settings["open_links_in_new_window"] = "DEFAULT";
 	<?php endif; ?>
 <?php else: ?>
-	<?php if (!empty($settings['link_open_target']) && (in_array($settings['link_open_target'], ['_self', '_parent', '_top']) || preg_match("/^[a-z]{1}[a-z0-9\-\_]{1,254}$/iu", $settings['link_open_target']))): ?>
-settings["forum_based_link_target"] =      "<?php echo $settings['link_open_target']; ?>";
-	<?php endif; ?>
+var user_settings = new Array();
+user_settings["open_links_in_new_window"] = "DEFAULT";
 <?php endif; ?>
 
 <?php if(isset($theme_config['preload'])): ?>
