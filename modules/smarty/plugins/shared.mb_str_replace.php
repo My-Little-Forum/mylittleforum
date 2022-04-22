@@ -46,7 +46,8 @@ if (!function_exists('smarty_mb_str_replace')) {
         } else {
             $parts = mb_split(preg_quote($search), $subject) ?: array();
             $count = count($parts) - 1;
-            $subject = implode($replace, $parts);
+			if (!empty($replace)) // ML because: PHP 8.1 PHP Deprecated: implode(): Passing null to parameter #1 ($string) of type string is deprecated
+				$subject = implode($replace, $parts);
         }
         return $subject;
     }
