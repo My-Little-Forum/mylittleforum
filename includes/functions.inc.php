@@ -1358,26 +1358,29 @@ function child_ids_recursive($id, $child_array)
 /**
  * checks if birthday is formed like DD.MM.YYYY and age is betwenn 0 and 150 years
  */
-function is_valid_birthday($birthday)
- {
-  if(strlen($birthday) != 10 || my_substr($birthday,4,1,CHARSET)!='-' || my_substr($birthday,7,1, CHARSET)!='-') $date_invalid=true;
-  if(empty($date_invalid))
-   {
-    $year = intval(my_substr($birthday, 0, 4, CHARSET));
-    $month = intval(my_substr($birthday, 5, 2, CHARSET));
-    $day = intval(my_substr($birthday, 8, 2, CHARSET));
-    if(!checkdate($month,$day,$year)) $date_invalid=true;
+function is_valid_birthday($birthday) {
+	$date_invalid = (strlen($birthday) != 10 || my_substr($birthday,4,1,CHARSET)!='-' || my_substr($birthday,7,1, CHARSET)!='-');
+	if (!$date_invalid) {
+		$year  = intval(my_substr($birthday, 0, 4, CHARSET));
+		$month = intval(my_substr($birthday, 5, 2, CHARSET));
+		$day   = intval(my_substr($birthday, 8, 2, CHARSET));
+		$date_invalid = !checkdate($month,$day,$year);
    }
-  if(empty($date_invalid))
-   {
-    if($month >= 1 && $month <= 9) $monthstr = '0'.$month; else $monthstr = $month;
-    if($day >= 1 && $day <= 9) $daystr = '0'.$day; else $daystr = $day;
-    $years = intval(strrev(my_substr(strrev(intval(strftime("%Y%m%d"))-intval($year.$monthstr.$daystr)),4, NULL, CHARSET)));
-    if($years<0 || $years>150) $date_invalid=true;
-   }
-  if(empty($date_invalid)) return true;
-  else return false;
- }
+	if (!$date_invalid) {
+		if ($month >= 1 && $month <= 9) 
+			$monthstr = '0'.$month; 
+		else 
+			$monthstr = $month;
+		if ($day >= 1 && $day <= 9) 
+			$daystr = '0'.$day; 
+		else 
+			$daystr = $day;
+		//$years = intval(strrev(my_substr(strrev(intval(strftime("%Y%m%d")) - intval($year.$monthstr.$daystr)),4, NULL, CHARSET)));
+		$years = intval(strrev(my_substr(strrev(intval(date("Ymd")) - intval($year.$monthstr.$daystr)),4, NULL, CHARSET)));
+		$date_invalid = ($years < 0 || $years > 150);
+	}
+	return !$date_invalid;
+}
 
 /**
  * sends an e-mail notification to the parent posting author if a reply was
@@ -1656,22 +1659,23 @@ function tag_cloud($days, $scale_min, $scale_max) {
 /**
  * converts a unix timestamp into a formated date string
  *
- * @param string $format : like parameter for strfTIMESTAMP
+ * @param string $format : like parameter for DateTime::format() - https://www.php.net/manual/de/datetime.format.php
  * @param int $timestamp : UNIX timestamp
  * @return string
  */
-function format_time($format, $timestamp=0)
- {
-  if($timestamp==0) $timestamp=TIMESTAMP;
-  if(defined('LOCALE_CHARSET'))
-   {
-    return iconv(LOCALE_CHARSET,CHARSET,strftime($format,$timestamp));
-   }
-  else
-   {
-    return strftime($format,$timestamp);
-   }
- }
+function format_time($format, $timestamp = 0) {
+	if ($timestamp == 0) 
+		$timestamp = TIMESTAMP;
+	
+	if (defined('LOCALE_CHARSET')) {
+		//return iconv(LOCALE_CHARSET,CHARSET, strftime($format,$timestamp));
+		return iconv(LOCALE_CHARSET,CHARSET, date($format,$timestamp));
+	}
+	else {
+		//return strftime($format, $timestamp);
+		return date($format, $timestamp);
+	}
+}
 
 /**
  * checks permission to edit a posting

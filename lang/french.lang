@@ -3,8 +3,8 @@
 #------------------------------------------------------------------------------------#
 # Translated by Michel Gosse < mgosse3 at gmail dot com > 2009-03-27                 #
 # Updated by Marc Duval < duvalm at gmail dot com > 2011-05-22                       #
-# Updated by Jean-Michel Hubert < jean-michel dot hubert at eni dot com > 2014-02-12
-# Updated by Hugues Martin < macadoum at lavache dot com > 2018-12-03
+# Updated by Jean-Michel Hubert < jean-michel dot hubert at eni dot com > 2014-02-12 #
+# Updated by Hugues Martin < macadoum at lavache dot com > 2018-12-03                #
 ######################################################################################
 
 [default]
@@ -16,8 +16,8 @@ locale =                          fr
 locale_charset =                  utf-8
 word_delimiters =                 ' '
 dir =                             ltr
-time_format =                     %d/%m/%Y, %H:%M
-time_format_full =                %A %d %B %Y, %H:%M
+time_format =                     d/m/Y, H:i
+time_format_full =                l d F Y, H:i
 forum_time =                      'Temps actuel sur le forum : [time]'
 forum_time_with_time_zone =       'Temps actuel sur le forum : [time] ([time_zone])'
 unknown_user =                    'inconnu'
