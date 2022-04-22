@@ -40,7 +40,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.9.0');
+define('GESHI_VERSION', '1.0.9.1');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -4695,7 +4695,11 @@ class GeSHi {
             // TODO: a|bb|c => [ac]|bb
             static $callback_2;
             if (!isset($callback_2)) {
-                $callback_2 = create_function('$matches', 'return "[" . str_replace("|", "", $matches[1]) . "]";');
+                // ML create_function has been removed --> replaced by anonymous function
+                //$callback_2 = create_function('$matches', 'return "[" . str_replace("|", "", $matches[1]) . "]";');
+				$callback_2 = function($matches) {
+					return (count($matches) > 1) ? "[" . str_replace("|", "", $matches[1]) . "]" : "[]";
+				};
             }
             $list = preg_replace_callback('#\(\?\:((?:.\|)+.)\)#', $callback_2, $list);
         }
