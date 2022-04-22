@@ -204,7 +204,7 @@
 	
 	// tags:
 	if (isset($entrydata['tags']) && $entrydata['tags']) {
-		$tags_array = false;
+		$tags_array = array();
 		$i          = 0;
 		foreach ($entrydata['tags'] as $tag) {
 			if (my_strpos($tag, ' ', 0, $lang['charset']))
@@ -217,9 +217,9 @@
 			$keywords[]                = htmlspecialchars($tag);
 			$i++;
 		}
-		if (isset($tags_array))
+		if (isset($tags_array) && !empty($tags_array))
 			$smarty->assign('tags', $tags_array);
-		if (isset($keywords))
+		if (isset($keywords) && !empty($keywords))
 			$smarty->assign('keywords', implode(', ', $keywords));
 	}
 	$category = $category;
