@@ -465,27 +465,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 	}
 
-	if (isset($_GET['download_backup_file'])) {
-		$file = 'backup/'.$_GET['download_backup_file'];
-		if (check_filename($_GET['download_backup_file']) && file_exists($file)) {
-			$len = filesize($file);
-			$fh = @fopen($file, "r");
-			if (!$fh) return false;
-			$data = fread($fh, $len);
-			fclose($fh);
-			header("Content-Type: text/plain; charset=".$lang['charset']);
-			header("Content-Disposition: attachment; filename=".$_GET['download_backup_file']);
-			header("Accept-Ranges: bytes");
-			header("Content-Length: ".$len);
-			echo $data;
-			exit;
-		} else {
-			$errors[] = 'error_file_doesnt_exist';
-			$smarty->assign('errors', $errors);
-			$action = 'backup';
-		}
-	}
-
 	if (isset($_POST['delete_selected_backup_files']) && empty($_POST['delete_backup_files'])) $action = 'backup';
 
 	if (isset($_REQUEST['delete_backup_files'])) {
