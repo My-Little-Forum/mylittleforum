@@ -467,24 +467,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	if (isset($_POST['delete_selected_backup_files']) && empty($_POST['delete_backup_files'])) $action = 'backup';
 
-	if (isset($_REQUEST['delete_backup_files'])) {
-		if (empty($_REQUEST['delete_backup_files_confirm'])) {
-			$action = 'delete_backup_files_confirm';
-		} else {
-			foreach ($_REQUEST['delete_backup_files'] as $backup_file) {
-				if (!@unlink('backup/'.$backup_file)) $error = true;
-			}
-			if (isset($error)) {
-				$errors[] = 'error_delete_backup_file';
-				$smarty->assign('errors', $errors);
-				$action = 'backup';
-			} else {
-				header('Location: index.php?mode=admin&action=backup');
-				exit;
-			}
-		}
-	}
-
 	if (isset($_GET['restore'])) {
 		$file = 'backup/'.$_GET['restore'];
 		if (check_filename($_GET['restore']) && file_exists($file)) {
