@@ -46,8 +46,8 @@
     tex2jax: {
         inlineMath: [ ["$","$"], ["\\(","\\)"] ],
         displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
-		ignoreClass: "tex2jax_ignore",
-		processClass: "tex2jax_process",
+        ignoreClass: "tex2jax_ignore",
+        processClass: "tex2jax_process",
         processEscapes: true
     },
 
