@@ -465,8 +465,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 	}
 
-	if (isset($_POST['delete_selected_backup_files']) && empty($_POST['delete_backup_files'])) $action = 'backup';
-
 	if (isset($_GET['run_update'])) {
 		$file = 'update/'.$_GET['run_update'];
 		if(check_filename($_GET['run_update']) && file_exists($file)) {
