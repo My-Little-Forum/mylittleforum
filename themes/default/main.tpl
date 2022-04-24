@@ -1,8 +1,9 @@
-{config_load file=$language_file section="general"}{if $subnav_location && $subnav_location_var}{assign var="subnav_location" value=$smarty.config.$subnav_location|replace:"[var]":$subnav_location_var}{elseif $subnav_location}{assign var='subnav_location' value=$smarty.config.$subnav_location}{/if}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{#language#}" dir="{#dir#}">
+{config_load file=$language_file section="general"}{if $subnav_location && $subnav_location_var}{assign var="subnav_location" value=$smarty.config.$subnav_location|replace:"[var]":$subnav_location_var}{elseif $subnav_location}{assign var='subnav_location' value=$smarty.config.$subnav_location}{/if}<!DOCTYPE html>
+<html lang="{#language#}" dir="{#dir#}">
 <head>
-<meta http-equiv="content-type" content="text/html; charset={#charset#}" />
+<meta charset="{#charset#}" />
 <title>{if $page_title}{$page_title} - {elseif $subnav_location}{$subnav_location} - {/if}{$settings.forum_name|escape:"html"}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="{$settings.forum_description|escape:"html"}" />
 {if $keywords}<meta name="keywords" content="{$keywords}" />{/if}
 {if $mode=='posting'}
