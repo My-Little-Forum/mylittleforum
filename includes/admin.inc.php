@@ -508,17 +508,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 	}
 
-	if (isset($_GET['create_backup'])) {
-		$mode = intval($_GET['create_backup']);
-		if (!create_backup_file($mode)) $errors[] = 'error_create_backup_file';
-		if (empty($errors)) {
-			header('Location: index.php?mode=admin&action=backup&msg=backup_file_created');
-			exit;
-		}
-		else $smarty->assign('errors', $errors);
-		$action = 'backup';
-	}
-
 	if (isset($_GET['run_update'])) {
 		$file = 'update/'.$_GET['run_update'];
 		if(check_filename($_GET['run_update']) && file_exists($file)) {
