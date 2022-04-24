@@ -467,47 +467,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	if (isset($_POST['delete_selected_backup_files']) && empty($_POST['delete_backup_files'])) $action = 'backup';
 
-	if (isset($_GET['restore'])) {
-		$file = 'backup/'.$_GET['restore'];
-		if (check_filename($_GET['restore']) && file_exists($file)) {
-			$backup_file = $_GET['restore'];
-			if (ini_get('safe_mode')) $smarty->assign('safe_mode_warning', true);
-			$action = 'restore';
-		} else {
-			$errors[] = 'error_file_doesnt_exist';
-			$smarty->assign('errors', $errors);
-			$action = 'backup';
-		}
-	}
-
-	if (isset($_REQUEST['restore_submit'])) {
-		if ($_POST['backup_file'] == '' || !file_exists('backup/'.$_POST['backup_file']) || !check_filename($_POST['backup_file'])) $errors[] = 'error_file_doesnt_exist';
-		if (empty($errors)) {
-			if (empty($_POST['restore_password']) || $_POST['restore_password'] == '') $errors[] = 'error_password_wrong';
-			if (empty($errors)) {
-				$result = mysqli_query($connid, "SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id=". intval($_SESSION[$settings['session_prefix'].'user_id']) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-				if (mysqli_num_rows($result) != 1) raise_error('database_error', mysqli_error($connid));
-				$data = mysqli_fetch_array($result);
-				if (!is_pw_correct($_POST['restore_password'], $data['user_pw'])) $errors[] = 'error_password_wrong';
-				if (empty($errors)) {
-					if (!restore_backup('backup/'.$_POST['backup_file'])) {
-						$errors[] = 'error_restore_mysql';
-						$smarty->assign('mysql_error',$error_message);
-					}
-					if(empty($errors)) {
-						header('Location: index.php?mode=admin&action=backup&msg=restore_backup_ok');
-						exit;
-					}
-				}
-			}
-		}
-		if (isset($errors)) {
-			$backup_file = $_POST['backup_file'];
-			$smarty->assign('errors', $errors);
-			$action = 'restore';
-		}
-	}
-
 	if (isset($_GET['run_update'])) {
 		$file = 'update/'.$_GET['run_update'];
 		if(check_filename($_GET['run_update']) && file_exists($file)) {
