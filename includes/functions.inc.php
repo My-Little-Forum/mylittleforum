@@ -1741,47 +1741,6 @@ function get_edit_authorization($id, $posting_user_id, $edit_key, $time, $locked
  }
 
 /**
- * restores a backup file
- *
- * @param string $backup_file
- */
-function restore_backup($backup_file)
- {
-  global $connid, $error_message;
-  @set_time_limit(30);
-  $time_start = TIMESTAMP;
-  $handle = fopen ($backup_file, "r");
-  @mysqli_query($connid, "START TRANSACTION") or die(mysqli_error($connid));
-  while (!feof($handle))
-   {
-    // $buffer = fgets($handle, 20480);
-    $buffer = fgets($handle);
-    $buffer = trim($buffer);
-    if(my_substr($buffer, -1, my_strlen($buffer, CHARSET), CHARSET)==';') $buffer = my_substr($buffer,0,-1,CHARSET);
-
-    if($buffer != '' && my_substr($buffer,0,1,CHARSET)!='#')
-     {
-      if(!@mysqli_query($connid, $buffer))
-       {
-        $error_message = mysqli_error($connid);
-        break;
-       }
-     }
-    $time_now = TIMESTAMP;
-    if(($time_now-25)>=$time_start)
-     {
-      $time_start = $time_now;
-      @set_time_limit(30);
-     }
-   }
-  @mysqli_query($connid, "COMMIT");
-  fclose ($handle);
-
-  if(empty($error_message)) return true;
-  else return false;
- }
-
-/**
  * checks file names
  *
  * @param string $filename
