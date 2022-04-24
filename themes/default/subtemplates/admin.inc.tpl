@@ -859,85 +859,6 @@
 <input type="password" size="20" name="confirm_pw" /> <input type="submit" name="uninstall_forum_confirmed" value="{#uninstall_forum_submit#}" /></p>
 </div>
 </form>
-{elseif $action=='backup'}
-{if $errors}{include file="$theme/subtemplates/errors.inc.tpl"}{/if}
-{if $message}<p class="ok">{$smarty.config.$message}</p>{/if}
-{if $backup_files}
-<form id="selectform" action="index.php" method="post" accept-charset="{#charset#}">
-<div>
-<input type="hidden" name="mode" value="admin" />
-<input type="hidden" name="delete_backup_files_confirm" value="" />
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
-<tr>
-<th>&#160;</th>
-<th>{#backup_file#}</th>
-<th>{#backup_date#}</th>
-<th>{#backup_size#}</th>
-<th>&#160;</th>
-</tr>
-{foreach from=$backup_files item=file}
-{cycle values="a,b" assign=c}
-<tr class="{$c}">
-<td style="width:10px;"><input type="checkbox" name="delete_backup_files[]" value="{$file.file}" /></td>
-<td>{$file.file}</td>
-<td>{$file.date|date_format:#time_format#}</td>
-<td>{$file.size}</td>
-<td><a href="index.php?mode=admin&amp;download_backup_file={$file.file}"><img src="{$THEMES_DIR}/{$theme}/images/disk.png" title="{#download_backup_file#}" alt="{#download_backup_file#}" width="16" height="16" /></a> &#160; <a href="index.php?mode=admin&amp;restore={$file.file}"><img src="{$THEMES_DIR}/{$theme}/images/restore.png" title="{#restore#}" alt="{#restore#}" width="16" height="16" /></a> &#160; <a href="index.php?mode=admin&amp;delete_backup_files[]={$file.file}" onclick="return delete_backup_confirm(this, '{$smarty.config.delete_backup_file_confirm|escape:"url"}')"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete_backup_file#}" alt="{#delete_backup_file#}" width="16" height="16" /></a></td>
-</tr>
-{/foreach}
-</table>
-<div id="selectioncontrols"><img id="arrow-selected" src="{$THEMES_DIR}/{$theme}/images/arrow_selected.png" alt="" width="24" height="14" /> <input type="submit" name="delete_selected_backup_files" value="{#delete_selected#}" /></div>
-</div>
-</form>
-{else}
-<p class="caution">{#caution#}</p>
-<p>{#backup_note#}</p>
-<!--<p><em>No backup files available.</em></p>-->
-{/if}
-<ul class="adminmenu">
-<li><a href="index.php?mode=admin&amp;create_backup=0"><img src="{$THEMES_DIR}/{$theme}/images/backup.png" alt="" width="16" height="16" /><span>{#create_backup_complete#}</span></a></li>
-<li><span class="small">{#only_create_backup_of#} <a href="index.php?mode=admin&amp;create_backup=1"><span>{#backup_entries#}</span></a>, <a href="index.php?mode=admin&amp;create_backup=2"><span>{#backup_userdata#}</span></a>, <a href="index.php?mode=admin&amp;create_backup=3"><span>{#backup_settings#}</span></a>, <a href="index.php?mode=admin&amp;create_backup=4"><span>{#backup_categories#}</span></a>, <a href="index.php?mode=admin&amp;create_backup=5"><span>{#backup_pages#}</span></a>, <a href="index.php?mode=admin&amp;create_backup=6"><span>{#backup_smilies#}</span></a>, <a href="index.php?mode=admin&amp;create_backup=7"><span>{#backup_banlists#}</span></a>, <a href="index.php?mode=admin&amp;create_backup=8"><span>{#backup_bookmarks#}</span></a>, <a href="index.php?mode=admin&amp;create_backup=9"><span>{#backup_read_status#}</span></a>, <a href="index.php?mode=admin&amp;create_backup=10"><span>{#backup_temp_infos#}</span></a></span></li>
-</ul>
-{elseif $action=='delete_backup_files_confirm'}
-<p class="caution">{#caution#}</p>
-<p>{if $file_number==1}{#delete_backup_file_confirm#}{else}{#delete_backup_files_confirm#}{/if}</p>
-<ul>
-{section name=nr loop=$delete_backup_files}
-<li>{$delete_backup_files[nr]}</li>
-{/section}
-</ul>
-<form action="index.php" method="post" accept-charset="{#charset#}">
-<div>
-<input type="hidden" name="mode" value="admin" />
-{section name=nr loop=$delete_backup_files}
-<input type="hidden" name="delete_backup_files[]" value="{$delete_backup_files[nr]}" />
-{/section}
-<input type="submit" name="delete_backup_files_confirm" value="{#delete_backup_submit#}" />
-</div>
-</form>
-{elseif $action=='restore'}
-<p class="caution">{#caution#}</p>
-<p>{#restore_confirm#}</p>
-<p><strong>{$backup_file}</strong> - {$backup_file_date|date_format:#time_format#}</p>
-{if $safe_mode_warning}<p class="caution">{#restore_safe_mode_warning#}</p>
-<p style="color:red;">{#restore_safe_mode_note#}</p>{/if}
-{if $errors}
-<p class="caution">{#error_headline#}</p>
-<ul>
-{section name=error loop=$errors}
-{assign var="error" value=$errors[error]}
-<li>{$smarty.config.$error|replace:"[mysql_error]":$mysql_error}</li>
-{/section}
-</ul>
-{/if}
-<form action="index.php" method="post" accept-charset="{#charset#}">
-<div>
-<input type="hidden" name="mode" value="admin" />
-<input type="hidden" name="backup_file" value="{$backup_file}" />
-<p>{#admin_confirm_password#}<br /><input type="password" name="restore_password" size="25"/></p>
-<p><input type="submit" name="restore_submit" value="{#restore_submit#}" onclick="document.getElementById('throbber-submit').style.visibility = 'visible';" /> <img id="throbber-submit" style="visibility:hidden;" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
-</div>
-</form>
 {elseif $action=='update'}
 <p style="margin-bottom:25px;"><span style="background:yellow; padding:5px;">{#update_current_version#|replace:"[version]":$settings.version}</span></p>
 
@@ -1217,7 +1138,6 @@
 <li><a href="index.php?mode=admin&amp;action=list_uploads"><img src="{$THEMES_DIR}/{$theme}/images/image.png" alt="" width="16" height="16" /><span>{#upload_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=pages"><img src="{$THEMES_DIR}/{$theme}/images/pages.png" alt="" width="16" height="16" /><span>{#pages_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=spam_protection"><img src="{$THEMES_DIR}/{$theme}/images/spam_protection.png" alt="" width="16" height="16" /><span>{#spam_protection_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=backup"><img src="{$THEMES_DIR}/{$theme}/images/backup.png" alt="" width="16" height="16" /><span>{#backup_restore_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=update"><img src="{$THEMES_DIR}/{$theme}/images/update.png" alt="" width="16" height="16" /><span>{#update_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=reset_uninstall"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" alt="" width="16" height="16" /><span>{#reset_uninstall_link#}</span></a></li>
 </ul>
