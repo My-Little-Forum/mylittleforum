@@ -1245,59 +1245,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('breadcrumbs', $breadcrumbs);
 			$smarty->assign('subnav_location', 'subnav_edit_category');
 		break;
-		case "backup":
-			if (isset($_GET['msg'])) {
-			switch ($_GET['msg']) {
-					case 'backup_file_created': $smarty->assign('message', 'backup_file_created'); break;
-					case 'restore_backup_ok': $smarty->assign('message', 'restore_backup_ok'); break;
-				}
-			}
-			$fp = opendir('backup/');
-			while ($file = readdir($fp)) {
-				if (preg_match('/\.sql$/i', $file)) {
-					$files[$file] = filemtime('backup/'.$file);
-				}
-			}
-			closedir($fp);
-
-			if (isset($files)) {
-				arsort($files); // order by date
-				$i = 0;
-				foreach ($files as $key => $val) {
-					$backup_files[$i]['file'] = htmlspecialchars($key);
-					$backup_files[$i]['date'] = $val;
-					$backup_files[$i]['size'] = number_format(filesize('backup/'.$key) / 1048576,2) .' MB';
-					$i++;
-				}
-				$smarty->assign('backup_files',$backup_files);
-			}
-
-			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
-			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
-			$smarty->assign('breadcrumbs', $breadcrumbs);
-			$smarty->assign('subnav_location', 'subnav_backup');
-		break;
-		case 'delete_backup_files_confirm':
-			$smarty->assign('delete_backup_files', $_REQUEST['delete_backup_files']);
-			$smarty->assign('file_number', count($_REQUEST['delete_backup_files']));
-			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
-			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
-			$breadcrumbs[1]['link'] = 'index.php?mode=admin&amp;action=backup';
-			$breadcrumbs[1]['linkname'] = 'subnav_backup';
-			$smarty->assign('breadcrumbs', $breadcrumbs);
-			$smarty->assign('subnav_location', 'subnav_delete_backup_file');
-		break;
-		case 'restore':
-			$smarty->assign('backup_file', $backup_file);
-			$smarty->assign('backup_file_date', filemtime('backup/'.$backup_file));
-
-			$breadcrumbs[0]['link'] = 'index.php?mode=admin';
-			$breadcrumbs[0]['linkname'] = 'subnav_admin_area';
-			$breadcrumbs[1]['link'] = 'index.php?mode=admin&amp;action=backup';
-			$breadcrumbs[1]['linkname'] = 'subnav_backup';
-			$smarty->assign('breadcrumbs', $breadcrumbs);
-			$smarty->assign('subnav_location', 'subnav_restore');
-		break;
 		case 'update':
 			if ($fp=@opendir('update/')) {
 				$i = 0;
