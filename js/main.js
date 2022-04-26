@@ -1505,5 +1505,5 @@ function DragAndDropTable(table,mode,queryKey) {
 		var ajaxPreviewStructure = typeof settings != "undefined" && typeof settings["ajaxPreviewStructure"] == "string"?settings["ajaxPreviewStructure"]:false;
 		if (mlf && typeof lang == "object") 
 			mlf.init(ajaxPreviewStructure);
-		new DragAndDropTable(document.getElementById("sortable"), "bookmarks", "mode");
+		new DragAndDropTable(document.getElementById("sortable"), "bookmarks", "mode", "admin", "action");
 	});
