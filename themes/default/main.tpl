@@ -37,9 +37,6 @@
 {if $mode=='posting'}
 <script src="{$FORUM_ADDRESS}/js/posting.min.js" type="text/javascript" charset="utf-8"></script>
 {/if}
-{if $mode=='admin'}
-<script src="{$FORUM_ADDRESS}/js/admin.min.js" type="text/javascript" charset="utf-8"></script>
-{/if}
 {if $settings.bbcode_latex && $settings.bbcode_latex_uri}
 <script type="text/javascript" async src="{$settings.bbcode_latex_uri}"></script>
 <script type="text/x-mathjax-config">/*<![CDATA[*/MathJax.Hub.Config({
