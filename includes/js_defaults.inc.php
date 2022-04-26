@@ -80,8 +80,6 @@ lang["hide_password_title"] =              "<?php echo addslashes($lang['hide_pa
 <?php if(isset($user_type) && $user_type==2): ?>
 	lang["check_all"] =                        "<?php echo addslashes($lang['check_all']); ?>";
 	lang["uncheck_all"] =                      "<?php echo addslashes($lang['uncheck_all']); ?>";
-	lang["delete_backup_confirm"] =            "<?php echo addslashes($lang['delete_backup_confirm']); ?>";
-	lang["delete_sel_backup_confirm"] =        "<?php echo addslashes($lang['delete_sel_backup_confirm']); ?>";
 <?php endif; ?>
 
 var settings = new Array();
