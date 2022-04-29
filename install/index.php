@@ -46,14 +46,12 @@ $newVersion = trim(file_get_contents('../config/VERSION'));
 if (isset($_POST['language_file'])) $language_file = $_POST['language_file'];
 
 // try to connect to the database …
-if ($connid = @mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password'])) {
-	if (@mysqli_select_db($connid, $db_settings['database'])) {
-		@mysqli_query($connid, 'SET NAMES utf8');
-		if (table_exists($db_settings['forum_table'])) {
-			// the forum seems to be installed
-			header('Location: ../');
-			exit;
-		}
+if (!empty($db_settings['database']) && $connid = @mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database'])) {
+	@mysqli_query($connid, 'SET NAMES utf8');
+	if (table_exists($db_settings['forum_table'])) {
+		// the forum seems to be installed
+		header('Location: ../');
+		exit;
 	}
 }
 

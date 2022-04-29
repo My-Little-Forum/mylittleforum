@@ -37,7 +37,7 @@ include('includes/main.inc.php');
 
 require('modules/smarty/Smarty.class.php');
 $smarty                  = new Smarty;
-$smarty->error_reporting = 'E_ALL & ~E_NOTICE';
+$smarty->error_reporting = '0'; //'E_ALL & ~E_NOTICE';
 $smarty->template_dir    = THEMES_DIR;
 $smarty->assign('THEMES_DIR', THEMES_DIR);
 $smarty->assign('CSRF_TOKEN', $_SESSION['csrf_token']);
