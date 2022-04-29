@@ -15,6 +15,8 @@ if(!defined('IN_INDEX'))
  * @return resource
  */
 function connect_db($host, $user, $pw, $db) {
+	if (empty($db))
+		raise_error('mysql_connect', mysqli_connect_error());
 	$connid = @mysqli_connect($host, $user, $pw) or raise_error('mysql_connect', mysqli_connect_error());
 	@mysqli_select_db($connid, $db) or raise_error('mysql_select_db', mysqli_error($connid));
 	@mysqli_query($connid, 'SET NAMES utf8mb4');
