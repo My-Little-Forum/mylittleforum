@@ -1173,12 +1173,12 @@ switch ($action) {
 					mysqli_free_result($pr_result);
 					if ($isModOrAdmin || $isUser && $pr_data['email_contact'] > 0 || $pr_data['email_contact'] == 2)
 						$smarty->assign('email', true);
-					if (trim($pr_data['user_hp']) != '') {
+					if (!empty($pr_data['user_hp']) && trim($pr_data['user_hp']) != '') {
 						$smarty->assign('preview_hp', htmlspecialchars(add_http_if_no_protocol($pr_data['user_hp'])));
 					}
-					if (trim($pr_data['user_location']) != '')
+					if (!empty($pr_data['user_location']) && trim($pr_data['user_location']) != '')
 						$smarty->assign('preview_location', htmlspecialchars($pr_data['user_location']));
-					if (trim($pr_data['signature']) != '')
+					if (!empty($pr_data['signature']) && trim($pr_data['signature']) != '')
 						$smarty->assign('preview_signature', signature_format($pr_data['signature']));
 					if ($pr_data['signature'] != '') {
 						$smarty->assign('signature', true);
@@ -1187,7 +1187,7 @@ switch ($action) {
 					$smarty->assign('provide_email_notification', true);
 				} else {
 					$smarty->assign('email', htmlspecialchars($email));
-					if (trim($hp) != '') {
+					if (!empty($hp) && trim($hp) != '') {
 						$smarty->assign('preview_hp', htmlspecialchars(add_http_if_no_protocol($hp)));
 					}
 					$smarty->assign('hp', htmlspecialchars($hp));

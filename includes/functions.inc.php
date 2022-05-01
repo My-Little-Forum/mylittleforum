@@ -1247,10 +1247,12 @@ function too_long_word($text,$word_maxlength,$delimiters = ' ') {
 	$words = preg_split('/\s+/',$text);
 
 	foreach($words as $word) {
-		$length = my_strlen(trim($word), CHARSET);
-		if($length > $word_maxlength) {
-			$too_long_word = htmlspecialchars(my_substr($word,0,$word_maxlength, CHARSET))."...";
-			break;
+		if (!empty($word)) {
+			$length = my_strlen(trim($word), CHARSET);
+			if($length > $word_maxlength) {
+				$too_long_word = htmlspecialchars(my_substr($word,0,$word_maxlength, CHARSET))."...";
+				break;
+			}
 		}
 	}
 	if(isset($too_long_word)) 
@@ -2182,7 +2184,7 @@ function get_not_accepted_words($string)
   if(!$result) raise_error('database_error',mysqli_error($connid));
   $data = mysqli_fetch_array($result);
   mysqli_free_result($result);
-  if(trim($data['list']) != '')
+  if (!empty($data['list']) && trim($data['list']) != '')
    {
     $not_accepted_words = explode("\n",$data['list']);
     foreach($not_accepted_words as $not_accepted_word)
@@ -2379,13 +2381,15 @@ function contains_special_characters($string) {
 function get_timezones()
  {
   if(!$timezones_raw = @file('config/time_zones')) return false;
-  foreach($timezones_raw as $line)
-   {
-    $line = trim($line);
-    if(!empty($line))
-     {
-      $timezones[] = $line;
-     }
+  if (!empty($timezones_raw)) {
+   foreach($timezones_raw as $line)
+    {
+     $line = trim($line);
+     if(!empty($line))
+      {
+       $timezones[] = $line;
+      }
+    }
    }
   if(isset($timezones)) return $timezones;
   else return false;

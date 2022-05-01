@@ -101,7 +101,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				if ($isModOrAdmin || $isUser && $row['email_contact'] > 0 || $row['email_contact'] == 2) 
 					$userdata[$i]['user_email'] = TRUE;
 				$userdata[$i]['user_hp'] = htmlspecialchars($row['user_hp']);
-				if (trim($userdata[$i]['user_hp']) != '') {
+				if (!empty($userdata[$i]['user_hp']) && trim($userdata[$i]['user_hp']) != '') {
 					$userdata[$i]['user_hp'] = add_http_if_no_protocol($userdata[$i]['user_hp']);
 				}
 				$userdata[$i]['user_type'] = intval($row['user_type']);
@@ -192,7 +192,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				}
 				if ($isModOrAdmin || $isUser && $row['email_contact'] > 0 || $row['email_contact'] == 2) 
 					$smarty->assign('user_email', TRUE);
-				if (trim($row['user_hp']) != '') {
+				if (!empty($row['user_hp']) && trim($row['user_hp']) != '') {
 					$row['user_hp'] = add_http_if_no_protocol($row['user_hp']);
 				}
 				$smarty->assign('user_hp', htmlspecialchars($row['user_hp']));
@@ -324,12 +324,16 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				$result = mysqli_query($connid, "SELECT user_id, user_name, user_real_name, gender, birthday, user_email, email_contact, user_hp, user_location, signature, profile, new_posting_notification, new_user_notification, browser_window_target, auto_login_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$row = mysqli_fetch_array($result);
 				mysqli_free_result($result);
-				if (trim($row['birthday']) == '' || $row['birthday'] == '0000-00-00') $user_birthday = '';
-				else {
-					$year = my_substr($row['birthday'], 0, 4, $lang['charset']);
-					$month = my_substr($row['birthday'], 5, 2, $lang['charset']);
-					$day = my_substr($row['birthday'], 8, 2, $lang['charset']);
-					$user_birthday = $year.'-'.$month.'-'.$day;
+				if (!empty($row['birthday'])) {
+					if (trim($row['birthday']) == '' || $row['birthday'] == '0000-00-00') $user_birthday = '';
+					else {
+						$year = my_substr($row['birthday'], 0, 4, $lang['charset']);
+						$month = my_substr($row['birthday'], 5, 2, $lang['charset']);
+						$day = my_substr($row['birthday'], 8, 2, $lang['charset']);
+						$user_birthday = $year.'-'.$month.'-'.$day;
+					}
+				} else {
+					$user_birthday = '';
 				}
 
 				if (isset($category_selection)) $smarty->assign('category_selection', $category_selection);
@@ -434,18 +438,18 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 					$email_contact = 0;
 				if ($email_contact < 0 || $email_contact > 2) 
 					$email_contact = 0;
-				$user_hp = trim($_POST['user_hp']);
-				$user_real_name = trim($_POST['user_real_name']);
-				$user_birthday = trim($_POST['user_birthday']);
+				$user_hp = (!empty($_POST['user_hp'])) ? trim($_POST['user_hp']) : '';
+				$user_real_name = (!empty($_POST['user_real_name'])) ? trim($_POST['user_real_name']) : '';
+				$user_birthday = (!empty($_POST['user_birthday'])) ? trim($_POST['user_birthday']) : '';
 				if (isset($_POST['user_gender'])) 
 					$gender = intval($_POST['user_gender']);
 				else 
 					$gender = 0;
 				if ($gender != 0 && $gender !=1 && $gender != 2) 
 					$gender = 0;
-				$user_location = trim($_POST['user_location']);
-				$profile = trim($_POST['profile']);
-				$signature = trim($_POST['signature']);
+				$user_location = (!empty($_POST['user_location'])) ? trim($_POST['user_location']) : '';
+				$profile = (!empty($_POST['profile'])) ? trim($_POST['profile']) : '';
+				$signature = (!empty($_POST['signature'])) ? trim($_POST['signature']) : '';
 
 				// time zone:
 				$user_time_zone = '';
@@ -814,8 +818,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 		break;
 		case 'edit_email_submit':
 			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-				$new_email = trim($_POST['new_email']);
-				$new_email_confirm = trim($_POST['new_email_confirm']);
+				$new_email = (!empty($_POST['new_email'])) ? trim($_POST['new_email']) : '';
+				$new_email_confirm = (!empty($_POST['new_email_confirm'])) ? trim($_POST['new_email_confirm']) : '';
 				$pw_new_email = $_POST['pw_new_email'];
 				// Check data:
 				$email_result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_pw`, `user_email`, (SELECT COUNT(*) FROM `".$db_settings['userdata_table']."` WHERE `user_email` = '". mysqli_real_escape_string($connid, $new_email) ."') > 0 AS `email_collision` FROM `".$db_settings['userdata_table']."` WHERE `user_id` = ". intval($_SESSION[$settings['session_prefix'].'user_id']) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));

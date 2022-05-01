@@ -60,8 +60,8 @@ switch ($action) {
 		if ($settings['register_mode'] > 1 || !isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) 
 			die('No authorisation!');
 		else {
-			$new_user_name  = trim($_POST[$fname_user]);
-			$new_user_email = trim($_POST[$fname_email]);
+			$new_user_name  = (!empty($_POST[$fname_user])) ? trim($_POST[$fname_user]) : '';
+			$new_user_email = (!empty($_POST[$fname_email])) ? trim($_POST[$fname_email]) : '';
 			$reg_pw = $_POST[$fname_pword];
 			$terms_of_use_agree = (isset($_POST['terms_of_use_agree']) && $_POST['terms_of_use_agree'] == 1) ? 1 : 0;
 			$data_privacy_statement_agree = (isset($_POST['data_privacy_statement_agree']) && $_POST['data_privacy_statement_agree'] == 1) ? 1 : 0;
@@ -221,7 +221,7 @@ switch ($action) {
 	break;
 	case 'activate':
 		if (isset($_GET['id'])) $id = intval($_GET['id']); else $error = TRUE;
-		if (isset($_GET['key'])) $key = trim($_GET['key']); else $error = TRUE;
+		if (isset($_GET['key']) && !empty($_GET['key'])) $key = trim($_GET['key']); else $error = TRUE;
 		if (empty($error)) {
 			if ($id == 0) $error = TRUE;
 			if ($key == '') $error = TRUE;
@@ -233,7 +233,7 @@ switch ($action) {
 			mysqli_free_result($result);
 		}
 		if (empty($error)) {
-			if (trim($data['activate_code']) == '') $error = true;
+			if (!empty($data['activate_code']) && trim($data['activate_code']) == '') $error = true;
 		}
 		if (empty($error)) {
 			if (is_pw_correct($key,$data['activate_code'])) {

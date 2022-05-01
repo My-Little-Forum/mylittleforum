@@ -50,7 +50,7 @@ switch ($action) {
 			if (mysqli_num_rows($result) == 1) {
 				$feld = mysqli_fetch_array($result);
 				if (is_pw_correct($request_userpw, $feld['user_pw'])) {
-					if (trim($feld["activate_code"]) != '') {
+					if (!empty($feld["activate_code"]) && trim($feld["activate_code"]) != '') {
 						header("location: index.php?mode=login&login_message=account_not_activated");
 						exit;
 					}
@@ -279,7 +279,7 @@ switch ($action) {
 		}
 	break;
 	case "pw_forgotten_submitted":
-		if (trim($_POST['pwf_email']) == '') $error = true;
+		if (!empty($_POST['pwf_email']) && trim($_POST['pwf_email']) == '') $error = true;
 		if (empty($error)) {
 			$pwf_result = @mysqli_query($connid, "SELECT user_id, user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_email = '". mysqli_real_escape_string($connid, $_POST['pwf_email']) ."' LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			if (mysqli_num_rows($pwf_result) != 1) $error = true;
@@ -314,7 +314,7 @@ switch ($action) {
 			if (!$pwf_result) raise_error('database_error', mysqli_error($connid));
 			$field = mysqli_fetch_array($pwf_result);
 			mysqli_free_result($pwf_result);
-			if (trim($field['pwf_code']) != '' && $field['user_id'] == $_GET['activate'] && is_pw_correct($_GET['code'],$field['pwf_code'])) {
+			if (!empty($field['pwf_code']) && trim($field['pwf_code']) != '' && $field['user_id'] == $_GET['activate'] && is_pw_correct($_GET['code'],$field['pwf_code'])) {
 				// generate new password:
 				if ($settings['min_pw_length'] < 8) $pwl = 8;
 				else $pwl = $settings['min_pw_length'];
