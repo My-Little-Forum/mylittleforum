@@ -1379,7 +1379,6 @@ function is_valid_birthday($birthday) {
 			$daystr = '0'.$day; 
 		else 
 			$daystr = $day;
-		//$years = intval(strrev(my_substr(strrev(intval(strftime("%Y%m%d")) - intval($year.$monthstr.$daystr)),4, NULL, CHARSET)));
 		$years = intval(strrev(my_substr(strrev(intval(date("Ymd")) - intval($year.$monthstr.$daystr)),4, NULL, CHARSET)));
 		$date_invalid = ($years < 0 || $years > 150);
 	}
@@ -1672,11 +1671,9 @@ function format_time($format, $timestamp = 0) {
 		$timestamp = TIMESTAMP;
 	
 	if (defined('LOCALE_CHARSET')) {
-		//return iconv(LOCALE_CHARSET,CHARSET, strftime($format,$timestamp));
 		return iconv(LOCALE_CHARSET,CHARSET, date($format,$timestamp));
 	}
 	else {
-		//return strftime($format, $timestamp);
 		return date($format, $timestamp);
 	}
 }
