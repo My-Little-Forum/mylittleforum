@@ -1875,6 +1875,7 @@ function my_strtolower($string, $encoding='utf-8')
  */
 function my_substr($string, $start, $length, $encoding='utf-8')
  {
+ 	if (empty($string)) return $string;
   if(function_exists('mb_substr'))
    {
     return mb_substr($string, $start, $length, $encoding);
