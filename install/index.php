@@ -40,8 +40,11 @@ function table_exists($table) {
 // check version:
 if(!file_exists('../config/VERSION')) {
 	die('Error in line '.__LINE__.': Missing the file config/VERSION.');
+} else {
+	$newVersion = file_get_contents('../config/VERSION');
+	if (empty($newVersion) die('Error in line '.__LINE__.': No value for the script version in the file config/VERSION.');
+	else $newVersion = trim($newVersion);
 }
-$newVersion = trim(file_get_contents('../config/VERSION'));
 
 if (isset($_POST['language_file'])) $language_file = $_POST['language_file'];
 

@@ -23,7 +23,7 @@ if (isset($_GET['search'])) {
 		$method = 'fulltext_or';
 	else
 		$method = 'fulltext';
-	$search = trim($search);
+	if (!empty($search)) $search = trim($search);
 	
 	// split search query at spaces, but not between double quotes:
 	$help_pattern = '[!/*/~/?]'; // pattern to hide spaces between quotes

@@ -78,9 +78,9 @@ switch($action) {
 			$id = intval($_POST['id']);
 		if (isset($_POST['recipient_user_id'])) 
 			$recipient_user_id = intval($_POST['recipient_user_id']);
-		if (isset($_POST['text'])) 
+		if (isset($_POST['text']) && !empty($_POST['text']))
 			$text = trim($_POST['text']);
-		if (isset($_POST['subject'])) 
+		if (isset($_POST['subject']) && !empty($_POST['subject']))
 			$subject = trim($_POST['subject']);
 		if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			$result = @mysqli_query($connid, "SELECT user_email FROM ".$db_settings['userdata_table']." WHERE user_id = '".intval($_SESSION[$settings['session_prefix'].'user_id'])."' LIMIT 1") or raise_error('database_error', mysqli_error($connid));

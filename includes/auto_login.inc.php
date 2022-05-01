@@ -11,7 +11,7 @@ if (empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$s
 		$result = mysqli_query($connid, "SELECT user_id, user_name, user_pw, user_type, UNIX_TIMESTAMP(last_login) AS last_login, UNIX_TIMESTAMP(last_logout) AS last_logout, thread_order, user_view, sidebar, fold_threads, thread_display, category_selection, browser_window_target, auto_login_code, activate_code, language, time_zone, time_difference, theme FROM ". $db_settings['userdata_table'] ." WHERE user_id = ". intval($auto_login_id)) or raise_error('database_error', mysqli_error($connid));
 		if (mysqli_num_rows($result) == 1) {
 			$feld = mysqli_fetch_array($result);
-			if (strlen($feld['auto_login_code']) == 50 && $auto_login_code == $feld['auto_login_code'] && trim($feld['activate_code'] == '')) {
+			if (strlen($feld['auto_login_code']) == 50 && $auto_login_code == $feld['auto_login_code'] && empty($feld['activate_code'])) {
 				$user_id = $feld['user_id'];
 				$user_name = $feld['user_name'];
 				$user_type = $feld['user_type'];

@@ -52,12 +52,16 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$field = mysqli_fetch_array($result);
 		mysqli_free_result($result);
 
-		if (trim($field['birthday']) == '' || $field['birthday'] == '0000-00-00') $user_birthday = '';
-		else {
-			$year = my_substr($field['birthday'], 0, 4, $lang['charset']);
-			$month = my_substr($field['birthday'], 5, 2, $lang['charset']);
-			$day = my_substr($field['birthday'], 8, 2, $lang['charset']);
-			$user_birthday = $year.'-'.$month.'-'.$day;
+		if (!empty($row['birthday'])) {
+			if (trim($field['birthday']) == '' || $field['birthday'] == '0000-00-00') $user_birthday = '';
+			else {
+				$year = my_substr($field['birthday'], 0, 4, $lang['charset']);
+				$month = my_substr($field['birthday'], 5, 2, $lang['charset']);
+				$day = my_substr($field['birthday'], 8, 2, $lang['charset']);
+				$user_birthday = $year.'-'.$month.'-'.$day;
+			}
+		} else {
+			$user_birthday = '';
 		}
 		// timezones:
 		if (function_exists('date_default_timezone_set') && $time_zones = get_timezones()) {
@@ -98,7 +102,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$smarty->assign('user_view', intval($field["user_view"]));
 		$smarty->assign('new_posting_notification', intval($field["new_posting_notification"]));
 		$smarty->assign('new_user_notification', intval($field["new_user_notification"]));
-		if (trim($field['activate_code']) != '') $smarty->assign('inactive', true);
+		if (!empty($field['activate_code'])) $smarty->assign('inactive', true);
 
 		$avatarInfo = getAvatar($edit_user_id);
 		$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
@@ -114,21 +118,21 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	if (isset($_POST['edit_user_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		// import posted data:
 		$edit_user_id = intval($_POST['edit_user_id']);
-		$edit_user_name = trim($_POST['edit_user_name']);
+		$edit_user_name = (!empty($_POST['edit_user_name'])) ? trim($_POST['edit_user_name']) : '';
 		$edit_user_type = intval($_POST['edit_user_type']);
-		$user_email = trim($_POST['user_email']);
+		$user_email = (!empty($_POST['edit_user_name'])) ? trim($_POST['user_email']) : '';
 		$email_contact = (isset($_POST['email_contact'])) ? 1 : 0;
-		$user_real_name = trim($_POST['user_real_name']);
-		$user_birthday = trim($_POST['user_birthday']);
+		$user_real_name = (!empty($_POST['edit_user_name'])) ? trim($_POST['user_real_name']) : '';
+		$user_birthday = (!empty($_POST['edit_user_name'])) ? trim($_POST['user_birthday']) : '';
 		$gender = (isset($_POST['user_gender'])) ? intval($_POST['user_gender']) : 0;
 		if ($gender !=0 && $gender !=1 && $gender !=2) $gender = 0;
-		$user_hp = trim($_POST['user_hp']);
-		$user_location = trim($_POST['user_location']);
-		$profile = trim($_POST['profile']);
-		$signature = trim($_POST['signature']);
+		$user_hp = (!empty($_POST['user_hp'])) ? trim($_POST['user_hp']) : '';
+		$user_location = (!empty($_POST['user_location'])) ? trim($_POST['user_location']) : '';
+		$profile = (!empty($_POST['profile'])) ? trim($_POST['profile']) : '';
+		$signature = (!empty($_POST['signature'])) ? trim($_POST['signature']) : '';
 		if (isset($_POST['user_view'])) $user_view = intval($_POST['user_view']);
 		else $user_view = $settings['default_view'];
-		$user_time_difference = trim($_POST['user_time_difference']);
+		$user_time_difference = (!empty($_POST['user_time_difference'])) ? trim($_POST['user_time_difference']) : '';
 		if (isset($_POST['new_posting_notification'])) $new_posting_notification = trim($_POST['new_posting_notification']);
 		else $new_posting_notification = 0;
 		if (isset($_POST['new_user_notification'])) $new_user_notification = trim($_POST['new_user_notification']);
@@ -343,7 +347,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	if (isset($_POST['edit_category_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		$id = intval($_POST['id']);
-		$category = trim($_POST['category']);
+		$category = (!empty($_POST['category'])) ? trim($_POST['category']) : '';
 		$category = str_replace('"', '\'', $category);
 		$accession = intval($_POST['accession']);
 		// does this category already exist?
@@ -786,13 +790,11 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	}
 
 	if (isset($_POST['register_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-		$ar_username = $_POST['ar_username'];
-		$ar_email = $_POST['ar_email'];
-		$ar_pw = $_POST['ar_pw'];
-		if (isset($_POST['ar_send_userdata']) && $_POST['ar_send_userdata'] != '') $ar_send_userdata = true;
-		$ar_username = trim($ar_username);
-		$ar_email = trim($ar_email);
-		$ar_pw = trim($ar_pw);
+		$ar_username = (!empty($_POST['ar_username'])) ? trim($_POST['ar_username']) : '';
+		$ar_email = (!empty($_POST['ar_email'])) ? trim($_POST['ar_email']) : '';
+		$ar_pw = (!empty($_POST['ar_pw'])) ? trim($_POST['ar_pw']) : '';
+		if (isset($_POST['ar_send_userdata']) && trim($_POST['ar_send_userdata']) != '') $ar_send_userdata = true;
+		
 		// look if form complete
 		if ($ar_username == '' or $ar_email == '') $errors[] = 'error_form_uncomplete';
 
@@ -851,7 +853,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	if (isset($_POST['add_smiley']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		if (!file_exists('images/smilies/'.$_POST['add_smiley'])) $errors[] = 'smiley_file_doesnt_exist';
-		if (trim($_POST['smiley_code']) == '') $errors[] = 'smiley_code_empty';
+		if (!empty($_POST['smiley_code']) && trim($_POST['smiley_code']) == '') $errors[] = 'smiley_code_empty';
 
 		if(empty($errors)) {
 			$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['smilies_table']);
@@ -902,13 +904,13 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	if (isset($_POST['edit_smiley_submit']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		$id = intval($_POST['id']);
-		$file = trim($_POST['file']);
-		$code_1 = trim($_POST['code_1']);
-		$code_2 = trim($_POST['code_2']);
-		$code_3 = trim($_POST['code_3']);
-		$code_4 = trim($_POST['code_4']);
-		$code_5 = trim($_POST['code_5']);
-		$title = trim($_POST['title']);
+		$file = (!empty($_POST['file'])) ? trim($_POST['file']) : '';
+		$code_1 = (!empty($_POST['code_1'])) ? trim($_POST['code_1']) : '';
+		$code_2 = (!empty($_POST['code_2'])) ? trim($_POST['code_2']) : '';
+		$code_3 = (!empty($_POST['code_3'])) ? trim($_POST['code_3']) : '';
+		$code_4 = (!empty($_POST['code_4'])) ? trim($_POST['code_4']) : '';
+		$code_5 = (!empty($_POST['code_5'])) ? trim($_POST['code_5']) : '';
+		$title = (!empty($_POST['title'])) ? trim($_POST['title']) : '';
 
 		if (!file_exists('images/smilies/'.$file)) $errors[] = 'smiley_file_doesnt_exist';
 		if ($code_1 == '' && $code_2 == '' && $code_3 == '' && $code_4 == '' && $code_5 == '') $errors[] = 'smiley_code_empty';
@@ -1378,11 +1380,11 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 						}
 
 						unset($codes);
-						if (trim($line['code_1']) != '') $codes[] = $line['code_1'];
-						if (trim($line['code_2']) != '') $codes[] = $line['code_2'];
-						if (trim($line['code_3']) != '') $codes[] = $line['code_3'];
-						if (trim($line['code_4']) != '') $codes[] = $line['code_4'];
-						if (trim($line['code_5']) != '') $codes[] = $line['code_5'];
+						if (!empty($line['code_1']) && trim($line['code_1']) != '') $codes[] = $line['code_1'];
+						if (!empty($line['code_2']) && trim($line['code_2']) != '') $codes[] = $line['code_2'];
+						if (!empty($line['code_3']) && trim($line['code_3']) != '') $codes[] = $line['code_3'];
+						if (!empty($line['code_4']) && trim($line['code_4']) != '') $codes[] = $line['code_4'];
+						if (!empty($line['code_5']) && trim($line['code_5']) != '') $codes[] = $line['code_5'];
 						$codes_disp = implode(' &nbsp;',$codes);
 
 						$smilies[$i]['id'] = $line['id'];
@@ -1445,7 +1447,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('subnav_location', 'subnav_reset_uninstall');
 		break;
 		case 'spam_protection_submit':
-			$akismet_key = trim($_POST['akismet_key']);
+			$akismet_key = (!empty($_POST['akismet_key'])) ? trim($_POST['akismet_key']) : '';
 			if (empty($_POST['stop_forum_spam'])) $stop_forum_spam = 0; else $stop_forum_spam = 1;
 			if (empty($_POST['bad_behavior'])) $bad_behavior = 0; else $bad_behavior = 1;
 			if (isset($_POST['captcha_posting'])) $captcha_posting = intval($_POST['captcha_posting']); else $captcha_posting = 0;
@@ -1479,10 +1481,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			}
 
 			// banists:
-			if (trim($_POST['banned_ips']) != '') {
+			if (!empty($_POST['banned_ips']) && trim($_POST['banned_ips']) != '') {
 				$banned_ips_array = preg_split('/\015\012|\015|\012/',$_POST['banned_ips']);
 				foreach ($banned_ips_array as $banned_ip) {
-					if (trim($banned_ip) != '') $banned_ips_array_checked[] = trim($banned_ip);
+					if (!empty($banned_ip) && trim($banned_ip) != '') $banned_ips_array_checked[] = trim($banned_ip);
 				}
 				natcasesort($banned_ips_array_checked);
 				$banned_ips = implode("\n", $banned_ips_array_checked);
@@ -1490,10 +1492,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			}
 			else $banned_ips = '';
 
-			if (trim($_POST['banned_user_agents']) != '') {
+			if (!empty($_POST['banned_user_agents']) && trim($_POST['banned_user_agents']) != '') {
 				$banned_user_agents_array = preg_split('/\015\012|\015|\012/', $_POST['banned_user_agents']);
 				foreach ($banned_user_agents_array as $banned_user_agent) {
-					if (trim($banned_user_agent) != '') $banned_user_agents_array_checked[] = trim($banned_user_agent);
+					if (!empty($banned_user_agent) && trim($banned_user_agent) != '') $banned_user_agents_array_checked[] = trim($banned_user_agent);
 				}
 				natcasesort($banned_user_agents_array_checked);
 				$banned_user_agents = implode("\n", $banned_user_agents_array_checked);
@@ -1501,10 +1503,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			}
 			else $banned_user_agents = '';
 
-			if (trim($_POST['not_accepted_words']) != '') {
+			if (!empty($_POST['not_accepted_words']) && trim($_POST['not_accepted_words']) != '') {
 				$not_accepted_words_array = preg_split('/\015\012|\015|\012/',$_POST['not_accepted_words']);
 				foreach ($not_accepted_words_array as $not_accepted_word) {
-					if (trim($not_accepted_word) != '') $not_accepted_words_array_checked[] = trim($not_accepted_word);
+					if (!empty($not_accepted_word) && trim($not_accepted_word) != '') $not_accepted_words_array_checked[] = trim($not_accepted_word);
 				}
 				natcasesort($not_accepted_words_array_checked);
 				$not_accepted_words = implode("\n", $not_accepted_words_array_checked);
@@ -1531,7 +1533,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_auto_training) ."' WHERE name = 'b8_auto_training'");	
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($b8_spam_probability_threshold) ."' WHERE name = 'b8_spam_probability_threshold'");
 
-				if (trim($banned_ips) == '' && trim($banned_user_agents) == '') $access_permission_checks = 0;
+				if ((!empty($banned_ips) && trim($banned_ips) == '') && (!empty($banned_user_agents) && trim($banned_user_agents) == '')) $access_permission_checks = 0;
 				else $access_permission_checks = 1;
 				mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value = '". intval($access_permission_checks) ."' WHERE name = 'access_permission_checks'");
 
