@@ -175,7 +175,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				$month = my_substr($row['birthday'], 5, 2, $lang['charset']);
 				$day = my_substr($row['birthday'], 8, 2, $lang['charset']);
 
-				$ystr = strrev(intval(strftime("%Y%m%d")) - intval($year.$month.$day));
+				$ystr = strrev(intval(date("Ymd")) - intval($year.$month.$day));
 				$years = intval(strrev(my_substr($ystr, 4, my_strlen($ystr, $lang['charset']), $lang['charset'])));
 
 				$smarty->assign('p_user_id', intval($row['user_id']));
