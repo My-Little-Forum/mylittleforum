@@ -199,7 +199,7 @@ if (empty($update['errors'])) {
 	}
 }
 // changes for version 2.5
-if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20'))) {
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.21', '2.4.22', '2.4.23', '2.4.24'))) {
 	$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
 	// add new database table
 	if (file_exists("./config/db_settings.php") && is_writable("./config/db_settings.php")) {
@@ -293,7 +293,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 	}
 }
 
-if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.99.0'))) {
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.21', '2.4.22', '2.4.23', '2.4.24', '2.4.99.0'))) {
 	// changed tables
 	if(!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "` CHANGE `token` `token` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
@@ -340,7 +340,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 	}
 }
 
-if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.99.0', '2.4.99.1'))) {
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.21', '2.4.22', '2.4.23', '2.4.24', '2.4.99.0', '2.4.99.1'))) {
 	// changed tables
 	if (!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('b8_mail_check', '0'), ('php_mailer', '0');")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
@@ -398,7 +398,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 	}
 }
 
-if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.99.0', '2.4.99.1', '2.4.99.2', '2.4.99.3'))) {
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.21', '2.4.22', '2.4.23', '2.4.24', '2.4.99.0', '2.4.99.1', '2.4.99.2', '2.4.99.3'))) {
 	// changed tables
 	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE, ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
