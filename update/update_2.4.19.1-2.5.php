@@ -403,6 +403,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE, ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "` ADD KEY `B8_spam` (`spam`), ADD KEY `B8_training_type` (`training_type`);")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
 	if (!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('delete_inactive_users', '30'), ('notify_inactive_users', '3'), ('link_open_target', '');")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
