@@ -1,6 +1,23 @@
 my little forum changelog
 -------------------------
 
+20220508.1 (2022-05-08)
+-----------------------
+
+- feature: provide a forum wide setting to store a target name for breaking out of a frame or iframe (_self, _parent, _top or a given name of a target frame)
+- feature: add BB-code tags for marking text as right-to-left or as left-to-right written
+- feature: unify the HTML-structure of a user name to make it possible to style the HTML-element of the user name in every place with the same CSS-rules
+- feature: provide a user setting to make it possible for users to open links in a forum entry in a new browser window or tab
+- feature: request a reaction of an inactive user or delete the account after an additional waiting time
+- featurette: provide a back-to-top-link on every page and every single forum entry
+- changed: minimal PHP version 7.3
+- changed: compatibility up to PHP 8.1
+- changed: removed the compatibility to ancient browsers down to IE6 from the JavaScript sources
+- updated: upgrade of the external modules, where one was available
+- updated: overhaul of the swedish language file
+- added: language file for Traditional Chinese
+- fixed: database table columns for user anmes and e-mail-addresses are set to be unique to prevent the use of similar user names (in the meaning of the MySQL-database-system) or the double use of e-mail-addresses
+
 2.4.99.3 (2019-09-24)
 ---------------------
 
