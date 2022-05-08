@@ -57,6 +57,10 @@ function compare_versions($versions) {
 switch($settings['version']) {
 	case '2.4.19.1':
 	case '2.4.20':
+	case '2.4.21':
+	case '2.4.22':
+	case '2.4.23':
+	case '2.4.24':
 		$update['items'][] = 'includes/admin.inc.php';                               // #364, #367, #390, #410, #427, #456
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // #364, #390
 		$update['items'][] = 'themes/default/images/image.png';                      // #364
@@ -126,9 +130,13 @@ switch($settings['version']) {
 		$update['items'][] = 'includes/admin.inc.php';                               // without pull request
 		$update['items'][] = 'includes/entry.inc.php';                               // #509
 	case '2.4.99.3':
-		$update['items'][] = 'includes/main.inc.php';                                // #510
-		$update['items'][] = 'modules/bad-behavior/';                                // #511	
-
+		$update['items'][] = 'config/b8_config.php';
+		$update['items'][] = 'includes/';
+		$update['items'][] = 'js/';
+		$update['items'][] = 'lang/';
+		$update['items'][] = 'modules/';
+		$update['items'][] = 'themes/default/';
+		$update['items'][] = 'index.php';
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
 		break;
