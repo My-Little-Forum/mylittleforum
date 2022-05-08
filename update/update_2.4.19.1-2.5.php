@@ -191,7 +191,7 @@ if (!file_exists('config/VERSION')) {
 }
 if (empty($update['errors'])) {
 	$newVersion = file_get_contents('config/VERSION');
-	if (empty($newVersion) die('Error in line '.__LINE__.': No value for the script version in the file config/VERSION.');
+	if (empty($newVersion)) die('Error in line '.__LINE__.': No value for the script version in the file config/VERSION.');
 	else $newVersion = trim($newVersion);
 	if (compare_versions(array('old' => $settings['version'], 'new' => $newVersion)) !== true) {
 		$update['errors'][] = 'Error in line '.__LINE__.': The version you want to install (see string in config/VERSION) must be greater than the current installed version. Current version: '. htmlspecialchars($settings['version']) .', version you want to install: '.  htmlspecialchars($newVersion) .'. Please check also if you uploaded the actual file version of config/VERSION. Search therefore for the file date and compare it with the date from the installation package.';
