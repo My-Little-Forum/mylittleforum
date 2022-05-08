@@ -400,11 +400,10 @@ DELETE FROM `mlf2_settings` WHERE name IN('access_permission_checks', 'last_chan
 */
 -- to 2.5
 /*
-INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20');
-INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
-ALTER TABLE `mlf2_userdata` ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE;
-INSERT INTO `mlf2_settings` (`name`, `value`) VALUES ('delete_inactive_users', '30'), ('notify_inactive_users', '3');
-
+"CREATE TABLE mlf2_akismet_rating (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`)) CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_b8_rating (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `training_type` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`)) CHARSET=utf8 COLLATE=utf8_general_ci;
+CREATE TABLE mlf2_b8_wordlist (`token` varchar(128) character set utf8mb4 collate utf8mb4_bin NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+CREATE TABLE mlf2test_uploads (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp` datetime NULL, PRIMARY KEY (id)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;
 
 ALTER TABLE mlf2_banlists ENGINE=InnoDB;
 ALTER TABLE mlf2_categories ENGINE=InnoDB;
@@ -419,6 +418,12 @@ ALTER TABLE mlf2_userdata_cache ENGINE=InnoDB;
 ALTER TABLE mlf2_b8_rating ENGINE=InnoDB;
 ALTER TABLE mlf2_akismet_rating ENGINE=InnoDB;
 
-ALTER TABLE mlf2_userdata DROP INDEX `user_name`, ADD UNIQUE `user_name` (`user_name`);
-ALTER TABLE mlf2_userdata ADD UNIQUE `user_email` (`user_email`);
+ALTER TABLE mlf2_userdata DROP INDEX `user_name`, ADD UNIQUE `key_user_name` (`user_name`);
+ALTER TABLE mlf2_userdata ADD UNIQUE `key_user_email` (`user_email`);
+
+ALTER TABLE mlf2_userdata ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE, ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;
+ALTER TABLE mlf2_b8_rating ADD KEY `B8_spam` (`spam`), ADD KEY `B8_training_type` (`training_type`);
+
+INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20'), ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js'), ('delete_inactive_users', '30'), ('notify_inactive_users', '3'), ('b8_entry_check', '1'), ('b8_auto_training', '1'), ('b8_spam_probability_threshold', '80'), ('link_open_target', '');
+ALTER TABLE mlf2_userdata ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE;
 */
