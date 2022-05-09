@@ -732,11 +732,11 @@ spam_protection_link =            'Spam koruma'
 update_link =                     'Güncelleme'
 reset_uninstall_link =            'Forumu sıfırla veya kaldır'
 upload_administr_link =           '<!-- TODO -->manage uploads'
-releases_info_header =            '<!-- TODO -->Actual available release'
+releases_info_header =            '<!-- TODO -->Currently available release'
 releases_list_link =              '<!-- TODO -->Check the releases list for the actual available version.'
 warning_header =                  '<!-- TODO -->Warning'
 warning_install_script_exists =   '<!-- TODO -->For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!'
-actual_installed_version_header = '<!-- TODO -->Actual installed version'
+actual_installed_version_header = '<!-- TODO -->Currently installed version'
 actual_installed_version =        '<!-- TODO -->The version number of your installation: <strong>[current_version_string]</strong>'
 
 # forum settings:
