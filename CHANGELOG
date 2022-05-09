@@ -1,6 +1,15 @@
 my little forum changelog
 -------------------------
 
+20220509.1 (2022-05-09)
+-----------------------
+
+- feature: stick the page footer to the bottom of the viewport with the help of a CSS-flexbox
+- changed: removed CSS-fixes for Internet Explorers 6 and 7 (RIP)
+- changed: replaced main block elements (<div>) for the page with semantic HTML-elements
+- fixed: a syntax error that prevented the update script from working (PR #597)
+- fixed: a wrong used English word (a IMHO typical false friend for native German speakers)
+
 20220508.1 (2022-05-08)
 -----------------------
 
