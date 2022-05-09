@@ -18,3 +18,5 @@ Installation
 2. Upload the complete folder "forum" to your server.
 3. Depending on your server configuration the write permissions of the subdirectory templates_c (CHMOD 770, 775 or 777) and the file config/db_settings.php (CHMOD 666) might need to be changed in order that they are writable by the script.
 4. Run the installation script by accessing yourdomain.tld/forum/install/ in your web browser and follow the instructions.
+5. Remove the directory "install" from your installation of My Little Forum.
+6. Change the write permissions for config/db_settings.php to (CHMOD 440), what prevents reading the files content for unauthorised users
