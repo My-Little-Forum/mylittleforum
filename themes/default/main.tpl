@@ -58,7 +58,7 @@
 
 <body class="tex2jax_ignore">
 
-<div id="top">
+<header id="top">
 
 <div id="logo">
 {if $settings.home_linkname}<p class="home"><a href="{$settings.home_linkaddress}">{$settings.home_linkname}</a></p>{/if}
@@ -73,22 +73,22 @@
 {/if}
 </ul>
 <form id="topsearch" action="index.php" method="get" title="{#search_title#}" accept-charset="{#charset#}"><div><input type="hidden" name="mode" value="search" /><label for="search-input">{#search_marking#}</label>&nbsp;<input id="search-input" type="text" name="search" value="{#search_default_value#}" /><!--&nbsp;<input type="image" src="templates/{$settings.template}/images/submit.png" alt="[&raquo;]" />--></div></form></div>
-</div>
+</header>
 
-<div id="subnav">
+<nav id="subnav">
 <div id="subnav-1">{include file="$theme/subtemplates/subnavigation_1.inc.tpl"}</div>
 <div id="subnav-2">{include file="$theme/subtemplates/subnavigation_2.inc.tpl"}</div>
-</div>
+</nav>
 
-<div id="content">
+<main id="content">
 {if $subtemplate}
 {include file="$theme/subtemplates/$subtemplate"}
 {else}
 {$content|default:""}
 {/if}
-</div>
+</main>
 
-<div id="footer">
+<footer id="footer">
 <div id="footer-1">{if $total_users_online}{#counter_users_online#|replace:"[total_postings]":$total_postings|replace:"[total_threads]":$total_threads|replace:"[registered_users]":$registered_users|replace:"[total_users_online]":$total_users_online|replace:"[registered_users_online]":$registered_users_online|replace:"[unregistered_users_online]":$unregistered_users_online}{else}{#counter#|replace:"[total_postings]":$total_postings|replace:"[total_threads]":$total_threads|replace:"[registered_users]":$registered_users}{/if}<br />
 {if $forum_time_zone}{#forum_time_with_time_zone#|replace:'[time]':$forum_time|replace:'[time_zone]':$forum_time_zone}{else}{#forum_time#|replace:'[time]':$forum_time}{/if}</div>
 <div id="footer-2">
@@ -99,13 +99,13 @@
  <li><a href="index.php?mode=contact" title="{#contact_linktitle#}" rel="nofollow">{#contact_link#}</a></li>
 </ul>
 </div>
-</div>
-
 {*
 Please donate if you want to remove this link:
 https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1922497
 *}
 <div id="pbmlf"><a href="https://mylittleforum.net/">powered by my little forum</a></div>
+</footer>
+
 
 </body>
 </html>
