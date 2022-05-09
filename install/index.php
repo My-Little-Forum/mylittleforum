@@ -42,7 +42,7 @@ if(!file_exists('../config/VERSION')) {
 	die('Error in line '.__LINE__.': Missing the file config/VERSION.');
 } else {
 	$newVersion = file_get_contents('../config/VERSION');
-	if (empty($newVersion) die('Error in line '.__LINE__.': No value for the script version in the file config/VERSION.');
+	if (empty($newVersion)) die('Error in line '.__LINE__.': No value for the script version in the file config/VERSION.');
 	else $newVersion = trim($newVersion);
 }
 
