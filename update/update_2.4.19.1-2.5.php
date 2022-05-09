@@ -137,6 +137,16 @@ switch($settings['version']) {
 		$update['items'][] = 'modules/';
 		$update['items'][] = 'themes/default/';
 		$update['items'][] = 'index.php';
+	case '20220508.1':
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'lang/croatian.lang';
+		$update['items'][] = 'lang/english.lang';
+		$update['items'][] = 'lang/italian.lang';
+		$update['items'][] = 'lang/spanish.lang';
+		$update['items'][] = 'lang/tamil.lang';
+		$update['items'][] = 'lang/turkish.lang';
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
 		break;
