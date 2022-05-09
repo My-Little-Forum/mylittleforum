@@ -25,7 +25,33 @@ my little forum changelog
 - updated: upgrade of the external modules, where one was available
 - updated: overhaul of the swedish language file
 - added: language file for Traditional Chinese
-- fixed: database table columns for user anmes and e-mail-addresses are set to be unique to prevent the use of similar user names (in the meaning of the MySQL-database-system) or the double use of e-mail-addresses
+- fixed: database table columns for user names and e-mail-addresses are set to be unique to prevent the use of similar user names (in the meaning of the MySQL-database-system) or the double use of e-mail-addresses
+
+2.4.24 (2020-10-12)
+-------------------
+- fixed: broken layout of the links to the RSS-feed of a single thread in thread.inc.tpl and thread_linear.inc.tpl
+- fixed: unintended text-transform: lowercase; for the link to top of the page in the options of an entry
+- added: add classes for the user type to the thread tree below the entry in the single-entry-view
+
+2.4.23 (2020-09-30)
+-------------------
+- fixed: wrong formatting of the link for a threads own RSS-feed, got broken by the work on formatting the RSS-links in the page footer
+- fixed: the non-English and non-German strings for the to-top-of-page-links had a broken comment part
+
+2.4.22 (2020-09-29)
+-------------------
+- fixed: broken backup restoring function for the entries table, rework of the backup function for better code readability
+- fixed: corrected file size computation for the list of backup files; very small file sizes (up to a few hundred bytes) was shown as "0.00 MB" instead i.e. "0.0006 MB"
+- fixed: remove of since PHP 7.2 deprecated function each(), replaced with foreach()
+- fixed: wrong key name for error message in admin area about an incorrect e-mail-address
+- added: link to top of the page in the page footer and in the options menu of every entry
+- added: backup function for subscriptions and tags
+- added: natural sorting of the tag list, makes sorting case insensitive
+
+2.4.21 (2020-04-25)
+-------------------
+- fixed: regex for e-mail-validation followed a lazy syntax style, that invalidated with PRCE2. which was introduced with PHP 7.3; because of that one was unable to register a new account when running MLF 2.4.x under PHP 7.3 or newer
+- fixed: image URLs in the RSS-feed was specified with only the local, relative path on the domain, we do need a complete URl with protocol, domain and path because the feed reader requests the feed from outside the domain
 
 2.4.99.3 (2019-09-24)
 ---------------------
@@ -56,6 +82,12 @@ my little forum changelog
 - fixed: relative pathes in the src-attribute of images in the RSS feed made the images inaccessible in the feed
 - changed: the quote-message-link is now a button
 
+2.4.20 (2019-05-15)
+-------------------
+- fixed: call for a removed function in the JS-code
+- fixed: inconsistend mail encoding, depended on an input string and could therefore result in wrong encoding, now fixed to the encoding, provided in the language file (normally UTF-8)
+- fixed: missing CSRF-token in case of deleting postings
+
 2.4.99.0 (2019-02-11)
 ---------------------
 
@@ -66,12 +98,6 @@ my little forum changelog
 - removed: optional TeX support through the Google online service, service got abandoned
 - removed: flash button and flash bb-code
 - fixed: replace while loops with deprecated PHP-function "each" with foreach loops
-
-2.4.20 (2019-05-15)
--------------------
-- fixed: call for a removed function in the JS-code
-- fixed: inconsistend mail encoding, depended on an input string and could therefore result in wrong encoding, now fixed to the encoding, provided in the language file (normally UTF-8)
-- fixed: missing CSRF-token in case of deleting postings
 
 2.4.19.1 (2019-02-07)
 ---------------------
