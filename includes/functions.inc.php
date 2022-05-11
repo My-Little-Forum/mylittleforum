@@ -191,8 +191,8 @@ function handleInactiveUsers() {
 		deleteUser($user_id, $display_name);
 	}
 	
-	// notify inactive users
-	$result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `".$db_settings['userdata_table']."` WHERE `user_lock` = 0 AND `user_type` = 0 AND `inactivity_notification` = FALSE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR)) < 0");
+	// notify inactive users; restrict the number of users to 25
+	$result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `".$db_settings['userdata_table']."` WHERE `user_lock` = 0 AND `user_type` = 0 AND `inactivity_notification` = FALSE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR)) < 0 ORDER BY `last_login` ASC LIMIT 25;");
 	if (!$result)
 		return; // daily action no need to raise an error message
 	
@@ -208,8 +208,9 @@ function handleInactiveUsers() {
 	
 		$emailsubject = str_replace("[name]", $name, $lang['email_notify_inactive_user_subject']);
 
-		if (my_mail($email, $emailsubject, $emailbody))
-			@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET `last_login` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `last_logout` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `inactivity_notification` = TRUE WHERE `user_id` = " . intval($user_id) . " AND `user_lock` = 0 AND `user_type` = 0 AND `inactivity_notification` = FALSE");
+		//if (my_mail($email, $emailsubject, $emailbody))
+		my_mail($email, $emailsubject, $emailbody);
+		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET `last_login` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `last_logout` = (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR), `inactivity_notification` = TRUE WHERE `user_id` = " . intval($user_id) . " AND `user_lock` = 0 AND `user_type` = 0 AND `inactivity_notification` = FALSE");
 	}
 	mysqli_free_result($result);
 }
