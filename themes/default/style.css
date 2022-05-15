@@ -52,12 +52,8 @@ img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -2
                          { content: ""; }
 #usermenu li a           { padding-left: 4px; }
 
-#topsearch               { display:inline; }
 #topsearch div           { display:inline; font-size:0.82em; }
-#topsearch label         { display:none; }
-#topsearch #search-input { font-family:verdana,arial,sans-serif; font-size:0.82em; width:14em; color:#808080; }
-#topsearch #search-input:focus
-                         { color:#000; }
+#topsearch #search-input { font-family:verdana,arial,sans-serif; width:14em; }
 
 #subnav                  { clear:both; margin:0; padding:0; height:1.8em; color:#000000; background:#f9f9f9; border-top:1px solid #bacbdf; border-bottom:1px solid #bacbdf; line-height:1.8em; }
 #subnav #subnav-1        { font-size:0.82em; margin:0; padding:0 0 0 20px; float:left; }
