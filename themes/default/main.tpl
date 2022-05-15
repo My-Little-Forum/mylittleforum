@@ -72,7 +72,9 @@
 {foreach $menu as $item}<li><a href="index.php?mode=page&amp;id={$item.id}">{$item.linkname}</a></li>{/foreach}
 {/if}
 </ul>
-<form id="topsearch" action="index.php" method="get" title="{#search_title#}" accept-charset="{#charset#}"><div><input type="hidden" name="mode" value="search" /><label for="search-input">{#search_marking#}</label>&nbsp;<input id="search-input" type="text" name="search" value="{#search_default_value#}" /><!--&nbsp;<input type="image" src="templates/{$settings.template}/images/submit.png" alt="[&raquo;]" />--></div></form></div>
+<form id="topsearch" action="index.php" method="get" title="{#search_title#}" accept-charset="{#charset#}">
+<input type="hidden" name="mode" value="search" />
+<div><label for="search-input">{#search_marking#}</label>&nbsp;<input id="search-input" type="search" name="search" />&nbsp;<input type="submit" value="{#go#}" /></div></form></div>
 </header>
 
 <nav id="subnav">
