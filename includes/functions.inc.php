@@ -192,7 +192,7 @@ function handleInactiveUsers() {
 	}
 	
 	// notify inactive users; restrict the number of users to 20
-	$result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `".$db_settings['userdata_table']."` WHERE `user_lock` = 0 AND `user_type` = 0 AND `inactivity_notification` = FALSE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR)) < 0 ORDER BY `last_login` ASC LIMIT 20;");
+	$result = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `".$db_settings['userdata_table']."` WHERE `user_lock` = 0 AND `user_type` = 0 AND `inactivity_notification` = FALSE AND (`last_login` - (NOW() - INTERVAL ". intval($settings['notify_inactive_users']) ." YEAR)) < 0 ORDER BY `last_login` ASC LIMIT 5;");
 	if (!$result)
 		return; // daily action no need to raise an error message
 	
