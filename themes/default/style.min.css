@@ -455,3 +455,8 @@ img.right{float:right;margin:0 0 10px 10px}
 .js-display-fold .wrapper,.js-display-fold #sidebarcontent{display:none}
 .js-display-fold img.avatar{width:1.6em;height:1.6em}
 form p.hp{display: none}
+@media screen and (min-width: 48em) {
+	#top {display:flex;justify-content:space-between}
+	#logo {padding:7px 5px 7px 20px}
+	#nav {padding-left:5px;text-align:right}
+}
