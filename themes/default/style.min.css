@@ -25,8 +25,8 @@ img.show-sidebar{background:url(images/bg_sprite_2.png) no-repeat 0 -22px}
 #logo h1 a{color:navy;text-decoration:none}
 #logo h1 a:focus,#logo h1 a:hover{color:#00a;text-decoration:none}
 #logo .index{margin:0;padding:0;font-size:.82em}
-#usermenu{margin:0 0 1em;font-size:.69em;list-style-type:none}
 #nav{margin:0;padding:7px 20px}
+#usermenu{margin:0 0 0.75em;padding:0;font-size:.69em;list-style-type:none}
 #usermenu li{display:inline;margin-left:5px}
 #usermenu li:first-child{margin-left:0;padding-left:0}
 #usermenu li:before{content:"|"}
