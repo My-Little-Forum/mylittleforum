@@ -51,7 +51,8 @@ img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -2
 #usermenu li:before      { content: "|"; }
 #usermenu li:first-child:before
                          { content: ""; }
-#usermenu li a           { padding-left: 4px; }
+#usermenu li:not(:first-child) a
+                         { padding-left: 4px; }
 
 #topsearch div           { display:inline; font-size:0.82em; }
 #topsearch #search-input { font-family:verdana,arial,sans-serif; width:14em; }
