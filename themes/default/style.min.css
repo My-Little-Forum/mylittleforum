@@ -32,7 +32,6 @@ img.show-sidebar{background:url(images/bg_sprite_2.png) no-repeat 0 -22px}
 #usermenu li:before{content:"|"}
 #usermenu li:first-child:before{content:""}
 #usermenu li a{padding-left:4px}
-#topsearch{display:inline}
 #topsearch div{display:inline;font-size:.82em}
 #topsearch #search-input{font-family:verdana,arial,sans-serif;width:14em}
 #subnav{clear:both;margin:0;padding:0;height:1.8em;color:#000;background:#f9f9f9;border-top:1px solid #bacbdf;border-bottom:1px solid #bacbdf;line-height:1.8em}
