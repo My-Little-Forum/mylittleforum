@@ -1,6 +1,13 @@
 my little forum changelog
 -------------------------
 
+20220517.1 (2022-05-17)
+-----------------------
+
+- fixed: the feature inactivity notification sent an unlimited number of e-mails, what caused the project domain to get blacklisted; to prevent this for external forum operators, the number of e-mails is now limited to 5 per daily action
+- fixed: because of the fixed height of the page header the user menu was inaccessible on narrow viewports since the change from XHTML 1.0 to HTML (5)
+- the column `mlf2_userdata.user_email` was to large for using an index with charset utf8mb4 on MySQL 5.5 and 5.6, reset it to charset utf8 (3 byte chars only)
+
 20220509.1 (2022-05-09)
 -----------------------
 
