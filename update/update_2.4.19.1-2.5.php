@@ -147,6 +147,11 @@ switch($settings['version']) {
 		$update['items'][] = 'lang/spanish.lang';
 		$update['items'][] = 'lang/tamil.lang';
 		$update['items'][] = 'lang/turkish.lang';
+	case '20220509.1':
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
 		break;
