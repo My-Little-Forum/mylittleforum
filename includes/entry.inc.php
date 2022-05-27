@@ -140,7 +140,9 @@
 	$result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
                         UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, user_type, subject, category, marked, text, rst.user_id AS req_user,
 						" . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam,
-						" . $db_settings['b8_rating_table'] . ".spam AS b8_spam					
+						" . $db_settings['b8_rating_table'] . ".spam AS b8_spam,
+						" . $db_settings['akismet_rating_table'] . ".spam_check_status AS akismet_checked,
+						" . $db_settings['b8_rating_table'] . ".training_type AS b8_checked
 						FROM " . $db_settings['forum_table'] . " AS ft
                         LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = ft.user_id
                         LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
@@ -171,14 +173,21 @@
 		
 		if (isset($categories[$data['category']]) && $categories[$data['category']] != '')
 			$data['category_name'] = $categories[$data["category"]];
-		$data_array[$data['id']]     = $data;
-		$child_array[$data['pid']][] = $data['id'];
 		if ($data['pid'] == $id)
 			$direct_replies[] = $data['id'];
 		$last = $data['id'];
 		if ($data['pid'] > $last)
 			$last = $data['id'];
+		// set key 'not_classified_spam_ham' to decide, if an mod or admin should get notified about need of classification with an icon
+		if ((isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] >= 1) && (($settings['akismet_entry_check'] == 1 && $data['akismet_checked'] == 0) || ($settings['b8_entry_check'] == 1 && $data['b8_checked'] == 0))) {
+		  $data['not_classified_spam_ham'] = 1;
+		} else {
+		  $data['not_classified_spam_ham'] = 0;
+		}
+		// flag spam
 		$data['spam'] = $data['akismet_spam'] || $data['b8_spam'] ? 1 : 0;
+		$data_array[$data['id']]     = $data;
+		$child_array[$data['pid']][] = $data['id'];
 	}
 	if (isset($child_array)) {
 		$smarty->assign('child_array', $child_array);
