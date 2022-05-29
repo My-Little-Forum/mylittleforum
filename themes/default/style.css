@@ -113,7 +113,7 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #pbmlf                   { clear:both; margin:0; padding:0 20px 11px 20px; text-align:center; font-size:0.69em; color:#808080; }
 #pbmlf a                 { color:#808080; text-decoration:none; }
 
-#sidebar                 { position:relative; width: 13em; float:right; margin:0; padding:0; }
+#sidebar                 { position:relative; margin:0 0 1em 0; padding:0; }
 #sidebar div             { position:relative; z-index:2; }
 #sidebar h3.sidebar      { position:absolute; top:0; right:0; font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 17px 0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px; border:1px solid #bacbdf; z-index:1; }
 #sidebar h3.sidebar a    { color:#000; text-decoration:none; z-index:2; }
@@ -460,7 +460,7 @@ ul.pagination-index-table
 #codepicker ul a         { color:#000; display:block; text-decoration:none; padding:1px 5px 1px 5px; }
 #codepicker ul a:hover   { background:#e0e0e0; }
 
-.additional-admin-info   { float: right; }
+.additional-admin-info   { margin:0 0 1em 0; padding:0; }
 .additional-admin-info div
                          { background: #f9f9f9; border: 1px solid #bacbdf; margin: 0 0 20px 0; padding: 0; width: 13em; }
 .additional-admin-info h3
@@ -682,6 +682,10 @@ div.warning              { border: 5px solid red; padding: 15px; font-size:1.3em
 /* Honey pots */
 form p.hp { display: none; }
 
+@media screen and (min-width: 36em) {
+  #sidebar,
+  .additional-admin-info { width: 15em; float:right; }
+}
 @media screen and (min-width: 45em) {
   #top { display: flex; justify-content: space-between; }
   #logo { padding: 7px 5px 7px 20px; }

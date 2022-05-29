@@ -75,7 +75,7 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #footermenu a.go-to-top-link{padding-left:16px;background:url(images/arrow_up.png) no-repeat 0 0 / auto 90%}
 #pbmlf{clear:both;margin:0;padding:0 20px 11px;text-align:center;font-size:.69em;color:gray}
 #pbmlf a{color:gray;text-decoration:none}
-#sidebar{position:relative;width:13em;float:right;margin:0;padding:0}
+#sidebar{position:relative;margin:0 0 1em 0;padding:0}
 #sidebar div{position:relative;z-index:2}
 #sidebar h3.sidebar{position:absolute;top:0;right:0;font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 17px 0 5px;background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px;border:1px solid #bacbdf;z-index:1}
 #sidebar h3.sidebar a{color:#000;text-decoration:none;z-index:2}
@@ -321,8 +321,8 @@ ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:1
 #codepicker ul{list-style-type:none;margin:0;padding:0}
 #codepicker ul a{color:#000;display:block;text-decoration:none;padding:1px 5px}
 #codepicker ul a:hover{background:#e0e0e0}
-.additional-admin-info{float:right}
 .additional-admin-info div{background:#f9f9f9;border:1px solid #bacbdf;margin:0 0 20px 0;padding:0;width:13em}
+.additional-admin-info{margin:0 0 1em 0;padding:0}
 .additional-admin-info h3{margin:0;padding:0 5px;font-size:0.69em;line-height:1.7em;background:#d2ddea url("images/bg_gradient_x.png") repeat-x scroll 0 -150px}
 .additional-admin-info p{font-size:0.69em;line-height:1.5em;margin:0;padding:5px}
 #admin-info-install_script_exists h3{color: red;}
@@ -455,6 +455,9 @@ img.right{float:right;margin:0 0 10px 10px}
 .js-display-fold .wrapper,.js-display-fold #sidebarcontent{display:none}
 .js-display-fold img.avatar{width:1.6em;height:1.6em}
 form p.hp{display: none}
+@media screen and (min-width: 36em) {
+	#sidebar,.additional-admin-info{width:15em;float:right}
+}
 @media screen and (min-width: 48em) {
 	#top {display:flex;justify-content:space-between}
 	#logo {padding:7px 5px 7px 20px}
