@@ -225,7 +225,11 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
 .thread-posting .header  { background:#f5f5f5; margin:0 0 0 0; padding:0 0 5px 10px; }
 .thread-posting .header img.avatar
                          { position:relative; margin:0 0 20px 20px; padding:5px; background:#f5f5f5; float:right; }
-.thread-posting .body    { margin:0; padding:10px 10px 10px 10px; }
+.thread-posting .body    { margin:0; padding:10px; }
+.thread-posting .signature
+                         { margin: 0; padding: 10px; }
+#content .thread-posting p.tags
+                         { margin: 0; padding: 10px; }
 .thread-posting .author  { margin:1px 0 0 0; font-style:italic; }
 .thread-posting .posting-footer
                          { margin:10px; }
@@ -240,8 +244,9 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
 .op-link,
 .op-link a               { font-size:0.9em; color:#808080; }
 
+#content .body           { overflow: hidden; }
 #content p.tags          { margin:20px 0 0 0; padding:0; color:#808080; font-size:0.69em; line-height:1.42em; }
-#content p.signature     { margin:10px 0 0 0; padding:0; color:#808080; font-weight:normal; font-size:0.69em; line-height:1.42em; }
+#content .signature p    { margin:10px 0 0 0; padding:0; color:#808080; font-weight:normal; font-size:0.69em; line-height:1.42em; }
 
 h2.postingform           { margin:0 0 20px 0; }
 p.reply-to               { margin:0 0 20px 0; }

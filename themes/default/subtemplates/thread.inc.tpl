@@ -50,15 +50,15 @@
 {else}
 <p>{#no_text#}</p>
 {/if}
+</div>
 {if $data.$element.signature}
-<p class="signature">--<br />
-{$data.$element.signature}</p>
+<div class="signature"><p>--<br />
+{$data.$element.signature}</p></div>
 {/if}
 {if $data.$element.tags}
 <p class="tags">{#tags_marking#}<br />
 {foreach name="tags" from=$data.$element.tags item=tag}<a href="index.php?mode=search&amp;search={$tag.escaped}&amp;method=tags">{$tag.display}</a>{if !$smarty.foreach.tags.last}, {/if}{/foreach}</p>
 {/if}
-</div>
 <div class="posting-footer">
 <div class="reply">{if $data.$element.locked==0}<a class="stronglink" href="index.php?mode=posting&amp;id={$data.$element.id}&amp;back=thread" title="{#reply_link_title#}">{#reply_link#}</a>{else}<span class="locked">{#posting_locked#}</span>{/if}</div>
 <div class="info">&nbsp;
