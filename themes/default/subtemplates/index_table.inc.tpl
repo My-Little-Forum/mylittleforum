@@ -1,5 +1,6 @@
 {if $threads}
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<thead>
 <tr>
 {*{if $fold_threads==1}<th style="width:10px;">&nbsp;</th>{/if}*}
 <th>{#subject#}</th>
@@ -9,6 +10,8 @@
 <th>{#replies#}</th>
 {if $categories && $category<=0}<th>{#category#}</th>{/if}
 </tr>
+</thead>
+<tbody>
 {foreach from=$threads item=thread}
 {cycle values="a,b" assign=c}
 <tr class="{$c}">
@@ -30,6 +33,7 @@
 {if $categories && $category<=0}<td>{if $data.$thread.category_name}<a href="index.php?mode=index&amp;category={$data.$thread.category}" title="{#change_category_link#|replace:"[category]":$data.$thread.category_name|escape:"html"}"><span class="category nowrap">{$data.$thread.category_name}</span></a>{else}&nbsp;{/if}</td>{/if}
 </tr>
 {/foreach}
+</tbody>
 </table>
 {else}<p>{if $category!=0}{#no_messages_in_category#}{else}{#no_messages#}{/if}</p>{/if}
 
