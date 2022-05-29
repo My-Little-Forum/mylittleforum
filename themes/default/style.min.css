@@ -329,7 +329,7 @@ ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:1
 .additional-admin-info p{font-size:0.69em;line-height:1.5em;margin:0;padding:5px}
 #admin-info-install_script_exists h3{color: red;}
 #admin-info-install_script_exists h3::before{content: url("images/caution.png"); padding-right: 5px;}
-.adminmenu{list-style-type:none;padding-left:0;margin-left:0;font-size:.82em;line-height:1.7em!important}
+.adminmenu{list-style-type:none;padding:0;margin:0;font-size:.82em;line-height:1.7em!important}
 .adminmenu a{text-decoration:none}
 .adminmenu a:hover span{text-decoration:underline}
 .adminmenu a img{margin:0 5px -3px 0;padding:0}
