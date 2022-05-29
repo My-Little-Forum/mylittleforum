@@ -412,6 +412,7 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<thead>
 <tr>
 <th>&nbsp;</th>
 <!--<th><a href="index.php?mode=admin&amp;action=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;order=user_id&amp;descasc={if $descasc=="ASC" && $order=="user_id"}DESC{else}ASC{/if}&amp;ul={$ul}" title="{#order_linktitle#}">{#user_id#}</a>{if $order=="user_id" && $descasc=="ASC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/asc.png" alt="[asc]" width="5" height="9" />{elseif $order=="user_id" && $descasc=="DESC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/desc.png" alt="[desc]" width="5" height="9" />{/if}</th>-->
@@ -424,6 +425,8 @@
 <th><a href="index.php?mode=admin&amp;action=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;order=user_lock&amp;descasc={if $descasc=="ASC" && $order=="user_lock"}DESC{else}ASC{/if}&amp;ul={$ul}" title="{#order_linktitle#}">{#lock#}</a>{if $order=="user_lock" && $descasc=="ASC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/asc.png" alt="[asc]" width="5" height="9" />{elseif $order=="user_lock" && $descasc=="DESC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/desc.png" alt="[desc]" width="5" height="9" />{/if}</th>
 <th colspan="2">&nbsp;</th>
 </tr>
+</thead>
+<tbody>
 {section name=row loop=$userdata}
 {cycle values="a,b" assign=c}
 <tr class="{$c}">
@@ -439,6 +442,7 @@
 <td><a href="index.php?mode=admin&amp;delete_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16" /></a></td>
 </tr>
 {/section}
+</tbody>
 </table>
 
 <div id="admin-usernav-bottom">
@@ -692,7 +696,6 @@
 <a href="index.php?mode=admin&amp;edit_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a> &nbsp; <a href="index.php?mode=admin&amp;delete_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_up.png" alt="{#move_up#}" title="{#move_up#}" width="16" height="16" /></a><a href="index.php?mode=admin&amp;move_down_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_down.png" alt="{#move_down#}" title="{#move_down#}" width="16" height="16" /></a>
 
 </td>
-
 </tr>
 {/section}
 </tbody>
