@@ -220,7 +220,7 @@ function deleteUser($user_id = 0, $display_name = 'Unnamed') {
 	// set "edited_by" in own edited postings to 0:
 	@mysqli_query($connid, "UPDATE `".$db_settings['forum_table']."` SET `edited_by` = 0 WHERE `edited_by` = ". intval($user_id));
 	// save user name in forum table (like unregistered users) and set user_id = 0:
-	@mysqli_query($connid, "UPDATE `".$db_settings['forum_table']."` SET `user_id` = 0, `name` = '". mysqli_real_escape_string($connid, $display_name) ."' WHERE `user_id` = ". intval($user_id));
+	@mysqli_query($connid, "UPDATE `".$db_settings['forum_table']."` SET `user_id` = 0, `name` = '". mysqli_real_escape_string($connid, $display_name) ."', email_notification = 0 WHERE `user_id` = ". intval($user_id));
 	
 	@mysqli_query($connid, "DELETE FROM `".$db_settings['userdata_table']."`       WHERE `user_id`  = ". intval($user_id));
 	@mysqli_query($connid, "DELETE FROM `".$db_settings['userdata_cache_table']."` WHERE `cache_id` = ". intval($user_id));
