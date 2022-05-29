@@ -1,6 +1,13 @@
 my little forum changelog
 -------------------------
 
+20220529.1 (2022-05-29)
+-----------------------
+
+- feature: show an icon to admins and mods for entries that are not classified as ham or spam, if spam detection service B8 or Akismet is activated
+- change: first overhaul of the main section of forum pages, affects mainly the main views (thread listings) and the administration start page
+- fix: when deleting a user delete also the notification switch in the entries table, normally we use the subscriptions table for this but in forums with entries that was handled with the old subscription handling it may be possible, that there are old subscriptions for registered users left
+
 20220517.1 (2022-05-17)
 -----------------------
 
