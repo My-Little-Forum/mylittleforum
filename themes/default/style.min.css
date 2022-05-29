@@ -6,11 +6,11 @@ img{border:0}
 label{cursor:pointer}
 a{color:#00c;text-decoration:none}
 a:visited{color:#00c}
-a:hover{color:#00f;text-decoration:underline}
+a:focus,a:hover{color:#00f;text-decoration:underline}
 a:active{color:red}
 a.stronglink{padding-left:13px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 4px}
 a.stronglink:visited{color:#00c}
-a.stronglink:hover{color:#00f;text-decoration:underline;background:url(images/bg_sprite_1.png) no-repeat 0 -46px}
+a.stronglink:focus,a.stronglink:hover{color:#00f;text-decoration:underline;background:url(images/bg_sprite_1.png) no-repeat 0 -46px}
 a.stronglink:active{color:red}
 img.next{background:url(images/bg_sprite_2.png) no-repeat 0 -11px}
 img.next:hover{background:url(images/bg_sprite_2.png) no-repeat -6px -11px}
@@ -275,11 +275,11 @@ p.userdata{margin:0}
 #bbcode-options div{background:#efefef;border:1px solid silver;padding:0;font-size:.82em}
 #bbcode-options ul{list-style-type:none;margin:0;padding:0}
 #bbcode-options ul a{color:#000;display:block;text-decoration:none;padding:3px 5px;min-width:100px}
-#bbcode-options ul a:hover{background:#e0e0e0}
+#bbcode-options ul a:focus,#bbcode-options ul a:hover{background:#e0e0e0}
 #bbcode-options table{background:#bbb;border:none;margin:0;padding:0;border-collapse:collapse}
 #bbcode-options table td{width:15px!important;height:15px!important;margin:0;padding:0}
 #bbcode-options table a{margin:0;padding:0;border:1px solid #bbb;width:15px;height:15px}
-#bbcode-options table a:hover{border:1px solid #fff;text-decoration:none}
+#bbcode-options table a:focus,#bbcode-options table a:hover{border:1px solid #fff;text-decoration:none}
 #smiley-bar{width:70px}
 #smiley-bar button.default{margin:0 1px 1px 0;padding:0;width:30px}
 #smiley-bar button.default span{display:block;line-height:1px;margin:0;padding:0}
@@ -299,7 +299,7 @@ ul.pagination{margin:0;padding:0;list-style-type:none;font-size:.9em}
 ul.pagination li{display:inline;font-size:.9em;margin-left:.7em;position:relative}
 ul.pagination li:first-child{margin-left:0}
 ul.pagination a,ul.pagination span{border:1px solid #bacbdf;background:#f9f9f9;padding:1px 6px}
-ul.pagination a:hover{border:1px solid #00c;background:#efefef;text-decoration:none}
+ul.pagination a:focus,ul.pagination a:hover{border:1px solid #00c;background:#efefef;text-decoration:none}
 ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 ul.pagination-index{margin:0;text-align:right;max-width:100%!important}
 ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:100%!important}
@@ -312,15 +312,15 @@ ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:1
 #colorpicker{position:absolute;background:#bbb;border:1px solid #bbb;display:none}
 #colorpicker table{margin:0;padding:0;line-height:10px}
 #colorpicker table img{margin:0;padding:0;border:1px solid #bbb}
-#colorpicker table a:hover img{margin:0;padding:0;border:1px solid #fff}
+#colorpicker table a:focus img,#colorpicker table a:hover img{margin:0;padding:0;border:1px solid #fff}
 #sizepicker{position:absolute;background:#efefef;border:1px solid silver;display:none;padding:0}
 #sizepicker p{margin:0;padding:0}
 #sizepicker p a{color:#000;display:block;text-decoration:none;padding:3px}
-#sizepicker p a:hover{background:#e0e0e0}
+#sizepicker p a:focus,#sizepicker p a:hover{background:#e0e0e0}
 #codepicker{position:absolute;background:#efefef;border:1px solid silver;display:none;padding:0}
 #codepicker ul{list-style-type:none;margin:0;padding:0}
 #codepicker ul a{color:#000;display:block;text-decoration:none;padding:1px 5px}
-#codepicker ul a:hover{background:#e0e0e0}
+#codepicker ul a:focus,#codepicker ul a:hover{background:#e0e0e0}
 .additional-admin-info{margin:0 0 1em 0;padding:0}
 .additional-admin-info div{background:#f9f9f9;border:1px solid #bacbdf;padding:0}
 .additional-admin-info div:not(:last-child){margin:0 0 20px 0}
@@ -330,7 +330,7 @@ ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:1
 #admin-info-install_script_exists h3::before{content: url("images/caution.png"); padding-right: 5px;}
 .adminmenu{list-style-type:none;padding:0;margin:0;font-size:.82em;line-height:1.7em!important}
 .adminmenu a{text-decoration:none}
-.adminmenu a:hover span{text-decoration:underline}
+.adminmenu a:focus span,.adminmenu a:hover span{text-decoration:underline}
 .adminmenu a img{margin:0 5px -3px 0;padding:0}
 #content .adminmenu .small{font-size:.82em}
 h2#admin_header{margin:0 0 0.5em 0}
@@ -393,7 +393,7 @@ a.read:active{color:red}
 .currentreply{padding-left:16px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -348px}
 .currentreplynew{padding-left:16px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -398px}
 a.internal,a.internal:link{padding-left:18px;color:#00c;text-decoration:none;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
-a.internal:hover{color:#00f;text-decoration:underline}
+a.internal:focus,a.internal:hover{color:#00f;text-decoration:underline}
 a.internal:active{color:red}
 ul.thread{margin:0 0 1.5em;padding:0;list-style-type:none;max-width:100%!important}
 ul.thread li{text-indent:-18px;margin-left:18px;position:relative}
@@ -429,7 +429,7 @@ a.thread-search:active,a.reply-search:active{color:red}
 img.thumbnail{width:150px;border:1px solid silver;margin:0;height:auto}
 a:link img.thumbnail{color:#00f;border:1px solid silver}
 a:visited img.thumbnail{color:#00f;border:1px solid silver}
-a:hover img.thumbnail{color:#00f;border:1px solid #000}
+a:focus img.thumbnail,a:hover img.thumbnail{color:#00f;border:1px solid #000}
 img.left{display:block;float:left;margin:0 10px 10px 0}
 img.right{float:right;margin:0 0 10px 10px}
 #ajax-preview{position:absolute;top:100px;left:100px;margin:13px 0 0 -3px;z-index:10;width:20px}
