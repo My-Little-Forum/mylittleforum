@@ -117,7 +117,7 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #sidebar div             { position:relative; z-index:2; }
 #sidebarcontent div:not(:last-child)
                          { margin: 0 0 1em 0; }
-#sidebar h3.sidebar      { position:absolute; top:0; right:0; font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 17px 0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -150px; border:1px solid #bacbdf; z-index:1; }
+#sidebar h3.sidebar      { position:absolute; top:0; right:0; font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 17px 0 5px; background: #d2ddea;background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); border:1px solid #bacbdf; z-index:1; }
 #sidebar h3.sidebar a    { color:#000; text-decoration:none; z-index:2; }
 #sidebartoggle           { position:absolute; top:5px; right:4px; margin:0; padding:0; z-index:3; }
 #sidebarcontent div h3   { font-size: 0.69em; line-height: 1.7em; font-weight: normal; margin: 0; padding: 0 5px; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); }
@@ -155,19 +155,19 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #mod-options a.non-activated-users
                          { background:url(images/bg_sprite_4.png) no-repeat 0 -396px; }
 #bottombar               { position:relative; margin:20px 0 -20px 0; }
-#bottombar h3.sidebar    { position:relative; float:right; font-size:0.69em; line-height:1.6em; font-weight:normal; margin:0 0 20px 0; padding:0 17px 0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px; border:1px solid #bacbdf; }
+#bottombar h3.sidebar    { position:relative; float:right; font-size:0.69em; line-height:1.6em; font-weight:normal; margin:0 0 20px 0; padding:0 17px 0 5px; background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); border:1px solid #bacbdf; }
 #bottombar h3.sidebar a  { color:#000; text-decoration:none; }
 #bottombar:not(.js-display-fold) h3.sidebar
                          { margin: 0; }
 #bottombarhandle         { position:absolute; top:0; right:4px; margin:0; padding:0; z-index:3; }
 #bottombar #sidebarcontent div { position:relative; z-index:2; background:#f9f9f9; border:1px solid #bacbdf; margin:0 0 20px 0; }
-#bottombar h3            { font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 5px 0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px; }
+#bottombar h3            { font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 5px 0 5px; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); }
 #bottombar #tagcloud p   { padding:10px; }
 #bottombar .xsmall       { font-size:0.82em; }
 #bottombar #mod-options  { padding:10px; }
 input[name=sort_of_agreement] + iframe { height: 400px; height: 60vh; }
 #usersonline             { background:#f9f9f9; border:1px solid #bacbdf; margin:20px 0 20px 0; }
-#usersonline h3          { font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 5px 0 5px; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px; }
+#usersonline h3          { font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 5px 0 5px; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); }
 #usersonline p           { margin:0; padding:7px 5px 7px 5px; font-size:0.82em; line-height:1.5em; }
 
 .posting                 {  }
@@ -330,7 +330,7 @@ div.preview              { margin:0 0 25px 0; padding:10px; color:#000000; borde
 
 table.wide               { width:100%; }
 table.normaltab          { width:100%; border:1px solid #bacbdf; background:#fff; }
-table.normaltab th       { vertical-align:top; font-size:0.82em; font-weight:bold; text-align:left; color:#000000; background:#d2ddea url(images/bg_gradient_x.png) repeat-x 0 -140px; }
+table.normaltab th       { vertical-align:top; font-size:0.82em; font-weight:bold; text-align:left; color:#000000; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); }
 table.normaltab td       { vertical-align:top; font-size:0.82em; font-weight:normal; color:#000000; }
 table.normaltab tr.a td  { background:#f5f5f5; }
 table.normaltab tr.b td  { background:#f9f9f9; }
@@ -466,7 +466,7 @@ ul.pagination-index-table
 .additional-admin-info div:not(:last-child)
                          { margin: 0 0 20px 0; }
 .additional-admin-info h3
-                         { margin: 0; padding: 0 5px; font-size: 0.69em; line-height: 1.7em; background: #d2ddea url("images/bg_gradient_x.png") repeat-x scroll 0 -150px; }
+                         { margin: 0; padding: 0 5px; font-size: 0.69em; line-height: 1.7em; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); }
 .additional-admin-info p { font-size: 0.69em; line-height: 1.5em; margin: 0; padding: 5px; }
 #admin-info-install_script_exists h3
                          { color: red; }
