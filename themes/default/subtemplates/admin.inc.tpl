@@ -751,7 +751,7 @@
 <table class="normaltab" border="0" cellpadding="5" cellspacing="1">
 
 <tr>
-<td class="c" style="width:30%;"><strong>{#captcha#}</strong><br /><span class="small">{#captcha_desc#}{if !$graphical_captcha_available || !$font_available}<br />{#captcha_graphical_desc#}{/if}</span></td>
+<td class="c"><strong>{#captcha#}</strong><br /><span class="small">{#captcha_desc#}{if !$graphical_captcha_available || !$font_available}<br />{#captcha_graphical_desc#}{/if}</span></td>
 <td class="d">
  <table border="0" cellpadding="0" cellspacing="3">
   <tr>
