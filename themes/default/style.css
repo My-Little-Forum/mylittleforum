@@ -17,13 +17,14 @@ label                    { cursor:pointer; }
 /* default links: */
 a                        { color:#0000cc; text-decoration:none; }
 a:visited                { color:#0000cc; }
-a:hover                  { color:#0000ff; text-decoration:underline; }
+a:focus, a:hover         { color:#0000ff; text-decoration:underline; }
 a:active                 { color:#ff0000; }
 
 /* strong links */
 a.stronglink             { padding-left:13px; color:#0000cc; text-decoration:none; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 4px; }
 a.stronglink:visited     { color:#0000cc; }
-a.stronglink:hover       { color:#0000ff; text-decoration:underline; background:url(images/bg_sprite_1.png) no-repeat 0 -46px; }
+a.stronglink:focus, a.stronglink:hover
+                         { color:#0000ff; text-decoration:underline; background:url(images/bg_sprite_1.png) no-repeat 0 -46px; }
 a.stronglink:active      { color:#ff0000; }
 
 img.next                 { background:url(images/bg_sprite_2.png) no-repeat 0 -11px; }
@@ -395,12 +396,15 @@ p.userdata               { margin:0; }
 #bbcode-options div      { background:#efefef; border:1px solid #c0c0c0; padding:0; font-size:0.82em; }
 #bbcode-options ul       { list-style-type:none; margin:0; padding:0; }
 #bbcode-options ul a     { color:#000; display:block; text-decoration:none; padding:3px 5px; min-width:100px; }
+#bbcode-options ul a:focus,
 #bbcode-options ul a:hover
                          { background:#e0e0e0; }
 #bbcode-options table    { background:#bbb; border:none; margin:0; padding:0; border-collapse:collapse; }
 #bbcode-options table td { width:15px !important; height:15px !important; margin:0; padding:0; }
 #bbcode-options table a  { margin:0; padding:0; border:1px solid #bbb; width:15px; height:15px; }
-#bbcode-options table a:hover { border:1px solid #fff; text-decoration:none; }
+#bbcode-options table a:focus,
+#bbcode-options table a:hover
+                         { border:1px solid #fff; text-decoration:none; }
 
 #smiley-bar              { width:70px; }
 #smiley-bar button.default
@@ -432,6 +436,7 @@ ul.pagination li:first-child
                          { margin-left:0; }
 ul.pagination a,
 ul.pagination span       { border:1px solid #bacbdf; background:#f9f9f9; padding:1px 6px; }
+ul.pagination a:focus,
 ul.pagination a:hover    { border:1px solid #0000cc; background:#efefef; text-decoration:none; }
 ul.pagination .current   { border:1px solid #bacbdf; color:red; font-weight:bold; }
 ul.pagination-index      { margin:0; text-align:right; max-width:100% !important; }
@@ -449,17 +454,20 @@ ul.pagination-index-table
 #colorpicker             { position:absolute; /*width:100px; height:100px;*/ background:#bbb; border:1px solid #bbb; display:none; }
 #colorpicker table       { margin:0; padding:0; line-height:10px; }
 #colorpicker table img   { margin:0; padding:0; border:1px solid #bbb; }
+#colorpicker table a:focus img,
 #colorpicker table a:hover img
                          { margin:0; padding:0; border:1px solid #fff; }
 
 #sizepicker              { position:absolute;  background:#efefef; border:1px solid #c0c0c0; display:none; padding:0; }
 #sizepicker p            { margin:0; padding:0; }
 #sizepicker p a          { color:#000; display:block; text-decoration:none; padding:3px; }
+#sizepicker p a:focus,
 #sizepicker p a:hover    { background:#e0e0e0; }
 
 #codepicker              { position:absolute;  background:#efefef; border:1px solid #c0c0c0; display:none; padding:0; }
 #codepicker ul           { list-style-type:none; margin:0; padding:0; }
 #codepicker ul a         { color:#000; display:block; text-decoration:none; padding:1px 5px 1px 5px; }
+#codepicker ul a:focus,
 #codepicker ul a:hover   { background:#e0e0e0; }
 
 .additional-admin-info   { margin:0 0 1em 0; padding:0; }
@@ -478,6 +486,7 @@ ul.pagination-index-table
 .adminmenu               { list-style-type:none; padding:0; margin:0; font-size:0.82em; line-height:1.7em !important; }
 .adminmenu li            {  }
 .adminmenu a             { text-decoration:none; }
+.adminmenu a:focus span,
 .adminmenu a:hover span  { text-decoration:underline; }
 .adminmenu a img         { margin:0 5px -3px 0; padding:0; }
 #content .adminmenu .small
@@ -587,7 +596,7 @@ a.read:active            { color:#f00; }
 
 a.internal,
 a.internal:link          { padding-left:18px; color:#0000cc; text-decoration:none; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
-a.internal:visited       { /*color:#800080;*/ }
+a.internal:focus,
 a.internal:hover         { color:#0000ff; text-decoration:underline; }
 a.internal:active        { color:#ff0000; }
 
@@ -639,6 +648,7 @@ a.reply-search:active    { color:#ff0000; }
 img.thumbnail            { width:150px; border:1px solid #c0c0c0; margin: 0; height:auto; }
 a:link img.thumbnail     { color: #0000ff; border:1px solid #c0c0c0; }
 a:visited img.thumbnail  { color: #0000ff; border:1px solid #c0c0c0; }
+a:focus img.thumbnail,
 a:hover img.thumbnail    { color: #0000ff; border:1px solid #000000; }
 img.left                 { display:block; float:left; margin:0 10px 10px 0; }
 img.right                { float:right; margin:0 0 10px 10px; }
