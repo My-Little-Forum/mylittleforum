@@ -36,13 +36,18 @@
 <h3 class="preview">{#preview_headline#}</h3>
 <div class="preview">
 <div class="posting">
+<div class="header">
 <h1 class="postingheadline">{$preview_subject}{if $category_name} <span class="category">({$category_name})</span>{/if}</h1>
 <p class="author">{if $preview_location}{#posted_by_location#|replace:"[name]":$preview_name|replace:"[email_hp]":$email_hp|replace:"[location]":$preview_location|replace:"[time]":$preview_formated_time}{else}{#posted_by#|replace:"[name]":$preview_name|replace:"[email_hp]":$email_hp|replace:"[time]":$preview_formated_time}{/if}</p>
-{if $preview_text}{$preview_text}{else}<p>{#no_text#}</p>{/if}
+</div>
+<div class=""wrapper">
+<div class="body">{if $preview_text}{$preview_text}{else}<p>{#no_text#}</p>{/if}</div>
 {if $preview_signature && $show_signature==1}
-<p class="signature">---<br />
+<div class="signature"><p>---<br />
 {$preview_signature}</p>
+</div>
 {/if}
+</div>
 </div>
 </div>
 {/if}
