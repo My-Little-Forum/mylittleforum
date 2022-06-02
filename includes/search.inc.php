@@ -49,6 +49,7 @@ if (isset($_GET['search'])) {
 		}
 		$search_array = $stripped_search_array;
 	}
+	$search_string_array = array();
 	foreach ($search_array as $item) {
 		if (my_strpos($item, ' ', 0, CHARSET)) {
 			$item = '"' . $item . '"';
