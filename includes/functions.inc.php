@@ -1559,24 +1559,25 @@ function resize_image($uploaded_file, $file, $new_width, $new_height, $compressi
    }
 
   $image_info = getimagesize($uploaded_file);
-  if(!is_array($image_info) || $image_info[2] != 1 && $image_info[2] != 2 && $image_info[2] != 3) $error = true;
+  $imageMIME = mime_content_type($uploaded_file);
+  if(!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png'])) $error = true;
   if(empty($error))
   {
-  if($image_info[2]==1) // GIF
+  if($imageMIME=='image/gif') // GIF
    {
     $current_image = @imagecreatefromgif($uploaded_file) or $error = true;
     if(empty($error)) $new_image = @imagecreate($new_width,$new_height) or $error = true;
     if(empty($error)) @imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error=true;
     if(empty($error)) @imagegif($new_image, $file) or $error = true;
    }
-  elseif($image_info[2]==2) // JPG
+  elseif($imageMIME=='image/jpeg') // JPG
    {
     $current_image = @imagecreatefromjpeg($uploaded_file) or $error = true;
     if(empty($error)) $new_image=@imagecreatetruecolor($new_width,$new_height) or $error = true;
     if(empty($error)) @imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
     if(empty($error)) @imagejpeg($new_image, $file, $compression) or $error = true;
    }
-  elseif($image_info[2]==3) // PNG
+  elseif($imageMIME=='image/png') // PNG
    {
     $current_image=imagecreatefrompng($uploaded_file) or $error = true;
     if(empty($error)) $new_image=imagecreatetruecolor($new_width,$new_height) or $error = true;

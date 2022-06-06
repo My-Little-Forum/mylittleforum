@@ -14,7 +14,8 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		unset($errors);
 		$user_id = (isset($_SESSION[$settings['session_prefix'].'user_id'])) ? intval($_SESSION[$settings['session_prefix'].'user_id']) : NULL;
 		$image_info = getimagesize($_FILES['probe']['tmp_name']);
-		if (!is_array($image_info) || $image_info[2] != 1 && $image_info[2] != 2 && $image_info[2] != 3)
+		$imageMIME = mime_content_type($_FILES['probe']['tmp_name']);
+		if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png']))
 			$errors[] = 'invalid_file_format';
 
 		if (empty($errors)) {
@@ -41,7 +42,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 						break;
 					}
 					$file_size = @filesize($uploaded_images_path.$img_tmp_name);
-					if ($image_info[2] != 2 && $file_size > $settings['upload_max_img_size'] * 1000) break;
+					if ($imageMIME != 'image/jpeg' && $file_size > $settings['upload_max_img_size'] * 1000) break;
 					if ($file_size <= $settings['upload_max_img_size'] * 1000) break;
 				}
 				if ($file_size > $settings['upload_max_img_size'] * 1000) {
@@ -64,14 +65,14 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 
 		if (empty($errors)) {
 			$filename = gmdate("YmdHis").uniqid('');
-			switch($image_info[2]) {
-				case 1:
+			switch($imageMIME) {
+				case 'image/gif':
 					$filename .= '.gif';
 				break;
-				case 2:
+				case 'image/jpeg':
 					$filename .= '.jpg';
 				break;
-				case 3:
+				case 'image/png':
 					$filename .= '.png';
 				break;
 			}
