@@ -109,7 +109,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 			$smarty->assign('delete', htmlspecialchars($_REQUEST['delete']));
 			if (isset($_REQUEST['current'])) $smarty->assign('current', intval($_REQUEST['current']));
 		} else {
-			if (preg_match('/^([a-z0-9]+)\.(gif|jpg|png)$/', $_REQUEST['delete']) && file_exists($uploaded_images_path.$_REQUEST['delete'])) {
+			if (preg_match('/^([a-z0-9]+)\.(gif|jpg|png|webp)$/', $_REQUEST['delete']) && file_exists($uploaded_images_path.$_REQUEST['delete'])) {
 				@chmod($uploaded_images_path.$_REQUEST['delete'], 0777);
 				@unlink($uploaded_images_path.$_REQUEST['delete']);
 			}
