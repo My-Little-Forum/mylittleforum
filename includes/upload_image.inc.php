@@ -15,7 +15,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		$user_id = (isset($_SESSION[$settings['session_prefix'].'user_id'])) ? intval($_SESSION[$settings['session_prefix'].'user_id']) : NULL;
 		$image_info = getimagesize($_FILES['probe']['tmp_name']);
 		$imageMIME = mime_content_type($_FILES['probe']['tmp_name']);
-		if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png']))
+		if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp']))
 			$errors[] = 'invalid_file_format';
 
 		if (empty($errors)) {
@@ -74,6 +74,9 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				break;
 				case 'image/png':
 					$filename .= '.png';
+				break;
+				case 'image/webp':
+					$filename .= '.webp';
 				break;
 			}
 			if (isset($img_tmp_name)) {
