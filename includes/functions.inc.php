@@ -1560,7 +1560,7 @@ function resize_image($uploaded_file, $file, $new_width, $new_height, $compressi
 
   $image_info = getimagesize($uploaded_file);
   $imageMIME = mime_content_type($uploaded_file);
-  if(!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png'])) $error = true;
+  if(!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) $error = true;
   if(empty($error))
   {
   if($imageMIME=='image/gif') // GIF
@@ -1583,6 +1583,13 @@ function resize_image($uploaded_file, $file, $new_width, $new_height, $compressi
     if(empty($error)) $new_image=imagecreatetruecolor($new_width,$new_height) or $error = true;
     if(empty($error)) imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
     if(empty($error)) imagepng($new_image, $file) or $error = $true;
+   }
+  elseif($imageMIME=='image/webp') // WebP
+   {
+    $current_image=imagecreatefromwebp($uploaded_file) or $error = true;
+    if(empty($error)) $new_image=imagecreatetruecolor($new_width,$new_height) or $error = true;
+    if(empty($error)) imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
+    if(empty($error)) imagewebp($new_image, $file) or $error = $true;
    }
   }
   if(empty($error)) return true;
