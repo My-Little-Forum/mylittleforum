@@ -190,26 +190,27 @@ code.monospace           { color:#000; }
 blockquote               { margin:0; padding:0 0 0 30px; color:#6f6f6f; font-style:italic; background:url(images/quote.png) no-repeat top left; }
 blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
 
-.posting-footer          { clear:both; margin:25px 0 0 0; padding:0 0 0 0; }
-.posting-footer .reply   { font-size:0.82em; float:left; }
+.posting-footer          { margin:1em 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1.25em auto; grid-gap:0.2em; }
+.posting-footer .reply   { font-size:0.82em; }
 .posting-footer .locked  { font-size:0.82em; color:#808080; padding-left:16px; background:url(images/locked.png) no-repeat 0 0; }
-.posting-footer .info    { text-align:right; }
-.posting-footer .views   { font-size:0.69em; color:#808080; }
-.posting-footer .options { display:inline; font-size:0.69em !important; list-style-type:none; max-width:100% !important; padding:0; }
+.posting-footer .views   { font-size:0.69em; color:#808080; text-align:right; }
+#content .posting-footer .options
+                         { font-size:0.69em !important; list-style-type:none; max-width:100% !important; margin:0; padding:0; grid-row-start:2; grid-row-end:3; grid-column-start:1; grid-column-end:3; display:flex; flex-wrap:wrap; gap:0.4em; justify-content:flex-end; }
 .posting-footer .options li
-                         { display:inline; margin:0 0 0 1em; }
+                         { margin:0; }
+.posting-footer a        { white-space:nowrap; }
 .posting-footer a.edit   { padding-left:16px; background:url(images/bg_sprite_3.png) no-repeat 0 2px; }
 .posting-footer a.delete { padding-left:13px; background:url(images/bg_sprite_3.png) no-repeat 0 -47px; }
 .posting-footer a.go-to-top-link
-                         { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
+                         { padding-left: 12px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
 .posting-footer a.add-bookmark
-                         { padding-left:14px; background:url(images/bg_sprite_3.png) no-repeat 0 -97px; }
+                         { padding-left:13px; background:url(images/bg_sprite_3.png) no-repeat 0 -97px; }
 .posting-footer a.delete-bookmark
-                         { padding-left:14px; background:url(images/bg_sprite_3.png) no-repeat 0 -147px; }
+                         { padding-left:13px; background:url(images/bg_sprite_3.png) no-repeat 0 -147px; }
 .posting-footer a.move   { padding-left:13px; background:url(images/bg_sprite_4.png) no-repeat 0 2px; }
-.posting-footer a.report { padding-left:14px; background:url(images/bg_sprite_4.png) no-repeat 0 -48px; }
-.posting-footer a.lock   { padding-left:16px; background:url(images/bg_sprite_4.png) no-repeat 0 -99px; }
-.posting-footer a.unlock { padding-left:16px; background:url(images/bg_sprite_4.png) no-repeat 0 -149px; }
+.posting-footer a.report { padding-left:13px; background:url(images/bg_sprite_4.png) no-repeat 0 -48px; }
+.posting-footer a.lock   { padding-left:14px; background:url(images/bg_sprite_4.png) no-repeat 0 -99px; }
+.posting-footer a.unlock { padding-left:14px; background:url(images/bg_sprite_4.png) no-repeat 0 -149px; }
 .posting-footer a.lock-thread
                          { padding-left:16px; background:url(images/bg_sprite_4.png) no-repeat 0 -200px; }
 .posting-footer a.unlock-thread
@@ -224,14 +225,9 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
 .thread-posting .header  { background:#f5f5f5; margin:0 0 0 0; padding:0 0 5px 10px; }
 .thread-posting .header img.avatar
                          { position:relative; margin:0 0 20px 20px; padding:5px; background:#f5f5f5; float:right; }
-.thread-posting .body    { margin:0; padding:10px; }
-.thread-posting .signature
-                         { margin: 0; padding: 10px; }
-#content .thread-posting p.tags
-                         { margin: 0; padding: 10px; }
 .thread-posting .author  { margin:1px 0 0 0; font-style:italic; }
-.thread-posting .posting-footer
-                         { margin:10px; }
+.thread-posting .body,.thread-posting .signature,#content .thread-posting p.tags,.thread-posting .posting-footer{margin:0;padding:10px}
+
 .hide-posting            { position:absolute; top:0; left:-10px; }
 
 .thread-wrapper          { margin:0; padding:0; }
