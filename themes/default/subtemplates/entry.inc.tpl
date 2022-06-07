@@ -47,7 +47,7 @@
 <p class="tags">{#tags_marking#}<br />
 {foreach name="tags" from=$tags item=tag}<a href="index.php?mode=search&amp;search={$tag.escaped}&amp;method=tags">{$tag.display}</a>{if !$smarty.foreach.tags.last}, {/if}{/foreach}</p>
 {/if}
-<div class="posting-footer">
+<footer class="posting-footer">
 <div class="reply">{if $locked==0}<a class="stronglink" href="index.php?mode=posting&amp;id={$id}&amp;back=entry" title="{#reply_link_title#}">{#reply_link#}</a>{else}<span class="locked">{#posting_locked#}</span>{/if}</div>
 <div class="info">
 {if $views}<span class="views">{if $views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$views}{/if}</span>{else}&nbsp;{/if}
@@ -67,7 +67,7 @@
 {/if}
 </div>
 </div>
-</div>
+</footer>
 </div>
 
 <hr class="entryline" />
