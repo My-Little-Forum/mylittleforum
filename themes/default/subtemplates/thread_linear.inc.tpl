@@ -36,7 +36,7 @@
 {assign var=posting_user_id value=$element.user_id}
 {assign var=name value="<a href=\"index.php?mode=user&amp;show_user=$posting_user_id\">$name</a>"}
 {/if}
-<div class="thread-posting{if $element.new} new{/if}{if $element.is_read} read{/if}" id="p{$element.id}">
+<article class="thread-posting{if $element.new} new{/if}{if $element.is_read} read{/if}" id="p{$element.id}">
 <div class="header">
 {if $element.avatar}<img id="avatar-{$element.id}" class="avatar" src="{$element.avatar.image}" alt="{#avatar_img_alt#}" width="{$element.avatar.width}" height="{$element.avatar.height}" />{/if}
 <h{if $element.pid==0}1{else}2{/if} id="headline-{$element.id}">{$element.subject}{if $element.pid==0 && $category_name} <span class="category">({$category_name})</span>{/if}</h{if $element.pid==0}1{else}2{/if}>
@@ -81,7 +81,7 @@
 </div>
 </div>
 </footer>
-</div>
+</article>
 {/foreach}
 </div>
 {if $settings.rss_feed==1}<div class="complete-thread">

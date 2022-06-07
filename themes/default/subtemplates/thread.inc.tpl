@@ -36,7 +36,7 @@
 {assign var=posting_user_id value=$data.$element.user_id}
 {assign var=name value="<a href=\"index.php?mode=user&amp;show_user=$posting_user_id\">$name</a>"}
 {/if}
-<div class="thread-posting{if $data.$element.new} new{/if}{if $data.$element.is_read} read{/if}" id="p{$data.$element.id}">
+<article class="thread-posting{if $data.$element.new} new{/if}{if $data.$element.is_read} read{/if}" id="p{$data.$element.id}">
 <div class="header">
 {if $data.$element.avatar}<img id="avatar-{$data.$element.id}" class="avatar" src="{$data.$element.avatar.image}" alt="{#avatar_img_alt#}" width="{$data.$element.avatar.width}" height="{$data.$element.avatar.height}" />{/if}
 <h{if $data.$element.pid==0}1{else}2{/if} id="headline-{$data.$element.id}">{$data.$element.subject}{if $data.$element.pid==0 && $category_name} <span class="category">({$category_name})</span>{/if}</h{if $data.$element.pid==0}1{else}2{/if}>
@@ -81,7 +81,7 @@
 </div>
 </div>
 </footer>
-</div>
+</article>
 {if is_array($child_array[$element])}
 {foreach from=$child_array[$element] item=child}{tree element=$child level=$level+1}{/foreach}
 {/if}
