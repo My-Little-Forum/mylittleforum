@@ -35,7 +35,7 @@ body > *:not(main){margin:0;padding:0}
 #usermenu li:not(:first-child) a{padding-left:4px}
 #topsearch div{display:inline;font-size:.82em}
 #topsearch #search-input{font-family:verdana,arial,sans-serif;width:14em}
-#subnav{height:1.8em;color:#000;background:#f9f9f9;border-top:1px solid #bacbdf;border-bottom:1px solid #bacbdf;line-height:1.8em}
+#subnav{height:1.8em;background:#f9f9f9;border-top:1px solid #bacbdf;border-bottom:1px solid #bacbdf;line-height:1.8em}
 #subnav #subnav-1{font-size:.82em;margin:0;padding:0 0 0 20px;float:left}
 #subnav #subnav-2{font-size:.82em;margin:0;padding:0 20px 0 0;text-align:right}
 #subnav p.subnav{margin:0;padding:0 0 0 12px;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -89px}
@@ -63,7 +63,7 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #content li,#content ul ul{font-size:1em}
 #content .xsmall{font-size:.69em;line-height:1.19em;color:gray;font-weight:400}
 #content .small{font-size:.69em;line-height:1.19em;font-weight:400}
-#footer{clear:both;font-size:.69em;line-height:1.5em;color:#000;background:#f9f9f9;border-top:1px solid #bacbdf}
+#footer{clear:both;font-size:.69em;line-height:1.5em;background:#f9f9f9;border-top:1px solid #bacbdf}
 #footer #footer-1{margin:0;padding:7px 0 10px 20px;float:left}
 #footer #footer-2{margin:0;padding:7px 20px 10px 0;text-align:right}
 #footermenu{margin:0 0 1em;list-style-type:none}
@@ -233,11 +233,11 @@ ul.thread span.mod,ul.thread span.admin,td span.admin,td span.mod{cursor:help}
 .category-regusers-b{color:#00c;font-size:.82em;font-weight:400;border-bottom:1px dotted #00c}
 .category-adminmod-b{color:#00c;font-size:.82em;font-weight:400;border-bottom:1px solid #00c}
 h3.preview{margin:10px 0 3px;font-size:.82em;font-weight:700;color:red}
-div.preview{margin:0 0 25px;padding:10px;color:#000;border:1px dotted red}
+div.preview{margin:0 0 25px;padding:10px;border:1px dotted red}
 table.wide{width:100%}
 table.normaltab{width:100%;border:1px solid #bacbdf;background:#fff}
-table.normaltab th{vertical-align:top;font-size:.82em;font-weight:700;text-align:left;color:#000;background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
-table.normaltab td{vertical-align:top;font-size:.82em;font-weight:400;color:#000}
+table.normaltab th{vertical-align:top;font-size:.82em;font-weight:700;text-align:left;background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
+table.normaltab td{vertical-align:top;font-size:.82em;font-weight:400}
 table.normaltab tr.a td{background:#f5f5f5}
 table.normaltab tr.b td{background:#f9f9f9}
 table.normaltab td.c{width:15em;background:#d2ddea;background: linear-gradient(to right, rgb(210, 222, 236) 0, rgb(210, 222, 236) 9em, rgb(237, 242, 245) 100%)}
