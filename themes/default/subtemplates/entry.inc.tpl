@@ -24,7 +24,7 @@
 {if (($settings.user_area_access == 0 and ($admin or $mod)) or ($settings.user_area_access == 1 and $user) or $settings.user_area_access == 2) && $posting_user_id>0}
 {assign var=name value="<a href=\"index.php?mode=user&amp;show_user=$posting_user_id\">$name</a>"}
 {/if}
-<div class="posting{if $is_read} read{/if}">
+<article class="posting{if $is_read} read{/if}">
 <div class="header">{if $spam}<p class="spam-note">{#spam_note#}</p>{/if}
 {if $avatar}<img class="avatar" src="{$avatar.image}" alt="{#avatar_img_alt#}" width="{$avatar.width}" height="{$avatar.height}" />{/if}
 <h1>{$subject}{if $category_name} <span class="category">({$category_name})</span>{/if}</h1>
@@ -68,7 +68,7 @@
 </div>
 </div>
 </footer>
-</div>
+</article>
 
 <hr class="entryline" />
 <div class="complete-thread">
