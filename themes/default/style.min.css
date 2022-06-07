@@ -26,12 +26,11 @@ img.show-sidebar{background:url(images/bg_sprite_2.png) no-repeat 0 -22px}
 #logo h1 a:focus,#logo h1 a:hover{color:#00a;text-decoration:none}
 #logo .index{margin:0;padding:0;font-size:.82em}
 #nav{margin:0;padding:7px 20px}
-#usermenu{margin:0 0 0.75em;padding:0;font-size:.69em;list-style-type:none}
-#usermenu li{display:inline;margin-left:5px}
-#usermenu li:first-child{margin-left:0;padding-left:0}
-#usermenu li:before{content:"|"}
-#usermenu li:first-child:before{content:""}
-#usermenu li:not(:first-child) a{padding-left:4px}
+#usermenu{margin:0 0 0.75em;padding:0;font-size:.69em;list-style-type:none;display:flex;flex-wrap:wrap;gap:3px 0.4em}
+#usermenu li{margin:0}
+#usermenu li:not(:last-child):after{content:"|"}
+#usermenu li:not(:last-child) a{margin-right:0.4em}
+#usermenu li a{white-space:nowrap}
 #topsearch div{display:inline;font-size:.82em}
 #topsearch #search-input{font-family:verdana,arial,sans-serif;width:14em}
 #subnav{clear:both;margin:0;padding:0;height:1.8em;color:#000;background:#f9f9f9;border-top:1px solid #bacbdf;border-bottom:1px solid #bacbdf;line-height:1.8em}
