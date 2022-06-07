@@ -240,6 +240,7 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
 .op-link a               { font-size:0.9em; color:#808080; }
 
 #content .body           { overflow: hidden; }
+#content .body img       { max-width:100%; height:auto; }
 #content p.tags          { margin:20px 0 0 0; padding:0; color:#808080; font-size:0.69em; line-height:1.42em; }
 #content .signature p    { margin:10px 0 0 0; padding:0; color:#808080; font-weight:normal; font-size:0.69em; line-height:1.42em; }
 
