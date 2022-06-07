@@ -34,7 +34,8 @@ img.previous:hover       { background:url(images/bg_sprite_2.png) no-repeat -6px
 img.hide-sidebar         { background:url(images/bg_sprite_2.png) no-repeat -9px -22px; }
 img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -22px; }
 
-#top                     { margin:0; padding:0; background:rgb(210, 222, 236); background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 2.5em, rgb(237, 242, 245) 100%); }
+body > *:not(main)       { margin:0; padding:0; }
+#top                     { background:rgb(210, 222, 236); background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 2.5em, rgb(237, 242, 245) 100%); }
 
 #logo                    { margin:0; padding:7px 20px 0; }
 #logo .home              { margin:0 0 0.3em 0; padding:0; font-size:0.69em; }
@@ -57,7 +58,7 @@ img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -2
 #topsearch div           { display:inline; font-size:0.82em; }
 #topsearch #search-input { font-family:verdana,arial,sans-serif; width:14em; }
 
-#subnav                  { clear:both; margin:0; padding:0; height:1.8em; color:#000000; background:#f9f9f9; border-top:1px solid #bacbdf; border-bottom:1px solid #bacbdf; line-height:1.8em; }
+#subnav                  { height:1.8em; color:#000000; background:#f9f9f9; border-top:1px solid #bacbdf; border-bottom:1px solid #bacbdf; line-height:1.8em; }
 #subnav #subnav-1        { font-size:0.82em; margin:0; padding:0 0 0 20px; float:left; }
 #subnav #subnav-2        { font-size:0.82em; margin:0; padding:0em 20px 0 0; text-align:right; }
 #subnav p.subnav         { margin:0; padding:0 0 0 12px; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -89px; }
@@ -94,7 +95,7 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #content .xsmall         { font-size:0.69em; line-height:1.19em; color:#808080; font-weight:normal; }
 #content .small          { font-size:0.69em; line-height:1.19em; font-weight:normal; }
 
-#footer                  { clear:both; font-size:0.69em; line-height:1.5em; margin:0; padding:0; color:#000000; background:#f9f9f9; border-top:1px solid #bacbdf; }
+#footer                  { clear:both; font-size:0.69em; line-height:1.5em; color:#000000; background:#f9f9f9; border-top:1px solid #bacbdf; }
 #footer #footer-1        { margin:0; padding:7px 0 10px 20px; float:left; }
 #footer #footer-2        { margin:0; padding:7px 20px 10px 0; text-align:right; }
 #footermenu              { margin:0 0 1em 0; list-style-type:none; }
