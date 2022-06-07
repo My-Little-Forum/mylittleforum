@@ -50,7 +50,7 @@
 </div>
 <footer class="posting-footer">
 <div class="reply">{if $locked==0}<a class="stronglink" href="index.php?mode=posting&amp;id={$id}&amp;back=entry" title="{#reply_link_title#}">{#reply_link#}</a>{else}<span class="locked">{#posting_locked#}</span>{/if}</div>
-{if $views}<span class="views">{if $views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$views}{/if}</span>{else}&nbsp;{/if}
+{if $views}<div class="views">{if $views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$views}{/if}</div>{/if}
 {if $options}
 <ul class="options">
 <li><a href="#top" class="go-to-top-link" title="{#back_to_top_link_title#}">{#back_to_top_link#}</a></li>
