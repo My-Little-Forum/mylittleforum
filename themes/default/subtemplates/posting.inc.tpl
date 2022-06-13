@@ -294,9 +294,12 @@ JavaScript isn't available.
 {/if}
 
 <fieldset>
-<p><input type="submit" name="save_entry" value="{#message_submit_button#}" title="{#message_submit_title#}" tabindex="11" />&nbsp;<input type="submit" name="preview" value="{#message_preview_button#}" title="{#message_preview_title#}" tabindex="11" /> <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
+<div>
+ <button name="save_entry" value="{#message_submit_button#}" title="{#message_submit_title#}" tabindex="11">{#message_submit_button#}</button>
+ <button name="preview" value="{#message_preview_button#}" title="{#message_preview_title#}" tabindex="12">{#message_preview_button#}</button>
+ <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
+</div>
 </fieldset>
-
 </div>
 </form>
 {/if}
