@@ -447,7 +447,9 @@ p.userdata               { margin:0; }
 .inline                  { display:inline; }
 
 #postingform fieldset    { border:none; margin:0 0 1em 0; }
-#postingform p           { font-size:1em; margin:0 0 5px 0; padding:0; }
+#postingform div         { font-size:1em; margin:0; padding:0; }
+#postingform div:not(:last-child)
+                         { margin-bottom:0.75em; }
 #postingform label.input { display:block; float:left; float: inline-start; width:8em; font-weight:bold; }
 #postingform label.textarea
                          { font-weight:bold; }
@@ -845,7 +847,7 @@ img.right                { float:right; float: inline-end; margin:0 0 10px 10px;
 div.warning              { border: 5px solid red; padding: 15px; font-size:1.3em; }
 
 /* Honey pots */
-form p.hp { display: none; }
+form .hp { display: none; }
 
 @media screen and (min-width: 38em) {
 	#top { flex-direction: row; justify-content: space-between; }

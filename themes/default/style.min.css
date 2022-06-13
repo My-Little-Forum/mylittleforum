@@ -288,7 +288,8 @@ p.userdata{margin:0}
 .normalform:not(:first-child){margin:1em 0 0}
 .inline{display:inline}
 #postingform fieldset{border:none;margin:0 0 1em}
-#postingform p{font-size:1em;margin:0 0 5px;padding:0}
+#postingform div{font-size:1em;margin:0;padding:0}
+#postingform div:not(:last-child){margin-bottom:0.75em}
 #postingform label.input{display:block;float:left;float:inline-start;width:8em;font-weight:700}
 #postingform label.textarea{font-weight:700}
 #postingform input.checkbox{margin-left:8em}
@@ -522,7 +523,7 @@ img.right{float:right;float:inline-end;margin:0 0 10px 10px}
 .js-cursor-move{cursor:move}
 .js-display-fold .wrapper,.js-display-fold #sidebarcontent{display:none}
 .js-display-fold img.avatar{width:1.6em;height:1.6em}
-form p.hp{display:none}
+form .hp{display:none}
 @media screen and (min-width:38em) {
 	#top {flex-direction:row;justify-content:space-between}
 	#usermenu{justify-content:flex-end}

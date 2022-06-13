@@ -82,40 +82,40 @@
 {if $form_type==0}
 <fieldset>
 
-<p>
+<div>
 <label for="name" class="input">{#name_marking#}</label>
 <input id="name" type="text" size="40" name="{$fld_user_name}" value="{if $name}{$name}{/if}" maxlength="{$settings.username_maxlength}"  tabindex="1" />
-</p>
+</div>
 
-<p>
+<div>
 <label for="email" class="input">{#email_marking#}</label>
 <input id="email" type="email" size="40" name="{$fld_user_email}" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="2" />&nbsp;<span class="xsmall">{#optional_email#}</span>
 </div>
 
-<p class="hp">
+<div class="hp">
 <label for="repeat_email" class="main">{#honeypot_field_marking#}</label>
 <input id="repeat_email" type="email" size="40" name="{$fld_repeat_email}" value="{if $honey_pot_email}{$honey_pot_email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="-1" />
 </div>
 
-<p>
+<div>
 <label for="hp" class="input">{#hp_marking#}</label>
 <input id="hp" type="url" size="40" name="{$fld_hp}" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" tabindex="3" />&nbsp;<span class="xsmall">{#optional#}</span>
 </div>
 
-<p class="hp">
+<div class="hp">
 <label for="phone" class="main">{#honeypot_field_marking#}</label>
 <input id="phone" class="login" type="tel" size="30" name="{$fld_phone}" value="{if $honey_pot_phone}{$honey_pot_phone}{/if}" maxlength="35" tabindex="-1" />
 </div>
 
-<p>
+<div>
 <label for="location" class="input">{#location_marking#}</label>
 <input id="location" type="text" size="40" name="{$fld_location}" value="{if $location}{$location}{/if}" maxlength="{$settings.location_maxlength}" tabindex="4" />&nbsp;<span class="xsmall">{#optional#}</span>
-</p>
+</div>
 
 {if $settings.remember_userdata == 1 && $posting_mode==0 && !$user}
-<p>
+<div>
 <input id="setcookie" class="checkbox" type="checkbox" name="setcookie" value="1"{if $setcookie} checked="checked"{/if} />&nbsp;<label for="setcookie">{#remember_userdata_marking#}</label>{if $cookie} &nbsp;<span id="delete_cookie"><a href="index.php?mode=delete_cookie">{#delete_cookie_linkname#}</a></span>{/if}
-</p>
+</div>
 {/if}
 
 </fieldset>
@@ -123,20 +123,20 @@
 
 <fieldset>
 {if $categories}
-	<p><label for="p_category" class="input">{#category_marking#}</label>
+	<div><label for="p_category" class="input">{#category_marking#}</label>
 	<select id="p_category" size="1" name="p_category" tabindex="5"{if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0} disabled="disabled"{/if}>
 		{foreach key=key item=val from=$categories}
 			{if $key!=0}<option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>{/if}
 		{/foreach}
-	</select></p>
+	</select></div>
 	{if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0}
 		<input type="hidden" name="p_category" value="{$p_category}" />
 	{/if}
 {/if}
 
-<p><label for="subject" class="input">{#subject_marking#}</label>
+<div><label for="subject" class="input">{#subject_marking#}</label>
 <input id="subject" type="text" size="50" name="{$fld_subject}" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" tabindex="6" />
-</p>
+</div>
 
 {* Tags
 	0 == Off
@@ -242,15 +242,15 @@ JavaScript isn't available.
 {if $signature || $provide_email_notification || $provide_sticky || $terms_of_use_agreement || $data_privacy_agreement}
 <fieldset>
 {if $signature}
-<p>
+<div>
 <input id="show_signature" type="checkbox" name="show_signature" value="1"{if $show_signature && $show_signature==1} checked="checked"{/if} />&nbsp;<label for="show_signature">{#show_signature_marking#}</label>
-</p>
+</div>
 {/if}
 
 {if $provide_email_notification}
-<p>
+<div>
 <input id="email_notification" type="checkbox" name="email_notification" value="1"{if $email_notification && $email_notification==1} checked="checked"{/if} />&nbsp;<label for="email_notification">{if $id==0}{#email_notific_reply_thread#}{else}{#email_notific_reply_post#}{/if}</label>
-</p>
+</div>
 {/if}
 
 {if $provide_sticky}
@@ -267,15 +267,15 @@ JavaScript isn't available.
 
 {if $terms_of_use_agreement}
 {assign var=terms_of_use_url value=$settings.terms_of_use_url}
-<p>
+<div>
 <input id="terms_of_use_agree" tabindex="8" type="checkbox" name="terms_of_use_agree" value="1"{if $terms_of_use_agree && $terms_of_use_agree==1} checked="checked"{/if} />&nbsp;<label for="terms_of_use_agree">{if $terms_of_use_url}{#terms_of_use_agreement#|replace:"[[":"<a id=\"terms_of_use\" href=\"$terms_of_use_url\">"|replace:"]]":"</a>"}{else}{#terms_of_use_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label>
-</p>
+</div>
 {/if}
 {if $data_privacy_agreement}
 {assign var=data_privacy_statement_url value=$settings.data_privacy_statement_url}
-<p>
+<div>
 <input id="data_privacy_statement_agree" tabindex="9" type="checkbox" name="data_privacy_statement_agree" value="1"{if $data_privacy_statement_agree && $data_privacy_statement_agree==1} checked="checked"{/if} />&nbsp;<label for="data_privacy_statement_agree">{if $data_privacy_statement_url}{#data_privacy_agreement#|replace:"[[":"<a id=\"data_privacy_statement\" href=\"$data_privacy_statement_url\">"|replace:"]]":"</a>"}{else}{#data_privacy_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label>
-</p>
+</div>
 {/if}
 </fieldset>
 {/if}
@@ -288,7 +288,7 @@ JavaScript isn't available.
 <label for="captcha_code">{#captcha_expl_image#}</label><br />
 <input id="captcha_code" type="text" name="captcha_code" value="" size="10" tabindex="9" /></p>
 {else}
-<p><label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" maxlength="5" tabindex="10" /></p>
+<div><label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" maxlength="5" tabindex="10" /></div>
 {/if}
 </fieldset>
 {/if}
