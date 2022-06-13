@@ -89,23 +89,23 @@
 
 <p>
 <label for="email" class="input">{#email_marking#}</label>
-<input id="email" type="text" size="40" name="{$fld_user_email}" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="2" />&nbsp;<span class="xsmall">{#optional_email#}</span>
-</p>
+<input id="email" type="email" size="40" name="{$fld_user_email}" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="2" />&nbsp;<span class="xsmall">{#optional_email#}</span>
+</div>
 
 <p class="hp">
 <label for="repeat_email" class="main">{#honeypot_field_marking#}</label>
-<input id="repeat_email" type="text" size="40" name="{$fld_repeat_email}" value="{if $honey_pot_email}{$honey_pot_email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="-1" />
-</p>
+<input id="repeat_email" type="email" size="40" name="{$fld_repeat_email}" value="{if $honey_pot_email}{$honey_pot_email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="-1" />
+</div>
 
 <p>
 <label for="hp" class="input">{#hp_marking#}</label>
-<input id="hp" type="text" size="40" name="{$fld_hp}" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" tabindex="3" />&nbsp;<span class="xsmall">{#optional#}</span>
-</p>
+<input id="hp" type="url" size="40" name="{$fld_hp}" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" tabindex="3" />&nbsp;<span class="xsmall">{#optional#}</span>
+</div>
 
 <p class="hp">
 <label for="phone" class="main">{#honeypot_field_marking#}</label>
-<input id="phone" class="login" type="text" size="30" name="{$fld_phone}" value="{if $honey_pot_phone}{$honey_pot_phone}{/if}" maxlength="35" tabindex="-1" />
-</p>
+<input id="phone" class="login" type="tel" size="30" name="{$fld_phone}" value="{if $honey_pot_phone}{$honey_pot_phone}{/if}" maxlength="35" tabindex="-1" />
+</div>
 
 <p>
 <label for="location" class="input">{#location_marking#}</label>
