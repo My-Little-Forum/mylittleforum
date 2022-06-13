@@ -145,10 +145,10 @@
 	3 == everyone
 *}
 {if $settings.tags > 0 && ( ($settings.tags == 1 && ($admin || $mod)) || ($settings.tags == 2 && ($user_type === 0 || $admin || $mod)) || $settings.tags > 2 )}
-<p>
-<label for="tags" class="input">{#tags_marking#}</label>
-<input id="tags" type="text" size="50" name="tags" value="{$tags|default:""}" maxlength="253" tabindex="-1" />&nbsp;<span class="xsmall">{#tags_note#}</span>
-</p>
+<div>
+<label for="tags" class="input">{#tags_marking#} <span class="xsmall">{#tags_note#}</span></label>
+<input id="tags" type="text" size="50" name="tags" value="{$tags|default:""}" maxlength="253" tabindex="-1" />
+</div>
 {/if}
 </fieldset>
 
