@@ -12,13 +12,13 @@
 		<p>{#flag_ham_warning#}</p>
 		<p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$disp_time|date_format:#time_format#}</p>
 		<form action="index.php" method="post" accept-charset="{#charset#}">
-		<div>
 			<input type="hidden" name="mode" value="posting" />
 			<input type="hidden" name="id" value="{$id}" />
 			<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-			<input type="submit" name="report_flag_ham_submit" value="{#report_flag_ham_submit#}" /> 
-			<input type="submit" name="flag_ham_submit" value="{#flag_ham_submit#}" />
-		</div>
+			<div class="buttonbar">
+				<button name="report_flag_ham_submit" value="{#report_flag_ham_submit#}">{#report_flag_ham_submit#}</button>
+				<button name="flag_ham_submit" value="{#flag_ham_submit#}">{#flag_ham_submit#}</button>
+			</div>
 		</form>
 	{/if}
 {/if}
