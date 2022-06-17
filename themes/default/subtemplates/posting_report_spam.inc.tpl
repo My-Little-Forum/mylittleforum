@@ -15,7 +15,6 @@
 		
 		<p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$disp_time|date_format:#time_format#}</p>
 		<form action="index.php" method="post" accept-charset="{#charset#}">
-		<div>
 			<input type="hidden" name="mode" value="posting" />
 			<input type="hidden" name="id" value="{$id}" />
 			<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
@@ -24,10 +23,11 @@
 			{if $order}<input type="hidden" name="order" value="{$order}" />{/if}
 			{if $descasc}<input type="hidden" name="descasc" value="{$descasc}" />{/if}
 			{if $category}<input type="hidden" name="category" value="{$category}" />{/if}
-			<input type="submit" name="report_spam_delete_submit" value="{#report_spam_delete_submit#}" /> 
-			<input type="submit" name="report_spam_submit" value="{#report_spam_submit#}" /> 
-			<input type="submit" name="delete_submit" value="{#delete_only_submit#}" />
-		</div>
+			<div class="buttonbar">
+				<button name="report_spam_delete_submit" value="{#report_spam_delete_submit#}">{#report_spam_delete_submit#}</button>
+				<button name="report_spam_submit" value="{#report_spam_submit#}">{#report_spam_submit#}</button>
+				<button name="delete_submit" value="{#delete_only_submit#}">{#delete_only_submit#}</button>
+			</div>
 		</form>
 	{/if}
 {/if}
