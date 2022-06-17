@@ -1799,7 +1799,7 @@ switch ($action) {
 		break;
 	case 'flag_ham_submit':
 		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-			$result = mysqli_query($connid, "SELECT tid, user_id, name, email, hp, subject, location, text,
+			$result = mysqli_query($connid, "SELECT tid, user_id, name, email, hp, subject, location, text, locked,
 											" . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status, 
 											" . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type 
 											 FROM " . $db_settings['forum_table'] . " 
