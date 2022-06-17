@@ -1808,7 +1808,11 @@ switch ($action) {
 											 WHERE id = " . intval($id) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			$data = mysqli_fetch_array($result);
 			if (mysqli_num_rows($result) == 1) {
-				@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = edited, locked = 0 WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
+				if ($data['locked'] == 1 && $data['spam_check_status'] == 0 && $data['training_type'] == 0) {
+					// do nothing and leave the entry locked
+				} else {
+					@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = edited, locked = 0 WHERE id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
+				}
 				// Flag HAM in rating tables
 				@mysqli_query($connid, "REPLACE INTO " . $db_settings['akismet_rating_table'] . " (`eid`, `spam`, `spam_check_status`) VALUES (" . intval($id) . ", 0, 1)") or raise_error('database_error', mysqli_error($connid));
 				@mysqli_query($connid, "REPLACE INTO " . $db_settings['b8_rating_table'] . " (`eid`, `spam`, `training_type`) VALUES (" . intval($id) . ", 0, 1)") or raise_error('database_error', mysqli_error($connid));
