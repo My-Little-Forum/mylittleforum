@@ -472,6 +472,11 @@ ul.pagination-index-table
 #codepicker ul a:focus,
 #codepicker ul a:hover   { background:#e0e0e0; }
 
+/* buttonbars */
+.buttonbar               { display:flex; flex-wrap:wrap; gap:0.3em; }
+.buttonbar button        { padding:0.3em; }
+
+/* admin panel */
 .additional-admin-info   { margin:0 0 1em 0; padding:0; }
 .additional-admin-info div
                          { background: #f9f9f9; border: 1px solid #bacbdf; padding: 0; }
