@@ -467,6 +467,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 		}
 	}
+	$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
+	FROM information_schema.STATISTICS 
+	WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."' AND
+	TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."' AND 
+	INDEX_NAME LIKE 'user_%';");
+	if (mysqli_num_rows($rObsoleteIndexes) > 0) {
+		while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
+			if (!@mysqli_query(%connid, "DROP INDEX ". $row['obsolete_key'] ." ON " . $db_settings['userdata_table'] .";")) {
+				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			}
+		}
+	}
 }
 
 if (empty($update['errors'])) {
