@@ -1,6 +1,18 @@
 my little forum changelog
 -------------------------
 
+20220803.1 (2022-08-03)
+-----------------------
+
+- feature: support the upload of WebP-images
+- change: semantic HTML-elements on several places and modern CSS-rules (flexboxes instead floating boxes here and there)
+- fix: remove outdated query partsthat tried to access column mlf2_entries.email_notifications
+- fix: ensure, that suígnatures are reliably positioned under all content of a forum entry
+- fix: putting the cursor into the empty search field in the page header and pressing [Enter] led to a PHP warning
+- fix: (partially) When classifying entries in locked threads the get unlocked sometimes, happens more seldom now but there is a remaining corner case to inspect
+- fix: wrong order of altering the column mlf2_userdata.user_email, defining the unique-key for this column before changing its charset to utf8 (without 'mb4') leads to the error of a to long index in some MySQL-versions
+- fix: remove multiple definitions of unique indexes for the columns mlf2_userdata.user_name and mlf2_userdata.user_email in the installation and update scripts, the indexes does not break the structure but they are superfluous
+
 20220529.1 (2022-05-29)
 -----------------------
 
