@@ -167,6 +167,20 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
 		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+	case '20220529.1':
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/search.inc.php';
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/upload_image.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
 		break;
