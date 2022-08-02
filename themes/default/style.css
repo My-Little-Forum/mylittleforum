@@ -47,7 +47,7 @@ body > *:not(main)       { margin:0; padding:0; }
 
 #nav                     { margin:0; padding:7px 20px; }
 
-#usermenu                { margin:0 0 0.75em 0; padding:0; font-size:0.69em; list-style-type:none; display:flex; flex-wrap:wrap; gap:3px 0.4em; }
+#usermenu                { margin:0 0 0.75em 0; padding:0; font-size:0.69em; list-style-type:none; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:3px 0.4em; }
 #usermenu li             { margin:0; }
 #usermenu li:not(:last-child):after
                          { content: "|"; }
