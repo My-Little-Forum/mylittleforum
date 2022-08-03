@@ -488,7 +488,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 	INDEX_NAME LIKE 'user_%';");
 	if (mysqli_num_rows($rObsoleteIndexes) > 0) {
 		while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
-			if (!@mysqli_query(%connid, "DROP INDEX ". $row['obsolete_key'] ." ON " . $db_settings['userdata_table'] .";")) {
+			if (!@mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ." ON " . $db_settings['userdata_table'] .";")) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 		}
