@@ -139,7 +139,7 @@ INSERT INTO mlf2_settings VALUES ('uploads_per_page', '20');
 INSERT INTO mlf2_settings VALUES ('data_privacy_agreement', '0');
 INSERT INTO mlf2_settings VALUES ('data_privacy_statement_url', '');
 INSERT INTO mlf2_settings VALUES ('bbcode_latex', '0');
-INSERT INTO mlf2_settings VALUES ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js');
+INSERT INTO mlf2_settings VALUES ('bbcode_latex_uri', 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js');
 INSERT INTO mlf2_settings VALUES ('min_posting_time', '5'); 
 INSERT INTO mlf2_settings VALUES ('min_register_time', '5');
 INSERT INTO mlf2_settings VALUES ('min_email_time', '5');
