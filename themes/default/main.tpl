@@ -37,22 +37,22 @@
 {if $mode=='posting'}
 <script src="{$FORUM_ADDRESS}/js/posting.min.js" type="text/javascript" charset="utf-8"></script>
 {/if}
-{if $settings.bbcode_latex && $settings.bbcode_latex_uri}
-<script type="text/javascript" async src="{$settings.bbcode_latex_uri}"></script>
-<script type="text/x-mathjax-config">/*<![CDATA[*/MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-        displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
-        ignoreClass: "tex2jax_ignore",
-        processClass: "tex2jax_process",
-        processEscapes: true
-    },
-
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" }
-    }
-});
+{if ($mode=='entry' || $mode=='thread' || $mode=='posting') && $settings.bbcode_latex && $settings.bbcode_latex_uri}
+<script>/*<![CDATA[*/
+window.MathJax = {
+	tex: {
+		inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+		displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+		processEscapes: true,
+		tags: "ams"
+	},
+	options: {
+		ignoreHtmlClass: "tex2jax_ignore",
+		processHtmlClass: "tex2jax_process"
+	}
+};
 /*!]]>*/</script>
+<script type="text/javascript" id="MathJax-script" async src="{$settings.bbcode_latex_uri}"></script>
 {/if}
 </head>
 
