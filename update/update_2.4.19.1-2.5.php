@@ -181,6 +181,8 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
+	case 'YYYYMMDD.I' /** VERSION NUMBER TO BE DEFINED **/
+		$update['items'][] = 'themes/default/main.tpl';
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!
 		break;
@@ -492,6 +494,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 		}
+	}
+}
+
+/** VERSION NUMBER TO BE DEFINED: 'YYYYMMDD.I' **/
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1', '2.4.20', '2.4.21', '2.4.22', '2.4.23', '2.4.24', '2.4.99.0', '2.4.99.1', '2.4.99.2', '2.4.99.3', '20220508.1', '20220509.1', '20220517.1', '20220529.1', 'YYYYMMDD.I'))) {
+	// changed tables
+	if (!@mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';")) {
+		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
 
