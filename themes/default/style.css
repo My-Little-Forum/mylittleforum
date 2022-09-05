@@ -27,6 +27,11 @@ a.stronglink:focus, a.stronglink:hover
                          { color:#0000ff; text-decoration:underline; background:url(images/bg_sprite_1.png) no-repeat 0 -46px; }
 a.stronglink:active      { color:#ff0000; }
 
+/* general rules */
+button,
+input[type="submit"],
+input[type="reset"]      { cursor: pointer; }
+
 img.next                 { background:url(images/bg_sprite_2.png) no-repeat 0 -11px; }
 img.next:hover           { background:url(images/bg_sprite_2.png) no-repeat -6px -11px; }
 img.previous             { background:url(images/bg_sprite_2.png) no-repeat 0 0; }

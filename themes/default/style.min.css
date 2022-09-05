@@ -12,6 +12,7 @@ a.stronglink{padding-left:13px;color:#00c;text-decoration:none;font-weight:700;b
 a.stronglink:visited{color:#00c}
 a.stronglink:focus,a.stronglink:hover{color:#00f;text-decoration:underline;background:url(images/bg_sprite_1.png) no-repeat 0 -46px}
 a.stronglink:active{color:red}
+button,input[type="submit"],input[type="reset"]{cursor:pointer}
 img.next{background:url(images/bg_sprite_2.png) no-repeat 0 -11px}
 img.next:hover{background:url(images/bg_sprite_2.png) no-repeat -6px -11px}
 img.previous{background:url(images/bg_sprite_2.png) no-repeat 0 0}
