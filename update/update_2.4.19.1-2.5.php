@@ -296,16 +296,53 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 			fclose($db_settings_file);
 			
 			// new tables
-			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['akismet_rating_table'] . "` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`)) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			$qCreate_AkismetRating = "START TRANSACTION;
+			DROP TABLE IF EXISTS `" . $db_settings['akismet_rating_table'] . "`;
+			CREATE TABLE IF NOT EXISTS `" . $db_settings['akismet_rating_table'] . "` (
+				`eid` int(11) NOT NULL,
+				`spam` tinyint(1) NOT NULL DEFAULT '0',
+				`spam_check_status` tinyint(1) NOT NULL DEFAULT '0',
+				PRIMARY KEY (`eid`)
+			) CHARSET=utf8 COLLATE=utf8_general_ci;
+			COMMIT;";
+			if(!@mysqli_multi_query($connid, $qCreate_AkismetRating)) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['b8_rating_table'] . "` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `training_type` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`)) CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			$qCreate_B8Rating = "START TRANSACTION;
+			DROP TABLE IF EXISTS `" . $db_settings['b8_rating_table'] . "`;
+			CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_rating_table'] . "` (
+				`eid` int(11) NOT NULL,
+				`spam` tinyint(1) NOT NULL DEFAULT '0',
+				`training_type` tinyint(1) NOT NULL DEFAULT '0',
+				PRIMARY KEY (`eid`)
+			) CHARSET=utf8 COLLATE=utf8_general_ci;
+			COMMIT;";
+			if(!@mysqli_multi_query($connid, $qCreate_B8Rating)) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['b8_wordlist_table'] . "` (`token` varchar(128) character set utf8mb4 collate utf8mb4_bin NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) {
+			$qCreate_B8WordList = "START TRANSACTION;
+			DROP TABLE IF EXISTS `" . $db_settings['b8_wordlist_table'] . "`;
+			CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_wordlist_table'] . "` (
+				`token` varchar(128) character set utf8mb4 collate utf8mb4_bin NOT NULL,
+				`count_ham` int unsigned default NULL,
+				`count_spam` int unsigned default NULL,
+				PRIMARY KEY (`token`)
+			) CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+			COMMIT;";
+			if(!@mysqli_multi_query($connid, $qCreate_B8WordList)) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
-			if(!@mysqli_query($connid, "CREATE TABLE `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp` datetime NULL, PRIMARY KEY (id)) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_general_ci;")) {
+			$qCreate_Uploads = "START TRANSACTION;
+			DROP TABLE IF EXISTS `" . $db_settings['uploads_table'] . "`;
+			CREATE TABLE IF NOT EXISTS `" . $db_settings['uploads_table'] . "` (
+				`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+				`uploader` int(10) UNSIGNED NULL,
+				`filename` varchar(64) NULL,
+				`tstamp` datetime NULL,
+				PRIMARY KEY (id)
+			) CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+			COMMIT;";
+			if(!@mysqli_query($connid, $qCreate_Uploads)) {
 				$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			}
 			
