@@ -658,7 +658,7 @@
 <p><label for="ar_email" class="main">{#register_email#}</label><br />
 <input id="ar_email" type="text" size="25" name="ar_email" value="{$ar_email|default:''}" maxlength="{$settings.email_maxlength}" /></p>
 <p><label for="ar_pw" class="main">{#register_pw#}</label><br />
-<input id="ar_pw" type="password" size="25" name="ar_pw" maxlength="50" /></p>
+<input id="ar_pw" type="password" spellcheck="false" autocomplete="off" size="25" name="ar_pw" maxlength="50" /></p>
 <p><input id="ar_send_userdata" type="checkbox" name="ar_send_userdata" value="true"{if $ar_send_userdata} checked="checked"{/if} /> <label for="ar_send_userdata">{#register_send_userdata#}</label></p>
 <p><input type="submit" name="register_submit" value="{#submit_button_ok#}" /></p>
 </div>
@@ -846,7 +846,7 @@
 <p><input id="delete_postings" type="checkbox" name="delete_postings" value="true" /><label for="delete_postings"> {#delete_postings#}</label></p>
 <p><input id="delete_userdata" type="checkbox" name="delete_userdata" value="true" /><label for="delete_userdata"> {#delete_userdata#}</label></p>
 <p>{#admin_confirm_password#}<br />
-<input type="password" size="20" name="confirm_pw" /> <input type="submit" name="reset_forum_confirmed" value="{#reset_forum_submit#}" /></p>
+<input type="password" spellcheck="false" autocomplete="off" size="20" name="confirm_pw" /> <input type="submit" name="reset_forum_confirmed" value="{#reset_forum_submit#}" /></p>
 </div>
 </form>
 
@@ -859,7 +859,7 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <p>{#reset_uninstall_conf_pw#}<br />
-<input type="password" size="20" name="confirm_pw" /> <input type="submit" name="uninstall_forum_confirmed" value="{#uninstall_forum_submit#}" /></p>
+<input type="password" spellcheck="false" autocomplete="off" size="20" name="confirm_pw" /> <input type="submit" name="uninstall_forum_confirmed" value="{#uninstall_forum_submit#}" /></p>
 </div>
 </form>
 {elseif $action=='update'}
@@ -895,7 +895,7 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="update_file_submit" value="{$update_file}" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<p>{#admin_confirm_password#}<br /><input type="password" name="update_password" size="25"/></p>
+<p>{#admin_confirm_password#}<br /><input type="password" name="update_password" spellcheck="false" autocomplete="off" size="25"/></p>
 <p><input type="submit" name="update_submit" value="{#update_submit#}" onclick="document.getElementById('throbber-submit').style.visibility = 'visible';" /> <img id="throbber-submit" style="visibility:hidden;" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
 </div>
 </form>
