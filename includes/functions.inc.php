@@ -1670,21 +1670,30 @@ function tag_cloud($days, $scale_min, $scale_max) {
 /**
  * converts a unix timestamp into a formated date string
  *
- * @param string $format : like parameter for DateTime::format() - https://www.php.net/manual/de/datetime.format.php
- * @param int $timestamp : UNIX timestamp
+ * @param string $format : like parameter for IntlDateFormatter::format
+ * @param long $timestamp : UNIX timestamp
  * @return string
  */
 function format_time($format, $timestamp = 0) {
+	// https://www.php.net/manual/de/function.setlocale.php
+	// https://www.php.net/manual/de/intldateformatter.format.php
+	$formatter = new IntlDateFormatter(
+		setlocale(LC_TIME, '0'),
+		IntlDateFormatter::FULL,
+		IntlDateFormatter::FULL,
+	);
+	$formatter->setPattern($format);
+ 
 	if ($timestamp == 0) 
 		$timestamp = TIMESTAMP;
-	
-	if (defined('LOCALE_CHARSET')) {
-		return iconv(LOCALE_CHARSET,CHARSET, date($format,$timestamp));
-	}
-	else {
-		return date($format, $timestamp);
-	}
-}
+ 
+	$date = date_create();
+	$dateTime = date_timestamp_set($date, $timestamp);
+ 
+	if (defined('LOCALE_CHARSET'))
+		return iconv(LOCALE_CHARSET,CHARSET, $formatter->format($dateTime));
+	return $formatter->format($dateTime);
+} 
 
 /**
  * checks permission to edit a posting
