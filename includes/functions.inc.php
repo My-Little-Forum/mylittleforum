@@ -1671,7 +1671,7 @@ function tag_cloud($days, $scale_min, $scale_max) {
  * converts a unix timestamp into a formated date string
  *
  * @param string $format : like parameter for IntlDateFormatter::format
- * @param long $timestamp : UNIX timestamp
+ * @param int $timestamp : UNIX timestamp
  * @return string
  */
 function format_time($format, $timestamp = 0) {
