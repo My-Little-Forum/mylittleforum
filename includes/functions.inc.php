@@ -891,75 +891,13 @@ function quote($string)
  * @param string $string
  * @return string
  */
-function filter_control_characters($string)
- {
-  $char = array(array(), array());
-  $char['char'][0] = chr(0);
-  $char['repl'][0] = '';
-  $char['char'][1] = chr(1);
-  $char['repl'][1] = '';
-  $char['char'][2] = chr(2);
-  $char['repl'][2] = '';
-  $char['char'][3] = chr(3);
-  $char['repl'][3] = '';
-  $char['char'][4] = chr(4);
-  $char['repl'][4] = '';
-  $char['char'][5] = chr(5);
-  $char['repl'][5] = '';
-  $char['char'][6] = chr(6);
-  $char['repl'][6] = '';
-  $char['char'][7] = chr(7);
-  $char['repl'][7] = '';
-  $char['char'][8] = chr(8);
-  $char['repl'][8] = '';
-  $char['char'][9] = chr(9);
-  $char['repl'][9] = ' ';
-  $char['char'][10] = chr(10);
-  $char['repl'][10] = chr(10);
-  $char['char'][11] = chr(11);
-  $char['repl'][11] = '';
-  $char['char'][12] = chr(12);
-  $char['repl'][12] = '';
-  $char['char'][13] = chr(13);
-  $char['repl'][13] = chr(13);
-  $char['char'][14] = chr(14);
-  $char['repl'][14] = '';
-  $char['char'][15] = chr(15);
-  $char['repl'][15] = '';
-  $char['char'][16] = chr(16);
-  $char['repl'][16] = '';
-  $char['char'][17] = chr(17);
-  $char['repl'][17] = '';
-  $char['char'][18] = chr(18);
-  $char['repl'][18] = '';
-  $char['char'][19] = chr(19);
-  $char['repl'][19] = '';
-  $char['char'][20] = chr(20);
-  $char['repl'][20] = '';
-  $char['char'][21] = chr(21);
-  $char['repl'][21] = '';
-  $char['char'][22] = chr(22);
-  $char['repl'][22] = '';
-  $char['char'][23] = chr(23);
-  $char['repl'][23] = '';
-  $char['char'][24] = chr(24);
-  $char['repl'][24] = '';
-  $char['char'][25] = chr(25);
-  $char['repl'][25] = '';
-  $char['char'][26] = chr(26);
-  $char['repl'][26] = '';
-  $char['char'][27] = chr(27);
-  $char['repl'][27] = '';
-  $char['char'][28] = chr(28);
-  $char['repl'][28] = '';
-  $char['char'][29] = chr(29);
-  $char['repl'][29] = '';
-  $char['char'][30] = chr(30);
-  $char['repl'][30] = '';
-  $char['char'][31] = chr(31);
-  $char['repl'][31] = '';
-  $string = str_replace($char['char'], $char['repl'], $string);
-  return $string;
+function filter_control_characters($string) {
+	# remove the specified control chars (0-8, 11, 12, 14-31) from the string
+	$string = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F]/', '', $string);
+	# replace the control char 9 (TAB) with a space
+	$string = str_replace(chr(9), ' ', $string);
+	# control chars 10 and 13 (\r, \n) remains untouched
+	return $string;
 }
 
 /**
