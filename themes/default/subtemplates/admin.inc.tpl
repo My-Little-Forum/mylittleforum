@@ -378,6 +378,7 @@
 </div>
 </form>
 {elseif $action=='user'}
+<h2 id="admin_header">{#user_list_header#}</h2>
 {if $new_user && !$send_error}<p class="ok">{#new_user_registered#|replace:"[name]":$new_user}</p>{elseif $new_user && $send_error}<p class="caution">{#new_user_reg_send_error#|replace:"[name]":$new_user}</p>{/if}
 {*<p>{#num_registerd_users#|replace:"[number]":$total_users}</p>*}
 

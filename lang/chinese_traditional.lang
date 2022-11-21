@@ -551,6 +551,7 @@ pwf_username =                    '帳號：'
 pwf_email =                       '信箱：'
 
 [user]
+user_list_header =                '<!-- TODO -->User list'
 user_name =                       '帳號'
 user_type =                       '類型'
 admin =                           '管理員'
@@ -907,6 +908,7 @@ delete_page_submit =              '刪除頁面'
 error_no_page_title =             '沒有標題'
 
 # user administration:
+user_list_header =                '<!-- TODO -->User list'
 user_name_empty =                 '尚未輸入帳號'
 num_registerd_users =             '[number] 位註冊用戶'
 user_id =                         'ID'

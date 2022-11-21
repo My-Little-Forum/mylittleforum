@@ -551,6 +551,7 @@ pwf_username =                    '帐号：'
 pwf_email =                       '邮箱：'
 
 [user]
+user_list_header =                '用户列表'
 user_name =                       '帐号'
 user_type =                       '类型'
 admin =                           '管理员'
@@ -907,6 +908,7 @@ delete_page_submit =              '删除页面'
 error_no_page_title =             '没有标题'
 
 # user administration:
+user_list_header =                '用户列表'
 user_name_empty =                 '尚未输入帐号'
 num_registerd_users =             '[number] 位注册用户'
 user_id =                         'ID'

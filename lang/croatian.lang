@@ -545,6 +545,7 @@ pwf_username =                    'Koriničko ime:'
 pwf_email =                       'E-mail:'
 
 [user]
+user_list_header =                '<!-- TODO -->User list'
 user_name =                       'Korisničko ime'
 user_type =                       'Vrsta'
 admin =                           'Administrator'
@@ -904,6 +905,7 @@ delete_page_submit =              'Obriši stranicu'
 error_no_page_title =             'Bez naslova'
 
 # user administration:
+user_list_header =                '<!-- TODO -->User list'
 user_name_empty =               'Korisničko ime nije upisano'
 num_registerd_users =           '[number] registriranih korisnika'
 user_id =                       'Br.'

@@ -547,6 +547,7 @@ pwf_username =                    'Kullanıcı:'
 pwf_email =                       'E-posta:'
 
 [user]
+user_list_header =                'Kullanıcı listesi'
 user_name =                       'Kullanıcı'
 user_type =                       'Tip'
 admin =                           'Yönetici'
@@ -906,6 +907,7 @@ delete_page_submit =              'Tamam - Sayfayı sil'
 error_no_page_title =             'Başlık yok'
 
 # user administration:
+user_list_header =                'Kullanıcı listesi'
 user_name_empty =                 'Kullanıcı adı girilmedi'
 num_registerd_users =             '[number] kayıtlı kullanıcılar'
 user_id =                         'ID'

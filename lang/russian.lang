@@ -560,6 +560,7 @@ pwf_username =                    'Пользователь:'
 pwf_email =                       'Адрес e-mail:'
 
 [user]
+user_list_header =                'Список пользователей'
 user_name =                       'Пользователь'
 user_type =                       'Тип'
 admin =                           'Администратор'
@@ -922,6 +923,7 @@ delete_page_submit =              'Удалить'
 error_no_page_title =             'Отсутствует заголовок'
 
 # управление пользователями:
+user_list_header =                'Список пользователей'
 user_name_empty =                 'Не указано имя пользователя'
 num_registerd_users =             '[number] зарегистрированных пользователей'
 user_id =                         'ID'
