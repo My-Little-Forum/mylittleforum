@@ -1,5 +1,4 @@
 {config_load file=$language_file section="user"}
-<div id="usernav">
 <h2 id="admin_header">{#user_list_header#}</h2>
 <div id="usersearch">
 <label for="search-user">{#search_user#}</label><form action="index.php" method="get" accept-charset="{#charset#}">
@@ -21,7 +20,6 @@
 {else}
 &nbsp;
 {/if}
-</div>
 </div>
 
 {if $total_users > 0}

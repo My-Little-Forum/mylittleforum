@@ -382,7 +382,6 @@
 {if $new_user && !$send_error}<p class="ok">{#new_user_registered#|replace:"[name]":$new_user}</p>{elseif $new_user && $send_error}<p class="caution">{#new_user_reg_send_error#|replace:"[name]":$new_user}</p>{/if}
 {*<p>{#num_registerd_users#|replace:"[number]":$total_users}</p>*}
 
-<div id="usernav">
 <div id="usersearch">
 <label for="search-user">{#search_user#}</label><form action="index.php" method="get" accept-charset="{#charset#}">
 <div>
@@ -404,7 +403,6 @@
 {else}
 &nbsp;
 {/if}
-</div>
 </div>
 
 {if $result_count > 0}
@@ -1064,7 +1062,6 @@
 {if $images}
 
 {if $pagination}
-<div id="usernav">
 <div id="userpagination">
 <ul class="pagination">
 {if $pagination.previous}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}{if $pagination.previous>1}&amp;page={$pagination.previous}{/if}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
@@ -1073,7 +1070,6 @@
 {/foreach}
 {if $pagination.next}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$pagination.next}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#next_page_link_title#}">{#next_page_link#}</a></li>{/if}
 </ul>
-</div>
 </div>
 {/if}
 
@@ -1090,7 +1086,6 @@
 </form>
 
 {if $pagination}
-<div id="usernav">
 <div id="userpagination">
 <ul class="pagination">
 {if $pagination.previous}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}{if $pagination.previous>1}&amp;page={$pagination.previous}{/if}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
@@ -1099,7 +1094,6 @@
 {/foreach}
 {if $pagination.next}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$pagination.next}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#next_page_link_title#}">{#next_page_link#}</a></li>{/if}
 </ul>
-</div>
 </div>
 {/if}
 {else}
