@@ -559,6 +559,7 @@ pwf_username =              'Brugernavn:'
 pwf_email =                 'E-mail:'
 
 [user]
+user_list_header =                'Brugerliste'
 user_name =                 'Brugernavn'
 user_type =                 'Type'
 admin =                     'Admin'
@@ -918,6 +919,7 @@ delete_page_submit =        'OK - Slet side'
 error_no_page_title =       'Ingen titel'
 
 # user administration:
+user_list_header =                'Brugerliste'
 user_name_empty =           'Intet brugernavn indtastet'
 num_registerd_users =       '[number] registrerede brugere'
 user_id =                   'ID'

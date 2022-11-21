@@ -558,6 +558,7 @@ pwf_username =                    'Användarnamn:'
 pwf_email =                       'E-post:'
 
 [user]
+user_list_header =                'Användarlista'
 user_name =                       'Användarnamn'
 user_type =                       'Typ'
 admin =                           'Administratör'
@@ -917,6 +918,7 @@ delete_page_submit =              'OK - Radera sidan'
 error_no_page_title =             'Ingen titel!'
 
 # user administration:
+user_list_header =                'Användarlista'
 user_name_empty =                 'Inget användarnamn angett'
 num_registerd_users =             '[number] registrerade användare'
 user_id =                         'ID'

@@ -547,6 +547,7 @@ pwf_username =                    'Benutzername:'
 pwf_email =                       'E-Mail:'
 
 [user]
+user_list_header =                'Benutzerliste'
 user_name =                       'Benutzername'
 user_type =                       'Typ'
 admin =                           'Admin'
@@ -906,6 +907,7 @@ delete_page_submit =              'OK - Seite löschen'
 error_no_page_title =             'kein Seitentitel'
 
 # Benutzerverwaltung:
+user_list_header =                'Benutzerliste'
 user_name_empty =                 'kein Benutzername eingegeben'
 num_registerd_users =             '[number] registrierte Benutzer'
 user_id =                         'ID'

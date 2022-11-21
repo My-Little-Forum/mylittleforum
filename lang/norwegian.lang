@@ -545,6 +545,7 @@ pwf_username =                    'Brukernavn:'
 pwf_email =                       'E-post:'
 
 [user]
+user_list_header =                '<!-- TODO -->User list'
 user_name =                       'Brukernavn'
 user_type =                       'Type'
 admin =                           'Admin'
@@ -905,6 +906,7 @@ delete_page_submit =              'OK - Slett side'
 error_no_page_title =             'Ingen tittel'
 
 # user administration:
+user_list_header =                '<!-- TODO -->User list'
 user_name_empty =                 'Du har ikke skrevet inn et brukernavn'
 num_registerd_users =             '[number] registrerte brukere'
 user_id =                         'ID'
