@@ -1,10 +1,12 @@
 {config_load file=$language_file section="user"}
 <h2 id="admin_header">{#user_list_header#}</h2>
 <div id="usersearch">
-<label for="search-user">{#search_user#}</label><form action="index.php" method="get" accept-charset="{#charset#}">
-<div>
+<form action="index.php" method="get" accept-charset="{#charset#}">
 <input type="hidden" name="mode" value="user" />
-<input id="search-user" type="text" name="search_user" value="{if $search_user}{$search_user}{else}{#search_user_default_value#}{/if}" size="25" alt="{#search_user_default_value#}" />{*&nbsp;<input type="image" src="{$THEMES_DIR}/{$theme}/images/submit.png" alt="[&raquo;]" />*}
+<div>
+<label for="search-user">{#search_user#}</label>
+<input id="search-user" type="search" name="search_user" value="{if $search_user}{$search_user}{/if}" placeholder="{#search_user_default_value#}" size="35" />
+&nbsp;<button>{#go#}</button>
 </div>
 </form>
 </div>
