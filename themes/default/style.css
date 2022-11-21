@@ -263,7 +263,6 @@ ul.openthread            { clear:both; }
 #usersearch div,
 #usersearch form         { display:inline; }
 #usersearch label        { display:none; }
-#userpagination          { float:right; text-align:right; }
 #usernav-bottom          { margin:15px 0 0 0; padding:0; text-align:right; font-size:0.82em; }
 
 #admin-usernav-bottom    { height:2em; margin:15px 0 20px 0; }
