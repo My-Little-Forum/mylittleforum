@@ -1641,6 +1641,7 @@ switch ($action) {
 				$smarty->assign('name', htmlspecialchars($field['name']));
 				$smarty->assign('subject', htmlspecialchars($field['subject']));
 				$smarty->assign('disp_time', htmlspecialchars($field['disp_time']));
+				$smarty->assign('formated_time', htmlspecialchars(format_time($lang['time_format_full'], $field['disp_time'])));
 				$smarty->assign('akismet_spam', intval($field['akismet_spam']));
 				$smarty->assign('akismet_spam_check_status', intval($field['spam_check_status']));
 				$smarty->assign('b8_spam', intval($field['b8_spam']));
@@ -1769,6 +1770,7 @@ switch ($action) {
 				$smarty->assign('name', htmlspecialchars($field['name']));
 				$smarty->assign('subject', htmlspecialchars($field['subject']));
 				$smarty->assign('disp_time', htmlspecialchars($field['disp_time']));
+				$smarty->assign('formated_time', htmlspecialchars(format_time($lang['time_format_full'], $field['disp_time'])));
 				$smarty->assign('akismet_spam', intval($field['akismet_spam']));
 				$smarty->assign('akismet_spam_check_status', intval($field['spam_check_status']));
 				$smarty->assign('b8_spam', intval($field['b8_spam']));

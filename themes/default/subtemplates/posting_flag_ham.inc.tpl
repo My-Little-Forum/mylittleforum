@@ -10,7 +10,7 @@
 	{else}
 		<p class="caution">{#caution#}</p>
 		<p>{#flag_ham_warning#}</p>
-		<p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$disp_time|date_format:#time_format#}</p>
+		<p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$formated_time}</p>
 		<form action="index.php" method="post" accept-charset="{#charset#}">
 			<input type="hidden" name="mode" value="posting" />
 			<input type="hidden" name="id" value="{$id}" />
