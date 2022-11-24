@@ -13,7 +13,7 @@
 		<p>{if $akismet_spam_check_status==2}{#spamcheck_akismet_timeout_error#}{/if}</p>
 		<p>{if $akismet_spam_check_status==3}{#spamcheck_akismet_api_error#}{/if}</p>
 		
-		<p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$disp_time|date_format:#time_format#}</p>
+		<p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$formated_time}</p>
 		<form action="index.php" method="post" accept-charset="{#charset#}">
 			<input type="hidden" name="mode" value="posting" />
 			<input type="hidden" name="id" value="{$id}" />
