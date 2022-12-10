@@ -27,10 +27,10 @@ body > *:not(main){margin:0;padding:0}
 #logo h1 a:focus,#logo h1 a:hover{color:#00a;text-decoration:none}
 #logo .index{margin:0;padding:0;font-size:.82em}
 #nav{margin:0;padding:7px 20px}
-#usermenu{margin:0 0 0.75em;padding:0;font-size:.69em;list-style-type:none;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:3px 0.4em}
+#usermenu{margin:0 0 .75em;padding:0;font-size:.69em;list-style-type:none;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:3px .4em}
 #usermenu li{margin:0}
 #usermenu li:not(:last-child):after{content:"|"}
-#usermenu li:not(:last-child) a{margin-right:0.4em}
+#usermenu li:not(:last-child) a{margin-right:.4em}
 #usermenu li a{white-space:nowrap}
 #topsearch div{display:inline;font-size:.82em}
 #topsearch #search-input{font-family:verdana,arial,sans-serif;width:14em}
@@ -134,11 +134,11 @@ code{font-family:"courier new",courier;color:navy}
 code.monospace{color:#000}
 blockquote{margin:0;padding:0 0 0 30px;color:#6f6f6f;font-style:italic;background:url(images/quote.png) no-repeat top left}
 blockquote code{font-family:"courier new",courier;color:#6f6f6f}
-.posting-footer{margin:1em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1.25em auto;grid-gap:0.2em}
+.posting-footer{margin:1em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1.25em auto;grid-gap:.2em}
 .posting-footer .reply{font-size:.82em}
 .posting-footer .locked{font-size:.82em;color:gray;padding-left:16px;background:url(images/locked.png) no-repeat 0 0}
 .posting-footer .views{font-size:.69em;color:gray;text-align:right}
-#content .posting-footer .options{font-size:.69em!important;list-style-type:none;max-width:100%;margin:0;padding:0;grid-row-start:2;grid-row-end:3;grid-column-start:1;grid-column-end:3;display:flex;flex-wrap:wrap;gap:0.4em;justify-content:flex-end}
+#content .posting-footer .options{font-size:.69em!important;list-style-type:none;max-width:100%;margin:0;padding:0;grid-row-start:2;grid-row-end:3;grid-column-start:1;grid-column-end:3;display:flex;flex-wrap:wrap;gap:.4em;justify-content:flex-end}
 .posting-footer .options li{margin:0}
 .posting-footer a{white-space:nowrap}
 .posting-footer a.edit{padding-left:16px;background:url(images/bg_sprite_3.png) no-repeat 0 2px}
@@ -321,13 +321,13 @@ ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:1
 #codepicker ul{list-style-type:none;margin:0;padding:0}
 #codepicker ul a{color:#000;display:block;text-decoration:none;padding:1px 5px}
 #codepicker ul a:focus,#codepicker ul a:hover{background:#e0e0e0}
-.buttonbar{display:flex; flex-wrap:wrap; gap:0.3em}
-.buttonbar button{padding:0.3em}
+.buttonbar{display:flex; flex-wrap:wrap; gap:.3em}
+.buttonbar button{padding:.3em}
 .additional-admin-info{margin:0 0 1em 0;padding:0}
 .additional-admin-info div{background:#f9f9f9;border:1px solid #bacbdf;padding:0}
 .additional-admin-info div:not(:last-child){margin:0 0 20px 0}
-.additional-admin-info h3{margin:0;padding:0 5px;font-size:0.69em;line-height:1.7em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
-.additional-admin-info p{font-size:0.69em;line-height:1.5em;margin:0;padding:5px}
+.additional-admin-info h3{margin:0;padding:0 5px;font-size:.69em;line-height:1.7em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
+.additional-admin-info p{font-size:.69em;line-height:1.5em;margin:0;padding:5px}
 #admin-info-install_script_exists h3{color: red;}
 #admin-info-install_script_exists h3::before{content: url("images/caution.png"); padding-right: 5px;}
 .adminmenu{list-style-type:none;padding:0;margin:0;font-size:.82em;line-height:1.7em!important}
@@ -335,7 +335,7 @@ ul.pagination-index-table{margin-top:20px!important;text-align:right;max-width:1
 .adminmenu a:focus span,.adminmenu a:hover span{text-decoration:underline}
 .adminmenu a img{margin:0 5px -3px 0;padding:0}
 #content .adminmenu .small{font-size:.82em}
-h2#admin_header{margin:0 0 0.5em 0}
+h2#admin_header{margin:0 0 .5em 0}
 .manage-postings{border:1px solid #bacbdf;margin-top:25px;background:#f9f9f9}
 .manage-postings legend{font-size:.82em;font-weight:700}
 ul#uploadlist{list-style:none;margin:0;padding:0;max-width:100%;overflow:hidden}
@@ -344,8 +344,8 @@ ul#uploadlist{list-style:none;margin:0;padding:0;max-width:100%;overflow:hidden}
 #uploadlist img{max-width:100%;max-height:100%}
 #uploadlist .management_container{margin:0;padding:5px 0}
 .confirm-selection{list-style:none;padding:0;border-top:1px solid #bacbdf}
-.confirm-selection li{min-height:2.5em;margin:0 0 0.25em 0;padding:0.25em 0.5em;border-bottom:1px solid #bacbdf}
-.confirm-selection .item{margin:0 0 0.25em 0}
+.confirm-selection li{min-height:2.5em;margin:0 0 .25em 0;padding:.25em .5em;border-bottom:1px solid #bacbdf}
+.confirm-selection .item{margin:0 0 .25em 0}
 .confirm-selection .info{font-weight:bold;margin: 0}
 a.thread,a.thread:link{padding-left:18px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
 a.thread:visited{color:#007}
