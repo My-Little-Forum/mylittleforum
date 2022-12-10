@@ -242,7 +242,8 @@ table.normaltab td.subject{min-width:50%}
 #content table.normaltab .small,#content table.normaltab .xsmall{font-size:.82em}
 table.normaltab tr.drag td{background:#ddd}
 p.userdata{margin:0}
-.normalform{font-size:.82em}
+.normalform{font-size:.82em;margin:0}
+.normalform:not(:first-child){margin:1em 0 0}
 .inline{display:inline}
 #postingform fieldset{border:none;margin:0 0 1em}
 #postingform p{font-size:1em;margin:0 0 5px;padding:0}
