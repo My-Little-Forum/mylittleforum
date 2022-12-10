@@ -269,7 +269,7 @@
 {/foreach}
 </select>
 </p>
-<p><input type="submit" name="entries_in_not_existing_categories_submit" value="{#submit_button_ok#}"></p>
+<p><button name="entries_in_not_existing_categories_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button></p>
 </div>
 </form>
 {/if}
@@ -309,7 +309,6 @@
 {else}
 <p>{#no_categories#}</p>
 {/if}
-<br />
 <form action="index.php" method="post" class="normalform" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
@@ -445,7 +444,8 @@
 <div id="admin-usernav-bottom">
 
 <div id="selectioncontrols">
-<img id="arrow-selected" src="{$THEMES_DIR}/{$theme}/images/arrow_selected.png" alt="&#x2191;" width="24" height="14" /> <input type="submit" name="delete_selected_users" value="{#delete_selected_users#}" title="{#delete_users_sb_title#}" />
+<img id="arrow-selected" src="{$THEMES_DIR}/{$theme}/images/arrow_selected.png" alt="&#x2191;" width="24" height="14" />
+<button name="delete_selected_users" value="{#delete_selected_users#}">{#delete_selected_users#}</button>
 </div>
 
 </div>
