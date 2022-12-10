@@ -353,7 +353,9 @@ table.normaltab tr.drag td
                          { background:#ddd; }
 
 p.userdata               { margin:0; }
-.normalform              { font-size:0.82em; }
+.normalform              { font-size:0.82em; margin: 0; }
+.normalform:not(:first-child)
+                         { margin: 1em 0 0 0; }
 .inline                  { display:inline; }
 
 #postingform fieldset    { border:none; margin:0 0 1em 0; }
