@@ -444,9 +444,6 @@ ul.pagination span       { border:1px solid #bacbdf; background:#f9f9f9; padding
 ul.pagination a:focus,
 ul.pagination a:hover    { border:1px solid #0000cc; background:#efefef; text-decoration:none; }
 ul.pagination .current   { border:1px solid #bacbdf; color:red; font-weight:bold; }
-ul.pagination-index      { margin:0; text-align:right; max-width:100% !important; }
-ul.pagination-index-table
-                         { margin-top:20px !important; text-align:right; max-width:100% !important; }
 
 #more-smilies            { position:absolute; width:200px; background:#ffc; border:1px solid #c0c0c0; display:none; }
 #more-smilies .close     { position:absolute; top:0; right:0; padding:0; }
