@@ -259,7 +259,7 @@ div.complete-thread p.left
 ul.openthread            { clear:both; }
 
 #usernav                 { margin:0 0 15px 0; padding:0.1em 0; overflow: hidden; }
-#usersearch              { font-size:.82em; margin:.5em 0; padding:.5em 0; border-bottom:1px solid #bacbdf; }
+#usersearch              { font-size:.82em; margin:.5em 0; padding:.5em 0 .75em 0; border-bottom:1px solid #bacbdf; }
 #usersearch div,
 #usersearch form         { display:inline; }
 #usernav-bottom          { margin:15px 0 0 0; padding:0; text-align:right; font-size:0.82em; }
