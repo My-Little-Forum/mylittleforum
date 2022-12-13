@@ -208,6 +208,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 				$smarty->assign('logins_per_day', number_format($row['logins'] / $days_registered, 2));
 				$smarty->assign('postings_per_day', number_format($postings / $days_registered, 2));
 				$smarty->assign('last_posting_id', intval($last_posting['id']));
+				$smarty->assign('last_posting_formated_time', htmlspecialchars(format_time($lang['time_format_full'], $last_posting['disp_time'])));
 				$smarty->assign('last_posting_time', $last_posting['disp_time']);
 				$smarty->assign('last_posting_subject', htmlspecialchars($last_posting['subject']));
 
