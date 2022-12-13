@@ -64,7 +64,7 @@
 {if $last_posting_subject}
 <tr>
 <td class="c"><p class="userdata"><strong>{#last_posting#}</strong></p></td>
-<td class="d"><p class="userdata">{if $last_posting_subject}{$last_posting_time|date_format:#time_format#}: <a id="user-last-posting" href="index.php?mode=entry&amp;id={$last_posting_id}">{$last_posting_subject}</a>{else}-{/if}</p></td>
+<td class="d"><p class="userdata">{if $last_posting_subject}{$last_posting_formated_time}: <a id="user-last-posting" href="index.php?mode=entry&amp;id={$last_posting_id}">{$last_posting_subject}</a>{else}-{/if}</p></td>
 </tr>
 {/if}
 {if $profile}
