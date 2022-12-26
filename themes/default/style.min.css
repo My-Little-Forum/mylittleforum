@@ -186,8 +186,8 @@ ul.openthread{clear:both}
 #selectioncontrols #arrow-selected{margin:0 0 0 13px}
 #selectioncontrols .checkall{margin-left:1em;font-size:.69em}
 #admin-usernav-bottom #userpagination{float:right;height:2em;text-align:right}
-.spam{color:red;font-weight:700;background:#ff0}
-.spam-note{font-weight:700;color:red;background:#ff0;padding:5px}
+.spam{color:#882008;font-weight:700;background:#ff5}
+.spam-note{font-weight:700;color:#882008;background:#ff5;border:1px solid #882008;padding:.5em}
 .thread ul{font-size:1em}
 .thread li{font-size:1em}
 .thread li li{font-size:1em}
