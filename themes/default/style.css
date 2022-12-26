@@ -275,8 +275,8 @@ ul.openthread            { clear:both; }
 #admin-usernav-bottom #userpagination
                          { float:right; height:2em; text-align:right; }
 
-.spam                    { color:#ff0000; font-weight:bold; background:yellow; }
-.spam-note               { font-weight:bold; color:red; background:yellow; padding:5px; }
+.spam                    { color:#882008; font-weight:bold; background:yellow; }
+.spam-note               { font-weight:bold; color:#882008; background:yellow; border:1px solid #882008; padding:0.5em; }
 .thread ul               { font-size:1em; }
 .thread li               { font-size:1em; }
 .thread li li            { font-size:1em; }
