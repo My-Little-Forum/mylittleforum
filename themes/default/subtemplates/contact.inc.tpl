@@ -1,13 +1,13 @@
 {config_load file=$language_file section="contact"}
 {if $captcha}{config_load file=$language_file section="captcha"}{/if}
 {if $error_message}
-<p class="caution">{$smarty.config.$error_message}</p>
+<p class="notice caution">{$smarty.config.$error_message}</p>
 {elseif $sent}
-<p class="ok">{#email_sent#}</p>
+<p class="notice ok">{#email_sent#}</p>
 {else}
 <h1>{if $recipient_name}{$smarty.config.contact_user_hl|replace:"[recipient_name]":"$recipient_name"}{else}{#contact_hl#}{/if}</h1>
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}

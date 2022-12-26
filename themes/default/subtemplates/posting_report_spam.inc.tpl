@@ -1,6 +1,6 @@
 {config_load file=$language_file section="delete_posting"}
 {if $no_authorisation}
-	<p class="caution">{#no_authorisation#}</p>
+	<p class="notice caution">{#no_authorisation#}</p>
 {else}
 	<h1>{#report_spam_hl#}</h1>
 	{if !$id}
@@ -8,7 +8,7 @@
 	{elseif $akismet_spam == 1 && $akismet_spam_check_status == 1 && $b8_spam == 1 && $b8_training_type == 2}
 		{#posting_already_spam#}
 	{else}
-		<p class="caution">{#caution#}</p>
+		<p class="notice caution">{#caution#}</p>
 		<p>{#report_spam_warning#}</p>
 		<p>{if $akismet_spam_check_status==2}{#spamcheck_akismet_timeout_error#}{/if}</p>
 		<p>{if $akismet_spam_check_status==3}{#spamcheck_akismet_api_error#}{/if}</p>

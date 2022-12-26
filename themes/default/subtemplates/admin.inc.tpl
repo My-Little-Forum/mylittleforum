@@ -1,6 +1,6 @@
 {config_load file=$language_file section="admin"}
 {if $action=='settings'}
-{if $saved}<p class="ok">{#settings_saved#}</p>{/if}
+{if $saved}<p class="notice ok">{#settings_saved#}</p>{/if}
 <form id="settings" action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
@@ -235,7 +235,7 @@
 </form>
 <p style="margin-top:10px;"><a class="stronglink" href="index.php?mode=admin&amp;action=advanced_settings">{#advanced_settings_link#}</a></p>
 {elseif $action=='advanced_settings'}
-{if $saved}<p class="ok">{#settings_saved#}</p>{/if}
+{if $saved}<p class="notice ok">{#settings_saved#}</p>{/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
@@ -274,7 +274,7 @@
 </form>
 {/if}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -324,7 +324,7 @@
 </form>
 {elseif $action=='edit_category'}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -348,7 +348,7 @@
 </form>
 {elseif $action=='delete_category'}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -357,7 +357,7 @@
 </ul>
 {/if}
 <h2>{#delete_category_hl#|replace:"[category]":$category_name}</h2>
-<p class="caution">{#caution#}</p>
+<p class="notice caution">{#caution#}</p>
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
@@ -378,7 +378,7 @@
 </form>
 {elseif $action=='user'}
 <h2 id="admin_header">{#user_list_header#}</h2>
-{if $new_user && !$send_error}<p class="ok">{#new_user_registered#|replace:"[name]":$new_user}</p>{elseif $new_user && $send_error}<p class="caution">{#new_user_reg_send_error#|replace:"[name]":$new_user}</p>{/if}
+{if $new_user && !$send_error}<p class="notice ok">{#new_user_registered#|replace:"[name]":$new_user}</p>{elseif $new_user && $send_error}<p class="notice caution">{#new_user_reg_send_error#|replace:"[name]":$new_user}</p>{/if}
 {*<p>{#num_registerd_users#|replace:"[number]":$total_users}</p>*}
 
 <div id="usersearch">
@@ -403,7 +403,7 @@
 {/if}
 
 {if $result_count > 0}
-{if $no_users_in_selection}<p class="caution">{#no_users_in_sel#}</p>{/if}
+{if $no_users_in_selection}<p class="notice caution">{#no_users_in_sel#}</p>{/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
@@ -474,7 +474,7 @@
 {elseif $action=='edit_user'}
 {config_load file=$language_file section="user_edit"}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -482,7 +482,7 @@
 {/section}
 </ul>
 {/if}
-{if $inactive}<p class="caution">{#caution#}</p><p>{#activate_note#} <a href="index.php?mode=admin&amp;activate={$edit_user_id}">{#activate_link#}</a></p>{/if}
+{if $inactive}<p class="notice caution">{#caution#}</p><p>{#activate_note#} <a href="index.php?mode=admin&amp;activate={$edit_user_id}">{#activate_link#}</a></p>{/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
@@ -603,7 +603,7 @@
 </div>
 </form>
 {elseif $action=='delete_users'}
-<p class="caution">{#caution#}</p>
+<p class="notice caution">{#caution#}</p>
 <p>{if $selected_users_count>1}{#delete_users_confirmation#}{else}{#delete_user_confirmation#}{/if}</p>
 <ul>
 {section name=nr loop=$selected_users}
@@ -622,7 +622,7 @@
 </div>
 </form>
 {elseif $action=='user_delete_entries'}
-<p class="caution">{#caution#}</p>
+<p class="notice caution">{#caution#}</p>
 <p>{#delete_entries_of_user_confirm#|replace:"[user]":$user_delete_entries['user']}</p>
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
@@ -634,7 +634,7 @@
 </form>
 {elseif $action=='register'}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -659,7 +659,7 @@
 <p class="small">{#register_exp#}</p>
 {elseif $action=='smilies'}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -728,7 +728,7 @@
 </ul>
 {elseif $action=='spam_protection'}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -736,7 +736,7 @@
 {/section}
 </ul>
 {/if}
-{if $saved}<p class="ok">{#spam_protection_saved#}</p>{/if}
+{if $saved}<p class="notice ok">{#spam_protection_saved#}</p>{/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
@@ -828,7 +828,7 @@
 </div>
 </form>
 {elseif $action=='reset_uninstall'}
-<p class="caution">{#caution#}</p>
+<p class="notice caution">{#caution#}</p>
 {if $errors}{include file="$theme/subtemplates/errors.inc.tpl"}{/if}
 
 <h2>{#reset_forum#}</h2>
@@ -866,7 +866,7 @@
 </ul>
 
 {if $errors}{include file="$theme/subtemplates/errors.inc.tpl"}{/if}
-{if $message}<p class="ok">{$smarty.config.$message}</p>{/if}
+{if $message}<p class="notice ok">{$smarty.config.$message}</p>{/if}
 {if $update_files}
 <h3>{#update_available_files#}</h3>
 <ul>
@@ -878,7 +878,7 @@
 <p><em>{#update_no_files_available#}</em></p>
 {/if}
 {elseif $action=='run_update'}
-<p class="caution">{#caution#}</p>
+<p class="notice caution">{#caution#}</p>
 <p>{#update_confirm#}</p>
 <p><strong>{$update_file}</strong>{if $update_from_version && $update_to_version} {#update_file_details#|replace:"[update_from_version]":$update_from_version|replace:"[update_to_version]":$update_to_version}{/if}</p>
 <p style="color:red;font-weight:bold;">{#update_note#}</p>
@@ -894,7 +894,7 @@
 </form>
 {elseif $action=='update_done'}
 {if $update_errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$update_errors}
 {assign var="error" value=$update_errors[mysec]}
@@ -902,7 +902,7 @@
 {/section}
 </ul>
 {else}
-<p class="ok">{#update_successful#}</p>
+<p class="notice ok">{#update_successful#}</p>
 {/if}
 {if $update_items}
 <p>{#update_items_note#|replace:"[version]":$update_new_version}</p>
@@ -917,7 +917,7 @@
 {elseif $action == 'email_list'}
 <textarea onfocus="this.select()" onclick="this.select()" readonly="readonly" cols="60" rows="15">{$email_list}</textarea>
 {elseif $action == 'clear_userdata'}
-{if $no_users_in_selection}<p class="caution">{#no_users_in_selection#}</p>{/if}
+{if $no_users_in_selection}<p class="notice caution">{#no_users_in_selection#}</p>{/if}
 {assign var="input_logins" value="<input type=\"text\" name=\"logins\" value=\"$logins\" size=\"4\" />"}
 {assign var="input_days" value="<input type=\"text\" name=\"days\" value=\"$days\" size=\"4\" />"}
 <form action="index.php" method="post" accept-charset="{#charset#}">
@@ -930,7 +930,7 @@
 <p class="small">{#clear_userdata_note#}</p>
 {elseif $action == 'edit_smiley'}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -996,7 +996,7 @@
 <ul class="adminmenu"><li><a href="index.php?mode=admin&amp;action=edit_page"><img src="{$THEMES_DIR}/{$theme}/images/add_page.png" alt="" width="16" height="16" /><span>{#add_page_link#}</span></a></li></ul>
 {elseif $action=='edit_page'}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -1036,7 +1036,7 @@
 </form>
 {elseif $action=='delete_page'}
 {if $page}
-<p class="caution">{#caution#}</p>
+<p class="notice caution">{#caution#}</p>
 <p>{#delete_page_confirm#}</p>
 <p><strong>{$page.title}</strong></p>
 <form action="index.php" method="post" accept-charset="{#charset#}">
@@ -1091,7 +1091,7 @@
 {/if}
 {elseif $action=='delete_uploads'}
 <h2 id="admin_header">{#upload_administration#}</h2>
-<p class="caution">{#caution#}</p>
+<p class="notice caution">{#caution#}</p>
 <p>{if $selected_uploads_count>1}{#delete_uploads_confirmation#}{else}{#delete_upload_confirmation#}{/if}</p>
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>

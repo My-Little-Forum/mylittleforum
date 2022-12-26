@@ -1,6 +1,6 @@
 {config_load file=$language_file section="move_posting"}
 {if $no_authorisation}
-<p class="caution">{$smarty.config.$no_authorisation}</p>
+<p class="notice caution">{$smarty.config.$no_authorisation}</p>
 {else}
 {assign var="input_move_to" value="<input type=\"text\" name=\"move_to\" value=\"\" size=\"5\" onclick=\"document.getElementById('move_mode_1').checked=false; document.getElementById('move_mode_1').checked='checked'; \" />"}
 <h1>{#move_posting_hl#}</h1>

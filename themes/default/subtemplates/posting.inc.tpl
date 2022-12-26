@@ -2,7 +2,7 @@
 {config_load file=$language_file section="thread_entry"}
 {if $captcha}{config_load file=$language_file section="captcha"}{/if}
 {if $no_authorisation}
-<p class="caution">{$smarty.config.$no_authorisation|replace:"[minutes]":$settings.edit_period}</p>
+<p class="notice caution">{$smarty.config.$no_authorisation|replace:"[minutes]":$settings.edit_period}</p>
 {if $text}
 <textarea onfocus="this.select()" onclick="this.select()" readonly="readonly" cols="80" rows="21" name="text">{$text}</textarea>
 {/if}
@@ -13,14 +13,14 @@
 {/if}
 
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul style="margin-bottom:25px;">
 {section name=mysec loop=$errors}
 <li>{assign var="error" value=$errors[mysec]}{$smarty.config.$error|replace:"[text_length]":$text_length|replace:"[text_maxlength]":$settings.text_maxlength|replace:"[word]":$word|replace:"[minutes]":$minutes|replace:"[not_accepted_word]":$not_accepted_word|replace:"[not_accepted_words]":$not_accepted_words}</li>
 {/section}
 </ul>
 {elseif isset($minutes_left_to_edit)}
-<p class="caution">{if $settings.user_edit_if_no_replies==1}{#minutes_left_to_edit_reply#|replace:"[minutes]":$minutes_left_to_edit}{else}{#minutes_left_to_edit#|replace:"[minutes]":$minutes_left_to_edit}{/if}</p>
+<p class="notice caution">{if $settings.user_edit_if_no_replies==1}{#minutes_left_to_edit_reply#|replace:"[minutes]":$minutes_left_to_edit}{else}{#minutes_left_to_edit#|replace:"[minutes]":$minutes_left_to_edit}{/if}</p>
 {/if}
 
 {if $preview}

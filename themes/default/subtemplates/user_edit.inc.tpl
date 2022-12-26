@@ -1,6 +1,6 @@
 {config_load file=$language_file section="user_edit"}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
@@ -8,7 +8,7 @@
 {/section}
 </ul>
 {/if}
-{if $msg}<p class="ok">{$smarty.config.$msg}</p>{/if}
+{if $msg}<p class="notice ok">{$smarty.config.$msg}</p>{/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />

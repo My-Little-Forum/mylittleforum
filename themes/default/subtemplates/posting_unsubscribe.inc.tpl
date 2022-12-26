@@ -4,5 +4,5 @@
 <p>{#unsubscribed_message#}</p>
 {else}
 <h2>{#unsubscribe_error_hl#}</h2>
-<p class="caution">{#unsubscribe_error_message#}</p>
+<p class="notice caution">{#unsubscribe_error_message#}</p>
 {/if}
