@@ -1,10 +1,10 @@
 {config_load file=$language_file section="login"}
 {if $ip_temporarily_blocked}
 {#login_message#}
-<p class="caution">{#login_ip_temp_blocked#}</p>
+<p class="notice caution">{#login_ip_temp_blocked#}</p>
 {else}
 {if $login_message && $smarty.config.$login_message}
-<p class="{if $login_message=='account_activated' || $login_message=='mail_sent' || $login_message=='pw_sent'}ok{else}caution{/if}">{$smarty.config.$login_message}</p>
+<p class="notice {if $login_message=='account_activated' || $login_message=='mail_sent' || $login_message=='pw_sent'}ok{else}caution{/if}">{$smarty.config.$login_message}</p>
 {/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>

@@ -1,9 +1,9 @@
 {config_load file=$language_file section="delete_posting"}
 {if $no_authorisation}
-<p class="caution">{$smarty.config.$no_authorisation}</p>
+<p class="notice caution">{$smarty.config.$no_authorisation}</p>
 {else}
 <h1>{#delete_postings_hl#}</h1>
-<p class="caution">{#caution#}</p>
+<p class="notice caution">{#caution#}</p>
 <p>{if $admin||$mod}{#delete_posting_replies_confirm#}{else}{#delete_posting_confirm#}{/if}</p>
 <p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$formated_time}</p>
 <form action="index.php" method="post" accept-charset="{#charset#}">

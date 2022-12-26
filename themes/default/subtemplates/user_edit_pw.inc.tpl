@@ -1,6 +1,6 @@
 {config_load file=$language_file section="edit_pw"}
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}

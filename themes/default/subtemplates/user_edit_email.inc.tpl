@@ -1,8 +1,8 @@
 {config_load file=$language_file section="edit_email"}
-<p class="caution">{#caution#}</p>
+<p class="notice caution">{#caution#}</p>
 <p class="normal">{#edit_email_exp#}</p>
 {if $errors}
-<p class="caution">{#error_headline#}</p>
+<p class="notice caution">{#error_headline#}</p>
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}

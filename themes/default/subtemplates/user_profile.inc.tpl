@@ -85,5 +85,5 @@
 {/if}
 
 {else}
-<p class="caution">{#user_account_doesnt_exist#}</p>
+<p class="notice caution">{#user_account_doesnt_exist#}</p>
 {/if}

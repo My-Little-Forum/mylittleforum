@@ -1,6 +1,6 @@
 {config_load file=$language_file section="manage_postings"}
 {if $no_authorisation}
-<p class="caution">{$smarty.config.$no_authorisation}</p>
+<p class="notice caution">{$smarty.config.$no_authorisation}</p>
 {else}
 {assign var='input_days' value='</label><input type="text" name="days" value="" size="5" />'}
 <h1>{#manage_postings_hl#}</h1>

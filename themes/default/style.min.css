@@ -186,14 +186,18 @@ ul.openthread{clear:both}
 #selectioncontrols #arrow-selected{margin:0 0 0 13px}
 #selectioncontrols .checkall{margin-left:1em;font-size:.69em}
 #admin-usernav-bottom #userpagination{float:right;height:2em;text-align:right}
-.spam{color:#882008;font-weight:700;background:#ff5}
-.spam-note{font-weight:700;color:#882008;background:#ff5;border:1px solid #882008;padding:.5em}
 .thread ul{font-size:1em}
 .thread li{font-size:1em}
 .thread li li{font-size:1em}
 .thrbeg{font-weight:700}
-.caution{padding:0 0 0 20px;color:red;font-weight:700;background:url(images/caution.png) no-repeat left center}
-.ok{padding:0 0 0 20px;font-weight:700;color:red;background:url(images/tick.png) no-repeat left center}
+.spam,.caution,.ok{font-weight:bold}
+.spam,.caution{color:#882008;background-color:#ff5}
+.notice{border:1px solid}
+.notice.spam{padding:.5em}
+.notice.spam,.notice.caution{border-color:#882008}
+.notice.caution,.notice.ok{padding:.5em .5em .5em 1.75em}
+.notice.caution{background:url(images/caution.png) no-repeat 0.375em center}
+.notice.ok{color:#086620;background:#5fa url(images/tick.png) no-repeat 0.375em center;border-color:#086620}
 .entryline{clear:both;margin:15px 0;border-top:1px dotted gray;border-left:0;border-right:0;border-bottom:0;height:1px}
 .marked-threads{margin:30px 0 0;font-size:11px}
 .marked-threads-board{margin:10px 1px 0;font-size:11px}

@@ -1,6 +1,6 @@
 {config_load file=$language_file section="delete_posting"}
 {if $no_authorisation}
-	<p class="caution">{#no_authorisation#}</p>
+	<p class="notice caution">{#no_authorisation#}</p>
 {else}
 	<h1>{#flag_ham_hl#}</h1>
 	{if !$id}
@@ -8,7 +8,7 @@
 	{elseif $akismet_spam == 0 && $akismet_spam_check_status == 1 && $b8_spam == 0 && $b8_training_type == 1}
 		{#posting_not_flagged_as_spam#}
 	{else}
-		<p class="caution">{#caution#}</p>
+		<p class="notice caution">{#caution#}</p>
 		<p>{#flag_ham_warning#}</p>
 		<p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$formated_time}</p>
 		<form action="index.php" method="post" accept-charset="{#charset#}">
