@@ -298,7 +298,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 					$user_postings_data[$i]['pid'] = intval($row['pid']);
 					$user_postings_data[$i]['name'] = htmlspecialchars($user_name);
 					$user_postings_data[$i]['subject'] = htmlspecialchars($row['subject']);
-					$user_postings_data[$i]['disp_time'] = $row['disp_time'];
+					$user_postings_data[$i]['disp_time'] = format_time($lang['time_format_full'], $row['disp_time']);
 					if (isset($categories[$row['category']]) && $categories[$row['category']] != '') {
 						$user_postings_data[$i]['category'] = $row["category"];
 						$user_postings_data[$i]['category_name'] = $categories[$row["category"]];
