@@ -430,9 +430,9 @@
 <td>{if $userdata[row].inactive}<span title="{#user_inactive#}" style="font-weight:bold;color:red;">{$userdata[row].user_name}</span>{else}<a href="index.php?mode=user&amp;show_user={$userdata[row].user_id}" title="{#show_userdata_linktitle#|replace:"[user]":$userdata[row].user_name}"><strong>{$userdata[row].user_name}</strong></a>{/if}</td>
 <td><span class="small"><a href="mailto:{$userdata[row].user_email}" title="{#mailto_user_lt#|replace:"[user]":$userdata[row].user_name}">{$userdata[row].user_email}</a></span></td>
 <td><span class="small">{if $userdata[row].user_type==2}{#admin#}{elseif $userdata[row].user_type==1}{#mod#}{else}{#user#}{/if}</span></td>
-<td><span class="small">{$userdata[row].registered_time|date_format:#time_format#}</span></td>
+<td><span class="small">{$userdata[row].registered_time}</span></td>
 <td><span class="small">{$userdata[row].logins}</span></td>
-<td><span class="small">{if $userdata[row].logins > 0}{$userdata[row].last_login_time|date_format:#time_format#}{else}&nbsp;{/if}</span></td>
+<td><span class="small">{if $userdata[row].logins > 0}{$userdata[row].last_login_time}{else}&nbsp;{/if}</span></td>
 <td><span class="small">{if $userdata[row].user_type>0}{if $userdata[row].user_lock==0}{#unlocked#}{else}{#locked#}{/if}{elseif $userdata[row].user_lock==0}<a href="index.php?mode=admin&amp;user_lock={$userdata[row].user_id}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;page={$page}&amp;order={$order}&amp;descasc={$descasc}" title="{#lock_title#}">{#unlocked#}</a>{else}<a style="color:red;" href="index.php?mode=admin&amp;user_lock={$userdata[row].user_id}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;page={$page}&amp;order={$order}&amp;descasc={$descasc}" title="{#unlock_title#}">{#locked#}</a>{/if}</span></td>
 <td><a href="index.php?mode=admin&amp;edit_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a></td>
 <td><a href="index.php?mode=admin&amp;delete_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16" /></a></td>

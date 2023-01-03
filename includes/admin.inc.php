@@ -1152,9 +1152,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
 				$userdata[$i]['user_email'] = htmlspecialchars($row['user_email']);
 				$userdata[$i]['user_type'] = intval($row['user_type']);
-				$userdata[$i]['registered_time'] = htmlspecialchars($row['registered_time']);
+				$userdata[$i]['registered_time'] = htmlspecialchars(format_time($lang['time_format'], $row['registered_time']));
 				$userdata[$i]['logins'] = intval($row['logins']);
-				$userdata[$i]['last_login_time'] = htmlspecialchars($row['last_login_time']);
+				$userdata[$i]['last_login_time'] = htmlspecialchars(format_time($lang['time_format'], $row['last_login_time']));
 				$userdata[$i]['user_lock'] = $row['user_lock'];
 				if ($row['activate_code'] != '') $userdata[$i]['inactive'] = true;
 				$i++;
