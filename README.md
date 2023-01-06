@@ -10,6 +10,123 @@
 - Webserver with PHP >= 7.3
 - MySQL >= 5.5.3 or MariaDB
 
+## Features
+
+### General
+
+- thread based forum script
+- optional restriction of access to writing and/or reading entries to registered users only
+- user management
+- categories
+- highly configurable software
+- data storage in a MySQL or MariaDB database
+- currently 14 available languages (more or less complete) with the strings for the user interface
+    - simplyfied chinese
+    - traditional chinese
+    - croatian
+    - danish
+    - english (default if not set otherwise during the installation)
+    - french
+    - german
+    - italian
+    - norwegian
+    - russian
+    - spanish
+    - swedish
+    - tamil
+    - turkish
+- since version 20220508.1 (2.5.0) the forum can store the whole utf-8-range including emojis 🎉
+
+### Main views
+
+- paginated main view with a configurable count of threads per page
+- general and user based configuration for a thread view or a table view, second looking more message board like
+- optional list of latest X entries
+- optional tag cloud
+- management functions for administrators and moderators
+
+### Forum entries
+
+- allowing or forbidding creation of forum posts by unregistered users (a.k.a. restricting it to registered users only)
+- allowing or forbidding time based editing of forum posts after their initial saving
+- displaying the time of the last editing and the editors user name of a posting, optionally hiding it in case of editing by a moderator or administrator
+
+### Entry view
+
+- three possible views of forum entries
+    - single entry view with the thread structure shown like in the main views below the entry
+    - nested entry view with all entries of the thread indented according to their thread nesting level
+    - flat entry view ordered by their posting dates like in a message board
+
+### Categories
+
+- optional creation of categories
+- restricting access to certain categories to registered users or to administrators and moderators
+- management of categories
+    - sorting of the existing categories for the selection in the user interface
+    - renaming a category
+    - deleting an category
+    - changing the access restrictions
+
+### Spam prevention
+
+- optional Bayed based content categorisation as ham or spam for forum posts and/or e-mails, to be sent over the contact form (local service)
+- optional spam prevention with Bad behavior (local service)
+- optional bad word list (local service)
+- optional blacklist for certain IPs and IP-ranges (local service)
+- optional blacklist for user agents (local service)
+- optional check of e-mail-addresses during the registration process with Stop Forum Spam (external service)
+- optional content check of forum posts and/or e-mails, to be sent over the contact form, with Akismet (external service)
+- perform the activated checks only for content of unregistered visitors or also for content of registered users (if check is applicable)
+
+### User account management
+
+- optional user registration
+- options to registering an account by one self or by restricting the registration to be done by an administrator
+- enforcement of a consent to the terms of use and/or the privacy policy, date of consent will be saved with the user data
+- enforcement of a renewed consent in case of changes in one of these documents
+- in general three possible user ranks (beside unregistered visitors) with different permissions and restrictions
+    - registered user
+    - moderator
+    - administrator
+- user profile with optional ...
+    - ... avatar
+    - ... signature
+    - ... profile information
+    - ... website
+    - ... location
+    - ... birthday
+    - ... sex
+- technical user settings
+    - password
+    - e-mail-address
+    - deleting the account
+    - extent of contact
+        - user is contactable only by the forum team
+        - user is contactable by all registered users
+        - or the whole forum audience)
+    - user based category selection (if categories are defined)
+    - user based choice of the user interface language
+    - user based choice of the time zone
+    - user based choice of how links are opened
+        - open all links based on the forum setting (set by the forum administrator)
+        - open all links in the currently active browser window/tab
+        - open only links to external sites in a new browser window/tab
+        - open all links in a new browser window/tab
+    - for moderators and administrators: e-mail-notification about new forum posts and/or registration of new users
+- for administrators: separate user management list with the following functions
+    - adding new users
+    - editing the data of a single user
+    - deleting single users
+    - deleting uxsers according to definable criteria
+    - reset previous consents to the terms of use and/or the privacy policy because of changes in one or the other document
+
+### Pages
+
+- creation of website pages as supplement to the forum, in example a help page, the terms of use or the privacy policy
+- formatting the pages content with HTML
+- pages have a fix URL and a link can optionally be displayed in the user menu
+
 ## Installation
 
 1. Unzip the script package.
