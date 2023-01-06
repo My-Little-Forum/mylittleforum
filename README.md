@@ -1,19 +1,16 @@
-my little forum
-===============
+# my little forum
 
 [my little forum](https://mylittleforum.net/) is a simple PHP and MySQL based internet forum that displays the messages in classical threaded view (tree structure). It is Open Source licensed under the GNU General Public License. The main claim of this web forum is simplicity. Furthermore it should be easy to install and run on a standard server configuration with PHP and MySQL.
 
 * [More about my little forum](https://github.com/ilosuna/mylittleforum/wiki)
 * [Demo and project discussion forum](https://mylittleforum.net/forum/)
 
-System requirements
--------------------
+## System requirements
 
 - Webserver with PHP >= 7.3
 - MySQL >= 5.5.3 or MariaDB
 
-Installation
-------------
+## Installation
 
 1. Unzip the script package.
 2. Upload the complete folder "forum" to your server.
@@ -22,8 +19,7 @@ Installation
 5. Remove the directory "install" from your installation of My Little Forum.
 6. Change the write permissions for config/db_settings.php to (CHMOD 440), what prevents reading the files content for unauthorised users
 
-Upgrade
---------
+## Upgrade
 
 1. Download the new package.
 2. Unzip the script package.
