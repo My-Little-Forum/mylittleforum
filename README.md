@@ -19,6 +19,7 @@
 - user management
 - categories
 - forum script is highly configurable
+- theming support, using [Smarty](https://www.smarty.net/) as template language
 - data storage in a MySQL or MariaDB database
 - currently 14 available languages (more or less complete) with the strings for the user interface
     - simplyfied chinese
