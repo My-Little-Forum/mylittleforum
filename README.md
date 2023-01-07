@@ -18,7 +18,7 @@
 - optional restriction of access to writing and/or reading entries to registered users only
 - user management
 - categories
-- highly configurable software
+- forum script is highly configurable
 - data storage in a MySQL or MariaDB database
 - currently 14 available languages (more or less complete) with the strings for the user interface
     - simplyfied chinese
@@ -47,7 +47,7 @@
 
 ### Forum entries
 
-- allowing or forbidding creation of forum posts by unregistered users (a.k.a. restricting it to registered users only)
+- allowing or forbidding creation of forum posts by unregistered users (restricting it to registered users only)
 - allowing or forbidding time based editing of forum posts after their initial saving
 - displaying the time of the last editing and the editors user name of a posting, optionally hiding it in case of editing by a moderator or administrator
 
@@ -70,13 +70,13 @@
 
 ### Spam prevention
 
-- optional Bayed based content categorisation as ham or spam for forum posts and/or e-mails, to be sent over the contact form (local service)
-- optional spam prevention with Bad behavior (local service)
-- optional bad word list (local service)
-- optional blacklist for certain IPs and IP-ranges (local service)
-- optional blacklist for user agents (local service)
-- optional check of e-mail-addresses during the registration process with Stop Forum Spam (external service)
-- optional content check of forum posts and/or e-mails, to be sent over the contact form, with Akismet (external service)
+- optional Bayed based content categorisation as ham or spam for forum posts and/or e-mails, to be sent over the contact form (*local service*)
+- optional spam prevention with Bad behavior (*local service*)
+- optional bad word list (*local service*)
+- optional blacklist for certain IPs and IP-ranges (*local service*)
+- optional blacklist for user agents (*local service*)
+- optional check of e-mail-addresses during the registration process with Stop Forum Spam (*external service*)
+- optional content check of forum posts and/or e-mails, to be sent over the contact form, with Akismet (*external service*)
 - perform the activated checks only for content of unregistered visitors or also for content of registered users (if check is applicable)
 
 ### User account management
@@ -104,7 +104,7 @@
     - extent of contact
         - user is contactable only by the forum team
         - user is contactable by all registered users
-        - or the whole forum audience)
+        - or the whole forum audience
     - user based category selection (if categories are defined)
     - user based choice of the user interface language
     - user based choice of the time zone
@@ -121,10 +121,10 @@
     - deleting uxsers according to definable criteria
     - reset previous consents to the terms of use and/or the privacy policy because of changes in one or the other document
 
-### Pages
+### Additional pages
 
 - creation of website pages as supplement to the forum, in example a help page, the terms of use or the privacy policy
-- formatting the pages content with HTML
+- formatting the pages content with HTML and the CSS rules of the applied forum theme
 - pages have a fix URL and a link can optionally be displayed in the user menu
 
 ## Installation
