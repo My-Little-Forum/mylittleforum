@@ -548,6 +548,7 @@ pwf_username =                    'Nombre de usuario:'
 pwf_email =                       'E-mail:'
 
 [user]
+user_list_header =                'Lista de usuarios'
 user_name =                       'Nombre de usuario '
 user_type =                       'Tipo'
 admin =                           'Admin'
@@ -913,6 +914,7 @@ delete_page_submit =              'OK - Borrar pagina'
 error_no_page_title =             'Sin titulo'
 
 # user administration:
+user_list_header =                'Lista de usuarios'
 user_name_empty =                 'Nombre de usuario no introducido'
 num_registerd_users =             '[number] Usuarios registrados'
 user_id =                         'ID'
@@ -1191,7 +1193,6 @@ Saludos cordiales
 
 --
 Éste es un mensaje informativo generado automáticamente; por favor, no responda a este email."""
-
 
 [install]
 installation_title =              'Instalacion'
