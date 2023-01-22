@@ -182,7 +182,7 @@ input[name=sort_of_agreement] + iframe { height: 400px; height: 60vh; }
 .posting li              { font-size:0.82em; line-height:1.5em; }
 .posting li li           { font-size:1em; }
 .quote                   { color:#6f6f6f; font-style:italic; }
-.edited, .ago            { font-size:0.82em; color:#808080; }
+.edited, .ago, .score    { font-size:0.82em; color:#808080; }
 img.no-text              { cursor:help; }
 pre                      { max-width:100%; overflow:auto; }
 code                     { font-family:"courier new",courier; color:#000080; }
@@ -202,6 +202,10 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
 .posting-footer a.delete { padding-left:13px; background:url(images/bg_sprite_3.png) no-repeat 0 -47px; }
 .posting-footer a.go-to-top-link
 						 { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
+.posting-footer a.add-vote
+						 { padding-left:18px; background:url(images/vote_up.png) no-repeat; }
+.posting-footer a.delete-vote
+						 { padding-left:18px; background:url(images/vote_down.png) no-repeat; }
 .posting-footer a.add-bookmark
 						 { padding-left:14px; background:url(images/bg_sprite_3.png) no-repeat 0 -97px; }
 .posting-footer a.delete-bookmark

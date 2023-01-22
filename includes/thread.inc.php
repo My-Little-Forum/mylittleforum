@@ -68,12 +68,13 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
                            UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . intval($time_difference) . " MINUTE) AS e_time,
                            UNIX_TIMESTAMP(edited - INTERVAL " . $settings['edit_delay'] . " MINUTE) AS edited_diff, edited_by, name, email,
                            subject, hp, location, ip, text, cache_text, show_signature, views, spam, spam_check_status, category, locked, ip,
-                           user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, rst.user_id AS req_user
+                           user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, rst.user_id AS req_user, sct.score
                            FROM " . $db_settings['forum_table'] . " AS ft
                            LEFT JOIN " . $db_settings['entry_cache_table'] . " ON " . $db_settings['entry_cache_table'] . ".cache_id=ft.id
                            LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id=ft.user_id
                            LEFT JOIN " . $db_settings['userdata_cache_table'] . " ON " . $db_settings['userdata_cache_table'] . ".cache_id=" . $db_settings['userdata_table'] . ".user_id
                            LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
+                      		 LEFT JOIN " . $db_settings['score_table'] . " AS sct ON sct.posting_id = ft.id
                            WHERE tid = " . $tid . $display_spam_query_and . " ORDER BY ft.time ASC") or raise_error('database_error', mysqli_error($connid));
 	
 	if (mysqli_num_rows($result) > 0) {
@@ -240,7 +241,36 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 				// read-status handling
 				$rstatus = save_read_status($connid, $user_id, $data['id']);
 			}
-			// set read or new status of messages
+
+			if (isset($_SESSION[$settings['session_prefix'] . 'user_id']) && intval($data['locked'])==0) {
+				// vote handling
+				$user_id = $_SESSION[$settings['session_prefix'] . 'user_id'];
+        $vote_result = @mysqli_query($connid, "SELECT TRUE AS 'exists' FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($user_id) . " AND voting_allowed >= 1 LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+  			$vote = mysqli_fetch_row($vote_result);
+  			mysqli_free_result($vote_result);
+  			if (isset($vote) && intval($vote) == 1) {
+  				$vote_result = mysqli_query($connid, "SELECT TRUE AS 'vote' FROM " . $db_settings['vote_table'] . " WHERE `user_id` = " . intval($user_id) . " AND `posting_id` = " . intval($data['id']) . "") or raise_error('database_error', mysqli_error($connid));
+  				$vote = mysqli_fetch_row($vote_result);
+  				mysqli_free_result($vote_result);
+  				if (isset($vote) && intval($vote) == 1) {
+            # vote is existing -> allow deletion
+            $data['options']['delete_vote'] = true;
+          } else {
+            if ($user_id != $data['user_id']) {
+              # vote is not existing and not own entry -> allow voting
+          	  $data['options']['add_vote'] = true;
+            } else {
+              # vote is not existing, but own entry -> do not allow voting
+              # do nothing
+            }
+          }
+        } else {
+          # voting for user not allowed
+          # do nothing
+        }
+			}
+
+				// set read or new status of messages
 			$data = getMessageStatus($data, $last_visit);
 			
 			$data_array[$data["id"]]     = $data;
@@ -265,6 +295,9 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 	$smarty->assign('page', $page);
 	$smarty->assign('order', $order);
 	$smarty->assign('category', $category);
+  $smarty->assign("score_threshold_1",$settings['voting_score_threshold_1']);
+  $smarty->assign("score_threshold_2",$settings['voting_score_threshold_2']);
+  $smarty->assign("score_threshold_3",$settings['voting_score_threshold_3']);
 	if ($thread_display == 0)
 		$smarty->assign('subtemplate', 'thread.inc.tpl');
 	else

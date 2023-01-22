@@ -39,8 +39,19 @@
 <div class="thread-posting{if $data.$element.new} new{/if}{if $data.$element.is_read} read{/if}" id="p{$data.$element.id}">
 <div class="header">
 {if $data.$element.avatar}<img id="avatar-{$data.$element.id}" class="avatar" src="{$data.$element.avatar.image}" alt="{#avatar_img_alt#}" width="{$data.$element.avatar.width}" height="{$data.$element.avatar.height}" />{/if}
-<h{if $data.$element.pid==0}1{else}2{/if} id="headline-{$data.$element.id}">{$data.$element.subject}{if $data.$element.pid==0 && $category_name} <span class="category">({$category_name})</span>{/if}</h{if $data.$element.pid==0}1{else}2{/if}>
-<p class="author">{if $data.$element.location}{#posted_by_location#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[location]":$data.$element.location|replace:"[time]":$data.$element.formated_time}{else}{#posted_by#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[time]":$data.$element.formated_time}{/if} <span class="ago">({if $data.$element.ago.days>1}{#posting_several_days_ago#|replace:"[days]":$data.$element.ago.days_rounded}{else}{if $data.$element.ago.days==0 && $data.$element.ago.hours==0}{#posting_minutes_ago#|replace:"[minutes]":$data.$element.ago.minutes}{elseif $data.$element.ago.days==0 && $data.$element.ago.hours!=0}{#posting_hours_ago#|replace:"[hours]":$data.$element.ago.hours|replace:"[minutes]":$data.$element.ago.minutes}{else}{#posting_one_day_ago#|replace:"[hours]":$data.$element.ago.hours|replace:"[minutes]":$data.$element.ago.minutes}{/if}{/if})</span>{if $admin && $data.$element.ip} <span class="ip">({$data.$element.ip})</span>{/if}{if $data.$element.pid!=0}{assign var="parent_posting" value=$data.$element.pid} <span class="op-link"><a href="#p{$data.$element.pid}" title="{#original_posting_linktitle#|replace:"[name]":$data.$parent_posting.name}">@ {$data.$parent_posting.name}</a></span>{/if}{if $data.$element.edited}<br />
+<h{if $data.$element.pid==0}1{else}2{/if} id="headline-{$data.$element.id}">{$data.$element.subject}{if $data.$element.pid==0 && $category_name} 
+<span class="category">({$category_name})</span>{/if}</h{if $data.$element.pid==0}1{else}2{/if}>
+<p class="author">{if $data.$element.location}{#posted_by_location#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[location]":$data.$element.location|replace:"[time]":$data.$element.formated_time}{else}{#posted_by#|replace:"[name]":$name|replace:"[email_hp]":$email_hp|replace:"[time]":$data.$element.formated_time}{/if} <span class="ago">({if $data.$element.ago.days>1}{#posting_several_days_ago#|replace:"[days]":$data.$element.ago.days_rounded}{else}{if $data.$element.ago.days==0 && $data.$element.ago.hours==0}{#posting_minutes_ago#|replace:"[minutes]":$data.$element.ago.minutes}{elseif $data.$element.ago.days==0 && $data.$element.ago.hours!=0}{#posting_hours_ago#|replace:"[hours]":$data.$element.ago.hours|replace:"[minutes]":$data.$element.ago.minutes}{else}{#posting_one_day_ago#|replace:"[hours]":$data.$element.ago.hours|replace:"[minutes]":$data.$element.ago.minutes}{/if}{/if})</span>{if $admin && $data.$element.ip} <span class="ip">({$data.$element.ip})</span>{/if}{if $data.$element.pid!=0}{assign var="parent_posting" value=$data.$element.pid} <span class="op-link"><a href="#p{$data.$element.pid}" title="{#original_posting_linktitle#|replace:"[name]":$data.$parent_posting.name}">@ {$data.$parent_posting.name}</a></span>{/if}
+<span>
+{if $data.$element.score >= $score_threshold_3}
+<img src="{$THEMES_DIR}/{$theme}/images/score_3.png" title="{#score_above_threshold#}" alt="[OOO]" width="30" height="9" />
+{elseif $data.$element.score >= $score_threshold_2}
+<img src="{$THEMES_DIR}/{$theme}/images/score_2.png" title="{#score_above_threshold#}" alt="[OO]" width="20" height="9" />
+{elseif $data.$element.score >= $score_threshold_1}
+<img src="{$THEMES_DIR}/{$theme}/images/score_1.png" title="{#score_above_threshold#}" alt="[O]" width="9" height="9" />
+{/if}
+</span>
+{if $data.$element.edited} <br />
 <span class="edited">{#edited_by#|replace:"[name]":$data.$element.edited_by|replace:"[time]":$data.$element.formated_edit_time}</span>{/if}</p>
 </div>
 <div class="wrapper" id="posting-{$data.$element.id}">
@@ -66,6 +77,8 @@
 {if $data.$element.options}
 <ul class="options">
 <li><a href="#top" class="go-to-top-link" title="{#back_to_top_link_title#}">{#back_to_top_link#}</a></li>
+{if $data.$element.options.add_vote}<li><a href="index.php?mode=posting&amp;vote={$data.$element.id}&amp;back=thread" class="add-vote" title="{#add_vote_message_linktitle#}">{#add_vote_message_linkname#}</a></li>{/if}
+{if $data.$element.options.delete_vote}<li><a href="index.php?mode=posting&amp;vote={$data.$element.id}&amp;back=thread" class="delete-vote" title="{#delete_vote_message_linktitle#}">{#delete_vote_message_linkname#}</a></li>{/if}
 {if $data.$element.options.add_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$data.$element.id}&amp;back=thread" class="add-bookmark" title="{#add_bookmark_message_linktitle#}">{#add_bookmark_message_linkname#}</a></li>{/if}
 {if $data.$element.options.delete_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$data.$element.id}&amp;back=thread" class="delete-bookmark" title="{#delete_bookmark_message_linktitle#}">{#delete_bookmark_message_linkname#}</a></li>{/if}
 {if $data.$element.options.edit}<li><a href="index.php?mode=posting&amp;edit={$data.$element.id}&amp;back=thread" class="edit" title="{#edit_message_linktitle#}">{#edit_message_linkname#}</a></li>{/if}

@@ -48,7 +48,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	if (isset($_GET['edit_user'])) {
 		$edit_user_id = intval($_GET['edit_user']);
-		$result = mysqli_query($connid, "SELECT user_type, user_name, user_real_name, user_email, email_contact, user_hp, user_location, signature, profile, user_view, new_posting_notification, new_user_notification, gender, birthday, activate_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = '". $edit_user_id ."'") or raise_error('database_error', mysqli_error($connid));
+		$result = mysqli_query($connid, "SELECT user_type, user_name, user_real_name, user_email, email_contact, user_hp, user_location, signature, profile, user_view, new_posting_notification, new_user_notification, gender, birthday, activate_code, language, time_zone, time_difference, theme, voting_allowed FROM ".$db_settings['userdata_table']." WHERE user_id = '". $edit_user_id ."'") or raise_error('database_error', mysqli_error($connid));
 		$field = mysqli_fetch_array($result);
 		mysqli_free_result($result);
 
@@ -98,6 +98,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$smarty->assign('user_view', intval($field["user_view"]));
 		$smarty->assign('new_posting_notification', intval($field["new_posting_notification"]));
 		$smarty->assign('new_user_notification', intval($field["new_user_notification"]));
+		$smarty->assign('voting_allowed', intval($field["voting_allowed"]));
 		if (trim($field['activate_code']) != '') $smarty->assign('inactive', true);
 
 		$avatarInfo = getAvatar($edit_user_id);
@@ -178,8 +179,11 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				}
 			}
 		}
-		
-		$avatarInfo = getAvatar($edit_user_id);
+
+    // voting:		
+		$user_voting = trim($_POST['user_voting']);
+	
+  	$avatarInfo = getAvatar($edit_user_id);
 		$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
 		if (isset($avatar) && $avatar['image'] !== false) {
 			$image_info = getimagesize($avatar['image']);
@@ -250,7 +254,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if(empty($errors)) {
 			$queryUserDataEdit  = "UPDATE ".$db_settings['userdata_table']." SET user_name='". mysqli_real_escape_string($connid, $edit_user_name) ."', user_type='". intval($edit_user_type) ."', user_email='". mysqli_real_escape_string($connid, $user_email) ."', user_real_name='". mysqli_real_escape_string($connid, $user_real_name) ."', gender=". intval($gender) .", birthday= ";
 			$queryUserDataEdit .=  ($birthday !== NULL) ? "'". mysqli_real_escape_string($connid, $birthday) ."'" : "NULL";
-			$queryUserDataEdit .= ", email_contact=". intval($email_contact) .", user_hp='". mysqli_real_escape_string($connid, $user_hp) ."', user_location='". mysqli_real_escape_string($connid, $user_location) ."', profile='". mysqli_real_escape_string($connid, $profile) ."', signature='". mysqli_real_escape_string($connid, $signature) ."', last_login=last_login, registered=registered, new_posting_notification=". intval($new_posting_notification) .", new_user_notification=". intval($new_user_notification) .", language='". mysqli_real_escape_string($connid, $user_language) ."', time_zone='". mysqli_real_escape_string($connid, $user_time_zone) ."', time_difference=". intval($time_difference) .", theme='". mysqli_real_escape_string($connid, $user_theme) ."' WHERE user_id=". $edit_user_id;
+			$queryUserDataEdit .= ", voting_allowed = ". mysqli_real_escape_string($connid, $user_voting); 
+      $queryUserDataEdit .= ", email_contact=". intval($email_contact) .", user_hp='". mysqli_real_escape_string($connid, $user_hp) ."', user_location='". mysqli_real_escape_string($connid, $user_location) ."', profile='". mysqli_real_escape_string($connid, $profile) ."', signature='". mysqli_real_escape_string($connid, $signature) ."', last_login=last_login, registered=registered, new_posting_notification=". intval($new_posting_notification) .", new_user_notification=". intval($new_user_notification) .", language='". mysqli_real_escape_string($connid, $user_language) ."', time_zone='". mysqli_real_escape_string($connid, $user_time_zone) ."', time_difference=". intval($time_difference) .", theme='". mysqli_real_escape_string($connid, $user_theme) ."' WHERE user_id=". $edit_user_id;
 			@mysqli_query($connid, $queryUserDataEdit) or raise_error('database_error', mysqli_error($connid));
 			@mysqli_query($connid, "DELETE FROM ".$db_settings['userdata_cache_table']." WHERE cache_id = ". $edit_user_id);
 			
@@ -843,6 +848,14 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$qSetChangeTime = "INSERT INTO " . $db_settings['temp_infos_table'] . " (name, value, time)
 		VALUES ('last_changes', UNIX_TIMESTAMP(NOW()), NOW()) ON DUPLICATE KEY UPDATE value = UNIX_TIMESTAMP(NOW()), time = NOW()";
 		mysqli_query($connid, $qSetChangeTime);
+    
+    # update voting permissions
+    $settings['voting_min_registered_days'] = $_POST['voting_min_registered_days'];
+    $settings['voting_min_threadcount'] = $_POST['voting_min_threadcount'];
+    $settings['voting_min_postcount'] = $_POST['voting_min_postcount']; 
+    $settings['voting_min_ownscore'] = $_POST['voting_min_ownscore'];
+    updateVotingPermissions();
+
 		if (isset($_POST['return_to']) and $_POST['return_to'] === 'advanced_settings') {
 			header("Location: index.php?mode=admin&action=advanced_settings&saved=true");
 		} else {

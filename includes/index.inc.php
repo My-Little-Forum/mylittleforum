@@ -77,10 +77,11 @@ if ($categories == false) {
 $result_count = @mysqli_num_rows($result);
 if ($result_count > 0) {
 	while ($zeile = mysqli_fetch_array($result)) {
-		$thread_result = @mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, user_type, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, spam, rst.user_id AS req_user
+		$thread_result = @mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, user_type, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, spam, rst.user_id AS req_user, sct.score
 			FROM ".$db_settings['forum_table']." AS ft
 			LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ft.user_id
 			LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
+			LEFT JOIN ".$db_settings['score_table']." AS sct ON sct.posting_id = ft.id
 			WHERE tid = ".$zeile['tid'].$display_spam_query_and."
 			ORDER BY ft.time ASC") or raise_error('database_error', mysqli_error($connid));
 
@@ -220,6 +221,9 @@ $smarty->assign("items_per_page",$settings['threads_per_page']);
 $smarty->assign("thread_order",$thread_order);
 $smarty->assign("descasc",$descasc);
 $smarty->assign('fold_threads',$fold_threads);
+$smarty->assign("score_threshold_1",$settings['voting_score_threshold_1']);
+$smarty->assign("score_threshold_2",$settings['voting_score_threshold_2']);
+$smarty->assign("score_threshold_3",$settings['voting_score_threshold_3']);
 
 if ($category != 0) $cqsa = '&amp;category='.$category;
 else $cqsa = '';

@@ -137,6 +137,13 @@
 </tr>
 {/if}
 
+{if $voting_allowed>=1}
+<tr>
+<td class="c"><strong>{#edit_user_voting#}</strong></td>
+<td class="d">{#voting_allowed#}</td>
+</tr>
+{/if}
+
 <tr>
 <td class="c"><strong class="caution">{#remove_user_account#}</strong></td>
 <td class="d"><span class="small">[ <a href="index.php?mode=user&amp;action=remove_account">{#remove_user_account_link#}</a> ]</span></td>
@@ -149,6 +156,7 @@
 <input id="new_user_notification" type="checkbox" name="new_user_notification" value="1"{if $new_user_notification=="1"} checked="checked"{/if} /><label for="new_user_notification">{#admin_mod_notif_register#}</label></td>
 </tr>
 {/if}
+
 <tr>
 <td class="c">&nbsp;</td>
 <td class="d"><input type="submit" name="edit_user_submit" value="{#userdata_submit_button#}" /></td>

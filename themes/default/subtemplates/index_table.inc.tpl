@@ -17,6 +17,16 @@
 <ul id="thread-{$thread}" class="thread {if $fold_threads==1}folded{else}expanded{/if}">
 {function name=tree level=0}
 <li><a class="{if $data.$element.pid==0 && $data.$element.new}{if $data.$element.sticky==1 && $data.$element.locked==1}threadnew-sticky-locked{elseif $data.$element.sticky==1}threadnew-sticky{elseif $data.$element.locked==1}threadnew-locked{else}threadnew{/if}{elseif $data.$element.pid==0}{if $data.$element.sticky==1 && $data.$element.locked==1}thread-sticky-locked{elseif $data.$element.sticky==1}thread-sticky{elseif $data.$element.locked==1}thread-locked{else}thread{/if}{elseif $data.$element.pid!=0 && $data.$element.new}replynew{else}reply{/if}{if $data.$element.is_read} read{/if}" href="index.php?mode=thread&amp;id={$data.$element.tid}{if $data.$element.pid!=0}#p{$data.$element.id}{/if}" title="{$data.$element.name}, {$data.$element.formated_time}">{if $data.$element.spam==1}<span class="spam">{$data.$element.subject}</span>{else}{$data.$element.subject}{/if}</a>{if $data.$element.no_text} <img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="[ {#no_text_alt#} ]" width="11" height="9" />{/if}<span id="p{$data.$element.id}" class="tail">{if $admin || $mod} <a id="marklink_{$data.$element.id}" href="index.php?mode=posting&amp;mark={$data.$element.id}" title="{#mark_linktitle#}">{if $data.$element.marked==0}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/unmarked.png" title="{#mark_linktitle#}" alt="[○]" width="11" height="11" />{else}<img id="markimg_{$data.$element.id}" src="{$THEMES_DIR}/{$theme}/images/marked.png" title="{#unmark_linktitle#}" alt="[●]" width="11" height="11" />{/if}</a> <a href="index.php?mode=posting&amp;delete_posting={$data.$element.id}&amp;csrf_token={$CSRF_TOKEN}&amp;back=index" title="{#delete_posting_title#}"><img src="{$THEMES_DIR}/{$theme}/images/delete_posting.png" title="{#delete_posting_title#}" alt="[x]" width="9" height="9" /></a>{/if}</span>
+
+{if $data.$element.score >= $score_threshold_3}
+<img src="{$THEMES_DIR}/{$theme}/images/score_3.png" title="{#score_above_threshold#}" alt="[OOO]" width="30" height="9" />
+{elseif $data.$element.score >= $score_threshold_2}
+<img src="{$THEMES_DIR}/{$theme}/images/score_2.png" title="{#score_above_threshold#}" alt="[OO]" width="20" height="9" />
+{elseif $data.$element.score >= $score_threshold_1}
+<img src="{$THEMES_DIR}/{$theme}/images/score_1.png" title="{#score_above_threshold#}" alt="[O]" width="9" height="9" />
+{/if}
+
+
 {if is_array($child_array[$element])}
 <ul class="{if $level<$settings.deep_reply}reply{elseif $level>=$settings.deep_reply&&$level<$settings.very_deep_reply}deep-reply{else}very-deep-reply{/if}{if $fold_threads==1} js-display-none{/if}">{foreach from=$child_array[$element] item=child}{tree element=$child level=$level+1}{/foreach}</ul>{/if}</li>
 {/function}
