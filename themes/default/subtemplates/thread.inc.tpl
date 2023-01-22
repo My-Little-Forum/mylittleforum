@@ -76,6 +76,7 @@
 {if $data.$element.views}<span class="views">{if $data.$element.views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$data.$element.views}{/if}</span>{/if}
 {if $data.$element.options}
 <ul class="options">
+<li><a href="#top" class="go-to-top-link" title="{#back_to_top_link_title#}">{#back_to_top_link#}</a></li>
 {if $data.$element.options.add_vote}<li><a href="index.php?mode=posting&amp;vote={$data.$element.id}&amp;back=thread" class="add-vote" title="{#add_vote_message_linktitle#}">{#add_vote_message_linkname#}</a></li>{/if}
 {if $data.$element.options.delete_vote}<li><a href="index.php?mode=posting&amp;vote={$data.$element.id}&amp;back=thread" class="delete-vote" title="{#delete_vote_message_linktitle#}">{#delete_vote_message_linkname#}</a></li>{/if}
 {if $data.$element.options.add_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$data.$element.id}&amp;back=thread" class="add-bookmark" title="{#add_bookmark_message_linktitle#}">{#add_bookmark_message_linkname#}</a></li>{/if}
@@ -100,4 +101,6 @@
 </div>
 {/function}
 {tree element=$tid}
-{if $settings.rss_feed==1}<div class="small" style="text-align:right;"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}" title="{#rss_feed_thread_title#}">{#rss_feed_thread#}</a></div>{/if}
+{if $settings.rss_feed==1}<div class="complete-thread">
+<p class="right"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}" title="{#rss_feed_thread_title#}">{#rss_feed_thread#}</a></p>
+</div>{/if}

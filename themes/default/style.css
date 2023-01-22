@@ -81,7 +81,8 @@ img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -2
 #subnavmenu a.hierarchic { padding-left:13px; background:url(images/bg_sprite_1.png) no-repeat 0 -948px; }
 #subnavmenu a.fold-postings
                          { padding-left:13px; background:url(images/bg_sprite_1.png) no-repeat 0 -998px; }
-a.rss                    { padding-left:13px; background:url(images/bg_sprite_1.png) no-repeat 0 -1048px; }
+a.rss                    { background:url(images/bg_sprite_1.png) no-repeat 3px -1048px; }
+p.right a.rss            { padding-left:15px; }
 
 input.small,
 select.small             { font-family:verdana,arial,sans-serif; font-size:0.82em; }
@@ -106,8 +107,10 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #footermenu li:first-child:before
                          { content:""; }
 #footermenu li a         { padding-left:5px; }
-#footermenu li:first-child a 
+#footermenu li:first-child a, #footermenu li a.rss
                          { padding-left:15px; }
+#footermenu a.go-to-top-link
+                         { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
 
 #pbmlf                   { clear:both; margin:0; padding:0 20px 11px 20px; text-align:center; font-size:0.69em; color:#808080; }
 #pbmlf a                 { color:#808080; text-decoration:none; }
@@ -197,6 +200,8 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
                          { display:inline; margin:0 0 0 1em; }
 .posting-footer a.edit   { padding-left:16px; background:url(images/bg_sprite_3.png) no-repeat 0 2px; }
 .posting-footer a.delete { padding-left:13px; background:url(images/bg_sprite_3.png) no-repeat 0 -47px; }
+.posting-footer a.go-to-top-link
+						 { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
 .posting-footer a.add-vote
 						 { padding-left:18px; background:url(images/vote_up.png) no-repeat; }
 .posting-footer a.delete-vote

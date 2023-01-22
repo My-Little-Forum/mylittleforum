@@ -331,7 +331,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$smarty->assign('category_name', $field['category']);
 
 		if (count($categories) > 1) {
-			while (list($key, $val) = each($categories)) {
+			foreach ($categories as $key => $val) {
 				if ($key != $field['id']) $move_categories[$key] = $val;
 			}
 			$smarty->assign('move_categories', $move_categories);
@@ -835,7 +835,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if (empty($_POST['time_zone'])) $_POST['time_zone'] = '';
 		if (empty($_POST['read_state_expiration_method'])) $_POST['read_state_expiration_method'] = 0;
 
-		while(list($key, $val) = each($settings)) {
+		foreach ($settings as $key => $val) {
 			if (isset($_POST[$key])) mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". mysqli_real_escape_string($connid, $_POST[$key]) ."' WHERE name = '". mysqli_real_escape_string($connid, $key) ."' LIMIT 1");
 		}
 		if (isset($_POST['clear_cache'])) {
@@ -883,8 +883,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (mysqli_num_rows($name_result) > 0) $errors[] = 'user_name_already_exists';
 			mysqli_free_result($name_result);
 
-			if (!is_valid_email($ar_email)) $errors[] = 'error_email_wrong';
-			if (($ar_pw == "" or $ar_pw_conf == "") && !isset($ar_send_userdata)) $errors[] = 'error_send_userdata';
+			if (!is_valid_email($ar_email)) 
+				$errors[] = 'admin_reg_error_email_wrong';
+			if ($ar_pw == "" && !isset($ar_send_userdata)) 
+				$errors[] = 'error_send_userdata';
 
 			if (my_strlen($ar_username, $lang['charset']) > $settings['name_maxlength'])
 				$errors[] = $lang['name_marking'] . " " .$lang['error_username_too_long'];
@@ -1286,10 +1288,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (isset($files)) {
 				arsort($files); // order by date
 				$i = 0;
-				while(list($key, $val) = each($files)) {
+				foreach ($files as $key => $val) {
 					$backup_files[$i]['file'] = htmlspecialchars($key);
 					$backup_files[$i]['date'] = $val;
-					$backup_files[$i]['size'] = number_format(filesize('backup/'.$key) / 1048576,2) .' MB';
+					$backup_files[$i]['size'] = number_format(round(filesize('backup/'.$key) / 1048576, 4, PHP_ROUND_HALF_UP), 4) .' MB';
 					$i++;
 				}
 				$smarty->assign('backup_files',$backup_files);

@@ -1,6 +1,32 @@
 my little forum changelog
 -------------------------
 
+2.4.24 (2020-10-12)
+-------------------
+- fixed: broken layout of the links to the RSS-feed of a single thread in thread.inc.tpl and thread_linear.inc.tpl
+- fixed: unintended text-transform: lowercase; for the link to top of the page in the options of an entry
+- added: add classes for the user type to the thread tree below the entry in the single-entry-view
+
+2.4.23 (2020-09-30)
+-------------------
+- fixed: wrong formatting of the link for a threads own RSS-feed, got broken by the work on formatting the RSS-links in the page footer
+- fixed: the non-English and non-German strings for the to-top-of-page-links had a broken comment part
+
+2.4.22 (2020-09-29)
+-------------------
+- fixed: broken backup restoring function for the entries table, rework of the backup function for better code readability
+- fixed: corrected file size computation for the list of backup files; very small file sizes (up to a few hundred bytes) was shown as "0.00 MB" instead i.e. "0.0006 MB"
+- fixed: remove of since PHP 7.2 deprecated function each(), replaced with foreach()
+- fixed: wrong key name for error message in admin area about an incorrect e-mail-address
+- added: link to top of the page in the page footer and in the options menu of every entry
+- added: backup function for subscriptions and tags
+- added: natural sorting of the tag list, makes sorting case insensitive
+
+2.4.21 (2020-04-25)
+-------------------
+- fixed: regex for e-mail-validation followed a lazy syntax style, that invalidated with PRCE2. which was introduced with PHP 7.3; because of that one was unable to register a new account when running MLF 2.4.x under PHP 7.3 or newer
+- fixed: image URLs in the RSS-feed was specified with only the local, relative path on the domain, we do need a complete URl with protocol, domain and path because the feed reader requests the feed from outside the domain
+
 2.4.20 (2019-05-15)
 -------------------
 - fixed: call for a removed function in the JS-code

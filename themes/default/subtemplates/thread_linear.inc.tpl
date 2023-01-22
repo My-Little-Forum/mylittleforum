@@ -75,6 +75,7 @@
 {if $element.views}<span class="views">{if $element.views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$element.views}{/if}</span>{/if}
 {if $element.options}
 <ul class="options">
+<li><a href="#top" class="go-to-top-link" title="{#back_to_top_link_title#}">{#back_to_top_link#}</a></li>
 {if $element.options.add_vote}<li><a href="index.php?mode=posting&amp;vote={$element.id}&amp;back=thread" class="add-vote" title="{#add_vote_message_linktitle#}">{#add_vote_message_linkname#}</a></li>{/if}
 {if $element.options.delete_vote}<li><a href="index.php?mode=posting&amp;vote={$element.id}&amp;back=thread" class="delete-vote" title="{#delete_vote_message_linktitle#}">{#delete_vote_message_linkname#}</a></li>{/if}
 {if $element.options.add_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$element.id}&amp;back=thread" class="add-bookmark" title="{#add_bookmark_message_linktitle#}">{#add_bookmark_message_linkname#}</a></li>{/if}
@@ -95,4 +96,6 @@
 </div>
 {/foreach}
 </div>
-{if $settings.rss_feed==1}<div class="small" style="text-align:right;"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}">{#rss_feed_thread#}</a></div>{/if}
+{if $settings.rss_feed==1}<div class="complete-thread">
+<p class="right"><a class="rss" href="index.php?mode=rss&amp;thread={$tid}" title="{#rss_feed_thread_title#}">{#rss_feed_thread#}</a></p>
+</div>{/if}

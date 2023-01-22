@@ -15,7 +15,7 @@ if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
 // update data:
-$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16', '2.4.17', '2.4.18', '2.4.18.1', '2.4.19', '2.4.19.1');
+$update['version'] = array('2.3.5', '2.3.6', '2.3.6.1', '2.3.7', '2.3.99.1', '2.3.99.2', '2.3.99.3', '2.4', '2.4.1', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8', '2.4.9', '2.4.10', '2.4.11', '2.4.12', '2.4.13', '2.4.14', '2.4.15', '2.4.16', '2.4.17', '2.4.18', '2.4.18.1', '2.4.19', '2.4.19.1', '2.4.20', '2.4.21', '2.4.22', '2.4.23');
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
@@ -313,6 +313,32 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';           // #469
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';    // #469
 		$update['items'][] = 'includes/posting.inc.php';                             // #469
+	case '2.4.20':
+		$update['items'][] = 'includes/functions.inc.php';                           // adaption of #524
+		$update['items'][] = 'includes/rss.inc.php';                                 // no pull request
+	case '2.4.21':
+		$update['items'][] = 'includes/admin.inc.php';                               // #410, #523, backup related changes
+		$update['items'][] = 'includes/functions.inc.php';                           // #410, #512, backup related changes
+		$update['items'][] = 'includes/posting.inc.php';                             // #410
+		$update['items'][] = 'lang/';                                                // #523, #530, backup related changes
+		$update['items'][] = 'themes/default/main.tpl';                              // #530, #531
+		$update['items'][] = 'themes/default/style.tpl';                             // #530, #531
+		$update['items'][] = 'themes/default/style-min.tpl';                         // #530, #531
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';            // backup related changes
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';            // #530
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';           // #530
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';    // #530
+	case '2.4.22':
+		$update['items'][] = 'lang/';                                                // #532
+		$update['items'][] = 'themes/default/style.tpl';                             // #533
+		$update['items'][] = 'themes/default/style-min.tpl';                         // #533
+	case '2.4.23':
+		$update['items'][] = 'themes/default/style.tpl';                             // #534, #537
+		$update['items'][] = 'themes/default/style-min.tpl';                         // #534, #537
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';           // #537
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';    // #537
+		$update['items'][] = 'includes/entry.inc.php';                               // #536
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';            // #536
 		
 		// !!!Do *NOT* add 'break;' to a single case!!!
 		// This is the only break to avoid the use of the default-case!

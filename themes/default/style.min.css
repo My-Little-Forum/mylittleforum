@@ -57,7 +57,8 @@ img.show-sidebar{background:url(images/bg_sprite_2.png) no-repeat 0 -22px}
 #subnavmenu a.linear{padding-left:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -898px}
 #subnavmenu a.hierarchic{padding-left:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -948px}
 #subnavmenu a.fold-postings{padding-left:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -998px}
-a.rss{padding-left:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -1048px}
+a.rss{background:url(images/bg_sprite_1.png) no-repeat 3px -1048px}
+p.right a.rss{padding-left:15px}
 input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #content{margin:0;padding:20px;min-height:200px;background:#fff}
 #content p,#content ul,#content td{font-size:.82em;line-height:1.5em;max-width:60em}
@@ -68,12 +69,13 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #footer #footer-1{margin:0;padding:7px 0 10px 20px;float:left}
 #footer #footer-2{margin:0;padding:7px 20px 10px 0;text-align:right}
 #footermenu{margin:0 0 1em;list-style-type:none}
-#footermenu li{display:inline;margin-left:5px;padding-left:0px;}
-#footermenu li:first-child{margin-left:0;padding-left:0px;}
-#footermenu li:before{content:"|";}
-#footermenu li:first-child:before{content:"";}
-#footermenu li a {padding-left:5px;}
-#footermenu li:first-child a {padding-left:15px;}
+#footermenu li{display:inline;margin-left:5px;padding-left:0px}
+#footermenu li:first-child{margin-left:0;padding-left:0px}
+#footermenu li:before{content:"|"}
+#footermenu li:first-child:before{content:""}
+#footermenu li a{padding-left:5px}
+#footermenu li:first-child a,#footermenu li a.rss{padding-left:15px}
+#footermenu a.go-to-top-link{padding-left:16px;background:url(images/arrow_up.png) no-repeat 0 0 / auto 90%}
 #pbmlf{clear:both;margin:0;padding:0 20px 11px;text-align:center;font-size:.69em;color:gray}
 #pbmlf a{color:gray;text-decoration:none}
 #sidebar{position:relative;width:13em;float:right;margin:0;padding:0}
@@ -144,6 +146,7 @@ blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 .posting-footer .options li{display:inline;margin:0 0 0 1em}
 .posting-footer a.edit{padding-left:16px;background:url(images/bg_sprite_3.png) no-repeat 0 2px}
 .posting-footer a.delete{padding-left:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -47px}
+.posting-footer a.go-to-top-link{ padding-left:16px;background:url(images/arrow_up.png) no-repeat 0 0 / auto 90%}
 .posting-footer a.add-bookmark{padding-left:14px;background:url(images/bg_sprite_3.png) no-repeat 0 -97px}
 .posting-footer a.delete-bookmark{padding-left:14px;background:url(images/bg_sprite_3.png) no-repeat 0 -147px}
 .posting-footer a.move{padding-left:13px;background:url(images/bg_sprite_4.png) no-repeat 0 2px}

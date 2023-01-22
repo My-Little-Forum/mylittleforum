@@ -392,7 +392,7 @@ function is_valid_url($url)
  * @return bool
  */
 function is_valid_email($email) {
-	if (!preg_match("/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,}|[0-9]{1,3})(\]?)$/", $email)) {
+	if (!preg_match("/^([\w\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,}|[0-9]{1,3})(\]?)$/", $email)) {
 		return false;
 	}
 	if (contains_invalid_string($email)) {
@@ -1598,8 +1598,7 @@ function tag_cloud($days, $scale_min, $scale_max) {
 				$tags_array[$tag] = 1;
 		}
 		
-		ksort($tags_array);
-
+		ksort($tags_array, SORT_NATURAL | SORT_FLAG_CASE);
 		// minimum and maximum value:
 		foreach ($tags_array as $tag) {
 			if (empty($max))
@@ -1622,7 +1621,7 @@ function tag_cloud($days, $scale_min, $scale_max) {
 		$t = $scale_min - $m * $min;
 		
 		$i = 0;
-		while (list($key, $val) = each($tags_array)) {
+		foreach ($tags_array as $key => $val) {
 			if (my_strpos($key, ' ', 0, CHARSET))
 				$tag_escaped = '"' . $key . '"';
 			else
@@ -1737,7 +1736,7 @@ function create_backup_file($mode=0)
   global $settings, $db_settings, $connid;
   #@set_time_limit(30);
   $mode=intval($mode);
-  if($mode<0 || $mode > 10) $mode = 0;
+  if($mode < 0 || $mode > 12) $mode = 0;
 
   require('includes/classes/Backup.class.php');
   $backup = new Backup;
@@ -1756,6 +1755,8 @@ function create_backup_file($mode=0)
     case 8: $filename = 'mlf_backup_bookmarks_'.gmdate("YmdHis").'.sql'; break;
     case 9: $filename = 'mlf_backup_read_status_'.gmdate("YmdHis").'.sql'; break;
     case 10: $filename = 'mlf_backup_temp_infos_'.gmdate("YmdHis").'.sql'; break;
+    case 11: $filename = 'mlf_backup_subscriptions_'.gmdate("YmdHis").'.sql'; break;
+    case 12: $filename = 'mlf_backup_tags_'.gmdate("YmdHis").'.sql'; break;
    }
 
   $backup->set_file('backup/'.$filename);
@@ -1773,7 +1774,7 @@ function create_backup_file($mode=0)
      {
       $data['name'] = mysqli_real_escape_string($connid, $data['name']);
       $data['value'] = mysqli_real_escape_string($connid, $data['value']);
-      $backup->assign("INSERT INTO ".$db_settings['settings_table']." VALUES ('".$data['name']."', '".$data['value']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['settings_table']." (`name`, `value`) VALUES ('".$data['name']."', '".$data['value']."');\n");
      }
     mysqli_free_result($result);
    }
@@ -1791,7 +1792,7 @@ function create_backup_file($mode=0)
       $data['description'] = mysqli_real_escape_string($connid, $data['description']);
       $data['description'] = str_replace("\r", "\\r", $data['description']);
       $data['description'] = str_replace("\n",  "\\n", $data['description']);
-      $backup->assign("INSERT INTO ".$db_settings['category_table']." VALUES (".$data['id'].", ".$data['order_id'].", '".$data['category']."', '".$data['description']."', ".$data['accession'].");\n");
+      $backup->assign("INSERT INTO ".$db_settings['category_table']." (`id`, `order_id`, `category`, `description`, `accession`) VALUES (".$data['id'].", ".$data['order_id'].", '".$data['category']."', '".$data['description']."', ".$data['accession'].");\n");
      }
     mysqli_free_result($result);
    }
@@ -1810,7 +1811,7 @@ function create_backup_file($mode=0)
       $data['content'] = str_replace("\r", "\\r", $data['content']);
       $data['content'] = str_replace("\n",  "\\n", $data['content']);
       $data['menu_linkname'] = mysqli_real_escape_string($connid, $data['menu_linkname']);
-      $backup->assign("INSERT INTO ".$db_settings['pages_table']." VALUES (".$data['id'].", ".$data['order_id'].", '".$data['title']."', '".$data['content']."', '".$data['menu_linkname']."', ".$data['access'].");\n");
+      $backup->assign("INSERT INTO ".$db_settings['pages_table']." (`id`, `order_id`, `title`, `content`, `menu_linkname`, `access`) VALUES (".$data['id'].", ".$data['order_id'].", '".$data['title']."', '".$data['content']."', '".$data['menu_linkname']."', ".$data['access'].");\n");
      }
     mysqli_free_result($result);
    }
@@ -1831,7 +1832,7 @@ function create_backup_file($mode=0)
       $data['code_4'] = mysqli_real_escape_string($connid, $data['code_4']);
       $data['code_5'] = mysqli_real_escape_string($connid, $data['code_5']);
       $data['title'] = mysqli_real_escape_string($connid, $data['title']);
-      $backup->assign("INSERT INTO ".$db_settings['smilies_table']." VALUES (".$data['id'].", ".$data['order_id'].", '".$data['file']."', '".$data['code_1']."', '".$data['code_2']."', '".$data['code_3']."', '".$data['code_4']."', '".$data['code_5']."', '".$data['title']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['smilies_table']." (`id`, `order_id`, `file`, `code_1`, `code_2`, `code_3`, `code_4`, `code_5`, `title`) VALUES (".$data['id'].", ".$data['order_id'].", '".$data['file']."', '".$data['code_1']."', '".$data['code_2']."', '".$data['code_3']."', '".$data['code_4']."', '".$data['code_5']."', '".$data['title']."');\n");
      }
     mysqli_free_result($result);
    }
@@ -1847,7 +1848,7 @@ function create_backup_file($mode=0)
      {
       $data['name'] = mysqli_real_escape_string($connid, $data['name']);
       $data['list'] = mysqli_real_escape_string($connid, $data['list']);
-      $backup->assign("INSERT INTO ".$db_settings['banlists_table']." VALUES ('".$data['name']."', '".$data['list']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['banlists_table']." (`name`, `list`) VALUES ('".$data['name']."', '".$data['list']."');\n");
      }
     mysqli_free_result($result);
    }
@@ -1863,7 +1864,7 @@ function create_backup_file($mode=0)
      {
       $data['time'] = mysqli_real_escape_string($connid, $data['time']);
       $data['subject'] = mysqli_real_escape_string($connid, $data['subject']);
-      $backup->assign("INSERT INTO ".$db_settings['bookmark_table']." VALUES (".$data['id'].", ".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."', '".$data['subject']."', ".$data['order_id'].");\n");
+      $backup->assign("INSERT INTO ".$db_settings['bookmark_table']." (`id`, `user_id`, `posting_id`, `time`, `subject`, `order_id`) VALUES (".$data['id'].", ".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."', '".$data['subject']."', ".$data['order_id'].");\n");
      }
     mysqli_free_result($result);
    }
@@ -1878,7 +1879,7 @@ function create_backup_file($mode=0)
     while($data = mysqli_fetch_array($result))
      {
       $data['time'] = mysqli_real_escape_string($connid, $data['time']);
-      $backup->assign("INSERT INTO ".$db_settings['read_status_table']." VALUES (".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['read_status_table']." (`user_id`, `posting_id`, `time`) VALUES (".$data['user_id'].", ".$data['posting_id'].", '".$data['time']."');\n");
      }
     mysqli_free_result($result);
    }
@@ -1894,8 +1895,70 @@ function create_backup_file($mode=0)
      {
       $data['name'] = mysqli_real_escape_string($connid, $data['name']);
       $data['value'] = mysqli_real_escape_string($connid, $data['value']);
-      $data['time'] = mysqli_real_escape_string($connid, $data['time']);
-      $backup->assign("INSERT INTO ".$db_settings['temp_infos_table']." VALUES ('".$data['name']."', '".$data['value']."', '".$data['time']."');\n");
+      $data['time'] = !is_null($data['time']) ? "'".mysqli_real_escape_string($connid, $data['time'])."'" : 'NULL';
+      $backup->assign("INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`, `time`) VALUES ('".$data['name']."', '".$data['value']."', ".$data['time'].");\n");
+     }
+    mysqli_free_result($result);
+   }
+
+  if($mode==0 || $mode==11) // subscriptions
+   {
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['subscriptions_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['subscriptions_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT user_id, eid, unsubscribe_code, tstamp FROM ".$db_settings['subscriptions_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+      $data['user_id'] = !is_null($data['user_id']) ? intval($data['user_id']) : 'NULL';
+      $data['unsubscribe_code'] = mysqli_real_escape_string($connid, $data['unsubscribe_code']);
+      $data['tstamp'] = !is_null($data['tstamp']) ? "'".mysqli_real_escape_string($connid, $data['tstamp'])."'" : 'NULL';
+      $backup->assign("INSERT INTO ".$db_settings['subscriptions_table']." (`user_id`, `eid`, `unsubscribe_code`, `tstamp`) VALUES (".$data['user_id'].", ".$data['eid'].", '".$data['unsubscribe_code']."', ".$data['tstamp'].");\n");
+     }
+    mysqli_free_result($result);
+   }
+
+  if($mode==0 || $mode==12) // tags
+   {
+    # tag table
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['tags_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['tags_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT id, tag FROM ".$db_settings['tags_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+     	$data['id'] = intval($data['id']);
+      $data['tag'] = mysqli_real_escape_string($connid, $data['tag']);
+      $backup->assign("INSERT INTO ".$db_settings['tags_table']." (`id`, `tag`) VALUES (".$data['id'].", '".$data['tag']."');\n");
+     }
+    mysqli_free_result($result);
+    # bookmark tag table
+    $backup->assign("\n");
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['bookmark_tags_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['bookmark_tags_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT bid, tid FROM ".$db_settings['bookmark_tags_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+     	$data['bid'] = intval($data['bid']);
+     	$data['tid'] = intval($data['tid']);
+      $backup->assign("INSERT INTO ".$db_settings['bookmark_tags_table']." (`bid`, `tid`) VALUES (".$data['bid'].", ".$data['tid'].");\n");
+     }
+    mysqli_free_result($result);
+    # entries tag table
+    $backup->assign("\n");
+    $backup->assign("#\n");
+    $backup->assign("# ".$db_settings['entry_tags_table']."\n");
+    $backup->assign("#\n");
+    $backup->assign("TRUNCATE TABLE ".$db_settings['entry_tags_table'].";\n");
+    $result = @mysqli_query($connid, "SELECT bid, tid FROM ".$db_settings['entry_tags_table']) or $error=true;
+    while($data = mysqli_fetch_array($result))
+     {
+     	$data['bid'] = intval($data['bid']);
+     	$data['tid'] = intval($data['tid']);
+      $backup->assign("INSERT INTO ".$db_settings['entry_tags_table']." (`bid`, `tid`) VALUES (".$data['bid'].", ".$data['tid'].");\n");
      }
     mysqli_free_result($result);
    }
@@ -1937,7 +2000,7 @@ function create_backup_file($mode=0)
       $data['activate_code'] = mysqli_real_escape_string($connid, $data['activate_code']);
       $data['tou_accepted'] = !is_null($data['tou_accepted']) ? "'".mysqli_real_escape_string($connid, $data['tou_accepted'])."'" : 'NULL';
       $data['dps_accepted'] = !is_null($data['dps_accepted']) ? "'".mysqli_real_escape_string($connid, $data['dps_accepted'])."'" : 'NULL';
-      $backup->assign("INSERT INTO ".$db_settings['userdata_table']." VALUES (".$data['user_id'].", ".$data['user_type'].", '".$data['user_name']."', '".$data['user_real_name']."', ".$data['gender'].", ".$data['birthday'].", '".$data['user_pw']."', '".$data['user_email']."', ".$data['email_contact'].", '".$data['user_hp']."', '".$data['user_location']."', '".$data['signature']."', '".$data['profile']."', ".$data['logins'].", ".$data['last_login'].", ".$data['last_logout'].", '".$data['user_ip']."', ".$data['registered'].", ".$data['category_selection'].", ".$data['thread_order'].", ".$data['user_view'].", ".$data['sidebar'].", ".$data['fold_threads'].", ".$data['thread_display'].", ".$data['new_posting_notification'].", ".$data['new_user_notification'].", ".$data['user_lock'].", '".$data['auto_login_code']."', '".$data['pwf_code']."', '".$data['activate_code']."', '".$data['language']."', '".$data['time_zone']."', ".$data['time_difference'].", '".$data['theme']."', ".$data['tou_accepted'].", ".$data['dps_accepted'].");\n");
+      $backup->assign("INSERT INTO ".$db_settings['userdata_table']." (`user_id`, `user_type`, `user_name`, `user_real_name`, `gender`, `birthday`, `user_pw`, `user_email`, `email_contact`, `user_hp`, `user_location`, `signature`, `profile`, `logins`, `last_login`, `last_logout`, `user_ip`, `registered`, `category_selection`, `thread_order`, `user_view`, `sidebar`, `fold_threads`, `thread_display`, `new_posting_notification`, `new_user_notification`, `user_lock`, `auto_login_code`, `pwf_code`, `activate_code`, `language`, `time_zone`, `time_difference`, `theme`, `tou_accepted`, `dps_accepted`) VALUES (".$data['user_id'].", ".$data['user_type'].", '".$data['user_name']."', '".$data['user_real_name']."', ".$data['gender'].", ".$data['birthday'].", '".$data['user_pw']."', '".$data['user_email']."', ".$data['email_contact'].", '".$data['user_hp']."', '".$data['user_location']."', '".$data['signature']."', '".$data['profile']."', ".$data['logins'].", ".$data['last_login'].", ".$data['last_logout'].", '".$data['user_ip']."', ".$data['registered'].", ".$data['category_selection'].", ".$data['thread_order'].", ".$data['user_view'].", ".$data['sidebar'].", ".$data['fold_threads'].", ".$data['thread_display'].", ".$data['new_posting_notification'].", ".$data['new_user_notification'].", ".$data['user_lock'].", '".$data['auto_login_code']."', '".$data['pwf_code']."', '".$data['activate_code']."', '".$data['language']."', '".$data['time_zone']."', ".$data['time_difference'].", '".$data['theme']."', ".$data['tou_accepted'].", ".$data['dps_accepted'].");\n");
      }
     mysqli_free_result($result);
    }
@@ -1968,7 +2031,7 @@ function create_backup_file($mode=0)
       $data['text'] = str_replace("\r", "\\r", $data['text']);
       $data['text'] = str_replace("\n",  "\\n", $data['text']);
       $data['edit_key'] = mysqli_real_escape_string($connid, $data['edit_key']);
-      $backup->assign("INSERT INTO ".$db_settings['forum_table']." VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', ".$data['time'].", ".$data['last_reply'].", ".$data['edited'].", ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', ".$data['show_signature'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", ".$data['spam'].", ".$data['spam_check_status'].", '".$data['edit_key']."');\n");
+      $backup->assign("INSERT INTO ".$db_settings['forum_table']." (`id`, `pid`, `tid`, `uniqid`, `time`, `last_reply`, `edited`, `edited_by`, `user_id`, `name`, `subject`, `category`, `email`, `hp`, `location`, `ip`, `text`, `show_signature`, `marked`, `locked`, `sticky`, `views`, `spam`, `spam_check_status`, `edit_key`) VALUES (".$data['id'].", ".$data['pid'].", ".$data['tid'].", '".$data['uniqid']."', ".$data['time'].", ".$data['last_reply'].", ".$data['edited'].", ".$data['edited_by'].", ".$data['user_id'].", '".$data['name']."', '".$data['subject']."', ".$data['category'].", '".$data['email']."', '".$data['hp']."', '".$data['location']."', '".$data['ip']."', '".$data['text']."', ".$data['show_signature'].", ".$data['marked'].", ".$data['locked'].", ".$data['sticky'].", ".$data['views'].", ".$data['spam'].", ".$data['spam_check_status'].", '".$data['edit_key']."');\n");
      }
     mysqli_free_result($result);
    }
@@ -2252,57 +2315,47 @@ function my_mb_encode_mimeheader($string, $charset, $transfer_encoding, $linefee
  *
  * @return string
  */
-function my_quoted_printable_encode($input, $line_max=76, $space_conv = false )
- {
-  $hex = array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
-  $lines = preg_split('/(?:\r\n|\r|\n)/', $input);
-  $eol = "\n";
-  $escape = '=';
-  $output = '';
-  while(list(, $line) = each($lines))
-   {
-    $linlen = strlen($line);
-    $newline = '';
-    for($i = 0; $i < $linlen; $i++)
-     {
-      $c = substr($line, $i, 1);
-      $dec = ord( $c );
-      if(($i == 0) && ($dec == 46)) // convert first point in the line into =2E
-       { 
-        $c = '=2E';
-       }
-      if($dec == 32)
-       {
-        if($i==($linlen-1)) // convert space at eol only
-         {
-          $c = '=20';
-         }
-        elseif($space_conv)
-         {
-          $c = '=20';
-         }
-        }
-       elseif(($dec == 61) || ($dec < 32) || ($dec > 126)) // always encode "\t", which is *not* required
-        { 
-         $h2 = floor($dec/16);
-         $h1 = floor($dec%16);
-         $c = $escape.$hex[$h2].$hex[$h1];
-        }
-       if((strlen($newline) + strlen($c)) >= $line_max) // CRLF is not counted
-        { 
-         $output .= $newline.$escape.$eol; //  soft line break; " =\r\n" is okay
-         $newline = '';
-         if($dec == 46) // check if newline first character will be point or not
-          {
-           $c = '=2E';
-          }
-        }
-       $newline .= $c;
-     } // end of for
-    $output .= $newline.$eol;
-   } // end of while
-  return $output;
- }
+function my_quoted_printable_encode($input, $line_max=76, $space_conv = false ) {
+	$hex = array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
+	$lines = preg_split('/(?:\r\n|\r|\n)/', $input);
+	$eol = "\n";
+	$escape = '=';
+	$output = '';
+	foreach ($lines as $line) {
+		$linlen = strlen($line);
+		$newline = '';
+		for($i = 0; $i < $linlen; $i++) {
+			$c = substr($line, $i, 1);
+			$dec = ord( $c );
+			if(($i == 0) && ($dec == 46)) { // convert first point in the line into =2E
+				$c = '=2E';
+			}
+			if($dec == 32) {
+				if($i==($linlen-1)) { // convert space at eol only
+					$c = '=20';
+				}
+				elseif($space_conv) {
+					$c = '=20';
+				}
+			}
+			elseif(($dec == 61) || ($dec < 32) || ($dec > 126)) { // always encode "\t", which is *not* required
+				$h2 = floor($dec/16);
+				$h1 = floor($dec%16);
+				$c = $escape.$hex[$h2].$hex[$h1];
+			}
+			if((strlen($newline) + strlen($c)) >= $line_max) { // CRLF is not counted
+				$output .= $newline.$escape.$eol; //  soft line break; " =\r\n" is okay
+				$newline = '';
+				if($dec == 46) { // check if newline first character will be point or not
+					$c = '=2E';
+				}
+			}
+			$newline .= $c;
+		} // end of for
+		$output .= $newline.$eol;
+	} // end of while
+	return $output;
+}
 
 /**
  * sends an email
