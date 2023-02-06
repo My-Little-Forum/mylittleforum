@@ -576,13 +576,13 @@ function do_bbcode_img($action, $attributes, $content, $params, $node_object) {
 				$strSize = $size[3];
 			}
 		}
-		if (isset($attributes['default']) && $attributes['default'] == 'left') return '<img src="'. htmlspecialchars($content) .'" class="left" alt="[image]" '. $strSize .' />';
-		if (isset($attributes['default']) && $attributes['default'] == 'right') return '<img src="'. htmlspecialchars($content) .'" class="right" alt="[image]" '. $strSize .' />';
-		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'.htmlspecialchars($content).'" class="thumbnail" alt="[image]" '. $strSize .' /></a>';
-		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-left') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" class="thumbnail left" alt="[image]" '. $strSize .' /></a>';
-		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-right') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" class="thumbnail right" alt="[image]" '. $strSize .' /></a>';
+		if (isset($attributes['default']) && $attributes['default'] == 'left') return '<img src="'. htmlspecialchars($content) .'" loading="lazy" class="left" alt="[image]" '. $strSize .' />';
+		if (isset($attributes['default']) && $attributes['default'] == 'right') return '<img src="'. htmlspecialchars($content) .'" loading="lazy" class="right" alt="[image]" '. $strSize .' />';
+		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'.htmlspecialchars($content).'" loading="lazy" class="thumbnail" alt="[image]" '. $strSize .' /></a>';
+		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-left') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" loading="lazy" class="thumbnail left" alt="[image]" '. $strSize .' /></a>';
+		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-right') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" loading="lazy" class="thumbnail right" alt="[image]" '. $strSize .' /></a>';
 		// [img]image[/img]
-		return '<img src="'. htmlspecialchars($content) .'" alt="[image]" '. $strSize .' />';
+		return '<img src="'. htmlspecialchars($content) .'" loading="lazy" alt="[image]" '. $strSize .' />';
 	}
 }
 
