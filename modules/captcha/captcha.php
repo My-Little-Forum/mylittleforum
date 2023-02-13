@@ -80,7 +80,11 @@ class Captcha
       if(preg_match('/\.png$/i', $bg)) $im = ImageCreateFromPNG($backgrounds_folder.$bg);
       elseif(preg_match('/\.gif$/i', $bg)) $im = ImageCreateFromGIF($backgrounds_folder.$bg);
       else $im = ImageCreateFromJPEG($backgrounds_folder.$bg);
-      if(function_exists('imagerotate') && mt_rand(0,1)==1) $im = imagerotate($im, 180, 0);
+      if (function_exists('imageflip') && mt_rand(0, 5) % 2 == 0) {
+       $flipConsts = [IMG_FLIP_HORIZONTAL, IMG_FLIP_VERTICAL, IMG_FLIP_BOTH];
+       $flipper = mt_rand(0, 2);
+       imageflip($im, $flipConsts[$flipper]);
+      }
      }
     // if not, create an empty image:
     else
