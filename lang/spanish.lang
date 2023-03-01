@@ -180,9 +180,9 @@ error_signature_too_long =        'La firma es demasiado larga ([signature_lengt
 error_invalid_date_format =       'Formato de fecha de nacimiento no válido (AAAA-MM-DD)'
 error_invalid_date =              'Fecha de nacimiento no válida'
 error_email_wrong =               'La dirección de correo electrónico no es válida'
-error_hp_wrong =                  'La dirección de la página principal no es válida
-error_akismet_connection =        'Se agotó el tiempo de espera del servidor, por favor, inténtelo de nuevo!
-error_akismet_connection_admin =  'No se ha podido conectar con el servidor Akismet para verificar la clave de API!
+error_hp_wrong =                  'La dirección de la página principal no es válida'
+error_akismet_connection =        'Se agotó el tiempo de espera del servidor, por favor, inténtelo de nuevo!'
+error_akismet_connection_admin =  'No se ha podido conectar con el servidor Akismet para verificar la clave de API!'
 error_akismet_api_key =           'No es válida la clave de Akismet'
 error_spam_suspicion =            'Sospecha de spam! Por favor, modifique su desplazamiento (por ejemplo, eliminar Links)'
 user_name_already_exists =        'Este nombre de usuario ya existe'
@@ -463,12 +463,12 @@ unsubscribe_error_hl =            'No se puede cancelar la subscripción'
 unsubscribe_error_message =       'Durante la acción de cancelar la subscripción ocurrió un error. Por favor, informa al operador del foro por e-mail acerca de esta incidencia. Por favor, añade la siguiente información: ID de la entrada (tómala del link en el e-mail (parámetro URL "unsubscribe")) y la hora de la acción fallida (de ser posible, añade el nombre de tu zona horaria).'
 
 [captcha]
-captcha_marking =                 'Verificación de protección anti-spam:
-captcha_expl_math =               'Por favor suma los 2 números:
-captcha_expl_image =              'Por favor, introduce las letras / números de la imagen de arriba:
-captcha_image_alt =               'Si no puedes visualizar esta imagen, es necesario que crees una cuenta de usuario e inicies sesión, con el fin de enviar este formulario.
-captcha_image_alt_reg =           'Ponte en contacto con el administrador del foro si no puedes ver esta imagen.
-captcha_check_failed =            'Verificación de protección anti-spam fallida - Por favor inténtalo de nuevo!
+captcha_marking =                 'Verificación de protección anti-spam:'
+captcha_expl_math =               'Por favor suma los 2 números:'
+captcha_expl_image =              'Por favor, introduce las letras / números de la imagen de arriba:'
+captcha_image_alt =               'Si no puedes visualizar esta imagen, es necesario que crees una cuenta de usuario e inicies sesión, con el fin de enviar este formulario.'
+captcha_image_alt_reg =           'Ponte en contacto con el administrador del foro si no puedes ver esta imagen.'
+captcha_check_failed =            'Verificación de protección anti-spam fallida - Por favor inténtalo de nuevo!'
 
 [upload_image]
 image_upload_not_enabled =        'No está activada la subida de imágenes.'
