@@ -426,4 +426,6 @@ ALTER TABLE mlf2_b8_rating ADD KEY `B8_spam` (`spam`), ADD KEY `B8_training_type
 
 INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20'), ('bbcode_latex', '0'), ('bbcode_latex_uri', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML.js'), ('delete_inactive_users', '30'), ('notify_inactive_users', '3'), ('b8_entry_check', '1'), ('b8_auto_training', '1'), ('b8_spam_probability_threshold', '80'), ('link_open_target', '');
 ALTER TABLE mlf2_userdata ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE;
+
+DELETE FROM mlf2_settings WHERE name = 'bad_behavior'
 */

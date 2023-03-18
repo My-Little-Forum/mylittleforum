@@ -24,11 +24,6 @@ if (!isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$
 	include('includes/auto_login.inc.php');
 }
 
-// Bad Behavior check:
-if ($settings['bad_behavior'] == 1 && !isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-	require_once("modules/bad-behavior/bad-behavior-generic.php");
-}
-
 // access permission checks for not registered users:
 if ($settings['access_permission_checks'] == 1 && !isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 	// look if IP or user agent is banned:
