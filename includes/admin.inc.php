@@ -1333,7 +1333,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$smarty->assign('captcha_email', $settings['captcha_email']);
 			$smarty->assign('captcha_register', $settings['captcha_register']);
 			$smarty->assign('stop_forum_spam', $settings['stop_forum_spam']);
-			$smarty->assign('bad_behavior', $settings['bad_behavior']);
 			$smarty->assign('akismet_key', $settings['akismet_key']);
 			$smarty->assign('akismet_entry_check', $settings['akismet_entry_check']);
 			$smarty->assign('akismet_mail_check', $settings['akismet_mail_check']);
@@ -1449,7 +1448,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		case 'spam_protection_submit':
 			$akismet_key = (!empty($_POST['akismet_key'])) ? trim($_POST['akismet_key']) : '';
 			if (empty($_POST['stop_forum_spam'])) $stop_forum_spam = 0; else $stop_forum_spam = 1;
-			if (empty($_POST['bad_behavior'])) $bad_behavior = 0; else $bad_behavior = 1;
 			if (isset($_POST['captcha_posting'])) $captcha_posting = intval($_POST['captcha_posting']); else $captcha_posting = 0;
 			if (isset($_POST['captcha_email'])) $captcha_email = intval($_POST['captcha_email']); else $captcha_email = 0;
 			if (isset($_POST['captcha_register'])) $captcha_register = intval($_POST['captcha_register']); else $captcha_register = 0;
@@ -1518,7 +1516,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $captcha_email) ."' WHERE name = 'captcha_email'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $captcha_register) ."' WHERE name = 'captcha_register'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $stop_forum_spam) ."' WHERE name = 'stop_forum_spam'");
-				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $bad_behavior) ."' WHERE name = 'bad_behavior'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='". mysqli_real_escape_string($connid, $akismet_key) ."' WHERE name = 'akismet_key'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($akismet_entry_check) ."' WHERE name = 'akismet_entry_check'");
 				mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '". intval($akismet_mail_check) ."' WHERE name = 'akismet_mail_check'");
@@ -1545,7 +1542,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$smarty->assign('captcha_email', $captcha_email);
 				$smarty->assign('captcha_register', $captcha_register);
 				$smarty->assign('stop_forum_spam', $stop_forum_spam);
-				$smarty->assign('bad_behavior', $bad_behavior);
 				$smarty->assign('akismet_key', htmlspecialchars($akismet_key));
 				$smarty->assign('akismet_entry_check', $akismet_entry_check);
 				$smarty->assign('akismet_mail_check', $akismet_mail_check);

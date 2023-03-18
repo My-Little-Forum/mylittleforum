@@ -101,7 +101,6 @@ INSERT INTO mlf2_settings VALUES ('deep_reply', '15');
 INSERT INTO mlf2_settings VALUES ('very_deep_reply', '30');
 INSERT INTO mlf2_settings VALUES ('users_per_page', '20');
 INSERT INTO mlf2_settings VALUES ('username_maxlength', '40');
-INSERT INTO mlf2_settings VALUES ('bad_behavior', '0');
 INSERT INTO mlf2_settings VALUES ('akismet_entry_check', '0');
 INSERT INTO mlf2_settings VALUES ('akismet_mail_check', '0');
 INSERT INTO mlf2_settings VALUES ('akismet_key', '');
