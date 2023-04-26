@@ -530,7 +530,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19.1',
 	if(!@mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "` WHERE name = 'bad_behavior';")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
-	if (!@mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' WHERE name = `bbcode_latex_uri`;")) {
+	if (!@mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' WHERE name = 'bbcode_latex_uri';")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
