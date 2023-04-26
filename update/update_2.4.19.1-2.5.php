@@ -181,7 +181,7 @@ switch($settings['version']) {
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
-	case 'YYYYMMDD.I' /** VERSION NUMBER TO BE DEFINED **/
+	case 'YYYYMMDD.I': /** VERSION NUMBER TO BE DEFINED **/
 		$update['items'][] = 'themes/default/main.tpl';
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		$update['items'][] = 'lang/';
