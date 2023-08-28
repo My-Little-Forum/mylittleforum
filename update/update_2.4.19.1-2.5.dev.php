@@ -88,6 +88,18 @@ function reorderUpgradeFiles($update_files) {
 	return $update_files;
 }
 
+function write_new_version_string_2_db($connid, $new_version) {
+	global $db_settings;
+	$updated_version = false;
+	// write the new version number to the database
+	if (!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $new_version) ."' WHERE name = 'version'")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	else {
+		// Set new Version for update script output, taken from VERSION file.
+		$updated_version = $new_version;
+	}
+	return $updated_version;
+}
+
 
 // check version:
 if (!file_exists('config/VERSION')) $update['errors'][] = 'Error in line '.__LINE__.': Missing the file config/VERSION. Load it up from your script package (config/VERSION) before proceeding.';
@@ -309,18 +321,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					
 					// write the new version number to the database
 					if (empty($update['errors'])) {
-						if (!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
-							$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-						} else {
-							// Set new Version for update script output, taken from VERSION file.
-							$update['new_version'] = $newVersion;
-							// reenable the forum after database update is done
-							if (empty($update['errors'])) {
-								if (!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) {
-									$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-								}
-							}
-						}
+					$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+					if ($new_version_set === false) {
+						$update['errors'][] = 'Database error, could not write the new version string to the database.';
+					}
 					}
 					// collect the file and directory names to upgrade
 					if (empty($update['errors'])) {
@@ -524,17 +528,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				// write the new version number to the database
 				if (empty($update['errors'])) {
-					if (!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
-						$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-					} else {
-						// Set new Version for update script output, taken from VERSION file.
-						$update['new_version'] = $newVersion;
-						// reenable the forum after database update is done
-						if (empty($update['errors'])) {
-							if (!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) {
-								$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-							}
-						}
+					$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+					if ($new_version_set === false) {
+						$update['errors'][] = 'Database error, could not write the new version string to the database.';
 					}
 				}
 				// collect the file and directory names to upgrade
@@ -670,17 +666,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				// write the new version number to the database
 				if (empty($update['errors'])) {
-					if (!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
-						$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-					} else {
-						// Set new Version for update script output, taken from VERSION file.
-						$update['new_version'] = $newVersion;
-						// reenable the forum after database update is done
-						if (empty($update['errors'])) {
-							if (!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) {
-								$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-							}
-						}
+					$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+					if ($new_version_set === false) {
+						$update['errors'][] = 'Database error, could not write the new version string to the database.';
 					}
 				}
 				// collect the file and directory names to upgrade
@@ -767,17 +755,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 	
 	// write the new version number to the database
 	if (empty($update['errors'])) {
-		if (!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
-			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-		} else {
-			// Set new Version for update script output, taken from VERSION file.
-			$update['new_version'] = $newVersion;
-			// reenable the forum after database update is done
-			if (empty($update['errors'])) {
-				if (!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) {
-					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				}
-			}
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
 		}
 	}
 	
@@ -854,17 +834,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 	
 	// write the new version number to the database
 	if (empty($update['errors'])) {
-		if (!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
-			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-		} else {
-			// Set new Version for update script output, taken from VERSION file.
-			$update['new_version'] = $newVersion;
-			// reenable the forum after database update is done
-			if (empty($update['errors'])) {
-				if (!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) {
-					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				}
-			}
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
 		}
 	}
 	
@@ -926,15 +898,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 	
 	// write the new version number to the database
 	if (empty($update['errors'])) {
-		if (!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
-			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-		} else {
-			// Set new Version for update script output, taken from VERSION file.
-			$update['new_version'] = $newVersion;
-			// reenable the forum after database update is done
-			if (empty($update['errors'])) {
-				if (!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			}
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
 		}
 	}
 	
