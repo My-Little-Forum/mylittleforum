@@ -128,7 +128,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['errors'][] .= '<tr><td>'. htmlspecialchars($row['user_email']) .'</td><td><a href="?mode=admin&amp;edit_user='. intval($row['user_id']) .'">'. htmlspecialchars($row['user_name']) .'</a></td></tr>'."\n";
 			}
 			$update['errors'][] .= '</table>';
-			mysqli_free_result($result);
+			mysqli_free_result($resEmailMultiUse);
 		} else {
 			if (!file_exists("./config/db_settings.php") || !is_writable("./config/db_settings.php")) {
 				$update['errors'][] .= 'The config file does not exist or is not writable. Please ensure the file config/db_settings.php to exist and to be writable.';
@@ -437,7 +437,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				$update['errors'][] .= '<tr><td>'. htmlspecialchars($row['user_email']) .'</td><td><a href="?mode=admin&amp;edit_user='. intval($row['user_id']) .'">'. htmlspecialchars($row['user_name']) .'</a></td></tr>'."\n";
 			}
 			$update['errors'][] .= '</table>';
-			mysqli_free_result($result);
+			mysqli_free_result($resEmailMultiUse);
 		} else {
 			if (empty($errors)) {
 				// change the table engine from MyISAM to InnoDB for the previously existing tables
