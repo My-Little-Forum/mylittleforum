@@ -735,3 +735,98 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		}
 	}
 }
+
+// upgrade from version 2.4.99.2 and 2.4.99.3
+if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2', '2.4.99.3'))) {
+	// changed tables
+	$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."` LIKE 'email_notification'");
+	if (mysqli_num_rows($rEN_exists) > 0) {
+		if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` DROP `email_notification`;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE, ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8 NOT NULL;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
+	FROM information_schema.STATISTICS 
+	WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."' AND
+	TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."' AND 
+	INDEX_NAME LIKE 'user_%';");
+	if (mysqli_num_rows($rObsoleteIndexes) > 0) {
+		while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
+			if (!@mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ." ON " . $db_settings['userdata_table'] .";")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+		}
+	}
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "` ADD KEY `B8_spam` (`spam`), ADD KEY `B8_training_type` (`training_type`);")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('delete_inactive_users', '30'), ('notify_inactive_users', '3'), ('link_open_target', '');")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		if (!@mysqli_query($connid, "UPDATE ".$db_settings['temp_infos_table']." SET value='". mysqli_real_escape_string($connid, $newVersion) ."' WHERE name = 'version'")) {
+			$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+		} else {
+			// Set new Version for update script output, taken from VERSION file.
+			$update['new_version'] = $newVersion;
+			// reenable the forum after database update is done
+			if (empty($update['errors'])) {
+				if (!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value = '1' WHERE name =  'forum_enabled'")) {
+					$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+				}
+			}
+		}
+	}
+	
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['items'][] = 'config/b8_config.php';
+		
+		$update['items'][] = 'includes/admin.inc.php';                               // without pull request
+		$update['items'][] = 'includes/entry.inc.php';                               // #509
+		$update['items'][] = 'includes/index.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/search.inc.php';
+		$update['items'][] = 'includes/upload_image.inc.php';
+		$update['items'][] = 'includes/';
+		
+		$update['items'][] = 'index.php';                                            // without pull request
+		
+		$update['items'][] = 'js/';
+		
+		$update['items'][] = 'lang/';
+		
+		$update['items'][] = 'modules/';
+		
+		$update['items'][] = 'themes/default/images/keep_eye_on.png';
+		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/';
+		
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
+		
+		$update['items'] = reorderUpgradeFiles($update['items']);
+	}
+}
