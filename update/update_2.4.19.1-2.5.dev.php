@@ -104,6 +104,42 @@ function write_new_version_string_2_db($connid, $new_version) {
 // check version:
 if (!file_exists('config/VERSION')) $update['errors'][] = 'Error in line '.__LINE__.': Missing the file config/VERSION. Load it up from your script package (config/VERSION) before proceeding.';
 
+// check the MySQL- or MariaDB-version
+// minimal versions: MySQL 5.7.7 or MariaDB 10.2.2
+$resDatabaseVersion = mysqli_query($connid, "SHOW VARIABLES WHERE variable_name IN('version', 'version_comment');");
+if ($resDatabaseVersion === false)  $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+if (empty($update['errors'])) {
+	$databaseVersion = mysqli_fetch_assoc($resDatabaseVersion);
+	// read the value for the server type (MySQL or MariaDB)
+	$rawDBType = $databaseVersion['version_comment'];
+	if (preg_match("/MariaDB/gu", $rawDBType)) {
+		$serverType = "MariaDB";
+	} else {
+		$serverType = "MySQL";
+	}
+	// read the provided version string
+	if (!empty($databaseVersion['version']) and substr_count($databaseVersion['version'], "-") > 0) {
+		$rawDBVersion = explode("-", $databaseVersion['version']);
+		$serverVersion = $rawDBVersion[0];
+	} else {
+		$serverVersion = $databaseVersion['version'];
+	}
+	mysqli_free_result($resDatabaseVersion);
+	unset($databaseVersion, $rawDBType, $rawDBVersion);
+	
+	if (!empty($serverVersion) and preg_match("/\d{1,2}.\d{1,2}(\.\d{1,3})?/gu", $serverVersion)) {
+		if ($serverType == "MariaDB" and version_compare($dbVersion, "10.2.2", "<") === true) {
+			$update['errors'][] = "The version of MariaDB that runs on your server (". htmlspecialchars($dbVersion) .") is to old. You need to run your database server at least with MariaDB 10.2.2.";
+		}
+		if ($serverType == "MySQL" and version_compare($dbVersion, "5.7.7", "<") === true) {
+			$update['errors'][] = "The version of MySQL that runs on your server (". htmlspecialchars($dbVersion) .") is to old. You need to run your database server at least with MySQL 5.7.7.";
+		}
+	} else {
+		// there is nothing returned from the database
+		$update['errors'][] = "The script was not able to interpret the server type and version of your database. Please report this in the project forum with this exact error message.";
+	}
+}
+
 if (empty($update['errors'])) {
 	$newVersion = file_get_contents('config/VERSION');
 	if (empty($newVersion)) die('Error in line '.__LINE__.': No value for the script version in the file config/VERSION.');
