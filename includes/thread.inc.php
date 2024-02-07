@@ -63,7 +63,8 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 		@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time=time, last_reply=last_reply, edited=edited, views=views+1 WHERE tid=" . $id);
 	
 	$smarty->assign('page_title', htmlspecialchars($data['subject']));
-	$smarty->assign('category_name', $categories[$data["category"]]);
+	if (isset($categories[$data['category']]) && $categories[$data['category']] != '')
+		$smarty->assign('category_name', $categories[$data["category"]]);
 	
 	// get all postings of thread:
 	$result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL " . intval($time_difference) . " MINUTE) AS disp_time,
