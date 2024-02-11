@@ -104,6 +104,7 @@ function write_new_version_string_2_db($connid, $new_version) {
 // check version:
 if (!file_exists('config/VERSION')) $update['errors'][] = 'Error in line '.__LINE__.': Missing the file config/VERSION. Load it up from your script package (config/VERSION) before proceeding.';
 
+
 // check the MySQL- or MariaDB-version
 // minimal versions: MySQL 5.7.7 or MariaDB 10.2.2
 $resDatabaseVersion = mysqli_query($connid, "SHOW VARIABLES WHERE variable_name IN('version', 'version_comment');");
@@ -140,6 +141,28 @@ if (empty($update['errors'])) {
 	}
 }
 
+
+// check if all e-mail-addresses in the userdata table are unique
+$resEmailMultiUse = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_email` IN(SELECT `user_email` FROM `" . $db_settings['userdata_table'] . "` GROUP BY `user_email` HAVING COUNT(`user_email`) > 1) ORDER BY `user_email` ASC, `user_name` ASC");
+if ($resEmailMultiUse === false) {
+	$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+} else {
+	if (mysqli_num_rows($resEmailMultiUse) > 0) {
+		// list the doubled user names
+		$update['errors'][]  = '<h3><strong>Attention</strong>: Found non-unique e-mail-addresses in the user accounts!</h3>';
+		$update['errors'][] .= '<p>Please make the e-mail-addresses unique and inform the users in question about the changes. <em>Tip:</em> Open the links to the user edit forms in a new browser tab and solve the issues. After editing all listed users start the update process again.</p>';
+		$update['errors'][] .= '<table>';
+		$update['errors'][] .= '<tr><th>E-mail-address</th><th>Username</th></tr>';
+		while ($row = mysqli_fetch_assoc($resEmailMultiUse)) {
+			$update['errors'][] .= '<tr><td>'. htmlspecialchars($row['user_email']) .'</td><td><a href="?mode=admin&amp;edit_user='. intval($row['user_id']) .'">'. htmlspecialchars($row['user_name']) .'</a></td></tr>'."\n";
+		}
+		$update['errors'][] .= '</table>';
+	}
+	mysqli_free_result($resEmailMultiUse);
+}
+
+
+// check if the version number is greater than the current version
 if (empty($update['errors'])) {
 	$newVersion = file_get_contents('config/VERSION');
 	if (empty($newVersion)) die('Error in line '.__LINE__.': No value for the script version in the file config/VERSION.');
@@ -152,12 +175,14 @@ if (empty($update['errors'])) {
 	}
 }
 
+
 // disable the forum until database update is done
 if (empty($update['errors'])) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET  value = '0' WHERE name =  'forum_enabled'")) {
 		$update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	}
 }
+
 
 // upgrade from any stable 2.4-version with the exception of the pre releases of the 2.5-branch (2.4.99.x)
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '2.4.19.1', '2.4.20', '2.4.21', '2.4.22', '2.4.23', '2.4.24'))) {
