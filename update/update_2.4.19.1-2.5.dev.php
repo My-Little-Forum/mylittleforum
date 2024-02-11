@@ -617,132 +617,111 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 
 // upgrade from version 2.4.99.1
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1'))) {
-	$resEmailMultiUse = mysqli_query($connid, "SELECT `user_id`, `user_name`, `user_email` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_email` IN(SELECT `user_email` FROM `" . $db_settings['userdata_table'] . "` GROUP BY `user_email` HAVING COUNT(`user_email`) > 1) ORDER BY `user_email` ASC, `user_name` ASC");
-	if ($resEmailMultiUse === false) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	// change the table engine from MyISAM to InnoDB for the previously existing tables
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['banlists_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 	
-	// The database request succeeded
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['entry_cache_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_cache_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	// changes in the settings table
+	if (!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('b8_mail_check', '0'), ('php_mailer', '0'), ('delete_inactive_users', '30'), ('notify_inactive_users', '3'), ('link_open_target', '');")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	// changes in the entries tables
+	$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."` LIKE 'email_notification'");
+	if (mysqli_num_rows($rEN_exists) > 0) {
+		if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` DROP `email_notification`;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	}
+	
+	// changes in the B8 wordlist table
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "` CHANGE `token` `token` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	// changes in the B8 rating table
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "` ADD KEY `B8_spam` (`spam`), ADD KEY `B8_training_type` (`training_type`);")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	// changes in the tags table
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "` CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	// changes in the userdata table
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` DROP INDEX `user_name`, ADD UNIQUE KEY `key_user_name` (`key_user_name`), ADD UNIQUE KEY `key_user_email` (`user_email`);")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE, ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	
+	
+	// write the new version number to the database
 	if (empty($update['errors'])) {
-		if (mysqli_num_rows($resEmailMultiUse) > 0) {
-			// list the doubled user names
-			$update['errors'][]  = '<h3><strong>Attention</strong>: Found non-unique e-mail-addresses in the user accounts!</h3>';
-			$update['errors'][] .= '<p>Please make the e-mail-addresses unique and inform the users in question about the changes. <em>Tip:</em> Open the links to the user edit forms in a new browser tab and solve the issues. After editing all listed users start the update process again.</p>';
-			$update['errors'][] .= '<table>';
-			$update['errors'][] .= '<tr><th>E-mail-address</th><th>Username</th></tr>';
-			while ($row = mysqli_fetch_assoc($resEmailMultiUse)) {
-				$update['errors'][] .= '<tr><td>'. htmlspecialchars($row['user_email']) .'</td><td><a href="?mode=admin&amp;edit_user='. intval($row['user_id']) .'">'. htmlspecialchars($row['user_name']) .'</a></td></tr>'."\n";
-			}
-			$update['errors'][] .= '</table>';
-			mysqli_free_result($resEmailMultiUse);
-		} else {
-			if (empty($errors)) {
-				// change the table engine from MyISAM to InnoDB for the previously existing tables
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['banlists_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['entry_cache_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_cache_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				// changes in the settings table
-				if (!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('b8_mail_check', '0'), ('php_mailer', '0'), ('delete_inactive_users', '30'), ('notify_inactive_users', '3'), ('link_open_target', '');")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				// changes in the entries tables
-				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."` LIKE 'email_notification'");
-				if (mysqli_num_rows($rEN_exists) > 0) {
-					if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` DROP `email_notification`;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				}
-				
-				// changes in the B8 wordlist table
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "` CHANGE `token` `token` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				// changes in the B8 rating table
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "` ADD KEY `B8_spam` (`spam`), ADD KEY `B8_training_type` (`training_type`);")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				// changes in the tags table
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "` CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				// changes in the userdata table
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` DROP INDEX `user_name`, ADD UNIQUE KEY `key_user_name` (`key_user_name`), ADD UNIQUE KEY `key_user_email` (`user_email`);")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE, ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-				
-				
-				// write the new version number to the database
-				if (empty($update['errors'])) {
-					$new_version_set = write_new_version_string_2_db($connid, $newVersion);
-					if ($new_version_set === false) {
-						$update['errors'][] = 'Database error, could not write the new version string to the database.';
-					}
-				}
-				// collect the file and directory names to upgrade
-				if (empty($update['errors'])) {
-					$update['items'][] = 'config/php_mailer.php';                                       // #498, #575, #589, #612, #645, #652, #656, #659
-					$update['items'][] = 'config/b8_config.php';                                        // #493, #557, #561, #562
-					
-					$update['items'][] = 'includes/admin.inc.php';                                      // #489, #575, #589, #612, #645, #652, #656, #659
-					$update['items'][] = 'includes/contact.inc.php';                                    // #489, #501, #505, #594
-					$update['items'][] = 'includes/entry.inc.php';                                      // #505, #509, #536, #585, #611
-					$update['items'][] = 'includes/functions.inc.php';                                  // #498, #499, #512, #519. #520, #524, #526, #528, #540, #554, #571, #587, #589, #593, #594, #595, #603, #606, #619, #623, #647, #650, #667
-					$update['items'][] = 'includes/index.inc.php';                                      // #611
-					$update['items'][] = 'includes/mailer.inc.php';                                     // #498
-					$update['items'][] = 'includes/posting.inc.php';                                    // #491, #494, #505, #522, #528, #554, #557, #561, #562, #570, #594, #627, #653
-					$update['items'][] = 'includes/search.inc.php';                                     // #560, #594, #622
-					$update['items'][] = 'includes/thread.inc.php';                                     // #505
-					$update['items'][] = 'includes/upload_image.inc.php';                               // #554, #623
-					$update['items'][] = 'includes/user.inc.php';                                       // #505
-					$update['items'][] = 'includes/';
-					
-					$update['items'][] = 'index.php';                                                   // #498
-					
-					$update['items'][] = 'js/';
-					
-					$update['items'][] = 'lang/';                                                       // #489, #501, #514, #523, #526, #530, #532, #539, #548, #549, #550, #566, #569, #572, #575, #577, #587, #589, #599, #611
-					
-					$update['items'][] = 'modules/phpmailer/';                                          // #498
-					$update['items'][] = 'modules/';
-					
-					$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';            // #612
-					$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';            // #612
-					$update['items'][] = 'themes/default/images/keep_eye_on.png';                       // #611
-					$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';                   // #489, #612
-					$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';                 // #489, #501, #505
-					$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';                   // #530, #536, #542, #611, #620, #624, #656
-					$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';                   // #611
-					$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';             // #611, #612
-					$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';                 // #494, #620, #656
-					$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';        // #626, #653, #656
-					$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';     // #626, #653, #656
-					$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';                  // #530, #537, #620, #624
-					$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';           // #530, #537, #620, #624
-					$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';                    // #612, #652
-					$update['items'][] = 'themes/default/main.tpl';                                     // #503, #504, #530, #531, #540, #547, #588, #589, #598, #608, #637
-					$update['items'][] = 'themes/default/style.css';                                    // #530, #531, #533, #534, #537, #538, #598, #608, #612, #620, #624, #625, #626, #630, #640, #652, #656
-					$update['items'][] = 'themes/default/style.min.css';                                // #530, #531, #533, #534, #537, #538, #598, #608, #612, #620, #624, #625, #626, #630, #640, #652, #656
-					$update['items'][] = 'themes/default/';
-					
-					$update['items'] = reorderUpgradeFiles($update['items']);
-				}
-			}
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
 		}
+	}
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['items'][] = 'config/php_mailer.php';                                       // #498, #575, #589, #612, #645, #652, #656, #659
+		$update['items'][] = 'config/b8_config.php';                                        // #493, #557, #561, #562
+		
+		$update['items'][] = 'includes/admin.inc.php';                                      // #489, #575, #589, #612, #645, #652, #656, #659
+		$update['items'][] = 'includes/contact.inc.php';                                    // #489, #501, #505, #594
+		$update['items'][] = 'includes/entry.inc.php';                                      // #505, #509, #536, #585, #611
+		$update['items'][] = 'includes/functions.inc.php';                                  // #498, #499, #512, #519. #520, #524, #526, #528, #540, #554, #571, #587, #589, #593, #594, #595, #603, #606, #619, #623, #647, #650, #667
+		$update['items'][] = 'includes/index.inc.php';                                      // #611
+		$update['items'][] = 'includes/mailer.inc.php';                                     // #498
+		$update['items'][] = 'includes/posting.inc.php';                                    // #491, #494, #505, #522, #528, #554, #557, #561, #562, #570, #594, #627, #653
+		$update['items'][] = 'includes/search.inc.php';                                     // #560, #594, #622
+		$update['items'][] = 'includes/thread.inc.php';                                     // #505
+		$update['items'][] = 'includes/upload_image.inc.php';                               // #554, #623
+		$update['items'][] = 'includes/user.inc.php';                                       // #505
+		$update['items'][] = 'includes/';
+		
+		$update['items'][] = 'index.php';                                                   // #498
+		
+		$update['items'][] = 'js/';
+		
+		$update['items'][] = 'lang/';                                                       // #489, #501, #514, #523, #526, #530, #532, #539, #548, #549, #550, #566, #569, #572, #575, #577, #587, #589, #599, #611
+		
+		$update['items'][] = 'modules/phpmailer/';                                          // #498
+		$update['items'][] = 'modules/';
+		
+		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';            // #612
+		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';            // #612
+		$update['items'][] = 'themes/default/images/keep_eye_on.png';                       // #611
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';                   // #489, #612
+		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';                 // #489, #501, #505
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';                   // #530, #536, #542, #611, #620, #624, #656
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';                   // #611
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';             // #611, #612
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';                 // #494, #620, #656
+		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';        // #626, #653, #656
+		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';     // #626, #653, #656
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';                  // #530, #537, #620, #624
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';           // #530, #537, #620, #624
+		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';                    // #612, #652
+		$update['items'][] = 'themes/default/main.tpl';                                     // #503, #504, #530, #531, #540, #547, #588, #589, #598, #608, #637
+		$update['items'][] = 'themes/default/style.css';                                    // #530, #531, #533, #534, #537, #538, #598, #608, #612, #620, #624, #625, #626, #630, #640, #652, #656
+		$update['items'][] = 'themes/default/style.min.css';                                // #530, #531, #533, #534, #537, #538, #598, #608, #612, #620, #624, #625, #626, #630, #640, #652, #656
+		$update['items'][] = 'themes/default/';
+		
+		$update['items'] = reorderUpgradeFiles($update['items']);
 	}
 }
 
