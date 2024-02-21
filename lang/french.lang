@@ -23,7 +23,7 @@ forum_time =                      'Temps actuel sur le forum : [time]'
 forum_time_with_time_zone =       'Temps actuel sur le forum : [time] ([time_zone])'
 unknown_user =                    'inconnu'
 db_error =                        'Erreur base données !'
-mail_error =                      'Serveur de email indisponible - veuillez réessayer plus tard!'
+mail_error =                      'Serveur de email indisponible - veuillez réessayer plus tard !'
 
 [general]
 subject =                         'Sujet'
@@ -46,7 +46,7 @@ previous_page_link_title =        'page précédente'
 posted_by =                       'par <strong>[name]</strong>[email_hp]<span class="interpunction">, </span>[time]'
 posted_by_location =              'par <strong>[name]</strong>[email_hp]<span class="interpunction">, </span>[location]<span class="interpunction">, </span>[time]'
 original_posting_linktitle =      'Cliquer pour aller au message de base posté par [name]'
-error_headline =                  'Erreur!'
+error_headline =                  'Erreur !'
 no_authorisation =                'Pas d\'autorisation !'
 page_doesnt_exist =               'Cette page n\'existe pas !'
 error_form_uncomplete =           'Tous les champs n\'ont pas été remplis'
@@ -65,7 +65,7 @@ user_area_link =                  'Utilisateur'
 user_area_link_title =            'Zone utilisateur'
 admin_area_link =                 'Administrateur'
 admin_area_link_title =           'Zone d\'administration'
-search_marking =                  'Rechercher:'
+search_marking =                  'Rechercher :'
 search_default_value =            'Rechercher...'
 search_title =                    'Rechercher des entrées'
 new_topic_link =                  'Nouveau sujet'
@@ -183,8 +183,8 @@ error_invalid_date_format =       'Format de date de naissance incorrect (AAAA-M
 error_invalid_date =              'Date de naissance incorrecte'
 error_email_wrong =               'L\'adresse email est incorrecte'
 error_hp_wrong =                  'Le site web est incorrect'
-error_akismet_connection =        'Serveur occupé, veuillez réessayer!'
-error_akismet_connection_admin =  'Ne peut pas établir de connexion au serveur Akismet pour vérifier la clé API!'
+error_akismet_connection =        'Serveur occupé, veuillez réessayer !'
+error_akismet_connection_admin =  'Ne peut pas établir de connexion au serveur Akismet pour vérifier la clé API !'
 error_akismet_api_key =           'Clé Wordpress API incorrecte'
 error_spam_suspicion =            'Suspicion de spam ! Veuillez modifiez votre message (cad enlever les liens)'
 user_name_already_exists =        'Ce nom d\'utilisateur existe déjà'
@@ -211,13 +211,13 @@ search_submit_button =            'Rechercher'
 search_fulltext =                 'texte entier'
 search_tags =                     'Mots-clés'
 no_postings_found =               'Aucun message trouvé.'
-one_posting_found =               '1 message trouvé:'
+one_posting_found =               '1 message trouvé :'
 several_postings_found =          '[number] messages trouvés :'
 no_postings_by_user =             'Pas de message.'
 one_posting_by_user =             '1 message :'
-several_postings_by_user =        '[number] messages:'
-rss_posting_by =                  'Publié par [name], [time]:'
-rss_reply_by =                    'Réponse par [name], [time]:'
+several_postings_by_user =        '[number] messages :'
+rss_posting_by =                  'Publié par [name], [time] :'
+rss_reply_by =                    'Réponse par [name], [time] :'
 rss_reply_marking =               '(réponse)'
 move_up =                         'monter'
 move_down =                       'descendre'
@@ -237,13 +237,13 @@ options =                         'Options'
 administrator_title =             'Administrateur'
 moderator_title =                 'Modérateur'
 avatar_img_alt =                  'Avatar'
-search_user =                     'Rechercher un utilisateur:'
+search_user =                     'Rechercher un utilisateur :'
 search_user_default_value =       'Rechercher un utilisateur...'
 no_users =                        'Aucun utilisateur trouvé.'
 no_text_title =                   'Message vide / pas de texte'
 no_text_alt =                     'pas de texte'
 no_text =                         '- pas de texte -'
-error_invalid_form =              'La session a expiré! Veuillez copier le texte, vous reconnecter ou republier le message comme invité.'
+error_invalid_form =              'La session a expiré ! Veuillez copier le texte, vous reconnecter ou republier le message comme invité.'
 error_form_sent_too_fast =        'Le formulaire a été envoyé trop rapidement - attendez quelques secondes et recommencez (protection contre les robots)'
 error_form_sent_too_slow =        'Le formulaire n\'est plus valide - veuillez copier le texte et recharger la page'
 terms_of_use_agreement =          'J\'accepte les [[conditions d\'utilisation]]'
@@ -256,10 +256,10 @@ user_locked_message =             'Votre compte est actuellement bloqué.'
 forum_disabled =                  'Le forum est actuellement indisponible.'
 cookie_deleted =                  'Le cookie a été supprimé.'
 ajax_preview_title =              'Aperçu'
-bbcode_link_text =                'Texte pour le lien (en option):'
-bbcode_link_url =                 'Adresse pour le lien (URL):'
-bbcode_image_url =                'Adresse de l\'image (URL):'
-bbcode_tex_code =                 'Formule TeX(ex. \sqrt{x}):'
+bbcode_link_text =                'Texte pour le lien (en option) :'
+bbcode_link_url =                 'Adresse pour le lien (URL) :'
+bbcode_image_url =                'Adresse de l\'image (URL) :'
+bbcode_tex_code =                 'Formule TeX(ex. \sqrt{x}) :'
 quote_label =                     'citation'
 quote_title =                     'Insérer le texte marqué du message auquel vous répondez'
 error_no_name =                   'Aucun nom n\'a été entré'
@@ -286,8 +286,8 @@ hide_password_title =             'Cacher le mot de passe'
 delete_bookmark_submit =          'OK - Supprimer le marque-page'
 delete_bookmark_confirm =         'Êtes-vous sûr de vouloir supprimer ce marque-page'
 no_bookmarks =                    'Aucun marque-page'
-edit_bookmark =                   'Marque-page:'
-edit_tags =                       'Tags:'
+edit_bookmark =                   'Marque-page :'
+edit_tags =                       'Tags :'
 edit_tags_note =                  '(optionnel, séparé par une virgule)'
 bookmark_title =                  'Nom du marque-page'
 bookmark_user_name =              'Nom d\'utilisateur'
@@ -303,12 +303,12 @@ error_bookmark_tags_limit_reached = 'Il y a trop de tags'
 
 [entry]
 edited_by =                       'édité par [name], [time]'
-tags_marking =                    'Mots-clés:'
+tags_marking =                    'Mots-clés :'
 one_view =                        '1 vue'
 several_views =                   '[views] vues'
-complete_thread_marking =         'Fil complet:'
+complete_thread_marking =         'Fil complet :'
 branch_marking =                  'Branche courante du fil :'
-direct_replies_marking =          'Réponses liées à ce message:'
+direct_replies_marking =          'Réponses liées à ce message :'
 add_bookmark_message_linkname =   'Ajouter aux marques-pages'
 add_bookmark_message_linktitle =  'Ajouter ce message à ma liste de marques-pages'
 delete_bookmark_message_linkname ='Supprimer des marques-pages'
@@ -345,19 +345,19 @@ no_auth_readonly =                'Le forum est actuellement en mode consultatio
 new_topic_hl =                    'Nouveau sujet'
 reply_hl =                        'Réponse au message'
 edit_hl =                         'Editer cette entrée'
-name_marking =                    'Nom:'
-email_marking =                   'Email:'
-hp_marking =                      'Site:'
+name_marking =                    'Nom :'
+email_marking =                   'Email :'
+hp_marking =                      'Site :'
 location_marking =                'Adresse :'
 optional =                        '(en option)'
 optional_email =                  '(en option, ne sera pas affiché)'
-honeypot_field_marking =          'Si vous voyez ce champs, ne le remplissez pas:'
+honeypot_field_marking =           'Si vous voyez ce champs, ne le remplissez pas :'
 remember_userdata_marking =       'Enregistrer (cookie)'
 delete_cookie_linkname =          'supprimer le cookie'
-category_marking =                'Categorie:'
+category_marking =                'Categorie :'
 subject_marking =                 'Sujet :'
-message_marking =                 'Message:'
-tags_marking =                    'Mots-clés:'
+message_marking =                 'Message :'
+tags_marking =                    'Mots-clés :'
 tags_note =                       '(en option, séparé par une virgule)'
 bbcode_bold_label =               'gras'
 bbcode_bold_title =               'Format texte gras'
@@ -385,15 +385,15 @@ bbcode_image_title =              'Insérer une image'
 bbcode_image_label_default =      'défaut'
 bbcode_image_instr_default =      '[img]http://example.com/image.jpg[/img]'
 bbcode_image_label_left =         'gauche'
-bbcode_image_instr_left =         'gauche: [img=left]http://example.com/image.jpg[/img]'
+bbcode_image_instr_left =         'gauche : [img=left]http://example.com/image.jpg[/img]'
 bbcode_image_label_right =        'droite'
-bbcode_image_instr_right =        'droite: [img=right]http://example.com/image.jpg[/img]'
+bbcode_image_instr_right =        'droite : [img=right]http://example.com/image.jpg[/img]'
 bbcode_image_label_thumb =        'cliché réduit'
-bbcode_image_instr_thumb =        'cliché réduit: [img=thumbnail]http://example.com/image.jpg[/img]'
+bbcode_image_instr_thumb =        'cliché réduit : [img=thumbnail]http://example.com/image.jpg[/img]'
 bbcode_image_label_thumb_left =   'cliché réduit gauche'
-bbcode_image_instr_thumb_left =   'cliché réduit gauche: [img=thumbnail-left]http://example.com/image.jpg[/img]'
+bbcode_image_instr_thumb_left =   'cliché réduit gauche : [img=thumbnail-left]http://example.com/image.jpg[/img]'
 bbcode_image_label_thumb_right =  'cliché réduit droit'
-bbcode_image_instr_thumb_right =  'cliché réduit droit: [img=thumbnail-right]http://example.com/image.jpg[/img]'
+bbcode_image_instr_thumb_right =  'cliché réduit droit : [img=thumbnail-right]http://example.com/image.jpg[/img]'
 bbcode_upload_label =             'télécharger'
 bbcode_upload_title =             'Télécharger une image'
 bbcode_upload_instruction =       'Télécharger une image ...'
@@ -423,7 +423,7 @@ message_preview_title =           'Prévisualiser le message avant la sauvegarde
 reply_to_posting_marking =        'Répondre au message de <strong>[name]</strong>'
 minutes_left_to_edit =            'Il vous reste [minutes] minutes pour éditer ce message'
 minutes_left_to_edit_reply =      'Vous avez [minutes] minutes pour éditer ce message si aucune réponse n\'est postée avant'
-preview_headline =                'Prévisualiser:'
+preview_headline =                'Prévisualiser :'
 error_repeated_posting =          'Message déjà posté il y a [minutes] minutes. Veuillez attendre un moment et le republier.'
 error_name_like_subject =         'Ce nom est le même que celui du sujet'
 error_name_reserved =             'Ce nom est déjà pris par un utilisateur enregistré'
@@ -445,18 +445,18 @@ delete_posting_submit =           'OK - Supprimer'
 report_spam_hl =                  'Déclarer comme spam'
 report_spam_warning =             'S\'il vous plaît marquer et signaler cette entrée comme spam uniquement, s\'il s'agit définitivement de spam ! Les filtres anti-spam sont fondés sur le théorème de Bayes. Sur la base des données d\'entraînement, la probabilité qu\'une entrée soit du spam est estimée. Des classifications incorrectes entraînent un filtre inefficace.'
 posting_already_spam =            'Ce message est déjà signalé comme spam.'
-spamcheck_akismet_api_error =     'Ce message a été validé par le filtre anti-spam Akismet suite à une erreur lors de sa vérification. Cela peut être du à une clé API invalide!'
+spamcheck_akismet_api_error =     'Ce message a été validé par le filtre anti-spam Akismet suite à une erreur lors de sa vérification. Cela peut être du à une clé API invalide !'
 spamcheck_akismet_timeout_error = 'Ce message a été validé par le filtre anti-spam suite à une erreur de timeout sur le serveur Akismet.'
 report_spam_delete_submit =       'Déclarer comme spam et supprimer'
 report_spam_submit =              'Déclarer uniquement comme spam'
 delete_only_submit =              'Supprimer seulement'
-postings_doesnt_exist =           'Ce message n\'existe pas!'
+postings_doesnt_exist =           'Ce message n\'existe pas !'
 posting_not_flagged_as_spam =     'Ce message n\'a pas été déclaré comme spam.'
 flag_ham_hl =                     'comme non-spam'
 flag_ham_warning =                 'S\'il vous plaît marquer et signaler cette entrée uniquement comme n\'étant pas du spam, s\'il s\'agit définitivement d\'un non-spam ! Les filtres anti-spam sont fondés sur le théorème de Bayes. Sur la base des données d\'entraînement, la probabilité qu\'une entrée soit du spam est estimée. Des classifications incorrectes entraînent un filtre inefficace.'
 report_flag_ham_submit =          'Déclarer et valider comme non spam'
 flag_ham_submit =                 'Déclarer comme non spam seulement'
-no_authorisation_delete =         'Le message ne peut être supprimé! Il se peut que le délai de suppression des messages soit dépassé, ou que le fil soit verrouillé, ou qu\'il y ait déjà des réponses à ce message.'
+no_authorisation_delete =         'Le message ne peut être supprimé ! Il se peut que le délai de suppression des messages soit dépassé, ou que le fil soit verrouillé, ou qu\'il y ait déjà des réponses à ce message.'
 
 [unsubscribe_posting]
 unsubscribed_hl =                 'Désinscrit'
@@ -466,11 +466,11 @@ unsubscribe_error_message =       'Une erreur empêche la désincription. Inform
 
 [captcha]
 captcha_marking =                 'Protection contre le spam :'
-captcha_expl_math =               'Veuillez additionner ces deux nombres:'
-captcha_expl_image =              'Veuillez entrer les lettres ou nombres de l\'image ci-dessus:'
+captcha_expl_math =               'Veuillez additionner ces deux nombres :'
+captcha_expl_image =              'Veuillez entrer les lettres ou nombres de l\'image ci-dessus :'
 captcha_image_alt =               'Si vous ne pouvez voir l\'image, vous devez créer un compte utilisateur et vous connecter pour pouvoir envoyer votre message'
 captcha_image_alt_reg =           'Veuillez contacter l\'admistrateur du forum si vous ne pouvez voir cette image'
-captcha_check_failed =            'La vérification anti-spam a échoué - veuillez recommencer!'
+captcha_check_failed =            'La vérification anti-spam a échoué - veuillez recommencer !'
 
 [upload_image]
 image_upload_not_enabled =        'L\'envoi d\'images n\'est pas activé.'
@@ -526,18 +526,18 @@ lock_old_threads =                'Verrouiller les fils pour lesquels les derni�
 
 [login]
 login_ip_temp_blocked =           'Suite à de nombreuses tentatives de connexion infructueuses, vous n\'êtes plus autorisé à vous identifier. Vous pourrez recommencer d\'ici quelques minutes.'
-login_username =                  'Identifiant:'
-login_password =                  'Mot de passe:'
+login_username =                  'Identifiant :'
+login_password =                  'Mot de passe :'
 login_auto =                      'Connexion automatique à partir de cet ordinateur'
 login_submit =                    'Connexion'
 login_advice =                    'Pour vous connecter, les cookies doivent être activés !'
 pw_forgotten_link =               'J\'ai oublié mon mot de passe'
 pwf_failed =                      'Aucun utilisateur avec cet email n\'a été trouvé'
-login_failed =                    'Nom d\'utilisateur inconnu ou bien mauvais mot de passe!'
+login_failed =                    'Nom d\'utilisateur inconnu ou bien mauvais mot de passe !'
 registered_users_only =           'Seuls les utilisateurs enregistrés peuvent publier des messages !'
-account_not_activated =           'Votre compte n\'est pas encore activé!'
+account_not_activated =           'Votre compte n\'est pas encore activé !'
 account_activated =               'Votre compte a été activé avec succès.'
-account_activated_but_locked =    'Votre compte a été activé avec succès mais il doit être validé par l\'administrateur ou un modérateur pour que vous puissiez vous connecter!'
+account_activated_but_locked =    'Votre compte a été activé avec succès mais il doit être validé par l\'administrateur ou un modérateur pour que vous puissiez vous connecter !'
 mail_sent =                       'Le email a été envoyé.'
 pw_sent =                         'Le nouveau mot de passe a été envoyé.'
 code_invalid =                    'Code incorrect.'
@@ -546,8 +546,8 @@ code_invalid =                    'Code incorrect.'
 new_pw_ok =                       'Un nouveau mot de passe a été généré et envoyé.'
 new_pw_failed =                   'Le lien de confirmation est incorrect. Un nouveau mot de passe n\'a pu être généré.'
 pw_forgotten_exp =                'Les mots de passe sont cryptés avec un algorithme qui ne permet pas de les retrouver. Vous ne pouvez qu\'obtenir un nouveau mot de passe. Pour éviter tout abus vous allez recevoir un message électronique et il vous faudra cliquer sur le lien pour confirmer votre demande. Après réception de votre confirmation, un nouveau mot de passe sera généré et envoyé à votre adresse.'
-pwf_username =                    'Identifiant:'
-pwf_email =                       'Email:'
+pwf_username =                    'Identifiant :'
+pwf_email =                       'Email :'
 
 [user]
 user_list_header =                'Liste des utilisateurs'
@@ -571,31 +571,31 @@ unlock_title =                    'Déverrouiller cet utilisateur'
 currently_online =                'Actuellement en ligne'
 
 [user_show]
-user_name =                       'Identifiant:'
-user_avatar =                     'Avatar:'
-user_type =                       'Type:'
+user_name =                       'Identifiant :'
+user_avatar =                     'Avatar :'
+user_type =                       'Type :'
 admin =                           'Administrateur'
 mod =                             'Modérateur'
 user =                            'Utilisateur'
-user_real_name =                  'Nom:'
-gender =                          'Genre:'
+user_real_name =                  'Nom :'
+gender =                          'Genre :'
 male =                            'homme'
 female =                          'femme'
-age_birthday =                    'Âge / date d\'anniversaire:'
+age_birthday =                    'Âge / date d\'anniversaire :'
 mailto_user =                     'Envoyer un email à [user]'
 email =                           'Email'
 homepage =                        'Site'
-user_hp_email =                   'Site / Email:'
-user_location =                   'Adresse:'
-user_registered =                 'Enregistré:'
-user_last_login =                 'Dernière connexion:'
+user_hp_email =                   'Site / Email :'
+user_location =                   'Adresse :'
+user_registered =                 'Enregistré :'
+user_last_login =                 'Dernière connexion :'
 user_logins =                     'Connexions :'
-user_postings =                   'Messages:'
+user_postings =                   'Messages :'
 show_postings_link =              'montrer les messages'
-last_posting =                    'Derniers messages:'
+last_posting =                    'Derniers messages :'
 logins_per_day =                  'Connexions par jour '
 postings_per_day =                'Messages par jour :'
-user_profile =                    'Profil:'
+user_profile =                     'Profil :'
 user_delete_all_entries =         'Effacer tous les messages de cet utilisateur'
 user_lock_account =               'Verrouiller ce compte utilisateur'
 user_unlock_account =             'Déverrouiller ce compte utilisateur'
@@ -604,38 +604,38 @@ user_delete_account =             'Effacer ce compte utilisateur'
 user_account_doesnt_exist =       'Le compte de cet utilisateur n\'existe pas.'
 
 [user_edit]
-edit_user_name =                  'Nom d\'utilisateur:'
-edit_avatar =                     'Avatar:'
+edit_user_name =                  'Nom d\'utilisateur :'
+edit_avatar =                     'Avatar :'
 edit_avatar_link =                'éditer avatar'
-edit_user_type =                  'Type:'
-edit_user_email =                 'Email:'
+edit_user_type =                  'Type :'
+edit_user_email =                 'Email :'
 edit_email =                      'Modifier l\'adresse email'
-edit_user_pw =                    'Mot de passe:'
+edit_user_pw =                    'Mot de passe :'
 pw_not_displayed =                'Non affiché'
 edit_pw =                         'Changer le mot de passe'
-edit_user_contacting =            'Contacter:'
+edit_user_contacting =            'Contacter :'
 edit_user_contacting_disabled =   'Réservé aux administrateurs et aux modérateurs'
 edit_user_contacting_registered = 'Réservé aux utilisateurs enregistrés'
 edit_user_contacting_public =     'Aucune restriction'
-edit_user_real_name =             'Nom:'
-edit_user_gender =                'Sexe:'
+edit_user_real_name =             'Nom :'
+edit_user_gender =                'Sexe :'
 gender_not_specified =            'not specified'
 male =                            'homme'
 female =                          'femme'
-edit_user_birthday =              'Anniversaire:'
+edit_user_birthday =              'Anniversaire :'
 birthday_format =                 'AAAA-MM-JJ'
-edit_user_hp =                    'Site:'
+edit_user_hp =                    'Site :'
 edit_user_location =              'Adresse :'
-edit_user_profile =               'Profil:'
-edit_user_signature =             'Signature:'
+edit_user_profile =                'Profil :'
+edit_user_signature =             'Signature :'
 edit_user_cat_selection =         'Ma catégorie sélectionnée :'
-edit_user_time_zone =             'Fuseau horaire:'
-edit_user_time_difference =        'Décalage additionnel en heures (e.g. +3 ou -5:30):'
+edit_user_time_zone =             'Fuseau horaire :'
+edit_user_time_difference =        'Décalage additionnel en heures (e.g. +3 ou -5:30) :'
 edit_user_default_time_zone_svr = 'Standard (temps de serveur)'
 edit_user_default_time_zone =     'Standard ([default_time_zone])'
-edit_user_language =              'Langage:'
+edit_user_language =              'Langage :'
 edit_user_default_language =      'Standard ([default_language])'
-edit_user_theme =                 'Thème:'
+edit_user_theme =                 'Thème :'
 edit_user_default_theme =         'Thème par défaut ([default_theme])'
 edit_user_auto_login =            'Connexion automatique'
 enable_auto_login =               'Activer la connexion automatique'
@@ -644,7 +644,7 @@ where_to_open_links_forum_def =   'Utiliser les paramètres propres au forum (pa
 where_to_open_links_same =        'Ouvrir tous les liens dans la même fenêtre de navigateur'
 where_to_open_links_external =    'Ouvrir des liens vers d\'autres sites Web dans une nouvelle fenêtre ou un nouvel onglet de navigateur (dépend des paramètres de votre navigateur)'
 where_to_open_links_all =         'Ouvrir tous les liens dans une nouvelle fenêtre ou un nouvel onglet de navigateur (dépend des paramètres de votre navigateur)'
-edit_user_notification =          'notification par email:'
+edit_user_notification =           'notification par email :'
 admin_mod_notif_posting =         'une fois qu\'un nouveau message a été publié'
 admin_mod_notif_register =        'une fois qu\'un nouvel utilisateur s\'est enregistré'
 userdata_submit_button =          'OK - Sauvegarder'
@@ -656,11 +656,11 @@ remove_user_account_link =        'Détruire votre compte d\'utilisateur'
 [remove_user_account]
 remove_user_account_h1 =          'Détruire ce compte'
 remove_user_account_warning =     'Attention, une fois que vous avez supprimé votre compte, il n\'y a pas de retour en arrière possible. S\'il vous plaît soyez certain ! Les signets et les données de compte seront supprimés. Vos publications restent inchangées. Comme pour un message non enregistré, votre nom d\'affichage ([user_name]) est utilisé comme auteur.'
-remove_user_confirm_password =    'Mot de passe:'
+remove_user_confirm_password =    'Mot de passe :'
 error_pw_wrong =                  'Le mot de passe est incorrect'
 
 [edit_pw]
-edit_pw_old =                     'Ancien mot de passe:'
+edit_pw_old =                     'Ancien mot de passe :'
 edit_pw_new =                     'Nouveau mot de passe :'
 error_old_pw_wrong =              'L\'ancien mot de passe est erroné'
 error_new_pw_too_short =          'Le nouveau mot de passe doit contenir au moins [characters] caractères'
@@ -670,10 +670,10 @@ error_new_pw_needs_uppercase_letter = 'Le mot de passe doit contenir au moins [u
 error_new_pw_needs_special_character ='Le mot de passe doit contenir au moins [special_characters] caractère(s) spécial(aux)'
 
 [edit_email]
-edit_email_exp =                  'Lors d\'un changement d\'adresse email vous serez déconnecté et le compte devra être réactivé. Une clef d\'activation sera envoyée à votre nouvelle adresse email. Assurez-vous que l\'adresse email est valide! Le compte sera activé prochainement.'
-edit_email_new =                  'Nouvel email:'
-edit_email_new_confirm =          'Confirmer le nouvel email:'
-edit_email_pw =                   'Mot de passe:'
+edit_email_exp =                  'Lors d\'un changement d\'adresse email vous serez déconnecté et le compte devra être réactivé. Une clef d\'activation sera envoyée à votre nouvelle adresse email. Assurez-vous que l\'adresse email est valide ! Le compte sera activé prochainement.'
+edit_email_new =                  'Nouvel email :'
+edit_email_new_confirm =          'Confirmer le nouvel email :'
+edit_email_pw =                   'Mot de passe :'
 error_form_uncompl =              'Tous les champs n\'ont pas été remplis'
 error_email_confirmation =        'Le nouvel email et celui pour la confirmation ne sont pas les mêmes'
 error_email_too_long =            'L\'adresse email est trop longue'
@@ -684,10 +684,10 @@ error_email_collision =           'Cet adresse email existe déjà'
 
 [register]
 register_exp =                    'Veuillez indiquer le nom d\'utilisateur souhaité, un mot de passe et une adresse email valide. Une clef d\'activation sera envoyée à cette adresse. Le compte doit être activé dans les 24 heures.'
-register_username =               'Identifiant:'
-register_user_email =             'Email:'
-register_pw =                     'Mot de passe:'
-register_honeypot_field =         'Si vous voyez ce champs, ne le remplissez pas:'
+register_username =               'Identifiant :'
+register_user_email =             'Email :'
+register_pw =                     'Mot de passe :'
+register_honeypot_field =         'Si vous voyez ce champs, ne le remplissez pas :'
 register_only_by_admin =          'Les utilisateurs ne peuvent être enregistrés que par l\'administrateur du forum.'
 registered =                      'Le compte a été enregistré et la clef d\'activation a été envoyée à <strong>[var]</strong>. Ce compte doit être activé dans les 24 heures.'
 registered_send_error =           'Le compte a été enregistré mais la clef d\'activation n\'a pas pu être envoyée (le serveur de email est inaccessible). Veuillez contacter l\'administrateur du forum et demander une activation manuelle du compte.'
@@ -703,12 +703,12 @@ error_pw_needs_special_character ='Le mot de passe doit contenir au moins [speci
 [contact]
 contact_hl =                      'Envoyer un message à l\'administrateur du forum'
 contact_user_hl =                 'Envoyer un message à [recipient_name]'
-impossible_to_contact =           'Cet utilisateur ne peut être contacté!'
-contact_doesnt_exist =            'Cet utilisateur n\'existe pas!'
-sender_address_caption =          'Email de l\'expéditeur:'
+impossible_to_contact =           'Cet utilisateur ne peut être contacté !'
+contact_doesnt_exist =            'Cet utilisateur n\'existe pas !'
+sender_address_caption =          'Email de l\'expéditeur :'
 sender_confirmation_caption =      'Envoyez moi une copie de mon message'
-subject_caption =                 'Sujet:'
-message_caption =                 'Message:'
+subject_caption =                 'Sujet :'
+message_caption =                 'Message :'
 message_submit_caption =          'OK - Envoyer le message'
 email_sent =                      'Le message a été envoyé avec succès.'
 error_message_no_text =           'Aucun texte dans le message'
@@ -724,7 +724,7 @@ enabled =                         'activé'
 disabled =                        'désactivé'
 folder_alt =                      'dossier'
 file_alt =                        'fichier'
-admin_confirm_password =          'Mot de passe administrateur:'
+admin_confirm_password =           'Mot de passe administrateur :'
 error_password_wrong =            'Mot de passe erroné'
 
 # admin menu
@@ -742,7 +742,7 @@ releases_list_link =              'Vérifier la disponibilité d\'une nouvelle v
 warning_header =                  'Attention'
 warning_install_script_exists =   'Par sécurité, il est recommandé de supprimer (ou de renommer) <code>install/index.php</code>'
 actual_installed_version_header = 'Version actuelle'
-actual_installed_version =        'Version installée: <strong>[current_version_string]</strong>'
+actual_installed_version =        'Version installée : <strong>[current_version_string]</strong>'
 
 # forum settings:
 clear_chache =                    'Effacer les réglages et appliquer les changements aux entrées existantes'
@@ -767,7 +767,7 @@ default_language =                'Langage'
 default_language_desc =           'Langage du forum'
 default_time_zone =               'Fuseau horaire'
 default_time_zone_desc =          'Fuseau horaire standard'
-default_time_difference =         'Le fuseau horaire n\'est pas disponible. Alternativement, la différence de temps entre le serveur et le forum peut être spécifiée (en minutes, e.g. 240 or -360):'
+default_time_difference =         'Le fuseau horaire n\'est pas disponible. Alternativement, la différence de temps entre le serveur et le forum peut être spécifiée (en minutes, e.g. 240 or -360) :'
 default_theme =                   'Thème'
 default_theme_desc =              'Thème pour le gabarit de la page'
 threads_per_page =                'Fils par page'
@@ -799,21 +799,21 @@ public_accessible =               'accessible au public'
 accessible_reg_users_only =       'accessible uniquement aux utilisateurs enregistrés'
 accessible_team_users_only =      'Accessible seulement par les administrateurs et les modérateurs'
 latest_postings =                 'Derniers messages'
-latest_postings_desc =            'Combien de derniers messages doivent être affichés sous forme de liste sur la page d\'index (0=off)?'
+latest_postings_desc =            'Combien de derniers messages doivent être affichés sous forme de liste sur la page d\'index (0=off) ?'
 tag_cloud =                       'Bulle Mots-clés'
 tag_cloud_desc =                  'Une bulle Mots-clés constituée des mots-clés récents doit-elle s\'afficher sur la page d\'index ?'
 enable_tag_cloud =                'Activer la bulle Mots-clés'
 terms_of_use_settings =           'Règles d\'usage'
 terms_of_use_settings_desc =      'Obligation pour les utilisateurs non enregistrés d\'accepter les règles d\'usage pour publier des messages et pour s\'enregistrer'
 terms_of_use_settings_enabled =   'Règles d\'usage activées'
-terms_of_use_url =                'Adresse des règles d\'usage:'
+terms_of_use_url =                'Adresse des règles d\'usage :'
 data_privacy_statement =          'Déclaration sur la protection des données'
 data_privacy_statement_desc =     'Obligation pour les utilisateurs non enregistrés d'accepter la déclaration sur la protection des données pour poster et s'inscrire'
 data_privacy_settings_enabled =   'Activer la déclaration sur la protection des données'
-data_privacy_url =                'URL de la déclaration sur la protection des données:'
+data_privacy_url =                'URL de la déclaration sur la protection des données :'
 edit_postings =                   'Editer les messages'
 edit_postings_desc =              'Editer les comportements des messages'
-edit_own_postings =               'Editer mes messages:'
+edit_own_postings =               'Editer mes messages :'
 edit_own_postings_all =           'tous les utilisateurs peuvent modifier leurs propres messages'
 edit_own_postings_users =         'seuls les utilisateurs enregistrés peuvent modifier leurs propres messages'
 edit_own_postings_disabled =      'désactivé (l\'administrateur et les modérateurs peuvent éditer les messages)'
@@ -827,7 +827,7 @@ bbcode_desc =                     'Autoriser les codes de formatage pour les mes
 bbcodes_enabled =                 'Codes de formatage activés'
 bbcodes_img_enabled =             'autoriser aussi les codes de formatage pour les insertions d\'images'
 smilies =                         'Smileys'
-smilies_desc =                    'Les smileys comme ":-)" sont-ils à remplacer par des images? (Les Smileys peuvent être définis via le panneau d\'administration)'
+smilies_desc =                    'Les smileys comme ":-)" sont-ils à remplacer par des images ? (Les Smileys peuvent être définis via le panneau d\'administration)'
 smilies_enabled =                 'Smileys activés'
 enamble_avatars =                 'Avatars'
 enamble_avatars_desc =            'Est-il possible pour les utilisateurs enregistrés de charger leur images avatars ? Il faut cependant que le dossier images/avatars/ soit en écriture (CHMOD 777).'
@@ -847,14 +847,14 @@ count_views =                     'Voir les compteurs'
 count_views_desc =                'Faut-il compter les vues des messages ?'
 views_counter_enabled =           'Vues des compteurs activées'
 count_users_online =              'Compteur pour le nombre d\'utilisateurs en ligne'
-count_users_online_desc =         'Compter les utilisateurs qui sont en ligne depuis combien de minutes (0=off)?'
+count_users_online_desc =         'Compter les utilisateurs qui sont en ligne depuis combien de minutes (0=off) ?'
 rss_feed =                        'Flux RSS'
-rss_feed_desc =                   'Activer les flux RSS (seulement si la permission d\'y accéder a été positionnée à "Tout le monde")?'
+rss_feed_desc =                   'Activer les flux RSS (seulement si la permission d\'y accéder a été positionnée à "Tout le monde") ?'
 rss_feed_enabled =                'Flux RSS activé'
 forum_enabled_marking =           'Forum activé'
 forum_enabled_desc =              'A décocher pour que le forum soit inaccessible. Le forum restera cependant accessible si vous êtes connecté en tant qu\'administrateur.'
 forum_enabled =                   'forum activé'
-forum_disabled_message =          'Message à afficher en cas de non activation:'
+forum_disabled_message =          'Message à afficher en cas de non activation :'
 category_name =                   'Catégorie'
 category_accession =              'Accessible pour'
 cat_accessible_admin_mod =        'administrateur et modérateurs'
@@ -863,9 +863,9 @@ cat_accessible_all =              'tous'
 category_topics =                 'Fils'
 category_entries =                'Rubriques'
 no_categories =                   'Aucune catégorie n\'a été précisée.'
-new_category =                    'Nouvelle catégorie:'
-edit_category =                   'Catégorie:'
-category_accessible_by =          'Accessible par:'
+new_category =                    'Nouvelle catégorie :'
+edit_category =                   'Catégorie :'
+category_accessible_by =          'Accessible par :'
 entries_in_not_ex_cat =           '<strong>Remarque :</strong> Il y a des entrées qui ne peuvent être affichées car elles ne sont pas dans des catégories existantes. Que souhaitez-vous faire avec ces entrées ?'
 entries_in_not_ex_cat_del =       'les supprimer'
 entries_in_not_ex_cat_mov =       'les déplacer dans cette catégorie :'
@@ -877,9 +877,9 @@ del_cat_move_entries =            'Supprimer la catégorie mais conserver ses en
 delete_category_submit =          'OK - Supprimer la catégorie'
 
 # Smilies:
-edit_smilies_smiley =             'Smiley:'
-edit_smilies_codes =              'Codages:'
-edit_smilies_title =              'Titre:'
+edit_smilies_smiley =             'Smiley :'
+edit_smilies_codes =              'Codages :'
+edit_smilies_title =              'Titre :'
 smiley_file_doesnt_exist =        'Le fichier du Smiley n\'existe pas'
 smiley_code_empty =               'Aucun codage pour le smiley n\'a été défini'
 no_other_smilies_in_folder =      'Il n\'y a pas d\'autres smileys dans le dossier des smileys. Pour ajouter des smileys, envoyer des fichiers de smileys sur le serveur, dans le dossier <code>images/smilies</code>.'
@@ -888,8 +888,8 @@ smiley_codes =                    'Codages'
 smiley_title =                    'Titre'
 disable_smilies =                 'Désactiver les smileys'
 enable_smilies =                  'Activer les smileys'
-add_smiley =                      'Ajouter un smiley:'
-add_smiley_code =                 'Codage:'
+add_smiley =                      'Ajouter un smiley :'
+add_smiley_code =                 'Codage :'
 smilies_disabled =                'Les smileys sont désactivés.'
 
 # pages:
@@ -937,15 +937,15 @@ email_list =                      'Liste des emails des utilisateurs enregistré
 reset_terms_of_use =              'Réinitialiser l\'acceptation des conditions d\'utilisation'
 reset_data_privacy_statement =    'Réinitialiser l\'acceptation de la politique de confidentialité'
 clear_userdata =                  'Effacer les données des utilisateurs'
-edit_user_avatar =                'Avatar:'
+edit_user_avatar =                'Avatar :'
 delete_avatar =                   'Supprimer l\'avatar'
 delete_user_confirmation =        'Etes-vous sûr de vouloir supprimer cet utilisateur ?'
 delete_users_confirmation =       'Etes-vous sûr de vouloir supprimer les utilisateurs suivants ?'
-delete_entries_of_user_confirm =  'Etes-vous sûr de vouloir effacer tous les messages de <strong>[user]</strong>? Les réponses d\'autres utilisateurs seront aussi effacées !'
+delete_entries_of_user_confirm =  'Etes-vous sûr de vouloir effacer tous les messages de <strong>[user]</strong> ? Les réponses d\'autres utilisateurs seront aussi effacées !'
 delete_submit =                   'OK - Supprimer'
 register_exp =                    'Vous pouvez laisser vides les champs pour le mot de passe si un mot de passe aléatoire doit être généré. Dans ce cas, ces informations doivent être envoyées à l\'adresse email indiquée.'
-register_username =               'Nom d\'utilisateur:'
-register_email =                  'Email:'
+register_username =               'Nom d\'utilisateur :'
+register_email =                  'Email :'
 register_pw =                     'Mot de passe :'
 register_pw_conf =                'Confirmation du mot de passe :'
 register_send_userdata =          'Les informations sur l\'utilisateur ont été envoyées à l\'adresse email indiquée.'
@@ -968,9 +968,9 @@ delete_uploads_confirmation =     'Êtes-vous sûr de vouloir supprimer ces tél
 captcha =                         'PROTECTION'
 captcha_desc =                    'Quels formulaires sont à protéger et par quel type de protection (uniquement pour les utilisateurs non enregistrés) ?'
 captcha_graphical_desc =          'La protection graphique nécessite la librairie GD Lib et il est recommandé d\'utiliser au moins une police TTF. Mettre la fichier de police (*.ttf) dans le dossier <code>modules/captcha/fonts/</code>. Vous pouvez obtenir des polices sur www.dafont.com.'
-captcha_posting =                 'Formulaire pour publier:'
-captcha_email =                   'Formulaire Email:'
-captcha_register =                'Formulaire pour l\'enregistrement:'
+captcha_posting =                 'Formulaire pour publier :'
+captcha_email =                   'Formulaire Email :'
+captcha_register =                'Formulaire pour l\'enregistrement :'
 captcha_disabled =                'désactivé'
 captcha_mathematical =            'mathématique'
 captcha_graphical =               'graphique'
@@ -988,7 +988,7 @@ stop_forum_spam_enable =          'Activer Stop Forum Spam'
 akismet =                         'Akismet'
 akismet_desc =                    '<a href="http://akismet.com/">Akismet</a> service de protection contre le spam. Pour l\'utiliser vous devez obtenir une <a href="http://wordpress.com/api-keys/">clef Wordpress API</a> (sinon cela ne fonctionnera pas sans clef ou avec une clef API invalide !).'
 akismet_key =                     'Clef Wordpress API :'
-akismet_save_spam =               'Sauvegarder le spam (avec une étiquette spam et non affiché)?'
+akismet_save_spam =               'Sauvegarder le spam (avec une étiquette spam et non affiché) ?'
 akismet_entry =                   'vérifier les formulaires des messages'
 akismet_mail =                    'vérifier le formulaire pour l\'email'
 banned_ips =                      'Adresses IP en liste noire'
@@ -998,7 +998,7 @@ banned_user_agents_desc =         'Chaines de caractères dans les logiciels de 
 not_accepted_words =              'Mots non autorisés'
 not_accepted_words_desc =         'Mots ou domaines qui ne doivent pas être acceptés dans les formulaires et les emails. Un mot  par ligne.'
 spam_protection_submit =          'OK - Sauvegarder'
-error_own_ip_banned =             'Vous avez interdit votre propre adresse IP!'
+error_own_ip_banned =             'Vous avez interdit votre propre adresse IP !'
 error_own_user_agent_banned =     'Vous avez interdit votre propre logiciel de email !'
 spam_protection_saved =           'Sauvegardé'
 spam_check_registered =           'Soumissions des utilisateurs enregistrés'
@@ -1006,7 +1006,7 @@ spam_check_registered_desc =      'Vérifier les envois des utilisateurs enregis
 spam_check_registered_enable =    'Vérifier les posts des utilisateurs enregistrés pour la présence de spam'
 auto_delete_spam =                'Détruire le spam automatiquement'
 auto_delete_spam_desc =           'Période de rétention du spam'
-auto_delete_spam_timespan =       'Supprimer les spams automatiquement après combien d\'heures (0=ne pas supprimer)?'
+auto_delete_spam_timespan =       'Supprimer les spams automatiquement après combien d\'heures (0=ne pas supprimer) ?'
 
 # Reset / Uninstall:
 reset_forum =                     'Réinitialiser le forum'
@@ -1036,8 +1036,8 @@ update_file_title =               'Exécuter ce fichier de mise à jour'
 update_confirm =                  'Voulez-vous vraiement exécuter ce fichier de mise à jour ?'
 update_submit =                   'OK - Exécuter la mise à jour'
 update_successful =               'La base de données a été mise à jour avec succès.'
-update_items_note =               'Veuiller télécharger maintenant les fichiers ou les dossiers suivants de la nouvelle version de forum (version [version]) sur votre serveur:'
 update_download =                 'Si vous n\'avez pas ces fichiers vous pouvez les télécharger [[here]].'
+update_items_note =               'Veuiller télécharger maintenant les fichiers ou les dossiers suivants de la nouvelle version de forum (version [version]) sur votre serveur :'
 
 [emails]
 email_subject =                   'Réponse de "[original_subject]"'
@@ -1048,13 +1048,13 @@ ceci est un message d'information généré automatiquement. Vous recevez cet em
 Si vous ne oulez plus recevoir d'email pour ce sujet, suivez le lien suivant pour vous désabonner.
 [unsubscribe_address]
 
-[name] a posté une réponse à \"[original_subject]\":
+[name] a posté une réponse à \"[original_subject]\" :
 
-Sujet: [subject]
+Sujet : [subject]
 
 [text]
 
-URL de ce message: [posting_address]
+URL de ce message : [posting_address]
 
 --- Message d'origine ---
 
@@ -1065,7 +1065,7 @@ La publication est en attente car le message a été validé manuellement. Ceci 
 
 admin_email_subject =             'Nouveau sujet dans le forum : [subject]'
 admin_email_text =                """Nouveau sujet par [name]
-Sujet: [subject]
+Sujet : [subject]
 
 [text]
 
@@ -1073,7 +1073,7 @@ Adresse du message : [posting_address]
 
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 admin_email_text_reply =          """Réponse par [name]
-Sujet: [subject]
+Sujet : [subject]
 
 [text]
 
@@ -1082,14 +1082,15 @@ Adresse du message : [posting_address]
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 admin_reg_user_email_subj =       'Enregistrement pour le Forum'
 admin_reg_user_email_text =       """Bonjour [name],
-bienvenue sur le forum!
+
+bienvenue sur le forum !
 
 Voici les données pour se connecter :
 
 Identifiant : [name]
 Mot de passe : [password]
 
-Lien pour se connecter directement:
+Lien pour se connecter directement :
 [login_link]
 
 Le mot de passe peut être changé après s'être connecté.
@@ -1098,9 +1099,10 @@ Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 
 admin_activate_user_email_subj =  'Enregistrement pour le Forum'
 admin_activate_user_email_text =  """Bonjour [name],
-bienvenue sur le forum!
 
 Link to log in directly:
+bienvenue sur le forum !
+
 [login_link]
 
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
@@ -1109,7 +1111,7 @@ new_user_email_sj =               'Enregistrement sur le forum'
 new_user_email_txt =              """Bonjour [name],
 bienvenue sur le forum !
 
-Pour activer votre compte veuiller cliquer sur le lien:
+Pour activer votre compte veuillez cliquer sur le lien :
 [activate_link]
 
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
@@ -1117,7 +1119,7 @@ new_user_notif_sj =               'Enregistrement d\'un nouvel utilisateur'
 new_user_notif_txt =              """Bonjour [recipient],
 un nouvel utilisateur s'est enregistré sur le forum.
 Identifiant : [name]
-Email: [email]
+Email : [email]
 
 [user_link]
 
@@ -1125,14 +1127,15 @@ Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 new_user_notif_txt_locked =       """Bonjour [recipient],
 un nouvel utilisateur s'est enregistré sur le forum.
 Identifiant : [name]
-Email: [email]
+Email : [email]
 
-IMPORTANT: Cet utilisateur doit être validé afin qu'il puisse se connecter!
+IMPORTANT: Cet utilisateur doit être validé afin qu'il puisse se connecter !
 
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 edit_address_email_sj =           'Activation d\'un compte après changement d\'adresse email'
 edit_address_email_txt =          """Bonjour [name],
-l'adresse email a changé. Vous devez maintenant activer de nouveau votre compte en cliquant sur le lien suivant :
+
+l'adresse email a changé. Vous devez maintenant activer de nouveau votre compte en cliquant sur le lien suivant:
 [activate_link]
 
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
@@ -1145,12 +1148,13 @@ Cet email a été envoyé par le forum ([forum_address]) car un nouveau mot de p
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 new_pw_email_sj =                   'Nouvelles données pour un utilisateur du forum'
 new_pw_email_txt =                  """Bonjour [name],
+
 voici vos nouvelles données comme utilisateur :
 
 Identifiant : [name]
 Mot de passe : [password]
 
-Cliquer ici pour se connecter directement:
+Cliquer ici pour se connecter directement :
 [login_link]
 
 Le mot de passe peut être changé après s'être connecté.
@@ -1164,10 +1168,10 @@ contact_email_txt_user =             """[message]
 
 -- 
 Cet email a été envoyé par [user] via le forum à [forum_address]."""
-contact_notification_sj =           'Copie du message envoyé: [subject]'
-contact_notification_txt =          """Cet email a été envoyé avec votre adresse email à [recipient]:
+contact_notification_sj =           'Copie du message envoyé : [subject]'
+contact_notification_txt =          """Cet email a été envoyé avec votre adresse email à [recipient] :
 
-Subject: [subject]
+Subject : [subject]
 [message]
 
 -- 
@@ -1189,7 +1193,7 @@ Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 
 [install]
 installation_title =              'Installation'
-label_choose_language =           'Veuillez choisir une langue:'
+label_choose_language =           'Veuillez choisir une langue :'
 installation_instructions =       'Pour installer le forum veuillez compléter et envoyer le formulaire suivant.'
 installation_instructions =       'Pendant la phase d\'installation le fichier <strong>config/db_settings.php</strong> doit être modifié. C\'est pourquoi vous devez lui donner les droits en écriture. Vous pouvez tout d\'abord essayer l\'installation sans changer les permissions en écriture. Si vous obtenez un message d\'erreur, alors veuillez essayer la commande CHMOD 666. Si vous avez à changer les permissions en écriture, n\'oubliez pas de repositionner les droits de ce fichier à 644 après l\'installation.'
 installation_instructions =       'Le dossier <strong>templates_c</strong> doit être en écriture par le propriétaire du forum. C\'est pourquoi vous devez changer éventuellement les permissions de ce dossier. Si vous obtenez un message d\'erreur, essayez la commande CHMOD 770 or 775.'
