@@ -1036,8 +1036,8 @@ update_file_title =               'Exécuter ce fichier de mise à jour'
 update_confirm =                  'Voulez-vous vraiement exécuter ce fichier de mise à jour ?'
 update_submit =                   'OK - Exécuter la mise à jour'
 update_successful =               'La base de données a été mise à jour avec succès.'
-update_download =                 'Si vous n\'avez pas ces fichiers vous pouvez les télécharger [[here]].'
 update_items_note =               'Veuiller télécharger maintenant les fichiers ou les dossiers suivants de la nouvelle version de forum (version [version]) sur votre serveur :'
+update_download =                 'Si vous n\'avez pas ces fichiers vous pouvez les télécharger [[ici]].'
 
 [emails]
 email_subject =                   'Réponse de "[original_subject]"'
@@ -1100,9 +1100,9 @@ Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 admin_activate_user_email_subj =  'Enregistrement pour le Forum'
 admin_activate_user_email_text =  """Bonjour [name],
 
-Link to log in directly:
 bienvenue sur le forum !
 
+Lien pour se connecter directement :
 [login_link]
 
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
