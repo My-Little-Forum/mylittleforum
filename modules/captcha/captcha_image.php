@@ -1,5 +1,5 @@
 <?php
-ini_set('error_reporting', 'E_ALL');
+// ini_set('error_reporting', 'E_ALL');
 session_start();
 require('captcha.php');
 $captcha = new Captcha();
