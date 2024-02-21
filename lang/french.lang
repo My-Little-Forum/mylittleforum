@@ -460,9 +460,9 @@ no_authorisation_delete =         'Le message ne peut être supprimé! Il se peu
 
 [unsubscribe_posting]
 unsubscribed_hl =                 'Désinscrit'
-unsubscribed_message =            'La liste des souscription desquelles vous vous êtes désinscrit. Vous ne recevrez plus d\'e-mail pour ce message. Les souscriptions futures ne seront pas affectées par cette action.'
+unsubscribed_message =            'La liste des souscription desquelles vous vous êtes désinscrit. Vous ne recevrez plus d\'email pour ce message. Les souscriptions futures ne seront pas affectées par cette action.'
 unsubscribe_error_hl =            'Impossible de se désinscrire'
-unsubscribe_error_message =       'Une erreur empêche la désincription. Informez votre administrateur de ce problème. Ajoutez s\'il vous plaît l\'ID de ce message (que vous trouverez dans le lien de cet e-mail (lien de désinscrition)) et l\'heure précise au moment ou l\'action a échouée (précisez le fuseau horaire si possible).'
+unsubscribe_error_message =       'Une erreur empêche la désincription. Informez votre administrateur de ce problème. Ajoutez s\'il vous plaît l\'ID de ce message (que vous trouverez dans le lien de cet email (lien de désinscrition)) et l\'heure précise au moment ou l\'action a échouée (précisez le fuseau horaire si possible).'
 
 [captcha]
 captcha_marking =                 'Protection contre le spam :'
@@ -680,7 +680,7 @@ error_email_too_long =            'L\'adresse email est trop longue'
 error_identic_email =             'La nouvelle adresse email est la même que l\'ancienne'
 error_email_invalid =             'L\'adresse email est incorrecte'
 pw_wrong =                        'Le mot de passe est incorrect'
-error_email_collision =           'Cet adresse e-mail existe déjà'
+error_email_collision =           'Cet adresse email existe déjà'
 
 [register]
 register_exp =                    'Veuillez indiquer le nom d\'utilisateur souhaité, un mot de passe et une adresse mail valide. Une clef d\'activation sera envoyée à cette adresse. Le compte doit être activé dans les 24 heures.'
@@ -979,7 +979,7 @@ gr_captcha_no_font =              'Aucune police n\'est disponible, le code de p
 b8 =                              'B8'
 b8_desc =                         'Filtre anti-spam basé sur Bayes <a href="https://nasauber.de/opensource/b8/">B8</a> qui utilise des données d'entraînement individuelles'
 b8_entry_check_enable =           'Vérifier le formulaire (posts)'
-b8_mail_check_enable =            'Vérifier le formulaire (e-mail)'
+b8_mail_check_enable =            'Vérifier le formulaire (email)'
 b8_auto_training_enable =         'Entrainement automatique du filtre (De manière significative, après un entrainement manuel suffisant pour les spams et les entrées non spams (Ham) !)'
 b8_spam_probability_threshold =   'Seuil minimum pour classer comme "spam". Valeur entre 0&nbsp;% et 100&nbsp;%, e.g. Un niveau de signification de 80 % signifie que 20 entrées sur 100 sont classées à tort par le filtre comme spam (faux positif)'
 stop_forum_spam =                 'Stop Forum Spam'
@@ -1043,9 +1043,9 @@ update_download =                 'Si vous n\'avez pas ces fichiers vous pouvez 
 email_subject =                   'Réponse de "[original_subject]"'
 email_text =                      """Bonjour [recipient],
 
-ceci est un message d'information généré automatiquement. Vous recevez cet e-mail car vous avez activé la fonction de notification. Merci de ne pas répondre à cet e-mail, mais de poster une réponse sur le forum.
+ceci est un message d'information généré automatiquement. Vous recevez cet email car vous avez activé la fonction de notification. Merci de ne pas répondre à cet email, mais de poster une réponse sur le forum.
 
-Si vous ne oulez plus recevoir d'e-mail pour ce sujet, suivez le lien suivant pour vous désabonner.
+Si vous ne oulez plus recevoir d'email pour ce sujet, suivez le lien suivant pour vous désabonner.
 [unsubscribe_address]
 
 [name] a posté une réponse à \"[original_subject]\":
@@ -1117,7 +1117,7 @@ new_user_notif_sj =               'Enregistrement d\'un nouvel utilisateur'
 new_user_notif_txt =              """Bonjour [recipient],
 un nouvel utilisateur s'est enregistré sur le forum.
 Identifiant : [name]
-E-mail: [email]
+Email: [email]
 
 [user_link]
 
@@ -1125,7 +1125,7 @@ Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 new_user_notif_txt_locked =       """Bonjour [recipient],
 un nouvel utilisateur s'est enregistré sur le forum.
 Identifiant : [name]
-E-mail: [email]
+Email: [email]
 
 IMPORTANT: Cet utilisateur doit être validé afin qu'il puisse se connecter!
 
