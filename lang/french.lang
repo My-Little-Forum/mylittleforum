@@ -1109,6 +1109,7 @@ Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 
 new_user_email_sj =               'Enregistrement sur le forum'
 new_user_email_txt =              """Bonjour [name],
+
 bienvenue sur le forum !
 
 Pour activer votre compte veuillez cliquer sur le lien :
@@ -1117,6 +1118,7 @@ Pour activer votre compte veuillez cliquer sur le lien :
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 new_user_notif_sj =               'Enregistrement d\'un nouvel utilisateur'
 new_user_notif_txt =              """Bonjour [recipient],
+
 un nouvel utilisateur s'est enregistré sur le forum.
 Identifiant : [name]
 Email : [email]
@@ -1125,6 +1127,7 @@ Email : [email]
 
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 new_user_notif_txt_locked =       """Bonjour [recipient],
+
 un nouvel utilisateur s'est enregistré sur le forum.
 Identifiant : [name]
 Email : [email]
@@ -1141,6 +1144,7 @@ l'adresse email a changé. Vous devez maintenant activer de nouveau votre compte
 Ceci est un message généré automatiquement, merci de ne pas y répondre."""
 pwf_activating_email_sj =         'Demande d\'un nouveau mot de passe'
 pwf_activating_email_txt =        """Bonjour [name],
+
 Cet email a été envoyé par le forum ([forum_address]) car un nouveau mot de passe a été demandé. Veuillez cliquer sur le lien ci-dessous pour confirmer votre demande. Cette action générera un nouveau mot de passe qui vous sera envoyé. Si cet email a été envoyé par erreur (que ce soit par vous ou par d'autres) veuillez ignorer cet email.
 
 [activating_link]
