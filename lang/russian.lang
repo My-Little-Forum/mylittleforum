@@ -1,11 +1,17 @@
 ################################################################################
-# Russian language file for my little forum 2.4                                #
-# Translated from English by Victor Urusov aka Urfin®                          #
-# < urfin77 at yandex dot ru >                                                 #
+# Russian language file for my little forum 2                                   #
 #------------------------------------------------------------------------------#
-# Русский языковой файл для my little forum 2.4                                #
-# Перевод c английского сделал Виктор Урусов aka Urfin®                        #
-# < urfin77 at yandex dot ru >                                                 #
+# - strings to display on the site or an e-mail are enclosed in single quotes  #
+# - don't modify or translate the section names like "[general]" or "[entry]"! #
+# - placeholders in square brackets (e.g. "[name]") will be replaced by values #
+#   automatically - don't modify or translate them!                            #
+# - words in double square brackets (e.g. "click [[here]]") are transformed    #
+#   into hyperlinks - should be translated (e.g. "haga click [[aquí]]")        #
+# - strings that span more than one line (E-Mail texts) are enclosed in triple #
+#   quotes (e.g. """Hi,                                                        #
+#   how are you?""")                                                           #
+# - more details about the file format:                                         #
+#   http://www.smarty.net/docs/en/config.files.tpl                               #
 #------------------------------------------------------------------------------#
 # - не меняйте и не переводите названия разделов типа "[general]" и "[entry]"! #
 # - метки-заполнители в квадратных скобках (типа "[name]") будут заменены на   #
@@ -15,6 +21,11 @@
 # - тексты, состоящие из нескольких строк (сообщения E-Mail) заключены в       #
 #   тройные кавычки (например, """Превед,                                      #
 #   кагдила?77""")                                                             #
+#------------------------------------------------------------------------------#
+#                                                                              #
+# Translated from English by Victor Urusov aka Urfin®                           #
+# < urfin77 at yandex dot ru >                                                  #
+#                                                                              #
 ################################################################################
 
 [default]

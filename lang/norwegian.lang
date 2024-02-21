@@ -1,6 +1,18 @@
-###################################################
-# Norwegian language file for my little forum 2.4 #
-###################################################
+################################################################################
+# Norwegian language file for my little forum 2                                 #
+#------------------------------------------------------------------------------#
+# - strings to display on the site or an e-mail are enclosed in single quotes  #
+# - don't modify or translate the section names like "[general]" or "[entry]"! #
+# - placeholders in square brackets (e.g. "[name]") will be replaced by values #
+#   automatically - don't modify or translate them!                            #
+# - words in double square brackets (e.g. "click [[here]]") are transformed    #
+#   into hyperlinks - should be translated (e.g. "haga click [[aquí]]")        #
+# - strings that span more than one line (E-Mail texts) are enclosed in triple #
+#   quotes (e.g. """Hi,                                                        #
+#   how are you?""")                                                           #
+# - more details about the file format:                                         #
+#   http://www.smarty.net/docs/en/config.files.tpl                               #
+################################################################################
 
 [default]
 language =                        no
