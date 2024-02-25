@@ -248,7 +248,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 		$update['errors'][] .= 'The config file does not exist or is not writable. Please ensure the file config/db_settings.php to exist and to be writable.';
 	}
 	
-	if (empty($errors)) {
+	if (empty($update['errors'])) {
 		$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
 		// enlive the config file template
 		$db_settings_file  = "<?php\r\n";
