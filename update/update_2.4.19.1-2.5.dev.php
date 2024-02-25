@@ -176,6 +176,63 @@ if (empty($update['errors'])) {
 }
 
 
+/**
+ * change the table engine from MyISAM to InnoDB for the previously existing tables
+ *
+ * Check for the database engine types of ALL tables.
+ * tables in newer installations might be of type InnoDB
+ * because this was the default engine at the time of installation.
+ * Older instances might be a mix of MyISAM and InnoDB
+ * depending on the creation time of a specific table.
+ *
+ * So let's read the type of every single table and loop
+ * through the result on the search for tables, which are
+ * not of engine type InnoDB. Set the type to InnoDB only
+ * where it is actually necessary.
+ */
+if (empty($update['errors'])) {
+	$qTypeOfTables = "SELECT `TABLE_NAME`, `ENGINE`
+	FROM `information_schema`.`TABLES`
+	WHERE `TABLE_SCHEMA`='". $db_settings['database'] ."'
+	AND `TABLE_NAME` IN(
+		'". $db_settings['settings_table'] ."',
+		'". $db_settings['forum_table'] ."',
+		'". $db_settings['category_table'] ."',
+		'". $db_settings['userdata_table'] ."',
+		'". $db_settings['smilies_table'] ."',
+		'". $db_settings['pages_table'] ."',
+		'". $db_settings['banlists_table'] ."',
+		'". $db_settings['useronline_table'] ."',
+		'". $db_settings['login_control_table'] ."',
+		'". $db_settings['entry_cache_table'] ."',
+		'". $db_settings['userdata_cache_table'] ."',
+		'". $db_settings['bookmark_table'] ."',
+		'". $db_settings['read_status_table'] ."',
+		'". $db_settings['temp_infos_table'] ."',
+		'". $db_settings['tags_table'] ."',
+		'". $db_settings['bookmark_tags_table'] ."',
+		'". $db_settings['entry_tags_table'] ."',
+		'". $db_settings['subscriptions_table'] ."',
+		'". $db_settings['b8_wordlist_table'] ."',
+		'". $db_settings['b8_rating_table'] ."',
+		'". $db_settings['akismet_rating_table'] ."',
+		'". $db_settings['uploads_table'] ."')
+	AND ENGINE != 'InnoDB';";
+	
+	$resTypeOfTables = @mysqli_query($connid, $qTypeOfTables);
+	// if reading the database failed
+	if ($resTypeOfTables === false) {
+		$update['errors'][] = 'Database error in line '. (__LINE__.-2) .': '. mysqli_error($connid);
+	}
+	// if reading the database succeeded AND resulted in more than zero rows
+	if (empty($update['errors']) and mysqli_num_rows($resTypeOfTables) > 0) {
+		while ($row = mysqli_fetch_assoc($resTypeOfTables)) {
+			if (!@mysqli_query($connid, "ALTER TABLE `" . $row['TABLE_NAME'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.' (affected table ' . $row['TABLE_NAME'] . '): ' . mysqli_error($connid);
+		}
+	}
+}
+
+
 // disable the forum until database update is done
 if (empty($update['errors'])) {
 	if(!@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET  value = '0' WHERE name =  'forum_enabled'")) {
