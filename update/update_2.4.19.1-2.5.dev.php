@@ -897,31 +897,70 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 
 // upgrade from version 2.4.99.1
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1'))) {
-	// changes in the settings table
-	if (!@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('b8_mail_check', '0'), ('php_mailer', '0'), ('delete_inactive_users', '30'), ('notify_inactive_users', '3'), ('link_open_target', '');")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-	
-	// changes in the entries tables
-	$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."` LIKE 'email_notification'");
-	if (mysqli_num_rows($rEN_exists) > 0) {
-		if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` DROP `email_notification`;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	/**
+	 * From here on everything can be done as a transaction in one step
+	 */
+	if (empty($update['errors'])) {
+		mysqli_autocommit($connid, false);
+		if (empty($update['errors'])) {
+			mysqli_begin_transaction($connid);
+			try {
+				// changes in the setting table
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES
+					('b8_mail_check', '0'),
+					('php_mailer', '0'),
+					('delete_inactive_users', '30'),
+					('notify_inactive_users', '3'),
+					('link_open_target', '');");
+				
+				
+				// changes in the new introduced tables
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
+				ADD KEY `B8_spam` (`spam`),
+				ADD KEY `B8_training_type` (`training_type`);");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CHANGE `token` `token` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
+				
+				
+				// changes in the user data table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				DROP INDEX `user_name`,
+				ADD UNIQUE KEY `key_user_name` (`key_user_name`),
+				ADD UNIQUE KEY `key_user_email` (`user_email`);");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
+				ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
+				
+				
+				// changes in the forum/entries table
+				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
+				LIKE 'email_notification'");
+				if (mysqli_num_rows($rEN_exists) > 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+					DROP `email_notification`;");
+				}
+				
+				
+				// changes in the tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;");
+				
+				mysqli_commit($connid);
+			} catch (mysqli_sql_exception $exception) {
+				mysqli_rollback($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				//throw $exception;
+			}
+		}
+		mysqli_autocommit($connid, true);
 	}
-	
-	// changes in the B8 wordlist table
-	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "` CHANGE `token` `token` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-	
-	// changes in the B8 rating table
-	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "` ADD KEY `B8_spam` (`spam`), ADD KEY `B8_training_type` (`training_type`);")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-	
-	// changes in the tags table
-	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "` CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-	
-	// changes in the userdata table
-	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-	
-	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` DROP INDEX `user_name`, ADD UNIQUE KEY `key_user_name` (`key_user_name`), ADD UNIQUE KEY `key_user_email` (`user_email`);")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-	
-	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE, ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-	
 	
 	// write the new version number to the database
 	if (empty($update['errors'])) {
