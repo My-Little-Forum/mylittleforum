@@ -792,57 +792,103 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 			$update['errors'][] = 'Database error, could not write the new version string to the database.';
 		}
 	}
+	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
-		$update['items'][] = 'config/php_mailer.php';                                       // #498, #575, #589, #612, #645, #652, #656, #659
-		$update['items'][] = 'config/b8_config.php';                                        // #493, #557, #561, #562
+		// #498, #575, #589, #612, #645, #652, #656, #659
+		$update['items'][] = 'config/php_mailer.php';
+		// #493, #557, #561, #562
+		$update['items'][] = 'config/b8_config.php';
 		
-		$update['items'][] = 'includes/admin.inc.php';                                      // #478, #489, #575, #589, #612, #645, #652, #656, #659
-		$update['items'][] = 'includes/contact.inc.php';                                    // #489, #501, #505, #594
-		$update['items'][] = 'includes/entry.inc.php';                                      // #505, #509, #536, #585, #611
-		$update['items'][] = 'includes/functions.inc.php';                                  // #467, #478, #498, #499, #512, #519. #520, #524, #526, #528, #540, #554, #571, #587, #589, #593, #594, #595, #603, #606, #619, #623, #647, #650, #667
-		$update['items'][] = 'includes/index.inc.php';                                      // #472, #611
-		$update['items'][] = 'includes/mailer.inc.php';                                     // #498
-		$update['items'][] = 'includes/posting.inc.php';                                    // #469, #471, #491, #494, #505, #522, #528, #554, #557, #561, #562, #570, #594, #627, #653
-		$update['items'][] = 'includes/rss.inc.php';                                        // #476
-		$update['items'][] = 'includes/search.inc.php';                                     // #560, #594, #622
-		$update['items'][] = 'includes/thread.inc.php';                                     // #505
-		$update['items'][] = 'includes/upload_image.inc.php';                               // #462, #554, #623
-		$update['items'][] = 'includes/user.inc.php';                                       // #470, #478, #505
+		// #478, #489, #575, #589, #612, #645, #652, #656, #659
+		$update['items'][] = 'includes/admin.inc.php';
+		// #489, #501, #505, #594
+		$update['items'][] = 'includes/contact.inc.php';
+		// #505, #509, #536, #585, #611
+		$update['items'][] = 'includes/entry.inc.php';
+		// #467, #478, #498, #499, #512, #519. #520, #524, #526, #528, #540, #554, #571,
+		// #587, #589, #593, #594, #595, #603, #606, #619, #623, #647, #650, #667
+		$update['items'][] = 'includes/functions.inc.php';
+		// #472, #611
+		$update['items'][] = 'includes/index.inc.php';
+		// #498
+		$update['items'][] = 'includes/mailer.inc.php';
+		// #469, #471, #491, #494, #505, #522, #528, #554, #557, #561, #562, #570, #594,
+		// #627, #653
+		$update['items'][] = 'includes/posting.inc.php';
+		// #476
+		$update['items'][] = 'includes/rss.inc.php';
+		// #560, #594, #622
+		$update['items'][] = 'includes/search.inc.php';
+		// #505
+		$update['items'][] = 'includes/thread.inc.php';
+		// #462, #554, #623
+		$update['items'][] = 'includes/upload_image.inc.php';
+		// #470, #478, #505
+		$update['items'][] = 'includes/user.inc.php';
 		$update['items'][] = 'includes/';
 		
-		$update['items'][] = 'index.php';                                                   // #498
+		// #498
+		$update['items'][] = 'index.php';
 		
-		$update['items'][] = 'js/admin.js (remove)';                                        // #466
-		$update['items'][] = 'js/admin.min.js (remove)';                                    // #466
-		$update['items'][] = 'js/posting.js';                                               // #475
-		$update['items'][] = 'js/posting.min.js';                                           // #475
+		// #466
+		$update['items'][] = 'js/admin.js (remove)';
+		// #466
+		$update['items'][] = 'js/admin.min.js (remove)';
+		// #475
+		$update['items'][] = 'js/posting.js';
+		// #475
+		$update['items'][] = 'js/posting.min.js';
 		$update['items'][] = 'js/';
 		
-		$update['items'][] = 'lang/';                                                       // #470, #471, #489, #501, #514, #523, #526, #530, #532, #539, #548, #549, #550, #566, #569, #572, #575, #577, #587, #589, #599, #611
+		// #470, #471, #489, #501, #514, #523, #526, #530, #532, #539, #548, #549, #550,
+		// #566, #569, #572, #575, #577, #587, #589, #599, #611
+		$update['items'][] = 'lang/';
 		
-		$update['items'][] = 'modules/b8/';                                                 // #463
-		$update['items'][] = 'modules/phpmailer/';                                          // #498
+		// #463
+		$update['items'][] = 'modules/b8/';
+		// #498
+		$update['items'][] = 'modules/phpmailer/';
 		$update['items'][] = 'modules/';
 		
-		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';            // #612
-		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';            // #612
-		$update['items'][] = 'themes/default/images/keep_eye_on.png';                       // #611
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';                   // #470, #489, #612
-		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';                 // #489, #501, #505
-		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';                   // #469, #470, #530, #536, #542, #611, #620, #624, #656
-		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';                   // #469, #471, #611
-		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';             // #469, #471, #611, #612
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';                 // #471, #494, #620, #656
-		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';        // #626, #653, #656
-		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';     // #626, #653, #656
-		$update['items'][] = 'themes/default/subtemplates/posting_unsubscribe.inc.tpl';     // #656
-		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';                  // #469, #470, #530, #537, #620, #624
-		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';           // #469, #470, #530, #537, #620, #624
-		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';                    // #612, #652
-		$update['items'][] = 'themes/default/main.tpl';                                     // #470, #503, #504, #530, #531, #540, #547, #588, #589, #598, #608, #637
-		$update['items'][] = 'themes/default/style.css';                                    // #461, #477, #530, #531, #533, #534, #537, #538, #598, #608, #612, #620, #624, #625, #626, #630, #640, #652, #656
-		$update['items'][] = 'themes/default/style.min.css';                                // #461, #477, #530, #531, #533, #534, #537, #598, #608, #612, #620, #624, #625, #626, #630, #640, #652, #656
+		// #612
+		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		// #612
+		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		// #611
+		$update['items'][] = 'themes/default/images/keep_eye_on.png';
+		// #470, #489, #612
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		// #489, #501, #505
+		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';
+		// #469, #470, #530, #536, #542, #611, #620, #624, #656
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		// #469, #471, #611
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
+		// #469, #471, #611, #612
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		// #471, #494, #620, #656
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		// #626, #653, #656
+		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
+		// #626, #653, #656
+		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
+		// #656
+		$update['items'][] = 'themes/default/subtemplates/posting_unsubscribe.inc.tpl';
+		// #469, #470, #530, #537, #620, #624
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		// #469, #470, #530, #537, #620, #624
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		// #612, #652
+		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
+		// #470, #503, #504, #530, #531, #540, #547, #588, #589, #598, #608, #637
+		$update['items'][] = 'themes/default/main.tpl';
+		// #461, #477, #530, #531, #533, #534, #537, #538, #598, #608, #612, #620, #624,
+		// #625, #626, #630, #640, #652, #656
+		$update['items'][] = 'themes/default/style.css';
+		// #461, #477, #530, #531, #533, #534, #537, #598, #608, #612, #620, #624, #625,
+		// #626, #630, #640, #652, #656
+		$update['items'][] = 'themes/default/style.min.css';
 		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = reorderUpgradeFiles($update['items']);
