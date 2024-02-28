@@ -1132,49 +1132,143 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
+		// #507, #557, #561, #562
 		$update['items'][] = 'config/b8_config.php';
+		// #507, #575, #589, #612, #645, #652, #656, #659
+		$update['items'][] = 'config/php_mailer.php';
 		
-		$update['items'][] = 'includes/admin.inc.php';                               // without pull request
-		$update['items'][] = 'includes/entry.inc.php';                               // #509
-		$update['items'][] = 'includes/index.inc.php';
+		// #508, #575, #589, #612, #645, #652, #656, #659
+		$update['items'][] = 'includes/admin.inc.php';
+		// #526, #575, #594
+		$update['items'][] = 'includes/auto_login.inc.php';
+		// #554
+		$update['items'][] = 'includes/avatar.inc.php';
+		// #507, #557, #561, #562
+		$update['items'][] = 'includes/b8.inc.php';
+		// #560
+		$update['items'][] = 'includes/bookmark.inc.php';
+		// #507, #594
+		$update['items'][] = 'includes/contact.inc.php';
+		// #509, #536, #585, #611
+		$update['items'][] = 'includes/entry.inc.php';
+		// #512, #519. #520, #524, #526, #528, #540, #554, #571, #587, #589, #593, #594,
+		// #595, #603, #606, #619, #623, #647, #650, #667
 		$update['items'][] = 'includes/functions.inc.php';
+		// #611
+		$update['items'][] = 'includes/index.inc.php';
+		// #550, #575, #578, #589
+		$update['items'][] = 'includes/js_defaults.inc.php';
+		// #526, #550, #554, #594
+		$update['items'][] = 'includes/login.inc.php';
+		// #507, #583
+		$update['items'][] = 'includes/mailer.inc.php';
+		// #510, #526, #553, #594
+		$update['items'][] = 'includes/main.inc.php';
+		// #507, #522, #528, #554, #557, #561, #562, #570, #594, #627, #653
 		$update['items'][] = 'includes/posting.inc.php';
+		// #594
+		$update['items'][] = 'includes/register.inc.php';
+		// #476
+		$update['items'][] = 'includes/rss.inc.php';
+		// #560, #594, #622
 		$update['items'][] = 'includes/search.inc.php';
+		// #505, #554
+		$update['items'][] = 'includes/thread.inc.php';
+		// #554, #623
 		$update['items'][] = 'includes/upload_image.inc.php';
+		// #505, #525, #527, #550, #551, #566, #575, #594, #595, #654, #657
+		$update['items'][] = 'includes/user.inc.php';
 		$update['items'][] = 'includes/';
 		
-		$update['items'][] = 'index.php';                                            // without pull request
+		// #508
+		$update['items'][] = 'index.php';
 		
+		// #543, #545, #589
+		$update['items'][] = 'js/admin.js (remove)';
+		// #579, #589
+		$update['items'][] = 'js/admin.min.js (remove)';
+		// #543, #544, #545, #546, #573, #578, #589
+		$update['items'][] = 'js/main.js';
+		// #574, #578, #589
+		$update['items'][] = 'js/main.min.js';
+		// #543, #545
+		$update['items'][] = 'js/posting.js';
+		// #580
+		$update['items'][] = 'js/posting.min.js';
 		$update['items'][] = 'js/';
 		
 		$update['items'][] = 'lang/';
 		
 		$update['items'][] = 'modules/';
 		
-		$update['items'][] = 'themes/default/images/keep_eye_on.png';
+		// #589
+		$update['items'][] = 'themes/default/images/backup.png (remove)';
+		// #612
 		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		// #612
 		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		// #611
+		$update['items'][] = 'themes/default/images/keep_eye_on.png';
+		
+		// #508, #575, #589, #612, #645, #652, #656, #659
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		// #656
+		$update['items'][] = 'themes/default/subtemplates/bookmarks.inc.tpl';
+		// #656
+		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';
+		// #530, #536, #542, #611, #620, #624, #656
 		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		// #611, #652
 		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
+		// #611, #612, #652
 		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		// #620, #656
 		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		// #656
+		$update['items'][] = 'themes/default/subtemplates/posting_delete.inc.tpl';
+		// #656
+		$update['items'][] = 'themes/default/subtemplates/posting_delete_marked.inc.tpl';
+		// #656
+		$update['items'][] = 'themes/default/subtemplates/posting_delete_spam.inc.tpl';
+		// #626, #653, #656
 		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
+		// #656
+		$update['items'][] = 'themes/default/subtemplates/posting_manage_postings.inc.tpl';
+		// #656
+		$update['items'][] = 'themes/default/subtemplates/posting_move.inc.tpl';
+		// #626, #653, #656
 		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
+		// #656
+		$update['items'][] = 'themes/default/subtemplates/posting_unsubscribe.inc.tpl';
+		// #645, #656
+		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';
+		// #530, #537, #620, #624
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		// #530, #537, #620, #624
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		// #612, #652
 		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
+		// #550, #656
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';
+		// #645, #656
+		$update['items'][] = 'themes/default/subtemplates/user_edit_email.inc.tpl';
+		// #645, #656
+		$update['items'][] = 'themes/default/subtemplates/user_edit_pw.inc.tpl';
+		// #652, #657
+		$update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+		// #654, #656
+		$update['items'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
+		// #645, #656
+		$update['items'][] = 'themes/default/subtemplates/user_remove_account.inc.tpl';
+		// #530, #531, #540, #547, #588, #589, #598, #608, #637
 		$update['items'][] = 'themes/default/main.tpl';
+		// #530, #531, #533, #534, #537, #538, #598, #608, #612, #620, #624, #625, #626,
+		// #630, #640, #652, #656
 		$update['items'][] = 'themes/default/style.css';
+		// #530, #531, #533, #534, #537, #598, #608, #612, #620, #624, #625, #626, #630,
+		// #640, #652, #656
 		$update['items'][] = 'themes/default/style.min.css';
 		$update['items'][] = 'themes/default/';
-		
-		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
 		
 		$update['items'] = reorderUpgradeFiles($update['items']);
 	}
