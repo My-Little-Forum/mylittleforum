@@ -19,7 +19,8 @@ function connect_db($host, $user, $pw, $db) {
 		raise_error('mysql_connect', mysqli_connect_error());
 	$connid = @mysqli_connect($host, $user, $pw) or raise_error('mysql_connect', mysqli_connect_error());
 	@mysqli_select_db($connid, $db) or raise_error('mysql_select_db', mysqli_error($connid));
-	@mysqli_query($connid, 'SET NAMES utf8mb4');
+	mysqli_set_charset($connid, "utf8mb4");
+	@mysqli_query($connid, 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci');
 	return $connid;
 }
 
