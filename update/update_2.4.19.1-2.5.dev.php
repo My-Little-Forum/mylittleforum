@@ -1479,17 +1479,19 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
-		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		
+		$update['items'][] = 'index.php';
+		
 		$update['items'][] = 'lang/';
 		
-		$update['items'][] = 'themes/default/images/keep_eye_on.png';
 		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['items'][] = 'themes/default/images/keep_eye_on.png';
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
