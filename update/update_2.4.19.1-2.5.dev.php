@@ -486,23 +486,23 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			
 			// collect the file and directory names to upgrade
 			if (empty($update['errors'])) {
-				// #498
-				$update['items'][] = 'config/php_mailer.php';
-				// #493, #557, #561, #562
+				// #493, #507, #557, #561, #562
 				$update['items'][] = 'config/b8_config.php';
+				// #498, #507, #575, #589, #612, #645, #652, #656, #659
+				$update['items'][] = 'config/php_mailer.php';
 				
 				// #364, #367, #390, #410, #427, #456, #478, #489, #523, #565, #575, #589,
-				// #594, #623, #659
+				// #594, #612, #623, #645, #652, #656, #659
 				$update['items'][] = 'includes/admin.inc.php';
 				// #526, #575, #594
 				$update['items'][] = 'includes/auto_login.inc.php';
 				// #554
 				$update['items'][] = 'includes/avatar.inc.php';
-				// #557, #561, #562
+				// #507, #557, #561, #562
 				$update['items'][] = 'includes/b8.inc.php';
 				// #560
 				$update['items'][] = 'includes/bookmark.inc.php';
-				// #489, #501, #505, #594
+				// #489, #501, #505, #507, #594
 				$update['items'][] = 'includes/contact.inc.php';
 				// #505, #509, #536, #585, #611
 				$update['items'][] = 'includes/entry.inc.php';
@@ -518,12 +518,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'includes/js_defaults.inc.php';
 				// #526, #550, #554, #594
 				$update['items'][] = 'includes/login.inc.php';
-				// #498, #583
+				// #498, #507, #583
 				$update['items'][] = 'includes/mailer.inc.php';
 				// #510, #526, #553, #594
 				$update['items'][] = 'includes/main.inc.php';
-				// #410, #469, #471, #491, #494, #505, #522, #528, #554, #557, #561, #562,
-				// #570, #594, #627, #653
+				// #410, #469, #471, #491, #494, #505, #507, #522, #528, #554, #557, #561,
+				// #562, #570, #594, #627, #653
 				$update['items'][] = 'includes/posting.inc.php';
 				// #594
 				$update['items'][] = 'includes/register.inc.php';
@@ -543,13 +543,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				// #554, #589
 				$update['items'][] = 'includes/classes/ (remove)';
 				
-				// #390, #498
+				// #390, #498, #507
 				$update['items'][] = 'index.php';
 				
-				// #390, #450, #475, #543, #545
-				$update['items'][] = 'js/posting.js';
-				// #390, #450, #475, #580
-				$update['items'][] = 'js/posting.min.js';
 				// #466, #543, #545, #579, #589
 				$update['items'][] = 'js/admin.js (remove)';
 				$update['items'][] = 'js/admin.min.js (remove)';
@@ -557,6 +553,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'js/main.js';
 				// #574, #578, #589
 				$update['items'][] = 'js/main.min.js';
+				// #390, #450, #475, #543, #545
+				$update['items'][] = 'js/posting.js';
+				// #390, #450, #475, #580
+				$update['items'][] = 'js/posting.min.js';
 				$update['items'][] = 'js/';
 				
 				// #364, #390, #427, #470, #471, #489, #501, #514, #523, #526, #530, #532,
@@ -566,19 +566,29 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				
 				// #427, #463, #557, #561, #562
 				$update['items'][] = 'modules/b8/';
-				// #559
-				$update['items'][] = 'modules/bad-behavior/';
+				// #511, #518, #559
+				$update['items'][] = 'modules/bad-behavior/ (remove)';
 				// #581
 				$update['items'][] = 'modules/geshi/';
 				// #498, #555, #583
 				$update['items'][] = 'modules/phpmailer/';
-				// #582, #584, #586
+				// #556, #582, #584, #586
 				$update['items'][] = 'modules/smarty/';
 				// #558
 				$update['items'][] = 'modules/stringparser_bbcode/';
 				// #511, #518
 				$update['items'][] = 'modules/';
 				
+				// #589
+				$update['items'][] = 'themes/default/images/backup.png (remove)';
+				// #612
+				$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+				// #612
+				$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+				// #364
+				$update['items'][] = 'themes/default/images/image.png';
+				// #611
+				$update['items'][] = 'themes/default/images/keep_eye_on.png';
 				// #364, #390, #470, #489, #575, #589, #612, #645, #652, #656, #659
 				$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 				// #656
@@ -635,16 +645,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
 				// #645, #656
 				$update['items'][] = 'themes/default/subtemplates/user_remove_account.inc.tpl';
-				// #589
-				$update['items'][] = 'themes/default/images/backup.png (remove)';
-				// #612
-				$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-				// #612
-				$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
-				// #364
-				$update['items'][] = 'themes/default/images/image.png';
-				// #611
-				$update['items'][] = 'themes/default/images/keep_eye_on.png';
 				// #377, #470, #503, #504, #530, #531, #540, #547, #588, #589, #598, #608,
 				// #637
 				$update['items'][] = 'themes/default/main.tpl';
