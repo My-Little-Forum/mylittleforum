@@ -1421,23 +1421,50 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 
 // upgrade from version 20220508.1 (2.5.0) and 20220509.1 (2.5.1)
 if (empty($update['errors']) && in_array($settings['version'], array('20220508.1', '20220509.1'))) {
-	// changed tables
-	$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."` LIKE 'email_notification'");
-	if (mysqli_num_rows($rEN_exists) > 0) {
-		if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "` DROP `email_notification`;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-	}
-	
-	if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8 NOT NULL;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-	
-	$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
-	FROM information_schema.STATISTICS 
-	WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."' AND
-	TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."' AND 
-	INDEX_NAME LIKE 'user_%';");
-	if (mysqli_num_rows($rObsoleteIndexes) > 0) {
-		while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
-			if (!@mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ." ON " . $db_settings['userdata_table'] .";")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+	/**
+	 * From here on everything can be done as a transaction in one step
+	 */
+	if (empty($update['errors'])) {
+		mysqli_autocommit($connid, false);
+		if (empty($update['errors'])) {
+			mysqli_begin_transaction($connid);
+			try {
+				// changes in the settings table
+				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
+				
+				
+				// changes in the user data table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8 NOT NULL;");
+				
+				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME LIKE 'user_%';");
+				if (mysqli_num_rows($rObsoleteIndexes) > 0) {
+					while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
+						mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ."
+						ON " . $db_settings['userdata_table'] .";");
+					}
+				}
+				
+				
+				// changes in the forum/entries table
+				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
+				LIKE 'email_notification'");
+				if (mysqli_num_rows($rEN_exists) > 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+					DROP `email_notification`;");
+				}
+				
+				mysqli_commit($connid);
+			} catch (mysqli_sql_exception $exception) {
+				mysqli_rollback($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				//throw $exception;
+			}
 		}
+		mysqli_autocommit($connid, true);
 	}
 	
 	// write the new version number to the database
