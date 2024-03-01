@@ -114,8 +114,7 @@ if (empty($update['errors'])) {
 		$versionInfo[$rawV['Variable_name']] = $rawV['Value'];
 	}
 	// read the value for the server type (MySQL or MariaDB)
-	$rawDBType = $databaseVersion['version_comment'];
-	if (preg_match("/MariaDB/gu", $rawDBType)) {
+	if (preg_match("/MariaDB/ui", $versionInfo['version_comment'])) {
 		$serverType = "MariaDB";
 	} else {
 		$serverType = "MySQL";
@@ -128,7 +127,7 @@ if (empty($update['errors'])) {
 		$serverVersion = $databaseVersion['version'];
 	}
 	mysqli_free_result($resDatabaseVersion);
-	unset($databaseVersion, $rawDBType, $rawDBVersion);
+	unset($versionInfo, $rawDBVersion);
 	
 	if (!empty($serverVersion) and preg_match("/\d{1,2}.\d{1,2}(\.\d{1,3})?/gu", $serverVersion)) {
 		if ($serverType == "MariaDB" and version_compare($dbVersion, "10.2.2", "<") === true) {
