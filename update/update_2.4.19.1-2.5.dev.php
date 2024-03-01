@@ -129,12 +129,12 @@ if (empty($update['errors'])) {
 	mysqli_free_result($resDatabaseVersion);
 	unset($versionInfo, $rawDBVersion);
 	
-	if (!empty($serverVersion) and preg_match("/\d{1,2}.\d{1,2}(\.\d{1,3})?/gu", $serverVersion)) {
-		if ($serverType == "MariaDB" and version_compare($dbVersion, "10.2.2", "<") === true) {
-			$update['errors'][] = "The version of MariaDB that runs on your server (". htmlspecialchars($dbVersion) .") is to old. You need to run your database server at least with MariaDB 10.2.2.";
+	if (!empty($serverVersion) and preg_match("/\d{1,2}.\d{1,2}(\.\d{1,3})?/u", $serverVersion)) {
+		if ($serverType == "MariaDB" and version_compare($serverVersion, "10.2.2", "<") === true) {
+			$update['errors'][] = "The version of MariaDB that runs on your server (". htmlspecialchars($serverVersion) .") is to old. You need to run your database server at least with MariaDB 10.2.2.";
 		}
-		if ($serverType == "MySQL" and version_compare($dbVersion, "5.7.7", "<") === true) {
-			$update['errors'][] = "The version of MySQL that runs on your server (". htmlspecialchars($dbVersion) .") is to old. You need to run your database server at least with MySQL 5.7.7.";
+		if ($serverType == "MySQL" and version_compare($serverVersion, "5.7.7", "<") === true) {
+			$update['errors'][] = "The version of MySQL that runs on your server (". htmlspecialchars($serverVersion) .") is to old. You need to run your database server at least with MySQL 5.7.7.";
 		}
 	} else {
 		// there is nothing returned from the database
