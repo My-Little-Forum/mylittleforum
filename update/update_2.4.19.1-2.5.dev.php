@@ -110,7 +110,9 @@ if (!file_exists('config/VERSION')) $update['errors'][] = 'Error in line '.__LIN
 $resDatabaseVersion = mysqli_query($connid, "SHOW VARIABLES WHERE variable_name IN('version', 'version_comment');");
 if ($resDatabaseVersion === false)  $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 if (empty($update['errors'])) {
-	$databaseVersion = mysqli_fetch_assoc($resDatabaseVersion);
+	while ($rawV = mysqli_fetch_assoc($resDatabaseVersion)) {
+		$versionInfo[$rawV['Variable_name']] = $rawV['Value'];
+	}
 	// read the value for the server type (MySQL or MariaDB)
 	$rawDBType = $databaseVersion['version_comment'];
 	if (preg_match("/MariaDB/gu", $rawDBType)) {
