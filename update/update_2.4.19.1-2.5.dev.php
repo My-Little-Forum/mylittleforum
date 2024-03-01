@@ -120,11 +120,11 @@ if (empty($update['errors'])) {
 		$serverType = "MySQL";
 	}
 	// read the provided version string
-	if (!empty($databaseVersion['version']) and substr_count($databaseVersion['version'], "-") > 0) {
-		$rawDBVersion = explode("-", $databaseVersion['version']);
+	if (!empty($versionInfo['version']) and substr_count($versionInfo['version'], "-") > 0) {
+		$rawDBVersion = explode("-", $versionInfo['version']);
 		$serverVersion = $rawDBVersion[0];
 	} else {
-		$serverVersion = $databaseVersion['version'];
+		$serverVersion = $versionInfo['version'];
 	}
 	mysqli_free_result($resDatabaseVersion);
 	unset($versionInfo, $rawDBVersion);
