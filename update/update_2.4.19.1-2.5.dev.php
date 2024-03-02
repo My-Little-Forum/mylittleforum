@@ -344,7 +344,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				try {
 					// changes in the setting table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
-					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 					
 					$uaa = ($settings['user_area_public'] == 0) ? 2 : 1;
 					mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
@@ -679,6 +679,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 			mysqli_begin_transaction($connid);
 			try {
 				// changes in the setting table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				$uaa = ($settings['user_area_public'] == 0) ? 2 : 1;
 				@mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
 				VALUES
@@ -972,6 +975,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 			mysqli_begin_transaction($connid);
 			try {
 				// changes in the setting table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
 				VALUES
 					('b8_mail_check', '0'),
@@ -1214,6 +1220,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 			mysqli_begin_transaction($connid);
 			try {
 				// changes in the setting table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
 				VALUES
 					('delete_inactive_users', '30'),
@@ -1431,6 +1440,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			mysqli_begin_transaction($connid);
 			try {
 				// changes in the settings table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
 				
 				
@@ -1522,6 +1534,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 			mysqli_begin_transaction($connid);
 			try {
 				// changes in the settings table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
 				
 				
