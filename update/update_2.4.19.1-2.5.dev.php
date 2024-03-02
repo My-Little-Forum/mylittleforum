@@ -498,6 +498,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 					
+					
+					// changes in the temporary information table
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['temp_infos_table'] . "`
+					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+					
+					
 					mysqli_commit($connid);
 				} catch (mysqli_sql_exception $exception) {
 					mysqli_rollback($connid);
@@ -839,6 +845,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				
+				// changes in the temporary information table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['temp_infos_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -1114,6 +1125,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;");
 				
+				
+				// changes in the temporary information table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['temp_infos_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -1387,6 +1403,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				
+				// changes in the temporary information table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['temp_infos_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -1620,6 +1641,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				
+				// changes in the temporary information table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['temp_infos_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -1741,6 +1767,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				// changes in the subscriptions table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the temporary information table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['temp_infos_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
