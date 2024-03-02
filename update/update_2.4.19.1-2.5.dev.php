@@ -330,7 +330,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			
 			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_rating_table'] . "` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `training_type` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), , KEY `b8_spam` (`spam`), KEY `B8_training_type` (`training_type`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
-			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_wordlist_table'] . "` (`token` varchar(128) character set utf8mb4 collate utf8mb4_bin NOT NULL DEFAULT '', `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_wordlist_table'] . "` (`token` varchar(255) character set utf8mb4 collate utf8mb4_bin NOT NULL DEFAULT '', `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
 			if (!@mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp` datetime NULL, PRIMARY KEY (id)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
@@ -736,7 +736,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				// changes in the new introduced tables
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
-				CHANGE `token` `token` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
+				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				ADD KEY `B8_spam` (`spam`),
@@ -1349,6 +1349,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				
 				// changes in the new introduced tables
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				ADD KEY `B8_spam` (`spam`),
 				ADD KEY `B8_training_type` (`training_type`);");
@@ -1600,6 +1603,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
 				
 				
+				// changes in the new introduced tables
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
+				
+				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_email` `user_user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
@@ -1733,6 +1741,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
+				
+				
+				// changes in the new introduced tables
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
 				
 				
 				// changes in the user data table
