@@ -1074,7 +1074,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-				CHANGE `user_email` `user_user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				DROP INDEX `user_name`,
@@ -1359,7 +1359,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_email` `user_user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 				ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
@@ -1610,7 +1610,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_email` `user_user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				
 				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
 				FROM information_schema.STATISTICS 
@@ -1750,7 +1750,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_email` `user_user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				
 				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
 				LIKE 'email_notification'");
