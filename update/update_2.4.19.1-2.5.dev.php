@@ -499,6 +499,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 					
 					
+					// changes in the uploads table
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+					
+					
 					// changes in the user online table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -840,13 +845,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;");
-					
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				
 				// changes in the temporary information table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['temp_infos_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				
+				// changes in the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				
@@ -1135,6 +1145,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				
+				// changes in the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1420,6 +1435,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				
+				// changes in the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1669,6 +1689,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				
+				// changes in the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1806,6 +1831,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the temporary information table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['temp_infos_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				
+				// changes in the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				
