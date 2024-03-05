@@ -1038,6 +1038,7 @@ update_submit =                   'OK - Exécuter la mise à jour'
 update_successful =               'La base de données a été mise à jour avec succès.'
 update_items_note =               'Veuiller télécharger maintenant les fichiers ou les dossiers suivants de la nouvelle version de forum (version [version]) sur votre serveur :'
 update_download =                 'Si vous n\'avez pas ces fichiers vous pouvez les télécharger [[ici]].'
+update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 
 [emails]
 email_subject =                   'Réponse de "[original_subject]"'

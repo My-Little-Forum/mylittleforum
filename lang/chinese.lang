@@ -1031,6 +1031,7 @@ update_submit =                   '执行更新'
 update_successful =               '数据库已更新成功。'
 update_items_note =               '请立即上传以下新压缩档内的文件和目录 (版本为 [version]) 到您的服务器中：'
 update_download =                 '若您还没有这些文件，可以从 [[here]] 下载。'
+update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 
 [emails]
 email_subject =                   '于 "[original_subject]" 的回复'

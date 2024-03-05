@@ -1043,6 +1043,7 @@ update_submit =                   'சரி - புதுப்பிக்க
 update_successful =               'டேடாபேஸ் புதுப்பிக்கமுடியவில்லை.'
 update_items_note =               'தயவு செய்து இந்த புதிய பொது மன்றத்தின் (பதிப்பு [version]) உறை / கோப்பை உங்கள் சேவை மைய்யத்திற்கு  நகற்த்துக :'
 update_download =                 'நீங்கள் இன்னும் இந்த கோப்புகளை பொறவில்லையேல் அநுகவும் [[here]] .'
+update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 
 [emails]
 email_subject =                   'பதில் "[original_subject]"'
