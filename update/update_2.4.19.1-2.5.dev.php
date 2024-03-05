@@ -582,14 +582,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				// #427
 				$update['items'][] = 'includes/';
 				// #554, #589
-				$update['items'][] = 'includes/classes/ (remove)';
+				$update['delete'][] = 'includes/classes/ (remove)';
 				
 				// #390, #498, #507
 				$update['items'][] = 'index.php';
 				
 				// #466, #543, #545, #579, #589
-				$update['items'][] = 'js/admin.js (remove)';
-				$update['items'][] = 'js/admin.min.js (remove)';
+				$update['delete'][] = 'js/admin.js (remove)';
+				$update['delete'][] = 'js/admin.min.js (remove)';
 				// #543, #544, #545, #546, #573, #578, #589
 				$update['items'][] = 'js/main.js';
 				// #574, #578, #589
@@ -608,7 +608,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				// #427, #463, #557, #561, #562
 				$update['items'][] = 'modules/b8/';
 				// #511, #518, #559
-				$update['items'][] = 'modules/bad-behavior/ (remove)';
+				$update['delete'][] = 'modules/bad-behavior/ (remove)';
 				// #581
 				$update['items'][] = 'modules/geshi/';
 				// #498, #555, #583
@@ -621,11 +621,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'modules/';
 				
 				// #589
-				$update['items'][] = 'themes/default/images/backup.png (remove)';
+				$update['delete'][] = 'themes/default/images/backup.png (remove)';
 				// #612
-				$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+				$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 				// #612
-				$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+				$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 				// #364
 				$update['items'][] = 'themes/default/images/image.png';
 				// #611
@@ -702,7 +702,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				// #427
 				$update['items'][] = 'themes/default/';
 				
-				$update['items'] = reorderUpgradeFiles($update['items']);
+				$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 			}
 		}
 	}
@@ -942,15 +942,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$update['items'][] = 'includes/user.inc.php';
 		$update['items'][] = 'includes/';
 		// #554, #589
-		$update['items'][] = 'includes/classes/ (remove)';
+		$update['delete'][] = 'includes/classes/ (remove)';
 		
 		// #498, #507
 		$update['items'][] = 'index.php';
 		
 		// #466, #543, #545, #589
-		$update['items'][] = 'js/admin.js (remove)';
+		$update['delete'][] = 'js/admin.js (remove)';
 		// #466, #579, #589
-		$update['items'][] = 'js/admin.min.js (remove)';
+		$update['delete'][] = 'js/admin.min.js (remove)';
 		// #543, #544, #545, #546, #573, #578, #589
 		$update['items'][] = 'js/main.js';
 		// #574, #578, #589
@@ -968,7 +968,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		// #463, #557, #561, #562
 		$update['items'][] = 'modules/b8/';
 		// #511, #518, #559
-		$update['items'][] = 'modules/bad-behavior/ (remove)';
+		$update['delete'][] = 'modules/bad-behavior/ (remove)';
 		// #581
 		$update['items'][] = 'modules/geshi/';
 		// #498, #555, #583
@@ -981,11 +981,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$update['items'][] = 'modules/';
 		
 		// #589
-		$update['items'][] = 'themes/default/images/backup.png (remove)';
+		$update['delete'][] = 'themes/default/images/backup.png (remove)';
 		// #612
-		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		// #612
-		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		// #611
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
 		// #470, #489, #575, #589, #612, #645, #652, #656, #659
@@ -1054,7 +1054,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$update['items'][] = 'themes/default/style.min.css';
 		$update['items'][] = 'themes/default/';
 		
-		$update['items'] = reorderUpgradeFiles($update['items']);
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
 
@@ -1241,15 +1241,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['items'][] = 'includes/user.inc.php';
 		$update['items'][] = 'includes/';
 		// #554, #589
-		$update['items'][] = 'includes/classes/ (remove)';
+		$update['delete'][] = 'includes/classes/ (remove)';
 		
 		// #498, #507
 		$update['items'][] = 'index.php';
 		
 		// #466, #543, #545, #589
-		$update['items'][] = 'js/admin.js (remove)';
+		$update['delete'][] = 'js/admin.js (remove)';
 		// #466, #579, #589
-		$update['items'][] = 'js/admin.min.js (remove)';
+		$update['delete'][] = 'js/admin.min.js (remove)';
 		// #543, #544, #545, #546, #573, #578, #589
 		$update['items'][] = 'js/main.js';
 		// #574, #578, #589
@@ -1267,7 +1267,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		// #463, #557, #561, #562
 		$update['items'][] = 'modules/b8/';
 		// #511, #518, #559
-		$update['items'][] = 'modules/bad-behavior/ (remove)';
+		$update['delete'][] = 'modules/bad-behavior/ (remove)';
 		// #581
 		$update['items'][] = 'modules/geshi/';
 		// #498, #555, #583
@@ -1280,11 +1280,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['items'][] = 'modules/';
 		
 		// #589
-		$update['items'][] = 'themes/default/images/backup.png (remove)';
+		$update['delete'][] = 'themes/default/images/backup.png (remove)';
 		// #612
-		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		// #612
-		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		// #611
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
 		// #470, #489, #575, #589, #612, #645, #652, #656, #659
@@ -1353,7 +1353,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['items'][] = 'themes/default/style.min.css';
 		$update['items'][] = 'themes/default/';
 		
-		$update['items'] = reorderUpgradeFiles($update['items']);
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
 
@@ -1543,9 +1543,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$update['items'][] = 'index.php';
 		
 		// #543, #545, #589
-		$update['items'][] = 'js/admin.js (remove)';
+		$update['delete'][] = 'js/admin.js (remove)';
 		// #579, #589
-		$update['items'][] = 'js/admin.min.js (remove)';
+		$update['delete'][] = 'js/admin.min.js (remove)';
 		// #543, #544, #545, #546, #573, #578, #589
 		$update['items'][] = 'js/main.js';
 		// #574, #578, #589
@@ -1561,11 +1561,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$update['items'][] = 'modules/';
 		
 		// #589
-		$update['items'][] = 'themes/default/images/backup.png (remove)';
+		$update['delete'][] = 'themes/default/images/backup.png (remove)';
 		// #612
-		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		// #612
-		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		// #611
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
 		
@@ -1629,7 +1629,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$update['items'][] = 'themes/default/style.min.css';
 		$update['items'][] = 'themes/default/';
 		
-		$update['items'] = reorderUpgradeFiles($update['items']);
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
 
@@ -1766,8 +1766,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
@@ -1783,7 +1783,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		$update['items'][] = 'themes/default/style.css';
 		$update['items'][] = 'themes/default/style.min.css';
 		
-		$update['items'] = reorderUpgradeFiles($update['items']);
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
 
@@ -1920,8 +1920,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['items'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-		$update['items'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
@@ -1937,7 +1937,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		$update['items'][] = 'themes/default/style.css';
 		$update['items'][] = 'themes/default/style.min.css';
 		
-		$update['items'] = reorderUpgradeFiles($update['items']);
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
 
