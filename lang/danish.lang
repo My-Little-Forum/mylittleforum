@@ -1048,6 +1048,7 @@ update_submit =             'OK - Kør opdatering'
 update_successful =         'Databasen blev opdateret uden fejl.'
 update_items_note =         'Upload nu venligst de følgende filer/mapper fra den nye forum pakke (version [version]) på din server:'
 update_download =           'Hvis du endnu ikke har disse filer kan du downloade dem [[her]].'
+update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 
 [emails]
 email_subject =             'Svar til "[original_subject]"'

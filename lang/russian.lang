@@ -1063,6 +1063,7 @@ update_submit =                   'Выполнить'
 update_successful =               'База данных была успешно обновлена.'
 update_items_note =               'Теперь загрузите на ваш сервер следующие файлы и папки из нового пакета обновления форума (версии [version]):'
 update_download =                 'Если у вас ещё нет этих файлов, вы можете загрузить [[отсюда]].'
+update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 
 [emails]
 email_subject =                   'Ответ на "[original_subject]"'

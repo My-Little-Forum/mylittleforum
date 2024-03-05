@@ -1017,6 +1017,7 @@ update_submit =                   '執行更新'
 update_successful =               '資料庫已更新成功。'
 update_items_note =               '請立即上傳以下新壓縮檔內的檔案和資料夾 (版本為 [version]) 到您的伺服器中：'
 update_download =                 '若您還沒有這些檔案，可以從 [[here]] 下載。'
+update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 
 [emails]
 email_subject =                   '於 "[original_subject]" 的回覆'
