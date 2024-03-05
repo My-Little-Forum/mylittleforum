@@ -740,12 +740,21 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				
 				// changes in the new introduced tables
-				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
-				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				ADD KEY `B8_spam` (`spam`),
 				ADD KEY `B8_training_type` (`training_type`);");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
 				
 				
 				// changes in the user data table
@@ -1073,9 +1082,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				
 				// changes in the new introduced tables
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				ADD KEY `B8_spam` (`spam`),
 				ADD KEY `B8_training_type` (`training_type`);");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
 				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
@@ -1364,12 +1382,21 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				
 				// changes in the new introduced tables
-				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
-				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				ADD KEY `B8_spam` (`spam`),
 				ADD KEY `B8_training_type` (`training_type`);");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
 				
 				
 				// changes in the user data table
@@ -1624,6 +1651,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				
 				// changes in the new introduced tables
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
 				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
 				
@@ -1769,6 +1805,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				
 				// changes in the new introduced tables
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
 				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
 				
