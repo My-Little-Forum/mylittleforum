@@ -1,7 +1,7 @@
 <?php
 /******************************************************************************
 * my little forum                                                             *
-* update file to update from version 2.4.19.1 to version 2.5.*                *
+* update file to update from version 2.4.19 to version 2.5.*                  *
 *                                                                             *
 * Update instructions:                                                        *
 * - Load up this file into the directory "update"                             *
