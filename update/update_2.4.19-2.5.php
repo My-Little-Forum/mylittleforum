@@ -372,7 +372,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 						'bbcode_tex',
 						'flash_default_height',
 						'flash_default_width',
-						'user_area_public');");
+						'user_area_public',
+						'bad_behavior');");
 					
 					
 					// changes in the new introduced tables
@@ -738,11 +739,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 					('notify_inactive_users', '3'),
 					('link_open_target', '');");
 				
-				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
-				WHERE name = 'user_area_public';");
-				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
 					`bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
+				
+				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
+				WHERE name IN(
+					'user_area_public',
+					'bad_behavior');");
 				
 				
 				// changes in the new introduced tables
@@ -1093,6 +1096,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 					('link_open_target', '');");
 				
 				
+				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
+				WHERE name = 'bad_behavior';");
+				
 				// changes in the new introduced tables
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1398,6 +1404,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
 				`bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
 				
+				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
+				WHERE name = 'bad_behavior';");
+				
 				
 				// changes in the new introduced tables
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
@@ -1582,6 +1591,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		
 		$update['items'][] = 'lang/';
 		
+		$update['delete'][] = 'modules/bad-behavior (remove)';
 		$update['items'][] = 'modules/';
 		
 		// #589
@@ -1673,6 +1683,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
 				
+				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
+				WHERE name = 'bad_behavior';");
+				
 				
 				// changes in the new introduced tables
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
@@ -1796,6 +1809,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		
 		$update['items'][] = 'lang/';
 		
+		$update['delete'][] = 'modules/bad-behavior (remove)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
@@ -1833,6 +1847,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
 				
+				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
+				WHERE name = 'bad_behavior';");
+				
 				
 				// changes in the new introduced tables
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
@@ -1956,6 +1973,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		
 		$update['items'][] = 'lang/';
 		
+		$update['delete'][] = 'modules/bad-behavior (remove)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
