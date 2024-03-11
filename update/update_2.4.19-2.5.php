@@ -740,7 +740,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 					('link_open_target', '');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
-					`bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
+				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+				WHERE name = 'bbcode_latex_uri';");
 				
 				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
 				WHERE name IN(
@@ -1095,6 +1096,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 					('notify_inactive_users', '3'),
 					('link_open_target', '');");
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
+				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+				WHERE name = 'bbcode_latex_uri';");
 				
 				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
 				WHERE name = 'bad_behavior';");
@@ -1402,7 +1406,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 					('link_open_target', '');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
-				`bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
+				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+				WHERE name = 'bbcode_latex_uri';");
 				
 				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
 				WHERE name = 'bad_behavior';");
@@ -1681,7 +1686,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
+				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
+				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+				WHERE name = 'bbcode_latex_uri';");
 				
 				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
 				WHERE name = 'bad_behavior';");
@@ -1845,7 +1852,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET `bbcode_latex_uri` = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';");
+				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
+				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+				WHERE name = 'bbcode_latex_uri';");
 				
 				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
 				WHERE name = 'bad_behavior';");
