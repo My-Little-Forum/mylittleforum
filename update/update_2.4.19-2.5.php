@@ -1977,3 +1977,155 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 	}
 }
 
+// upgrade from version 20220803.1 (2.5.4)
+if (empty($update['errors']) && in_array($settings['version'], array('20220803.1'))) {
+	/**
+	 * From here on everything can be done as a transaction in one step
+	 */
+	if (empty($update['errors'])) {
+		mysqli_autocommit($connid, false);
+		if (empty($update['errors'])) {
+			mysqli_begin_transaction($connid);
+			try {
+				// changes in the settings table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
+				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+				WHERE name = 'bbcode_latex_uri';");
+				
+				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
+				WHERE name = 'bad_behavior';");
+				
+				
+				// changes in the new introduced tables
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_wordlist_table'] . "`
+				CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '';");
+				
+				
+				// changes in the user data table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				
+				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
+				LIKE 'email_notification'");
+				if (mysqli_num_rows($rEN_exists) > 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+					DROP `email_notification`;");
+				}
+				
+				
+				// changes in the forum/entries table
+				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME LIKE 'user_%';");
+				if (mysqli_num_rows($rObsoleteIndexes) > 0) {
+					while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
+						mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ."
+						ON " . $db_settings['userdata_table'] .";");
+					}
+				}
+				
+				
+				// changes in the bookmark tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the entry tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['entry_tags_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the login control table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the read entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['read_status_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the smilies table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the subscriptions table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the temporary information table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['temp_infos_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				
+				// changes in the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				
+				// changes in the user online table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_commit($connid);
+			} catch (mysqli_sql_exception $exception) {
+				mysqli_rollback($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				//throw $exception;
+			}
+		}
+		mysqli_autocommit($connid, true);
+	}
+	
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		}
+	}
+	
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/user.inc.php';
+		
+		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'lang/';
+		
+		$update['delete'][] = 'modules/bad-behavior (remove)';
+		$update['items'][] = 'modules/';
+		
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['items'][] = 'themes/default/';
+		
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
+	}
+}
+
