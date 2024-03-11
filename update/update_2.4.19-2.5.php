@@ -1811,28 +1811,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
+		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
 		
 		$update['items'][] = 'lang/';
 		
 		$update['delete'][] = 'modules/bad-behavior (remove)';
+		$update['items'][] = 'modules/';
+		
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
-		$update['items'][] = 'themes/default/images/keep_eye_on.png';
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
-		$update['items'][] = 'themes/default/main.tpl';
-		$update['items'][] = 'themes/default/style.css';
-		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -1977,28 +1967,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
+		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
 		
 		$update['items'][] = 'lang/';
 		
 		$update['delete'][] = 'modules/bad-behavior (remove)';
+		$update['items'][] = 'modules/';
+		
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
-		$update['items'][] = 'themes/default/images/keep_eye_on.png';
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/posting_report_spam.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
-		$update['items'][] = 'themes/default/main.tpl';
-		$update['items'][] = 'themes/default/style.css';
-		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
