@@ -1438,15 +1438,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 				ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
 				
-				
-				// changes in the forum/entries table
-				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
-				LIKE 'email_notification'");
-				if (mysqli_num_rows($rEN_exists) > 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
-					DROP `email_notification`;");
-				}
-				
 				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
 				FROM information_schema.STATISTICS 
 				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."' AND
@@ -1456,6 +1447,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 					while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
 						if (!@mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ." ON " . $db_settings['userdata_table'] .";")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 					}
+				}
+				
+				
+				// changes in the forum/entries table
+				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
+				LIKE 'email_notification'");
+				if (mysqli_num_rows($rEN_exists) > 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+					DROP `email_notification`;");
 				}
 				
 				
@@ -1868,15 +1868,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				
-				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
-				LIKE 'email_notification'");
-				if (mysqli_num_rows($rEN_exists) > 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
-					DROP `email_notification`;");
-				}
-				
-				
-				// changes in the forum/entries table
 				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
 				FROM information_schema.STATISTICS 
 				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
@@ -1887,6 +1878,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 						mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ."
 						ON " . $db_settings['userdata_table'] .";");
 					}
+				}
+				
+				
+				// changes in the forum/entries table
+				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
+				LIKE 'email_notification'");
+				if (mysqli_num_rows($rEN_exists) > 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+					DROP `email_notification`;");
 				}
 				
 				
@@ -2024,15 +2024,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				
-				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
-				LIKE 'email_notification'");
-				if (mysqli_num_rows($rEN_exists) > 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
-					DROP `email_notification`;");
-				}
-				
-				
-				// changes in the forum/entries table
 				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
 				FROM information_schema.STATISTICS 
 				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
@@ -2043,6 +2034,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 						mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ."
 						ON " . $db_settings['userdata_table'] .";");
 					}
+				}
+				
+				
+				// changes in the forum/entries table
+				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
+				LIKE 'email_notification'");
+				if (mysqli_num_rows($rEN_exists) > 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+					DROP `email_notification`;");
 				}
 				
 				
