@@ -753,6 +753,26 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				$rIndex_akismet_spam = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'akismet_spam';");
+				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `akismet_spam` (`spam`);");
+				}
+				
+				$rIndex_spam_check_status = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'spam_check_status';");
+				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `spam_check_status` (`spam`);");
+				}
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
@@ -1107,6 +1127,26 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				$rIndex_akismet_spam = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'akismet_spam';");
+				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `akismet_spam` (`spam`);");
+				}
+				
+				$rIndex_spam_check_status = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'spam_check_status';");
+				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `spam_check_status` (`spam`);");
+				}
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
@@ -1417,6 +1457,26 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				$rIndex_akismet_spam = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'akismet_spam';");
+				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `akismet_spam` (`spam`);");
+				}
+				
+				$rIndex_spam_check_status = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'spam_check_status';");
+				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `spam_check_status` (`spam`);");
+				}
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
@@ -1698,6 +1758,26 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				$rIndex_akismet_spam = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'akismet_spam';");
+				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `akismet_spam` (`spam`);");
+				}
+				
+				$rIndex_spam_check_status = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'spam_check_status';");
+				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `spam_check_status` (`spam`);");
+				}
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
@@ -1854,6 +1934,26 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				$rIndex_akismet_spam = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'akismet_spam';");
+				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `akismet_spam` (`spam`);");
+				}
+				
+				$rIndex_spam_check_status = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'spam_check_status';");
+				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `spam_check_status` (`spam`);");
+				}
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
@@ -2009,6 +2109,26 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				// changes in the new introduced tables
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				$rIndex_akismet_spam = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'akismet_spam';");
+				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `akismet_spam` (`spam`);");
+				}
+				
+				$rIndex_spam_check_status = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+				AND INDEX_NAME = 'spam_check_status';");
+				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `spam_check_status` (`spam`);");
+				}
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['b8_rating_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
