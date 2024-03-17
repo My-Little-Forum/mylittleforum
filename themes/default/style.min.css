@@ -205,6 +205,8 @@ ul.openthread{clear:both}
 span.userdata{margin:0;padding:0}
 .online{color:red}
 .underline{text-decoration:underline}
+ins {font-style:italic}
+del,s {color:#555}
 label.main{font-weight:700}
 label.active{color:#000}
 label.inactive{color:gray!important}
