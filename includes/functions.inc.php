@@ -953,12 +953,14 @@ function html_format($string){
 		$bbcode->addCode ('b', 'simple_replace', null, array ('start_tag' => '<strong>', 'end_tag' => '</strong>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('i', 'simple_replace', null, array ('start_tag' => '<em>', 'end_tag' => '</em>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('u', 'simple_replace', null, array ('start_tag' => '<span class="underline">', 'end_tag' => '</span>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
+		$bbcode->addCode ('s', 'simple_replace', null, array ('start_tag' => '<s>', 'end_tag' => '</s>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('url', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('link', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('msg', 'usecontent?', 'do_bbcode_msg', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ('link'));
+		$bbcode->addCode ('ins', 'simple_replace', null, array ('start_tag' => '<ins>', 'end_tag' => '</ins>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
+		$bbcode->addCode ('del', 'simple_replace', null, array ('start_tag' => '<del>', 'end_tag' => '</del>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		// $bbcode->setOccurrenceType ('img', 'image');
 		// $bbcode->setMaxOccurrences ('image', 2);
-		// $bbcode->addCode ('code', 'simple_replace', null, array ('start_tag' => '<pre><code>', 'end_tag' => '</code></pre>'), 'code', array ('block','quote'), array ());
 		
 		$bbcode->addParser ('list', 'bbcode_stripcontents');
 		$bbcode->addCode ('list', 'simple_replace', null, array ('start_tag' => '<ul>', 'end_tag' => '</ul>'), 'list', array ('block', 'listitem', 'quote', 'rtl', 'ltr'), array ());
@@ -1028,9 +1030,12 @@ function signature_format($string) {
 		$bbcode->addCode ('b', 'simple_replace', null, array ('start_tag' => '<strong>', 'end_tag' => '</strong>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('i', 'simple_replace', null, array ('start_tag' => '<em>', 'end_tag' => '</em>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('u', 'simple_replace', null, array ('start_tag' => '<span class="underline">', 'end_tag' => '</span>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
+		$bbcode->addCode ('s', 'simple_replace', null, array ('start_tag' => '<s>', 'end_tag' => '</s>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('url', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('link', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('color', 'callback_replace', 'do_bbcode_color', array ('usecontent_param' => 'default'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
+		$bbcode->addCode ('ins', 'simple_replace', null, array ('start_tag' => '<ins>', 'end_tag' => '</ins>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
+		$bbcode->addCode ('del', 'simple_replace', null, array ('start_tag' => '<del>', 'end_tag' => '</del>'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		// $bbcode->setOccurrenceType ('img', 'image');
 		// $bbcode->setMaxOccurrences ('image', 2);
 		if($settings['bbcode_img'] == 1) {
@@ -1060,9 +1065,12 @@ function email_format($string) {
 		$bbcode->addCode ('b', 'simple_replace', null, array ('start_tag' => '*', 'end_tag' => '*'), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('i', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('u', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
+		$bbcode->addCode ('s', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		$bbcode->addCode ('url', 'usecontent?', 'do_bbcode_url_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('link', 'usecontent?', 'do_bbcode_url_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ('link'));
 		$bbcode->addCode ('msg', 'usecontent?', 'do_bbcode_msg_email', array ('usecontent_param' => 'default'), 'link', array ('listitem', 'block', 'inline', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ('link'));
+		$bbcode->addCode ('ins', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
+		$bbcode->addCode ('del', 'simple_replace', null, array ('start_tag' => '', 'end_tag' => ''), 'inline', array ('listitem', 'block', 'inline', 'link', 'quote', 'pre', 'monospace', 'rtl', 'ltr'), array ());
 		if($settings['bbcode_img'] == 1) {
 			$bbcode->addCode ('img', 'usecontent', 'do_bbcode_img_email', array (), 'image', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		}
