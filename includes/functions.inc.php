@@ -84,20 +84,18 @@ function cookie_options($expires = 0, $path = '', $domain = '', $secure = false,
 /**
  * fetches settings from database
  */
-function get_settings()
- {
-  global $connid, $db_settings;
-  $qGetSettings = "SELECT name, value FROM " . $db_settings['settings_table'] . "
-  UNION SELECT name, value FROM " . $db_settings['temp_infos_table'] . "
-  WHERE name IN('access_permission_checks', 'version')";
-  $result = mysqli_query($connid, $qGetSettings) or raise_error('database_error',mysqli_error($connid));
-  while($line = mysqli_fetch_array($result))
-   {
-    $settings[$line['name']] = $line['value'];
-   }
-  mysqli_free_result($result);
-  return $settings;
- }
+function get_settings() {
+	global $connid, $db_settings;
+	$qGetSettings = "SELECT name, value FROM ". $db_settings['settings_table'] ."
+	UNION SELECT name, value FROM ". $db_settings['temp_infos_table'] ."
+	WHERE name IN('access_permission_checks', 'version')";
+	$result = mysqli_query($connid, $qGetSettings) or raise_error('database_error', mysqli_error($connid));
+	while ($line = mysqli_fetch_array($result)) {
+		$settings[$line['name']] = $line['value'];
+	}
+	mysqli_free_result($result);
+	return $settings;
+}
 
 /**
  * performs daily actions (clearing up database etc.)
