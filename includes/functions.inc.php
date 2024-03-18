@@ -55,35 +55,31 @@ function log_out($user_id, $mode = '') {
 /**
  * counts failed logins in order to prevent brute-force attacs
  */
-function count_failed_logins()
- {
-  global $db_settings, $connid;
-  $result = @mysqli_query($connid, "SELECT logins FROM ".$db_settings['login_control_table']." WHERE ip='".mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"])."'");
-  if(mysqli_num_rows($result)==1)
-   {
-    @mysqli_query($connid, "UPDATE ".$db_settings['login_control_table']." SET logins=logins+1 WHERE ip='".mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"])."'");
-   }
-  else
-   {
-    @mysqli_query($connid, "INSERT INTO ".$db_settings['login_control_table']." (time,ip,logins) VALUES (NOW(),'".mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"])."',1)");
-   }
-  mysqli_free_result($result);
- }
- 
+function count_failed_logins() {
+	global $db_settings, $connid;
+	$result = @mysqli_query($connid, "SELECT logins FROM ". $db_settings['login_control_table'] ." WHERE ip = '". mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) ."'");
+	if (mysqli_num_rows($result) == 1) {
+		@mysqli_query($connid, "UPDATE ". $db_settings['login_control_table'] ." SET logins = logins+1 WHERE ip = '". mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) ."'");
+	} else {
+		@mysqli_query($connid, "INSERT INTO ". $db_settings['login_control_table'] ." (time, ip, logins) VALUES (NOW(),'". mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) ."',1)");
+	}
+	mysqli_free_result($result);
+}
+
 /**
  * Returns the (default) cookie options
  *
  */ 
 function cookie_options($expires = 0, $path = '', $domain = '', $secure = false, $httponly = false, $samesite = 'Strict') {
 	return array (
-		'expires' => $expires, 
-		'path' => $path, 
+		'expires' => $expires,
+		'path' => $path,
 		'domain' => $domain,
-		'secure' => $secure,  
+		'secure' => $secure,
 		'httponly' => $httponly,
 		'samesite' => $samesite
 	);
-};	
+}
 
 /**
  * fetches settings from database
