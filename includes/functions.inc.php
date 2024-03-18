@@ -429,10 +429,9 @@ function make_link($string) {
  * @param string $string
  * @return string
  */
-function convertlinebreaks($string)
- {
-  return preg_replace ("/\015\012|\015|\012/", "\n", $string);
- }
+function convertlinebreaks($string) {
+	return preg_replace ("/\015\012|\015|\012/", "\n", $string);
+}
 
 /**
  * strips everything except new line symbol
