@@ -415,14 +415,13 @@ function pagination($page_count,$page,$browse_range=3,$show_last=1)
  * @param string $string
  * @return string
  */
-function make_link($string)
- {
-  $string = ' ' . $string;
-  $string = preg_replace_callback("#(^|[\n ])([\w]+?://.*?[^ \"\n\r\t<]*)#is", "shorten_link", $string);
-  $string = preg_replace("#(^|[\n ])((www|ftp)\.[\w\-]+\.[\w\-.\~]+(?:/[^ \"\t\n\r<]*)?)#is", "$1<a href=\"http://$2\">$2</a>", $string);
-  $string = my_substr($string, 1, my_strlen($string, CHARSET), CHARSET);
-  return $string;
- }
+function make_link($string) {
+	$string = ' ' . $string;
+	$string = preg_replace_callback("#(^|[\n ])([\w]+?://.*?[^ \"\n\r\t<]*)#is", "shorten_link", $string);
+	$string = preg_replace("#(^|[\n ])((www|ftp)\.[\w\-]+\.[\w\-.\~]+(?:/[^ \"\t\n\r<]*)?)#is", "$1<a href=\"http://$2\">$2</a>", $string);
+	$string = my_substr($string, 1, my_strlen($string, CHARSET), CHARSET);
+	return $string;
+}
 
 /**
  * unifies line breaks
