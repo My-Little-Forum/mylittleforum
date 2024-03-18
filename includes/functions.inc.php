@@ -306,19 +306,16 @@ function get_category_ids($categories) {
  *
  * @return array
  */
-function filter_category_selection($categories, $allowed_categories)
- {
-  if(!is_array($allowed_categories)) return array();
-  $filtered_categories = array();
-  foreach($categories as $category)
-   {
-    if(in_array($category,$allowed_categories))
-     {
-      $filtered_categories[] = $category;
-     }
-   }
-  return $filtered_categories;
- }
+function filter_category_selection($categories, $allowed_categories) {
+	if (!is_array($allowed_categories)) return array();
+	$filtered_categories = array();
+	foreach ($categories as $category) {
+		if (in_array($category, $allowed_categories)) {
+			$filtered_categories[] = $category;
+		}
+	}
+	return $filtered_categories;
+}
 
 /**
  * saves the status "entry read" to the database table "mlf2_read_entries"
