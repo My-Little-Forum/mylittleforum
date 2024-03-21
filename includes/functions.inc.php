@@ -422,10 +422,9 @@ function convertlinebreaks($string) {
  * @param string $string
  * @return string
  */
-function bbcode_stripcontents($string)
- {
-  return preg_replace ("/[^\n]/", '', $string);
- }
+function bbcode_stripcontents($string) {
+	return preg_replace("/[^\n]/", '', $string);
+}
 
 /**
  * makes inlinecode replacements
