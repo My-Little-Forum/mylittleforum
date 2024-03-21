@@ -485,13 +485,12 @@ function is_valid_email($email) {
  * @param string $string
  * @return bool
  */
-function contains_invalid_string($string)
- {
-  $invalid_strings = array('<','>','\'','"','expression(');
-  if(preg_match('/^(javascript|file|data|jar)\:/i', $string)) return true;
-  foreach($invalid_strings as $invalid_string) if(strpos(strtolower($string), $invalid_string)!==false) return true;
-  return false;
- }
+function contains_invalid_string($string) {
+	$invalid_strings = array('<', '>', '\'', '"', 'expression(');
+	if (preg_match('/^(javascript|file|data|jar)\:/i', $string)) return true;
+	foreach ($invalid_strings as $invalid_string) if (strpos(strtolower($string), $invalid_string) !== false) return true;
+	return false;
+}
 
 /**
  * processes BBCode links
