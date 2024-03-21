@@ -453,18 +453,15 @@ function parse_monospace($string)
  * @param string $url
  * @return bool
  */
-function is_valid_url($url)
- {
-  if(!preg_match("/^.+\..+$/", $url))
-   {
-    return false;
-   }
-  if(contains_invalid_string($url))
-   {
-    return false;
-   }
-  return true;
- }
+function is_valid_url($url) {
+	if (!preg_match("/^.+\..+$/", $url)) {
+		return false;
+	}
+	if (contains_invalid_string($url)) {
+		return false;
+	}
+	return true;
+}
 
 /**
  * checks if a email address is valid
