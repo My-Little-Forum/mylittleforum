@@ -495,30 +495,25 @@ function contains_invalid_string($string) {
 /**
  * processes BBCode links
  */
-function do_bbcode_url ($action, $attributes, $content, $params, $node_object)
- {
-  // 1) the code is validated
-  if ($action == 'validate')
-   {
-    // the code has been eneterd like this: [url]http://.../[/url]
-    if (!isset($attributes['default']))
-     {
-      // is it a valid url?
-      return is_valid_url ($content);
-     }
-    // the code has been eneterd like this: [url=http://.../]Text[/url]
-    // is it a valid url?
-    return is_valid_url ($attributes['default']);
-   }
-  // 2) the code is outputed
-  else
-   {
-    // the code has been eneterd like this: [url]http://.../[/url]
-    if(!isset ($attributes['default'])) return '<a href="'.htmlspecialchars($content).'">'.htmlspecialchars(shorten_url($content)).'</a>';
-    // the code has been eneterd like this: [url=http://.../]Text[/url]
-    return '<a href="'.htmlspecialchars ($attributes['default']).'">'.$content.'</a>';
-   }
- }
+function do_bbcode_url ($action, $attributes, $content, $params, $node_object) {
+	if ($action == 'validate') {
+		// 1) the code is validated
+		// the code has been entered like this: [url]http://.../[/url]
+		if (!isset($attributes['default'])) {
+			// is it a valid url?
+			return is_valid_url($content);
+		}
+		// the code has been entered like this: [url=http://.../]Text[/url]
+		// is it a valid url?
+		return is_valid_url ($attributes['default']);
+	} else {
+		// 2) the code is outputed
+		// the code has been entered like this: [url]http://.../[/url]
+		if (!isset ($attributes['default'])) return '<a href="'.htmlspecialchars($content).'">'.htmlspecialchars(shorten_url($content)).'</a>';
+		// the code has been entered like this: [url=http://.../]Text[/url]
+		return '<a href="'.htmlspecialchars ($attributes['default']).'">'.$content.'</a>';
+	}
+}
 
 /**
  * processes BBCode message links
