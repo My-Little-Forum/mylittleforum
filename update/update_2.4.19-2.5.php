@@ -20,39 +20,6 @@ $update['version'] = array('2.4.19', '2.4.19.1', '2.4.20', '2.4.21', '2.4.22', '
 $update['download_url'] = 'https://github.com/ilosuna/mylittleforum/releases/latest';
 $update['message'] = '';
 
-/**
- * comparision of version numbers
- *
- * @param array
- * @return bool
- */
-function compare_versions($versions) {
-	if (!is_array($versions)) return false;
-	if (!array_key_exists('old', $versions)) return false;
-	if (!array_key_exists('new', $versions)) return false;
-	$test['old'] = explode('.', $versions['old']);
-	$test['new'] = explode('.', $versions['new']);
-	$cntOld = count($test['old']);
-	$cntNew = count($test['new']);
-	if ($cntOld < $cntNew) {
-		$c = $cntNew - $cntOld;
-		for ($i = 0; $i < $c; $i++) {
-			$test['old'][] = '0';
-		}
-	}
-	if ($cntNew < $cntOld) {
-		$c = $cntOld - $cntNew;
-		for ($i = 0; $i < $c; $i++) {
-			$test['new'][] = '0';
-		}
-	}
-	$c = count($test['old']);
-	for ($i = 0; $i < $c; $i++) {
-		if ($test['new'][$i] > $test['old'][$i]) return true;
-	}
-	return false;
-}
-
 function reorderUpgradeFiles($update_files) {
 	// Remove duplicate entries in array
 	$update_files = array_unique($update_files);
@@ -168,7 +135,7 @@ if (empty($update['errors'])) {
 	$newVersion = file_get_contents('config/VERSION');
 	if (empty($newVersion)) die('Error in line '.__LINE__.': No value for the script version in the file config/VERSION.');
 	else $newVersion = trim($newVersion);
-	if (compare_versions(array('old' => $settings['version'], 'new' => $newVersion)) !== true) {
+	if (version_compare($settings['version'], $newVersion, '<') !== true) {
 		$update['errors'][] = 'Error in line '.__LINE__.': The version you want to install (see string in config/VERSION) must be greater than the current installed version. Current version: '. htmlspecialchars($settings['version']) .', version you want to install: '.  htmlspecialchars($newVersion) .'. Please check also if you uploaded the actual file version of config/VERSION. Search therefore for the file date and compare it with the date from the installation package.';
 	}
 	if (!in_array($settings['version'], $update['version'])) {
