@@ -1,5 +1,5 @@
 ################################################################################
-# Danish language file for my little forum 2                                    #
+# Danish language file for my little forum 2                                   #
 #------------------------------------------------------------------------------#
 # - strings to display on the site or an e-mail are enclosed in single quotes  #
 # - don't modify or translate the section names like "[general]" or "[entry]"! #
@@ -10,8 +10,8 @@
 # - strings that span more than one line (E-Mail texts) are enclosed in triple #
 #   quotes (e.g. """Hi,                                                        #
 #   how are you?""")                                                           #
-# - more details about the file format:                                         #
-#   http://www.smarty.net/docs/en/config.files.tpl                               #
+# - more details about the file format:                                        #
+#   http://www.smarty.net/docs/en/config.files.tpl                             #
 #------------------------------------------------------------------------------#
 #                                                                              #
 # Translated by Tommy Nilsson - tommy@jernbanen.dk                             #
