@@ -413,7 +413,7 @@ function make_link($string) {
  * @return string
  */
 function convertlinebreaks($string) {
-	return preg_replace ("/\015\012|\015|\012/", "\n", $string);
+	return preg_replace("/\015\012|\015|\012/", "\n", $string);
 }
 
 /**
