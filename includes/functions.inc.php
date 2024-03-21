@@ -429,13 +429,12 @@ function bbcode_stripcontents($string) {
 /**
  * makes inlinecode replacements
  */
-function parse_inlinecode($string)
- {
-  $string = nl2br(htmlspecialchars($string));
-  $string = str_replace("  ", "&nbsp; ", $string);
-  $string = str_replace("  ", " &nbsp;", $string);
-  return $string;
- }
+function parse_inlinecode($string) {
+	$string = nl2br(htmlspecialchars($string));
+	$string = str_replace("  ", "&nbsp; ", $string);
+	$string = str_replace("  ", " &nbsp;", $string);
+	return $string;
+}
 
 /**
  * makes inlinecode replacements
