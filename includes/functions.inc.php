@@ -665,28 +665,21 @@ function do_bbcode_msg_email($action, $attributes, $content, $params, $node_obje
 /**
  * processes BBCode img for e-mail notifications (plain text)
  */
-function do_bbcode_img_email ($action, $attributes, $content, $params, $node_object)
- {
-  if($action == 'validate')
-   {
-    if(!is_valid_url($content))
-     {
-      return false;
-     }
-    else
-     {
-      // [img]image[/img]
-      if(!isset($attributes['default'])) return true;
-      // [img=xxx]image[/img]
-      elseif(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right' || $attributes['default']=='thumbnail' || $attributes['default']=='thumbnail-left' || $attributes['default']=='thumbnail-right')) return true;
-      else return false;
-     }
-   }
-  else
-   {
-    return '['.$content.']';
-   }
- }
+function do_bbcode_img_email ($action, $attributes, $content, $params, $node_object) {
+	if ($action == 'validate') {
+		if (!is_valid_url($content)) {
+			return false;
+		} else {
+			// [img]image[/img]
+			if(!isset($attributes['default'])) return true;
+			// [img=xxx]image[/img]
+			else if(isset($attributes['default']) && ($attributes['default']=='left' || $attributes['default']=='right' || $attributes['default']=='thumbnail' || $attributes['default']=='thumbnail-left' || $attributes['default']=='thumbnail-right')) return true;
+			else return false;
+		}
+	} else {
+		return '['.$content.']';
+	}
+}
 
 /**
  * processes BBCode tex for e-mail notifications (plain text)
