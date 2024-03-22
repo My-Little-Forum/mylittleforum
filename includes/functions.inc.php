@@ -618,22 +618,20 @@ function do_bbcode_color($action, $attributes, $content, $params, $node_object) 
 /**
  * processes BBCode size
  */
-function do_bbcode_size($action, $attributes, $content, $params, $node_object)
- {
-  // font size definitions:
-  // $size['tiny'] = 'x-small';
-  $size['small'] = 'smaller';
-  $size['large'] = 'large';
-  // $size['huge'] = 'x-large';
-  // end font size definitions
-
-  if($action == 'validate')
-   {
-    if(isset($size[$attributes['default']])) return true;
-    else return false;
-   }
-  return '<span style="font-size:'.$size[$attributes['default']].';">'.$content.'</span>';
- }
+function do_bbcode_size($action, $attributes, $content, $params, $node_object) {
+	// font size definitions:
+	// $size['tiny'] = 'x-small';
+	$size['small'] = 'smaller';
+	$size['large'] = 'large';
+	// $size['huge'] = 'x-large';
+	// end font size definitions
+	
+	if ($action == 'validate') {
+		if (isset($size[$attributes['default']])) return true;
+		else return false;
+	}
+	return '<span style="font-size:'.$size[$attributes['default']].';">'.$content.'</span>';
+}
 
 // processes BBCode links for e-mail notifications (plain text)
 function do_bbcode_url_email($action, $attributes, $content, $params, $node_object)
