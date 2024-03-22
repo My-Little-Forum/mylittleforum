@@ -437,17 +437,6 @@ function parse_inlinecode($string) {
 }
 
 /**
- * makes inlinecode replacements
- */
-function parse_monospace($string)
- {
-  $string = nl2br(htmlspecialchars($string));
-  $string = str_replace("  ", "&nbsp; ", $string);
-  $string = str_replace("  ", " &nbsp;", $string);
-  return $string;
- }
-
-/**
  * checks if a url is valid
  *
  * @param string $url
@@ -952,7 +941,7 @@ function html_format($string){
 			$bbcode->addCode ('code', 'usecontent', 'do_bbcode_code', array (), 'code', array ('block', 'quote', 'rtl', 'ltr'), array ());
 			$bbcode->setCodeFlag ('code', 'paragraph_type', BBCODE_PARAGRAPH_BLOCK_ELEMENT);
 			$bbcode->addParser ('inlinecode', 'parse_inlinecode');
-			$bbcode->addParser ('monospace', 'parse_monospace');
+			$bbcode->addParser ('monospace', 'parse_inlinecode');
 			$bbcode->addCode('inlinecode', 'simple_replace', null, array ('start_tag' => '<code>', 'end_tag' => '</code>'), 'inlinecode', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 			$bbcode->addCode('monospace', 'simple_replace', null, array ('start_tag' => '<code class="monospace">', 'end_tag' => '</code>'), 'monospace', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 			$bbcode->addCode('pre', 'simple_replace', null, array ('start_tag' => '<pre>', 'end_tag' => '</pre>'), 'pre', array ('block', 'quote', 'rtl', 'ltr'), array ());
