@@ -633,20 +633,18 @@ function do_bbcode_size($action, $attributes, $content, $params, $node_object) {
 	return '<span style="font-size:'.$size[$attributes['default']].';">'.$content.'</span>';
 }
 
-// processes BBCode links for e-mail notifications (plain text)
-function do_bbcode_url_email($action, $attributes, $content, $params, $node_object)
- {
-  if ($action == 'validate')
-   {
-    if(!isset ($attributes['default'])) return is_valid_url ($content);
-    return is_valid_url ($attributes['default']);
-   }
-  else
-   {
-    if(!isset ($attributes['default'])) return $content;
-    return $content.' --> '.$attributes['default'];
-   }
- }
+/**
+ * processes BBCode links for e-mail notifications (plain text)
+ */
+function do_bbcode_url_email($action, $attributes, $content, $params, $node_object) {
+	if ($action == 'validate') {
+		if (!isset($attributes['default'])) return is_valid_url($content);
+		return is_valid_url($attributes['default']);
+	} else {
+		if (!isset($attributes['default'])) return $content;
+		return $content.' --> '.$attributes['default'];
+	}
+}
 
 // processes BBCode msg code for e-mail notifications (plain text)
 function do_bbcode_msg_email($action, $attributes, $content, $params, $node_object)
