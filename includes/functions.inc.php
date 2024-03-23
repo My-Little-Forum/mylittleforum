@@ -684,18 +684,14 @@ function do_bbcode_img_email ($action, $attributes, $content, $params, $node_obj
 /**
  * processes BBCode tex for e-mail notifications (plain text)
  */
-function do_bbcode_tex_email($action, $attributes, $content, $params, $node_object)
- {
-  global $settings;
-  if ($action == 'validate')
-   {
-    return true;
-   }
-  else
-   {
-    return $content;
-   }
- }
+function do_bbcode_tex_email($action, $attributes, $content, $params, $node_object) {
+	global $settings;
+	if ($action == 'validate') {
+		return true;
+	} else {
+		return $content;
+	}
+}
 
 /**
  * processes BBCode colors for e-mail notifications (plain text)
