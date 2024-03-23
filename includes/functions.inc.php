@@ -704,11 +704,10 @@ function do_bbcode_color_email($action, $attributes, $content, $params, $node_ob
 /**
  * processes BBCode sizes for e-mail notifications (plain text)
  */
-function do_bbcode_size_email($action, $attributes, $content, $params, $node_object)
- {
-  if($action == 'validate') return true;
-  return $content;
- }
+function do_bbcode_size_email($action, $attributes, $content, $params, $node_object) {
+	if ($action == 'validate') return true;
+	return $content;
+}
 
 /**
  * processes bbcode code
