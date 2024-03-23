@@ -696,11 +696,10 @@ function do_bbcode_tex_email($action, $attributes, $content, $params, $node_obje
 /**
  * processes BBCode colors for e-mail notifications (plain text)
  */
-function do_bbcode_color_email($action, $attributes, $content, $params, $node_object)
- {
-  if($action == 'validate') return true;
-  return $content;
- }
+function do_bbcode_color_email($action, $attributes, $content, $params, $node_object) {
+	if ($action == 'validate') return true;
+	return $content;
+}
 
 /**
  * processes BBCode sizes for e-mail notifications (plain text)
