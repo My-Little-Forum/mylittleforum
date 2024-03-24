@@ -1106,18 +1106,17 @@ function smilies($string)
 /**
  * counts the users that are online
  */
-function user_online($user_online_period=10)
- {
-  global $connid, $db_settings, $settings;
-  if (isset($_SESSION[$settings['session_prefix'].'user_id'])) $user_id = $_SESSION[$settings['session_prefix'].'user_id']; else $user_id = 0;
-  $diff = TIMESTAMP-($user_online_period*60);
-  if (isset($_SESSION[$settings['session_prefix'].'user_id'])) $ip = "uid_".$_SESSION[$settings['session_prefix'].'user_id'];
-  else $ip = $_SERVER['REMOTE_ADDR'];
-  @mysqli_query($connid, "DELETE FROM ".$db_settings['useronline_table']." WHERE time < ".$diff);
-  list($is_online) = @mysqli_fetch_row(@mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['useronline_table']." WHERE ip= '".$ip."'"));
-  if ($is_online > 0) @mysqli_query($connid, "UPDATE ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', user_id='".$user_id."' WHERE ip='".$ip."'");
-  else @mysqli_query($connid, "INSERT INTO ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', ip='".$ip."', user_id='".$user_id."'");
- }
+function user_online($user_online_period = 10) {
+	global $connid, $db_settings, $settings;
+	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) $user_id = $_SESSION[$settings['session_prefix'].'user_id']; else $user_id = 0;
+	$diff = TIMESTAMP-($user_online_period * 60);
+	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) $ip = "uid_".$_SESSION[$settings['session_prefix'].'user_id'];
+	else $ip = $_SERVER['REMOTE_ADDR'];
+	@mysqli_query($connid, "DELETE FROM ".$db_settings['useronline_table']." WHERE time < ".$diff);
+	list($is_online) = @mysqli_fetch_row(@mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['useronline_table']." WHERE ip= '".$ip."'"));
+	if ($is_online > 0) @mysqli_query($connid, "UPDATE ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', user_id='".$user_id."' WHERE ip='".$ip."'");
+	else @mysqli_query($connid, "INSERT INTO ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', ip='".$ip."', user_id='".$user_id."'");
+}
 
 /**
  * checks strings for too long words
