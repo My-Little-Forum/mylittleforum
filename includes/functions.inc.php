@@ -1073,13 +1073,12 @@ function shorten_link($string) {
  * @param string $url
  * @return string
  */
-function shorten_url($url)
- {
-  global $settings;
-  if(strlen($url) > $settings['text_word_maxlength']) $url_short = my_substr($url, 0, $settings['text_word_maxlength']-3, CHARSET) . '...';
-  else $url_short = $url;
-  return $url_short;
- }
+function shorten_url($url) {
+	global $settings;
+	if (strlen($url) > $settings['text_word_maxlength']) $url_short = my_substr($url, 0, $settings['text_word_maxlength']-3, CHARSET) . '...';
+	else $url_short = $url;
+	return $url_short;
+}
 
 /**
  * replaces text smilies by images
