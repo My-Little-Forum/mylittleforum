@@ -28,6 +28,7 @@ define('IN_INDEX', true);
 define('LANG_DIR', 'lang');
 define('THEMES_DIR', 'themes');
 
+session_set_cookie_params(['samesite' => 'strict']);
 session_start();
 
 include('config/db_settings.php');
