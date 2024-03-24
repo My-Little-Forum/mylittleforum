@@ -1051,18 +1051,21 @@ function quote_reply($string) {
  * @param string $string
  * @return string
  */
-function shorten_link($string)
- {
-  global $settings;
-  if(is_array($string))
-   {
-    if(count($string) == 2) { $pre = ""; $url = $string[1]; }
-    else { $pre = $string[1]; $url = $string[2]; }
-    $shortened_url = $url;
-    if (strlen($url) > $settings['text_word_maxlength']) $shortened_url = my_substr($url, 0, $settings['text_word_maxlength']-3, CHARSET) . '...';
-    return $pre.'<a href="'.$url.'">'.$shortened_url.'</a>';
-   }
- }
+function shorten_link($string) {
+	global $settings;
+	if (is_array($string)) {
+		if (count($string) == 2) {
+			$pre = "";
+			$url = $string[1];
+		} else {
+			$pre = $string[1];
+			$url = $string[2];
+		}
+		$shortened_url = $url;
+		if (strlen($url) > $settings['text_word_maxlength']) $shortened_url = my_substr($url, 0, $settings['text_word_maxlength']-3, CHARSET) . '...';
+		return $pre.'<a href="'.$url.'">'.$shortened_url.'</a>';
+	}
+}
 
 /**
  * shortens urls
