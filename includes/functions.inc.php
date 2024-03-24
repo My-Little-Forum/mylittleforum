@@ -1227,18 +1227,15 @@ function get_child_ids($id) {
 /**
  * help function for get_child_ids
  */
-function child_ids_recursive($id, $child_array)
- {
-  global $child_ids;
-  if(isset($child_array[$id]) && is_array($child_array[$id]))
-   {
-    foreach($child_array[$id] as $child)
-     {
-      $child_ids[] = $child;
-      child_ids_recursive($child, $child_array);
-     }
-   }
- }
+function child_ids_recursive($id, $child_array) {
+	global $child_ids;
+	if (isset($child_array[$id]) && is_array($child_array[$id])) {
+		foreach ($child_array[$id] as $child) {
+			$child_ids[] = $child;
+			child_ids_recursive($child, $child_array);
+		}
+	}
+}
 
 /**
  * checks if birthday is formed like DD.MM.YYYY and age is betwenn 0 and 150 years
