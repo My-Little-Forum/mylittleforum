@@ -742,20 +742,16 @@ function do_bbcode_code($action, $attributes, $content, $params, $node_object) {
 /**
  * removes [code] and [/code] in email texts
  */
-function do_bbcode_code_email($action, $attributes, $content, $params, $node_object)
- {
-  if ($action == 'validate')
-   {
-    return true;
-   }
-  else
-   {
-    // [code]...[/code]
-    if(!isset($attributes['default'])) return $content;
-    // [code=lang]...[/code]
-    return $content;
-   }
- }
+function do_bbcode_code_email($action, $attributes, $content, $params, $node_object) {
+	if ($action == 'validate') {
+		return true;
+	} else {
+		// [code]...[/code]
+		if (!isset($attributes['default'])) return $content;
+		// [code=lang]...[/code]
+		return $content;
+	}
+}
 
 /**
  * replaces
