@@ -1086,22 +1086,21 @@ function shorten_url($url) {
  * @param string $string
  * @return string
  */
-function smilies($string)
- {
-  global $connid, $db_settings;
-  $result = mysqli_query($connid, "SELECT file, code_1, code_2, code_3, code_4, code_5, title FROM ".$db_settings['smilies_table']);
-  while($data = mysqli_fetch_array($result))
-   {
-    if($data['title']!='') $title = ' title="'.$data['title'].'"'; else $title='';
-    if($data['code_1']!='') $string = str_replace($data['code_1'], "<img src=\"images/smilies/".$data['file']."\" alt=\"".$data['code_1']."\"".$title." />", $string);
-    if($data['code_2']!='') $string = str_replace($data['code_2'], "<img src=\"images/smilies/".$data['file']."\" alt=\"".$data['code_2']."\"".$title." />", $string);
-    if($data['code_3']!='') $string = str_replace($data['code_3'], "<img src=\"images/smilies/".$data['file']."\" alt=\"".$data['code_3']."\"".$title." />", $string);
-    if($data['code_4']!='') $string = str_replace($data['code_4'], "<img src=\"images/smilies/".$data['file']."\" alt=\"".$data['code_4']."\"".$title." />", $string);
-    if($data['code_5']!='') $string = str_replace($data['code_5'], "<img src=\"images/smilies/".$data['file']."\" alt=\"".$data['code_5']."\"".$title." />", $string);
-   }
-  mysqli_free_result($result);
-  return($string);
- }
+function smilies($string) {
+	global $connid, $db_settings;
+	$result = mysqli_query($connid, "SELECT file, code_1, code_2, code_3, code_4, code_5, title
+	FROM ".$db_settings['smilies_table']);
+	while ($data = mysqli_fetch_array($result)) {
+		$title = ($data['title'] != '') ? ' title="'.$data['title'].'"' : '';
+		if ($data['code_1'] != '') $string = str_replace($data['code_1'], '<img src="images/smilies/'. $data['file'] .'" alt="'. $data['code_1'] .'"'. $title .' />', $string);
+		if ($data['code_2'] != '') $string = str_replace($data['code_2'], '<img src="images/smilies/'. $data['file'] .'" alt="'. $data['code_2'] .'"'. $title .' />', $string);
+		if ($data['code_3'] != '') $string = str_replace($data['code_3'], '<img src="images/smilies/'. $data['file'] .'" alt="'. $data['code_3'] .'"'. $title .' />', $string);
+		if ($data['code_4'] != '') $string = str_replace($data['code_4'], '<img src="images/smilies/'. $data['file'] .'" alt="'. $data['code_4'] .'"'. $title .' />', $string);
+		if ($data['code_5'] != '') $string = str_replace($data['code_5'], '<img src="images/smilies/'. $data['file'] .'" alt="'. $data['code_5'] .'"'. $title .' />', $string);
+	}
+	mysqli_free_result($result);
+	return $string;
+}
 
 /**
  * counts the users that are online
