@@ -1039,12 +1039,11 @@ function email_format($string) {
  * @param string $string
  * @return string
  */
-function quote_reply($string)
- {
-  global $settings;
-  if(!empty($string)) return preg_replace("/^/m", $settings['quote_symbol']." ", $string);
-  else return '';
- }
+function quote_reply($string) {
+	global $settings;
+	if (!empty($string)) return preg_replace("/^/m", $settings['quote_symbol']." ", $string);
+	else return '';
+}
 
 /**
  * shortens links
