@@ -1342,43 +1342,42 @@ function emailNotification2ParentAuthor($id, $delayed = false) {
  * @param int $id : the id of the posting
  * @param bool $delayed : true adds a delayed message (when postibg was activated manually)
  */
-function emailNotification2ModsAndAdmins($id, $delayed=false)
- {
-  global $settings, $db_settings, $lang, $connid;
-  $id=intval($id);
-  // data of posting:
-  $result = @mysqli_query($connid, "SELECT pid, name, user_name, ".$db_settings['forum_table'].".user_id, subject, text
-                         FROM ".$db_settings['forum_table']."
-                         LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
-                         WHERE id = ".intval($id)." LIMIT 1");
-  $data = mysqli_fetch_array($result);
-  mysqli_free_result($result);
-  // overwrite $data['name'] with $data['user_name'] if registered user:
-  if($data['user_id']>0)
-   {
-    if(!$data['user_name']) $data['name'] = $lang['unknown_user'];
-    else $data['name'] = $data['user_name'];
-   }
-  $name = $data['name'];
-  $subject = $data['subject'];
-  $text = email_format($data['text']);
-  if($data['pid'] > 0) $emailbody = str_replace("[name]", $name, $lang['admin_email_text_reply']); else $emailbody = str_replace("[name]", $name, $lang['admin_email_text']);
-  $emailbody = str_replace("[subject]", $subject, $emailbody);
-  $emailbody = str_replace("[text]", $text, $emailbody);
-  $emailbody = str_replace("[posting_address]", $settings['forum_address']."index.php?id=".$id, $emailbody);
-  $emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
-  if($delayed==true) $emailbody = $emailbody . "\n\n" . $lang['email_text_delayed_addition'];
-  $lang['admin_email_subject'] = str_replace("[subject]", $subject, $lang['admin_email_subject']);
-  // who gets an E-mail notification?
-  $recipient_result = @mysqli_query($connid, "SELECT user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_type > 0 AND new_posting_notification=1") or raise_error('database_error',mysqli_error($connid));
-  while($admin_array = mysqli_fetch_array($recipient_result))
-   {
-    $ind_emailbody = str_replace("[admin]", $admin_array['user_name'], $emailbody);
-    $recipient = $admin_array['user_email'];
-    my_mail($recipient, $lang['admin_email_subject'], $ind_emailbody);
-   }
-  mysqli_free_result($recipient_result);
- }
+function emailNotification2ModsAndAdmins($id, $delayed = false) {
+	global $settings, $db_settings, $lang, $connid;
+	$id = intval($id);
+	// data of posting:
+	$result = @mysqli_query($connid,
+	"SELECT pid, name, user_name, ".$db_settings['forum_table'].".user_id, subject, text
+	FROM ".$db_settings['forum_table']."
+		LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id=".$db_settings['forum_table'].".user_id
+	WHERE id = ".intval($id)." LIMIT 1");
+	$data = mysqli_fetch_assoc($result);
+	mysqli_free_result($result);
+	// overwrite $data['name'] with $data['user_name'] if registered user:
+	if ($data['user_id'] > 0) {
+		if (!$data['user_name']) $data['name'] = $lang['unknown_user'];
+		else $data['name'] = $data['user_name'];
+	}
+	$name = $data['name'];
+	$subject = $data['subject'];
+	$text = email_format($data['text']);
+	if ($data['pid'] > 0) $emailbody = str_replace("[name]", $name, $lang['admin_email_text_reply']);
+	else $emailbody = str_replace("[name]", $name, $lang['admin_email_text']);
+	$emailbody = str_replace("[subject]", $subject, $emailbody);
+	$emailbody = str_replace("[text]", $text, $emailbody);
+	$emailbody = str_replace("[posting_address]", $settings['forum_address']."index.php?id=".$id, $emailbody);
+	$emailbody = str_replace("[forum_address]", $settings['forum_address'], $emailbody);
+	if ($delayed == true) $emailbody = $emailbody . "\n\n" . $lang['email_text_delayed_addition'];
+	$lang['admin_email_subject'] = str_replace("[subject]", $subject, $lang['admin_email_subject']);
+	// who gets an E-mail notification?
+	$recipient_result = @mysqli_query($connid, "SELECT user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_type > 0 AND new_posting_notification = 1") or raise_error('database_error',mysqli_error($connid));
+	while ($admin_array = mysqli_fetch_array($recipient_result)) {
+		$ind_emailbody = str_replace("[admin]", $admin_array['user_name'], $emailbody);
+		$recipient = $admin_array['user_email'];
+		my_mail($recipient, $lang['admin_email_subject'], $ind_emailbody);
+	}
+	mysqli_free_result($recipient_result);
+}
 
 /**
  * function for the up/down buttons in the admin area in case JavaScript
