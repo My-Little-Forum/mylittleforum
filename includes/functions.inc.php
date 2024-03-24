@@ -772,70 +772,58 @@ function do_bbcode_code_email($action, $attributes, $content, $params, $node_obj
  * @param string $string
  * @return string
  */
-function quote($string)
- {
-  global $settings;
-  $string = preg_replace ("/\015\012|\015|\012/", "\n", $string);
-  $string_array = explode("\n", $string);
-
-  // check which lines begin with how many quote symbols:
-  $line_nr=0;
-  foreach($string_array as $line)
-   {
-    $q=0; // quote symbol counter
-    // if line begins with a quote symbol...
-    if(my_substr($line, 0, 1, CHARSET) == $settings['quote_symbol'])
-     {
-      $len=strlen($line);
-      for($i=0;$i<$len;$i++)
-       {
-        // strip quote symbols and spaces and increment quote symbol counter
-        if(my_substr($line, 0, 1, CHARSET) == $settings['quote_symbol'] || my_substr($line, 0, 1, CHARSET)==' ')
-         {
-          if(my_substr($line, 0, 1, CHARSET) == $settings['quote_symbol']) $q++;
-          $line = my_substr($line, 1, my_strlen($line, CHARSET), CHARSET);
-         }
-        else break; // leave the loop if reached other character than quote symbol or space
-       }
-
-     }
-    // create array without quote symbols:
-    $stripped_string_array[] = $line;
-    // maximum 10 nested quotes:
-    if($q>10) $q = 10;
-    // save number of quote symbols per line:
-    $quotes_array[$line_nr] = $q;
-    $line_nr++;
-   }
-
-  // if you want to keep the quote symbols delete or comment the following line:
-  $string_array = $stripped_string_array;
-
-  // add [quote]...[/quote] around quotes:
-  $l=0;
-  foreach($quotes_array as $quotes)
-   {
-    if($quotes > 0)
-     {
-      $start_tag = '';
-      $end_tag = '';
-      // nest tags:
-      for($q_nr=0;$q_nr<$quotes;$q_nr++)
-       {
-        $start_tag .= '[quote]';
-        $end_tag .= '[/quote]';
-       }
-      // add start and end tags to quotes belonging together:
-      if(empty($quotes_array[$l-1]) || $quotes!=$quotes_array[$l-1]) $string_array[$l] = $start_tag.$string_array[$l];
-      if(empty($quotes_array[$l+1]) || $quotes!=$quotes_array[$l+1]) $string_array[$l] = $string_array[$l].$end_tag;
-     }
-    $l++;
-   }
-
-  $string = implode("\n",$string_array);
-
-  return $string;
- }
+function quote($string) {
+	global $settings;
+	$string = preg_replace ("/\015\012|\015|\012/", "\n", $string);
+	$string_array = explode("\n", $string);
+	
+	// check which lines begin with how many quote symbols:
+	$line_nr = 0;
+	foreach ($string_array as $line) {
+		$q = 0; // quote symbol counter
+		// if line begins with a quote symbol...
+		if (my_substr($line, 0, 1, CHARSET) == $settings['quote_symbol']) {
+			$len = strlen($line);
+			for ($i = 0; $i < $len; $i++) {
+				// strip quote symbols and spaces and increment quote symbol counter
+				if (my_substr($line, 0, 1, CHARSET) == $settings['quote_symbol'] || my_substr($line, 0, 1, CHARSET) == ' ') {
+					if (my_substr($line, 0, 1, CHARSET) == $settings['quote_symbol']) $q++;
+					$line = my_substr($line, 1, my_strlen($line, CHARSET), CHARSET);
+				}
+				else break; // leave the loop if reached other character than quote symbol or space
+			}
+		}
+		// create array without quote symbols:
+		$stripped_string_array[] = $line;
+		// maximum 10 nested quotes:
+		if ($q > 10) $q = 10;
+		// save number of quote symbols per line:
+		$quotes_array[$line_nr] = $q;
+		$line_nr++;
+	}
+	// if you want to keep the quote symbols delete or comment the following line:
+	$string_array = $stripped_string_array;
+	
+	// add [quote]...[/quote] around quotes:
+	$l = 0;
+	foreach ($quotes_array as $quotes) {
+		if ($quotes > 0) {
+			$start_tag = '';
+			$end_tag = '';
+			// nest tags:
+			for ($q_nr = 0; $q_nr < $quotes; $q_nr++) {
+				$start_tag .= '[quote]';
+				$end_tag .= '[/quote]';
+			}
+			// add start and end tags to quotes belonging together:
+			if (empty($quotes_array[$l-1]) || $quotes != $quotes_array[$l-1]) $string_array[$l] = $start_tag.$string_array[$l];
+			if (empty($quotes_array[$l+1]) || $quotes != $quotes_array[$l+1]) $string_array[$l] = $string_array[$l].$end_tag;
+		}
+		$l++;
+	}
+	$string = implode("\n",$string_array);
+	return $string;
+}
 
 /**
  * filters control characters
