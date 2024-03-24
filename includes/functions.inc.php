@@ -712,39 +712,32 @@ function do_bbcode_size_email($action, $attributes, $content, $params, $node_obj
 /**
  * processes bbcode code
  */
-function do_bbcode_code($action, $attributes, $content, $params, $node_object)
- {
-  global $settings;
-  if ($action == 'validate')
-   {
-    // [code]...[/code]
-    // if(!isset($attributes['default'])) return true;
-    // [code=lang]image[/code]
-    // if(in_array(strtolower($attributes['default']),explode(',',$settings['syntax_highlighter_languages']))) return true;
-    return true;
-   }
-  else
-   {
-    // [code]...[/code]
-    if(!isset($attributes['default'])) return '<pre><code>'.htmlspecialchars($content).'</code></pre>';
-    // [code=lang]...[/code]
-    if($settings['syntax_highlighter']==1)
-     {
-      include_once('modules/geshi/geshi.php');
-      $geshi = new GeSHi($content, $attributes['default']);
-      // $geshi->set_header_type(GESHI_HEADER_NONE);
-      // $geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, 1);
-      // $geshi->set_line_style('background:#f5f5f5;', 'background:#f9f9f9;');
-      $geshi->enable_keyword_links(false);
-      $geshi->set_overall_class(false);
-      return $geshi->parse_code();
-     }
-    else
-     {
-      return '<pre><code>'.htmlspecialchars($content).'</code></pre>';
-     }
-   }
- }
+function do_bbcode_code($action, $attributes, $content, $params, $node_object) {
+	global $settings;
+	if ($action == 'validate') {
+		// [code]...[/code]
+		// if(!isset($attributes['default'])) return true;
+		// [code=lang]image[/code]
+		// if(in_array(strtolower($attributes['default']),explode(',',$settings['syntax_highlighter_languages']))) return true;
+		return true;
+	} else {
+		// [code]...[/code]
+		if (!isset($attributes['default'])) return '<pre><code>'.htmlspecialchars($content).'</code></pre>';
+		// [code=lang]...[/code]
+		if ($settings['syntax_highlighter'] == 1) {
+			include_once('modules/geshi/geshi.php');
+			$geshi = new GeSHi($content, $attributes['default']);
+			// $geshi->set_header_type(GESHI_HEADER_NONE);
+			// $geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, 1);
+			// $geshi->set_line_style('background:#f5f5f5;', 'background:#f9f9f9;');
+			$geshi->enable_keyword_links(false);
+			$geshi->set_overall_class(false);
+			return $geshi->parse_code();
+		} else {
+			return '<pre><code>'.htmlspecialchars($content).'</code></pre>';
+		}
+	}
+}
 
 /**
  * removes [code] and [/code] in email texts
