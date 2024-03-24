@@ -1212,23 +1212,19 @@ function delete_posting_recursive($id) {
  * returns child ids of a posting
  * required by the function delete_posting_recursive
  */
-function get_child_ids($id)
- {
-  global $db_settings, $connid, $child_ids;
-  $result = @mysqli_query($connid, "SELECT tid FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1") or raise_error('database_error',mysqli_error($connid));
-  $data = mysqli_fetch_array($result);
-  mysqli_free_result($result);
-  $tid = $data['tid'];
-  $result = @mysqli_query($connid, "SELECT id, pid FROM ".$db_settings['forum_table']." WHERE tid = ".intval($tid)) or raise_error('database_error',mysqli_error($connid));
-  while($tmp = mysqli_fetch_array($result))
-   {
-    $child_array[$tmp["pid"]][] = $tmp["id"];
-   }
-  mysqli_free_result($result);
-  child_ids_recursive($id, $child_array);
-  if(isset($child_ids) && is_array($child_ids)) return($child_ids);
-  else return false;
- }
+function get_child_ids($id) {
+	global $db_settings, $connid, $child_ids;
+	$result = mysqli_query($connid, "SELECT id, pid
+	FROM ".$db_settings['forum_table']."
+	WHERE tid = (SELECT tid FROM ".$db_settings['forum_table']." WHERE id = ".intval($id)." LIMIT 1)") or raise_error('database_error',mysqli_error($connid));
+	while ($tmp = mysqli_fetch_assoc($result)) {
+		$child_array[$tmp["pid"]][] = $tmp["id"];
+	}
+	mysqli_free_result($result);
+	child_ids_recursive($id, $child_array);
+	if (isset($child_ids) && is_array($child_ids)) return($child_ids);
+	else return false;
+}
 
 /**
  * help function for get_child_ids
