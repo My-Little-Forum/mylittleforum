@@ -1652,13 +1652,12 @@ function random_string($length = 8, $characters = 'abcdefghijklmnopqrstuvwxyzABC
  * @param string $pw
  * @return string
  */
-function generate_pw_hash($pw)
- {
-  $salt = random_string(10,'0123456789abcdef');
-  $salted_hash = sha1($pw.$salt);
-  $hash_with_salt = $salted_hash.$salt;
-  return $hash_with_salt;
- }
+function generate_pw_hash($pw) {
+	$salt = random_string(10, '0123456789abcdef');
+	$salted_hash = sha1($pw.$salt);
+	$hash_with_salt = $salted_hash.$salt;
+	return $hash_with_salt;
+}
 
 /**
  * checks password comparing it with the hash
