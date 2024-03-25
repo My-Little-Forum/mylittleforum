@@ -1637,16 +1637,14 @@ function check_filename($filename) {
  * @param string $characters
  * @return string
  */
-function random_string($length=8,$characters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
- {
-  $random_string = '';
-  $characters_length = strlen($characters);
-  for($i=0;$i<$length;$i++)
-   {
-    $random_string .= $characters[mt_rand(0, $characters_length - 1)];
-   }
-  return $random_string;
- }
+function random_string($length = 8, $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') {
+	$random_string = '';
+	$characters_length = strlen($characters);
+	for ($i = 0; $i < $length; $i++) {
+		$random_string .= $characters[mt_rand(0, $characters_length - 1)];
+	}
+	return $random_string;
+}
 
 /**
  * generates password hash
