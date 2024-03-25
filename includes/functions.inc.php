@@ -1479,16 +1479,16 @@ function resize_image($uploaded_file, $file, $new_width, $new_height, $compressi
 function tag_cloud($days, $scale_min, $scale_max) {
 	global $category, $categories, $category_ids_query, $db_settings, $connid;
 	$sql = "SELECT `tag` FROM `" . $db_settings['entry_tags_table'] . "` JOIN `" . $db_settings['forum_table'] . "` ON `" . $db_settings['forum_table'] . "`.`id` = `" . $db_settings['entry_tags_table'] . "`.`bid` JOIN `" . $db_settings['tags_table'] . "` ON `" . $db_settings['tags_table'] . "`.`id` = `" . $db_settings['entry_tags_table'] . "`.`tid` WHERE `time` > (NOW() - INTERVAL " . intval($days) . " DAY) ";
-	if ($categories == false)
+	if ($categories === false)
 		$result = @mysqli_query($connid, $sql);
 	elseif ($category > 0)
 		$result = @mysqli_query($connid, $sql . " AND `category` = " . intval($category) );
 	else
 		$result = @mysqli_query($connid, $sql . " AND `category` IN (" . $category_ids_query . ")");
-
+	
 	if (mysqli_num_rows($result) > 0) {
 		$tags_array = [];
-		while ($data = mysqli_fetch_array($result)) {
+		while ($data = mysqli_fetch_assoc($result)) {
 			$tag = $data['tag'];
 			if (isset($tags_array[$tag]))
 				$tags_array[$tag]++;
