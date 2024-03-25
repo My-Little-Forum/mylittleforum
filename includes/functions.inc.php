@@ -1862,9 +1862,9 @@ function my_quoted_printable_encode($input, $line_max=76, $space_conv = false ) 
  * @param string $headers
  * @return string
  */
-function my_mail($to, $subject, $message, $from='') {
+function my_mail($to, $subject, $message, $from = '') {
 	global $settings, $PHP_MAILER;
-
+	
 	if (isset($settings['php_mailer']) && $settings['php_mailer'] == 1 && isset($PHP_MAILER)) {
 		$PHP_MAILER->clearAllRecipients();
 		$PHP_MAILER->setFrom($settings['forum_email'], $settings['forum_name']);
@@ -1877,24 +1877,23 @@ function my_mail($to, $subject, $message, $from='') {
 		$PHP_MAILER->Body    = $message;
 		if ($PHP_MAILER->ContentType != $PHP_MAILER::CONTENT_TYPE_PLAINTEXT)
 			$PHP_MAILER->AltBody = strip_tags($message);
-
+		
 		$isSend = $PHP_MAILER->send();
 		$PHP_MAILER->clearAllRecipients();
 		
 		//send the message, check for errors
-		if  (!$isSend) {
+		if (!$isSend) {
 			// remove comment for debugging and config e.g. 'SMTPDebug' => {1,2,3,4}
 			//echo $PHP_MAILER->ErrorInfo;
 		} 
 		else {
 			return true;
 		}
-	}
-	else {
+	} else {
 		$mail_header_separator = "\n"; // "\r\n" complies with RFC 2822 but might cause problems in some cases (see http://php.net/manual/en/function.mail.php)
-	
+		
 		$mail_charset = defined(CHARSET) ? strtoupper(CHARSET) : 'UTF-8';
-	
+		
 		$to = mail_header_filter($to);
 		$subject = my_mb_encode_mimeheader(mail_header_filter($subject), $mail_charset, "Q", $mail_header_separator);
 		$message = my_quoted_printable_encode($message);
@@ -1907,13 +1906,12 @@ function my_mail($to, $subject, $message, $from='') {
 		$headers .= "X-Sender-IP: ". $_SERVER['REMOTE_ADDR'] . $mail_header_separator;
 		$headers .= "Content-Type: text/plain; charset=" . $mail_charset . $mail_header_separator;
 		$headers .= "Content-Transfer-Encoding: quoted-printable";
-	
+		
 		if ($settings['mail_parameter'] != '') {
 			if (@mail($to, $subject, $message, $headers, $settings['mail_parameter'])) {
 				return true;
 			}
-		}
-		else {
+		} else {
 			if (@mail($to, $subject, $message, $headers)) {
 				return true;
 			}
