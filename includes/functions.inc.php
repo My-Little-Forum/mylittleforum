@@ -1555,13 +1555,13 @@ function format_time($format, $timestamp = 0) {
 		IntlDateFormatter::FULL,
 	);
 	$formatter->setPattern($format);
- 
+	
 	if ($timestamp == 0) 
 		$timestamp = TIMESTAMP;
- 
+	
 	$date = date_create();
 	$dateTime = date_timestamp_set($date, $timestamp);
- 
+	
 	if (defined('LOCALE_CHARSET'))
 		return iconv(LOCALE_CHARSET,CHARSET, $formatter->format($dateTime));
 	return $formatter->format($dateTime);
