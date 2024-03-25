@@ -1717,17 +1717,13 @@ function my_strlen($string, $encoding = 'utf-8') {
  * @param string $encoding
  * @return string
  */
-function my_strtolower($string, $encoding='utf-8')
- {
-  if(function_exists('mb_strtolower'))
-   {
-    return mb_strtolower($string, $encoding);
-   }
-  else
-   {
-    return strtolower($string);
-   }
- }
+function my_strtolower($string, $encoding = 'utf-8') {
+	if (function_exists('mb_strtolower')) {
+		return mb_strtolower($string, $encoding);
+	} else {
+		return strtolower($string);
+	}
+}
 
 /**
  * gets part of string using mb_substr if available or substr if not
