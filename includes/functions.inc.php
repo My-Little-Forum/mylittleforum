@@ -1625,11 +1625,10 @@ function get_edit_authorization($id, $posting_user_id, $edit_key, $time, $locked
  * @param string $filename
  * @return bool
  */
-function check_filename($filename)
- {
-  if(preg_match('/^[a-zA-Z0-9._\-]+$/', $filename)) return true;
-  else return false;
- }
+function check_filename($filename) {
+	if (preg_match('/^[a-zA-Z0-9._\-]+$/', $filename)) return true;
+	else return false;
+}
 
 /**
  * generates a random string
