@@ -1427,51 +1427,46 @@ function move_item($table, $id, $direction)
  * @param int $compression : compression rate
  * @return bool
  */
-function resize_image($uploaded_file, $file, $new_width, $new_height, $compression=80)
- {
-  if(file_exists($file))
-   {
-    @chmod($file, 0777);
-    @unlink($file);
-   }
-
-  $image_info = getimagesize($uploaded_file);
-  $imageMIME = mime_content_type($uploaded_file);
-  if(!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) $error = true;
-  if(empty($error))
-  {
-  if($imageMIME=='image/gif') // GIF
-   {
-    $current_image = @imagecreatefromgif($uploaded_file) or $error = true;
-    if(empty($error)) $new_image = @imagecreate($new_width,$new_height) or $error = true;
-    if(empty($error)) @imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error=true;
-    if(empty($error)) @imagegif($new_image, $file) or $error = true;
-   }
-  elseif($imageMIME=='image/jpeg') // JPG
-   {
-    $current_image = @imagecreatefromjpeg($uploaded_file) or $error = true;
-    if(empty($error)) $new_image=@imagecreatetruecolor($new_width,$new_height) or $error = true;
-    if(empty($error)) @imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
-    if(empty($error)) @imagejpeg($new_image, $file, $compression) or $error = true;
-   }
-  elseif($imageMIME=='image/png') // PNG
-   {
-    $current_image=imagecreatefrompng($uploaded_file) or $error = true;
-    if(empty($error)) $new_image=imagecreatetruecolor($new_width,$new_height) or $error = true;
-    if(empty($error)) imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
-    if(empty($error)) imagepng($new_image, $file) or $error = $true;
-   }
-  elseif($imageMIME=='image/webp') // WebP
-   {
-    $current_image=imagecreatefromwebp($uploaded_file) or $error = true;
-    if(empty($error)) $new_image=imagecreatetruecolor($new_width,$new_height) or $error = true;
-    if(empty($error)) imagecopyresampled($new_image,$current_image,0,0,0,0,$new_width,$new_height,$image_info[0],$image_info[1]) or $error = true;
-    if(empty($error)) imagewebp($new_image, $file) or $error = $true;
-   }
-  }
-  if(empty($error)) return true;
-  else return false;
- }
+function resize_image($uploaded_file, $file, $new_width, $new_height, $compression=80) {
+	if (file_exists($file)) {
+		@chmod($file, 0777);
+		@unlink($file);
+	}
+	
+	$image_info = getimagesize($uploaded_file);
+	$imageMIME = mime_content_type($uploaded_file);
+	if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) $error = true;
+	
+	if (empty($error)) {
+		if ($imageMIME == 'image/gif') {
+			// image of type GIF
+			$current_image = @imagecreatefromgif($uploaded_file) or $error = true;
+			if (empty($error)) $new_image = @imagecreate($new_width, $new_height) or $error = true;
+			if (empty($error)) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+			if (empty($error)) @imagegif($new_image, $file) or $error = true;
+		} elseif ($imageMIME == 'image/jpeg') {
+			// image of type JPG
+			$current_image = @imagecreatefromjpeg($uploaded_file) or $error = true;
+			if (empty($error)) $new_image = @imagecreatetruecolor($new_width, $new_height) or $error = true;
+			if (empty($error)) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+			if (empty($error)) @imagejpeg($new_image, $file, $compression) or $error = true;
+		} elseif($imageMIME=='image/png') {
+			// image of type PNG
+			$current_image = imagecreatefrompng($uploaded_file) or $error = true;
+			if (empty($error)) $new_image = imagecreatetruecolor($new_width, $new_height) or $error = true;
+			if (empty($error)) imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+			if (empty($error)) imagepng($new_image, $file) or $error = $true;
+		} elseif($imageMIME=='image/webp') {
+			// image of type WebP
+			$current_image = imagecreatefromwebp($uploaded_file) or $error = true;
+			if (empty($error)) $new_image = imagecreatetruecolor($new_width, $new_height) or $error = true;
+			if (empty($error)) imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+			if (empty($error)) imagewebp($new_image, $file) or $error = $true;
+		}
+	}
+	if (empty($error)) return true;
+	else return false;
+}
 
 /**
  * returns an array with recent tags
