@@ -1701,17 +1701,13 @@ function add_http_if_no_protocol($url) {
  * @param string $encoding
  * @return int
  */
-function my_strlen($string, $encoding='utf-8')
- {
-  if(function_exists('mb_strlen'))
-   {
-    return mb_strlen($string, $encoding);
-   }
-  else
-   {
-    return strlen($string);
-   }
- }
+function my_strlen($string, $encoding = 'utf-8') {
+	if (function_exists('mb_strlen')) {
+		return mb_strlen($string, $encoding);
+	} else {
+		return strlen($string);
+	}
+}
 
 /**
  * returns string with all alphabetic characters converted to lowercase
