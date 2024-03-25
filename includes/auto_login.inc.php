@@ -68,20 +68,20 @@ if (empty($_SESSION[$settings['session_prefix'].'user_id']) && isset($_COOKIE[$s
 
 				@mysqli_query($connid, "UPDATE ". $db_settings['userdata_table'] ." SET logins=logins+1, last_login=NOW(), last_logout=NOW(), `inactivity_notification` = FALSE, user_ip='". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', pwf_code='', language='". mysqli_real_escape_string($connid, $language_update) ."', time_zone='". mysqli_real_escape_string($connid, $time_zone_update) ."', theme='". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id=". intval($user_id));
 
-				setcookie($settings['session_prefix'].'auto_login', $_COOKIE[$settings['session_prefix'].'auto_login'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
+				setcookie($settings['session_prefix'].'auto_login', $_COOKIE[$settings['session_prefix'].'auto_login'], cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
 				if ($db_settings['useronline_table'] != "") {
 					@mysqli_query($connid, "DELETE FROM ". $db_settings['useronline_table'] ." WHERE ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."'");
 				}
 			} else {
 				if ($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
-				setcookie($settings['session_prefix'].'auto_login', '', 0);
+				setcookie($settings['session_prefix'].'auto_login', '', cookie_options(0));
 			}
 		} else {
 			if ($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
-			setcookie($settings['session_prefix'].'auto_login', '', 0);
+			setcookie($settings['session_prefix'].'auto_login', '', cookie_options(0));
 		}
 	} else {
 		if($settings['temp_block_ip_after_repeated_failed_logins'] > 0) count_failed_logins();
-		setcookie($settings['session_prefix'].'auto_login','',0);
+		setcookie($settings['session_prefix'].'auto_login','', cookie_options(0));
 	}
 }

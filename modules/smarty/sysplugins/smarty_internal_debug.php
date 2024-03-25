@@ -403,14 +403,24 @@ class Smarty_Internal_Debug extends Smarty_Internal_Data
         } else {
             $_query_string = '';
         }
+		
+		$opts = array (
+			'expires' => 0, 
+			'path' => '', 
+			'domain' => '',
+			'secure' => '',  
+			'httponly' => '',
+			'samesite' => 'Strict'
+		);
+		
         if (false !== strpos($_query_string, $smarty->smarty_debug_id)) {
             if (false !== strpos($_query_string, $smarty->smarty_debug_id . '=on')) {
                 // enable debugging for this browser session
-                setcookie('SMARTY_DEBUG', true);
+                setcookie('SMARTY_DEBUG', true, $opts);
                 $smarty->debugging = true;
             } elseif (false !== strpos($_query_string, $smarty->smarty_debug_id . '=off')) {
                 // disable debugging for this browser session
-                setcookie('SMARTY_DEBUG', false);
+                setcookie('SMARTY_DEBUG', false, $opts);
                 $smarty->debugging = false;
             } else {
                 // enable debugging for this page
