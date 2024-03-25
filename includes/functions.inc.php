@@ -1751,17 +1751,13 @@ function my_substr($string, $start, $length, $encoding = 'utf-8') {
  * @param string $encoding
  * @return string
  */
-function my_strpos($haystack, $needle, $offset=0, $encoding='utf-8')
- {
-  if(function_exists('mb_strpos'))
-   {
-    return mb_strpos($haystack, $needle, $offset, $encoding);
-   }
-  else
-   {
-    return strpos($haystack, $needle, $offset);
-   }
- }
+function my_strpos($haystack, $needle, $offset = 0, $encoding = 'utf-8') {
+	if (function_exists('mb_strpos')) {
+		return mb_strpos($haystack, $needle, $offset, $encoding);
+	} else {
+		return strpos($haystack, $needle, $offset);
+	}
+}
 
 /**
  * encodes sender or recipient name
