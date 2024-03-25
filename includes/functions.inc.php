@@ -1572,63 +1572,52 @@ function format_time($format, $timestamp = 0) {
  *
  * @return int : 0 = not authorized, 1 = edit period expired, 2 = locked, 3 = posting has replies, 4 = no replies
  */
-function get_edit_authorization($id, $posting_user_id, $edit_key, $time, $locked)
- {
-  global $settings, $db_settings, $connid;
-
-  $authorization['edit'] = false;
-  $authorization['delete'] = false;
-
-  $reply_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." WHERE pid = ".intval($id));
-  list($replies) = mysqli_fetch_row($reply_result);
-
-  if($settings['edit_min_time_period'] != 0 && (TIMESTAMP - $settings['edit_min_time_period']*60) < $time) $edit_min_time_period_expired = false;
-  else $edit_min_time_period_expired = true;
-
-  if($settings['edit_max_time_period'] == 0 || (TIMESTAMP - $settings['edit_max_time_period']*60) < $time) $edit_max_time_period_expired = false;
-  else $edit_max_time_period_expired = true;
-
-  if($locked == 0) $locked = false;
-  else $locked = true;
-
-  if(isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_type'])) // registered user
-   {
-    if($_SESSION[$settings['session_prefix'].'user_type'] > 0) // admin or mod
-     {
-      $authorization['edit'] = true;
-      $authorization['delete'] = true;
-     }
-    elseif($_SESSION[$settings['session_prefix'].'user_type']==0)
-     {
-      if($posting_user_id == $_SESSION[$settings['session_prefix'].'user_id'] && $settings['user_edit'] > 0 && $edit_max_time_period_expired==false && $locked==false)
-       {
-        if($settings['user_edit_if_no_replies']==0 || ($settings['user_edit_if_no_replies']==1 && ($replies==0 || $edit_min_time_period_expired==false)))
-         {
-          $authorization['edit'] = true;
-         }
-        if($replies==0)
-         {
-          $authorization['delete'] = true;
-         }
-       }
-     }
-   }
-  elseif($settings['user_edit']>1 && isset($_SESSION[$settings['session_prefix'].'edit_keys']))
-   {
-    if(isset($_SESSION[$settings['session_prefix'].'edit_keys'][$id]) && is_pw_correct($_SESSION[$settings['session_prefix'].'edit_keys'][$id],$edit_key) && trim($edit_key)!='' && $edit_max_time_period_expired==false && $locked==false)
-     {
-      if($settings['user_edit_if_no_replies']==0 || ($settings['user_edit_if_no_replies']==1 && ($replies==0 || $edit_min_time_period_expired==false)))
-       {
-        $authorization['edit'] = true;
-       }
-      if($replies==0)
-       {
-        $authorization['delete'] = true;
-       }
-     }
-   }
-  return $authorization;
- }
+function get_edit_authorization($id, $posting_user_id, $edit_key, $time, $locked) {
+	global $settings, $db_settings, $connid;
+	$authorization['edit'] = false;
+	$authorization['delete'] = false;
+	
+	$reply_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']."
+	WHERE pid = ".intval($id));
+	list($replies) = mysqli_fetch_row($reply_result);
+	
+	if ($settings['edit_min_time_period'] != 0 && (TIMESTAMP - $settings['edit_min_time_period'] * 60) < $time) $edit_min_time_period_expired = false;
+	else $edit_min_time_period_expired = true;
+	
+	if ($settings['edit_max_time_period'] == 0 || (TIMESTAMP - $settings['edit_max_time_period'] * 60) < $time) $edit_max_time_period_expired = false;
+	else $edit_max_time_period_expired = true;
+	
+	$locked = ($locked == 0) ? false : true;
+	
+	if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_type'])) {
+		// registered user
+		if ($_SESSION[$settings['session_prefix'].'user_type'] > 0) {
+			// admin or mod
+			$authorization['edit'] = true;
+			$authorization['delete'] = true;
+		} elseif ($_SESSION[$settings['session_prefix'].'user_type'] == 0) {
+			// normal registered user
+			if ($posting_user_id == $_SESSION[$settings['session_prefix'].'user_id'] && $settings['user_edit'] > 0 && $edit_max_time_period_expired === false && $locked === false) {
+				if ($settings['user_edit_if_no_replies'] == 0 || ($settings['user_edit_if_no_replies'] == 1 && ($replies == 0 || $edit_min_time_period_expired === false))) {
+					$authorization['edit'] = true;
+				}
+				if ($replies == 0) {
+					$authorization['delete'] = true;
+				}
+			}
+		}
+	} elseif ($settings['user_edit'] > 1 && isset($_SESSION[$settings['session_prefix'].'edit_keys'])) {
+		if (isset($_SESSION[$settings['session_prefix'].'edit_keys'][$id]) && is_pw_correct($_SESSION[$settings['session_prefix'].'edit_keys'][$id],$edit_key) && trim($edit_key) != '' && $edit_max_time_period_expired === false && $locked === false) {
+			if ($settings['user_edit_if_no_replies'] == 0 || ($settings['user_edit_if_no_replies'] == 1 && ($replies == 0 || $edit_min_time_period_expired == false))) {
+				$authorization['edit'] = true;
+			}
+			if ($replies == 0) {
+				$authorization['delete'] = true;
+			}
+		}
+	}
+	return $authorization;
+}
 
 /**
  * checks file names
