@@ -1765,18 +1765,14 @@ function my_strpos($haystack, $needle, $offset = 0, $encoding = 'utf-8') {
  * @param string $name
  * @return string
  */
-function encode_mail_name($name, $charset=CHARSET, $linefeed="\r\n")
- {
-  $name = str_replace('"', '\\"', $name);
-  if(preg_match("/(\.|\;|\")/", $name))
-   {
-    return '"'.my_mb_encode_mimeheader($name, $charset, "Q", $linefeed).'"';
-   }
-  else
-   {
-    return my_mb_encode_mimeheader($name, $charset, "Q", $linefeed);
-   }
- }
+function encode_mail_name($name, $charset = CHARSET, $linefeed = "\r\n") {
+	$name = str_replace('"', '\\"', $name);
+	if (preg_match("/(\.|\;|\")/", $name)) {
+		return '"'.my_mb_encode_mimeheader($name, $charset, "Q", $linefeed).'"';
+	} else {
+		return my_mb_encode_mimeheader($name, $charset, "Q", $linefeed);
+	}
+}
 
 /**
  * removes line breaks to avoid e-mail header injections
