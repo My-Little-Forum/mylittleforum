@@ -1780,10 +1780,9 @@ function encode_mail_name($name, $charset = CHARSET, $linefeed = "\r\n") {
  * @param string $string
  * @return string
  */
- function mail_header_filter($string)
-   {
-    return preg_replace("/(\015\012|\015|\012)/", '', $string);
-   }
+function mail_header_filter($string) {
+	return preg_replace("/(\015\012|\015|\012)/", '', $string);
+}
 
 /**
  * encodes a given string by the MIME header encoding scheme using
