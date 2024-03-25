@@ -62,10 +62,10 @@ switch ($action) {
 							$auto_login_code = $feld['auto_login_code'];
 						}
 						$auto_login_code_cookie = $auto_login_code . intval($feld['user_id']);
-						setcookie($settings['session_prefix'].'auto_login', $auto_login_code_cookie, TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
+						setcookie($settings['session_prefix'].'auto_login', $auto_login_code_cookie, cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
 						$save_auto_login = true;
 					} else {
-						setcookie($settings['session_prefix'].'auto_login', '', 0);
+						setcookie($settings['session_prefix'].'auto_login', '', cookie_options(0));
 					}
 					$user_id = $feld["user_id"];
 					$user_name = $feld["user_name"];

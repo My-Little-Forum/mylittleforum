@@ -4,7 +4,7 @@ if (!defined('IN_INDEX')) {
 	exit;
 }
 
-setcookie($settings['session_prefix'].'userdata', '', 0);
+setcookie($settings['session_prefix'].'userdata', '', cookie_options(0));
 
 if (isset($_POST['method']) && $_POST['method'] == 'ajax') exit;
 

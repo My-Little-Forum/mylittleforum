@@ -1089,7 +1089,7 @@ switch ($action) {
 					// set userdata cookie:
 					if ($settings['remember_userdata'] && isset($setcookie) && $setcookie == 1) {
 						$cookie_data = urlencode($name) . '|' . urlencode($email) . '|' . urlencode($hp) . '|' . urlencode($location);
-						setcookie($settings['session_prefix'] . 'userdata', $cookie_data, TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
+						setcookie($settings['session_prefix'] . 'userdata', $cookie_data, cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
 					}
 					// If the posting is classified as SPAM, redirect the user to the single entry view, which contains the SPAM warning message
 					if (isset($back) && $back == 'thread' && $spam == 0)

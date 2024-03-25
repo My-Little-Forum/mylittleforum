@@ -657,10 +657,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 							$auto_login_code = $row['auto_login_code'];
 						}
 						$auto_login_code_cookie = $auto_login_code . intval($id);
-						setcookie($settings['session_prefix'].'auto_login', $auto_login_code_cookie, TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
+						setcookie($settings['session_prefix'].'auto_login', $auto_login_code_cookie, cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
 						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, auto_login_code = '". mysqli_real_escape_string($connid, $auto_login_code) ."' WHERE user_id = ". intval($id));
 					} else {
-						setcookie($settings['session_prefix'].'auto_login', '', 0);
+						setcookie($settings['session_prefix'].'auto_login', '', cookie_options(0));
 						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, auto_login_code = '' WHERE user_id = ". intval($id));
 					}
 
@@ -716,7 +716,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 						$_SESSION[$settings['session_prefix'].'user_name'] = '';
 						$_SESSION[$settings['session_prefix'].'user_type'] = 0;
 						$_SESSION['csrf_token'] = Null;
-						setcookie($settings['session_prefix'].'userdata', '', 0);
+						setcookie($settings['session_prefix'].'userdata', '', cookie_options(0));
 						
 						header('location: index.php?mode=index');
 						exit;
