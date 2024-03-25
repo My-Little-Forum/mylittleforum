@@ -1687,14 +1687,12 @@ function is_pw_correct($pw, $hash) {
  * @param string $url
  * @return string
  */
-function add_http_if_no_protocol($url)
- {
-  if(my_substr($url,0,7,CHARSET) != 'http://' && my_substr($url,0,8,CHARSET) != 'https://' && my_substr($url,0,6,CHARSET) != 'ftp://' && my_substr($url,0,9,CHARSET) != 'gopher://' && my_substr($url,0,7,CHARSET) != 'news://')
-   {
-    $url = 'http://'.$url;
-   }
-  return $url;
- }
+function add_http_if_no_protocol($url) {
+	if (my_substr($url, 0, 7, CHARSET) != 'http://' && my_substr($url,0, 8, CHARSET) != 'https://' && my_substr($url, 0, 6, CHARSET) != 'ftp://' && my_substr($url, 0, 9, CHARSET) != 'gopher://' && my_substr($url, 0, 7, CHARSET) != 'news://') {
+		$url = 'http://'.$url;
+	}
+	return $url;
+}
 
 /**
  * determine string length using mb_strlen if available or strlen if not
