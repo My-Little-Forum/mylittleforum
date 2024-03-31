@@ -570,6 +570,7 @@ function do_bbcode_color($action, $attributes, $content, $params, $node_object) 
 	if ($action == 'validate') {
 		// regex for hex color codes (for later use)
 		// "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+		// "^#(([0-9a-fA-F]{2}){3,4}|([0-9a-fA-F]){3,4})/$"
 		$valid_color_codes = array(
 			'#fff','#ccc','#999','#666','#333','#000',
 			'#fcc','#f66','#f00','#c00','#900','#600','#300',
