@@ -1241,13 +1241,13 @@ function child_ids_recursive($id, $child_array) {
  * checks if birthday is formed like DD.MM.YYYY and age is betwenn 0 and 150 years
  */
 function is_valid_birthday($birthday) {
-	$date_invalid = (strlen($birthday) != 10 || my_substr($birthday,4,1,CHARSET)!='-' || my_substr($birthday,7,1, CHARSET)!='-');
+	$date_invalid = (strlen($birthday) != 10 || my_substr($birthday, 4, 1, CHARSET) != '-' || my_substr($birthday, 7, 1, CHARSET) != '-');
 	if (!$date_invalid) {
 		$year  = intval(my_substr($birthday, 0, 4, CHARSET));
 		$month = intval(my_substr($birthday, 5, 2, CHARSET));
 		$day   = intval(my_substr($birthday, 8, 2, CHARSET));
-		$date_invalid = !checkdate($month,$day,$year);
-   }
+		$date_invalid = !checkdate($month, $day, $year);
+	}
 	if (!$date_invalid) {
 		if ($month >= 1 && $month <= 9) 
 			$monthstr = '0'.$month; 
@@ -1257,7 +1257,7 @@ function is_valid_birthday($birthday) {
 			$daystr = '0'.$day; 
 		else 
 			$daystr = $day;
-		$years = intval(strrev(my_substr(strrev(intval(date("Ymd")) - intval($year.$monthstr.$daystr)),4, NULL, CHARSET)));
+		$years = intval(strrev(my_substr(strrev(intval(date("Ymd")) - intval($year.$monthstr.$daystr)), 4, NULL, CHARSET)));
 		$date_invalid = ($years < 0 || $years > 150);
 	}
 	return !$date_invalid;
