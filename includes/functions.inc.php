@@ -1924,70 +1924,66 @@ function my_mail($to, $subject, $message, $from = '') {
  * @param array $banned_ips
  * @reurn bool
  */
-function is_ip_banned($ip, $banned_ips)
- {
-  foreach($banned_ips as $banned_ip) // go through every $banned_ip
-   {
-    if(strpos($banned_ip,'*')!==false) // $banned_ip contains "*" = > IP range
-     {
-      $ip_range = substr($banned_ip, 0, strpos($banned_ip, '*')); // fetch part before "*"
-      if(strpos($ip, $ip_range)===0) // check if IP begins with part before "*"
-       {
-        return true;
-       }
-     }
-    elseif(strpos($banned_ip,'/')!==false && preg_match("/(([0-9]{1,3}\.){3}[0-9]{1,3})\/([0-9]{1,2})/", $banned_ip, $regs)) // $banned_ip contains "/" => CIDR notation (the regular expression is only used if $banned_ip contains "/")
-     {
-      // convert IP into bit pattern:
-      $n_user_leiste = '00000000000000000000000000000000'; // 32 bits
-      $n_user_ip = explode('.',trim($ip));
-      for ($i = 0; $i <= 3; $i++) // go through every byte
-       {
-        for ($n_j = 0; $n_j < 8; $n_j++) // ... check every bit
-         {
-          if($n_user_ip[$i] >= pow(2, 7-$n_j)) // set to 1 if necessary
-           {
-            $n_user_ip[$i] = $n_user_ip[$i] - pow(2, 7-$n_j);
-            $n_user_leiste[$n_j + $i*8] = '1';
-           }
-         }
-       }
-      // analyze prefix length:
-      $n_byte_array = explode('.',trim($regs[1])); // IP -> 4 Byte
-      $n_cidr_bereich = $regs[3]; // prefix length
-      // bit pattern:
-      $n_bitleiste = '00000000000000000000000000000000';
-      for ($i = 0; $i <= 3; $i++) // go through every byte
-       {
-        if ($n_byte_array[$i] > 255) // invalid
-         {
-          $n_cidr_bereich = 0;
-         }
-        for ($n_j = 0; $n_j < 8; $n_j++) // ... check every bit
-         {
-          if($n_byte_array[$i] >= pow(2, 7-$n_j)) // set to 1 if necessary
-           {
-            $n_byte_array[$i] = $n_byte_array[$i] - pow(2, 7-$n_j);
-            $n_bitleiste[$n_j + $i*8] = '1';
-           }
-         }
-       }
-      // check if bit patterns match on the first n chracters:
-      if (strncmp($n_bitleiste, $n_user_leiste, $n_cidr_bereich) == 0 && $n_cidr_bereich > 0)
-       {
-        return true;
-       }
-     }
-    else // neither "*" nor "/" => simple comparison:
-     {
-      if($ip == $banned_ip)
-       {
-        return true;
-       }
-     }
-   }
-  return false;
- }
+function is_ip_banned($ip, $banned_ips) {
+	foreach ($banned_ips as $banned_ip) {
+		// go through every $banned_ip
+		if (strpos($banned_ip,'*') !== false) {
+			// $banned_ip contains "*" = > IP range
+			$ip_range = substr($banned_ip, 0, strpos($banned_ip, '*')); // fetch part before "*"
+			// check if IP begins with part before "*"
+			if (strpos($ip, $ip_range) === 0) {
+				return true;
+			}
+		} elseif (strpos($banned_ip,'/') !== false && preg_match("/(([0-9]{1,3}\.){3}[0-9]{1,3})\/([0-9]{1,2})/", $banned_ip, $regs)) {
+			// $banned_ip contains "/" => CIDR notation
+			// the regular expression is only used if $banned_ip contains "/"
+			// convert IP into bit pattern:
+			$n_user_leiste = '00000000000000000000000000000000'; // 32 bits
+			$n_user_ip = explode('.', trim($ip));
+			for ($i = 0; $i <= 3; $i++) {
+				// go through every byte
+				for ($n_j = 0; $n_j < 8; $n_j++) {
+					// ... check every bit
+					if ($n_user_ip[$i] >= pow(2, 7 - $n_j)) {
+						// set to 1 if necessary
+						$n_user_ip[$i] = $n_user_ip[$i] - pow(2, 7-$n_j);
+						$n_user_leiste[$n_j + $i*8] = '1';
+					}
+				}
+			}
+			// analyze prefix length:
+			$n_byte_array = explode('.', trim($regs[1])); // IP -> 4 Byte
+			$n_cidr_bereich = $regs[3]; // prefix length
+			// bit pattern:
+			$n_bitleiste = '00000000000000000000000000000000';
+			for ($i = 0; $i <= 3; $i++) {
+				// go through every byte
+				if ($n_byte_array[$i] > 255) {
+					// invalid
+					$n_cidr_bereich = 0;
+				}
+				for ($n_j = 0; $n_j < 8; $n_j++) {
+					// … check every bit
+					if ($n_byte_array[$i] >= pow(2, 7-$n_j)) {
+						// set to 1 if necessary
+						$n_byte_array[$i] = $n_byte_array[$i] - pow(2, 7-$n_j);
+						$n_bitleiste[$n_j + $i*8] = '1';
+					}
+				}
+			}
+			// check if bit patterns match on the first n chracters:
+			if (strncmp($n_bitleiste, $n_user_leiste, $n_cidr_bereich) == 0 && $n_cidr_bereich > 0) {
+				return true;
+			}
+		} else {
+			// neither "*" nor "/" => simple comparison:
+			if ($ip == $banned_ip) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
 
 /**
  * checks if the user agent is banned
