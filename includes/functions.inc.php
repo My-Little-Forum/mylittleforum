@@ -1387,35 +1387,31 @@ function emailNotification2ModsAndAdmins($id, $delayed = false) {
  * @param int $id : id of the item
  * @param string $direction : 'up' or 'down'
  */
-function move_item($table, $id, $direction)
- {
-  global $connid;
-  if($direction=='up')
-   {
-    $result = mysqli_query($connid, "SELECT order_id FROM ".$table." WHERE id = ".intval($id)." LIMIT 1") or die(mysqli_error($connid));
-    $data = mysqli_fetch_array($result);
-    mysqli_free_result($result);
-    if($data['order_id'] > 1)
-     {
-      mysqli_query($connid, "UPDATE ".$table." SET order_id=0 WHERE order_id=".$data['order_id']."-1");
-      mysqli_query($connid, "UPDATE ".$table." SET order_id=order_id-1 WHERE order_id=".$data['order_id']);
-      mysqli_query($connid, "UPDATE ".$table." SET order_id=".$data['order_id']." WHERE order_id=0");
-     }
-   }
-  else // down
-   {
-    list($item_count) = mysqli_fetch_row(mysqli_query($connid, "SELECT COUNT(*) FROM ".$table));
-    $result = mysqli_query($connid, "SELECT order_id FROM ".$table." WHERE id = ".intval($id)." LIMIT 1") or die(mysqli_error($connid));
-    $data = mysqli_fetch_array($result);
-    mysqli_free_result($result);
-    if ($data['order_id'] < $item_count)
-     {
-      mysqli_query($connid, "UPDATE ".$table." SET order_id=0 WHERE order_id=".$data['order_id']."+1");
-      mysqli_query($connid, "UPDATE ".$table." SET order_id=order_id+1 WHERE order_id=".$data['order_id']);
-      mysqli_query($connid, "UPDATE ".$table." SET order_id=".$data['order_id']." WHERE order_id=0");
-     }
-   }
- }
+function move_item($table, $id, $direction) {
+	global $connid;
+	if ($direction == 'up') {
+		// up
+		$result = mysqli_query($connid, "SELECT order_id FROM ".$table." WHERE id = ".intval($id)." LIMIT 1") or die(mysqli_error($connid));
+		$data = mysqli_fetch_array($result);
+		mysqli_free_result($result);
+		if ($data['order_id'] > 1) {
+			mysqli_query($connid, "UPDATE ".$table." SET order_id=0 WHERE order_id=".$data['order_id']."-1");
+			mysqli_query($connid, "UPDATE ".$table." SET order_id=order_id-1 WHERE order_id=".$data['order_id']);
+			mysqli_query($connid, "UPDATE ".$table." SET order_id=".$data['order_id']." WHERE order_id=0");
+		}
+	} else {
+		// down
+		list($item_count) = mysqli_fetch_row(mysqli_query($connid, "SELECT COUNT(*) FROM ".$table));
+		$result = mysqli_query($connid, "SELECT order_id FROM ".$table." WHERE id = ".intval($id)." LIMIT 1") or die(mysqli_error($connid));
+		$data = mysqli_fetch_array($result);
+		mysqli_free_result($result);
+		if ($data['order_id'] < $item_count) {
+			mysqli_query($connid, "UPDATE ".$table." SET order_id=0 WHERE order_id=".$data['order_id']."+1");
+			mysqli_query($connid, "UPDATE ".$table." SET order_id=order_id+1 WHERE order_id=".$data['order_id']);
+			mysqli_query($connid, "UPDATE ".$table." SET order_id=".$data['order_id']." WHERE order_id=0");
+		}
+	}
+}
 
 /**
  * resizes uploaded images
