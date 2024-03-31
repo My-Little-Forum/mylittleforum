@@ -2479,31 +2479,51 @@ function raise_error($error,$error_message='') {
 			header("Status: 503 Service Unavailable");
 		break;
 	}
-	?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $lang['language']; ?>">
-	<head>
-	<title><?php echo $settings['forum_name'].' - '.$title; ?></title>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo $lang['charset']; ?>" />
-	<style type="text/css">
-	<!--
-	body               { color:#000; background:#fff; margin:0; padding:0; font-family: verdana, arial, sans-serif; font-size:100.1%; }
-	h1                 { font-size:1.25em; }
-	p,ul               { font-size:0.82em; line-height:1.45em; }
-	//top              { margin:0; padding:0 20px 0 20px; height:4.4em; color:#000000; background:#d2ddea; border-bottom: 1px solid #bacbdf; line-height:4.4em;}
-	//top h1           { font-size:1.7em; margin:0; padding:0; color:#000080; }
-	//content          { padding:20px; }
-	-->
-	</style>
-	</head>
-	<body>
-	<div id="top"><h1><?php echo $settings['forum_name']; ?></h1></div>
-	<div id="content">
-	<h1><?php echo $title; ?></h1>
-	<p><?php echo $message; ?></p>
-	</div>
-	</body>
-	</html><?php
+	?><!DOCTYPE html>
+<html lang="<?php echo $lang['language']; ?>">
+ <head>
+  <meta charset="<?php echo $lang['charset']; ?>" />
+  <title><?php echo $settings['forum_name'].' - '.$title; ?></title>
+  <style type="text/css">
+  body {
+    color: #000;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    font-family: verdana, arial, sans-serif;
+    font-size:1em;
+    line-height:1.45em;
+  }
+  header {
+    margin:0;
+    padding:0 20px;
+    color: #000;
+    background: #d2ddea;
+    border-bottom: 1px solid #bacbdf;
+  }
+  h1 {
+    font-size:1.5em;
+    color:#000080;
+  }
+  main {
+    padding:20px;
+  }
+  h2 {
+    font-size:1.25em;
+  }
+  </style>
+ </head>
+ <body>
+  <header id="top">
+   <h1><?php echo $settings['forum_name']; ?></h1>
+  </header>
+  <main id="content">
+   <h2><?php echo $title; ?></h2>
+   <p><?php echo $message; ?></p>
+  </main>
+ </body>
+</html><?php
 	exit;
- }
+}
 
 ?>
