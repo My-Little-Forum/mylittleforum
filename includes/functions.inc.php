@@ -2221,40 +2221,32 @@ function get_timezones() {
  *
  * @reurn array
  */
-function get_languages($titles=false)
- {
-  $handle=opendir('./'.LANG_DIR.'/');
-  while($file = readdir($handle))
-   {
-    if(strrchr($file, '.')=='.lang')
-     {
-      $language_files[] = $file;
-     }
-   }
-  closedir($handle);
-  if(isset($language_files))
-   {
-    if(!$titles)
-     {
-      return $language_files;
-     }
-    else
-     {
-      natcasesort($language_files);
-      $i=0;
-      foreach($language_files as $file)
-       {
-        $t_language_files[$i]['identifier'] = $file;
-        $t_language_files[$i]['title'] = ucfirst(str_replace('.lang','',$file));
-        $title_parts = explode('.', $t_language_files[$i]['title']);
-        if(isset($title_parts[1])) $t_language_files[$i]['title'] = $title_parts[0].' ('.$title_parts[1].')';      
-        ++$i;
-       }
-      return $t_language_files;
-     }
-   }
-  return false;
- }
+function get_languages($titles = false) {
+	$handle = opendir('./'.LANG_DIR.'/');
+	while ($file = readdir($handle)) {
+		if (strrchr($file, '.') == '.lang') {
+			$language_files[] = $file;
+		}
+	}
+	closedir($handle);
+	if (isset($language_files)) {
+		if (!$titles) {
+			return $language_files;
+		} else {
+			natcasesort($language_files);
+			$i = 0;
+			foreach ($language_files as $file) {
+				$t_language_files[$i]['identifier'] = $file;
+				$t_language_files[$i]['title'] = ucfirst(str_replace('.lang','',$file));
+				$title_parts = explode('.', $t_language_files[$i]['title']);
+				if (isset($title_parts[1])) $t_language_files[$i]['title'] = $title_parts[0].' ('.$title_parts[1].')';
+				++$i;
+			}
+			return $t_language_files;
+		}
+	}
+	return false;
+}
 
 /**
  * gets available themes
