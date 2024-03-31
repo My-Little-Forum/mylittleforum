@@ -2202,22 +2202,19 @@ function contains_special_characters($string) {
  *
  * @reurn array
  */
-function get_timezones()
- {
-  if(!$timezones_raw = @file('config/time_zones')) return false;
-  if (!empty($timezones_raw)) {
-   foreach($timezones_raw as $line)
-    {
-     $line = trim($line);
-     if(!empty($line))
-      {
-       $timezones[] = $line;
-      }
-    }
-   }
-  if(isset($timezones)) return $timezones;
-  else return false;
- }
+function get_timezones() {
+	if (!$timezones_raw = @file('config/time_zones')) return false;
+	if (!empty($timezones_raw)) {
+		foreach ($timezones_raw as $line) {
+			$line = trim($line);
+			if (!empty($line)) {
+				$timezones[] = $line;
+			}
+		}
+	}
+	if (isset($timezones)) return $timezones;
+	else return false;
+}
 
 /**
  * gets available languages
