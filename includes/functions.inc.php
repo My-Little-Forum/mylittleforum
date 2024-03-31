@@ -1812,7 +1812,6 @@ function my_quoted_printable_encode($input, $line_max=76, $space_conv = false ) 
 	$eol = "\n";
 	$escape = '=';
 	$output = '';
-	//while(list(, $line) = each($lines)) {
 	foreach ($lines as $line) {
 		$linlen = strlen($line);
 		$newline = '';
