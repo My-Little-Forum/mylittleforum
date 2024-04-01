@@ -726,7 +726,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'akismet_spam';");
 				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `akismet_spam` (`spam`);");
 				}
 				
@@ -736,7 +736,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'spam_check_status';");
 				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `spam_check_status` (`spam`);");
 				}
 				
@@ -1100,7 +1100,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'akismet_spam';");
 				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `akismet_spam` (`spam`);");
 				}
 				
@@ -1110,7 +1110,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'spam_check_status';");
 				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `spam_check_status` (`spam`);");
 				}
 				
@@ -1430,7 +1430,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'akismet_spam';");
 				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `akismet_spam` (`spam`);");
 				}
 				
@@ -1440,7 +1440,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'spam_check_status';");
 				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `spam_check_status` (`spam`);");
 				}
 				
@@ -1731,7 +1731,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'akismet_spam';");
 				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `akismet_spam` (`spam`);");
 				}
 				
@@ -1741,7 +1741,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'spam_check_status';");
 				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `spam_check_status` (`spam`);");
 				}
 				
@@ -1907,7 +1907,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'akismet_spam';");
 				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `akismet_spam` (`spam`);");
 				}
 				
@@ -1917,7 +1917,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'spam_check_status';");
 				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `spam_check_status` (`spam`);");
 				}
 				
@@ -2083,7 +2083,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'akismet_spam';");
 				if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `akismet_spam` (`spam`);");
 				}
 				
@@ -2093,7 +2093,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
 				AND INDEX_NAME = 'spam_check_status';");
 				if (mysqli_num_rows($rIndex_spam_check_status) === 0) {
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
 					ADD KEY `spam_check_status` (`spam`);");
 				}
 				
