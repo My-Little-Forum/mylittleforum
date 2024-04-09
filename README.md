@@ -142,7 +142,7 @@
 1. Download the new package.
 2. Unzip the script package.
 3. Upload the folder "update" into the main folder of the forum installation.
-4. Upload the file "config/VERSION" to the folder "config" of the forum installation.
+4. Upload the file "config/VERSION" to the folder "config" of the forum installation. An existing file VERSION will be overwritten.
 5. Login as forum administrator and go to the admin area
 6. Open the link "Update", you will see a list of available update script files below the instructions. It is possible, that there are more than one items listed, because old, outdated update files never got deleted from the server.
 7. Open the link to the currently valid update script.
