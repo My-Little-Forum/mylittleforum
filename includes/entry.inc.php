@@ -134,22 +134,17 @@
 	
 	// Select data for thread-tree
 	$thread = $entrydata['tid'];
-	// Override '$display_spam_query_and' variable, which was set in main.inc.php, to display current message in tree
-	if ($entrydata['spam'] == 1 && isset($id))
-		$display_spam_query_and .= " OR `ft`.`id` = " . intval($id);
-	$result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
-                        UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, user_type, subject, category, marked, text, rst.user_id AS req_user,
-						" . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam,
-						" . $db_settings['b8_rating_table'] . ".spam AS b8_spam,
-						" . $db_settings['akismet_rating_table'] . ".spam_check_status AS akismet_checked,
-						" . $db_settings['b8_rating_table'] . ".training_type AS b8_checked
-						FROM " . $db_settings['forum_table'] . " AS ft
-                        LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = ft.user_id
-                        LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
-						LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
-						LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
-                        WHERE tid = " . $thread . $display_spam_query_and . " ORDER BY time ASC");
-	
+	// Override spam variable, which was set in main.inc.php, to display current message in tree
+	if ($entrydata['spam'] == 1 && isset($id)) {
+		$spam_sql_and .= " OR `ft`.`id` = " . intval($id);
+	}
+	$entry_sql = 
+		"SELECT ft.id, ft.pid, ft.tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, user_type, subject, category, marked, text, rst.user_id AS req_user, " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, " . $db_settings['akismet_rating_table'] . ".spam_check_status AS akismet_checked, " . $db_settings['b8_rating_table'] . ".training_type AS b8_checked 
+		FROM " . $db_settings['forum_table'] . " AS ft LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = ft.user_id LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = ft.id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = ft.id 
+		LEFT JOIN (SELECT eid AS id FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid AS id FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.id = ft.id 
+		WHERE tid = " . $thread . $spam_sql_and . " ORDER BY time ASC";
+	$result = mysqli_query($connid, $entry_sql);
+
 	if (!$result)
 		raise_error('database_error', mysqli_error($connid));
 	
@@ -370,4 +365,5 @@
 		$smarty->assign('options', $options);
 	$smarty->assign('subtemplate', 'entry.inc.tpl');
 	$template = 'main.tpl';
+
 ?>

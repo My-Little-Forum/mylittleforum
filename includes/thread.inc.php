@@ -1,4 +1,6 @@
 <?php
+
+
 if (!defined('IN_INDEX')) {
 	header('Location: ../index.php');
 	exit;
@@ -66,23 +68,32 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 	if (isset($categories[$data['category']]) && $categories[$data['category']] != '')
 		$smarty->assign('category_name', $categories[$data["category"]]);
 	
+	if ($show_spam) {
+		$thread_spam =  " AS spam_list ON spam_list.tid = ft.tid WHERE spam_list.id IS NOT NULL";
+	} else {
+		$thread_spam = " AS spam_list ON spam_list.id = ft.id WHERE spam_list.id IS NULL";
+	}
+		
 	// get all postings of thread:
-	$result = mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL " . intval($time_difference) . " MINUTE) AS disp_time,
-						   UNIX_TIMESTAMP(last_reply + INTERVAL " . intval($time_difference) . " MINUTE) AS last_reply,	
-                           UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . intval($time_difference) . " MINUTE) AS e_time,
-                           UNIX_TIMESTAMP(edited - INTERVAL " . $settings['edit_delay'] . " MINUTE) AS edited_diff, edited_by, name, email,
-                           subject, hp, location, ip, text, cache_text, show_signature, views, category, locked, ip,
-                           user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, rst.user_id AS req_user,
-                           " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status,
-                           " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type
-                           FROM " . $db_settings['forum_table'] . " AS ft
-                           LEFT JOIN " . $db_settings['entry_cache_table'] . " ON " . $db_settings['entry_cache_table'] . ".cache_id=ft.id
-                           LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id=ft.user_id
-                           LEFT JOIN " . $db_settings['userdata_cache_table'] . " ON " . $db_settings['userdata_cache_table'] . ".cache_id=" . $db_settings['userdata_table'] . ".user_id
-                           LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
-						   LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
-						   LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
-                           WHERE tid = " . $tid . $display_spam_query_and . " ORDER BY ft.time ASC") or raise_error('database_error', mysqli_error($connid));
+    $thread_sql = 
+		"SELECT ft.id, ft.pid, ft.tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL " . intval($time_difference) . " MINUTE) AS disp_time,
+        UNIX_TIMESTAMP(last_reply + INTERVAL " . intval($time_difference) . " MINUTE) AS last_reply,	
+        UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . intval($time_difference) . " MINUTE) AS e_time,
+        UNIX_TIMESTAMP(edited - INTERVAL " . $settings['edit_delay'] . " MINUTE) AS edited_diff, edited_by, name, email,
+        subject, hp, location, ip, text, cache_text, show_signature, views, category, locked, ip,
+        user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, rst.user_id AS req_user,
+        " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status,
+        " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type
+        FROM " . $db_settings['forum_table'] . " AS ft
+        LEFT JOIN " . $db_settings['entry_cache_table'] . " ON " . $db_settings['entry_cache_table'] . ".cache_id=ft.id
+        LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id=ft.user_id
+        LEFT JOIN " . $db_settings['userdata_cache_table'] . " ON " . $db_settings['userdata_cache_table'] . ".cache_id=" . $db_settings['userdata_table'] . ".user_id
+        LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
+		LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = `ft`.id 
+		LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = ft.id 
+		LEFT JOIN (SELECT " . $db_settings['forum_table'] . ".id, " . $db_settings['forum_table'] . ".tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT " . $db_settings['forum_table'] . ".id, " . $db_settings['forum_table'] . ".tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['b8_rating_table'] . ".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) 
+        " . $thread_spam . " AND ft.tid = " . $tid . " ORDER BY ft.time ASC";
+	$result = mysqli_query($connid, $thread_sql) or raise_error('database_error', mysqli_error($connid));
 	
 	if (mysqli_num_rows($result) > 0) {
 		while ($data = mysqli_fetch_array($result)) {
@@ -276,4 +287,5 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 		$smarty->assign('subtemplate', 'thread_linear.inc.tpl');
 	$template = 'main.tpl';
 }
+
 ?>

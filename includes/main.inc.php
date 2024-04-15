@@ -108,13 +108,13 @@ if (empty($_SESSION[$settings['session_prefix'].'usersettings'])) {
 	$usersettings['page'] = 1;
 	$usersettings['category'] = 0;
 	$_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
-	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
+	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 }
 
 if (isset($_REQUEST['toggle_sidebar'])) {
 	if (empty($_SESSION[$settings['session_prefix'].'usersettings']['sidebar'])) $_SESSION[$settings['session_prefix'].'usersettings']['sidebar'] = 1;
 	else $_SESSION[$settings['session_prefix'].'usersettings']['sidebar'] = 0;
-	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
+	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 	// update database for registered users:
 	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, sidebar = ". intval($_SESSION[$settings['session_prefix'].'usersettings']['sidebar']) ." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id']));
@@ -134,14 +134,14 @@ if (isset($_GET['thread_order']) && isset($_SESSION[$settings['session_prefix'].
 	if ($thread_order != $_SESSION[$settings['session_prefix'].'usersettings']['thread_order']) {
 		$_SESSION[$settings['session_prefix'].'usersettings']['page'] = 1;
 		$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'] = $thread_order;
-		setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$thread_order.'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
+		setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$thread_order.'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 		if (isset($_SESSION[$settings['session_prefix'].'user_id'])) @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, thread_order = ". intval($thread_order) ." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id']));
 	}
 }
 
 if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET['toggle_view']) && in_array($_GET['toggle_view'], array(0, 1))) {
 	$_SESSION[$settings['session_prefix'].'usersettings']['user_view'] = intval($_GET['toggle_view']);
-	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], cookie_options(TIMESTAMP+(3600*24*$settings['cookie_validity_days'])));
+	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'],TIMESTAMP+(3600*24*$settings['cookie_validity_days']));
 	// update database for registered users:
 	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, user_view = ". intval($_SESSION[$settings['session_prefix'].'usersettings']['user_view']) ." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or die(mysqli_error($connid));
@@ -152,7 +152,7 @@ if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET[
 }
 if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET['toggle_thread_display']) && in_array($_GET['toggle_thread_display'], array(0, 1)) && isset($_GET['id'])) {
 	$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'] = intval($_GET['toggle_thread_display']);
-	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
+	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 	// update database for registered users:
 	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, thread_display = ". intval($_SESSION[$settings['session_prefix'].'usersettings']['thread_display']) ." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or die(mysqli_error($connid));
@@ -163,7 +163,7 @@ if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET[
 
 if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET['fold_threads']) && in_array($_GET['fold_threads'], array(0, 1))) {
 	$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'] = intval($_GET['fold_threads']);
-	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
+	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 	// update database for registered users:
 	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, fold_threads = ". intval($_SESSION[$settings['session_prefix'].'usersettings']['fold_threads']) ." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id'])) or die(mysqli_error($connid));
@@ -178,8 +178,8 @@ if(isset($_GET['refresh'])) {
 	if (isset($_SESSION[$settings['session_prefix'].'usersettings']['newtime'])) {
 		$_SESSION[$settings['session_prefix'].'usersettings']['newtime'] = TIMESTAMP;
 	}
-	setcookie($settings['session_prefix'].'last_visit', TIMESTAMP.".".TIMESTAMP, cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
-	setcookie($settings['session_prefix'].'read', '', cookie_options(0));
+	setcookie($settings['session_prefix'].'last_visit', TIMESTAMP.".".TIMESTAMP, TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
+	setcookie($settings['session_prefix'].'read', '', 0);
 	header('location: index.php?mode=index');
 	exit;
 }
@@ -200,11 +200,10 @@ if (empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['rememb
 		if ($c_last_visit[1] < (TIMESTAMP - 600)) {
 			$c_last_visit[0] = $c_last_visit[1];
 			$c_last_visit[1] = TIMESTAMP;
-			setcookie($settings['session_prefix'].'last_visit', $c_last_visit[0].".".$c_last_visit[1], cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
+			setcookie($settings['session_prefix'].'last_visit', $c_last_visit[0].".".$c_last_visit[1], TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 		}
 	}
-	else 
-		setcookie($settings['session_prefix'].'last_visit', TIMESTAMP.".".TIMESTAMP, cookie_options(TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days'])));
+	else setcookie($settings['session_prefix'].'last_visit', TIMESTAMP.".".TIMESTAMP, TIMESTAMP + (3600 * 24 * $settings['cookie_validity_days']));
 }
 
 if (isset($c_last_visit)) $last_visit = intval($c_last_visit[0]); else $last_visit = TIMESTAMP;
@@ -221,36 +220,45 @@ if (isset($category_ids) && isset($_SESSION[$settings['session_prefix'].'userset
 }
 
 // count spam:
-$count_spam_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 1 OR " . $db_settings['b8_rating_table'] . ".spam = 1)");
+$count_spam_sql = 
+	"SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " INNER JOIN (SELECT eid FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid FROM " . $db_settings['b8_rating_table'] . "	WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) spam_list ON spam_list.eid = " . $db_settings['forum_table'] . ".id";
+$count_spam_result = mysqli_query($connid, $count_spam_sql);
 list($total_spam) = mysqli_fetch_row($count_spam_result);
 mysqli_free_result($count_spam_result);
 
 // show spam?  NOTE: variables are used in several php files, i.e. index.inc.php, thread.inc.php, entry.inc.php
-$display_spam_query_and   = " AND (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) ";
-$display_spam_query_where = " WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) ";
+$show_spam = false;
+$spam_sql_and = " AND spam_list.id IS NULL";
+
 if ($total_spam > 0 && isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) {
-	$display_spam_query_and   = " AND   ( `tid` IN (SELECT DISTINCT `tid` FROM `" . $db_settings['forum_table'] ."` JOIN `" . $db_settings['akismet_rating_table'] . "` ON `id` = `" . $db_settings['akismet_rating_table'] . "`.`eid` JOIN `" . $db_settings['b8_rating_table'] . "` ON `id` = `" . $db_settings['b8_rating_table'] . "`.`eid` WHERE `" . $db_settings['akismet_rating_table'] . "`.`spam` = 1 OR `" . $db_settings['b8_rating_table'] . "`.`spam` = 1 ) ) ";
-	$display_spam_query_where = " WHERE ( `tid` IN (SELECT DISTINCT `tid` FROM `" . $db_settings['forum_table'] ."` JOIN `" . $db_settings['akismet_rating_table'] . "` ON `id` = `" . $db_settings['akismet_rating_table'] . "`.`eid` JOIN `" . $db_settings['b8_rating_table'] . "` ON `id` = `" . $db_settings['b8_rating_table'] . "`.`eid` WHERE `" . $db_settings['akismet_rating_table'] . "`.`spam` = 1 OR `" . $db_settings['b8_rating_table'] . "`.`spam` = 1 ) ) ";
+	$show_spam = true;
+	$spam_sql_and = " AND spam_list.id IS NOT NULL";
 }
 
 // count postings, threads, users and users online:
+$total_threads_postings_body = 
+	"SELECT COUNT(DISTINCT " . $db_settings['forum_table'] . ".id) FROM " . $db_settings['forum_table'] . " LEFT JOIN (SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['akismet_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['b8_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['b8_rating_table'] . ".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1)";
+$threads_check_sql = " AND pid = 0";
+if ($show_spam) {
+	$spam_totals =  " AS spam_list ON spam_list.tid = " . $db_settings['forum_table'] . ".tid WHERE spam_list.id IS NOT NULL";
+} else {
+	$spam_totals = " AS spam_list ON spam_list.id = " . $db_settings['forum_table'] . ".id WHERE spam_list.id IS NULL";
+}
 if ($categories == false) {
-	// no categories defined
-	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE pid = 0 " . $display_spam_query_and);
-	list($total_threads) = mysqli_fetch_row($count_result);
-	mysqli_free_result($count_result);
-	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id " . $display_spam_query_where);
-	list($total_postings) = mysqli_fetch_row($count_result);
-	mysqli_free_result($count_result);
+	$total_postings_category = "";		
 } else {
 	// there are categories
-	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE pid = 0 " . $display_spam_query_and . " AND category IN (" . $category_ids_query . ")");
-	list($total_threads) = mysqli_fetch_row($count_result);
-	mysqli_free_result($count_result);
-	$count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE category IN (" . $category_ids_query . ")" . $display_spam_query_and);
-	list($total_postings) = mysqli_fetch_row($count_result);
-	mysqli_free_result($count_result);
+	$total_postings_category = " AND category IN (" . $category_ids_query . ")";		
 }
+$total_threads_sql = $total_threads_postings_body . $spam_totals . $total_postings_category . $threads_check_sql;
+$total_threads = mysqli_query($connid, $total_threads_sql);
+list($total_threads) = mysqli_fetch_row($total_threads);
+mysqli_free_result($total_threads);
+
+$total_postings_sql = $total_threads_postings_body . $spam_totals . $total_postings_category;
+$total_postings = mysqli_query($connid, $total_postings_sql);
+list($total_postings) = mysqli_fetch_row($total_postings);
+mysqli_free_result($total_postings);
 
 $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['userdata_table'] . " WHERE activate_code = ''");
 list($registered_users) = mysqli_fetch_row($count_result);
@@ -281,4 +289,5 @@ if (mysqli_num_rows($menu_result) > 0) {
 	}
 }
 mysqli_free_result($menu_result);
+
 ?>
