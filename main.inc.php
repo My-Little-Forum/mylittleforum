@@ -252,14 +252,14 @@ if ($categories == false) {
 	$total_postings_category = " AND category IN (" . $category_ids_query . ")";		
 }
 $total_threads_sql = $total_threads_postings_body . $spam_totals . $total_postings_category . $threads_check_sql;
-$total_threads = mysqli_query($connid, $total_threads_sql);
-list($total_threads) = mysqli_fetch_row($total_threads);
-mysqli_free_result($total_threads);
+$count_result = mysqli_query($connid, $total_threads_sql);
+list($total_threads) = mysqli_fetch_row($count_result);
+mysqli_free_result($count_result);
 
 $total_postings_sql = $total_threads_postings_body . $spam_totals . $total_postings_category;
-$total_postings = mysqli_query($connid, $total_postings_sql);
-list($total_postings) = mysqli_fetch_row($total_postings);
-mysqli_free_result($total_postings);
+$count_result = mysqli_query($connid, $total_postings_sql);
+list($total_postings) = mysqli_fetch_row($count_result);
+mysqli_free_result($count_result);
 
 $count_result = mysqli_query($connid, "SELECT COUNT(*) FROM " . $db_settings['userdata_table'] . " WHERE activate_code = ''");
 list($registered_users) = mysqli_fetch_row($count_result);
