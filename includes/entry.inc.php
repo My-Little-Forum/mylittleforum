@@ -39,12 +39,12 @@
 						 " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status,
 						 " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type
                          FROM " . $db_settings['forum_table'] . " AS ft
-                         LEFT JOIN " . $db_settings['entry_cache_table'] . " ON " . $db_settings['entry_cache_table'] . ".cache_id=ft.id
-                         LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id=ft.user_id
-                         LEFT JOIN " . $db_settings['userdata_cache_table'] . " ON " . $db_settings['userdata_cache_table'] . ".cache_id=" . $db_settings['userdata_table'] . ".user_id
+                         LEFT JOIN " . $db_settings['entry_cache_table'] . " ON " . $db_settings['entry_cache_table'] . ".cache_id = ft.id
+                         LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = ft.user_id
+                         LEFT JOIN " . $db_settings['userdata_cache_table'] . " ON " . $db_settings['userdata_cache_table'] . ".cache_id = " . $db_settings['userdata_table'] . ".user_id
                          LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
-						 LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
-						 LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
+						 LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = ft.id 
+						 LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = ft.id 
                          WHERE ft.id = " . intval($id)) or raise_error('database_error', mysqli_error($connid));
 
 		if (mysqli_num_rows($result) == 1) {
@@ -136,7 +136,7 @@
 	$thread = $entrydata['tid'];
 	// Override spam variable, which was set in main.inc.php, to display current message in tree
 	if ($entrydata['spam'] == 1 && isset($id)) {
-		$spam_sql_and .= " OR `ft`.`id` = " . intval($id);
+		$spam_sql_and .= " OR ft.id = " . intval($id);
 	}
 	$entry_sql = 
 		"SELECT ft.id, ft.pid, ft.tid, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, user_type, subject, category, marked, text, rst.user_id AS req_user, " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, " . $db_settings['akismet_rating_table'] . ".spam_check_status AS akismet_checked, " . $db_settings['b8_rating_table'] . ".training_type AS b8_checked 

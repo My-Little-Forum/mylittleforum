@@ -138,7 +138,6 @@ if (isset($_GET['thread_order']) && isset($_SESSION[$settings['session_prefix'].
 		if (isset($_SESSION[$settings['session_prefix'].'user_id'])) @mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, last_logout = last_logout, registered = registered, thread_order = ". intval($thread_order) ." WHERE user_id = ". intval($_SESSION[$settings['session_prefix'].'user_id']));
 	}
 }
-
 if (isset($_SESSION[$settings['session_prefix'].'usersettings']) && isset($_GET['toggle_view']) && in_array($_GET['toggle_view'], array(0, 1))) {
 	$_SESSION[$settings['session_prefix'].'usersettings']['user_view'] = intval($_GET['toggle_view']);
 	setcookie($settings['session_prefix'].'usersettings', $_SESSION[$settings['session_prefix'].'usersettings']['user_view'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_order'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['sidebar'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'].'.'.$_SESSION[$settings['session_prefix'].'usersettings']['thread_display'], cookie_options(TIMESTAMP+(3600*24*$settings['cookie_validity_days'])));
@@ -222,7 +221,8 @@ if (isset($category_ids) && isset($_SESSION[$settings['session_prefix'].'userset
 
 // count spam:
 $count_spam_sql = 
-	"SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " INNER JOIN (SELECT eid FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid FROM " . $db_settings['b8_rating_table'] . "	WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) spam_list ON spam_list.eid = " . $db_settings['forum_table'] . ".id";
+	"SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " AS ft INNER JOIN (SELECT eid FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.eid = ft.id";
+
 $count_spam_result = mysqli_query($connid, $count_spam_sql);
 list($total_spam) = mysqli_fetch_row($count_spam_result);
 mysqli_free_result($count_spam_result);
@@ -238,12 +238,12 @@ if ($total_spam > 0 && isset($_SESSION[$settings['session_prefix'].'usersettings
 
 // count postings, threads, users and users online:
 $total_threads_postings_body = 
-	"SELECT COUNT(DISTINCT " . $db_settings['forum_table'] . ".id) FROM " . $db_settings['forum_table'] . " LEFT JOIN (SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['akismet_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['b8_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['b8_rating_table'] . ".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1)";
+	"SELECT COUNT(DISTINCT ft.id) FROM " . $db_settings['forum_table'] . " AS ft LEFT JOIN (SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['akismet_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['b8_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['b8_rating_table'] . ".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1)";
 $threads_check_sql = " AND pid = 0";
 if ($show_spam) {
-	$spam_totals =  " AS spam_list ON spam_list.tid = " . $db_settings['forum_table'] . ".tid WHERE spam_list.id IS NOT NULL";
+	$spam_totals =  " AS spam_list ON spam_list.tid = ft.tid WHERE spam_list.id IS NOT NULL";
 } else {
-	$spam_totals = " AS spam_list ON spam_list.id = " . $db_settings['forum_table'] . ".id WHERE spam_list.id IS NULL";
+	$spam_totals = " AS spam_list ON spam_list.id = ft.id WHERE spam_list.id IS NULL";
 }
 if ($categories == false) {
 	$total_postings_category = "";		

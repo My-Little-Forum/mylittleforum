@@ -53,8 +53,8 @@ if ($categories == false) {
 	// there are categories and all categories or category selection should be shown
 
 	$pid_result_sql = 
-		"SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " 
-		LEFT JOIN (SELECT eid	FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) spam_list ON spam_list.eid = ft.id 
+		"SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " AS ft
+		LEFT JOIN (SELECT eid	FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.eid = ft.id 
 		WHERE pid = 0"; 
 
 	if (isset($category_selection_query) && $category == -1) {
@@ -173,7 +173,7 @@ if ($settings['latest_postings'] > 0) {
 			$latest_postings_category_sql = " AND category IN (". $category_ids_query .")";		
 		}
 	}
-	$latest_postings_sql = $latest_postings_body_sql . $latest_postings_category_sql . $latest_postings_order_by_sql ;
+	$latest_postings_sql = $latest_postings_body_sql . $latest_postings_category_sql . $latest_postings_order_by_sql;
 	$latest_postings_result = @mysqli_query($connid, $latest_postings_sql) or raise_error('database_error', mysqli_error($connid));
 
 	if (mysqli_num_rows($latest_postings_result) > 0) {

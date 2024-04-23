@@ -85,11 +85,11 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
         " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status,
         " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type
         FROM " . $db_settings['forum_table'] . " AS ft
-        LEFT JOIN " . $db_settings['entry_cache_table'] . " ON " . $db_settings['entry_cache_table'] . ".cache_id=ft.id
-        LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id=ft.user_id
-        LEFT JOIN " . $db_settings['userdata_cache_table'] . " ON " . $db_settings['userdata_cache_table'] . ".cache_id=" . $db_settings['userdata_table'] . ".user_id
+        LEFT JOIN " . $db_settings['entry_cache_table'] . " ON " . $db_settings['entry_cache_table'] . ".cache_id = ft.id
+        LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = ft.user_id
+        LEFT JOIN " . $db_settings['userdata_cache_table'] . " ON " . $db_settings['userdata_cache_table'] . ".cache_id = " . $db_settings['userdata_table'] . ".user_id
         LEFT JOIN " . $db_settings['read_status_table'] . " AS rst ON rst.posting_id = ft.id AND rst.user_id = " . intval($tmp_user_id) . "
-		LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = `ft`.id 
+		LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = ft.id 
 		LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = ft.id 
 		LEFT JOIN (SELECT " . $db_settings['forum_table'] . ".id, " . $db_settings['forum_table'] . ".tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT " . $db_settings['forum_table'] . ".id, " . $db_settings['forum_table'] . ".tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['b8_rating_table'] . ".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) 
         " . $thread_spam . " AND ft.tid = " . $tid . " ORDER BY ft.time ASC";
