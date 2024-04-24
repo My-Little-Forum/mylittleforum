@@ -45,28 +45,38 @@ $_SESSION[$settings['session_prefix'].'usersettings']['current_page'] = $page;
 $descasc = "DESC";
 $ul = ($page - 1) * $settings['threads_per_page'];
 
-// database request
+	// database request
 if ($categories == false) {
 	// no categories defined
-	$result = mysqli_query($connid, "SELECT id, tid FROM ".$db_settings['forum_table']." LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE pid = 0". $display_spam_query_and ." ORDER BY sticky DESC, ". $db_thread_order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['threads_per_page'])) or raise_error('database_error', mysqli_error($connid));
+	$page_threads_and = "";
 } elseif (is_array($categories) && $category <= 0) {
 	// there are categories and all categories or category selection should be shown
+
+	$pid_result_sql = 
+		"SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " AS ft
+		LEFT JOIN (SELECT eid	FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.eid = ft.id 
+		WHERE pid = 0"; 
+
 	if (isset($category_selection_query) && $category == -1) {
 		// category selection
 		$category_ids_query = $category_selection_query;
-		$pid_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE ((pid = 0 AND category IN (". $category_ids_query .")) OR (pid = 0 AND sticky = 2))". $display_spam_query_and);
+		$page_threads_and = " AND (sticky = 2 OR category IN (". $category_ids_query .")) ";
+		$display_pid_result = $pid_result_sql . $spam_sql_and . $page_threads_and;
+		$pid_result = mysqli_query($connid, $display_pid_result);
 		list($total_threads) = mysqli_fetch_row($pid_result);
 		mysqli_free_result($pid_result);
 	}
-	$result = mysqli_query($connid, "SELECT id, tid FROM ".$db_settings['forum_table']." LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE ((pid = 0 AND category IN (". $category_ids_query .")) OR (pid = 0 AND sticky = 2))". $display_spam_query_and ." ORDER BY sticky DESC, ". $db_thread_order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['threads_per_page'])) or raise_error('database_error', mysqli_error($connid));
 } elseif (is_array($categories) && $category > 0) {
 	// there are categories and only one category should be shown
 	if (in_array($category, $category_ids)) {
-		$result=mysqli_query($connid, "SELECT id, tid FROM ".$db_settings['forum_table']." LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE ((category = '". mysqli_real_escape_string($connid, $category) ."' AND pid = 0) OR (pid = 0 AND sticky = 2))". $display_spam_query_and ." ORDER BY sticky DESC, ". $db_thread_order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['threads_per_page'])) or raise_error('database_error', mysqli_error($connid));
 		// how many entries?
-		$pid_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['forum_table']." LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = " . $db_settings['forum_table'] . ".id WHERE ((pid = 0 AND category = '". mysqli_real_escape_string($connid, $category) ."') OR (pid = 0 AND sticky = 2))". $display_spam_query_and);
+		$page_threads_and = " AND (sticky = 2 OR category = '". mysqli_real_escape_string($connid, $category) ."') ";
+		$display_pid_result = $pid_result_sql . $spam_sql_and . $page_threads_and;
+
+		$pid_result = mysqli_query($connid, $display_pid_result);
 		list($total_threads) = mysqli_fetch_row($pid_result);
 		mysqli_free_result($pid_result);
+	
 	} else {
 		// invalid category
 		header('Location: index.php');
@@ -74,22 +84,34 @@ if ($categories == false) {
 	}
 }
 
+$display_page_threads = 
+	"SELECT DISTINCT ft.tid FROM ".$db_settings['forum_table']." AS ft 
+	LEFT JOIN (SELECT id, tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT id, tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['b8_rating_table'] .".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) spam_list ON spam_list.tid = ft.id 
+	WHERE ft.pid = 0";  
+
+if ($show_spam) {
+	$page_spam = " AND spam_list.id IS NOT NULL";
+} else {
+	$page_spam = " AND IFNULL(spam_list.id, 0) <> ft.tid";
+}
+
+$page_threads_SQL = $display_page_threads . $page_spam . $page_threads_and . " ORDER BY sticky DESC, ". $db_thread_order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['threads_per_page']);
+$result = mysqli_query($connid, $page_threads_SQL) or raise_error('database_error', mysqli_error($connid));
+
 $result_count = @mysqli_num_rows($result);
 if ($result_count > 0) {
 	while ($zeile = mysqli_fetch_array($result)) {
-		$thread_result = @mysqli_query($connid, "SELECT id, pid, tid, ft.user_id, user_type, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, 
-		    name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, rst.user_id AS req_user,
-			" . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam,
-			" . $db_settings['b8_rating_table'] . ".spam AS b8_spam,
-			" . $db_settings['akismet_rating_table'] . ".spam_check_status AS akismet_checked,
-			" . $db_settings['b8_rating_table'] . ".training_type AS b8_checked
-			FROM ".$db_settings['forum_table']." AS ft
-			LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ft.user_id
-			LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
-			LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
-			LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
-			WHERE tid = ".$zeile['tid'].$display_spam_query_and."
-			ORDER BY ft.time ASC") or raise_error('database_error', mysqli_error($connid));
+
+		if ($show_spam) $thread_spam = "";
+		else $thread_spam = " AND spam_list.id IS NULL";
+
+		$thread_result_sql = 
+			"SELECT DISTINCT ft.id, ft.pid, ft.tid, ft.user_id, user_type, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, rst.user_id AS req_user, " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, " . $db_settings['akismet_rating_table'] . ".spam_check_status AS akismet_checked, " . $db_settings['b8_rating_table'] . ".training_type AS b8_checked 
+			FROM ".$db_settings['forum_table']." AS ft LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ft.user_id LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ." LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = ft.id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = ft.id 
+			LEFT JOIN (SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['akismet_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['b8_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['b8_rating_table'] . ".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.id = ft.id 
+			WHERE ft.tid = ".$zeile['tid'] . $thread_spam . " 
+			ORDER BY ft.time ASC";
+			$thread_result = @mysqli_query($connid, $thread_result_sql) or raise_error('database_error', mysqli_error($connid));
 
 		// put result into arrays:
 		while ($data = mysqli_fetch_array($thread_result)) {
@@ -137,40 +159,22 @@ if ($result_count > 0) {
 
 // latest postings:
 if ($settings['latest_postings'] > 0) {
+	$latest_postings_body_sql = 
+		"SELECT ft.id, ft.pid, ft.tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, rst.user_id AS req_user, rst.time AS read_time
+		FROM ".$db_settings['forum_table']." AS ft LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ft.user_id LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
+		LEFT JOIN (SELECT eid AS id FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid AS id FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.id = ft.id WHERE spam_list.id IS NULL";
+	$latest_postings_order_by_sql = " ORDER BY ft.time DESC LIMIT " . $settings['latest_postings'];		
 	if ($categories == false) {
-		$latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, 
-		    subject, category, rst.user_id AS req_user
-			FROM ".$db_settings['forum_table']." AS ft
-			LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ft.user_id
-			LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
-			LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
-			LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
-			WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0)
-			ORDER BY ft.time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error', mysqli_error($connid));
+		$latest_postings_category_sql = "";		
 	} else {
 		if ($category > 0) {
-			$latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, 
-			    subject, category, rst.user_id AS req_user
-				FROM ".$db_settings['forum_table']." AS ft
-				LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ft.user_id
-				LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
-				LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
-				LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
-				WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) 
-				AND category = ". intval($category) ."
-				ORDER BY ft.time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error', mysqli_error($connid));
+			$latest_postings_category_sql = " AND category = " . intval($category);		
 		} else {
-			$latest_postings_result = @mysqli_query($connid, "SELECT id, pid, tid, name, user_name, ft.user_id, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, subject, category, rst.user_id AS req_user
-				FROM ".$db_settings['forum_table']." AS ft
-				LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ft.user_id
-				LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ."
-				LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".`eid` = `ft`.`id` 
-				LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".`eid` = `ft`.`id` 
-				WHERE (" . $db_settings['akismet_rating_table'] . ".spam = 0 AND " . $db_settings['b8_rating_table'] . ".spam = 0) 
-				AND category IN (". $category_ids_query .")
-				ORDER BY ft.time DESC LIMIT ".$settings['latest_postings']) or raise_error('database_error', mysqli_error($connid));
+			$latest_postings_category_sql = " AND category IN (". $category_ids_query .")";		
 		}
 	}
+	$latest_postings_sql = $latest_postings_body_sql . $latest_postings_category_sql . $latest_postings_order_by_sql;
+	$latest_postings_result = @mysqli_query($connid, $latest_postings_sql) or raise_error('database_error', mysqli_error($connid));
 
 	if (mysqli_num_rows($latest_postings_result) > 0) {
 		$i = 0;
