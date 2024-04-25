@@ -1140,8 +1140,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				DROP INDEX `user_type`,
 				DROP INDEX `user_name`,
-				ADD UNIQUE KEY `key_user_name` (`key_user_name`),
 				ADD KEY `key_user_type` (`user_type`),
+				ADD UNIQUE KEY `key_user_name` (`user_name`),
 				ADD UNIQUE KEY `key_user_email` (`user_email`);");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
