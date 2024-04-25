@@ -759,14 +759,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				// changes in the user data table
 				// ???
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+				CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
 				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				DROP INDEX `user_type`,
@@ -1134,8 +1134,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
+				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				DROP INDEX `user_type`,
