@@ -369,7 +369,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;");
 					
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+					DROP INDEX `user_type`,
 					DROP INDEX `user_name`,
+					ADD KEY `key_user_type` (`user_type`),
 					ADD UNIQUE KEY `key_user_name` (`user_name`),
 					ADD UNIQUE KEY `key_user_email` (`user_email`);");
 					
@@ -767,7 +769,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				DROP INDEX `user_type`,
 				DROP INDEX `user_name`,
+				ADD KEY `key_user_type` (`user_type`),
 				ADD UNIQUE KEY `key_user_name` (`user_name`),
 				ADD UNIQUE KEY `key_user_email` (`user_email`);");
 				
@@ -1134,8 +1138,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				DROP INDEX `user_type`,
 				DROP INDEX `user_name`,
 				ADD UNIQUE KEY `key_user_name` (`key_user_name`),
+				ADD KEY `key_user_type` (`user_type`),
 				ADD UNIQUE KEY `key_user_email` (`user_email`);");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
@@ -1461,9 +1467,40 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 				ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
+				
+				$rIndex_user_type = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_type';");
+				if (mysqli_num_rows($rIndex_user_type) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_type` (`user_type`);");
+				}
+				
+				$rIndex_user_name = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_name';");
+				if (mysqli_num_rows($rIndex_user_name) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_name` (`user_name`);");
+				}
+				
+				$rIndex_user_email = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_email';");
+				if (mysqli_num_rows($rIndex_user_email) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_email` (`user_email`);");
+				}
 				
 				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
 				FROM information_schema.STATISTICS 
@@ -1759,6 +1796,36 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				
+				$rIndex_user_type = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_type';");
+				if (mysqli_num_rows($rIndex_user_type) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_type` (`user_type`);");
+				}
+				
+				$rIndex_user_name = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_name';");
+				if (mysqli_num_rows($rIndex_user_name) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_name` (`user_name`);");
+				}
+				
+				$rIndex_user_email = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_email';");
+				if (mysqli_num_rows($rIndex_user_email) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_email` (`user_email`);");
+				}
+				
 				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
 				FROM information_schema.STATISTICS 
 				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
@@ -1935,6 +2002,36 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
 				
+				$rIndex_user_type = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_type';");
+				if (mysqli_num_rows($rIndex_user_type) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_type` (`user_type`);");
+				}
+				
+				$rIndex_user_name = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_name';");
+				if (mysqli_num_rows($rIndex_user_name) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_name` (`user_name`);");
+				}
+				
+				$rIndex_user_email = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_email';");
+				if (mysqli_num_rows($rIndex_user_email) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_email` (`user_email`);");
+				}
+				
 				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
 				FROM information_schema.STATISTICS 
 				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
@@ -2110,6 +2207,36 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				
+				$rIndex_user_type = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_type';");
+				if (mysqli_num_rows($rIndex_user_type) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_type` (`user_type`);");
+				}
+				
+				$rIndex_user_name = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_name';");
+				if (mysqli_num_rows($rIndex_user_name) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_name` (`user_name`);");
+				}
+				
+				$rIndex_user_email = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
+				AND INDEX_NAME = 'key_user_email';");
+				if (mysqli_num_rows($rIndex_user_email) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] ."`
+					ADD KEY `key_user_email` (`user_email`);");
+				}
 				
 				$rObsoleteIndexes = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS obsolete_key
 				FROM information_schema.STATISTICS 
