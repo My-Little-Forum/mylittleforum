@@ -949,16 +949,42 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	}
 
 	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
+		$listed = [];
+		$unlisted = [];
+		$rUploadList = mysqli_query($connid, "SELECT filename FROM ". $db_settings['uploads_table']);
+		if ($rUploadList !== false && mysqli_num_rows($rUploadList) > 0) {
+			while ($row = mysqli_fetch_assoc($rUploadList)) {
+				$listed[] = $row['filename'];
+			}
+		}
+		
 		$uploaded_images_path = 'images/uploaded/';
 		$images = array();
 		$browse_images = (isset($_GET['browse_images']) && $_GET['browse_images'] > 0) ? intval($_GET['browse_images']) : 1;
+		$i = 0;
 		$handle = opendir($uploaded_images_path);
 		while ($file = readdir($handle)) {
 			if (preg_match('/\.(gif|png|jpe?g|svg|webp)$/i', $file)) {
-				$images[] = $file;
+				$images[$i]['pathname'] = $file;
+				if (!empty($listed) && !in_array($file, $listed)) {
+					$unlisted[] = $file;
+				}
 			}
+			$i++;
 		}
 		closedir($handle);
+		unset($i, $listed);
+		
+		if (count($unlisted) > 0) {
+			$rec_row = [];
+			foreach ($unlisted as $rec_upload) {
+				// `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp`
+				$tstamp_temp = substr($rec_upload, 0, 14);
+				$tstamp = substr($tstamp_temp, 0, 4) ."-". substr($tstamp_temp, 4, 2) ."-". substr($tstamp_temp, 6, 2) ." ". substr($tstamp_temp, 8, 2) .":". substr($tstamp_temp, 10, 2) .":" .substr($tstamp_temp, 12, 2);
+				$rec_row[] = "('". mysqli_real_escape_string($connid, $rec_upload) ."', '". mysqli_real_escape_string($connid, $tstamp) ."')";
+			}
+		}
+		
 		if ($images) {
 			rsort($images);
 			$page_browse['total_items'] = count($images);
