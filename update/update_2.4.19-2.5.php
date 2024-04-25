@@ -1506,7 +1506,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				FROM information_schema.STATISTICS 
 				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."' AND
 				TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."' AND 
-				INDEX_NAME LIKE 'user_%';");
+				INDEX_NAME LIKE IN('user_type', 'user_name');");
 				if (mysqli_num_rows($rObsoleteIndexes) > 0) {
 					while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
 						if (!@mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ." ON " . $db_settings['userdata_table'] .";")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
@@ -1830,7 +1830,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				FROM information_schema.STATISTICS 
 				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
 				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
-				AND INDEX_NAME LIKE 'user_%';");
+				AND INDEX_NAME IN('user_type', 'user_name');");
 				if (mysqli_num_rows($rObsoleteIndexes) > 0) {
 					while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
 						mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ."
@@ -2036,7 +2036,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				FROM information_schema.STATISTICS 
 				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
 				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
-				AND INDEX_NAME LIKE 'user_%';");
+				AND INDEX_NAME IN('user_type', 'user_name');");
 				if (mysqli_num_rows($rObsoleteIndexes) > 0) {
 					while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
 						mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ."
@@ -2242,7 +2242,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				FROM information_schema.STATISTICS 
 				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
 				AND TABLE_NAME LIKE '" . $db_settings['userdata_table'] ."'
-				AND INDEX_NAME LIKE 'user_%';");
+				AND INDEX_NAME IN('user_type', 'user_name');");
 				if (mysqli_num_rows($rObsoleteIndexes) > 0) {
 					while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
 						mysqli_query($connid, "DROP INDEX ". $row['obsolete_key'] ."
