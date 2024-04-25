@@ -981,6 +981,8 @@ mark_upload_for_removal =         'zum löschen vormerken'
 no_uploads_found =                'Es wurden keine hochgeladenen Dateien gefunden.'
 delete_upload_confirmation =      'Sicher, dass dieser Upload gelöscht werden soll?'
 delete_uploads_confirmation =     'Sicher, dass diese Uploads gelöscht werden sollen?'
+check_for_unrecorded_uploads =    'erfasse Uploads'
+check_for_unrecorded_uploads_desc = 'Prüfe, ob Uploads vorhanden sind, die noch nicht in der Liste der Uploads erfasst sind. Falls welche gefunden werden, werden sie in der Liste eingetragen.'
 
 # Spamschutz:
 captcha =                         'CAPTCHA'
