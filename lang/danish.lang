@@ -980,6 +980,8 @@ mark_upload_for_removal =         'Markér til sletning'
 no_uploads_found =                'Ingen uploadede filer fundet.'
 delete_upload_confirmation =      'Er du sikker på, du vil slette denne upload?'
 delete_uploads_confirmation =     'Er du sikker på, du vil slette disse upload?'
+check_for_unrecorded_uploads =    '<!-- TODO -->record uploads'
+check_for_unrecorded_uploads_desc = '<!-- TODO -->Check whether there are any uploads that are not yet included in the list of uploads. If any are found, they are entered in the list.'
 
 # spam protection:
 captcha =                         'CAPTCHA'
