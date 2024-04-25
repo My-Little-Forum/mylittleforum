@@ -360,7 +360,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					/* is the following query really necessary? */
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 					CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
-					CHANGE `user_email` `user_email` VARCHAR(255);");
+					CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL;");
 					
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
