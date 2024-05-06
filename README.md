@@ -8,7 +8,7 @@
 ## System requirements
 
 - Webserver with PHP >= 7.3
-- MySQL >= 5.5.3 or MariaDB
+- MySQL >= 5.7.7 or MariaDB >= 10.2.2
 
 ## Features
 
