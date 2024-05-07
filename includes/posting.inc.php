@@ -1135,9 +1135,18 @@ switch ($action) {
 						$locked_query    = $spam == 0 ? 'locked' : 1;
 					}
 					
+					// check if an approval of an edit is necessary, if so,
+					// deny the approval for postings of unregistered visitors and
+					// registered users who are not a moderator or an administrator
+					if ((!isset($_SESSION[$settings['session_prefix'] . 'user_type']) || (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && !in_array($_SESSION[$settings['session_prefix'] . 'user_type'], [1, 2]))) && $settings['entry_release_required'] === 1) {
+						$approval_granted = 0;
+					} else {
+						$approval_granted = 1;
+					}
+					
 					if ($field['user_id'] > 0) {
 						// posting of a registered user edited
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . $edited_by_query . ", subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . " " . ((isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) ? ", sticky = " . intval($sticky) : "") . " WHERE id = " . intval($id));
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . $edited_by_query . ", subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . " " . ((isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) ? ", sticky = " . intval($sticky) : "") . ", approved = ". intval($approval_granted1) ." WHERE id = " . intval($id));
 						// save new of posting tags:
 						if (isset($tagsArray) && $tagsArray) {
 							setEntryTags($id, $tagsArray);
@@ -1150,7 +1159,7 @@ switch ($action) {
 						}
 					} else {
 						// posting of a not registed user edited
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . intval($edited_by_query) . ", name = '" . mysqli_real_escape_string($connid, $name) . "', subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . ", locked = " . $locked_query . ", sticky = " . intval($sticky) . " WHERE id = " . intval($id)) or die(mysqli_error($connid));
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . intval($edited_by_query) . ", name = '" . mysqli_real_escape_string($connid, $name) . "', subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . ", locked = " . $locked_query . ", sticky = " . intval($sticky) . ", approved = ". intval($approval_granted1) ." WHERE id = " . intval($id)) or die(mysqli_error($connid));
 						if (isset($tagsArray) && $tagsArray) {
 							setEntryTags($id, $tagsArray);
 						}
