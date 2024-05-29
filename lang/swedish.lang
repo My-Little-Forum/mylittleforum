@@ -526,6 +526,12 @@ move_posting =                    'Flytta detta inlägg och dess svar till inlä
 move_posting_submit =             'OK - Flytta inlägg'
 invalid_posting_to_move =         'Ogiltigt inläggsnummer!'
 
+[release_posting]
+release_moderation_hl =           '<!-- TODO -->Release the posting'
+release_moderation_explanation =  '<!-- TODO -->Release this new posting to the forums public. Until released, the posting is only visible to the forum team. This action is irreversible. If you later want to hide the posting, move it to a invisible category (a category that is only visible for the forum team) or delete it.'
+release_submit =                  '<!-- TODO -->OK- Release posting'
+release_author_explanation =      '<!-- TODO -->Your posting has to be approved and released by a member of the forum team (a moderator or administrator). <em>Until the it is only visible for the team members</em>.'
+
 [manage_postings]
 manage_postings_hl =              'Hantera inlägg'
 mark_postings =                   'Markera'

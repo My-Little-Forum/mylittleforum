@@ -526,6 +526,12 @@ move_posting =                    'Diesen Eintrag und seine Antworten an den Ein
 move_posting_submit =             'OK – Eintrag verschieben'
 invalid_posting_to_move =         'Ungültige ID'
 
+[release_posting]
+release_moderation_hl =           'Eintrag freigeben'
+release_moderation_explanation =  'Gib den Eintrag zur Anzeige im Forum frei. Bis das geschehen ist, ist der Eintrag nur für das Forumsteam sichtbar. Diese Aktion ist unumkehrbar. Wenn der Eintrag später wieder verborgen werden soll, kann er in eine nur dem Forumsteam zugängliche Kategorie verschoben oder gelöscht werden.'
+release_submit =                  'OK- Eintrag freigeben'
+release_author_explanation =      'Dein Posting muss von einem Mitglied des Forumsteams goutiert und freigegeben werden. <em>Bis zu diesem Zeitpunkt wird es nur für Teammitglieder sichtbar sein</em>.'
+
 [manage_postings]
 manage_postings_hl =              'Einträge verwalten'
 mark_postings =                   'markieren'
