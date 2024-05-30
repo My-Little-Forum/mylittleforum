@@ -61,20 +61,21 @@ if (isset($_GET['search'])) {
 	// search...
 	$ham_filter = " (`" . $db_settings['akismet_rating_table'] . "`.`spam` = 0 AND `" . $db_settings['b8_rating_table'] . "`.`spam` = 0) ";
 	if ($method == 'fulltext_or') {
-		$search_string = $ham_filter . " AND CONCAT(LOWER(`subject`), LOWER(IF(`ft`.`user_id` > 0, (SELECT `user_name` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_id` = `ft`.`user_id`), `name`)), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' OR " . $ham_filter . " AND CONCAT(LOWER(`subject`), LOWER(IF(`ft`.`user_id` > 0, (SELECT `user_name` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_id` = `ft`.`user_id`), `name`)), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%'";
-		if (isset($p_category) && $p_category != 0)	
-			$search_string = "category = " . $p_category . " AND " . $search_string;
-			
+		// fulltext or
+		$search_string = "CONCAT(LOWER(`subject`), LOWER(IF(`ft`.`user_id` > 0, (SELECT `user_name` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_id` = `ft`.`user_id`), `name`)), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' OR " . $ham_filter . " AND CONCAT(LOWER(`subject`), LOWER(IF(`ft`.`user_id` > 0, (SELECT `user_name` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_id` = `ft`.`user_id`), `name`)), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%'";
 	} elseif ($method == 'tags') {
-		$search_string = "(IFNULL(LOWER(`tag`), '') LIKE '%" . implode("%' OR IFNULL(LOWER(`tag`), '') LIKE '%", $search_array) . "%') AND " . $ham_filter;
-		if (isset($p_category) && $p_category != 0)
-			$search_string = "category = " . $p_category . " AND " . $search_string;
+		// tags
+		$search_string = "(IFNULL(LOWER(`tag`), '') LIKE '%" . implode("%' OR IFNULL(LOWER(`tag`), '') LIKE '%", $search_array) . "%') ";
 	} else {
 		// fulltext
-		$search_string = "CONCAT(LOWER(`subject`), LOWER(IF(`ft`.`user_id` > 0, (SELECT `user_name` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_id` = `ft`.`user_id`), `name`)), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' AND CONCAT(LOWER(`subject`), LOWER(IF(`ft`.`user_id` > 0, (SELECT `user_name` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_id` = `ft`.`user_id`), `name`)), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%' AND " . $ham_filter;
-		if (isset($p_category) && $p_category != 0)
-			$search_string = "category = " . $p_category . " AND " . $search_string;
+		$search_string = "CONCAT(LOWER(`subject`), LOWER(IF(`ft`.`user_id` > 0, (SELECT `user_name` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_id` = `ft`.`user_id`), `name`)), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%" . implode("%' AND CONCAT(LOWER(`subject`), LOWER(IF(`ft`.`user_id` > 0, (SELECT `user_name` FROM `" . $db_settings['userdata_table'] . "` WHERE `user_id` = `ft`.`user_id`), `name`)), LOWER(`text`), IFNULL(LOWER(`tag`), '')) LIKE '%", $search_array) . "%' ";
 	}
+	
+	$search_string = $ham_filter . " AND " . $search_string;
+	
+	// restrict to category
+	if (isset($p_category) && $p_category != 0)	
+		$search_string = "category = " . $p_category . " AND " . $search_string;
 	
 	// count results:
 	if ($search != '') {
