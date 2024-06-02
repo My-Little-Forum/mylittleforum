@@ -511,6 +511,9 @@ switch ($action) {
 			if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && (empty($id) || $posting_mode == 1 && $pid == 0))
 				$smarty->assign('provide_sticky', true);
 			
+			if ($settings['entry_release_required'] == 1 && (!isset($_SESSION[$settings['session_prefix'] . 'user_id']) || (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] < 1)))
+				$smarty->assign('release_notification', true);
+			
 			$smarty->assign("subnav_link", $subnav_link);
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
 		}
