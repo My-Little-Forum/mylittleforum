@@ -1442,6 +1442,20 @@ switch ($action) {
 		$smarty->assign('subnav_link', $subnav_link);
 		$smarty->assign('subtemplate', 'posting.inc.tpl');
 		break;
+	case 'release_posting_submit':
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token'] && $settings['entry_release_required']) {
+			$id = intval($POST['id']);
+			$query_ReleaseEntry = "UPDATE ". $db_settings['forum_table'] ." SET approved = 1
+			WHERE id = ". $id ." AND approved = 0";
+			$result = mysqli_query($connid, $query_ReleaseEntry) or raise_error('database_error', mysqli_error($connid));
+			header('location: index.php?id=' . $id);
+			exit;
+		} else {
+			// no authorisation ut also no reason for a notification, redirect to the forum index
+			header('location: index.php?mode=index');
+			exit;
+		}
+		break;
 	case 'delete_posting':
 		$delete_check_result = @mysqli_query($connid, "SELECT pid, name, user_name, subject, " . $db_settings['forum_table'] . ".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, locked, edit_key
 		FROM " . $db_settings['forum_table'] . "
