@@ -1464,6 +1464,14 @@ switch ($action) {
 			$result = mysqli_query($connid, $query_CheckEntry) or raise_error('database_error', mysqli_error($connid));
 			if (mysqli_num_rows($result) == 1) {
 				// found the posting
+				$field = mysqli_fetch_assoc($result);
+				// fetch user data if registered user:
+				if ($field['user_id'] > 0) {
+					$userdata_result = @mysqli_query($connid, "SELECT user_name FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($field['user_id']) . " LIMIT 1") or die(mysqli_error($connid));
+					$userdata = mysqli_fetch_assoc($userdata_result);
+					mysqli_free_result($userdata_result);
+					$field['name'] = $userdata['user_name'];
+				}
 			} else {
 				// didn't find the given entry
 			}
