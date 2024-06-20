@@ -1487,9 +1487,18 @@ switch ($action) {
 					'title' => 'back_to_entry_link_title',
 					'name' => 'back_to_entry_link'
 				);
+				$smarty->assign('id', intval($id));
+				$smarty->assign('pid', intval($field['pid']));
+				$smarty->assign('name', htmlspecialchars($field['name']));
+				$smarty->assign('subject', htmlspecialchars($field['subject']));
+				$smarty->assign('formated_time', format_time($lang['time_format_full'], $field['disp_time']));
+				if (isset($_GET['back']) && ($_GET['back'] == 'entry' || $_GET['back'] == 'thread' || $_GET['back'] == 'index'))
+					$smarty->assign('back', htmlspecialchars($_GET['back']));
+				$smarty->assign("subnav_link", $subnav_link);
 			} else {
 				// didn't find the given entry
 			}
+			$smarty->assign('subtemplate', 'posting_release.inc.tpl');
 		} else {
 			$smarty->assign('no_authorisation', 'no_authorisation_release');
 			$smarty->assign('subtemplate', 'posting_release.inc.tpl');
