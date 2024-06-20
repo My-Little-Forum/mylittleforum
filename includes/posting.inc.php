@@ -1444,6 +1444,13 @@ switch ($action) {
 		$smarty->assign('subnav_link', $subnav_link);
 		$smarty->assign('subtemplate', 'posting.inc.tpl');
 		break;
+	case 'release_posting':
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_GET['csrf_token'] === $_SESSION['csrf_token'] && $settings['entry_release_required']) {
+		} else {
+			$smarty->assign('no_authorisation', 'no_authorisation_release');
+			$smarty->assign('subtemplate', 'posting_release.inc.tpl');
+		}
+		break;
 	case 'release_posting_submit':
 		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token'] && $settings['entry_release_required']) {
 			$id = intval($POST['id']);
