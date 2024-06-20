@@ -1463,6 +1463,11 @@ switch ($action) {
 			WHERE id = ". $id ."
 			AND approved = 0";
 			$result = mysqli_query($connid, $query_CheckEntry) or raise_error('database_error', mysqli_error($connid));
+			if (mysqli_num_rows($result) == 1) {
+				// found the posting
+			} else {
+				// didn't find the given entry
+			}
 		} else {
 			$smarty->assign('no_authorisation', 'no_authorisation_release');
 			$smarty->assign('subtemplate', 'posting_release.inc.tpl');
