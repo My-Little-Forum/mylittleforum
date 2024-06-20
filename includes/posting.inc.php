@@ -1457,8 +1457,7 @@ switch ($action) {
 			user_id,
 			name,
 			UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
-			subject,
-			category
+			subject
 			FROM ". $db_settings['forum_table'] ."
 			WHERE id = ". $id ."
 			AND approved = 0";
