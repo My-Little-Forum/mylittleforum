@@ -1446,6 +1446,12 @@ switch ($action) {
 		break;
 	case 'release_posting':
 		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_GET['csrf_token'] === $_SESSION['csrf_token'] && $settings['entry_release_required']) {
+			$id = intval($_GET['release_posting']);
+			if ($id <= 0) {
+				// no valid ID given
+				header('location: index.php?mode=index');
+				exit;
+			}
 		} else {
 			$smarty->assign('no_authorisation', 'no_authorisation_release');
 			$smarty->assign('subtemplate', 'posting_release.inc.tpl');
