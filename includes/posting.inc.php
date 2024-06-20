@@ -132,6 +132,8 @@ if (isset($_GET['move_posting']))
 	$action = 'move_posting';
 if (isset($_GET['bookmark']))
 	$action = 'bookmark_posting';
+if (isset($_GET['release_posting']))
+	$action = 'release_posting';
 
 // permission to upload images:
 if ($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0)
