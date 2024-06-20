@@ -1452,6 +1452,17 @@ switch ($action) {
 				header('location: index.php?mode=index');
 				exit;
 			}
+			$query_CheckEntry = "SELECT
+			id,
+			user_id,
+			name,
+			UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
+			subject,
+			category
+			FROM ". $db_settings['forum_table'] ."
+			WHERE id = ". $id ."
+			AND approved = 0";
+			$result = mysqli_query($connid, $query_CheckEntry) or raise_error('database_error', mysqli_error($connid));
 		} else {
 			$smarty->assign('no_authorisation', 'no_authorisation_release');
 			$smarty->assign('subtemplate', 'posting_release.inc.tpl');
