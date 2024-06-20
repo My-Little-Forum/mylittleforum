@@ -1472,6 +1472,21 @@ switch ($action) {
 					mysqli_free_result($userdata_result);
 					$field['name'] = $userdata['user_name'];
 				}
+				
+				if ($field['user_id'] > 0) {
+					if (!$field['name'])
+						$smarty->assign('name_repl_subnav', $lang['unknown_user']);
+					else
+						$smarty->assign('name_repl_subnav', htmlspecialchars($field['name']));
+				} else
+					$smarty->assign('name_repl_subnav', htmlspecialchars($field['name']));
+				
+				$subnav_link = array(
+					'mode' => $back,
+					'id' => $id,
+					'title' => 'back_to_entry_link_title',
+					'name' => 'back_to_entry_link'
+				);
 			} else {
 				// didn't find the given entry
 			}
