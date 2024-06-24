@@ -1494,7 +1494,7 @@ switch ($action) {
 				$smarty->assign('name', htmlspecialchars($field['name']));
 				$smarty->assign('subject', htmlspecialchars($field['subject']));
 				$smarty->assign('formated_time', format_time($lang['time_format_full'], $field['disp_time']));
-				if (isset($_GET['back']) && ($_GET['back'] == 'entry' || $_GET['back'] == 'thread' || $_GET['back'] == 'index'))
+				if (isset($_GET['back']) && in_array($_GET['back'], ['entry', 'thread', 'index']))
 					$smarty->assign('back', htmlspecialchars($_GET['back']));
 				$smarty->assign("subnav_link", $subnav_link);
 			} else {
