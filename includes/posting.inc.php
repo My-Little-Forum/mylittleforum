@@ -1507,9 +1507,9 @@ switch ($action) {
 		}
 		break;
 	case 'release_posting_submit':
-			$id = intval($POST['id']);
 			$query_ReleaseEntry = "UPDATE ". $db_settings['forum_table'] ." SET approved = 1
 		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token'] && $settings['entry_release_required'] == 1) {
+			$id = intval($_POST['id']);
 			WHERE id = ". $id ." AND approved = 0";
 			$result = mysqli_query($connid, $query_ReleaseEntry) or raise_error('database_error', mysqli_error($connid));
 			header('location: index.php?id=' . $id);
