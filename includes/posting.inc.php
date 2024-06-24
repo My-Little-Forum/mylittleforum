@@ -1498,7 +1498,13 @@ switch ($action) {
 					$smarty->assign('back', htmlspecialchars($_GET['back']));
 				$smarty->assign("subnav_link", $subnav_link);
 			} else {
-				// didn't find the given entry
+				// didn't find the given entry, provide the link to the forum index in the breadcrumb
+				$subnav_link = array(
+					'mode' => 'index',
+					'name' => 'forum_index_link',
+					'title' => 'forum_index_link_title'
+				);
+				$smarty->assign("subnav_link", $subnav_link);
 			}
 			$smarty->assign('subtemplate', 'posting_release.inc.tpl');
 		} else {
