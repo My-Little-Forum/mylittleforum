@@ -1484,7 +1484,7 @@ switch ($action) {
 					$smarty->assign('name_repl_subnav', htmlspecialchars($field['name']));
 				
 				$subnav_link = array(
-					'mode' => $back,
+					'mode' => htmlspecialchars($back),
 					'id' => $id,
 					'title' => 'back_to_entry_link_title',
 					'name' => 'back_to_entry_link'
