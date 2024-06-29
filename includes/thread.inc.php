@@ -190,7 +190,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 			}
 			
 			if (isset($data['signature']) && $data['signature'] != '' && $data["show_signature"] == 1) {
-				// user has a signature and wants it to be displaed in this posting. Check if it's already cached:
+				// user has a signature and wants it to be displayed in this posting. Check if it's already cached:
 				if ($data['cache_signature'] != '') {
 					$data['signature'] = $data['cache_signature'];
 				} else {
