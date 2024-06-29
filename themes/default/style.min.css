@@ -146,6 +146,7 @@ blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 .posting-footer a.go-to-top-link{ padding-left:12px;background:url(images/arrow_up.png) no-repeat 0 0 / auto 90%}
 .posting-footer a.add-bookmark{padding-left:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -97px}
 .posting-footer a.delete-bookmark{padding-left:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -147px}
+.posting-footer a.release{padding-left:15px;background:url(images/tick.png) no-repeat left center / 13px}
 .posting-footer a.move{padding-left:13px;background:url(images/bg_sprite_4.png) no-repeat 0 2px}
 .posting-footer a.report{padding-left:13px;background:url(images/bg_sprite_4.png) no-repeat 0 -48px}
 .posting-footer a.lock{padding-left:14px;background:url(images/bg_sprite_4.png) no-repeat 0 -99px}

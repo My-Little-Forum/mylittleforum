@@ -81,7 +81,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
         UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . intval($time_difference) . " MINUTE) AS e_time,
         UNIX_TIMESTAMP(edited - INTERVAL " . $settings['edit_delay'] . " MINUTE) AS edited_diff, edited_by, name, email,
         subject, hp, location, ip, text, cache_text, show_signature, views, category, locked, ip,
-        user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, rst.user_id AS req_user,
+        user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, approved, rst.user_id AS req_user,
         " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status,
         " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type
         FROM " . $db_settings['forum_table'] . " AS ft
@@ -229,6 +229,9 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 			if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
 				$data['options']['move'] = true;
 				$data['options']['lock'] = true;
+				if ($settings['entry_release_required'] == 1 && $data['approved'] == 0) {
+					$data['options']['release'] = true;
+				}
 				if (($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $data['akismet_spam'] == 0 && $data['spam_check_status'] > 0) || ($settings['b8_entry_check'] == 1 && $data['b8_spam'] == 0 || $data['training_type'] == 0))
 					$data['options']['report_spam'] = true;
 				if (($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $data['akismet_spam'] == 1 && $data['spam_check_status'] > 0) || ($settings['b8_entry_check'] == 1 && $data['b8_spam'] == 1 || $data['training_type'] == 0))

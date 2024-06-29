@@ -326,6 +326,8 @@ delete_bookmark_message_linkname ='Lesezeichen löschen'
 delete_bookmark_message_linktitle='Diesen Eintrag aus den eigenen Lesezeichen entfernen'
 edit_message_linkname =           'bearbeiten'
 edit_message_linktitle =          'Eintrag bearbeiten'
+release_message_linkname =        'freigeben'
+release_message_linktitle =       'Eintrag freigeben'
 delete_message_linkname =         'löschen'
 delete_message_linktitle =        'Eintrag löschen'
 move_posting_linkname =           'verschieben'
@@ -523,6 +525,13 @@ move_posting_new_thread =         'Eigenständigen Thread aus diesem Eintrag und
 move_posting =                    'Diesen Eintrag und seine Antworten an den Eintrag mit der ID [number] anhängen'
 move_posting_submit =             'OK – Eintrag verschieben'
 invalid_posting_to_move =         'Ungültige ID'
+
+[release_posting]
+release_moderation_hl =           'Eintrag freigeben'
+release_moderation_explanation =  'Gib den Eintrag zur Anzeige im Forum frei. Bis das geschehen ist, ist der Eintrag nur für das Forumsteam sichtbar. Diese Aktion ist unumkehrbar. Wenn der Eintrag später wieder verborgen werden soll, kann er in eine nur dem Forumsteam zugängliche Kategorie verschoben oder gelöscht werden.'
+release_submit =                  'OK- Eintrag freigeben'
+release_no_authorisation =        'Du bist nicht berechtigt, Einträge freizugeben.'
+release_author_explanation =      'Dein Posting muss von einem Mitglied des Forumsteams goutiert und freigegeben werden. <em>Bis zu diesem Zeitpunkt wird es nur für Teammitglieder sichtbar sein</em>.'
 
 [manage_postings]
 manage_postings_hl =              'Einträge verwalten'

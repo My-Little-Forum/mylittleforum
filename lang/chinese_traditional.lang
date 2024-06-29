@@ -310,6 +310,8 @@ delete_bookmark_message_linkname ='刪除書籤'
 delete_bookmark_message_linktitle='從個人書籤移除'
 edit_message_linkname =           '編輯'
 edit_message_linktitle =          '編輯文章'
+release_message_linkname =        '<!-- TODO -->approve'
+release_message_linktitle =       '<!-- TODO -->approve posting'
 delete_message_linkname =         '刪除'
 delete_message_linktitle =        '刪除文章'
 move_posting_linkname =           '移動'
@@ -514,6 +516,13 @@ move_posting_new_thread =         '將此文章和回覆移動為新主題'
 move_posting =                    '將此文章和回覆移動到文章 # [number]'
 move_posting_submit =             '移動文章'
 invalid_posting_to_move =         '無效的文章編號'
+
+[release_posting]
+release_moderation_hl =           '<!-- TODO -->Release the posting'
+release_moderation_explanation =  '<!-- TODO -->Release this new posting to the forums public. Until released, the posting is only visible to the forum team. This action is irreversible. If you later want to hide the posting, move it to a invisible category (a category that is only visible for the forum team) or delete it.'
+release_submit =                  '<!-- TODO -->OK- Release posting'
+release_no_authorisation =        '<!-- TODO -->You don't have the right to release a posting.'
+release_author_explanation =      '<!-- TODO -->Your posting has to be approved and released by a member of the forum team (a moderator or administrator). <em>Until the it is only visible for the team members</em>.'
 
 [manage_postings]
 manage_postings_hl =              '管理文章'

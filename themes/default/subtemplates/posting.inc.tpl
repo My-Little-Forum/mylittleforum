@@ -1,5 +1,6 @@
 {config_load file=$language_file section="posting"}
 {config_load file=$language_file section="thread_entry"}
+{config_load file=$language_file section="release_posting"}
 {if $captcha}{config_load file=$language_file section="captcha"}{/if}
 {if $no_authorisation}
 <p class="notice caution">{$smarty.config.$no_authorisation|replace:"[minutes]":$settings.edit_period}</p>
@@ -291,6 +292,12 @@ JavaScript isn't available.
 <p><label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" maxlength="5" tabindex="10" /></p>
 {/if}
 </fieldset>
+{/if}
+
+{if $release_notification==1}
+<div class="notice caution">
+ <p>{#release_author_explanation#}</p>
+</div>
 {/if}
 
 <fieldset>

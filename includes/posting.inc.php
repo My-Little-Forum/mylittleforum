@@ -132,6 +132,10 @@ if (isset($_GET['move_posting']))
 	$action = 'move_posting';
 if (isset($_GET['bookmark']))
 	$action = 'bookmark_posting';
+if (isset($_GET['release_posting']))
+	$action = 'release_posting';
+if (isset($_POST['release_posting_submit']))
+	$action = 'release_posting_submit';
 
 // permission to upload images:
 if ($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0)
@@ -510,6 +514,9 @@ switch ($action) {
 				$smarty->assign('provide_email_notification', true);
 			if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && (empty($id) || $posting_mode == 1 && $pid == 0))
 				$smarty->assign('provide_sticky', true);
+			
+			if ($settings['entry_release_required'] == 1 && (!isset($_SESSION[$settings['session_prefix'] . 'user_id']) || (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] < 1)))
+				$smarty->assign('release_notification', true);
 			
 			$smarty->assign("subnav_link", $subnav_link);
 			$smarty->assign('subtemplate', 'posting.inc.tpl');
@@ -1028,8 +1035,17 @@ switch ($action) {
 						$savename = '';
 					else
 						$savename = $name;
-
-					@mysqli_query($connid, "INSERT INTO " . $db_settings['forum_table'] . " (pid, tid, uniqid, time, last_reply, user_id, name, subject, email, hp, location, ip, text, show_signature, category, locked, sticky, edit_key) VALUES (" . intval($id) . ", " . intval($thread) . ", '" . mysqli_real_escape_string($connid, $uniqid) . "', NOW(), NOW()," . intval($user_id) . ", '" . mysqli_real_escape_string($connid, $savename) . "', '" . mysqli_real_escape_string($connid, $subject) . "', '" . mysqli_real_escape_string($connid, $email) . "', '" . mysqli_real_escape_string($connid, $hp) . "', '" . mysqli_real_escape_string($connid, $location) . "', '" . mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) . "', '" . mysqli_real_escape_string($connid, $text) . "', " . intval($show_signature) . ", " . intval($p_category) . ", " . intval($locked) . ", " . intval($sticky) . ", '" . mysqli_real_escape_string($connid, $edit_key_hash) . "')") or raise_error('database_error', mysqli_error($connid));
+					
+					// check if an approval of a new posting is necessary, if so,
+					// deny the approval for postings of unregistered visitors and
+					// registered users who are not a moderator or an administrator
+					if ((!isset($_SESSION[$settings['session_prefix'] . 'user_type']) || (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && !in_array($_SESSION[$settings['session_prefix'] . 'user_type'], [1, 2]))) && $settings['entry_release_required'] === 1) {
+						$approval_granted = 0;
+					} else {
+						$approval_granted = 1;
+					}
+					
+					@mysqli_query($connid, "INSERT INTO " . $db_settings['forum_table'] . " (pid, tid, uniqid, time, last_reply, user_id, name, subject, email, hp, location, ip, text, show_signature, category, locked, sticky, edit_key, approved) VALUES (" . intval($id) . ", " . intval($thread) . ", '" . mysqli_real_escape_string($connid, $uniqid) . "', NOW(), NOW()," . intval($user_id) . ", '" . mysqli_real_escape_string($connid, $savename) . "', '" . mysqli_real_escape_string($connid, $subject) . "', '" . mysqli_real_escape_string($connid, $email) . "', '" . mysqli_real_escape_string($connid, $hp) . "', '" . mysqli_real_escape_string($connid, $location) . "', '" . mysqli_real_escape_string($connid, $_SERVER["REMOTE_ADDR"]) . "', '" . mysqli_real_escape_string($connid, $text) . "', " . intval($show_signature) . ", " . intval($p_category) . ", " . intval($locked) . ", " . intval($sticky) . ", '" . mysqli_real_escape_string($connid, $edit_key_hash) . "', " . intval($approval_granted) . ")") or raise_error('database_error', mysqli_error($connid));
 					$newID = mysqli_insert_id($connid);
 					
 					if ($id == 0) {
@@ -1126,9 +1142,18 @@ switch ($action) {
 						$locked_query    = $spam == 0 ? 'locked' : 1;
 					}
 					
+					// check if an approval of an edit is necessary, if so,
+					// deny the approval for postings of unregistered visitors and
+					// registered users who are not a moderator or an administrator
+					if ((!isset($_SESSION[$settings['session_prefix'] . 'user_type']) || (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && !in_array($_SESSION[$settings['session_prefix'] . 'user_type'], [1, 2]))) && $settings['entry_release_required'] === 1) {
+						$approval_granted = 0;
+					} else {
+						$approval_granted = 1;
+					}
+					
 					if ($field['user_id'] > 0) {
 						// posting of a registered user edited
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . $edited_by_query . ", subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . " " . ((isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) ? ", sticky = " . intval($sticky) : "") . " WHERE id = " . intval($id));
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . $edited_by_query . ", subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . " " . ((isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) ? ", sticky = " . intval($sticky) : "") . ", approved = ". intval($approval_granted1) ." WHERE id = " . intval($id));
 						// save new of posting tags:
 						if (isset($tagsArray) && $tagsArray) {
 							setEntryTags($id, $tagsArray);
@@ -1141,7 +1166,7 @@ switch ($action) {
 						}
 					} else {
 						// posting of a not registed user edited
-						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . intval($edited_by_query) . ", name = '" . mysqli_real_escape_string($connid, $name) . "', subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . ", locked = " . $locked_query . ", sticky = " . intval($sticky) . " WHERE id = " . intval($id)) or die(mysqli_error($connid));
+						@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time = time, last_reply = last_reply, edited = " . $edited_query . ", edited_by = " . intval($edited_by_query) . ", name = '" . mysqli_real_escape_string($connid, $name) . "', subject = '" . mysqli_real_escape_string($connid, $subject) . "', category = " . intval($p_category) . ", email = '" . mysqli_real_escape_string($connid, $email) . "', hp = '" . mysqli_real_escape_string($connid, $hp) . "', location = '" . mysqli_real_escape_string($connid, $location) . "', text = '" . mysqli_real_escape_string($connid, $text) . "', show_signature = " . intval($show_signature) . ", locked = " . $locked_query . ", sticky = " . intval($sticky) . ", approved = ". intval($approval_granted1) ." WHERE id = " . intval($id)) or die(mysqli_error($connid));
 						if (isset($tagsArray) && $tagsArray) {
 							setEntryTags($id, $tagsArray);
 						}
@@ -1420,6 +1445,87 @@ switch ($action) {
 		);
 		$smarty->assign('subnav_link', $subnav_link);
 		$smarty->assign('subtemplate', 'posting.inc.tpl');
+		break;
+	case 'release_posting':
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_GET['csrf_token'] === $_SESSION['csrf_token'] && $settings['entry_release_required']) {
+			$id = intval($_GET['release_posting']);
+			if ($id <= 0) {
+				// no valid ID given
+				header('location: index.php?mode=index');
+				exit;
+			}
+			$query_CheckEntry = "SELECT
+			id,
+			user_id,
+			name,
+			UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
+			subject
+			FROM ". $db_settings['forum_table'] ."
+			WHERE id = ". $id ."
+			AND approved = 0";
+			$result = mysqli_query($connid, $query_CheckEntry) or raise_error('database_error', mysqli_error($connid));
+			if (mysqli_num_rows($result) == 1) {
+				// found the posting
+				$field = mysqli_fetch_assoc($result);
+				// fetch user data if registered user:
+				if ($field['user_id'] > 0) {
+					$userdata_result = @mysqli_query($connid, "SELECT user_name FROM " . $db_settings['userdata_table'] . " WHERE user_id = " . intval($field['user_id']) . " LIMIT 1") or die(mysqli_error($connid));
+					$userdata = mysqli_fetch_assoc($userdata_result);
+					mysqli_free_result($userdata_result);
+					$field['name'] = $userdata['user_name'];
+				}
+				
+				if ($field['user_id'] > 0) {
+					if (!$field['name'])
+						$smarty->assign('name_repl_subnav', $lang['unknown_user']);
+					else
+						$smarty->assign('name_repl_subnav', htmlspecialchars($field['name']));
+				} else
+					$smarty->assign('name_repl_subnav', htmlspecialchars($field['name']));
+				
+				$subnav_link = array(
+					'mode' => htmlspecialchars($back),
+					'id' => $id,
+					'title' => 'back_to_entry_link_title',
+					'name' => 'back_to_entry_link'
+				);
+				$smarty->assign('id', intval($id));
+				$smarty->assign('pid', intval($field['pid']));
+				$smarty->assign('name', htmlspecialchars($field['name']));
+				$smarty->assign('subject', htmlspecialchars($field['subject']));
+				$smarty->assign('formated_time', format_time($lang['time_format_full'], $field['disp_time']));
+				if (isset($_GET['back']) && in_array($_GET['back'], ['entry', 'thread', 'index']))
+					$smarty->assign('back', htmlspecialchars($_GET['back']));
+				$smarty->assign("subnav_link", $subnav_link);
+			} else {
+				// didn't find the given entry, provide the link to the forum index in the breadcrumb
+				$subnav_link = array(
+					'mode' => 'index',
+					'name' => 'forum_index_link',
+					'title' => 'forum_index_link_title'
+				);
+				$smarty->assign("subnav_link", $subnav_link);
+			}
+			$smarty->assign('subtemplate', 'posting_release.inc.tpl');
+		} else {
+			$smarty->assign('no_authorisation', 'no_authorisation_release');
+			$smarty->assign('subtemplate', 'posting_release.inc.tpl');
+		}
+		break;
+	case 'release_posting_submit':
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0 && $_POST['csrf_token'] === $_SESSION['csrf_token'] && $settings['entry_release_required'] == 1) {
+			$id = intval($_POST['id']);
+			$query_ReleaseEntry = "UPDATE ". $db_settings['forum_table'] ."
+			SET approved = 1
+			WHERE id = ". $id ." AND approved = 0";
+			$result = mysqli_query($connid, $query_ReleaseEntry) or raise_error('database_error', mysqli_error($connid));
+			header('location: index.php?id=' . $id);
+			exit;
+		} else {
+			// no authorisation ut also no reason for a notification, redirect to the forum index
+			header('location: index.php?mode=index');
+			exit;
+		}
 		break;
 	case 'delete_posting':
 		$delete_check_result = @mysqli_query($connid, "SELECT pid, name, user_name, subject, " . $db_settings['forum_table'] . ".user_id, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, locked, edit_key

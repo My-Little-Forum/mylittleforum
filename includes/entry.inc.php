@@ -34,7 +34,7 @@
 		$result = @mysqli_query($connid, "SELECT ft.id, ft.pid, ft.tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
                          UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . $time_difference . " MINUTE) AS edit_time,
                          UNIX_TIMESTAMP(edited - INTERVAL " . $settings['edit_delay'] . " MINUTE) AS edited_diff, edited_by, name, email,
-                         subject, hp, location, ip, text, cache_text, show_signature, category, locked, views, edit_key,
+                         subject, hp, location, ip, text, cache_text, show_signature, category, locked, views, edit_key, approved,
                          user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, rst.user_id AS req_user,
 						 " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status,
 						 " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type
@@ -347,6 +347,9 @@
 	if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] > 0) {
 		$options['move'] = true;
 		$options['lock'] = true;
+		if ($settings['entry_release_required'] == 1 && $entrydata['approved'] == 0) {
+			$options['release'] = true;
+		}
 	}
 	if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 		if (isset($entrydata['bookmarkedby']))
