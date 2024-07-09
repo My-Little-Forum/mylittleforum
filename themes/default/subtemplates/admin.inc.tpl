@@ -778,7 +778,8 @@
 		<input id="b8_entry_check" type="checkbox" name="b8_entry_check" value="1"{if $b8_entry_check==1} checked="checked"{/if} /><label for="b8_entry_check">{#b8_entry_check_enable#}</label><br />
 		<input id="b8_mail_check" type="checkbox" name="b8_mail_check" value="1"{if $b8_mail_check==1} checked="checked"{/if} /><label for="b8_mail_check">{#b8_mail_check_enable#}</label><br />
 		<input id="b8_auto_training" type="checkbox" name="b8_auto_training" value="1"{if $b8_auto_training==1} checked="checked"{/if} /><label for="b8_auto_training">{#b8_auto_training_enable#}</label><br />
-		<p>{#b8_spam_probability_threshold#}<br />
+	</p>
+	<p>{#b8_spam_probability_threshold#}<br />
 		<input id="b8_spam_probability_threshold" type="input" name="b8_spam_probability_threshold" value="{$b8_spam_probability_threshold}" size="25" />
 	</p>
 </td>
