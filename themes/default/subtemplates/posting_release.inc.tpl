@@ -17,6 +17,7 @@
 			<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 			<div class="buttonbar">
 				<button name="release_posting_submit" value="{#release_submit#}">{#release_submit#}</button>
+{if $settings.b8_entry_check==1}				<button name="release_posting_submit with_training" value="{#release_submit_and_train#}">{#release_submit_and_train#}</button>{/if}
 			</div>
 		</form>
 	{/if}

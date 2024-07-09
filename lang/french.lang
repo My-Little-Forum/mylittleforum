@@ -519,6 +519,7 @@ invalid_posting_to_move =         'Le numéro du fil est incorrect'
 release_moderation_hl =           '<!-- TODO -->Release the posting'
 release_moderation_explanation =  '<!-- TODO -->Release this new posting to the forums public. Until released, the posting is only visible to the forum team. This action is irreversible. If you later want to hide the posting, move it to a invisible category (a category that is only visible for the forum team) or delete it.'
 release_submit =                  '<!-- TODO -->OK- Release posting'
+release_submit_and_train =        '<!-- TODO -->OK- Release posting and train the Bayesian filter'
 release_no_authorisation =        '<!-- TODO -->You don't have the right to release a posting.'
 release_author_explanation =      '<!-- TODO -->Your posting has to be approved and released by a member of the forum team (a moderator or administrator). <em>Until the it is only visible for the team members</em>.'
 
