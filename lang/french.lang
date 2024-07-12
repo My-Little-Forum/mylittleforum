@@ -1,11 +1,25 @@
 ######################################################################################
-# French language file for My Little Forum 2                                          #
+# French language file for My Little Forum 2                                         #
 #------------------------------------------------------------------------------------#
+# - strings to display on the site or an e-mail are enclosed in single quotes        #
+# - don't modify or translate the section names like "[general]" or "[entry]"!       #
+# - placeholders in square brackets (e.g. "[name]") will be replaced by values       #
+#   automatically - don't modify or translate them!                                  #
+# - words in double square brackets (e.g. "click [[here]]") are transformed          #
+#   into hyperlinks - should be translated (e.g. "haga click [[aquí]]")              #
+# - strings that span more than one line (E-Mail texts) are enclosed in triple       #
+#   quotes (e.g. """Hi,                                                              #
+#   how are you?""")                                                                 #
+# - more details about the file format:                                              #
+#   http://www.smarty.net/docs/en/config.files.tpl                                   #
+#------------------------------------------------------------------------------------#
+#                                                                                    #
 # Translated by Michel Gosse < mgosse3 at gmail dot com > 2009-03-27                 #
 # Updated by Marc Duval < duvalm at gmail dot com > 2011-05-22                       #
 # Updated by Jean-Michel Hubert < jean-michel dot hubert at eni dot com > 2014-02-12 #
 # Updated by Hugues Martin < macadoum at lavache dot com > 2018-12-03                #
 # Updated by akakima 2024-02-07                                                      #
+#                                                                                    #
 ######################################################################################
 
 [default]
