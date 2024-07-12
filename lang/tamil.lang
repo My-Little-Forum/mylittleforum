@@ -16,6 +16,9 @@
 
 [default]
 language =                        ta
+language_code =                   'ta'
+language_name_system =            'tamil'
+language_name_own =               'தமிழ்'
 charset =                         utf-8
 locale =                          ta_IN.utf8
 locale =                          ta_IN

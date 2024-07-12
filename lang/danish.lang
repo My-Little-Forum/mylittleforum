@@ -20,6 +20,9 @@
 
 [default]
 language =                  da
+language_code =                   'da'
+language_name_system =            'danish'
+language_name_own =               'dansk'
 charset =                   utf-8
 locale =                    da_DK.utf8
 locale =                    da

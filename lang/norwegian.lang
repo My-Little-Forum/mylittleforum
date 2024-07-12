@@ -16,6 +16,9 @@
 
 [default]
 language =                        no
+language_code =                   'no'
+language_name_system =            'norwegian'
+language_name_own =               'norsk'
 charset =                         utf-8
 locale =                          nb_NO.utf8
 locale =                          nb_NO@euro
