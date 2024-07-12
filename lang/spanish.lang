@@ -21,6 +21,9 @@
 
 [default]
 language =                        es
+language_code =                   'es'
+language_name_system =            'spanish'
+language_name_own =               'español'
 charset =                         utf-8
 locale =                          es_ES.utf8
 locale =                          es_ES

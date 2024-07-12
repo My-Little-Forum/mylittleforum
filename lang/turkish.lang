@@ -21,6 +21,9 @@
 
 [default]
 language =                        tr
+language_code =                   'tr'
+language_name_system =            'turkish'
+language_name_own =               'türkçe'
 charset =                         utf-8
 #locale =                         tr_TR.utf8
 #locale =                         tr_TR

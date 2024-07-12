@@ -24,6 +24,9 @@
 
 [default]
 language =                        fr
+language_code =                   'fr'
+language_name_system =            'french'
+language_name_own =               'française'
 charset =                         utf-8
 locale =                          fr_FR.utf8
 locale =                          fr_FR@euro

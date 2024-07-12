@@ -21,6 +21,9 @@
 
 [default]
 language =                        sv
+language_code =                   'sv'
+language_name_system =            'swedish'
+language_name_own =               'svensk'
 charset =                         utf-8
 locale =                          sv_SE.utf8
 locale =                          sv_SE

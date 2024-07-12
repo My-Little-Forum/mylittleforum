@@ -20,6 +20,9 @@
 
 [default]
 language =                        de
+language_code =                   'de'
+language_name_system =            'german'
+language_name_own =               'deutsch'
 charset =                         utf-8
 locale =                          de_DE.utf8
 locale =                          de_DE

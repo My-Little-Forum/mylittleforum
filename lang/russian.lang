@@ -30,6 +30,9 @@
 
 [default]
 language =                        ru
+language_code =                   'ru'
+language_name_system =            'russian'
+language_name_own =               'русский'
 charset =                         utf-8
 locale =                          ru
 locale =                          ru_RU

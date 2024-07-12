@@ -17,6 +17,9 @@
 
 [default]
 language =                        en
+language_code =                   'en'
+language_name_system =            'english'
+language_name_own =               'english'
 charset =                         utf-8
 locale =                          en_US.utf8
 locale =                          en_US

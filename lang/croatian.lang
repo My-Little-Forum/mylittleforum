@@ -20,6 +20,9 @@
 
 [default]
 language =                        hr
+language_code =                   'hr'
+language_name_system =            'croatian'
+language_name_own =               'Hrvatski'
 charset =                         utf-8
 locale =                          hr_HR.utf8
 locale =                          hr_HR

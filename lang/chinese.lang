@@ -20,6 +20,9 @@
 
 [default]
 language =                        zh_CN
+language_code =                   'zh_CN'
+language_name_system =            'simplified chinese'
+language_name_own =               '简体中文'
 charset =                         utf-8
 locale =                          zh_CN.utf8
 locale =                          zh_CN
