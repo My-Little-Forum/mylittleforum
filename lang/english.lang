@@ -554,7 +554,7 @@ code_invalid =                    'Code invalid.'
 
 [pw_forgotten]
 new_pw_ok =                       'A new password has been generated and sent.'
-new_pw_failed =                   'The confirmation link is invalid. A new password could't be generated.'
+new_pw_failed =                   'The confirmation link is invalid. A new password couldn\'t be generated.'
 pw_forgotten_exp =                'The passwords are encrypted with a one-way algorithm so you cannot retrieve your password. You can only get a new password. To avoid any misuse you will receive an e-mail and will be asked to follow a link to confirm your request. Upon receipt of your confirmation a new password will be generated and sent to you.'
 pwf_username =                    'Username:'
 pwf_email =                       'E-mail:'
