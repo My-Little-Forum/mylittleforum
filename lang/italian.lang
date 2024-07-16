@@ -1058,7 +1058,6 @@ update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is
 email_subject =                   'Rispondi a "[original_subject]"'
 email_text =                      """Ciao [recipient],
 
-this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
 
 If you do not want to get informed about replies to your entry anymore, please use the following link to unsubscribe from the notification.
 [unsubscribe_address]
@@ -1076,7 +1075,7 @@ Indirizzo del messaggio (URL): [posting_address]
 [original_text]"""
 
 email_text_delayed_addition =     """---
-Questa notifica è stata ritardata a causa dall'abilitazione manuale del messaggio. This is an automatically generated email, please do not reply to this email."""
+Questa notifica è stata ritardata a causa dall'abilitazione manuale del messaggio. Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 
 admin_email_subject =             'Nuovo argomento nel forum: [subject]'
 admin_email_text =                """Nuovo argomento di [name]
@@ -1086,7 +1085,7 @@ Oggetto: [subject]
 
 Indirizzo del messaggio (URL): [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 admin_email_text_reply =          """Risposta di [name]
 Oggetto: [subject]
 
@@ -1094,7 +1093,7 @@ Oggetto: [subject]
 
 Indirizzo del messaggio (URL): [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 admin_reg_user_email_subj =       'Registrazione nel Forum'
 admin_reg_user_email_text =       """Ciao [name],
 benvenuto nel Forum!
@@ -1109,7 +1108,7 @@ Collegati direttamente al seguente link:
 
 La password può essere cambiata dopo l'accesso.
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 
 admin_activate_user_email_subj =  'Registrazione nel Forum'
 admin_activate_user_email_text =  """Ciao [name],
@@ -1118,7 +1117,7 @@ benvenuto nel Forum!
 Link to log in directly:
 [login_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 
 new_user_email_sj =               'Registrazione al Forum'
 new_user_email_txt =              """Ciao [name],
@@ -1127,7 +1126,7 @@ benvenuto nel Forum!
 per confermare la tua iscrizione, procedere all'attivazione cliccando sul seguente link:
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 new_user_notif_sj =               'Nuova iscrizione al Forum'
 new_user_notif_txt =              """Ciao [recipient],
 un nuovo utente si è iscritto al Forum.
@@ -1136,7 +1135,7 @@ E-mail: [email]
 
 [user_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 new_user_notif_txt_locked =       """Ciao [recipient],
 un nuovo utente si è iscritto al forum.
 Nome utente: [name]
@@ -1144,20 +1143,20 @@ E-mail: [email]
 
 IMPORTANTE: Questo utente necessita di essere sbloccato per accedere al forum!
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 edit_address_email_sj =           'Attivazione account dopo cambio dell\'indirizzo e-mail'
 edit_address_email_txt =          """Ciao [name],
 l'indirizzo e-mail è stato sostituito. Necessiti ora di essere riattivato cliccando sul seguente link:
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 pwf_activating_email_sj =         'Richiesta di nuova password'
 pwf_activating_email_txt =        """Ciao [name],
 questa e-mail è stata spedita dal forum ([forum_address]) perché c'è stata una richiesta di nuova password. Si prega di cliccare al seguente link per ottenere una nuova password. Al seguente link sarà generata una nuova passaword che riceverai per e-mail. Se questa e-mail è stata spedita per errore (o per richiesta di quelcun altro) si prega di ignorarla ed eliminarla.
 
 [activating_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 new_pw_email_sj =                 'Nuovi dati utente nel forum'
 new_pw_email_txt =                """Hi [name],
 ecco i nuovi tuoi dati:
@@ -1170,7 +1169,7 @@ Clicca qui per accedere direttamente al forum:
 
 La password può essere cambiata dopo l'accesso.
 
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 contact_email_txt =               """[message]
 
 -- 
