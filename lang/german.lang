@@ -444,8 +444,8 @@ error_name_reserved =             'der Name wird bereits von einem registrierten
 error_username_too_long =         'der Name ist zu lang'
 error_name_too_long =             'der Name ist zu lang'
 error_no_email_to_notify =        'keine E-Mail für die Benachrichtigung eingegeben'
-error_text_too_long =             'der Eintrag ist zu lang ([text_length] Zeichen – nur [text_maxlength] Zeichen erlaubt)'
 error_subject_too_long =          'der Betreff ist zu lang'
+error_text_too_long =             'der Eintrag ist zu lang ([text_length] Zeichen – nur [text_maxlength] Zeichen erlaubt)'
 error_tags_too_long =             'Tags zu lang'
 error_posting_unavailable =       'der Eintrag existiert nicht'
 
