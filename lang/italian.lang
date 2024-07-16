@@ -1058,8 +1058,9 @@ update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is
 email_subject =                   'Rispondi a "[original_subject]"'
 email_text =                      """Ciao [recipient],
 
+questo è un messaggio informativo generato automaticamente. Avete ricevuto questa e-mail perché avete attivato la funzione di notifica. Si prega di non rispondere a questa e-mail, ma di rispondere alla discussione specifica.
 
-If you do not want to get informed about replies to your entry anymore, please use the following link to unsubscribe from the notification.
+Se non si desidera più essere informati sulle risposte alla propria voce, si prega di utilizzare il seguente link per annullare la notifica.
 [unsubscribe_address]
 
 [name] ha risposto al tuo messaggio \"[original_subject]\":
@@ -1096,6 +1097,7 @@ Indirizzo del messaggio (URL): [posting_address]
 Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 admin_reg_user_email_subj =       'Registrazione nel Forum'
 admin_reg_user_email_text =       """Ciao [name],
+
 benvenuto nel Forum!
 
 Ecco i dati di accesso per accedervi:
@@ -1112,9 +1114,10 @@ Questo è un messaggio informativo generato automaticamente, si prega di non ris
 
 admin_activate_user_email_subj =  'Registrazione nel Forum'
 admin_activate_user_email_text =  """Ciao [name],
+
 benvenuto nel Forum!
 
-Link to log in directly:
+Link per accedere direttamente:
 [login_link]
 
 Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
@@ -1129,6 +1132,7 @@ per confermare la tua iscrizione, procedere all'attivazione cliccando sul seguen
 Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 new_user_notif_sj =               'Nuova iscrizione al Forum'
 new_user_notif_txt =              """Ciao [recipient],
+
 un nuovo utente si è iscritto al Forum.
 Nome utente: [name]
 E-mail: [email]
@@ -1154,11 +1158,12 @@ pwf_activating_email_sj =         'Richiesta di nuova password'
 pwf_activating_email_txt =        """Ciao [name],
 questa e-mail è stata spedita dal forum ([forum_address]) perché c'è stata una richiesta di nuova password. Si prega di cliccare al seguente link per ottenere una nuova password. Al seguente link sarà generata una nuova passaword che riceverai per e-mail. Se questa e-mail è stata spedita per errore (o per richiesta di quelcun altro) si prega di ignorarla ed eliminarla.
 
+Link per confermare la richiesta:
 [activating_link]
 
 Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 new_pw_email_sj =                 'Nuovi dati utente nel forum'
-new_pw_email_txt =                """Hi [name],
+new_pw_email_txt =                """Ciao [name],
 ecco i nuovi tuoi dati:
 
 Nome utente: [name]
@@ -1186,20 +1191,19 @@ Oggetto: [subject]
 
 -- 
 Questa e-mail è stata spedita dal forum [forum_address]."""
-# <!-- TODO --> #
-email_notify_inactive_user_subject = 'Inactivity notification [name]'
-email_notify_inactive_user_text =    """Hello [name],
+email_notify_inactive_user_subject = 'Notifica di inattività [name]'
+email_notify_inactive_user_text =    """Ciao [name],
 
-we have noticed that your last log-in to the forum at [forum_address] is more than [inactive_time_span] years ago. 
-The GDPR does not permit an unlimited storing of user data. According to the GDPR, we delete inactive user accounts in regular intervals.
+abbiamo notato che l'ultimo accesso al forum di [forum_address] risale a più di [inactive_time_span] anni fa.
+Il GDPR non consente l'archiviazione illimitata dei dati degli utenti. In base al GDPR, cancelliamo gli account degli utenti inattivi a intervalli regolari.
 
-To prevent the account from being deleted by us, just log-in to the forum within the next [days_until_delete] days.
-Otherwise, we will delete your account. Your postings will be retained, but will be assigned to an anonymous user having randomly chosen your username.
+Per evitare che l'account venga cancellato da noi, è sufficiente effettuare il login al forum entro i prossimi [days_until_delete] giorni.
+In caso contrario, cancelleremo l'account. I tuoi messaggi saranno conservati, ma saranno assegnati a un utente anonimo che ha scelto a caso il tuo nome utente.
 
-Kind regards
+Cordiali saluti
 
 --
-This is an automatically generated information message, please do not reply to this email."""
+Questo è un messaggio informativo generato automaticamente, si prega di non rispondere a questa e-mail."""
 
 [install]
 installation_title =              'Installazione'
