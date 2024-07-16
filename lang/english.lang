@@ -417,7 +417,7 @@ bbcode_code_instruction_inline =  '[inlinecode]code[/inlinecode]'
 bbcode_code_label_general =       'code block'
 bbcode_code_instruction_general = '[code]code[/code]'
 bbcode_code_label_specific =      'code block [language]'
-bbcode_code_instruction_spec  =   '[code=[language]]code[/code]'
+bbcode_code_instruction_spec =    '[code=[language]]code[/code]'
 insert_smiley_title =             'insert smiley'
 email_notific_reply_thread =      'E-mail notification on replies in this thread'
 email_notific_reply_post =        'E-mail notification on reply of this posting'
@@ -626,7 +626,7 @@ edit_pw =                         'change password'
 edit_user_contacting =            'Contacting:'
 edit_user_contacting_disabled =   'Restricted to administrators and moderators'
 edit_user_contacting_registered = 'Restricted to registered users'
-edit_user_contacting_public =     'Unrestricted'    
+edit_user_contacting_public =     'Unrestricted'
 edit_user_real_name =             'Name:'
 edit_user_gender =                'Gender:'
 gender_not_specified =            'not specified'
@@ -1093,6 +1093,7 @@ URL of the posting: [posting_address]
 This is an automatically generated information message, please do not reply to this email."""
 admin_reg_user_email_subj =       'Forum registration'
 admin_reg_user_email_text =       """Hi [name],
+
 welcome to the forum!
 
 Here is the access data to log in:
