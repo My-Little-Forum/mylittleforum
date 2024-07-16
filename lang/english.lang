@@ -1110,6 +1110,7 @@ This is an automatically generated information message, please do not reply to t
 
 admin_activate_user_email_subj =  'Forum registration'
 admin_activate_user_email_text =  """Hi [name],
+
 welcome to the forum!
 
 Link to log in directly:
@@ -1127,6 +1128,7 @@ To activate your account please follow this link:
 This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_sj =               'New user subscription'
 new_user_notif_txt =              """Hi [recipient],
+
 a new user has subscribed to the forum.
 User name: [name]
 E-mail: [email]
