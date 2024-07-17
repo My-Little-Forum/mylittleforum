@@ -1120,6 +1120,7 @@ This is an automatically generated information message, please do not reply to t
 
 new_user_email_sj =               'Forum registration'
 new_user_email_txt =              """Hi [name],
+
 welcome to the forum!
 
 To activate your account please follow this link:
@@ -1137,6 +1138,7 @@ E-mail: [email]
 
 This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_txt_locked =       """Hi [recipient],
+
 a new user has subscribed to the forum.
 User name: [name]
 E-mail: [email]
@@ -1146,12 +1148,14 @@ IMPORTANT: This user has to be unlocked in order that he can log in!
 This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =           'Account activation after changing e-mail address'
 edit_address_email_txt =          """Hi [name],
+
 the e-mail address has been changed. You now have to activate your account again using the following link:
 [activate_link]
 
 This is an automatically generated information message, please do not reply to this email."""
 pwf_activating_email_sj =         'Request for a new password'
 pwf_activating_email_txt =        """Hi [name],
+
 this e-mail has been sent by the forum on [forum_address] because a new password has been requested. Please click the link below to confirm your request. By following the link a new password will be generated and sent to you. If this e-mail has been sent in error (either by you or someone else) please ignore this e-mail.
 
 Link to confirm your request:
@@ -1160,6 +1164,7 @@ Link to confirm your request:
 This is an automatically generated information message, please do not reply to this email."""
 new_pw_email_sj =                 'New user data for the forum'
 new_pw_email_txt =                """Hi [name],
+
 here is your new user data:
 
 User name: [name]
