@@ -215,10 +215,10 @@ open_whole_thread =               'Открыть всю тему'
 change_category_link =            'Показать сообщения в категории "[category]"'
 mark_linktitle =                  'Отметить сообщение'
 unmark_linktitle =                'Снять отметку'
-unclassified_linktitle =          '<!-- TODO -->Posting is unclassified'
+unclassified_linktitle =          'Объявление не засекречено'
 delete_marked_link =              'Удалить отмеченные'
 manage_postings_link =            'Управление сообщениями'
-non_activated_users_link =        '[counter] non-activated user(s)'
+non_activated_users_link =        '<!-- TODO -->[counter] non-activated user(s)'
 show_spam_link =                  'Показать спам ([number])'
 hide_spam_link =                  'Скрыть спам'
 delete_spam_link =                'Удалить спам'
@@ -265,8 +265,8 @@ search_user =                     'Искать пользователя:'
 search_user_default_value =       'Искать пользователя …'
 no_users =                        'Пользователей не найдено.'
 no_text_title =                   'Пустое сообщение / отсутствует текст'
-no_text =                         '- Тут ничего нет! -'
 no_text_alt =                     'Пустое сообщение'
+no_text =                         '- Тут ничего нет! -'
 error_invalid_form =              'Сессия просрочена! Пожалуйста, скопируйте текст и залогиньтесь снова, или отправьте содержимое формы повторно как гость.'
 error_form_sent_too_fast =        'Форма была отправлена слишком быстро - пожалуйста, подождите несколько секунд и повторите отправку (работает защита от автоматического заполнения форм)'
 error_form_sent_too_slow =        'Форма уже не актуальна - пожалуйста, скопируйте текст и обновите страницу'
@@ -391,7 +391,7 @@ bbcode_italic_title =             'Выделить текст курсивом'
 bbcode_italic_instruction =       '[i]курсив[/i]'
 bbcode_color_label =              'цвет'
 bbcode_color_title =              'Цвет текста'
-bbcode_color_instruction =        '[color=#rgb]colored text[/color]'
+bbcode_color_instruction =        '[color=#rgb]цветной текст[/color]'
 bbcode_link_label =               'ссылка'
 bbcode_link_title =               'Вставить гиперссылку'
 bbcode_link_instruction =         '[link=http://example.com/]текст ссылки[/link] / [link]http://example.com/[/link]'
@@ -403,7 +403,7 @@ bbcode_size_instruction_small =   '[size=small]мелкие буквы[/size]'
 bbcode_size_instruction_large =   '[size=large]крупные буквы[/size]'
 bbcode_list_label =               'список'
 bbcode_list_title =               'Вставить список'
-bbcode_list_instruction =         '[list][*]list item[/list]'
+bbcode_list_instruction =         '[list][*]элемент списка[/list]'
 bbcode_image_label =              'картинка'
 bbcode_image_title =              'Вставить картинку'
 bbcode_image_label_default =      'без выравнивания'
@@ -510,7 +510,7 @@ insert_image =                    'Вставить картинку'
 insert_image_exp =                'Кликните на картинку, чтобы вставить её в ваше сообщение.'
 insert_image_exp_no_js =          'Для вставки картинки в ваше сообщение можно использовать следующий код:'
 browse_uploaded_images =          'Просмотр загруженных картинок …'
-back =                            '&laquo; back'
+back =                            '&laquo; назад'
 no_images =                       'Нет доступных картинок.'
 delete_image_confirm =            'Удалить эту картинку?'
 delete_image_button =             'OK - Удалить'
@@ -744,7 +744,6 @@ error_email_invalid =             'Адрес e-mail неправильный'
 error_email_subject_too_long =    'Заголовок письма слишком длинный'
 error_email_text_too_long =       'Текст письма слишком длинный ([text_length] символов - разрешено только [text_maxlength] символов)'
 error_email_spam_suspicion =      'Подозрение на спам! Пожалуйста, измените текст письма (например, удалите ссылки)'
-#error_mailserver =               'Попытка отправить письмо не удалась!'
 
 [admin]
 enabled =                         'включен'
@@ -969,9 +968,8 @@ delete_avatar =                   'Удалить аватар'
 delete_user_confirmation =        'Вы уверены, что хотите удалить этого пользователя?'
 delete_users_confirmation =       'Вы уверены, что хотите удалить следующих пользователей?'
 delete_entries_of_user_confirm =  'Вы уверены, что хотите удалить все сообщения пользователя <strong>[user]</strong>? Комментарии других пользователей к ним также будут удалены!'
-delete_submit =                   'Удалить'
+delete_submit =                   'Да, Удалить'
 register_exp =                    'Вы можете оставить поля для ввода пароля пустыми, при этом должен быть сгенерирован случайный пароль. В этом случае пользовательские данные должны быть отправлены на указанный адрес электронной почты.'
-delete_submit =                   'Да, удалить'
 register_username =               'Имя пользователя:'
 register_email =                  'E-mail:'
 register_pw =                     'Пароль:'
@@ -1066,15 +1064,15 @@ update_submit =                   'Выполнить'
 update_successful =               'База данных была успешно обновлена.'
 update_items_note =               'Теперь загрузите на ваш сервер следующие файлы и папки из нового пакета обновления форума (версии [version]):'
 update_download =                 'Если у вас ещё нет этих файлов, вы можете загрузить [[отсюда]].'
-update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
+update_reenabling_notice =        'Пожалуйста, обратите внимание, что форум в настоящее время отключен, и вы должны снова включить его в <a href="index.php?mode=admin&action=settings">настройках</a>.'
 
 [emails]
 email_subject =                   'Ответ на "[original_subject]"'
-email_text =                      """Здравствуйте, [recipient],
+email_text =                      """Здравствуйте, [recipient]!
 
-this is an automatically generated information message. You receive this email, because you have enabled the notification function. Please do not reply to this email but respond to the specific thread.
+Это автоматически сгенерированное информационное сообщение. Вы получаете это письмо, потому что включили функцию уведомления. Пожалуйста, не отвечайте на это письмо, а отвечайте в конкретной теме.
 
-If you do not want to get informed about replies to your entry anymore, please use the following link to unsubscribe from the notification.
+Если вы больше не хотите получать информацию об ответах на вашу запись, пожалуйста, воспользуйтесь следующей ссылкой, чтобы отписаться от уведомлений.
 [unsubscribe_address]
 
 [name] ответил на сообщение \"[original_subject]\":
@@ -1100,7 +1098,7 @@ admin_email_text =                """Новое сообщение от [name]
 
 URL этого сообщения: [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 admin_email_text_reply =          """Ответ от [name]
 Тема: [subject]
 
@@ -1108,9 +1106,10 @@ admin_email_text_reply =          """Ответ от [name]
 
 URL этого сообщения: [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 admin_reg_user_email_subj =       'Регистрация на форуме'
 admin_reg_user_email_text =       """Здравствуйте, [name]!
+
 Добро пожаловать на форум!
 
 Регистрационные данные для доступа:
@@ -1123,57 +1122,65 @@ admin_reg_user_email_text =       """Здравствуйте, [name]!
 
 После входа пароль можно будет изменить.
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 
 admin_activate_user_email_subj =  'Регистрация на форуме'
 admin_activate_user_email_text =  """Здравствуйте, [name]!
+
 Добро пожаловать на форум!
 
-Link to log in directly:
+Ссылка для прямого входа в систему:
 [login_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 
 new_user_email_sj =               'Регистрация на форуме'
 new_user_email_txt =              """Здравствуйте, [name]!
+
 Добро пожаловать на форум!
 
 Для активации вашей учётной записи проследуйте по ссылке:
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 new_user_notif_sj =               'Регистрация нового пользователя'
 new_user_notif_txt =              """Здравствуйте, [recipient]!
+
 На форуме зарегистрировался новый пользователь:
 Имя пользователя: [name]
 Адрес электронной почты: [email]
 
 [user_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 new_user_notif_txt_locked =       """Здравствуйте, [recipient]!
+
 На форуме зарегистрировался новый пользователь:
 Имя пользователя: [name]
 Адрес e-mail: [email]
 
 ВНИМАНИЕ! Для того, чтобы этот пользователь мог войти на форум, его необходимо разблокировать!
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 edit_address_email_sj =           'Активация учётной записи после смены адреса e-mail'
 edit_address_email_txt =          """Здравствуйте, [name]!
+
 Адрес e-mail был изменён. Сейчас вам необходимо снова активировать вашу учётную запись, перейдя по ссылке:
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 pwf_activating_email_sj =         'Запрос нового пароля'
 pwf_activating_email_txt =        """Здравствуйте, [name]!
+
 Это письмо было отправлено вам с форума ([forum_address]), так как был запрошен новый пароль. Для подтверждения запроса перейдите по нижеприведенной ссылке, для вас будет сгенерирован и выслан новый пароль. Если данное письмо было получено вами по ошибке (вашей, или чьей-то ещё), просто проигнорируйте его.
 
+Ссылка для подтверждения запроса:
 [activating_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 new_pw_email_sj =                 'Новые пользовательские данные для форума'
 new_pw_email_txt =                """Здравствуйте, [name]!
+
 Ваши новые данные:
 
 Имя пользователя: [name]
@@ -1184,7 +1191,7 @@ new_pw_email_txt =                """Здравствуйте, [name]!
 
 После входа пароль можно будет изменить.
 
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 contact_email_txt =               """[message]
 
 -- 
@@ -1201,20 +1208,19 @@ Subject: [subject]
 
 -- 
 Это письмо было отправлено вам с форума [forum_address]."""
-# <!-- TODO --> #
-email_notify_inactive_user_subject = 'Inactivity notification [name]'
-email_notify_inactive_user_text =    """Hello [name],
+email_notify_inactive_user_subject = 'Уведомление о бездействии [name]'
+email_notify_inactive_user_text =    """Здравствуйте, [name]!
 
-we have noticed that your last log-in to the forum at [forum_address] is more than [inactive_time_span] years ago. 
-The GDPR does not permit an unlimited storing of user data. According to the GDPR, we delete inactive user accounts in regular intervals.
+Мы заметили, что последний раз вы заходили на форум по адресу [forum_address] более [промежуток_времени_неактивности] лет назад. 
+GDPR ЕС не допускает неограниченного хранения пользовательских данных. В соответствии с GDPR, мы регулярно удаляем неактивные учетные записи пользователей.
 
-To prevent the account from being deleted by us, just log-in to the forum within the next [days_until_delete] days.
-Otherwise, we will delete your account. Your postings will be retained, but will be assigned to an anonymous user having randomly chosen your username.
+Чтобы предотвратить удаление аккаунта, просто зайдите на форум в течение следующих [days_until_delete] дней.
+В противном случае мы удалим вашу учетную запись. Ваши сообщения сохранятся, но будут присвоены анонимному пользователю, выбравшему ваше имя пользователя случайным образом.
 
-Kind regards
+С уважением
 
 --
-This is an automatically generated information message, please do not reply to this email."""
+Это автоматически сгенерированное информационное сообщение, пожалуйста, не отвечайте на него."""
 
 [install]
 installation_title =              'Установка'
