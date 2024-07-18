@@ -12,6 +12,7 @@
 #   how are you?""")                                                           #
 # - more details about the file format:                                        #
 #   http://www.smarty.net/docs/en/config.files.tpl                             #
+#                                                                              #
 ################################################################################
 
 [default]
