@@ -1086,7 +1086,7 @@ admin_email_text =                """Nytt inlägg av [name]
 
 Länk till inlägget: [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 admin_email_text_reply =          """Svar av [name]
 Ämne: [subject]
 
@@ -1094,9 +1094,10 @@ admin_email_text_reply =          """Svar av [name]
 
 Länk till inlägget: [posting_address]
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 admin_reg_user_email_subj =       'Registrering på forum'
 admin_reg_user_email_text =       """Hej [name],
+
 Välkommen till forumet!
 
 Här är dina användaruppgifter för att logga in:
@@ -1109,58 +1110,65 @@ Logga in direkt med denna länk:
 
 Lösenordet kan ändras efter att Du loggat in!
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 
 admin_activate_user_email_subj =  'Registrering på forum'
 admin_activate_user_email_text =  """Hej [name],
+
 Välkommen till forumet!
 
 Logga in direkt med denna länk:
 [login_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande.."""
 
 new_user_email_sj =               'Registrering på forum'
 new_user_email_txt =              """Hej [name],
+
 Välkommen till forumet!
 
 För att aktivera kontot, vänligen följ aktiveringslänken:
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 new_user_notif_sj =               'Ny användare registrerad'
 new_user_notif_txt =              """Hej [recipient],
+
 En ny användare har registrerat sig på forumet.
 Användarnamn: [name]
 E-post: [email]
 
 [user_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 new_user_notif_txt_locked =       """Hej [recipient],
+
 En ny användare har registrerat sig på forumet.
 Användarnamn: [name]
 E-post: [email]
 
 VIKTIGT: Denna användare måste aktiveras!
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 edit_address_email_sj =           'Kontoaktivering efter byte av E-postadress'
 edit_address_email_txt =          """Hej [name],
+
 E-postadressen har ändrats, Du måste återaktivera kontot via länken:
 [activate_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 pwf_activating_email_sj =         'Begäran om nytt lösenord'
 pwf_activating_email_txt =        """Hej [name],
+
 Detta mail har skickats från [forum_address] eftersom ett nytt lösenord har begärts, klicka på länken för att bekräfta begäran. Ett nytt lösenord kommer då att skapas och skickas till dig. Om Du själv inte begärt byte av lösenord ber vi dig bortse från detta mail och lämna det utan åtgärd.
 
 Aktiveringslänk:
 [activating_link]
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 new_pw_email_sj =                 'Nya användaruppgifter till forumet'
 new_pw_email_txt =                """Hej [name],
+
 Här är dina nya användaruppgifter:
 
 Användarnamn: [name]
@@ -1171,7 +1179,7 @@ Logga in via länken:
 
 Lösenordet kan ändras efter att Du loggat in.
 
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 contact_email_txt =               """[message]
 
 -- 
@@ -1188,20 +1196,19 @@ contact_notification_txt =        """Detta mail har skickats med din E-postadres
 
 -- 
 Detta mail har skickats från [forum_address]."""
-# <!-- TODO --> #
-email_notify_inactive_user_subject = 'Inactivity notification [name]'
-email_notify_inactive_user_text =    """Hello [name],
+email_notify_inactive_user_subject = 'Meddelande om inaktivitet [name]'
+email_notify_inactive_user_text =    """Hej [name],
 
-we have noticed that your last log-in to the forum at [forum_address] is more than [inactive_time_span] years ago. 
-The GDPR does not permit an unlimited storing of user data. According to the GDPR, we delete inactive user accounts in regular intervals.
+vi har märkt att din senaste inloggning på forumet på [forum_adress] är mer än [inaktiv_tidsperiod] år sedan. 
+Dataskyddsförordningen tillåter inte obegränsad lagring av användardata. I enlighet med GDPR raderar vi inaktiva användarkonton med jämna mellanrum.
 
-To prevent the account from being deleted by us, just log-in to the forum within the next [days_until_delete] days.
-Otherwise, we will delete your account. Your postings will be retained, but will be assigned to an anonymous user having randomly chosen your username.
+För att förhindra att kontot raderas av oss behöver du bara logga in på forumet inom de närmaste [days_until_delete] dagarna.
+Annars kommer vi att radera ditt konto. Dina inlägg kommer att sparas, men de kommer att tilldelas en anonym användare som slumpmässigt har valt ditt användarnamn.
 
-Kind regards
+Vänliga hälsningar
 
 --
-This is an automatically generated information message, please do not reply to this email."""
+Detta är ett automatiskt genererat informationsmeddelande, vänligen svara inte på detta e-postmeddelande."""
 
 [install]
 installation_title =              'Installation'
