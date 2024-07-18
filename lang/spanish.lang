@@ -210,7 +210,7 @@ unmark_linktitle =                'Deseleccionar mensaje'
 unclassified_linktitle =          'La entrada está sin clasificar'
 delete_marked_link =              'Eliminar mensajes marcados'
 manage_postings_link =            'Administrar mensajes'
-non_activated_users_link =        '[counter] non-activated user(s)'
+non_activated_users_link =        '<!-- TODO -->[counter] non-activated user(s)'
 show_spam_link =                  'Mostrar spam ([number])'
 hide_spam_link =                  'Ocultar spam'
 delete_spam_link =                'Eliminar spam'
@@ -1098,6 +1098,7 @@ Dirección del mensaje: [posting_address]
 Este es un mensaje informativo generado automáticamente; por favor, no respondas a este email."""
 admin_reg_user_email_subj =       'Nuevo registro en el foro'
 admin_reg_user_email_text =       """Hola [name],
+
 Bienvenido al foro!
 
 Aquí tienes los datos de acceso:
@@ -1114,6 +1115,7 @@ Este es un mensaje informativo generado automáticamente; por favor, no responda
 
 admin_activate_user_email_subj =  'Registro en el foro'
 admin_activate_user_email_text =  """Hola [name],
+
 Bienvenido al foro!
 
 Enlace para iniciar sesión directamente:
@@ -1123,6 +1125,7 @@ Este es un mensaje informativo generado automáticamente; por favor, no responda
 
 new_user_email_sj =               'Registro en el foro'
 new_user_email_txt =              """Hola [name],
+
 Bienvenido al foro!
 
 Para activar tu cuenta por favor visita el siguiente enlace (HAZ SOLO UN CLICK):
@@ -1131,6 +1134,7 @@ Para activar tu cuenta por favor visita el siguiente enlace (HAZ SOLO UN CLICK):
 Este es un mensaje informativo generado automáticamente; por favor, no respondas a este email."""
 new_user_notif_sj =               'Nueva suscripción'
 new_user_notif_txt =              """Hola [recipient],
+
 Un nuevo usuario se ha suscrito al foro.
 Nombre de usuario: [name]
 E-mail: [email]
@@ -1139,6 +1143,7 @@ E-mail: [email]
 
 Este es un mensaje informativo generado automáticamente; por favor, no respondas a este email."""
 new_user_notif_txt_locked =       """Hola [recipient],
+
 Un nuevo usuario se ha suscrito al foro.
 Nombre de usuario: [name]
 E-mail: [email]
@@ -1148,12 +1153,14 @@ IMPORTANTE: Tienes que desbloquear a este usuario para que pueda iniciar sesión
 Este es un mensaje informativo generado automáticamente; por favor, no respondas a este email."""
 edit_address_email_sj =           'Activación de cuenta después de cambiar el e-mail'
 edit_address_email_txt =          """Hola [name],
+
 La dirección de e-mail ha cambiado. Puedes activar la cuenta de nuevo usando el siguiente enlace (HAZ SOLO UN CLICK):
 [activate_link]
 
 Este es un mensaje informativo generado automáticamente; por favor, no respondas a este email."""
 pwf_activating_email_sj =         'Solicitar una nueva contraseña'
 pwf_activating_email_txt =        """Hola [name],
+
 El foro [forum_address] te ha enviado este correo porque has solicitado una nueva contraseña. Por favor pulsa el enlace para confirmar tu solicitud (HAZ UN SOLO CLICK), se generará una nueva contraseña y te la enviaremos por correo. Si has recibido este mensaje por error por favor ignóralo.
 
 Enlace para confirmar tu solicitud:
@@ -1162,6 +1169,7 @@ Enlace para confirmar tu solicitud:
 Este es un mensaje informativo generado automáticamente; por favor, no respondas a este email."""
 new_pw_email_sj =                 'Contraseña solicitada'
 new_pw_email_txt =                """Hola [name],
+
 Aquí están tus datos de acceso:
 
 Nombre de usuario: [name]
