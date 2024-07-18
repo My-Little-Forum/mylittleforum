@@ -10,7 +10,7 @@
 # - strings that span more than one line (E-Mail texts) are enclosed in triple #
 #   quotes (e.g. """Hi,                                                        #
 #   how are you?""")                                                           #
-# - more details about the file fomat:                                         #
+# - more details about the file format:                                        #
 #   http://www.smarty.net/docs/en/config.files.tpl                             #
 #------------------------------------------------------------------------------#
 #                                                                              #
@@ -434,7 +434,7 @@ message_submit_button =           'OK - Skicka'
 message_submit_title =            'Spara inlägg'
 message_preview_button =          'Förhandsgranska'
 message_preview_title =           'Förhandsgranska inlägg före Du postar'
-reply_to_posting_marking =        'Svara på <strong>[name]</strong>'s inlägg'
+reply_to_posting_marking =        'Svara på <strong>[name]</strong>\'s inlägg'
 minutes_left_to_edit =            'Du har [minutes] minuter kvar att redigera inlägget!'
 minutes_left_to_edit_reply =      'Du har [minutes] minuter kvar att redigera inlägget om ingen postar svar innan!'
 preview_headline =                'Förhandsvisa'
