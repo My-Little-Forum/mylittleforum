@@ -112,7 +112,7 @@ expand_fold_thread_linktitle =    'Konuları genişlet / katla'
 category_title =                  'Kategori'
 all_categories =                  'Tüm kategoriler'
 my_category_selection =           'Seçimim'
-page_title =                      'Sayfa'
+browse_page_title =               'Sayfa'
 thread_entry_back_link =          'Forum ana sayfasına geri dön'
 thread_entry_back_title =         'Forum ana sayfası'
 reply_link =                      'Yanıt gönder'
@@ -270,7 +270,7 @@ user_locked_message =             'Hesabınız şimdilik kilitli.'
 forum_disabled =                  'Forum şimdilik aktif değil.'
 cookie_deleted =                  'Çerezler silindi.'
 ajax_preview_title =              'Önizleme göster'
-bbcode_link_link =                'Metnin bağlantısı (opsiyonel):'
+bbcode_link_text =                'Metnin bağlantısı (opsiyonel):'
 bbcode_link_url =                 'Link bağlantısı (URL):'
 bbcode_image_url =                'Resim adresi (URL):'
 bbcode_tex_code =                 '<!-- TODO -->TeX formula (e.g. \sqrt{x}):'
@@ -633,7 +633,7 @@ edit_user_contacting_registered = '<!-- TODO -->Restricted to registered users'
 edit_user_contacting_public =     '<!-- TODO -->Unrestricted' 
 edit_user_real_name =             'İsim:'
 edit_user_gender =                'Cinsiyet:'
-gender_not_specified =            'not specified'
+gender_not_specified =            'belirtilmemiş'
 male =                            'erkek'
 female =                          'bayan'
 edit_user_birthday =              'Doğum tarihi:'
@@ -664,7 +664,7 @@ admin_mod_notif_register =        'yeni bir kullanıcı kayıt olduğu zaman'
 userdata_submit_button =          'Tamam - Kaydet'
 profile_saved =                   'Profil kaydedildi'
 pw_changed =                      'Şifre değiştirildi'
-remove_user_account =             '<!-- TODO -->Delete account'
+remove_user_account =             'Hesap silme'
 remove_user_account_link =        '<!-- TODO -->Delete your user account'
 
 [remove_user_account]
@@ -866,7 +866,7 @@ rss_feed =                        'RSS İçeriği'
 rss_feed_desc =                   'RSS İçeriği aktif edilsin mi (sadece eğer erişim izni "herkes" için ise)?'
 rss_feed_enabled =                'RSS İçeriği aktif'
 forum_enabled_marking =           'Forum aktif'
-forum_enabled_desc =              Forumu erişilemez (kapalı) yapabilmek için veya foruma sistem güncellemesi yapmadan önce bu seçeneği kaldırınız. Yönetici olarak giriş yapanlar için halen etkin olacak.'
+forum_enabled_desc =              'Forumu erişilemez (kapalı) yapabilmek için veya foruma sistem güncellemesi yapmadan önce bu seçeneği kaldırınız. Yönetici olarak giriş yapanlar için halen etkin olacak.'
 forum_enabled =                   'forum aktif'
 forum_disabled_message =          'Erişilemez (kapalı) forumlar için yayınlanacak mesaj:'
 category_name =                   'Kategori'
@@ -1097,6 +1097,7 @@ Gönderim bağlantısı (URL): [posting_address]
 This is an automatically generated information message, please do not reply to this email."""
 admin_reg_user_email_subj =       'Forum kaydı'
 admin_reg_user_email_text =       """Merhaba [name],
+
 foruma hoş geldiniz!
 
 Giriş yapabilmeniz için erişim bilgileriniz şöyledir:
@@ -1113,6 +1114,7 @@ This is an automatically generated information message, please do not reply to t
 
 admin_activate_user_email_subj =  'Forum kaydı'
 admin_activate_user_email_text =  """Merhaba [name],
+
 foruma hoş geldiniz!
 
 Link to log in directly:
@@ -1122,6 +1124,7 @@ This is an automatically generated information message, please do not reply to t
 
 new_user_email_sj =               'Forum kaydı'
 new_user_email_txt =              """Merhaba [name],
+
 foruma hoş geldiniz!
 
 hesabınızı aktif etmek için lütfen aşağıdaki bağlantıyı takip edin:
@@ -1130,6 +1133,7 @@ hesabınızı aktif etmek için lütfen aşağıdaki bağlantıyı takip edin:
 This is an automatically generated information message, please do not reply to this email."""
 new_user_notif_sj =               'Yeni kullanıcı kaydı'
 new_user_notif_txt =              """Merhaba [recipient],
+
 foruma yeni bir kullanıcı abone oldu.
 Kullanıcı adı: [name]
 E-posta: [email]
@@ -1147,19 +1151,23 @@ E-posta: [email]
 This is an automatically generated information message, please do not reply to this email."""
 edit_address_email_sj =           'E-posta değişiminden sonra hesap aktivasyonu'
 edit_address_email_txt =          """Merhaba [name],
+
 e-posta adresiniz değişti. Hesabınızı aşağıdaki bağlantıya tıklayarak tekrar aktif etmelisiniz:
 [activate_link]
 
 This is an automatically generated information message, please do not reply to this email."""
 pwf_activating_email_sj =         'Yeni parola talebi'
 pwf_activating_email_txt =        """Merhaba [name],
+
 bu e-posta, yeni bir parola talebinden dolayı ([forum_address]) forumundan gönderildi. Lütfen yeni parolanızın oluşturulması ve size gönderilmesi için aşağıdaki bağlantıya tıklayın. Eğer bu e-posta bilginiz dışında bir yanlışlıktan ötürü (sizden veya herhangi birinden) geldiyse önemsemeyin.
 
+Talebinizi onaylamak için bağlantı:
 [activating_link]
 
 This is an automatically generated information message, please do not reply to this email."""
 new_pw_email_sj =                 'Yeni kullanıcı bilginiz'
 new_pw_email_txt =                """Merhaba [name],
+
 yeni kullanıcı bilgileriniz şöyledir:
 
 Kullanıcı adı: [name]
