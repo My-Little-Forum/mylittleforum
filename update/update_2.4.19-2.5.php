@@ -521,6 +521,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'includes/bookmark.inc.php';
 				// #489, #501, #505, #507, #594
 				$update['items'][] = 'includes/contact.inc.php';
+				// #705
+				$update['items'][] = 'includes/delete_cookie.inc.php';
 				// #505, #509, #536, #585, #611
 				$update['items'][] = 'includes/entry.inc.php';
 				// #377, #390, #410, #467, #478, #498, #499, #512, #519. #520, #524, #526,
@@ -917,6 +919,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$update['items'][] = 'includes/bookmark.inc.php';
 		// #489, #501, #505, #507, #594
 		$update['items'][] = 'includes/contact.inc.php';
+		// #705
+		$update['items'][] = 'includes/delete_cookie.inc.php';
 		// #505, #509, #536, #585, #611
 		$update['items'][] = 'includes/entry.inc.php';
 		// #467, #478, #498, #499, #512, #519. #520, #524, #526, #528, #540, #554, #571,
@@ -1256,6 +1260,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['items'][] = 'includes/bookmark.inc.php';
 		// #489, #501, #505, #507, #594
 		$update['items'][] = 'includes/contact.inc.php';
+		// #705
+		$update['items'][] = 'includes/delete_cookie.inc.php';
 		// #505, #509, #536, #585, #611
 		$update['items'][] = 'includes/entry.inc.php';
 		// #467, #478, #498, #499, #512, #519. #520, #524, #526, #528, #540, #554, #571,
@@ -1616,6 +1622,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$update['items'][] = 'includes/bookmark.inc.php';
 		// #507, #594
 		$update['items'][] = 'includes/contact.inc.php';
+		// #705
+		$update['items'][] = 'includes/delete_cookie.inc.php';
 		// #509, #536, #585, #611
 		$update['items'][] = 'includes/entry.inc.php';
 		// #512, #519. #520, #524, #526, #528, #540, #554, #571, #587, #589, #593, #594,
@@ -1925,11 +1933,16 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/auto_login.inc.php';
+		$update['items'][] = 'includes/delete_cookie.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
+		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
@@ -2131,11 +2144,16 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/auto_login.inc.php';
+		$update['items'][] = 'includes/delete_cookie.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
+		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
@@ -2337,8 +2355,16 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/auto_login.inc.php';
+		$update['items'][] = 'includes/delete_cookie.inc.php';
+		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/index.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/search.inc.php';
+		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
