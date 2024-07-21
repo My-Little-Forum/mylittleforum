@@ -532,7 +532,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				// #472, #521, #554, #611
 				$update['items'][] = 'includes/index.inc.php';
 				// #390
-				$update['items'][] = 'includes/insert_flash.inc.php (remove)';
+				$update['delete'][] = 'includes/insert_flash.inc.php (remove)';
 				// #377, #390, #550, #575, #578, #589
 				$update['items'][] = 'includes/js_defaults.inc.php';
 				// #526, #550, #554, #594
@@ -668,7 +668,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				// #637
 				$update['items'][] = 'themes/default/main.tpl';
 				// #390
-				$update['items'][] = 'themes/default/insert_flash.inc.tpl (remove)';
+				$update['delete'][] = 'themes/default/insert_flash.inc.tpl (remove)';
 				// #390
 				$update['items'][] = 'themes/default/js_config.ini';
 				// #390, #461, #477, #530, #531, #533, #534, #537, #538, #598, #608, #612,
