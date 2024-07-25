@@ -360,7 +360,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					/* is the following query really necessary? */
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 					CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
-					CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL;");
+					CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
+					CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+					CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+					CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
 					
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -762,7 +765,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				// ???
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
-				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
+				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1139,7 +1145,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
-				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
+				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1478,7 +1487,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
@@ -1808,7 +1820,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
 				
 				$rIndex_user_type = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -2019,7 +2034,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
 				
 				$rIndex_user_type = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -2230,7 +2248,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
-				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;");
+				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
 				
 				$rIndex_user_type = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -2395,6 +2416,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				// changes in the settings table
 				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
 				WHERE name = 'bad_behavior';");
+				
+				
+				// changes in the user data table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
+				
 				
 				// changes in the forum/entries table
 				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
