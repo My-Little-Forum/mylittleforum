@@ -393,6 +393,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					DROP `spam`,
 					DROP `spam_check_status`;");
 					
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+					CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+					CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+					
 					$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
 					LIKE 'email_notification';");
 					if (mysqli_num_rows($rEN_exists) > 0) {
@@ -794,6 +798,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				
 				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+				
 				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
 				LIKE 'email_notification';");
 				if (mysqli_num_rows($rEN_exists) > 0) {
@@ -1169,6 +1177,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				
 				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+				
 				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
 				LIKE 'email_notification'");
 				if (mysqli_num_rows($rEN_exists) > 0) {
@@ -1539,6 +1551,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				
 				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+				
 				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
 				LIKE 'email_notification'");
 				if (mysqli_num_rows($rEN_exists) > 0) {
@@ -1869,6 +1885,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				
 				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+				
 				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
 				LIKE 'email_notification'");
 				if (mysqli_num_rows($rEN_exists) > 0) {
@@ -2083,6 +2103,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				
 				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+				
 				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
 				LIKE 'email_notification'");
 				if (mysqli_num_rows($rEN_exists) > 0) {
@@ -2297,6 +2321,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				
 				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+				
 				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
 				LIKE 'email_notification'");
 				if (mysqli_num_rows($rEN_exists) > 0) {
@@ -2426,6 +2454,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				
 				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+				
 				$rEN_exists = mysqli_query($connid, "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."`
 				LIKE 'email_notification'");
 				if (mysqli_num_rows($rEN_exists) > 0) {
