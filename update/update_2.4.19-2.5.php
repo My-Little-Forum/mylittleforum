@@ -382,6 +382,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 					ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
 					
+					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+					`birthday` = NULL
+					WHERE `birthday` = '0000-00-00';");
+					
+					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+					`last_logout` = NULL
+					WHERE `last_logout` = '0000-00-00 00:00:00';");
+					
+					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+					`registered` = NULL
+					WHERE `registered` = '0000-00-00 00:00:00';");
+					
 					
 					// changes in the user data cache table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_cache_table'] . "`
@@ -791,6 +803,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 				ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`birthday` = NULL
+				WHERE `birthday` = '0000-00-00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`last_logout` = NULL
+				WHERE `last_logout` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`registered` = NULL
+				WHERE `registered` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the user data cache table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_cache_table'] . "`
@@ -1175,6 +1199,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 				ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`birthday` = NULL
+				WHERE `birthday` = '0000-00-00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`last_logout` = NULL
+				WHERE `last_logout` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`registered` = NULL
+				WHERE `registered` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
@@ -1549,6 +1585,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 					}
 				}
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`birthday` = NULL
+				WHERE `birthday` = '0000-00-00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`last_logout` = NULL
+				WHERE `last_logout` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`registered` = NULL
+				WHERE `registered` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
@@ -1883,6 +1931,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 					}
 				}
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`birthday` = NULL
+				WHERE `birthday` = '0000-00-00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`last_logout` = NULL
+				WHERE `last_logout` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`registered` = NULL
+				WHERE `registered` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
@@ -2100,6 +2160,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 						ON " . $db_settings['userdata_table'] .";");
 					}
 				}
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`birthday` = NULL
+				WHERE `birthday` = '0000-00-00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`last_logout` = NULL
+				WHERE `last_logout` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`registered` = NULL
+				WHERE `registered` = '0000-00-00 00:00:00';");
 				
 				
 				// changes in the forum/entries table
@@ -2319,6 +2391,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 					}
 				}
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`birthday` = NULL
+				WHERE `birthday` = '0000-00-00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`last_logout` = NULL
+				WHERE `last_logout` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`registered` = NULL
+				WHERE `registered` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
@@ -2451,6 +2535,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`birthday` = NULL
+				WHERE `birthday` = '0000-00-00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`last_logout` = NULL
+				WHERE `last_logout` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				`registered` = NULL
+				WHERE `registered` = '0000-00-00 00:00:00';");
 				
 				
 				// changes in the forum/entries table
