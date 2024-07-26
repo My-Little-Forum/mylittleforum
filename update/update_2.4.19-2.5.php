@@ -419,6 +419,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 					
+					mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+					`last_reply` = NULL
+					WHERE `last_reply` = '0000-00-00 00:00:00';");
+					
+					mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+					`edited` = NULL
+					WHERE `edited` = '0000-00-00 00:00:00';");
+					
 					
 					// changes in the banlist table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['banlists_table'] . "`
@@ -836,6 +844,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`last_reply` = NULL
+				WHERE `last_reply` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`edited` = NULL
+				WHERE `edited` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the banlist table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['banlists_table'] . "`
@@ -1224,6 +1240,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 					DROP `email_notification`;");
 				}
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`last_reply` = NULL
+				WHERE `last_reply` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`edited` = NULL
+				WHERE `edited` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
@@ -1610,6 +1634,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 					DROP `email_notification`;");
 				}
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`last_reply` = NULL
+				WHERE `last_reply` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`edited` = NULL
+				WHERE `edited` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
@@ -1956,6 +1988,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 					DROP `email_notification`;");
 				}
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`last_reply` = NULL
+				WHERE `last_reply` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`edited` = NULL
+				WHERE `edited` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
@@ -2185,6 +2225,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
 					DROP `email_notification`;");
 				}
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`last_reply` = NULL
+				WHERE `last_reply` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`edited` = NULL
+				WHERE `edited` = '0000-00-00 00:00:00';");
 				
 				
 				// changes in the bookmark tags table
@@ -2416,6 +2464,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 					DROP `email_notification`;");
 				}
 				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`last_reply` = NULL
+				WHERE `last_reply` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`edited` = NULL
+				WHERE `edited` = '0000-00-00 00:00:00';");
+				
 				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
@@ -2560,6 +2616,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
 					DROP `email_notification`;");
 				}
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`last_reply` = NULL
+				WHERE `last_reply` = '0000-00-00 00:00:00';");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				`edited` = NULL
+				WHERE `edited` = '0000-00-00 00:00:00';");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
