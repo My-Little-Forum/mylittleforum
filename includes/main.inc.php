@@ -246,7 +246,7 @@ if ($show_spam) {
 	$spam_totals = " AS spam_list ON spam_list.id = ft.id WHERE spam_list.id IS NULL";
 }
 if ($categories == false) {
-	$total_postings_category = "";		
+	$total_postings_category = "";
 } else {
 	// there are categories
 	$total_postings_category = " AND category IN (" . $category_ids_query . ")";		
