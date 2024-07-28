@@ -1246,5 +1246,6 @@ error_db_inexistent =             '指定的資料庫並不存在，請檢查資
 error_sql_file_doesnt_exist =     '安裝用的 SQL 檔案 (install.sql) 並不存在'
 error_overwrite_config_file =     '沒有權限覆寫檔案 <strong>config/db_settings.php</strong> (權限設為 666，目前是 [CHMOD])'
 error_sql =                       'SQL 錯誤'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =                '安裝論壇'
 error_conf_pw =                   '管理員密碼並不相符'

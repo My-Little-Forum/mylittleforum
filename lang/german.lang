@@ -1250,5 +1250,6 @@ error_db_inexistent =             'die angegebene Datenbank ist nicht vorhanden 
 error_sql_file_doesnt_exist =     'Installations-SQL-Datei (install.sql) nicht gefunden'
 error_overwrite_config_file =     'die Datei <strong>config/db_settings.php</strong> konnte nicht überschrieben werden (bitte mit CHMOD 666 versuchen, momentane Einstellung ist [CHMOD])'
 error_sql =                       'SQL-Fehler'
+error_update_settings =           'Konnte die Forumseinstellung nicht ändern'
 forum_install_ok =                'OK – Forum installieren'
 error_conf_pw =                   'Passwort und Wiederholung stimmen nicht überein'

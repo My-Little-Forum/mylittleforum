@@ -1246,5 +1246,6 @@ error_db_inexistent =             '指定的数据库并不存在，请检查数
 error_sql_file_doesnt_exist =     '安装用的 SQL 文件 (install.sql) 并不存在'
 error_overwrite_config_file =     '没有权限覆写文件 <strong>config/db_settings.php</strong> (权限设为 666，目前是 [CHMOD])'
 error_sql =                       'SQL 错误'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =                '安装论坛'
 error_conf_pw =                   '管理员密码并不相符'

@@ -1257,5 +1257,6 @@ error_db_inexistent =             'Belirtilen veritabanı bulunamadı - lütfen 
 error_sql_file_doesnt_exist =     'Kuruluma ait SQL dosyası (install.sql) bulunamadı'
 error_overwrite_config_file =     '<code>config/db_settings.php</code> dosyasına yazılamıyor. (dosyayı CHMOD 666 yapınız, mevcut ayar [CHMOD])'
 error_sql =                       'SQL hatası'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =                'Tamam - Forumu yükle'
 error_conf_pw =                   'Yönetici şifreleri uyuşmuyor'

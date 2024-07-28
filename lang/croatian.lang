@@ -1249,5 +1249,6 @@ error_db_inexistent =             'Navedena baza ne postoji - provjerite je li n
 error_sql_file_doesnt_exist =     'Instalacijska SQL datoteka (install.sql) ne postoji '
 error_overwrite_config_file =     'Nemam dopuštenje za prepisivanje sadržaja datoteke <strong>config/db_settings.php</strong> (postavite CHMOD 666, trenutno je [CHMOD])'
 error_sql =                       'SQL greška'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =                'Instaliraj forum'
 error_conf_pw =                   'Administratorske lozinke se ne podudaraju'
