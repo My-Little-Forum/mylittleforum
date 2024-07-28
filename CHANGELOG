@@ -1,6 +1,29 @@
 my little forum changelog
 -------------------------
 
+20240729.1 (2024-07-29)
+-----------------------
+
+- feature: lazy loading of images in forum entries, that are not in the viewport when loading a page with entries
+- feature: add BB-codes [ins], [del] and [s], mainly intended to mark subsequent changes
+- change: new upgrade script, from now on it is possible to use also version 2.4.19 as starting point of an upgrade
+- change: apply database performance enhancements, this was provided by @joeiacoponi1 (thank you)
+- change: enhancements and corrections in a few translations (simplified chinese, traditional chinese, danish, english, french, spanish)
+- change: add new language arabic, this has been contributed by Abdul Salam in the project forum
+- change: unify the use of the pagination link lists (from now on they are shown above and below the page content, where in use)
+- change: set the new source URL for the MathJax CDN, that is recommended by the project
+- change: remove the spam prevention method Bad Behavior because the projects seems to be dead since a longer time
+- change: all tables use now the charset utf8mb4, the previously in some cases used utf8 (a.k.a. utf8mb3) will be deprecated by MySQL in one of the next server main versions
+- change: use the SameSite attribute in cookies
+- fix: resize the columns mlf2_useronline.ip and mlf2_logincontrol.ip to 128  bytes, mlf2_useronline.ip was 15 bytes long and caused HTTP-500-errors in case of visitors with IPv6
+- fix: the mouse cursor should show up as pointer when hovering buttons
+- fix: prevent passwords being sent for spell checking to Google when the content of a password field is shown as plain text
+- fix: a few occurences of dates and times, that did not follow the new time formatting
+- fix: add missing strings for the administration of the Bayes based spam prevention filter (B8)
+- fix: correct a few errors in the HTML-structure of several templates
+- fix: replace function imagerotate with imageflip in the captcha class because imagerotate failed to work in some cases
+- fix: check for existince of a given category before using it in the template
+
 20220803.1 (2022-08-03)
 -----------------------
 
