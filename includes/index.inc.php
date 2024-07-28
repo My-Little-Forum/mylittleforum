@@ -37,8 +37,8 @@ if (isset($_GET['page'])) {
 }
 if (empty($page)) $page = 1;
 
-if ($thread_order == 0) $db_thread_order = 'time';
-else $db_thread_order = 'last_reply';
+if ($thread_order == 0) $db_thread_order = 'ft.time';
+else $db_thread_order = 'ft.last_reply';
 
 $_SESSION[$settings['session_prefix'].'usersettings']['current_page'] = $page;
 
@@ -85,7 +85,7 @@ if ($categories == false) {
 }
 
 $display_page_threads = 
-	"SELECT DISTINCT ft.tid FROM ".$db_settings['forum_table']." AS ft 
+	"SELECT DISTINCT ft.tid, ft.sticky, ft.time FROM ".$db_settings['forum_table']." AS ft 
 	LEFT JOIN (SELECT id, tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT id, tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['b8_rating_table'] .".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) spam_list ON spam_list.tid = ft.id 
 	WHERE ft.pid = 0";  
 
@@ -106,11 +106,11 @@ if ($result_count > 0) {
 		else $thread_spam = " AND spam_list.id IS NULL";
 
 		$thread_result_sql = 
-			"SELECT DISTINCT ft.id, ft.pid, ft.tid, ft.user_id, user_type, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, rst.user_id AS req_user, " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, " . $db_settings['akismet_rating_table'] . ".spam_check_status AS akismet_checked, " . $db_settings['b8_rating_table'] . ".training_type AS b8_checked 
+			"SELECT DISTINCT ft.id, ft.pid, ft.tid, ft.user_id, user_type, ft.time AS rawtime, UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(ft.time + INTERVAL ".intval($time_difference)." MINUTE) AS timestamp, UNIX_TIMESTAMP(last_reply) AS last_reply, name, user_name, subject, IF(text='',true,false) AS no_text, category, views, marked, locked, sticky, rst.user_id AS req_user, " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, " . $db_settings['akismet_rating_table'] . ".spam_check_status AS akismet_checked, " . $db_settings['b8_rating_table'] . ".training_type AS b8_checked 
 			FROM ".$db_settings['forum_table']." AS ft LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ft.user_id LEFT JOIN ".$db_settings['read_status_table']." AS rst ON rst.posting_id = ft.id AND rst.user_id = ". intval($tmp_user_id) ." LEFT JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['akismet_rating_table'] . ".eid = ft.id LEFT JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['b8_rating_table'] . ".eid = ft.id 
 			LEFT JOIN (SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['akismet_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT ".$db_settings['forum_table'].".id, ".$db_settings['forum_table'].".tid FROM ".$db_settings['forum_table']." INNER JOIN " . $db_settings['b8_rating_table'] . " ON ".$db_settings['forum_table'].".id = " . $db_settings['b8_rating_table'] . ".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.id = ft.id 
 			WHERE ft.tid = ".$zeile['tid'] . $thread_spam . " 
-			ORDER BY ft.time ASC";
+			ORDER BY rawtime ASC";
 			$thread_result = @mysqli_query($connid, $thread_result_sql) or raise_error('database_error', mysqli_error($connid));
 
 		// put result into arrays:
