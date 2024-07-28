@@ -310,10 +310,10 @@ if (isset($_POST['install_submit'])) {
 
 	// set forum name, address and email address:
 	if (empty($errors)) {
-		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['forum_name'])."' WHERE name='forum_name' LIMIT 1") or $errors[] = $lang['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
-		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['forum_address'])."' WHERE name='forum_address' LIMIT 1") or $errors[] = $lang['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
-		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['forum_email'])."' WHERE name='forum_email' LIMIT 1") or $errors[] = $lang['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
-		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['language_file'])."' WHERE name='language_file' LIMIT 1") or $errors[] = $lang['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
+		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['forum_name'])."' WHERE name='forum_name' LIMIT 1") or $errors[] = $lang['install']['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
+		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['forum_address'])."' WHERE name='forum_address' LIMIT 1") or $errors[] = $lang['install']['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
+		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['forum_email'])."' WHERE name='forum_email' LIMIT 1") or $errors[] = $lang['install']['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
+		@mysqli_query($connid, "UPDATE ".$db_settings['settings_table']." SET value='".mysqli_real_escape_string($connid, $_POST['language_file'])."' WHERE name='language_file' LIMIT 1") or $errors[] = $lang['install']['error_update_settings']." (MySQL: ".mysqli_error($connid).")";
 	}
 	if (empty($errors)) {
 		header('Location: ../');
@@ -625,14 +625,14 @@ case 'install': ?>
        <h3><?php echo $lang['install']['inst_advanced_database']; ?></h3>
        <p><?php echo $lang['install']['inst_advanced_database_desc']; ?></p>
       </div>
-      <input id="create_database" type="checkbox" name="create_database" value="true"<?php if (isset($_POST['create_database'])) echo ' checked'; ?>><label for="create_database" class="for-selectors"><?php echo $lang['create_database']; ?></label>
+      <input id="create_database" type="checkbox" name="create_database" value="true"<?php if (isset($_POST['create_database'])) echo ' checked'; ?>><label for="create_database" class="for-selectors"><?php echo $lang['install']['create_database']; ?></label>
      </div>
      <div>
       <div class="label-like">
        <h3><?php echo $lang['install']['inst_advanced_conf_file']; ?></h3>
        <p><?php echo $lang['install']['inst_advanced_conf_file_desc']; ?></p>
       </div>
-      <input id="dont_overwrite_settings" type="checkbox" name="dont_overwrite_settings" value="true"<?php if (isset($_POST['dont_overwrite_settings'])) echo ' checked'; ?>><label for="dont_overwrite_settings" class="for-selectors"><?php echo $lang['dont_overwrite_settings']; ?></label>
+      <input id="dont_overwrite_settings" type="checkbox" name="dont_overwrite_settings" value="true"<?php if (isset($_POST['dont_overwrite_settings'])) echo ' checked'; ?>><label for="dont_overwrite_settings" class="for-selectors"><?php echo $lang['install']['dont_overwrite_settings']; ?></label>
      </div>
     </fieldset>
     <p class="button-bar"><button name="install_submit" value="<?php echo $lang['install']['forum_install_ok']; ?>"><?php echo $lang['install']['forum_install_ok']; ?></button></p>
