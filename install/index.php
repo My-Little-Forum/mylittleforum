@@ -646,9 +646,14 @@ case 'choose_language':
    <h2><?php echo $lang['install']['label_choose_language']; ?></h2>
    <form action="index.php" method="post" id="lang-select">
     <ul>
-<?php foreach ($language_files as $file): ?>
+<?php foreach ($language_files as $file):
+if ($file['file'] == $language_file): ?>
+     <li><input id="id_<?php echo $file['language']; ?>" name="language_file" value="<?php echo $file['file']; ?>" type="radio" checked><label for="id_<?php echo $file['language']; ?>"><?php echo $file['language']; ?></label></li>
+<?php else: ?>
      <li><input id="id_<?php echo $file['language']; ?>" name="language_file" value="<?php echo $file['file']; ?>" type="radio"><label for="id_<?php echo $file['language']; ?>"><?php echo $file['language']; ?></label></li>
-<?php endforeach; ?>
+
+<?php endif;
+endforeach; ?>
     </ul>
     <p class="button-bar"><button name="submit"><?php echo $lang['general']['submit_button_ok']; ?></button></p>
    </form>
