@@ -607,7 +607,7 @@ case 'install': ?>
        <h3><?php echo $lang['install']['inst_db_pw']; ?></h3>
        <p><?php echo $lang['install']['inst_db_pw_desc']; ?></p>
       </label>
-      <input type="password" id="id-db-password" name="password" value="<?php /*if(isset($_POST['password'])) echo $_POST['password'];*/ ?>" size="40">
+      <input type="password" id="id-db-password" name="password" value="" size="40">
      </div>
      <div>
       <label for="id-table-prefix">
