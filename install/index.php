@@ -326,7 +326,7 @@ if (empty($action)) $action = 'install';
 header('Content-Type: text/html; charset='.$lang['default']['charset']);
 
 ?><!DOCTYPE html>
-<html lang="<?php echo $lang['default']['language']; ?>">
+<html lang="<?php echo $lang['default']['language']; ?>" dir="<?php echo $lang['default']['dir']; ?>">
 <head>
  <meta charset="<?php echo $lang['default']['charset']; ?>">
  <title>my little forum - <?php echo $lang['install']['installation_title']; ?></title>
