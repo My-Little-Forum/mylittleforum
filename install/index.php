@@ -37,6 +37,85 @@ function table_exists($table) {
 	return false;
 }
 
+/**
+ * parses the relavant language file parts for the installation script
+ *
+ * the function reads the language file like a ini-file
+ * this function comes without multiline support (no e-mail templates)
+ * the code is based on the function in a comment on the
+ * manual page for the PHP-function parse_ini_string
+ * https://www.php.net/manual/de/function.parse-ini-string.php#111845
+ *
+ */
+function my_parse_ini_file($path) {
+	if (empty($path)) return false;
+	
+	$lines = file($path);
+	$ret = Array();
+	$inside_section = false;
+	
+	foreach ($lines as $line) {
+		$line = trim($line);
+		if (!$line || $line[0] == "#" || $line[0] == ";") continue;
+		
+		if ($line[0] == "[" && $endIdx = strpos($line, "]")) {
+			$inside_section = substr($line, 1, $endIdx-1);
+			continue;
+		}
+		if (!strpos($line, '=')) continue;
+		$tmp = explode("=", $line, 2);
+		
+		$key = rtrim($tmp[0]);
+		$value = ltrim($tmp[1]);
+		if (preg_match("/^\".*\"$/", $value) || preg_match("/^'.*'$/", $value)) {
+			$value = mb_substr($value, 1, mb_strlen($value) - 2);
+		}
+		$value = stripslashes($value);
+		
+		if ($inside_section) {
+			$t = preg_match("^\[(.*?)\]^", $key, $matches);
+			if (!empty($matches) && isset($matches[0])) {
+				$arr_name = preg_replace('#\[(.*?)\]#is', '', $key);
+				if (!isset($ret[$inside_section][$arr_name]) || !is_array($ret[$inside_section][$arr_name])) {
+					$ret[$inside_section][$arr_name] = array();
+				}
+				if (isset($matches[1]) && !empty($matches[1])) {
+					$ret[$inside_section][$arr_name][$matches[1]] = $value;
+				} else {
+					$ret[$inside_section][$arr_name][] = $value;
+				}
+			} else {
+				if (isset($ret[$inside_section][$key])) {
+					if (!is_array($ret[$inside_section][$key])) {
+						$atmp = $ret[$inside_section][$key];
+						$ret[$inside_section][$key] = [];
+						$ret[$inside_section][$key][] = $atmp;
+						$ret[$inside_section][$key][] = $value;
+					} else {
+						$ret[$inside_section][$key][] = $value;
+					}
+				} else {
+					$ret[$inside_section][$key] = $value;
+				}
+			}
+		} else {
+			if (isset($ret[$key])) {
+				if (!is_array($ret[$key])) {
+					$atmp = $ret[$key];
+					$ret[$key] = [];
+					$ret[$key][] = $atmp;
+					$ret[$key][] = $value;
+				} else {
+					$ret[$key][] = $value;
+				}
+			} else {
+				$ret[$key] = $value;
+			}
+		}
+	}
+	return $ret;
+}
+
 // check version:
 if(!file_exists('../config/VERSION')) {
 	die('Error in line '.__LINE__.': Missing the file config/VERSION.');
