@@ -37,6 +37,14 @@
     - tamil
     - turkish
 - since version 20220508.1 (2.5.0) the forum can store the whole utf-8-range including emojis 🎉
+- formatting of entries with BB-codes, most BB-codes are accessible by buttons, the system is extendable
+    - common text formatting (bold, italic, strike through and so on)
+    - coloured text, text size
+    - links
+    - images
+    - code exapmles
+    - preformatted text
+    - mathematical formulas, realised with LaTex (optional with including the MathJax library)
 
 ### Main views
 
