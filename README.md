@@ -99,19 +99,19 @@
     - registered user
     - moderator
     - administrator
-- user profile with optional ...
-    - ... avatar
-    - ... signature
-    - ... profile information
-    - ... website
-    - ... location
-    - ... birthday
-    - ... sex
+- user profile with optional …
+    - … avatar
+    - … signature
+    - … profile information
+    - … website
+    - … location
+    - … birthday
+    - … sex/gender
 - technical user settings
     - password
     - e-mail-address
     - deleting the account
-    - extent of contact
+    - extent of e-mail-contact
         - user is contactable only by the forum team
         - user is contactable by all registered users
         - or the whole forum audience
