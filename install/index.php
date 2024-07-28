@@ -185,20 +185,20 @@ if (isset($_POST['install_submit'])) {
 	// are all fields filled out?
 	foreach ($_POST as $post) {
 		if (trim($post) == "") {
-			$errors[] = $lang['error_form_uncomplete'];
+			$errors[] = $lang['general']['error_form_uncomplete'];
 			break;
 		}
 	}
 	if (empty($errors)) {
-		if ($_POST['admin_pw'] != $_POST['admin_pw_conf']) $errors[] = $lang['error_conf_pw'];
+		if ($_POST['admin_pw'] != $_POST['admin_pw_conf']) $errors[] = $lang['install']['error_conf_pw'];
 	}
 	// try to connect the database with posted access data:
 	if (empty($errors)) {
 		$connid = @mysqli_connect($_POST['host'], $_POST['user'], $_POST['password']);
-		if (!$connid) $errors[] = $lang['error_db_connection']." (MySQL: ".mysqli_connect_error().")";
+		if (!$connid) $errors[] = $lang['install']['error_db_connection']." (MySQL: ".mysqli_connect_error().")";
 	}
 	if (empty($errors)) {
-		if (!file_exists('install.sql')) $errors[] = $lang['error_sql_file_doesnt_exist'];
+		if (!file_exists('install.sql')) $errors[] = $lang['install']['error_sql_file_doesnt_exist'];
 	}
 
 	// overwrite database settings file:
@@ -235,18 +235,18 @@ if (isset($_POST['install_submit'])) {
 		foreach ($db_connection_keys as $key) {
 			// Check POST-data and reject data that contains html or php code like <?php
 			if (!isset($_POST[$key]) || $_POST[$key] != strip_tags($_POST[$key])) {
-				$errors[] = $lang['error_form_uncomplete'];
+				$errors[] = $lang['general']['error_form_uncomplete'];
 				break;
 			}
 			$db_settings[$key] = $_POST[$key];
 		}
 		// check table_prefix
 		if (!isset($_POST['table_prefix']) || $_POST['table_prefix'] != strip_tags($_POST['table_prefix'])) {
-			$errors[] = $lang['error_form_uncomplete'];
+			$errors[] = $lang['general']['error_form_uncomplete'];
 		}
 
 		if (empty($errors)) {
-			$db_settings_file = @fopen("../config/db_settings.php", "w") or $errors[] = str_replace("[CHMOD]", $chmod, $lang['error_overwrite_config_file']);
+			$db_settings_file = @fopen("../config/db_settings.php", "w") or $errors[] = str_replace("[CHMOD]", $chmod, $lang['install']['error_overwrite_config_file']);
 			flock($db_settings_file, 2);
 			fwrite($db_settings_file, "<?php\n");
 			foreach ($db_connection_keys as $key) {
@@ -264,39 +264,39 @@ if (isset($_POST['install_submit'])) {
 
 	if (empty($errors) && isset($_POST['create_database'])) {
 		// create database if desired:
-		@mysqli_query($connid, "CREATE DATABASE ".$db_settings['database']) or $errors[] = $lang['create_db_error']." (MySQL: ".mysqli_error($connid).")";
+		@mysqli_query($connid, "CREATE DATABASE ".$db_settings['database']) or $errors[] = $lang['install']['create_db_error']." (MySQL: ".mysqli_error($connid).")";
 	}
 
 	// select database:
 	if (empty($errors)) {
-		@mysqli_select_db($connid, $db_settings['database']) or $errors[] = $lang['error_db_inexistent']." (MySQL: ".mysqli_error($connid).")";
+		@mysqli_select_db($connid, $db_settings['database']) or $errors[] = $lang['install']['error_db_inexistent']." (MySQL: ".mysqli_error($connid).")";
 		@mysqli_query($connid, 'SET NAMES utf8');
 	}
 
 	// run installation sql file:
 	if(empty($errors)) {
 		if (!isset($_POST['table_prefix']) || $_POST['table_prefix'] != strip_tags($_POST['table_prefix'])) {
-			$errors[] = $lang['error_form_uncomplete'];
+			$errors[] = $lang['general']['error_form_uncomplete'];
 		} else {
 			$lines = file('install.sql');
 			$cleared_lines = array();
 			foreach($lines as $line) {
 				$line = str_replace(' mlf2_', ' '.$_POST['table_prefix'], $line);
 				$line = trim($line);
-				if (my_substr($line, -1, my_strlen($line,$lang['charset']), $lang['charset']) == ';')
-					$line = my_substr($line,0,-1,$lang['charset']);
-				if($line != '' && my_substr($line,0,1,$lang['charset']) != '#')
+				if (my_substr($line, -1, my_strlen($line, $lang['default']['charset']), $lang['default']['charset']) == ';')
+					$line = my_substr($line,0,-1,$lang['default']['charset']);
+				if ($line != '' && my_substr($line,0,1,$lang['default']['charset']) != '#')
 					$cleared_lines[] = $line;
 			}
 			
 			@mysqli_query($connid, "START TRANSACTION") or die(mysqli_error($connid));
 			foreach ($cleared_lines as $line) {
 				if (!@mysqli_query($connid, $line)) {
-					$errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
+					$errors[] = $lang['install']['error_sql']." (MySQL: ".mysqli_error($connid).")";
 				}
 			}
 			if (!@mysqli_query($connid, "INSERT INTO " . $db_settings['temp_infos_table'] . " (`name`, `value`) VALUES ('version', '". mysqli_real_escape_string($connid, $newVersion) ."');")) {
-				$errors[] = $lang['error_sql']." (MySQL: ".mysqli_error($connid).")";
+				$errors[] = $lang['install']['error_sql']." (MySQL: ".mysqli_error($connid).")";
 			}
 			@mysqli_query($connid, "COMMIT");
 		}
@@ -305,7 +305,7 @@ if (isset($_POST['install_submit'])) {
 	// insert admin in userdata table:
 	if (empty($errors)) {
 		$pw_hash = generate_pw_hash($_POST['admin_pw']);
-		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_name='".mysqli_real_escape_string($connid, $_POST['admin_name'])."', user_pw = '".mysqli_real_escape_string($connid, $pw_hash)."', user_email = '".mysqli_real_escape_string($connid, $_POST['admin_email'])."' WHERE user_id=1") or $errors[] = $lang['error_create_admin']." (MySQL: ".mysqli_error($connid).")";
+		@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_name='".mysqli_real_escape_string($connid, $_POST['admin_name'])."', user_pw = '".mysqli_real_escape_string($connid, $pw_hash)."', user_email = '".mysqli_real_escape_string($connid, $_POST['admin_email'])."' WHERE user_id=1") or $errors[] = $lang['install']['error_create_admin']." (MySQL: ".mysqli_error($connid).")";
 	}
 
 	// set forum name, address and email address:
@@ -323,13 +323,13 @@ if (isset($_POST['install_submit'])) {
 
 if (empty($action)) $action = 'install';
 
-header('Content-Type: text/html; charset='.$lang['charset']);
+header('Content-Type: text/html; charset='.$lang['default']['charset']);
 
 ?><!DOCTYPE html>
-<html lang="<?php echo $lang['language']; ?>">
+<html lang="<?php echo $lang['default']['language']; ?>">
 <head>
- <meta charset="<?php echo $lang['charset']; ?>">
- <title>my little forum - <?php echo $lang['installation_title']; ?></title>
+ <meta charset="<?php echo $lang['default']['charset']; ?>">
+ <title>my little forum - <?php echo $lang['install']['installation_title']; ?></title>
  <link rel="shortcut icon" href="../themes/default/images/favicon.ico">
  <style type="text/css">
 *, ::before, ::after {
@@ -500,17 +500,17 @@ a:active {
 <?php
 switch($action):
 case 'install': ?>
-  <h2><?php echo $lang['installation_title']; ?></h2>
+  <h2><?php echo $lang['install']['installation_title']; ?></h2>
   <section>
    <ul>
-<?php foreach ($lang['installation_instructions'] as $instruction): ?>
+<?php foreach ($lang['install']['installation_instructions'] as $instruction): ?>
     <li><?php echo $instruction; ?></li>
 <?php endforeach; ?>
    </ul>
   </section>
 <?php if (isset($errors)): ?>
   <section class="error">
-   <h2><?php echo $lang['error_headline']; ?></h2>
+   <h2><?php echo $lang['general']['error_headline']; ?></h2>
    <ul>
 <?php foreach($errors as $error): ?>
     <li><?php echo $error; ?></li>
@@ -522,120 +522,120 @@ case 'install': ?>
    <form action="index.php" method="post" id="forum-install">
     <input type="hidden" name="language_file" value="<?php echo $language_file; ?>">
     <fieldset>
-     <legend><?php echo $lang['inst_basic_settings']; ?></legend>
-     <p><?php echo $lang['inst_main_settings_desc']; ?></p>
+     <legend><?php echo $lang['install']['inst_basic_settings']; ?></legend>
+     <p><?php echo $lang['install']['inst_main_settings_desc']; ?></p>
      <div>
       <label for="id-forum-name">
-       <h3><?php echo $lang['forum_name']; ?></h3>
-       <p><?php echo $lang['forum_name_desc']; ?></p>
+       <h3><?php echo $lang['admin']['forum_name']; ?></h3>
+       <p><?php echo $lang['admin']['forum_name_desc']; ?></p>
       </label>
       <input type="text" id="id-forum-name" name="forum_name" value="<?php if (isset($_POST['forum_name'])) echo $_POST['forum_name']; else echo $default_settings['forum_name']; ?>" size="40">
      </div>
      <div>
       <label for="id-forum-address">
-       <h3><?php echo $lang['forum_address']; ?></h3>
-       <p><?php echo $lang['forum_address_desc']; ?></p>
+       <h3><?php echo $lang['admin']['forum_address']; ?></h3>
+       <p><?php echo $lang['admin']['forum_address_desc']; ?></p>
       </label>
       <input type="url" id="id-forum-address" name="forum_address" value="<?php if (isset($_POST['forum_address'])) echo $_POST['forum_address']; else { if ($default_settings['forum_address'] != "") echo $default_settings['forum_address']; } ?>" size="40">
      </div>
      <div>
       <label for="id-forum-email">
-       <h3><?php echo $lang['forum_email']; ?></h3>
-       <p><?php echo $lang['forum_email_desc']; ?></p>
+       <h3><?php echo $lang['admin']['forum_email']; ?></h3>
+       <p><?php echo $lang['admin']['forum_email_desc']; ?></p>
       </label>
       <input type="email" id="id-forum-email" name="forum_email" value="<?php if (isset($_POST['forum_email'])) echo $_POST['forum_email']; else echo "@"; ?>" size="40">
      </div>
     </fieldset>
     <fieldset>
-     <legend><?php echo $lang['inst_admin_settings']; ?></legend>
-     <p><?php echo $lang['inst_admin_settings_desc']; ?></p>
+     <legend><?php echo $lang['install']['inst_admin_settings']; ?></legend>
+     <p><?php echo $lang['install']['inst_admin_settings_desc']; ?></p>
      <div>
       <label for="id-admin-name">
-       <h3><?php echo $lang['inst_admin_name']; ?></h3>
-       <p><?php echo $lang['inst_admin_name_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_admin_name']; ?></h3>
+       <p><?php echo $lang['install']['inst_admin_name_desc']; ?></p>
       </label>
       <input type="text" id="id-admin-name" name="admin_name" value="<?php if (isset($_POST['admin_name'])) echo $_POST['admin_name']; ?>" size="40">
      </div>
      <div>
       <label for="id-admin-email">
-       <h3><?php echo $lang['inst_admin_email']; ?></h3>
-       <p><?php echo $lang['inst_admin_email_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_admin_email']; ?></h3>
+       <p><?php echo $lang['install']['inst_admin_email_desc']; ?></p>
       </label>
       <input type="email" id="id-admin-email" name="admin_email" value="<?php if (isset($_POST['admin_email'])) echo $_POST['admin_email']; else echo "@"; ?>" size="40">
      </div>
      <div>
       <label for="id-admin-pw">
-       <h3><?php echo $lang['inst_admin_pw']; ?></h3>
-       <p><?php echo $lang['inst_admin_pw_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_admin_pw']; ?></h3>
+       <p><?php echo $lang['install']['inst_admin_pw_desc']; ?></p>
       </label>
       <input type="password" id="id-admin-pw" name="admin_pw" value="" size="40">
      </div>
      <div>
       <label for="id-admin-pw-conf">
-       <h3><?php echo $lang['inst_admin_pw_conf']; ?></h3>
-       <p><?php echo $lang['inst_admin_pw_conf_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_admin_pw_conf']; ?></h3>
+       <p><?php echo $lang['install']['inst_admin_pw_conf_desc']; ?></p>
       </label>
       <input type="password" id="id-admin-pw-conf" name="admin_pw_conf" value="" size="40">
      </div>
     </fieldset>
     <fieldset>
-     <legend><?php echo $lang['inst_db_settings']; ?></legend>
-     <p><?php echo $lang['inst_db_settings_desc']; ?></p>
+     <legend><?php echo $lang['install']['inst_db_settings']; ?></legend>
+     <p><?php echo $lang['install']['inst_db_settings_desc']; ?></p>
      <div>
       <label for="id-db-host">
-       <h3><?php echo $lang['inst_db_host']; ?></h3>
-       <p><?php echo $lang['inst_db_host_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_db_host']; ?></h3>
+       <p><?php echo $lang['install']['inst_db_host_desc']; ?></p>
       </label>
       <input type="text" id="id-db-host" name="host" value="<?php if (isset($_POST['host'])) echo $_POST['host']; else echo $db_settings['host']; ?>" size="40">
      </div>
      <div>
       <label for="id-db-name">
-       <h3><?php echo $lang['inst_db_name']; ?></h3>
-       <p><?php echo $lang['inst_db_name_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_db_name']; ?></h3>
+       <p><?php echo $lang['install']['inst_db_name_desc']; ?></p>
       </label>
       <input type="text" id="id-db-name" name="database" value="<?php if (isset($_POST['database'])) echo $_POST['database']; else echo $db_settings['database']; ?>" size="40">
      </div>
      <div>
       <label for="id-db-user">
-       <h3><?php echo $lang['inst_db_user']; ?></h3>
-       <p><?php echo $lang['inst_db_user_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_db_user']; ?></h3>
+       <p><?php echo $lang['install']['inst_db_user_desc']; ?></p>
       </label>
       <input type="text" id="id-db-user" name="user" value="<?php if (isset($_POST['user'])) echo $_POST['user']; else echo $db_settings['user']; ?>" size="40">
      </div>
      <div>
       <label for="id-db-password">
-       <h3><?php echo $lang['inst_db_pw']; ?></h3>
-       <p><?php echo $lang['inst_db_pw_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_db_pw']; ?></h3>
+       <p><?php echo $lang['install']['inst_db_pw_desc']; ?></p>
       </label>
       <input type="password" id="id-db-password" name="password" value="<?php /*if(isset($_POST['password'])) echo $_POST['password'];*/ ?>" size="40">
      </div>
      <div>
       <label for="id-table-prefix">
-       <h3><?php echo $lang['inst_table_prefix']; ?></h3>
-       <p><?php echo $lang['inst_table_prefix_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_table_prefix']; ?></h3>
+       <p><?php echo $lang['install']['inst_table_prefix_desc']; ?></p>
       </label>
       <input type="text" id="id-table-prefix" name="table_prefix" value="<?php if (isset($_POST['table_prefix'])) echo $_POST['table_prefix']; else echo $default_settings['table_prefix']; ?>" size="40">
      </div>
     </fieldset>
     <fieldset>
-     <legend><?php echo $lang['inst_advanced_options']; ?></legend>
-     <p><?php echo $lang['inst_advanced_options_desc']; ?></p>
+     <legend><?php echo $lang['install']['inst_advanced_options']; ?></legend>
+     <p><?php echo $lang['install']['inst_advanced_options_desc']; ?></p>
      <div>
       <div class="label-like">
-       <h3><?php echo $lang['inst_advanced_database']; ?></h3>
-       <p><?php echo $lang['inst_advanced_database_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_advanced_database']; ?></h3>
+       <p><?php echo $lang['install']['inst_advanced_database_desc']; ?></p>
       </div>
       <input id="create_database" type="checkbox" name="create_database" value="true"<?php if (isset($_POST['create_database'])) echo ' checked'; ?>><label for="create_database" class="for-selectors"><?php echo $lang['create_database']; ?></label>
      </div>
      <div>
       <div class="label-like">
-       <h3><?php echo $lang['inst_advanced_conf_file']; ?></h3>
-       <p><?php echo $lang['inst_advanced_conf_file_desc']; ?></p>
+       <h3><?php echo $lang['install']['inst_advanced_conf_file']; ?></h3>
+       <p><?php echo $lang['install']['inst_advanced_conf_file_desc']; ?></p>
       </div>
       <input id="dont_overwrite_settings" type="checkbox" name="dont_overwrite_settings" value="true"<?php if (isset($_POST['dont_overwrite_settings'])) echo ' checked'; ?>><label for="dont_overwrite_settings" class="for-selectors"><?php echo $lang['dont_overwrite_settings']; ?></label>
      </div>
     </fieldset>
-    <p class="button-bar"><button name="install_submit" value="<?php echo $lang['forum_install_ok']; ?>"><?php echo $lang['forum_install_ok']; ?></button></p>
+    <p class="button-bar"><button name="install_submit" value="<?php echo $lang['install']['forum_install_ok']; ?>"><?php echo $lang['install']['forum_install_ok']; ?></button></p>
    </form>
   </section>
 <?php
@@ -643,14 +643,14 @@ break;
 case 'choose_language':
 ?>
   <section>
-   <h2><?php echo $lang['label_choose_language']; ?></h2>
+   <h2><?php echo $lang['install']['label_choose_language']; ?></h2>
    <form action="index.php" method="post" id="lang-select">
     <ul>
 <?php foreach ($language_files as $file): ?>
      <li><input id="id_<?php echo $file['language']; ?>" name="language_file" value="<?php echo $file['file']; ?>" type="radio"><label for="id_<?php echo $file['language']; ?>"><?php echo $file['language']; ?></label></li>
 <?php endforeach; ?>
     </ul>
-    <p class="button-bar"><button name="submit"><?php echo $lang['submit_button_ok']; ?></button></p>
+    <p class="button-bar"><button name="submit"><?php echo $lang['general']['submit_button_ok']; ?></button></p>
    </form>
   </section>
 <?php
