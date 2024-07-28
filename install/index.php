@@ -178,26 +178,7 @@ if (isset($language_file)) {
 	// quick & dirty method to get the config vars without smarty (prevents
 	// creation of a compiled template which would only be used once for the
 	// installation - doesn't get multi-line-strings properly!):
-	$config_file = file('../lang/'.$language_file);
-	foreach ($config_file as $line) {
-		$line = trim($line);
-		if ($line != '' && $line[0] != '[') {
-			$line_parts = explode('=', $line,2);
-			if (isset($line_parts[1])) {
-				$key = trim($line_parts[0]);
-				if (isset($lang[$key])) {
-					if(is_array($lang[$key])) {
-						$lang[$key][] = trim($line_parts[1]);
-					} else {
-						$lang[$key] = array($lang[$key]);
-						$lang[$key][] = trim($line_parts[1]);
-					}
-				} else {
-					$lang[$key] = trim($line_parts[1]);
-				}
-			}
-		}
-	}
+	$lang = my_parse_ini_file('../lang/'.$language_file);
 }
 
 if (isset($_POST['install_submit'])) {
