@@ -280,7 +280,7 @@ if (isset($_POST['install_submit'])) {
 		} else {
 			$lines = file('install.sql');
 			$cleared_lines = array();
-			foreach($lines as $line) {
+			foreach ($lines as $line) {
 				$line = str_replace(' mlf2_', ' '.$_POST['table_prefix'], $line);
 				$line = trim($line);
 				if (my_substr($line, -1, my_strlen($line, $lang['default']['charset']), $lang['default']['charset']) == ';')
