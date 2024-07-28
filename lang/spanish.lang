@@ -1258,5 +1258,6 @@ error_db_inexistent =             'La base de datos seleccionada no existe - Por
 error_sql_file_doesnt_exist =     'El archivo de instalación SQL (install.sql) no existe'
 error_overwrite_config_file =     'No tienes permisos para sobrescribir el archivo <code>config/db_settings.php</code> (pon CHMOD 666, actualmente es [CHMOD])'
 error_sql =                       'Error SQL'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =                'OK - Instala el foro'
 error_conf_pw =                   'Las contraseñas no coinciden'

@@ -1252,5 +1252,6 @@ error_db_inexistent =             'La base dati specificata non esiste - si preg
 error_sql_file_doesnt_exist =     'Il file d\'installazione SQL (<code>install/install.sql</code>) non esiste'
 error_overwrite_config_file =     'Nessun permesso di sovrascrittura sul file <code>config/db_settings.php</code> (impostare CHMOD 666, l\'impostazione corrente è [CHMOD])'
 error_sql =                       'Errore SQL'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =                'OK - INSTALLA FORUM'
 error_conf_pw =                   'Le password di amministrazione non coincidono'

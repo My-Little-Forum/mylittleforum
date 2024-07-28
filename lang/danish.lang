@@ -1248,5 +1248,6 @@ error_db_inexistent =            'Specificeret database eksisterer ikke - tjek v
 error_sql_file_doesnt_exist =    'Installations SQL fil (install.sql) eksisterer ikke '
 error_overwrite_config_file =    'Ingen rettighed til at overskrive filen <strong>config/db_settings.php</strong> (sæt CHMOD 666, nuværende er [CHMOD])'
 error_sql =                      'SQL fejl'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =               'OK - Installer forum'
 error_conf_pw =                  'Admin kodeordene passede ikke sammen'

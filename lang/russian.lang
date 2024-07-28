@@ -1269,5 +1269,6 @@ error_db_inexistent =             'Указанная база данных не
 error_sql_file_doesnt_exist =     'Установочный файл SQL (install.sql) не существует'
 error_overwrite_config_file =     'Отсутствуют права для перезаписи файла <code>config/db_settings.php</code> (установлены CHMOD [CHMOD], измените их на CHMOD 666)'
 error_sql =                       'Ошибка SQL'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =                'Установить'
 error_conf_pw =                   'Пароль Администратора неправильный'

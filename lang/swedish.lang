@@ -1257,5 +1257,6 @@ error_db_inexistent =             'Specificerad databas existerar inte - kontrol
 error_sql_file_doesnt_exist =     'SQL\'s installationsfil (install.sql) existerar inte'
 error_overwrite_config_file =     'Saknar rättighet att skriva till fil <code>config/db_settings.php</code> (ställ in CHMOD 666, nuvarande är [CHMOD])'
 error_sql =                       'SQL fel'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =                'OK - Installera forum'
 error_conf_pw =                   'Administratörslösenorden stämmer inte överens'

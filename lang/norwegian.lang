@@ -1257,5 +1257,6 @@ error_db_inexistent =             'Den spesifiserte databasen eksisterer ikke - 
 error_sql_file_doesnt_exist =     'Installasjons-SQL-filen (install.sql) eksisterer ikke'
 error_overwrite_config_file =     'Ingen tillatelser til å overskrive filen <code>config/db_settings.php</code> (endre CHMOD til 666, nåværende er [CHMOD])'
 error_sql =                       'SQL-feil'
+error_update_settings =           '<!-- TODO -->Could not change the forum setting'
 forum_install_ok =                'OK - Installer forum'
 error_conf_pw =                   'Administrasjonspassordene matchet ikke'

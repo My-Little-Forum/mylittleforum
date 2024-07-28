@@ -1253,5 +1253,6 @@ error_db_inexistent =             'Specified database does not exist - please ch
 error_sql_file_doesnt_exist =     'Installation SQL file (install.sql) does not exist'
 error_overwrite_config_file =     'No permission to overwrite the file <strong>config/db_settings.php</strong> (set CHMOD 666, current is [CHMOD])'
 error_sql =                       'SQL error'
+error_update_settings =           'Could not change the forum setting'
 forum_install_ok =                'OK - Install forum'
 error_conf_pw =                   'The admin passwords did not match'
