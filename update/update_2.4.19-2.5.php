@@ -429,8 +429,24 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					
 					
 					// changes in the banlist table
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['banlists_table'] . "`
-					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+					mysqli_query($connid, "RENAME TABLE `". $db_settings['banlists_table'] ."`
+					TO `". $db_settings['banlists_table'] ."_old`;");
+					
+					mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['banlists_table'] ."` (`name` varchar(255) NOT NULL, `list` text NOT NULL, PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+					
+					mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+					SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+					FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'ips';");
+					
+					mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+					SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+					FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'user_agents';");
+					
+					mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+					SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+					FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
+					
+					mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 					
 					
 					// changes in the bookmarks table
@@ -854,8 +870,24 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				
 				// changes in the banlist table
-				mysqli_query($connid, "ALTER TABLE `" . $db_settings['banlists_table'] . "`
-				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				mysqli_query($connid, "RENAME TABLE `". $db_settings['banlists_table'] ."`
+				TO `". $db_settings['banlists_table'] ."_old`;");
+				
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['banlists_table'] ."` (`name` varchar(255) NOT NULL, `list` text NOT NULL, PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'ips';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'user_agents';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
+				
+				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
 				// changes in the bookmarks table
@@ -1247,6 +1279,27 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
+				
+				
+				// changes in the banlist table
+				mysqli_query($connid, "RENAME TABLE `". $db_settings['banlists_table'] ."`
+				TO `". $db_settings['banlists_table'] ."_old`;");
+				
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['banlists_table'] ."` (`name` varchar(255) NOT NULL, `list` text NOT NULL, PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'ips';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'user_agents';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
+				
+				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
 				// changes in the bookmark tags table
@@ -1643,6 +1696,27 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
 				
+				// changes in the banlist table
+				mysqli_query($connid, "RENAME TABLE `". $db_settings['banlists_table'] ."`
+				TO `". $db_settings['banlists_table'] ."_old`;");
+				
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['banlists_table'] ."` (`name` varchar(255) NOT NULL, `list` text NOT NULL, PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'ips';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'user_agents';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
+				
+				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1997,6 +2071,27 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
 				
+				// changes in the banlist table
+				mysqli_query($connid, "RENAME TABLE `". $db_settings['banlists_table'] ."`
+				TO `". $db_settings['banlists_table'] ."_old`;");
+				
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['banlists_table'] ."` (`name` varchar(255) NOT NULL, `list` text NOT NULL, PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'ips';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'user_agents';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
+				
+				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2233,6 +2328,27 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
+				
+				
+				// changes in the banlist table
+				mysqli_query($connid, "RENAME TABLE `". $db_settings['banlists_table'] ."`
+				TO `". $db_settings['banlists_table'] ."_old`;");
+				
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['banlists_table'] ."` (`name` varchar(255) NOT NULL, `list` text NOT NULL, PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'ips';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'user_agents';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
+				
+				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
 				// changes in the bookmark tags table
@@ -2473,6 +2589,27 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
 				
+				// changes in the banlist table
+				mysqli_query($connid, "RENAME TABLE `". $db_settings['banlists_table'] ."`
+				TO `". $db_settings['banlists_table'] ."_old`;");
+				
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['banlists_table'] ."` (`name` varchar(255) NOT NULL, `list` text NOT NULL, PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'ips';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'user_agents';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
+				
+				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2624,6 +2761,27 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
+				
+				
+				// changes in the banlist table
+				mysqli_query($connid, "RENAME TABLE `". $db_settings['banlists_table'] ."`
+				TO `". $db_settings['banlists_table'] ."_old`;");
+				
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['banlists_table'] ."` (`name` varchar(255) NOT NULL, `list` text NOT NULL, PRIMARY KEY (`name`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'ips';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'user_agents';");
+				
+				mysqli_query($connid, "INSERT INTO `". $db_settings['banlists_table'] ."`(`name`, `list`)
+				SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
+				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
+				
+				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
