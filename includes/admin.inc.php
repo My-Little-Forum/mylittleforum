@@ -1484,6 +1484,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				foreach ($banned_ips_array as $banned_ip) {
 					if (!empty($banned_ip) && trim($banned_ip) != '') $banned_ips_array_checked[] = trim($banned_ip);
 				}
+				$banned_ips_array_checked = array_unique($banned_ips_array_checked);
 				natcasesort($banned_ips_array_checked);
 				$banned_ips = implode("\n", $banned_ips_array_checked);
 				if (is_ip_banned($_SERVER['REMOTE_ADDR'], $banned_ips_array_checked)) $errors[] = 'error_own_ip_banned';
@@ -1495,6 +1496,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				foreach ($banned_user_agents_array as $banned_user_agent) {
 					if (!empty($banned_user_agent) && trim($banned_user_agent) != '') $banned_user_agents_array_checked[] = trim($banned_user_agent);
 				}
+				$banned_user_agents_array_checked = array_unique($banned_user_agents_array_checked);
 				natcasesort($banned_user_agents_array_checked);
 				$banned_user_agents = implode("\n", $banned_user_agents_array_checked);
 				if (is_user_agent_banned($_SERVER['HTTP_USER_AGENT'], $banned_user_agents_array_checked)) $errors[] = 'error_own_user_agent_banned';
@@ -1506,6 +1508,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				foreach ($not_accepted_words_array as $not_accepted_word) {
 					if (!empty($not_accepted_word) && trim($not_accepted_word) != '') $not_accepted_words_array_checked[] = trim($not_accepted_word);
 				}
+				$not_accepted_words_array_checked = array_unique($not_accepted_words_array_checked);
 				natcasesort($not_accepted_words_array_checked);
 				$not_accepted_words = implode("\n", $not_accepted_words_array_checked);
 			}
