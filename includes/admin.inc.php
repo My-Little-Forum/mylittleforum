@@ -1759,7 +1759,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		mysqli_free_result($lastVersionURI);
 
 		if ($lastVC !== NULL) {
-			$smarty->assign('latest_release_uri', $lastVU == NULL ? "https://github.com/ilosuna/mylittleforum/releases/latest" : htmlspecialchars($lastVU['uri']));
+			$smarty->assign('latest_release_uri', $lastVU == NULL ? "https://github.com/My-Little-Forum/mylittleforum/releases/latest" : htmlspecialchars($lastVU['uri']));
 			$smarty->assign('latest_release_version', htmlspecialchars($lastVC['version']));
 		}
 	}
