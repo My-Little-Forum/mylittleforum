@@ -2137,7 +2137,7 @@ function isInfamousEmail($email) {
 
 /**
  * Check for new version of mylittleforum via ATOM-feed
- * https://github.com/ilosuna/mylittleforum/releases.atom
+ * https://github.com/My-Little-Forum/mylittleforum/releases.atom
  *
  * returns the description of the latest version, if the current
  * version is not the latest one otherwise false
@@ -2147,7 +2147,7 @@ function isInfamousEmail($email) {
  */
 function checkUpdate($currentVersion = '0.0') {
 	$baseURI = "https://github.com";
-	$atomURI = $baseURI . "/ilosuna/mylittleforum/releases.atom";
+	$atomURI = $baseURI . "/My-Little-Forum/mylittleforum/releases.atom";
 	$resource = getExternalResource($atomURI);
 	if ($resource) {
 		$xml = new SimpleXMLElement($resource);

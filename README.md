@@ -2,7 +2,7 @@
 
 [my little forum](https://mylittleforum.net/) is a simple PHP and MySQL based internet forum that displays the messages in classical threaded view (tree structure). It is Open Source licensed under the GNU General Public License. The main claim of this web forum is simplicity. Furthermore it should be easy to install and run on a standard server configuration with PHP and MySQL.
 
-* [More about my little forum](https://github.com/ilosuna/mylittleforum/wiki)
+* [More about my little forum](https://github.com/My-Little-Forum/mylittleforum/wiki)
 * [Demo and project discussion forum](https://mylittleforum.net/forum/)
 
 ## System requirements
@@ -156,5 +156,5 @@
 6. Open the link "Update", you will see a list of available update script files below the instructions. It is possible, that there are more than one items listed, because old, outdated update files never got deleted from the server.
 7. Open the link to the currently valid update script.
 8. Insert the password of your administrator account to confirm the run of the update script.
-9. On the following page you'll get the success message for step one of the update (database operations) or an error message. In case of success you'll see a list of all script files that changed between your and the new version. You have to load up all the listed files and directories to your webspace (this is because not every file got altered with every version). After loading all changed files and directories of the new version to your webspace, you are done. If you encountered errors, please report it instantaneously [in the project forum](https://mylittleforum.net/forum/) or open an [issue on Github](https://github.com/ilosuna/mylittleforum/issues).
+9. On the following page you'll get the success message for step one of the update (database operations) or an error message. In case of success you'll see a list of all script files that changed between your and the new version. You have to load up all the listed files and directories to your webspace (this is because not every file got altered with every version). After loading all changed files and directories of the new version to your webspace, you are done. If you encountered errors, please report it instantaneously [in the project forum](https://mylittleforum.net/forum/) or open an [issue on Github](https://github.com/My-Little-Forum/mylittleforum/issues).
 
