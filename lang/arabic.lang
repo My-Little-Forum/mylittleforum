@@ -18,7 +18,7 @@
 [default]
 language =                        ar
 language_code =                   'ar'
-language_name_system =            'arabian'
+language_name_system =            'arabic'
 language_name_own =               'العربية'
 charset =                         utf-8
 locale =                          ar_SA.utf8
