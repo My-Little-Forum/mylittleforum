@@ -2180,11 +2180,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'modules/bad-behavior (remove)';
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['items'][] = 'modules/';
 		
-		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove if present)';
 		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
@@ -2439,11 +2439,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'modules/bad-behavior (remove)';
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['items'][] = 'modules/';
 		
-		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove if present)';
 		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
@@ -2697,11 +2697,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'modules/bad-behavior (remove)';
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['items'][] = 'modules/';
 		
-		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove if present)';
 		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
