@@ -722,5 +722,5 @@ form p.hp { display: none; }
 @media screen and (min-width: 45em) {
   #top { display: flex; justify-content: space-between; }
   #logo { padding: 7px 5px 7px 20px; }
-  #nav { padding-left: 5px; text-align: right; }
+  #nav { padding-left: 5px; text-align: end; }
 }
