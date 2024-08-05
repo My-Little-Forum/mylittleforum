@@ -287,8 +287,8 @@ ul.openthread            { clear:both; }
 .notice.spam, .notice.caution
                          { border-color:#882008; }
 .notice.caution, .notice.ok
-                         { padding:0.5em 0.5em 0.5em 1.75em; }
 .notice.caution          { background:url(images/caution.png) no-repeat 0.375em center; }
+                         { padding:0.5em 0.5em 0.5em 1.875em; }
 .notice.ok               { color:#086620; background:#5fa url(images/tick.png) no-repeat 0.375em center; border-color:#086620; }
 
 .entryline               { clear:both; margin:15px 0 15px 0; border-top:1px dotted #808080; border-left:0; border-right:0; border-bottom:0; height:1px; }
