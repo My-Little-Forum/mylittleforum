@@ -27,10 +27,10 @@ body > *:not(main){margin:0;padding:0}
 #logo h1 a:focus,#logo h1 a:hover{color:#00a;text-decoration:none}
 #logo .index{margin:0;padding:0;font-size:.82em}
 #nav{margin:0;padding:7px 20px}
-#usermenu{margin:0 0 .75em;padding:0;font-size:.69em;list-style-type:none;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:3px .4em}
+#usermenu{margin:0 0 .75em;padding:0;font-size:.69em;text-align:start;list-style-type:none;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:3px .4em}
 #usermenu li{margin:0}
 #usermenu li:not(:last-child):after{content:"|"}
-#usermenu li:not(:last-child) a{margin-right:.4em}
+#usermenu li:not(:last-child) a{margin-block-end:.4em}
 #usermenu li a{white-space:nowrap}
 #topsearch div{display:inline;font-size:.82em}
 #topsearch #search-input{font-family:verdana,arial,sans-serif;width:14em}
