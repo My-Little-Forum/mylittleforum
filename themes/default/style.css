@@ -7,7 +7,7 @@
 * <https://yui.github.io/yuicompressor/>.                              *
 ***********************************************************************/
 
-body                     { color:#000; background:#f9f9f9; margin:0; padding:0; font-family:verdana,arial,sans-serif; font-size:1em; display:flex; flex-direction:column; min-height:100vh; }
+body                     { color:#000; background:#f9f9f9; margin:0; padding:0; text-align:start; font-family:verdana,arial,sans-serif; font-size:1em; display:flex; flex-direction:column; min-height:100vh; }
 h1                       { margin-top:0; font-size:1.25em; font-weight:bold; }
 h2                       { margin-top:20px; font-size:1.25em; font-weight:bold; }
 p                        { margin-top:0; }
