@@ -34,7 +34,7 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #usermenu{margin:0 0 .75em;padding:0;font-size:.69em;text-align:start;list-style-type:none;display:flex;flex-wrap:wrap;gap:3px .4em}
 #usermenu li{margin:0}
 #usermenu li:not(:last-child):after{content:"|"}
-#usermenu li:not(:last-child) a{margin-block-end:.4em}
+#usermenu li:not(:last-child) a{margin-inline-end:.4em}
 #usermenu li a{white-space:nowrap}
 #topsearch div{display:inline;font-size:.82em}
 #topsearch #search-input{font-family:verdana,arial,sans-serif;width:14em}
