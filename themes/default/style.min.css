@@ -8,9 +8,13 @@ a{color:#00c;text-decoration:none}
 a:visited{color:#00c}
 a:focus,a:hover{color:#00f;text-decoration:underline}
 a:active{color:red}
-a.stronglink{padding-left:13px;color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 4px}
+a.stronglink{color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat}
+html[dir="ltr"] a.stronglink{padding-left:13px;background-position:left 4px}
+html[dir="rtl"] a.stronglink{padding-right:13px;background-position:right -1306px}
 a.stronglink:visited{color:#00c}
-a.stronglink:focus,a.stronglink:hover{color:#00f;text-decoration:underline;background:url(images/bg_sprite_1.png) no-repeat 0 -46px}
+a.stronglink:focus,a.stronglink:hover{color:#00f;text-decoration:underline;background:url(images/bg_sprite_1.png) no-repeat}
+html[dir="ltr"] a.stronglink:focus,html[dir="ltr"] a.stronglink:hover{background-position:left -46px}
+html[dir="rtl"] a.stronglink:focus,html[dir="rtl"] a.stronglink:hover{background-position:right -1355px}
 a.stronglink:active{color:red}
 img.next{background:url(images/bg_sprite_2.png) no-repeat 0 -11px}
 img.next:hover{background:url(images/bg_sprite_2.png) no-repeat -6px -11px}
