@@ -85,7 +85,7 @@ if ($categories == false) {
 }
 
 $display_page_threads = 
-	"SELECT DISTINCT ft.tid, ft.sticky, ft.time FROM ".$db_settings['forum_table']." AS ft 
+	"SELECT DISTINCT ft.tid, ft.sticky, ft.time, ft.last_reply FROM ".$db_settings['forum_table']." AS ft 
 	LEFT JOIN (SELECT id, tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['akismet_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['akismet_rating_table'] . ".eid WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT id, tid FROM " . $db_settings['forum_table'] . " INNER JOIN " . $db_settings['b8_rating_table'] . " ON " . $db_settings['forum_table'] . ".id = " . $db_settings['b8_rating_table'] .".eid WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) spam_list ON spam_list.tid = ft.id 
 	WHERE ft.pid = 0";  
 
