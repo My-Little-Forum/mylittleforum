@@ -46,7 +46,7 @@ img.hide-sidebar         { background:url(images/bg_sprite_2.png) no-repeat -9px
 img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -22px; }
 
 body > *                 { margin:0; padding:0 1em; padding: 0 1rem; }
-#top                     { background:rgb(210, 222, 236); background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 2.5em, rgb(237, 242, 245) 100%); }
+#top                     { background:rgb(210, 222, 236); background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 2.5em, rgb(237, 242, 245) 100%); display: flex; flex-direction: column; }
 
 #logo                    { margin:0; padding:7px 0; }
 #logo .home              { margin:0 0 0.3em 0; padding:0; font-size:0.69em; }
@@ -759,10 +759,10 @@ div.warning              { border: 5px solid red; padding: 15px; font-size:1.3em
 form p.hp { display: none; }
 
 @media screen and (min-width: 36em) {
+  #top { flex-direction: row; justify-content: space-between; }
   #sidebar,
   .additional-admin-info { width: 15em; float:right; }
 }
 @media screen and (min-width: 45em) {
-  #top { display: flex; justify-content: space-between; }
   #nav { padding-left: 5px; text-align: end; }
 }
