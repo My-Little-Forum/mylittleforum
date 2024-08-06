@@ -50,7 +50,7 @@ body > *                 { margin:0; padding:0 1em; padding: 0 1rem; }
 
 #logo                    { margin:0; padding:7px 0; }
 #logo .home              { margin:0 0 0.3em 0; padding:0; font-size:0.69em; }
-#logo h1                 { margin:0; padding:0; font-size:1.6em; }
+#logo h1                 { margin:0; padding:0; font-size:1.4em; }
 #logo h1 a               { color:#000080; text-decoration:none; }
 #logo h1 a:focus,
 #logo h1 a:hover         { color:#0000aa; text-decoration:none; }
@@ -765,4 +765,5 @@ form p.hp { display: none; }
 }
 @media screen and (min-width: 45em) {
   #nav { padding-left: 5px; text-align: end; }
+  #logo h1 { font-size: 1.6em; }
 }
