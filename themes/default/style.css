@@ -763,7 +763,7 @@ form p.hp { display: none; }
   #sidebar,
   .additional-admin-info { width: 15em; float:right; }
 }
-@media screen and (min-width: 45em) {
+@media screen and (min-width: 48em) {
   #logo h1 { font-size: 1.6em; }
   #nav { text-align: end; }
 }
