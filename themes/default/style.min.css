@@ -26,7 +26,7 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #top{background:#d2ddea;background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 2.5em, rgb(237, 242, 245) 100%);display:flex;flex-direction:column}
 #logo{margin:0;padding:7px 0}
 #logo .home{margin:0 0 .3em;padding:0;font-size:.69em}
-#logo h1{margin:0;padding:0;font-size:1.6em}
+#logo h1{margin:0;padding:0;font-size:1.4em}
 #logo h1 a{color:navy;text-decoration:none}
 #logo h1 a:focus,#logo h1 a:hover{color:#00a;text-decoration:none}
 #logo .index{margin:0;padding:0;font-size:.82em}
@@ -485,4 +485,5 @@ form p.hp{display:none}
 }
 @media screen and (min-width:48em) {
 	#nav {padding-left:5px;text-align:end}
+	#logo h1{font-size:1.6em}
 }
