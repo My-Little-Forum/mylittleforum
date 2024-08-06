@@ -58,7 +58,7 @@ body > *                 { margin:0; padding:0 1em; padding: 0 1rem; }
 
 #nav                     { margin:0; padding:7px 0; }
 
-#usermenu                { margin:0 0 0.75em 0; padding:0; font-size:0.69em; text-align: start; list-style-type:none; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:3px 0.4em; }
+#usermenu                { margin:0 0 0.75em 0; padding:0; font-size:0.69em; text-align: start; list-style-type:none; display:flex; flex-wrap:wrap; gap:3px 0.4em; }
 #usermenu li             { margin:0; }
 #usermenu li:not(:last-child):after
                          { content: "|"; }
@@ -760,6 +760,7 @@ form p.hp { display: none; }
 
 @media screen and (min-width: 36em) {
   #top { flex-direction: row; justify-content: space-between; }
+  #usermenu { justify-content: flex-end; }
   #sidebar,
   .additional-admin-info { width: 15em; float:right; }
 }
