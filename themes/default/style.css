@@ -142,7 +142,7 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #content .xsmall         { font-size:0.69em; line-height:1.19em; color:#808080; font-weight:normal; }
 #content .small          { font-size:0.69em; line-height:1.19em; font-weight:normal; }
 
-#footer                  { font-size:0.69em; line-height:1.5em; background:#f9f9f9; border-top:1px solid #bacbdf; }
+#footer                  { font-size:0.69em; line-height:1.5em; background:#f9f9f9; border-top:1px solid #bacbdf; display: grid; }
 #footer #footer-1        { margin:0; padding:7px 0 10px 20px; float:left; }
 #footer #footer-2        { margin:0; padding:7px 20px 10px 0; text-align:right; }
 #footermenu              { margin:0 0 1em 0; list-style-type:none; }
