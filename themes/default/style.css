@@ -153,7 +153,11 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #footermenu li:not(:last-child) a
                          { margin-inline-end: 0.4em; }
 #footermenu a.go-to-top-link
-                         { padding-left: 16px; background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
+                         { padding-inline-start: 12px; }
+html[dir="ltr"] #footermenu a.go-to-top-link
+                         { background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%; }
+html[dir="rtl"] #footermenu a.go-to-top-link
+                         { background: url(images/arrow_up.png) no-repeat 100% 0 / auto 90%; }
 
 #pbmlf                   { text-align:center; font-size:0.69em; color:#808080; }
 #pbmlf a                 { color:#808080; text-decoration:none; }
