@@ -48,7 +48,7 @@ img.show-sidebar         { background:url(images/bg_sprite_2.png) no-repeat 0 -2
 body > *                 { margin:0; padding:0 1em; padding: 0 1rem; }
 #top                     { background:rgb(210, 222, 236); background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 2.5em, rgb(237, 242, 245) 100%); }
 
-#logo                    { margin:0; padding:7px 20px 0; }
+#logo                    { margin:0; padding:7px 0; }
 #logo .home              { margin:0 0 0.3em 0; padding:0; font-size:0.69em; }
 #logo h1                 { margin:0; padding:0; font-size:1.6em; }
 #logo h1 a               { color:#000080; text-decoration:none; }
@@ -729,6 +729,5 @@ form p.hp { display: none; }
 }
 @media screen and (min-width: 45em) {
   #top { display: flex; justify-content: space-between; }
-  #logo { padding: 7px 5px 7px 20px; }
   #nav { padding-left: 5px; text-align: end; }
 }
