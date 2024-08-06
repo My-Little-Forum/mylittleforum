@@ -38,10 +38,9 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #usermenu li a{white-space:nowrap}
 #topsearch div{display:inline;font-size:.82em}
 #topsearch #search-input{font-family:verdana,arial,sans-serif;width:14em}
-#subnav #subnav-1{font-size:.82em;margin:0;padding:0 0 0 20px;float:left}
-#subnav #subnav-2{font-size:.82em;margin:0;padding:0 20px 0 0;text-align:right}
 #subnav{background:#f9f9f9;border-top:1px solid #bacbdf;border-bottom:1px solid #bacbdf;line-height:1.8em;display:flex;flex-direction:column}
 html[dir="ltr"] #subnav p.subnav{margin:0;padding:0 0 0 12px;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -89px}
+#subnav-1,#subnav-2{font-size:.82em;margin:0;padding:0}
 html[dir="rtl"] #subnav p.subnav{margin:0;padding:0 12px 0 0;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 6px) -89px}
 #subnav .small{font-size:.82em}
 #subnav form{display:inline}
@@ -483,6 +482,7 @@ form p.hp{display:none}
 	#top {flex-direction:row;justify-content:space-between}
 	#usermenu{justify-content:flex-end}
 	#subnav{flex-direction:row;justify-content:space-between}
+	#subnav-2{text-align:end}
 	#sidebar,.additional-admin-info{width:15em;float:right}
 }
 @media screen and (min-width:48em) {
