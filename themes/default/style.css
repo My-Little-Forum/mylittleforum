@@ -144,7 +144,7 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 
 #footer                  { font-size:0.69em; line-height:1.5em; padding: 0.5em 1em; padding: 0.5rem 1rem; background:#f9f9f9; border-top:1px solid #bacbdf; display: grid; gap: 0.75em; }
 #footer > *              { margin:0; padding:0; }
-#footermenu              { margin:0 0 1em 0; list-style-type:none; }
+#footermenu              { margin:0; padding: 0; list-style-type:none; }
 #footermenu li           { display:inline;margin-left:5px;padding-left:0px; }
 #footermenu li:first-child
                          { margin-left:0;padding-left:0px; }
