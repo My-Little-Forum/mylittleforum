@@ -80,7 +80,9 @@ html[dir="rtl"] #subnav p.subnav
 #subnav form div         { display:inline; }
 
 #subnavmenu              { display:inline; margin:0; padding:0; font-size:0.82em; list-style-type:none; }
-#subnavmenu li           { display:inline; margin-left:10px; }
+#subnavmenu li           { display:inline; }
+#subnavmenu li:not(:first-child)
+                         { margin-inline-start: 10px; }
 html[dir="ltr"] #subnavmenu a.refresh
                          { padding-left:14px; background:url(images/bg_sprite_1.png) no-repeat 0 -498px; }
 html[dir="rtl"] #subnavmenu a.refresh
