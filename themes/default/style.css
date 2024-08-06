@@ -33,7 +33,7 @@ a.stronglink:hover       { color:#0000ff; text-decoration:underline; background:
 html[dir="ltr"] a.stronglink:focus,
 html[dir="ltr"]  a.stronglink:hover
                          { background-position:left -46px; }
-html[dir="rtl"] a.stronglink:focus,
+html[dir="ltr"] a.stronglink:focus,
 html[dir="rtl"] a.stronglink:hover
                          { background-position:right -1355px; }
 a.stronglink:active      { color:#ff0000; }
