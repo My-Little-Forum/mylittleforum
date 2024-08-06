@@ -484,6 +484,6 @@ form p.hp{display:none}
 	#sidebar,.additional-admin-info{width:15em;float:right}
 }
 @media screen and (min-width:48em) {
-	#nav {padding-left:5px;text-align:end}
 	#logo h1{font-size:1.6em}
+	#nav {text-align:end}
 }
