@@ -63,7 +63,7 @@ body > *                 { margin:0; padding:0 1em; padding: 0 1rem; }
 #usermenu li:not(:last-child):after
                          { content: "|"; }
 #usermenu li:not(:last-child) a
-                         { margin-block-end: 0.4em; }
+                         { margin-inline-end: 0.4em; }
 #usermenu li a           { white-space: nowrap; }
 
 #topsearch div           { display:inline; font-size:0.82em; }
