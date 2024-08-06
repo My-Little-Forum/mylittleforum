@@ -127,8 +127,10 @@ html[dir="ltr"] #subnavmenu a.fold-postings
                          { padding-left:13px; background:url(images/bg_sprite_1.png) no-repeat 0 -998px; }
 html[dir="rtl"] #subnavmenu a.fold-postings
                          { padding-right:13px; background:url(images/bg_sprite_1.png) no-repeat calc(100% + 5px) -998px; }
-a.rss                    { background:url(images/bg_sprite_1.png) no-repeat 3px -1048px; }
-p.right a.rss            { padding-left:15px; }
+a.rss                    { background:url(images/bg_sprite_1.png) no-repeat; }
+html[dir="ltr"] a.rss    { background-position: 2px -1048px; }
+html[dir="rtl"] a.rss    { background-position: calc(100% + 4px) -1048px; }
+p.right a.rss            { padding-inline-start: 15px; }
 
 input.small,
 select.small             { font-family:verdana,arial,sans-serif; font-size:0.82em; }
@@ -144,14 +146,14 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 
 #footer                  { font-size:0.69em; line-height:1.5em; padding: 0.5em 1em; padding: 0.5rem 1rem; background:#f9f9f9; border-top:1px solid #bacbdf; display: grid; gap: 0.75em; }
 #footer > *              { margin:0; padding:0; }
-#footermenu li:first-child a, #footermenu li a.rss
-                         { padding-left:15px; }
 #footermenu              { margin:0; padding: 0; list-style-type:none; display: flex; flex-wrap: wrap; gap: 3px .4em; }
 #footermenu li           { margin: 0;}
 #footermenu li:not(:last-child):after
                          { content: "|"; }
 #footermenu li:not(:last-child) a
                          { margin-inline-end: 0.4em; }
+#footermenu li a.rss
+                         { padding-inline-start:15px; }
 #footermenu a.go-to-top-link
                          { padding-inline-start: 12px; }
 html[dir="ltr"] #footermenu a.go-to-top-link
