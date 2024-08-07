@@ -776,4 +776,6 @@ form p.hp { display: none; }
 @media screen and (min-width: 48em) {
   #logo h1 { font-size: 1.6em; }
   #nav { text-align: end; }
+  #footer { grid-template-columns: 1fr auto; grid-template-rows: auto auto; grid-template-areas: "statistics footerlinks" "projectlink projectlink"; }
+  #footermenu { justify-content: flex-end; }
 }
