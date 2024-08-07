@@ -84,6 +84,8 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #content .small{font-size:.69em;line-height:1.19em;font-weight:400}
 #footer{font-size:.69em;line-height:1.5em;padding:.5em 1em;padding:0.5rem 1rem;background:#f9f9f9;border-top:1px solid #bacbdf;display:grid;gap:.75em;grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas: "statistics" "footerlinks" "projectlink"}
 #footer > *{margin:0;padding:0;}
+#statistics{grid-area:statistics}
+#footerlinklist{grid-area:footerlinks}
 #footermenu{margin:0;padding:0;list-style-type:none;display:flex;flex-wrap:wrap;gap:3px .4em}
 #footermenu li{margin:0}
 #footermenu li:not(:last-child):after{content: "|"}
@@ -92,7 +94,7 @@ input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #footermenu a.go-to-top-link{padding-inline-start:12px}
 html[dir="ltr"] #footermenu a.go-to-top-link{background:url(images/arrow_up.png) no-repeat 0 0 / auto 90%}
 html[dir="rtl"] #footermenu a.go-to-top-link{background:url(images/arrow_up.png) no-repeat 100% 0 / auto 90%}
-#pbmlf{text-align:center;font-size:.69em;color:gray}
+#pbmlf{text-align:center;font-size:.69em;color:gray;grid-area:projectlink}
 #pbmlf a{color:gray;text-decoration:none}
 #sidebar{position:relative;margin:0 0 1em 0;padding:0}
 #sidebar div{position:relative;z-index:2}

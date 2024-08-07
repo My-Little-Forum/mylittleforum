@@ -147,6 +147,8 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 
 #footer                  { font-size:0.69em; line-height:1.5em; padding: 0.5em 1em; padding: 0.5rem 1rem; background:#f9f9f9; border-top:1px solid #bacbdf; display: grid; gap: 0.75em; grid-template-columns: 1fr; grid-template-rows: auto auto auto; grid-template-areas: "statistics" "footerlinks" "projectlink"; }
 #footer > *              { margin:0; padding:0; }
+#statistics              { grid-area: statistics; }
+#footerlinklist          { grid-area: footerlinks; }
 #footermenu              { margin:0; padding: 0; list-style-type:none; display: flex; flex-wrap: wrap; gap: 3px .4em; }
 #footermenu li           { margin: 0;}
 #footermenu li:not(:last-child):after
@@ -162,7 +164,7 @@ html[dir="ltr"] #footermenu a.go-to-top-link
 html[dir="rtl"] #footermenu a.go-to-top-link
                          { background: url(images/arrow_up.png) no-repeat 100% 0 / auto 90%; }
 
-#pbmlf                   { text-align:center; font-size:0.69em; color:#808080; }
+#pbmlf                   { text-align:center; font-size:0.69em; color:#808080; grid-area: projectlink; }
 #pbmlf a                 { color:#808080; text-decoration:none; }
 
 #sidebar                 { position:relative; margin:0 0 1em 0; padding:0; }
