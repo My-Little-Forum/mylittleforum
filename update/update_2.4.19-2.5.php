@@ -165,43 +165,36 @@ if (empty($update['errors'])) {
  * where it is actually necessary.
  */
 if (empty($update['errors'])) {
-	$qTypeOfTables = "SELECT `TABLE_NAME`, `ENGINE`
-	FROM `information_schema`.`TABLES`
-	WHERE `TABLE_SCHEMA`='". $db_settings['database'] ."'
-	AND `TABLE_NAME` IN(
-		'". $db_settings['settings_table'] ."',
-		'". $db_settings['forum_table'] ."',
-		'". $db_settings['category_table'] ."',
-		'". $db_settings['userdata_table'] ."',
-		'". $db_settings['smilies_table'] ."',
-		'". $db_settings['pages_table'] ."',
-		'". $db_settings['banlists_table'] ."',
-		'". $db_settings['useronline_table'] ."',
-		'". $db_settings['login_control_table'] ."',
-		'". $db_settings['entry_cache_table'] ."',
-		'". $db_settings['userdata_cache_table'] ."',
-		'". $db_settings['bookmark_table'] ."',
-		'". $db_settings['read_status_table'] ."',
-		'". $db_settings['temp_infos_table'] ."',
-		'". $db_settings['tags_table'] ."',
-		'". $db_settings['bookmark_tags_table'] ."',
-		'". $db_settings['entry_tags_table'] ."',
-		'". $db_settings['subscriptions_table'] ."',
-		'". $db_settings['b8_wordlist_table'] ."',
-		'". $db_settings['b8_rating_table'] ."',
-		'". $db_settings['akismet_rating_table'] ."',
-		'". $db_settings['uploads_table'] ."')
-	AND ENGINE != 'InnoDB';";
-	
-	$resTypeOfTables = @mysqli_query($connid, $qTypeOfTables);
-	// if reading the database failed
-	if ($resTypeOfTables === false) {
-		$update['errors'][] = 'Database error in line '. (__LINE__.-2) .': '. mysqli_error($connid);
+	$tableColl = array();
+	$tColl = '';
+	foreach ($db_settings as $dbs_key => $dbs_value) {
+		if (str_ends_with($dbs_key, '_table')) {
+			$tableColl[] = "'". $dbs_value ."'";
+		}
 	}
-	// if reading the database succeeded AND resulted in more than zero rows
-	if (empty($update['errors']) and mysqli_num_rows($resTypeOfTables) > 0) {
-		while ($row = mysqli_fetch_assoc($resTypeOfTables)) {
-			if (!@mysqli_query($connid, "ALTER TABLE `" . $row['TABLE_NAME'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.' (affected table ' . $row['TABLE_NAME'] . '): ' . mysqli_error($connid);
+	if (count($tableColl) > 0){
+		$tColl = implode(", ", $tableColl);
+	}
+	unset($tableColl);
+	
+	if (!empty($tColl)) {
+		$qTypeOfTables = "SELECT `TABLE_NAME`, `ENGINE`
+		FROM `information_schema`.`TABLES`
+		WHERE `TABLE_SCHEMA`='". $db_settings['database'] ."'
+		AND `TABLE_NAME` IN(". $tColl .")
+		AND ENGINE != 'InnoDB';";
+		
+		$resTypeOfTables = @mysqli_query($connid, $qTypeOfTables);
+		// if reading the database failed
+		if ($resTypeOfTables === false) {
+			$update['errors'][] = 'Database error in line '. (__LINE__.-2) .': '. mysqli_error($connid);
+		}
+		
+		// if reading the database succeeded AND resulted in more than zero rows
+		if (empty($update['errors']) and mysqli_num_rows($resTypeOfTables) > 0) {
+			while ($row = mysqli_fetch_assoc($resTypeOfTables)) {
+				if (!@mysqli_query($connid, "ALTER TABLE `" . $row['TABLE_NAME'] . "` ENGINE=InnoDB;")) $update['errors'][] = 'Database error in line '.__LINE__.' (affected table ' . $row['TABLE_NAME'] . '): ' . mysqli_error($connid);
+			}
 		}
 	}
 }
