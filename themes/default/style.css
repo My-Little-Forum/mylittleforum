@@ -717,15 +717,17 @@ ul.thread li .replies    { color:#808080; font-size:0.82em; }
 ul.thread li .category   { font-size:0.82em; }
 ul.reply,
 ul.deep-reply,
-ul.very-deep-reply       { margin:0 0 0 -16px; padding:0 0 0 16px; list-style-type:none; max-width:100% !important; }
-ul.reply li              { text-indent:-16px; margin-left:24px; } /* thread view */
-td ul.reply li           { text-indent:-16px; margin-left:20px; } /* table view */
-ul.deep-reply li         { text-indent:-16px; margin-left:10px; }
-td ul.deep-reply li      { text-indent:-16px; margin-left:5px; }
-ul.very-deep-reply li    { text-indent:-16px; margin-left:0; }
-td ul.very-deep-reply li { text-indent:-16px; margin-left:0; }
+ul.very-deep-reply       { margin: 0; margin-inline-start: -16px; padding: 0; padding-inline-start: 16px; list-style-type:none; max-width:100% !important; }
+ul.reply li              { text-indent:-16px; margin-inline-start:24px; } /* thread view */
+td ul.reply li           { text-indent:-16px; margin-inline-start:20px; } /* table view */
+ul.deep-reply li         { text-indent:-16px; margin-inline-start:10px; }
+td ul.deep-reply li      { text-indent:-16px; margin-inline-start:5px; }
+ul.very-deep-reply li    { text-indent:-16px; margin-inline-start:0; }
+td ul.very-deep-reply li { text-indent:-16px; margin-inline-start:0; }
 ul.complete-thread       { margin:0 0 20px 0; padding:0; list-style-type:none; clear:both; max-width:100% !important; }
-ul.reply ul              { background:url(images/thread_connecting_line.png) repeat-y left center; }
+ul.reply ul              { background: url(images/thread_connecting_line.png) repeat-y left center; }
+html[dir="rtl"] ul.reply ul
+                         { background: url(images/thread_connecting_line.png) repeat-y 100% center; }
 ul.reply li:last-child>ul
                          { background:none; }
 
