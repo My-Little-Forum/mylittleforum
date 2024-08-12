@@ -425,11 +425,16 @@ a.replynew:active{color:red}
 a.read,a.read:link,a.read:visited,#latest-postings li a span.read{color:#007}
 a.read:focus,a.read:hover{color:#00f}
 a.read:active{color:red}
-.currentthread{padding-left:18px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
-.currentthreadnew{padding-left:18px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -198px}
-.currentreply{padding-left:16px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -348px}
-.currentreplynew{padding-left:16px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -398px}
-a.internal,a.internal:link{padding-left:18px;color:#00c;text-decoration:none;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
+.currentthread{padding-inline-start:18px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
+html[dir="rtl"] .currentthread{background:url(images/bg_sprite_1.png) no-repeat 100% -148px}
+.currentthreadnew{padding-inline-start:18px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -198px}
+html[dir="rtl"] .currentthreadnew{background:url(images/bg_sprite_1.png) no-repeat 100% -198px}
+.currentreply{padding-inline-start:16px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -348px}
+html[dir="rtl"] .currentreply{background:url(images/bg_sprite_1.png) no-repeat 100% -1408px}
+.currentreplynew{padding-inline-start:16px;color:red;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -398px}
+html[dir="rtl"] .currentreplynew{background:url(images/bg_sprite_1.png) no-repeat 100% -1458px}
+a.internal,a.internal:link{padding-inline-start:18px;color:#00c;text-decoration:none;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
+html[dir="rtl"] a.internal,html[dir="rtl"] a.internal:link{background:url(images/bg_sprite_1.png) no-repeat 100% -148px}
 a.internal:focus,a.internal:hover{color:#00f;text-decoration:underline}
 a.internal:active{color:red}
 ul.thread{margin:0 0 1.5em;padding:0;list-style-type:none;max-width:100%!important}
