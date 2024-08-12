@@ -438,15 +438,15 @@ ul.complete-thread{margin:0 0 20px;padding:0;list-style-type:none;clear:both;max
 ul.reply ul{background:url(images/thread_connecting_line.png) repeat-y left center}
 ul.reply li:last-child>ul{background:none}
 span.fold-expand{display:none}
-ul.folded{margin:0 0 10px;padding:0 0 0 15px}
-ul.folded span.fold-expand{position:absolute;top:-2px;left:-15px;display:inline;margin-right:5px}
+ul.folded{margin:0 0 10px;padding:0;padding-inline-start:15px}
+ul.folded span.fold-expand{position:absolute;inset-block-start:-2px;inset-inline-start:-15px;display:inline;margin-inline-end:5px}
 img.expand-thread-inactive{width:9px;height:9px;background:url(images/bg_sprite_2.png) no-repeat 0 -31px}
 img.expand-thread{width:9px;height:9px;background:url(images/bg_sprite_2.png) no-repeat 0 -22px}
 img.fold-thread{width:9px;height:9px;background:url(images/bg_sprite_2.png) no-repeat -9px -22px}
 td ul.thread{margin:0;padding:0;list-style-type:none;font-size:1em!important}
 td ul.thread ul{font-size:.82em!important;line-height:1em}
 td ul.thread ul ul{font-size:1em!important}
-td ul.folded{margin:0;padding:0 0 0 15px}
+td ul.folded{margin:0;padding:0;padding-inline-start:15px}
 ul.searchresults{margin:0 0 20px;padding:0;list-style-type:none;max-width:100%!important}
 ul.searchresults li{font-size:1em;padding:0 0 10px}
 ul.searchresults li li{font-size:1em}
