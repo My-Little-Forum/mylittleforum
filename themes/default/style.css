@@ -36,7 +36,7 @@ html[dir="ltr"]  a.stronglink:hover
                          { background-position:left -46px; }
 html[dir="ltr"] a.stronglink:focus,
 html[dir="rtl"] a.stronglink:hover
-                         { background-position:right -1355px; }
+                         { background-position:right -1356px; }
 a.stronglink:active      { color:#ff0000; }
 
 img.next                 { background:url(images/bg_sprite_2.png) no-repeat 0 -11px; }
