@@ -155,11 +155,12 @@ code{font-family:"courier new",courier;color:navy}
 code.monospace{color:#000}
 blockquote{margin:0;padding:0 0 0 30px;color:#6f6f6f;font-style:italic;background:url(images/quote.png) no-repeat top left}
 blockquote code{font-family:"courier new",courier;color:#6f6f6f}
-.posting-footer{margin:1em 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1.25em auto;grid-gap:.2em}
-.posting-footer .reply{font-size:.82em}
 .posting-footer .locked{font-size:.82em;color:gray;padding-left:16px;background:url(images/locked.png) no-repeat 0 0}
-.posting-footer .views{font-size:.69em;color:gray;text-align:right}
-#content .posting-footer .options{font-size:.69em!important;list-style-type:none;max-width:100%;margin:0;padding:0;grid-row-start:2;grid-row-end:3;grid-column-start:1;grid-column-end:3;display:flex;flex-wrap:wrap;gap:.4em;justify-content:flex-end}
+.posting-footer{margin:1em 0 0;padding:0;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas:"pageviews" "replylink" "moderationlinks";gap:.25em}
+.posting-footer .reply{font-size:.82em;grid-area:replylink}
+html[dir="rtl"] .posting-footer .locked{background:url(images/locked.png) no-repeat calc(100% + 2px) 0}
+.posting-footer .views{font-size:.69em;color:gray;text-align:end;grid-area:pageviews}
+#content .posting-footer .options{font-size:.69em!important;list-style-type:none;max-width:100%;margin:0;padding:0;grid-area:moderationlinks;display:flex;flex-wrap:wrap;gap:.5em;justify-content:flex-start}
 .posting-footer .options li{margin:0}
 .posting-footer a{white-space:nowrap}
 .posting-footer a.edit{padding-left:16px;background:url(images/bg_sprite_3.png) no-repeat 0 2px}
@@ -511,6 +512,8 @@ form p.hp{display:none}
 @media screen and (min-width:48em) {
 	#logo h1{font-size:1.6em}
 	#nav {text-align:end}
+	.posting-footer{grid-template-columns:auto;grid-template-rows:auto; grid-template-areas:"pageviews pageviews" "replylink moderationlinks"}
+	#content .posting-footer .options{justify-content:flex-end}
 	#footer {grid-template-columns:1fr auto;grid-template-rows:auto auto;grid-template-areas:"statistics footerlinks" "projectlink projectlink"}
 	#footermenu{justify-content:flex-end}
 }
