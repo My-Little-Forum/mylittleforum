@@ -292,8 +292,8 @@ html[dir="rtl"] .posting-footer a.lock-thread
 html[dir="rtl"] .posting-footer a.unlock-thread
                          { background-position-x: 100%; }
 
-.thread-posting          { position:relative; border-left:10px solid #d2ddea; border-right:1px solid #f0f0f0; border-top:1px solid #f0f0f0; border-bottom:1px solid #f0f0f0; margin:0 0 20px 0; padding:0 0 0 0; background:#fff; /*border-right:1px solid blue;border-top:1px solid blue;border-bottom:1px solid blue;*/ }
-.new                     { border-left:10px solid #88a9cf !important; }
+.thread-posting          { position:relative; border-inline-start:10px solid #d2ddea; border-inline-end:1px solid #f0f0f0; border-top:1px solid #f0f0f0; border-bottom:1px solid #f0f0f0; margin:0 0 20px; padding:0; background:#fff; }
+.new                     { border-inline-start-color: #88a9cf !important; }
 .thread-posting h1,
 .thread-posting h2       { margin:0 0 2px 0; padding:0; }
 .thread-posting h1 .category
@@ -307,10 +307,9 @@ html[dir="rtl"] .posting-footer a.unlock-thread
 .hide-posting            { position:absolute; top:0; left:-10px; }
 
 .thread-wrapper          { margin:0; padding:0; }
-.reply-wrapper           { margin:0 0 0 20px; padding:0; list-style-type:none; }
-.deep-reply-wrapper      { margin:0 0 0 10px; padding:0; list-style-type:none; }
-.very-deep-reply-wrapper { margin:0; padding:0; list-style-type:none; }
-
+.reply-wrapper           { margin-block: 0; margin-inline: 20px 0; padding:0; list-style-type:none; }
+.deep-reply-wrapper      { margin-block: 0; margin-inline: 10px 0; padding:0; list-style-type:none; }
+.very-deep-reply-wrapper { margin-block: 0; margin-inline: 5px 0; padding:0; list-style-type:none; }
 
 .op-link,
 .op-link a               { font-size:0.9em; color:#808080; }
