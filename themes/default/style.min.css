@@ -15,7 +15,7 @@ html[dir="rtl"] a.stronglink{padding-right:13px;background-position:right -1306p
 a.stronglink:visited{color:#00c}
 a.stronglink:focus,a.stronglink:hover{color:#00f;text-decoration:underline;background:url(images/bg_sprite_1.png) no-repeat}
 html[dir="ltr"] a.stronglink:focus,html[dir="ltr"] a.stronglink:hover{background-position:left -46px}
-html[dir="rtl"] a.stronglink:focus,html[dir="rtl"] a.stronglink:hover{background-position:right -1355px}
+html[dir="rtl"] a.stronglink:focus,html[dir="rtl"] a.stronglink:hover{background-position:right -1356px}
 a.stronglink:active{color:red}
 img.next{background:url(images/bg_sprite_2.png) no-repeat 0 -11px}
 img.next:hover{background:url(images/bg_sprite_2.png) no-repeat -6px -11px}
