@@ -382,15 +382,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 					ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
 					
-					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 					`birthday` = NULL
 					WHERE `birthday` = '0000-00-00';");
 					
-					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 					`last_logout` = NULL
 					WHERE `last_logout` = '0000-00-00 00:00:00';");
 					
-					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 					`registered` = NULL
 					WHERE `registered` = '0000-00-00 00:00:00';");
 					
@@ -419,11 +419,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 					
-					mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+					mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 					`last_reply` = NULL
 					WHERE `last_reply` = '0000-00-00 00:00:00';");
 					
-					mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+					mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 					`edited` = NULL
 					WHERE `edited` = '0000-00-00 00:00:00';");
 					
@@ -530,7 +530,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_commit($connid);
 				} catch (mysqli_sql_exception $exception) {
 					mysqli_rollback($connid);
-					$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+					$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
 					//throw $exception;
 				}
 				mysqli_autocommit($connid, true);
@@ -827,15 +827,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 				ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`birthday` = NULL
 				WHERE `birthday` = '0000-00-00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
 				WHERE `last_logout` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
 				WHERE `registered` = '0000-00-00 00:00:00';");
 				
@@ -860,11 +860,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
 				WHERE `last_reply` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
@@ -971,7 +971,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
 				//throw $exception;
 			}
 		}
@@ -1247,15 +1247,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 				ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`;");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`birthday` = NULL
 				WHERE `birthday` = '0000-00-00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
 				WHERE `last_logout` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
 				WHERE `registered` = '0000-00-00 00:00:00';");
 				
@@ -1272,11 +1272,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 					DROP `email_notification`;");
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
 				WHERE `last_reply` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
@@ -1360,7 +1360,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
 				//throw $exception;
 			}
 		}
@@ -1662,15 +1662,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 					}
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`birthday` = NULL
 				WHERE `birthday` = '0000-00-00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
 				WHERE `last_logout` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
 				WHERE `registered` = '0000-00-00 00:00:00';");
 				
@@ -1687,11 +1687,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 					DROP `email_notification`;");
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
 				WHERE `last_reply` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
@@ -1770,7 +1770,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
 				//throw $exception;
 			}
 		}
@@ -2037,15 +2037,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 					}
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`birthday` = NULL
 				WHERE `birthday` = '0000-00-00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
 				WHERE `last_logout` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
 				WHERE `registered` = '0000-00-00 00:00:00';");
 				
@@ -2062,11 +2062,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 					DROP `email_notification`;");
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
 				WHERE `last_reply` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
@@ -2145,7 +2145,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
 				//throw $exception;
 			}
 		}
@@ -2296,15 +2296,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 					}
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`birthday` = NULL
 				WHERE `birthday` = '0000-00-00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
 				WHERE `last_logout` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
 				WHERE `registered` = '0000-00-00 00:00:00';");
 				
@@ -2321,11 +2321,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 					DROP `email_notification`;");
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
 				WHERE `last_reply` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
@@ -2404,7 +2404,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
 				//throw $exception;
 			}
 		}
@@ -2555,15 +2555,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 					}
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`birthday` = NULL
 				WHERE `birthday` = '0000-00-00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
 				WHERE `last_logout` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
 				WHERE `registered` = '0000-00-00 00:00:00';");
 				
@@ -2580,11 +2580,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 					DROP `email_notification`;");
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
 				WHERE `last_reply` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
@@ -2663,7 +2663,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
 				//throw $exception;
 			}
 		}
@@ -2729,15 +2729,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`birthday` = NULL
 				WHERE `birthday` = '0000-00-00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
 				WHERE `last_logout` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
 				WHERE `registered` = '0000-00-00 00:00:00';");
 				
@@ -2754,11 +2754,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 					DROP `email_notification`;");
 				}
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
 				WHERE `last_reply` = '0000-00-00 00:00:00';");
 				
-				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . " SET`
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` = '0000-00-00 00:00:00';");
 				
@@ -2786,7 +2786,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
 				//throw $exception;
 			}
 		}
