@@ -1105,6 +1105,7 @@
 </div>
 </form>
 {else}
+<div id="admin-main-menu">
 <div class="additional-admin-info">
 	<div id="admin-info-current-version">
 		<h3>{#actual_installed_version_header#}</h3>
@@ -1141,4 +1142,5 @@
 <li><a href="index.php?mode=admin&amp;action=update"><img src="{$THEMES_DIR}/{$theme}/images/update.png" alt="" width="16" height="16" /><span>{#update_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=reset_uninstall"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" alt="" width="16" height="16" /><span>{#reset_uninstall_link#}</span></a></li>
 </ul>
+</div>
 {/if}
