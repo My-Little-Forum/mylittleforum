@@ -364,14 +364,16 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 #codepicker ul a:focus,#codepicker ul a:hover{background:#e0e0e0}
 .buttonbar{display:flex; flex-wrap:wrap; gap:.3em}
 .buttonbar button{padding:.3em}
-.additional-admin-info{margin:0 0 1em 0;padding:0}
+#admin-main-menu{display:grid;grid-template-areas:"infoboxes" "mainmenu";grid-template-columns:1fr;grid-template-rows:auto auto;gap:.75em}
+#admin-main-menu > *{margin:0;padding:0}
+.additional-admin-info{grid-area:infoboxes}
 .additional-admin-info div{background:#f9f9f9;border:1px solid #bacbdf;padding:0}
 .additional-admin-info div:not(:last-child){margin:0 0 20px 0}
 .additional-admin-info h3{margin:0;padding:0 5px;font-size:.69em;line-height:1.7em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
 .additional-admin-info p{font-size:.69em;line-height:1.5em;margin:0;padding:5px}
 #admin-info-install_script_exists h3{color:red}
 #admin-info-install_script_exists h3::before{content:url("images/caution.png"); padding-right:5px}
-.adminmenu{list-style-type:none;padding:0;margin:0;font-size:.82em;line-height:1.7em!important}
+.adminmenu{list-style-type:none;font-size:.82em;line-height:1.75em!important;grid-area:mainmenu}
 .adminmenu a{text-decoration:none}
 .adminmenu a:focus span,.adminmenu a:hover span{text-decoration:underline}
 .adminmenu a img{margin:0 5px -3px 0;padding:0}
@@ -522,7 +524,8 @@ form p.hp{display:none}
 	#usermenu{justify-content:flex-end}
 	#subnav{flex-direction:row;justify-content:space-between}
 	#subnav-2{text-align:end}
-	#sidebar,.additional-admin-info{width:15em;float:right}
+	#sidebar{width:15em;float:right}
+	#admin-main-menu{grid-template-areas:"infoboxes mainmenu";grid-template-columns:18em auto;grid-template-rows:auto}
 }
 @media screen and (min-width:48em) {
 	#logo h1{font-size:1.6em}
