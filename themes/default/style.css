@@ -335,7 +335,7 @@ ul.openthread            { clear:both; }
 #usersearch              { font-size:.82em; margin:.5em 0; padding:.5em 0 .75em 0; border-bottom:1px solid #bacbdf; }
 #usersearch div,
 #usersearch form         { display:inline; }
-#usernav-bottom          { margin:15px 0 0 0; padding:0; text-align:right; font-size:0.82em; }
+#usernav-bottom          { margin:15px 0 0 0; padding:0; text-align:end; font-size:0.82em; }
 
 #admin-usernav-bottom    { margin:0.5em 0 0.75em 0; }
 #selectioncontrols       { margin:10px 0 0 0; padding:0; }
@@ -344,7 +344,7 @@ ul.openthread            { clear:both; }
 #selectioncontrols #arrow-selected
                          { margin:0 0 0 13px; }
 #selectioncontrols .checkall
-                         { margin-left:1em; font-size:0.69em; }
+                         { margin-inline-start:1em; font-size:0.69em; }
 #admin-usernav-bottom #userpagination
                          { float:right; height:2em; text-align:right; }
 
