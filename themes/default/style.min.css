@@ -375,8 +375,9 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 #admin-info-install_script_exists h3::before{content:url("images/caution.png"); padding-right:5px}
 .adminmenu{list-style-type:none;font-size:.82em;line-height:1.75em!important;grid-area:mainmenu}
 .adminmenu a{text-decoration:none}
+.adminmenu a span{padding-inline-start:.375em}
 .adminmenu a:focus span,.adminmenu a:hover span{text-decoration:underline}
-.adminmenu a img{margin:0 5px -3px 0;padding:0}
+.adminmenu a img{margin:0 0 -3px 0;padding:0}
 #content .adminmenu .small{font-size:.82em}
 h2#admin_header{margin:0 0 .5em 0}
 .manage-postings{border:1px solid #bacbdf;margin-top:25px;background:#f9f9f9}
