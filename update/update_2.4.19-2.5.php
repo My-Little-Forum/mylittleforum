@@ -69,10 +69,9 @@ function write_new_version_string_2_db($connid, $new_version) {
 
 if (!function_exists('str_ends_with')) {
 	function str_ends_with($str, $end) {
-		return (@substr_compare($str, $end, -mb_strlen($end)) == 0);
+		return (@substr_compare($str, $end, -mb_strlen($end)) == 0) ? true : false;
 	}
 }
-
 
 // check version:
 if (!file_exists('config/VERSION')) $update['errors'][] = 'Error in line '.__LINE__.': Missing the file config/VERSION. Load it up from your script package (config/VERSION) before proceeding.';
