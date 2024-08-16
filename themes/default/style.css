@@ -298,9 +298,9 @@ html[dir="rtl"] .posting-footer a.unlock-thread
 .thread-posting h2       { margin:0 0 2px 0; padding:0; }
 .thread-posting h1 .category
                          { font-size:0.57em; }
-.thread-posting .header  { background:#f5f5f5; margin:0 0 0 0; padding:0 0 5px 10px; }
+.thread-posting .header  { background:#f5f5f5; margin:0; padding-block:0 5px; padding-inline: 10px; }
 .thread-posting .header img.avatar
-                         { position:relative; margin:0 0 20px 20px; padding:5px; background:#f5f5f5; float:right; }
+                         { position:relative; margin:0 20px 20px 20px; padding:5px; background:#f5f5f5; float:right; }
 .thread-posting .author  { margin:1px 0 0 0; font-style:italic; }
 .thread-posting .body,.thread-posting .signature,#content .thread-posting p.tags,.thread-posting .posting-footer{margin:0;padding:10px}
 
