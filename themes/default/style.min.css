@@ -77,8 +77,8 @@ html[dir="ltr"] a.rss{background-position:2px -1048px}
 html[dir="rtl"] a.rss{background-position:calc(100% + 4px) -1048px}
 p.right a.rss{padding-inline-start:15px}
 input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
-#content{margin:0;padding:1em;padding:1rem;background:#fff;flex:1;overflow:auto}
-#content p,#content ul,#content td{font-size:.82em;line-height:1.5em;max-width:60em}
+#content{margin:0;padding:1em;padding:1rem;line-height:1.5em;background:#fff;flex:1;overflow:auto}
+#content p,#content ul,#content td{font-size:.82em;max-width:60em}
 #content li,#content ul ul{font-size:1em}
 #content .xsmall{font-size:.69em;line-height:1.19em;color:gray;font-weight:400}
 #content .small{font-size:.69em;line-height:1.19em;font-weight:400}
@@ -373,9 +373,9 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 .additional-admin-info p{font-size:.69em;line-height:1.5em;margin:0;padding:5px}
 #admin-info-install_script_exists h3{color:red}
 #admin-info-install_script_exists h3::before{content:url("images/caution.png"); padding-right:5px}
-.adminmenu{list-style-type:none;font-size:.82em;line-height:1.75em!important;grid-area:mainmenu}
 .adminmenu a{text-decoration:none}
 .adminmenu a span{padding-inline-start:.375em}
+.adminmenu{list-style-type:none;font-size:.82em;line-height:1.75em;grid-area:mainmenu}
 .adminmenu a:focus span,.adminmenu a:hover span{text-decoration:underline}
 .adminmenu a img{margin:0 0 -3px 0;padding:0}
 #content .adminmenu .small{font-size:.82em}
