@@ -442,7 +442,6 @@
 </table>
 
 <div id="selectioncontrols">
-<img id="arrow-selected" src="{$THEMES_DIR}/{$theme}/images/arrow_selected.png" alt="&#x2191;" width="24" height="14" />
 <button name="delete_selected_users" value="{#delete_selected_users#}">{#delete_selected_users#}</button>
 </div>
 
