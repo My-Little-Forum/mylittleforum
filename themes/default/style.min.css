@@ -217,6 +217,7 @@ ul.openthread{clear:both}
 #selectioncontrols{margin:0.5em 0 0;display:flex;align-items:center;gap:.25em}
 #selectioncontrols::before{content:"";width:calc(24px + 1.25em);height:1.45em;display:inline-block;background:url(images/arrow_selected.png) no-repeat calc(0% + 1em) center;align-content:flex-start}
 html[dir="rtl"] #selectioncontrols::before{transform:scaleX(-1)}
+#selectioncontrols button{align-self:flex-end;display:flex;align-items:center;gap:0.25em}
 #selectioncontrols .checkall{margin-inline-start:1em;font-size:.69em}
 #admin-usernav-bottom #userpagination{float:right;height:2em;text-align:right}
 .thread ul{font-size:1em}

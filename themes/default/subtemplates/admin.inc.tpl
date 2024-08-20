@@ -442,7 +442,7 @@
 </table>
 
 <div id="selectioncontrols">
-<button name="delete_selected_users" value="{#delete_selected_users#}">{#delete_selected_users#}</button>
+<button name="delete_selected_users" value="{#delete_selected_users#}"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" alt="" width="14" height="14" /><span>{#delete_selected_users#}</span></button>
 </div>
 
 </div>
