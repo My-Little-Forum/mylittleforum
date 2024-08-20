@@ -369,8 +369,9 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 .additional-admin-info{grid-area:infoboxes}
 .additional-admin-info div{background:#f9f9f9;border:1px solid #bacbdf;padding:0}
 .additional-admin-info div:not(:last-child){margin:0 0 .75em 0}
-.additional-admin-info h3{margin:0;padding:0 5px;font-size:.69em;line-height:1.7em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
-.additional-admin-info p{font-size:.69em;line-height:1.5em;margin:0;padding:5px}
+.additional-admin-info div > *{margin:0;padding-inline:.375em;font-size:.82em !important;}
+.additional-admin-info h3{line-height:1.7em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
+.additional-admin-info p{padding-block:.375em;line-height:1.5}
 #admin-info-install_script_exists h3{color:red}
 #admin-info-install_script_exists h3::before{content:url("images/caution.png"); padding-right:5px}
 main > .adminmenu{margin-block:1em;margin-inline:0;padding:0}
