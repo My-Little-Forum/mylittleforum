@@ -214,8 +214,9 @@ ul.openthread{clear:both}
 #usersearch{font-size:.82em;margin:.5em 0;padding:.5em 0 .75em 0;border-bottom:1px solid #bacbdf}
 #usersearch div,#usersearch form{display:inline}
 #usernav-bottom{margin:15px 0 0;padding:0;text-align:end;font-size:.82em}
-#selectioncontrols{margin:10px 0 0;padding:0}
-#selectioncontrols #arrow-selected{margin:0 0 0 13px}
+#selectioncontrols{margin:0.5em 0 0;display:flex;align-items:center;gap:.25em}
+#selectioncontrols::before{content:"";width:calc(24px + 1.25em);height:1.45em;display:inline-block;background:url(images/arrow_selected.png) no-repeat calc(0% + 1em) center;align-content:flex-start}
+html[dir="rtl"] #selectioncontrols::before{transform:scaleX(-1)}
 #selectioncontrols .checkall{margin-inline-start:1em;font-size:.69em}
 #admin-usernav-bottom #userpagination{float:right;height:2em;text-align:right}
 .thread ul{font-size:1em}
