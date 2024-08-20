@@ -588,7 +588,11 @@ ul.pagination .current   { border:1px solid #bacbdf; color:red; font-weight:bold
 
 main > .adminmenu        { margin-block: 1em; margin-inline: 0; padding: 0; }
 .adminmenu               { list-style-type:none; font-size:0.82em; line-height:1.75em; grid-area: mainmenu; }
-.adminmenu a             { text-decoration:none; display: flex; align-items: center; gap: 0.375em; }
+.adminmenu li:not(:last-child)
+                         { margin-block-end: 0.25em; }
+.adminmenu a             { border: 1px dotted #bacbdf00; background: #bacbdf40; text-decoration:none; display: flex; align-items: center; gap: 0.375em; }
+.adminmenu a:focus,
+.adminmenu a:hover       { border-color: #bacbdf88; background: #bacbdf20; }
 .adminmenu a:focus span,
 .adminmenu a:hover span  { text-decoration:underline; }
 .adminmenu a img         { margin: 0; padding: 0; }
