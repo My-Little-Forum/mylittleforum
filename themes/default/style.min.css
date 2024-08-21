@@ -96,7 +96,9 @@ html[dir="ltr"] #footermenu a.go-to-top-link{background:url(images/arrow_up.png)
 html[dir="rtl"] #footermenu a.go-to-top-link{background:url(images/arrow_up.png) no-repeat 100% 0 / auto 90%}
 #pbmlf{text-align:center;font-size:.69em;color:gray;grid-area:projectlink}
 #pbmlf a{color:gray;text-decoration:none}
-#sidebar{position:relative;margin:0 0 1em 0;padding:0}
+#main-grid{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto;gap:.75em;grid-template-areas:"sidebar" "threadlist"}
+#threadlist{grid-area:threadlist;}
+#sidebar{grid-area:sidebar;position:relative;margin:0;padding:0}
 #sidebar div{position:relative;z-index:2}
 #sidebarcontent div:not(:last-child){margin: 0 0 1em 0}
 #sidebar h3.sidebar{position:absolute;top:0;right:0;font-size:.69em;line-height:1.7em;font-weight:400;margin:0;padding:0 17px 0 5px;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);border:1px solid #bacbdf;z-index:1}
@@ -529,8 +531,9 @@ form p.hp{display:none}
 	#usermenu{justify-content:flex-end}
 	#subnav{flex-direction:row;justify-content:space-between}
 	#subnav-2{text-align:end}
-	#sidebar{width:15em;float:right}
+	#sidebar{width:100%}
 	#admin-main-menu{grid-template-areas:"mainmenu infoboxes";grid-template-columns:auto 18em;grid-template-rows:auto}
+  #main-grid {grid-template-areas:"threadlist sidebar";grid-template-columns:auto 18em;grid-template-rows:auto}
 }
 @media screen and (min-width:48em) {
 	#logo h1{font-size:1.6em}
