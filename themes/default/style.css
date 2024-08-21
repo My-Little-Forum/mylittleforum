@@ -603,13 +603,14 @@ h2#admin_header          { margin: 0 0 0.5em 0; }
 .manage-postings         { border:1px solid #bacbdf; margin-top:25px; background:#f9f9f9; }
 .manage-postings legend  { font-size:0.82em; font-weight:bold; }
 
-ul#uploadlist            { list-style: none; margin: 0; padding: 0; max-width: 100%; overflow: hidden; }
-#uploadlist li           { float: left; width: 240px; margin: 0 10px 10px 0; padding: 0; border: 1px solid #bacbdf; background:#f9f9f9; }
+ul#uploadlist            { list-style: none; margin: 0; padding: 0; max-width: 100%; display: flex; flex-wrap: wrap; gap: 0.75em; }
+#uploadlist li           { width: 18.5em; margin: 0; padding: 0; border: 1px solid #bacbdf; background:#f9f9f9; }
 #uploadlist .image_container
-                         { padding: 5px; height: 240px; width: calc(100% - 10px); margin: 0 0 5px 0; text-align: center; }
+                         { padding: 0.5em; height: 21.5em; width: 100%; margin: 0 0 0.25em 0; text-align: center; }
 #uploadlist img          { max-width: 100%; max-height: 100%; }
 #uploadlist .management_container
-                         { margin: 0; padding: 5px 0; }
+                         { margin: 0; padding: 0.25em 0; }
+#uploadlist + p          { margin-block: 0.75em 1em; }
 .confirm-selection       { list-style: none; padding: 0; border-top: 1px solid #bacbdf; }
 .confirm-selection li    { min-height: 2.5em; margin: 0 0 0.25em 0; padding: 0.25em 0.5em; border-bottom: 1px solid #bacbdf; }
 .confirm-selection .item { margin: 0 0 0.25em 0; }
