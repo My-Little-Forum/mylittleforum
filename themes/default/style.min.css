@@ -526,7 +526,7 @@ img.right{float:right;margin:0 0 10px 10px}
 .js-display-fold .wrapper,.js-display-fold #sidebarcontent{display:none}
 .js-display-fold img.avatar{width:1.6em;height:1.6em}
 form p.hp{display:none}
-@media screen and (min-width:36em) {
+@media screen and (min-width:38em) {
 	#top {flex-direction:row;justify-content:space-between}
 	#usermenu{justify-content:flex-end}
 	#subnav{flex-direction:row;justify-content:space-between}
