@@ -173,7 +173,7 @@ html[dir="rtl"] #footermenu a.go-to-top-link
 #sidebar div             { position:relative; z-index:2; }
 #sidebarcontent div:not(:last-child)
                          { margin: 0 0 0.75em 0; }
-#sidebar h3.sidebar      { font-size:0.82em; line-height:1.7em; font-weight: normal; margin-block: 0 0.75em; margin-inline: 0; padding-block: 0; padding-inline: 5px 17px; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); border: 1px solid #bacbdf; z-index: 1; }
+#sidebar h3.sidebar      { font-size:0.82em; line-height:1.7em; font-weight: bold; margin-block: 0 0.75em; margin-inline: 0; padding-block: 0; padding-inline: 0.375em 17px; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); border: 1px solid #bacbdf; z-index: 1; }
 #sidebar h3.sidebar a    { color:#000; text-decoration:none; z-index:2; }
 #sidebartoggle           { position:absolute; top:5px; right:4px; margin:0; padding:0; z-index:3; }
 #sidebarcontent div h3   { font-size: 0.69em; line-height: 1.7em; font-weight: normal; margin: 0; padding: 0 5px; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); }
