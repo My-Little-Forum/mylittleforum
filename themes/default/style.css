@@ -167,7 +167,9 @@ html[dir="rtl"] #footermenu a.go-to-top-link
 #pbmlf                   { text-align:center; font-size:0.69em; color:#808080; grid-area: projectlink; }
 #pbmlf a                 { color:#808080; text-decoration:none; }
 
-#sidebar                 { position:relative; margin:0 0 1em 0; padding:0; }
+#main-grid               { display: grid; grid-template-columns: 1fr; grid-template-rows: auto auto; gap: 0.75em; grid-template-areas: "sidebar" "threadlist"; }
+#threadlist              { grid-area: threadlist; }
+#sidebar                 { grid-area: sidebar; position:relative; margin:0; padding:0; }
 #sidebar div             { position:relative; z-index:2; }
 #sidebarcontent div:not(:last-child)
                          { margin: 0 0 1em 0; }
@@ -855,8 +857,9 @@ form p.hp { display: none; }
   #usermenu { justify-content: flex-end; }
   #subnav { flex-direction: row; justify-content: space-between; }
   #subnav-2 { text-align: end; }
-  #sidebar { width: 15em; float:right; }
-	#admin-main-menu { grid-template-areas: "mainmenu infoboxes"; grid-template-columns: auto 18em; grid-template-rows: auto;}
+  #sidebar { width: 16em; }
+  #admin-main-menu { grid-template-areas: "mainmenu infoboxes"; grid-template-columns: auto 18em; grid-template-rows: auto;}
+  #main-grid { grid-template-areas: "threadlist sidebar"; grid-template-columns: auto 18em; grid-template-rows: auto; }
 }
 @media screen and (min-width: 48em) {
   #logo h1 { font-size: 1.6em; }
