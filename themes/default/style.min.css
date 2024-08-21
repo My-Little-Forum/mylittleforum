@@ -77,7 +77,7 @@ html[dir="ltr"] a.rss{background-position:2px -1048px}
 html[dir="rtl"] a.rss{background-position:calc(100% + 4px) -1048px}
 p.right a.rss{padding-inline-start:15px}
 input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
-#content{margin:0;padding:1em;padding:1rem;line-height:1.5em;background:#fff;flex:1;overflow:auto}
+#content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
 #content p,#content ul,#content td{font-size:.82em;max-width:60em}
 #content li,#content ul ul{font-size:1em}
 #content .xsmall{font-size:.69em;line-height:1.19em;color:gray;font-weight:400}
