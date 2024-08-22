@@ -853,20 +853,20 @@ div.warning              { border: 5px solid red; padding: 15px; font-size:1.3em
 form p.hp { display: none; }
 
 @media screen and (min-width: 38em) {
-  #top { flex-direction: row; justify-content: space-between; }
-  #usermenu { justify-content: flex-end; }
-  #subnav { flex-direction: row; justify-content: space-between; }
-  #subnav-2 { text-align: end; }
-  #sidebar { width: 16em; }
-  #admin-main-menu { grid-template-areas: "mainmenu infoboxes"; grid-template-columns: auto 18em; grid-template-rows: auto;}
-  #main-grid { grid-template-areas: "threadlist sidebar"; grid-template-columns: auto 18em; grid-template-rows: auto; }
+	#top { flex-direction: row; justify-content: space-between; }
+	#usermenu { justify-content: flex-end; }
+	#subnav { flex-direction: row; justify-content: space-between; }
+	#subnav-2 { text-align: end; }
+	#sidebar { width: 16em; }
+	#admin-main-menu { grid-template-areas: "mainmenu infoboxes"; grid-template-columns: auto 18em; grid-template-rows: auto;}
+	#main-grid { grid-template-areas: "threadlist sidebar"; grid-template-columns: auto 18em; grid-template-rows: auto; }
 	#main-grid:has(div.js-display-fold) { grid-template-columns: auto 8.5em; }
 }
 @media screen and (min-width: 48em) {
-  #logo h1 { font-size: 1.6em; }
-  #nav { text-align: end; }
+	#logo h1 { font-size: 1.6em; }
+	#nav { text-align: end; }
 	.posting-footer { grid-template-columns: auto; grid-template-rows: auto; grid-template-areas: "pageviews pageviews" "replylink moderationlinks"; }
 	#content .posting-footer .options { justify-content: flex-end; }
-  #footer { grid-template-columns: 1fr auto; grid-template-rows: auto auto; grid-template-areas: "statistics footerlinks" "projectlink projectlink"; }
-  #footermenu { justify-content: flex-end; }
+	#footer { grid-template-columns: 1fr auto; grid-template-rows: auto auto; grid-template-areas: "statistics footerlinks" "projectlink projectlink"; }
+	#footermenu { justify-content: flex-end; }
 }
