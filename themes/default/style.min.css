@@ -533,7 +533,7 @@ form p.hp{display:none}
 	#subnav-2{text-align:end}
 	#sidebar{width:100%}
 	#admin-main-menu{grid-template-areas:"mainmenu infoboxes";grid-template-columns:auto 18em;grid-template-rows:auto}
-  #main-grid {grid-template-areas:"threadlist sidebar";grid-template-columns:auto 18em;grid-template-rows:auto}
+	#main-grid {grid-template-areas:"threadlist sidebar";grid-template-columns:auto 18em;grid-template-rows:auto}
 	#main-grid:has(div.js-display-fold){grid-template-columns:auto 8.5em}
 }
 @media screen and (min-width:48em) {
