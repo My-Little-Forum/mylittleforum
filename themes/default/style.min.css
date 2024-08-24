@@ -49,32 +49,31 @@ html[dir="rtl"] #subnav p.subnav{margin:0;padding:0 12px 0 0;font-weight:700;bac
 #subnavmenu{display:inline;margin:0;padding:0;font-size:.82em;list-style-type:none}
 #subnavmenu li{display:inline}
 #subnavmenu li:not(:first-child){margin-inline-start:10px}
-html[dir="ltr"] #subnavmenu a.refresh{padding-left:14px;background:url(images/bg_sprite_1.png) no-repeat 0 -498px}
-html[dir="rtl"] #subnavmenu a.refresh{padding-right:14px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 4px) -498px}
-html[dir="ltr"] #subnavmenu a.order-1{padding-left:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -548px}
-html[dir="rtl"] #subnavmenu a.order-1{padding-right:12px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 6px) -548px}
-html[dir="ltr"] #subnavmenu a.order-2{padding-left:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -598px}
-html[dir="rtl"] #subnavmenu a.order-2{padding-right:12px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 6px) -598px}
-html[dir="ltr"] #subnavmenu a.fold-1{padding-left:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -648px}
-html[dir="rtl"] #subnavmenu a.fold-1{padding-right:12px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 6px) -648px}
-html[dir="ltr"] #subnavmenu a.fold-2{padding-left:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -698px}
-html[dir="rtl"] #subnavmenu a.fold-2{padding-right:12px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 6px) -698px}
-html[dir="ltr"] #subnavmenu a.tableview{padding-left:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -748px}
-html[dir="rtl"] #subnavmenu a.tableview{padding-right:12px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 6px) -748px}
-html[dir="ltr"] #subnavmenu a.threadview{padding-left:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -798px}
-html[dir="rtl"] #subnavmenu a.threadview{padding-right:12px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 6px) -798px}
+#subnavmenu a.refresh{padding-inline-start:14px;background:url(images/bg_sprite_1.png) no-repeat 0 -498px}
+html[dir="rtl"] #subnavmenu a.refresh{background-position-x:calc(100% + 4px)}
+#subnavmenu a.order-1{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -548px}
+html[dir="rtl"] #subnavmenu a.order-1{background-position-x:calc(100% + 6px)}
+#subnavmenu a.order-2{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -598px}
+html[dir="rtl"] #subnavmenu a.order-2{background-position-x:calc(100% + 6px)}
+#subnavmenu a.fold-1{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -648px}
+html[dir="rtl"] #subnavmenu a.fold-1{background-position-x:calc(100% + 6px)}
+#subnavmenu a.fold-2{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -698px}
+html[dir="rtl"] #subnavmenu a.fold-2{background-position-x:calc(100% + 6px)}
+#subnavmenu a.tableview{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -748px}
+html[dir="rtl"] #subnavmenu a.tableview{background-position-x:calc(100% + 6px)}
+#subnavmenu a.threadview{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -798px}
+html[dir="rtl"] #subnavmenu a.threadview{background-position-x:calc(100% + 6px)}
 
-html[dir="ltr"] #subnavmenu a.openthread{padding-left:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -848px}
-html[dir="rtl"] #subnavmenu a.openthread{padding-right:13px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 5px) -848px}
-html[dir="ltr"] #subnavmenu a.linear{padding-left:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -898px}
-html[dir="rtl"] #subnavmenu a.linear{padding-right:13px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 5px) -898px}
-html[dir="ltr"] #subnavmenu a.hierarchic{padding-left:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -948px}
-html[dir="rtl"] #subnavmenu a.hierarchic{padding-right:13px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 5px) -948px}
-html[dir="ltr"] #subnavmenu a.fold-postings{padding-left:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -998px}
-html[dir="rtl"] #subnavmenu a.fold-postings{padding-right:13px;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 5px) -998px}
-a.rss{background:url(images/bg_sprite_1.png) no-repeat}
-html[dir="ltr"] a.rss{background-position:2px -1048px}
-html[dir="rtl"] a.rss{background-position:calc(100% + 4px) -1048px}
+#subnavmenu a.openthread{padding-inline-start:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -848px}
+html[dir="rtl"] #subnavmenu a.openthread{background-position-x:calc(100% + 5px)}
+#subnavmenu a.linear{padding-inline-start:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -898px}
+html[dir="rtl"] #subnavmenu a.linear{background-position-x:calc(100% + 5px)}
+#subnavmenu a.hierarchic{padding-inline-start:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -948px}
+html[dir="rtl"] #subnavmenu a.hierarchic{background-position-x:calc(100% + 5px)}
+#subnavmenu a.fold-postings{padding-inline-start:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -998px}
+html[dir="rtl"] #subnavmenu a.fold-postings{background-position-x:calc(100% + 5px)}
+a.rss{background:url(images/bg_sprite_1.png) no-repeat 2px -1048px}
+html[dir="rtl"] a.rss{background-position-x:calc(100% + 4px)}
 p.right a.rss{padding-inline-start:15px}
 input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
