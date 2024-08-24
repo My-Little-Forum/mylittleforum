@@ -120,13 +120,20 @@ html[dir="rtl"] #footermenu a.go-to-top-link{background:url(images/arrow_up.png)
 #tagcloud a.hide-sidebar{position:absolute;top:2px;right:4px;margin:0;padding:0;line-height:11px}
 #tagcloud strong{font-weight:700;font-size:1.051em}
 #modmenu{background:#f9f9f9;border:1px solid #bacbdf}
-#mod-options{list-style:none;margin:0;padding:5px;font-size:.69em!important;line-height:1.7em!important}
-#mod-options a {padding-left:15px}
-#mod-options a.delete-marked{background:url(images/bg_sprite_4.png) no-repeat 0 -296px}
-#mod-options a.manage{background:url(images/bg_sprite_4.png) no-repeat 0 -347px}
-#mod-options a.report{background:url(images/bg_sprite_4.png) no-repeat 0 -48px}
-#mod-options a.delete-spam{background:url(images/bg_sprite_3.png) no-repeat 0 -47px}
-#mod-options a.non-activated-users{background:url(images/bg_sprite_4.png) no-repeat 0 -396px}
+#mod-options{list-style:none;margin:0;padding:0;font-size:.82em;line-height:1.7}
+#mod-options li:not(:last-child){margin-block-end:0.25em}
+#mod-options a{padding-inline:.375em;display:block}
+#mod-options a span{padding-inline-start:16px}
+#mod-options a.delete-marked{background:url(images/bg_sprite_4.png) no-repeat .375em -293px}
+html[dir="rtl"] #mod-options a.delete-marked{background-position-x:calc(100% - .375em)}
+#mod-options a.manage{background:url(images/bg_sprite_4.png) no-repeat .375em -344px}
+html[dir="rtl"] #mod-options a.manage{background-position-x:calc(100% - .375em)}
+#mod-options a.report{background:url(images/bg_sprite_4.png) no-repeat .375em -45px}
+html[dir="rtl"] #mod-options a.report{background-position-x:calc(100% - .375em)}
+#mod-options a.delete-spam{background:url(images/bg_sprite_3.png) no-repeat .375em -45px}
+html[dir="rtl"] #mod-options a.delete-spam{background-position-x:calc(100% - .375em)}
+#mod-options a.non-activated-users{background:url(images/bg_sprite_4.png) no-repeat .375em -393px}
+html[dir="rtl"] #mod-options a.non-activated-users{background-position-x:calc(100% - .375em)}
 #bottombar{position:relative;margin:20px 0 -20px}
 #bottombar h3.sidebar{position:relative;float:right;font-size:.69em;line-height:1.6em;font-weight:400;margin:0 0 20px;padding:0 17px 0 5px;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);border:1px solid #bacbdf}
 #bottombar h3.sidebar a{color:#000;text-decoration:none}
