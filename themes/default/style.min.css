@@ -538,9 +538,9 @@ form p.hp{display:none}
 	#subnav{flex-direction:row;justify-content:space-between}
 	#subnav-2{text-align:end}
 	#sidebar{width:100%}
-	#main-grid {grid-template-areas:"threadlist sidebar";grid-template-columns:auto 18em;grid-template-rows:auto}
-	#main-grid:has(div.js-display-fold){grid-template-columns:auto 8.5em}
 	#admin-main-menu{grid-template-areas:"infoboxes mainmenu";grid-template-columns:18em auto;grid-template-rows:auto}
+	#main-grid.threaded {grid-template-areas:"threadlist sidebar";grid-template-columns:auto 18em;grid-template-rows:auto}
+	#main-grid.threaded:has(div.js-display-fold){grid-template-columns:auto 8.5em}
 }
 @media screen and (min-width:48em) {
 	#logo h1{font-size:1.6em}
