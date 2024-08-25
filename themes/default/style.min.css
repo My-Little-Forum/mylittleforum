@@ -381,7 +381,7 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 .additional-admin-info h3{line-height:1.7em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
 .additional-admin-info p{padding-block:.375em;line-height:1.5}
 #admin-info-install_script_exists h3{color:red}
-#admin-info-install_script_exists h3::before{content:url("images/caution.png"); padding-right:5px}
+#admin-info-install_script_exists h3::before{content:url("images/caution.png"); padding-inline-start:5px}
 main > .adminmenu{margin-block:1em;margin-inline:0;padding:0}
 .adminmenu{list-style-type:none;font-size:.82em;line-height:1.75em;grid-area:mainmenu}
 .adminmenu li:not(:last-child){margin-block-end:.25em}
@@ -506,19 +506,19 @@ img.thumbnail{width:150px;border:1px solid silver;margin:0;height:auto}
 a:link img.thumbnail{color:#00f;border:1px solid silver}
 a:visited img.thumbnail{color:#00f;border:1px solid silver}
 a:focus img.thumbnail,a:hover img.thumbnail{color:#00f;border:1px solid #000}
-#ajax-preview{position:absolute;top:100px;inset-inline-start:100px;margin:13px 0 0 -3px;z-index:10;width:20px}
 img.left{display:block;float:left;float:inline-start;margin:0 10px 10px 0}
 img.right{float:right;float:inline-end;margin:0 0 10px 10px}
+#ajax-preview{position:absolute;top:100px;inset-inline-start:100px;margin-block:13px 0;margin-inline:-3px 0;z-index:10;width:20px}
 #ajax-preview-top{position:absolute;width:100%;top:0;height:16px;background:transparent url(images/bg_sprite_2.png) no-repeat 8px -40px;z-index:10}
 #ajax-preview-main{border-top:1px solid silver;position:absolute;top:15px;inset-inline-end:0;width:500px}
-#ajax-preview-body{background:#ffc;margin:0;padding:0;border-left:1px solid silver;border-right:1px solid silver;border-bottom:1px solid silver}
 #ajax-preview-close{float:right;float:inline-end;cursor:pointer}
+#ajax-preview-body{background:#ffc;margin:0;padding:0;border-inline:1px solid silver;border-bottom:1px solid silver}
 #ajax-preview-content{margin:0;padding:0 14px;max-height:350px;overflow:auto;clear:both;padding-bottom:16px}
 #ajax-preview-replylink-wrapper{margin:0;padding:0;font-size:.69em!important}
 #ajax-preview-replylink-wrapper:before{content:"[ "}
 #ajax-preview-replylink-wrapper:after{content:" ]"}
 #ajax-preview-replylink{margin:0;padding:0}
-#ajax-preview-throbber{display:block;margin-left:auto;margin-right:auto}
+#ajax-preview-throbber{display:block;margin-inline:auto;}
 #ajax-preview-content p,#ajax-preview-content ul{font-size:.82em;line-height:1.5em}
 #ajax-preview-content li,#ajax-preview-content ul ul{font-size:1em}
 #ajax-preview-content img{max-width:100%;height:auto}
