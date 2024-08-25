@@ -817,7 +817,7 @@ img.right                { float:right; float: inline-end; margin:0 0 10px 10px;
 /* ajax preview: */
 #ajax-preview            { position:absolute; top:100px; inset-inline-start:100px; margin-block: 13px 0; margin-inline: -3px 0; z-index:10; width:20px; }
 #ajax-preview-top        { position:absolute; width:100%; top:0; height:16px; background:transparent url(images/bg_sprite_2.png) no-repeat 8px -40px; z-index:10; }
-#ajax-preview-main       { border-top:1px solid #c0c0c0; position:absolute; top:15px; inset-inline-end:0; width:500px; }                
+#ajax-preview-main       { border-top:1px solid #c0c0c0; position:absolute; top:15px; inset-inline-end:0; width:500px; }
 #ajax-preview-close      { float:right; float: inline-end; cursor:pointer; }
 #ajax-preview-body       { background:#ffc; margin:0; padding:0; border-inline: 1px solid #c0c0c0; border-bottom:1px solid #c0c0c0; }
 #ajax-preview-content    { margin:0; padding:0 14px; max-height:350px; overflow:auto; clear:both; padding-bottom:16px; }
