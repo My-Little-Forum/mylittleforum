@@ -253,6 +253,8 @@ blockquote code          { font-family:"courier new",courier; color:#6f6f6f; }
 .posting-footer          { margin:1em 0 0; padding:0; display:grid; grid-template-columns: 1fr; grid-template-rows: auto auto auto; grid-template-areas: "pageviews" "replylink" "moderationlinks"; gap:.25em; }
 .posting-footer .reply   { font-size:0.82em; grid-area: replylink; }
 .posting-footer .locked  { font-size: 0.82em; color: #808080; padding-inline-start: 16px; background: url(images/locked.png) no-repeat 0 0; }
+html[dir="rtl"] .posting-footer .locked
+                         { background-position-x: calc(100% + 2px); }
 .posting-footer .views   { font-size:0.69em; color:#808080; text-align: end; grid-area: pageviews; }
 #content .posting-footer .options
                          { font-size:0.69em !important; list-style-type:none; max-width:100% !important; margin: 0; padding: 0; grid-area: moderationlinks; display:flex; flex-wrap: wrap; gap: 0.5em; justify-content: flex-start; }
