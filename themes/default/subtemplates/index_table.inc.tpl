@@ -49,7 +49,7 @@
 {/if}
 
 {if $tag_cloud || $latest_postings || $admin || $mod}
-<div id="bottombar"{if $usersettings.sidebar==0} class="js-display-fold"{/if}>
+<div id="sidebar"{if $usersettings.sidebar==0} class="js-display-fold"{/if}>
 <a href="index.php?toggle_sidebar=true"><img id="sidebartoggle"  class="{if $usersettings.sidebar==0}show-sidebar{else}hide-sidebar{/if}" src="{$THEMES_DIR}/{$theme}/images/plain.png" title="{#toggle_sidebar#}" alt="[+/-]" width="9" height="9" /></a>
 <h3 class="sidebar"><a href="index.php?toggle_sidebar=true" title="{#toggle_sidebar#}">{#sidebar#}</a></h3>
 <div id="sidebarcontent">
