@@ -214,17 +214,6 @@ html[dir="rtl"] #mod-options a.delete-spam
                          { background:url(images/bg_sprite_4.png) no-repeat .375em -393px; }
 html[dir="rtl"] #mod-options a.non-activated-users
                          { background-position-x: calc(100% - .375em); }
-#bottombar               { position:relative; margin:20px 0 -20px 0; }
-#bottombar h3.sidebar    { position:relative; float:right; float: inline-end; font-size:0.69em; line-height:1.6em; font-weight:normal; margin:0 0 20px 0; padding:0 17px 0 5px; background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); border:1px solid #bacbdf; }
-#bottombar h3.sidebar a  { color:#000; text-decoration:none; }
-#bottombar:not(.js-display-fold) h3.sidebar
-                         { margin: 0; }
-#bottombarhandle         { position:absolute; top:0; right:4px; margin:0; padding:0; z-index:3; }
-#bottombar #sidebarcontent div { position:relative; z-index:2; background:#f9f9f9; border:1px solid #bacbdf; margin:0 0 20px 0; }
-#bottombar h3            { font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 5px 0 5px; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); }
-#bottombar #tagcloud p   { padding:10px; }
-#bottombar .xsmall       { font-size:0.82em; }
-#bottombar #mod-options  { padding:10px; }
 input[name=sort_of_agreement] + iframe { height: 400px; height: 60vh; }
 #usersonline             { background:#f9f9f9; border:1px solid #bacbdf; margin:20px 0 20px 0; }
 #usersonline h3          { font-size:0.69em; line-height:1.7em; font-weight:normal; margin:0; padding:0 5px 0 5px; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); }
