@@ -1,6 +1,6 @@
 {if $threads}
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
 <div id="main-grid" class="table">
+<table id="threadlist" class="normaltab" border="0" cellpadding="5" cellspacing="1">
 <thead>
 <tr>
 {*{if $fold_threads==1}<th style="width:10px;">&nbsp;</th>{/if}*}
