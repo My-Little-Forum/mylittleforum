@@ -2828,3 +2828,34 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
+
+if (empty($update['errors']) && in_array($settings['version'], array('20240729.1'))) {
+	
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		}
+	}
+	
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['items'][] = 'includes/index.inc.php';
+		
+		$update['items'][] = 'lang/german.lang';
+		
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
+		
+		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
+		$update['items'][] = 'themes/default/images/bg_sprite_4.png';
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
+	}
+}
