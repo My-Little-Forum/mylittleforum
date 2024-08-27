@@ -2876,7 +2876,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/index.inc.php';
 		
+		$update['items'][] = 'lang/arabic.lang';
 		$update['items'][] = 'lang/german.lang';
+		$update['items'][] = 'lang/italian.lang';
 		
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		
