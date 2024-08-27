@@ -539,6 +539,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			$new_version_set = write_new_version_string_2_db($connid, $newVersion);
 				if ($new_version_set === false) {
 					$update['errors'][] = 'Database error, could not write the new version string to the database.';
+				} else {
+					$update['new_version'] = $newVersion;
 				}
 			}
 			
@@ -985,6 +987,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
 		if ($new_version_set === false) {
 			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
 		}
 	}
 	
@@ -1378,6 +1382,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
 		if ($new_version_set === false) {
 			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
 		}
 	}
 	
@@ -1792,6 +1798,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
 		if ($new_version_set === false) {
 			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
 		}
 	}
 	
@@ -2170,6 +2178,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
 		if ($new_version_set === false) {
 			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
 		}
 	}
 	
@@ -2429,6 +2439,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
 		if ($new_version_set === false) {
 			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
 		}
 	}
 	
@@ -2688,6 +2700,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
 		if ($new_version_set === false) {
 			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
 		}
 	}
 	
@@ -2811,6 +2825,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
 		if ($new_version_set === false) {
 			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
 		}
 	}
 	
@@ -2851,6 +2867,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
 		if ($new_version_set === false) {
 			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
 		}
 	}
 	
