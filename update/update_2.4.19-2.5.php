@@ -645,6 +645,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 				// #612
 				$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+				// #733
+				$update['items'][] = 'themes/default/images/bg_sprite_1.png';
+				// #733
+				$update['items'][] = 'themes/default/images/bg_sprite_4.png';
 				// #364
 				$update['items'][] = 'themes/default/images/image.png';
 				// #611
@@ -1081,6 +1085,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		// #612
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		// #733
+		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
+		// #733
+		$update['items'][] = 'themes/default/images/bg_sprite_4.png';
 		// #611
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
 		// #470, #489, #575, #589, #612, #645, #652, #656, #659
@@ -1470,6 +1478,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		// #612
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		// #733
+		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
+		// #733
+		$update['items'][] = 'themes/default/images/bg_sprite_4.png';
 		// #611
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
 		// #470, #489, #575, #589, #612, #645, #652, #656, #659
@@ -1863,9 +1875,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
 		// #612
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		// #733
+		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
+		// #733
+		$update['items'][] = 'themes/default/images/bg_sprite_4.png';
 		// #611
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
-		
 		// #508, #575, #589, #612, #645, #652, #656, #659
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		// #656
