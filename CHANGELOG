@@ -1,6 +1,17 @@
 my little forum changelog
 -------------------------
 
+20240827.1 (2024-08-27)
+-----------------------
+
+- change: rewrite the styling (CSS) to support languages, written from right to left
+- change: far better support of displaying the forum on mobile devices
+- change: translate "Sidebar" to "Barre laterale" in italian language
+- fix: display hours in 24-hours-format in german language
+- fix: display date and time according to the syntax of the PHP DateTimeInterface in arabic language
+- fix: include the column mlf2_entries.last_reply into the select, which is used in the ORDER-BY-clause
+- fix: a few issues in the upgrade script
+
 20240729.1 (2024-07-29)
 -----------------------
 
