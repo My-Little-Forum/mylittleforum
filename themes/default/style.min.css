@@ -290,7 +290,7 @@ p.userdata{margin:0}
 #postingform fieldset{border:none;margin:0 0 1em}
 #postingform div{font-size:1em;margin:0;padding:0}
 #postingform div:not(:last-child){margin-bottom:0.75em}
-#postingform label.input{display:block;float:left;float:inline-start;width:8em;font-weight:700}
+#postingform label.input{display:block;font-weight:700;margin-inline:0;margin-block:0 .25em}
 #postingform label.textarea{font-weight:700}
 #postingform input.checkbox{margin-left:8em}
 #postingform #insert-quote{margin:0 0 0 .5em;font-weight:400;font-size:.82em;padding:0 0 0 14px;background:url(images/quote_message.png) no-repeat left center transparent;border:none;color:#00c}

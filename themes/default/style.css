@@ -450,7 +450,7 @@ p.userdata               { margin:0; }
 #postingform div         { font-size:1em; margin:0; padding:0; }
 #postingform div:not(:last-child)
                          { margin-bottom:0.75em; }
-#postingform label.input { display:block; float:left; float: inline-start; width:8em; font-weight:bold; }
+#postingform label.input { display:block; font-weight:bold; margin-inline: 0; margin-block: 0 0.25em; }
 #postingform label.textarea
                          { font-weight:bold; }
 #postingform input.checkbox
