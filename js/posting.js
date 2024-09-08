@@ -684,16 +684,9 @@ function ButtonGroup(f) {
 			return textarea.quote.trim();
 		}
 		
-		// Zitieren-Link einfuegen
+		// insert the quotation-link
 		if (textarea.getQuote() != "" && document.getElementById("message")) {
-			var labels = document.getElementById("message").getElementsByTagName("label");
-			var label = null;
-			for (var i=0; i<labels.length; i++) { 
-				if (labels[i].className.search(/textarea/) != -1) {
-					label = labels[i];
-					break;
-				}
-			}
+			var label = document.querySelector('label[for="text"]');
 			if (label) {
 				var quoteButton = document.createElementWithAttributes("button", {"type": "button", "id": "insert-quote", "title": lang["quote_title"], "tabIndex": -1});
 				quoteButton.onclick = function(e) {
