@@ -661,7 +661,8 @@ function ButtonGroup(f) {
 			return;
 		var userButtons = document.getElementById(id).getElementsByTagName("button");
 		if (userButtons && userButtons.length > 0) {
-			for (var i=0; i<userButtons.length; i++) {
+			var j = userButtons.length;
+			for (var i=0; i<j; i++) {
 				hasUserButtons = true;
 				userButtons[i].isSmilie = isSmilie;
 				addButton(createBBCodeButton(userButtons[i], null), true);
