@@ -766,13 +766,9 @@ function ButtonGroup(f) {
 	};
 	
 	var removeIntroductionElements = function() {
-		if (document.getElementById("bbcode-instructions")) {
-			var el = document.getElementById("bbcode-instructions");
-			el.parentNode.removeChild(el);
-		}
-		if (document.getElementById("smiley-instructions")) {
-			var el = document.getElementById("smiley-instructions");
-			el.parentNode.removeChild(el);
+		if (document.getElementById("formatting-help")) {
+			var el = document.getElementById("formatting-help");
+			el.classList.add('js-display-none');
 		}
 	};
 
