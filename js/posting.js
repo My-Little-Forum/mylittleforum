@@ -466,7 +466,7 @@ function ButtonGroup(f) {
 	}
 	
 	/**
-	 * WTransform introduction (for adding source code) into button elements
+	 * Transform introduction (for adding source code) into button elements
 	 */
 	var convertInstructionsToButton = function() {
 		if (!document.getElementById("bbcode-bar"))
@@ -474,32 +474,33 @@ function ButtonGroup(f) {
 		var buttonBar = document.getElementById("bbcode-bar");
 		
 		if (document.getElementById("bbcode-instructions")) {
-			var el = document.getElementById("bbcode-instructions").firstChild;
+			let elems = document.getElementById("bbcode-instructions").querySelectorAll("div");
 			var obj = null;
-
-			while (el != null) {
-				if (el.nodeName && el.nodeName.toLowerCase() == "dt") {
-					if (obj)
-						createSingleButton(obj, buttonBar);
+			
+			for (const el of elems) {
+				const term = el.querySelector("dt");
+				const desc = el.querySelectorAll("dd");
+				if (term) {
 					obj = {
-						code    : el.id,
-						label   : el.title,
-						title   : el.firstChild.nodeValue,
-						classes : el.className,
+						code    : term.getAttribute("id"),
+						label   : term.getAttribute("title"),
+						title   : term.textContent,
+						classes : term.getAttribute("class"),
 						childs  : []
 					};
 				}
-				else if (obj && el.nodeName && el.nodeName.toLowerCase() == "dd") {
-					var attChild = {
-						attribute : el.id,
-						label : el.title
+				if (obj && desc) {
+					for (const d of desc) {
+						var attChild = {
+							attribute : d.getAttribute("id"),
+							label     : d.getAttribute("title")
+						}
+						obj.childs.push(attChild);
 					}
-					obj.childs.push( attChild );
 				}
-				el = el.nextSibling;
+				if (obj)
+					createSingleButton(obj, buttonBar);
 			}
-			if (obj)
-				createSingleButton(obj, buttonBar);
 		}
 	};
 	
