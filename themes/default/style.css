@@ -511,7 +511,9 @@ div#format-bar           { margin: 0 !important; padding: 0.375em; background: #
 
 #smiley-bar button.default img
                          { margin:0; padding:0; }
-#additional-smilies      { border:none !important; margin:0; padding:7px 0 0 7px !important; max-width:200px; }
+#additional-smilies      { max-width: 200px; display: flex; flex-wrap: wrap; align-items: self-start; align-content: stretch; gap: 0.125em; }
+#additional-smilies button
+                         { font-size: 0.82em; min-height: 2.4em; margin: 0; padding-block: 0.25em; padding-inline: 1em; background: transparent; border: none; }
 #additional-smilies img  { margin:0 7px 7px 0; }
 
 #bbcode-instructions     { margin:0; padding:0; font-size:0.82em; }
