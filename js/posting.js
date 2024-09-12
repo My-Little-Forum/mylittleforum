@@ -107,7 +107,7 @@ function BBCodeLinkButton(el) {
 					txtarea.insertTextRange( "["+link_bb_code+"]" + insert_link + "[/"+link_bb_code+"]" );
 			}
 		}, 150);
-    };
+	};
 };
 
 /**
@@ -178,7 +178,7 @@ function BBCodeColorChooserButton(el) {
 	this.insertOptionCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
-		var buttonGroup = this.getButtonGroup();	
+		var buttonGroup = this.getButtonGroup();
 		var txtarea = buttonGroup.getTextArea();
 		var code = this.getCode();
 		txtarea.insertTextRange( "[" + code + obj.extension + "]" + txtarea.getSelection() + "[/" + code + "]" );			
@@ -222,7 +222,7 @@ function BBCodeOptionButton(el, list, quest, par) {
 			return;
 		var buttonGroup = this.getButtonGroup();
 		// Ausnahme INLINECODE
-		var codestart = this.getCode(), codeend = this.getCode();	
+		var codestart = this.getCode(), codeend = this.getCode();
 		window.setTimeout(function(){
 			var txtarea = buttonGroup.getTextArea();
 			var selectionRange = txtarea.getSelection();
@@ -248,10 +248,10 @@ function BBCodeOptionButton(el, list, quest, par) {
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
-		var buttonGroup = this.getButtonGroup();	
+		var buttonGroup = this.getButtonGroup();
 		var objPos = document.getElementPoSi(obj);
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(optionList);
-		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	
+		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);
 	};
 };
 
@@ -264,7 +264,7 @@ function BBCodeListButton(el) {
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
-		var buttonGroup = this.getButtonGroup();	
+		var buttonGroup = this.getButtonGroup();
 		var txtarea = buttonGroup.getTextArea();
 		var selectionRange = txtarea.getSelection();
 		var listStr = "";
@@ -288,7 +288,7 @@ function BBCodeSingleSmilieButton(el) {
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
-		var buttonGroup = this.getButtonGroup();	
+		var buttonGroup = this.getButtonGroup();
 		var txtarea = buttonGroup.getTextArea();
 		
 		var selectionRange = txtarea.getSelection();
@@ -325,10 +325,10 @@ function BBCodeSmilieButton(el, list) {
 	this.insertCode = function(obj) {
 		if (!this.canInsert()) 
 			return;
-		var buttonGroup = this.getButtonGroup();	
+		var buttonGroup = this.getButtonGroup();
 		var objPos = document.getElementPoSi(obj);
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(smilies);
-		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	
+		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);
 	};	
 };
 
@@ -421,6 +421,7 @@ function ButtonGroup(f) {
 		if (!document.getElementById("smiley-bar"))
 			return;
 		var buttonBar = document.getElementById("smiley-bar");
+		
 		if (document.getElementById("smiley-instructions")) {
 			var el = document.getElementById("smiley-instructions").firstChild;
 			var obj = null;
@@ -445,6 +446,7 @@ function ButtonGroup(f) {
 				}				
 				el = el.nextSibling;
 			}
+			
 			if (list && list.length > 0) {
 				obj = {
 					code    : "",
@@ -554,8 +556,7 @@ function ButtonGroup(f) {
 	 */
 	var createBBCodeButton = function(button, list) {
 		var bbCodeButton = null;
-		var bname=button&&button.name?button.name.toLowerCase():"";
-		//switch(button.name.toLowerCase()) {
+		var bname = button && button.name ? button.name.toLowerCase() : "";
 		switch(bname) {
 		case "link":
 			bbCodeButton = new BBCodeLinkButton( button );
@@ -591,8 +592,8 @@ function ButtonGroup(f) {
 		}
 		return bbCodeButton;
 	};
-		
-	/** 
+	
+	/**
 	 * Creates a window to show further options of the clicked button
 	 * @return win
 	 */
@@ -625,7 +626,7 @@ function ButtonGroup(f) {
 			else
 				content.replaceChild(list, content.firstChild);
 		};
-	
+		
 		w.enableOptionList = function(enable, pos) {
 			if (pos) {
 				this.style.left = pos.left + "px"; 
@@ -638,13 +639,13 @@ function ButtonGroup(f) {
 		};
 		
 		var oldOnKeyPressFunc = window.document.onmousedown;
-		window.document.onkeypress = function(e) { 
+		window.document.onkeypress = function(e) {
 			if (e.key == "Esc")
-				self.enableOptionList(false);	
-				
+				self.enableOptionList(false);
+			
 			if (typeof oldOnKeyPressFunc == "function")
 				oldOnKeyPressFunc(e);
-		}	
+		}
 		
 		return w;
 	};
@@ -656,7 +657,7 @@ function ButtonGroup(f) {
 	var initUserBBCodeButtons = function(isSmilie) {
 		isSmilie = isSmilie || false;
 		hasUserButtons = false;
-		var id = isSmilie?"smiley-bar":"bbcode-bar";
+		var id = isSmilie ? "smiley-bar" : "bbcode-bar";
 		if (!document.getElementById(id)) 
 			return;
 		var userButtons = document.getElementById(id).getElementsByTagName("button");
@@ -667,7 +668,7 @@ function ButtonGroup(f) {
 				userButtons[i].isSmilie = isSmilie;
 				addButton(createBBCodeButton(userButtons[i], null), true);
 			}
-		}		
+		}
 	};
 	
 	/**
@@ -680,7 +681,7 @@ function ButtonGroup(f) {
 			textarea.quote = textarea.value;
 			textarea.value = "";
 		}
-			
+		
 		textarea.getQuote = function() {
 			return textarea.quote.trim();
 		}
@@ -760,9 +761,9 @@ function ButtonGroup(f) {
 		link.onclick = function(e) {
 			document.cookie = settings["session_prefix"]+'userdata=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
 			span.innerHTML = "";
-                        if(f.elements["setcookie"]) f.elements["setcookie"].checked = false;
+			if(f.elements["setcookie"]) f.elements["setcookie"].checked = false;
 			return false;
-		};		
+		};
 	};
 	
 	var removeIntroductionElements = function() {
