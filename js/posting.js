@@ -455,7 +455,7 @@ function ButtonGroup(f) {
 					code    : "",
 					title   : lang["more_smilies_title"],
 					label   : lang["more_smilies_label"],
-					classes : "more-smilies",
+					classes : "",
 					isSmilie: true,
 					childs  : list
 				};
