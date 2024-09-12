@@ -77,7 +77,7 @@ html[dir="rtl"] a.rss{background-position-x:calc(100% + 4px)}
 p.right a.rss{padding-inline-start:15px}
 input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
 #content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
-#content p,#content ul,#content td{font-size:.82em;max-width:60em}
+#content p,#content ul,#content td,#postingform{font-size:.82em;max-width:60em}
 #content li,#content ul ul{font-size:1em}
 #content .xsmall{font-size:.69em;line-height:1.19em;color:gray;font-weight:400}
 #content .small{font-size:.69em;line-height:1.19em;font-weight:400}
@@ -299,7 +299,6 @@ div#entry-input,#postingform input[type="text"],#postingform input[type="email"]
 html[dir="rtl"] #postingform #insert-quote{background-position-x:right}
 #postingform #insert-quote:focus,#postingform #insert-quote:hover{color:#00f}
 #postingform #text{width:100%;height:24em}
-#postingform{font-size:.82em}
 #postingform .small,#postingform .xsmall{font-size:.82em}
 #delete_cookie{font-size:.82em}
 #delete_cookie a{padding-left:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -47px}
