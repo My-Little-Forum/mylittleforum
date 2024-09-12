@@ -288,8 +288,8 @@ p.userdata{margin:0}
 .normalform:not(:first-child){margin:1em 0 0}
 .inline{display:inline}
 #postingform fieldset{border:none;margin:0 0 1em}
-#postingform div{font-size:1em;margin:0;padding:0}
-#postingform div:not(:last-child){margin-bottom:0.75em}
+#postingform fieldset > *{font-size:1em;margin:0;padding:0}
+#postingform fieldset > *:not(:last-child){margin-block-end:.75em}
 #postingform #sticky-selection{padding-inline:0;list-style:none}
 #postingform label.input{display:block;font-weight:700;margin-inline:0;margin-block:0 .25em}
 #postingform label.textarea{font-weight:700}
