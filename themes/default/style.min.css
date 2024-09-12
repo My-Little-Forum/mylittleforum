@@ -287,7 +287,8 @@ p.userdata{margin:0}
 .normalform{font-size:.82em;margin:0}
 .normalform:not(:first-child){margin:1em 0 0}
 .inline{display:inline}
-#postingform fieldset{border:none;margin:0 0 1em}
+#postingform fieldset{border:none;margin-inline:0;}
+#postingform fieldset:not(:last-child){margin-block:0 1em}
 #postingform fieldset > *{font-size:1em;margin:0;padding:0}
 #postingform fieldset > *:not(:last-child){margin-block-end:.75em}
 #postingform #sticky-selection{padding-inline:0;list-style:none}
