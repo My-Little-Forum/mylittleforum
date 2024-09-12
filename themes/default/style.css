@@ -456,7 +456,7 @@ p.userdata               { margin:0; }
 #postingform label.textarea
                          { font-weight:bold; margin-block: 0 .25em; margin-inline: 0; }
 #postingform input.checkbox
-                         { margin-left:8em; }
+                         { margin-inline-start:8em; }
 
 #postingform #insert-quote
                          { margin-block: 0 0.25em; margin-inline: 0.25em 0; font-weight:normal; font-size:0.82em; padding-block: 0; padding-inline: 14px 0; background:url(images/quote_message.png) no-repeat left center transparent; border:none; color:#00c; }
