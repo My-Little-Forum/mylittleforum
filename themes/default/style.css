@@ -128,7 +128,8 @@ select.small             { font-family:verdana,arial,sans-serif; font-size:0.82e
 #content                 { margin:0; padding: 1em; padding: 1rem; line-height: 1.5; background:#fff; flex:1; overflow: auto; }
 #content p,
 #content ul,
-#content td              { font-size:0.82em; max-width:60em; }
+#content td,
+#postingform             { font-size:0.82em; max-width:60em; }
 #content li,
 #content ul ul           { font-size:1em; }
 #content .xsmall         { font-size:0.69em; line-height:1.19em; color:#808080; font-weight:normal; }
@@ -474,7 +475,6 @@ html[dir="rtl"] #postingform #insert-quote
 
 #postingform #text       { width:100%; height:24em; }
 
-#postingform             { font-size:0.82em }
 #postingform .small,
 #postingform .xsmall     { font-size:0.82em }
 #delete_cookie           { font-size:0.82em }
