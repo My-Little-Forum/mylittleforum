@@ -544,14 +544,6 @@ ul.pagination a:focus,
 ul.pagination a:hover    { border:1px solid #0000cc; background:#efefef; text-decoration:none; }
 ul.pagination .current   { border:1px solid #bacbdf; color:red; font-weight:bold; }
 
-#more-smilies            { position:absolute; width:200px; background:#ffc; border:1px solid #c0c0c0; display:none; }
-#more-smilies .close     { position:absolute; top:0; right:0; padding:0; }
-#more-smilies-body       { overflow:auto; }
-#more-smilies-content    { max-height:300px;}
-#more-smilies-content p  { padding:10px; }
-#more-smilies-content img
-                         { padding:5px; }
-
 #colorpicker             { position:absolute; /*width:100px; height:100px;*/ background:#bbb; border:1px solid #bbb; display:none; }
 #colorpicker table       { margin:0; padding:0; line-height:10px; }
 #colorpicker table img   { margin:0; padding:0; border:1px solid #bbb; }
