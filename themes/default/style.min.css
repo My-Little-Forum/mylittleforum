@@ -293,6 +293,7 @@ p.userdata{margin:0}
 #postingform #sticky-selection{padding-inline:0;list-style:none}
 #postingform label.input{display:block;font-weight:700;margin-inline:0;margin-block:0 .25em}
 #postingform label.textarea{font-weight:700;margin-block:0 .25em; margin-inline:0}
+div#entry-input,#postingform input[type="text"],#postingform input[type="email"],#postingform input[type="url"],#postingform input[type="tel"]{max-width:calc(100vw - 4em)}
 #postingform input.checkbox{margin-inline-start:8em}
 #postingform #insert-quote{margin-block:0 .25em;margin-inline:.75em 0;font-weight:400;font-size:.82em;padding-block:0;padding-inline:14px 0;background:url(images/quote_message.png) no-repeat left center transparent;border:none;color:#00c}
 html[dir="rtl"] #postingform #insert-quote{background-position-x:right}
