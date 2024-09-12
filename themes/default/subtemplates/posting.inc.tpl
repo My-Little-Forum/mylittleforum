@@ -288,7 +288,7 @@ Like custom BBCode buttons, example:
 {/if}
 
 {if $provide_sticky}
-<ul>
+<ul id="sticky-selection">
  <li><input id="sticky_none" type="radio" name="sticky" value="0"{if !$sticky or ($sticky && $sticky==0)} checked="checked"{/if} />&nbsp;<label for="sticky_none">{#sticky_none#}</label></li>
 {if $categories}
  <li><input id="sticky_cat" type="radio" name="sticky" value="1"{if $sticky && $sticky==1} checked="checked"{/if} />&nbsp;<label for="sticky_cat">{#sticky_single_cat#}</label></li>
