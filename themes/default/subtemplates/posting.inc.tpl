@@ -155,8 +155,8 @@
 <fieldset id="message">
 
 <div id="formatting-help">
-<h3>Formatierungshilfe</h3>
-<p><a href="#entry-input">zur Eingabe springen</a></p>
+<h3>{#bbcode_help_heading#}</h3>
+<p><a href="#entry-input">{#bbcode_help_skip_link#}</a></p>
 {*<!--
 This list is read out to generte the default BBCode buttons or displayed if
 JavaScript isn't available. 
