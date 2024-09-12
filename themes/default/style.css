@@ -467,7 +467,6 @@ html[dir="rtl"] #postingform #insert-quote
                          { color:#00f; }
 
 #postingform #text       { width:700px; height:400px; float:left; float: inline-start; }
-#postingform #format-bar { margin-left:720px; }
 
 #postingform             { font-size:0.82em }
 #postingform .small,
@@ -510,7 +509,6 @@ div#format-bar           { margin: 0 !important; padding: 0.375em; background: #
 #bbcode-options table a:hover
                          { border:1px solid #fff; text-decoration:none; }
 
-#smiley-bar              { width:70px; }
 #smiley-bar button.default
                          { margin:0 1px 1px 0; padding:0; width:30px; }
 #smiley-bar button.default span
