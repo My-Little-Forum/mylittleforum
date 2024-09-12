@@ -311,14 +311,13 @@ function BBCodeSmilieButton(el, list) {
 		let btn = document.createElementWithAttributes("button",{"type": "button", "title": list[i].title, "value": list[i].code, "onclick": function(e) { self.insertButtonCode(this); return false; }}, item);
 		btn.appendChild( list[i].label);
 	}
-		
-	this.insertOptionCode = function(obj) {
-		if (!this.canInsert()) 
-			return;
-		var buttonGroup = this.getButtonGroup();	
+	
+	this.insertButtonCode = function(obj) {
+		if (!this.canInsert()) return;
+		var buttonGroup = this.getButtonGroup();
 		var txtarea = buttonGroup.getTextArea();
-		var code = obj.code;
-		txtarea.insertTextRange( txtarea.getSelection() +code + " " );
+		const val = event.target.closest("button").getAttribute("value");
+		txtarea.insertTextRange( txtarea.getSelection() + val + " " );
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(false);
 	}
 	
