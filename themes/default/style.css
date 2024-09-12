@@ -509,15 +509,8 @@ div#format-bar           { margin: 0 !important; padding: 0.375em; background: #
 #bbcode-options table a:hover
                          { border:1px solid #fff; text-decoration:none; }
 
-#smiley-bar button.default
-                         { margin:0 1px 1px 0; padding:0; width:30px; }
-#smiley-bar button.default span
-                         { display:block; line-height:1px; margin:0; padding:0; }
 #smiley-bar button.default img
                          { margin:0; padding:0; }
-#smiley-bar button.more-smilies
-                         { width:62px; font-size:11px; margin:0 0 3px 0; padding:0; }
-#smiley-bar button span  { line-height:1.4em; }
 #additional-smilies      { border:none !important; margin:0; padding:7px 0 0 7px !important; max-width:200px; }
 #additional-smilies img  { margin:0 7px 7px 0; }
 
