@@ -326,10 +326,9 @@ div#format-bar{margin:0 !important;padding:.375em;background:#f2f2f2}
 #bbcode-options table td{width:15px!important;height:15px!important;margin:0;padding:0}
 #bbcode-options table a{margin:0;padding:0;border:1px solid #bbb;width:15px;height:15px}
 #bbcode-options table a:focus,#bbcode-options table a:hover{border:1px solid #fff;text-decoration:none}
-#smiley-bar button.default img{margin:0;padding:0}
-#additional-smilies img{margin:0 7px 7px 0}
 #additional-smilies{max-width:200px;display:flex;flex-wrap:wrap;align-items:self-start;align-content:stretch;gap:.125em}
 #additional-smilies button{font-size:.82em;min-height:2.4em;margin:0;padding-block:.25em;padding-inline:1em;background:transparent;border:none}
+#smiley-bar button img,#additional-smilies button img{display:block;width:1.2em;height:auto;margin:0;padding:0}
 #bbcode-instructions{margin:0;padding:0;font-size:.82em}
 #bbcode-instructions dt{font-weight:700}
 #bbcode-instructions dd{margin-left:0}
