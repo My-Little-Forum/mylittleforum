@@ -66,7 +66,7 @@ function BBCodeButton(el) {
 	this.setHTMLElement = function(el) {
 		htmlEl = el;
 		htmlEl.onclick = function(e) {
-			self.insertCode(this); 
+			self.insertCode(this);
 			return false;
 		}
 	};
@@ -181,7 +181,7 @@ function BBCodeColorChooserButton(el) {
 		var buttonGroup = this.getButtonGroup();
 		var txtarea = buttonGroup.getTextArea();
 		var code = this.getCode();
-		txtarea.insertTextRange( "[" + code + obj.extension + "]" + txtarea.getSelection() + "[/" + code + "]" );			
+		txtarea.insertTextRange( "[" + code + obj.extension + "]" + txtarea.getSelection() + "[/" + code + "]" );
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(false);
 	};
 	
@@ -191,7 +191,7 @@ function BBCodeColorChooserButton(el) {
 		var buttonGroup = this.getButtonGroup();
 		var objPos = document.getElementPoSi(obj);
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(colorTable);
-		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);	
+		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);
 	};
 };
 
@@ -328,7 +328,7 @@ function BBCodeSmilieButton(el, list) {
 		var objPos = document.getElementPoSi(obj);
 		buttonGroup.getAdditionalOptionsWindow().setOptionList(smilies);
 		buttonGroup.getAdditionalOptionsWindow().enableOptionList(true, objPos);
-	};	
+	};
 };
 
 /**
@@ -570,7 +570,7 @@ function ButtonGroup(f) {
 			if (list && list.length > 1)
 				bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "https://" );
 			else
-				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "https://" ); 
+				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_image_url"], "https://" );
 		break;
 		case "color":
 			bbCodeButton = new BBCodeColorChooserButton( button );
@@ -579,10 +579,10 @@ function ButtonGroup(f) {
 			bbCodeButton = new BBCodeListButton( button );
 		break;
 		case "upload":
-			bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=upload_image", settings["upload_popup_width"], settings["upload_popup_height"]); 
+			bbCodeButton = new BBCodePopUpButton( button, "index.php?mode=upload_image", settings["upload_popup_width"], settings["upload_popup_height"]);
 		break;
 		case "tex":
-			bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] ); 
+			bbCodeButton = new BBCodePromtButton( button, lang["bbcode_tex_code"] );
 		break;
 		default:
 			if (button.isSmilie && list && list.length > 0)
@@ -634,7 +634,7 @@ function ButtonGroup(f) {
 		
 		w.enableOptionList = function(enable, pos) {
 			if (pos) {
-				this.style.left = pos.left + "px"; 
+				this.style.left = pos.left + "px";
 				this.style.top = pos.top + "px";
 			}
 			if (enable)
@@ -697,9 +697,9 @@ function ButtonGroup(f) {
 			if (label) {
 				var quoteButton = document.createElementWithAttributes("button", {"type": "button", "id": "insert-quote", "title": lang["quote_title"], "tabIndex": -1});
 				quoteButton.onclick = function(e) {
-					textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value; 
-					this.classList.add("js-display-none"); 
-					textarea.focus(); 
+					textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value;
+					this.classList.add("js-display-none");
+					textarea.focus();
 					return false;
 				};
 				quoteButton.appendChild( document.createTextNode(lang["quote_label"]) )
@@ -748,7 +748,7 @@ function ButtonGroup(f) {
 	 */
 	this.getTextArea = function() {
 		return textarea;
-	};	
+	};
 	
 	/**
 	 * Returns the property window of the button
