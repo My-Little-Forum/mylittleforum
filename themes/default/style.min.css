@@ -303,11 +303,11 @@ html[dir="rtl"] #postingform #insert-quote{background-position-x:right}
 #postingform .small,#postingform .xsmall{font-size:.82em}
 #delete_cookie{font-size:.82em}
 #delete_cookie a{padding-left:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -47px}
-#bbcode-bar button{width:62px;font-size:11px;margin:0 0 3px;padding:0}
-#bbcode-bar button span{line-height:1.4em}
 div#format-bar{margin:0 !important;padding:.375em;background:#f2f2f2}
 #postingform #format-bar > *{display:flex;flex-wrap:wrap;gap:.125em}
 #postingform #format-bar > *:not(:last-child){margin-block-end:.375em}
+#format-bar button{font-size:.82em;min-height:2.4em;margin:0;padding-block:.25em;padding-inline:1em}
+#format-bar button span{display:block;line-height:1.4em}
 #bbcodebutton-b span{font-weight:700}
 #bbcodebutton-i span{font-style:italic}
 #bbcodebutton-link span{color:#00c;text-decoration:underline}
