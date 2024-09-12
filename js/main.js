@@ -98,8 +98,9 @@ if (window.Node && Node.prototype && !Node.prototype.contains) {
 document.createElementWithAttributes = function(tagName, attributes, parentElement) {
 	var el = document.createElement(tagName);
 	
-	for (var attribute in attributes) 
-		el[attribute] = attributes[attribute]; //el.setAttribute(attribute, attributes[attribute]); cannot used because function are evaluated in attributes e.g. {"onclick": function(e) { return false; }}
+	for (const attribute in attributes) {
+		el[attribute] = attributes[attribute]; //el.setAttribute(attribute, attributes[attribute]); cannot be used because function are evaluated in attributes e.g. {"onclick": function(e) { return false; }}
+	}
 
 	if (parentElement) 
 		parentElement.appendChild(el);
