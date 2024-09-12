@@ -304,12 +304,12 @@ function BBCodeSingleSmilieButton(el) {
 function BBCodeSmilieButton(el, list) {
 	this.constructor(el, list);
 	var self = this;
-	//var smilies = document.createElement("div");
-	var smilies = document.createElementWithAttributes("div", {"id": "additional-smilies"}, null);
+	var smilies = document.createElementWithAttributes("ul", {"id": "additional-smilies"}, null);
 	
 	for (var i=0; i<list.length; i++) {
-		var link = document.createElementWithAttributes("a", {"href": "#", "title": list[i].title, "code": list[i].code, "onclick": function(e) { self.insertOptionCode(this); return false; } }, smilies);
-		link.appendChild( list[i].label );
+		let item = document.createElementWithAttributes("li",{}, smilies);
+		let btn = document.createElementWithAttributes("button",{"type": "button", "title": list[i].title, "value": list[i].code, "onclick": function(e) { self.insertButtonCode(this); return false; }}, item);
+		btn.appendChild( list[i].label);
 	}
 		
 	this.insertOptionCode = function(obj) {
