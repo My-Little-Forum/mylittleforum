@@ -475,7 +475,7 @@ html[dir="rtl"] #postingform #insert-quote
 #postingform #insert-quote:hover
                          { color:#00f; }
 
-#postingform #text       { width:100%; height:24em; }
+#postingform #text       { margin: 0; width:100%; height:24em; }
 
 #postingform .small,
 #postingform .xsmall     { font-size:0.82em }
