@@ -422,28 +422,32 @@ function ButtonGroup(f) {
 		var buttonBar = document.getElementById("smiley-bar");
 		
 		if (document.getElementById("smiley-instructions")) {
-			var el = document.getElementById("smiley-instructions").firstChild;
+			let elems = document.getElementById("smiley-instructions").querySelectorAll("div");
 			var obj = null;
 			var list = [];
-			while (el != null) {
-				if (el.nodeName && el.nodeName.toLowerCase() == "dt") {
+			
+			for (const el of elems) {
+				const term = el.querySelector("dt");
+				const desc = el.querySelectorAll("dd");
+				if (term) {
 					obj = {
-						code    : el.firstChild.nodeValue,
-						title   : el.title,
-						classes : el.className,
+						code    : term.textContent,
+						title   : term.getAttribute("title"),
+						classes : term.getAttribute("class"),
 						isSmilie: true,
 						childs  : []
 					};
 				}
-				else if (obj && el.nodeName && el.nodeName.toLowerCase() == "dd") {
-					obj.label = el.firstChild;
-					if (obj.classes.search(/default/) != -1)
-						createSingleButton(obj, buttonBar);
-					else
-						list.push(obj);
-					obj = null;
-				}				
-				el = el.nextSibling;
+				if (obj && desc) {
+					for (const d of desc) {
+						obj.label = d.firstChild;
+						if (obj.classes.search(/default/) != -1)
+							createSingleButton(obj, buttonBar);
+						else
+							list.push(obj);
+						obj = null;
+					}
+				}
 			}
 			
 			if (list && list.length > 0) {
@@ -455,7 +459,8 @@ function ButtonGroup(f) {
 					isSmilie: true,
 					childs  : list
 				};
-				createSingleButton(obj, buttonBar);
+				if (obj)
+					createSingleButton(obj, buttonBar);
 			}
 		}
 	}
