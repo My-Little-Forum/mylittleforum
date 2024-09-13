@@ -330,11 +330,13 @@ div#format-bar{margin:0 !important;padding:.375em;background:#f2f2f2}
 #additional-smilies{max-width:200px;display:flex;flex-wrap:wrap;align-items:self-start;align-content:stretch;gap:.125em}
 #additional-smilies button{font-size:.82em;min-height:2.4em;margin:0;padding-block:.25em;padding-inline:1em;background:transparent;border:none}
 #smiley-bar button img,#additional-smilies button img{display:block;width:1.2em;height:auto;margin:0;padding:0}
-#bbcode-instructions{margin:0;padding:0;font-size:.82em}
-#bbcode-instructions dt{font-weight:700}
-#bbcode-instructions dd{margin-left:0}
-#smiley-instructions dt{float:left;float:inline-start}
-#smiley-instructions dd{clear:right;clear:inline-end}
+#formatting-help > *{margin-block:0 .75em;margin-block:0 .75rem;padding:0}
+#formatting-help dl > div:not(:last-child){margin-block:0 .375em}
+#formatting-help dt{font-weight:bold}
+#formatting-help dd{margin-left:0}
+#formatting-help dd img{display:block}
+#smiley-instructions div{display:flex;gap:.5em}
+#smiley-instructions dt{flex:0 0 6em}
 button.insert-smiley{margin:0;padding:0;font-size:11px;font-weight:400}
 #smilies li{display:inline-block;min-width:50px;padding:0 10px 10px 0;white-space:nowrap}
 ul.pagination{margin:.75em 0;padding:0;list-style-type:none}
