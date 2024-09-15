@@ -88,8 +88,8 @@
 </div>
 
 <div>
-<label for="email" class="input">{#email_marking#}</label>
-<input id="email" type="email" size="40" name="{$fld_user_email}" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="2" />&nbsp;<span class="xsmall">{#optional_email#}</span>
+<label for="email" class="input">{#email_marking#} <span class="xsmall">{#optional_email#}</span></label>
+<input id="email" type="email" size="40" name="{$fld_user_email}" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="2" />
 </div>
 
 <div class="hp">
@@ -98,8 +98,8 @@
 </div>
 
 <div>
-<label for="hp" class="input">{#hp_marking#}</label>
-<input id="hp" type="url" size="40" name="{$fld_hp}" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" tabindex="3" />&nbsp;<span class="xsmall">{#optional#}</span>
+<label for="hp" class="input">{#hp_marking#} <span class="xsmall">{#optional#}</span></label>
+<input id="hp" type="url" size="40" name="{$fld_hp}" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" tabindex="3" />
 </div>
 
 <div class="hp">
@@ -108,8 +108,8 @@
 </div>
 
 <div>
-<label for="location" class="input">{#location_marking#}</label>
-<input id="location" type="text" size="40" name="{$fld_location}" value="{if $location}{$location}{/if}" maxlength="{$settings.location_maxlength}" tabindex="4" />&nbsp;<span class="xsmall">{#optional#}</span>
+<label for="location" class="input">{#location_marking#} <span class="xsmall">{#optional#}</span></label>
+<input id="location" type="text" size="40" name="{$fld_location}" value="{if $location}{$location}{/if}" maxlength="{$settings.location_maxlength}" tabindex="4" />
 </div>
 
 {if $settings.remember_userdata == 1 && $posting_mode==0 && !$user}
