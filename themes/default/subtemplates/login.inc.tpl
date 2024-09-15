@@ -12,7 +12,7 @@
 {if $back}<input type="hidden" name="back" value="{$back}" />{/if}
 {if $id}<input type="hidden" name="id" value="{$id}" />{/if}
 <p><label for="login" class="main">{#login_username#}</label><br /><input id="login" class="login" type="text" name="username" size="25" /></p>
-<p><label for="password" class="main">{#login_password#}</label><br /><input id="password" class="login" type="password" name="userpw" spellcheck="false" autocomplete="off" size="25" /></p>
+<p><label for="password" class="main">{#login_password#}</label><br /><input id="password" class="login" type="password" name="userpw" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" /></p>
 {if $settings.autologin==1}
 <p class="small"><input id="autologin" type="checkbox" name="autologin_checked" value="true" /> <label for="autologin">{#login_auto#}</label></p>
 {/if}
