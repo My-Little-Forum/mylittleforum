@@ -114,7 +114,7 @@
 
 {if $settings.remember_userdata == 1 && $posting_mode==0 && !$user}
 <div>
-<input id="setcookie" class="checkbox" type="checkbox" name="setcookie" value="1"{if $setcookie} checked="checked"{/if} />&nbsp;<label for="setcookie">{#remember_userdata_marking#}</label>{if $cookie} &nbsp;<span id="delete_cookie"><a href="index.php?mode=delete_cookie">{#delete_cookie_linkname#}</a></span>{/if}
+<input id="setcookie" type="checkbox" name="setcookie" value="1"{if $setcookie} checked="checked"{/if} />&nbsp;<label for="setcookie">{#remember_userdata_marking#}</label>{if $cookie} &nbsp;<span id="delete_cookie"><a href="index.php?mode=delete_cookie">{#delete_cookie_linkname#}</a></span>{/if}
 </div>
 {/if}
 
