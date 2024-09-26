@@ -1156,7 +1156,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				return;
 			
 			initThreadFoldingInSubMenu();
-				
+			
 			for (var i=0; i<els.length; i++) {
 				var el = els[i];
 				var li = el.closest("li");
@@ -1176,7 +1176,7 @@ function DragAndDropTable(table,mode,queryKey) {
 								self.selectPosting( this.pid );
 								this.blur();
 								return false;
-							};							
+							};
 						}
 						else if (links[j].href.search(/delete_posting/) != -1) {
 							links[j].onclick = function(e) {
@@ -1186,8 +1186,8 @@ function DragAndDropTable(table,mode,queryKey) {
 								this.blur();
 								return confirmed;	
 							};
-						}				
-					}			
+						}
+					}
 				}
 				if (!pEmpty && pLink && ajaxPreviewWindow) {
 					if (links.length >= 1) {
@@ -1217,11 +1217,11 @@ function DragAndDropTable(table,mode,queryKey) {
 									var confirmed = window.confirm( lang["delete_posting_confirm"] );
 									if (confirmed) 
 										this.href += '&delete_posting_confirm=true';
-									return confirmed;	
+									return confirmed;
 								};
 								break;
-							}				
-						}			
+							}
+						}
 					}
 				}
 			}
