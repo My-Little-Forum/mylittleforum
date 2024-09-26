@@ -729,6 +729,12 @@ a.read:focus,
 a.read:hover             { color:#00f; }
 a.read:active            { color:#f00; }
 
+ul.thread li > a,
+ul.thread li .currentreply,
+ul.thread li > .metadata { text-wrap: nowrap; }
+main:not(:has(table#threadlist)) ul.thread li > a::after
+                         { content: " - "; }
+
 .currentthread           { padding-inline-start:18px; color:#ff0000; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
 html[dir="rtl"] .currentthread
                          { background: url(images/bg_sprite_1.png) no-repeat 100% -148px; }
