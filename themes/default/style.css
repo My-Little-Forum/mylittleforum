@@ -855,7 +855,7 @@ form .hp { display: none; }
 	#usermenu { justify-content: flex-end; }
 	#subnav { flex-direction: row; justify-content: space-between; }
 	#subnav-2 { text-align: end; }
-	#sidebar { width: 16em; }
+	#sidebar { width: 100%; }
 	#admin-main-menu { grid-template-areas: "infoboxes mainmenu"; grid-template-columns: 18em auto; grid-template-rows: auto;}
 	#main-grid.threaded { grid-template-areas: "threadlist sidebar"; grid-template-columns: auto 18em; grid-template-rows: auto; }
 	#main-grid.threaded:has(div.js-display-fold) { grid-template-columns: auto 8.5em; }
