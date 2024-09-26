@@ -158,6 +158,7 @@
 			$data['name'] = htmlspecialchars($data['name']);
 		$data['subject']       = htmlspecialchars($data['subject']);
 		$data['formated_time'] = format_time($lang['time_format'], $data['disp_time']);
+		$data['ISO_time'] = format_time('YYYY-MM-dd HH:mm:ss', $data['time']);
 		
 		// set read or new status of messages
 		$data = getMessageStatus($data, $last_visit);
