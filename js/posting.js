@@ -226,12 +226,13 @@ function BBCodeOptionButton(el, list, quest, par) {
 		window.setTimeout(function(){
 			var txtarea = buttonGroup.getTextArea();
 			var selectionRange = txtarea.getSelection();
-		
-			if (obj.attribute.toLowerCase() == "inlinecode") {
-				codestart = codeend = obj.attribute;
+			
+			if (obj.attribute != null && obj.attribute.trim() != "") {
+				if (obj.attribute.trim().toLowerCase() == "inlinecode")
+					codestart = codeend = obj.attribute;
+				else
+					codestart += "=" + obj.attribute;
 			}
-			if (obj.attribute.trim() && obj.attribute.toLowerCase() != "inlinecode")
-				codestart += "=" + obj.attribute;
 			
 			if (quest && selectionRange == "") {
 				var p = window.prompt(quest, par);
