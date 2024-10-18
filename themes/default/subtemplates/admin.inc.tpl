@@ -427,7 +427,7 @@
 {cycle values="a,b" assign=c}
 <tr class="{$c}">
 <td style="width:10px;"><input type="checkbox" name="selected[]" value="{$userdata[row].user_id}" /></td>
-<td>{if $userdata[row].inactive}<span title="{#user_inactive#}" style="font-weight:bold;color:red;">{$userdata[row].user_name}</span>{else}<a href="index.php?mode=user&amp;show_user={$userdata[row].user_id}" title="{#show_userdata_linktitle#|replace:"[user]":$userdata[row].user_name}"><strong>{$userdata[row].user_name}</strong></a>{/if}</td>
+<td>{if $userdata[row].inactive}<span class="author-name inactive-user" title="{#user_inactive#}">{$userdata[row].user_name}</span>{else}<a href="index.php?mode=user&amp;show_user={$userdata[row].user_id}" title="{#show_userdata_linktitle#|replace:"[user]":$userdata[row].user_name}"><span class="author-name">{$userdata[row].user_name}</span></a>{/if}</td>
 <td><span class="small"><a href="mailto:{$userdata[row].user_email}" title="{#mailto_user_lt#|replace:"[user]":$userdata[row].user_name}">{$userdata[row].user_email}</a></span></td>
 <td><span class="small">{if $userdata[row].user_type==2}{#admin#}{elseif $userdata[row].user_type==1}{#mod#}{else}{#user#}{/if}</span></td>
 <td><span class="small">{$userdata[row].registered_time}</span></td>

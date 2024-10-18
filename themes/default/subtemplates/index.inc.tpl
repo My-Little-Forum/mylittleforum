@@ -46,7 +46,15 @@
 <li><a class="subject {if $data.$element.pid==0 && $data.$element.new}{if $data.$element.sticky>0 && $data.$element.locked==1}threadnew-sticky-locked{elseif $data.$element.sticky>0}threadnew-sticky{elseif $data.$element.locked==1}threadnew-locked{else}threadnew{/if}{elseif $data.$element.pid==0}{if $data.$element.sticky>0 && $data.$element.locked==1}thread-sticky-locked{elseif $data.$element.sticky>0}thread-sticky{elseif $data.$element.locked==1}thread-locked{else}thread{/if}{elseif $data.$element.pid!=0 && $data.$element.new}replynew{else}reply{/if}{if $data.$element.is_read} read{/if}" href="index.php?id={$data.$element.id}"{if $data.$element.spam==1} title="{#spam#}"{/if}>{if $data.$element.spam==1}<span class="spam">{$data.$element.subject}</span>{else}{$data.$element.subject}{/if}</a>
 
 <span class="metadata">
-<strong>{if $data.$element.user_type==2}<span class="admin registered_user" title="{#administrator_title#}">{$data.$element.name}</span>{elseif $data.$element.user_type==1}<span class="mod registered_user" title="{#moderator_title#}">{$data.$element.name}</span>{elseif $data.$element.user_id>0}<span class="registered_user">{$data.$element.name}</span>{else}{$data.$element.name}{/if}</strong>, 
+{if $data.$element.user_type==2}
+<span class="author-name admin registered_user" title="{#administrator_title#}">{$data.$element.name}</span>
+{elseif $data.$element.user_type==1}
+<span class="author-name mod registered_user" title="{#moderator_title#}">{$data.$element.name}</span>
+{elseif $data.$element.user_id>0}
+<span class="author-name registered_user">{$data.$element.name}</span>
+{else}
+<span class="author-name">{$data.$element.name}</span>
+{/if}
 
 <span id="p{$data.$element.id}" class="tail">
 <time datetime="{$data.$element.ISO_time}">{$data.$element.formated_time}</time>
