@@ -37,7 +37,7 @@
 {foreach from=$userdata item=row}
 {cycle values="a,b" assign=c}
 <tr class="{$c}">
-<td><a href="index.php?mode=user&amp;show_user={$row.user_id}" title="{#show_userdata_linktitle#|replace:"[user]":$row.user_name}"><strong>{$row.user_name}</strong></a></td>
+<td><a href="index.php?mode=user&amp;show_user={$row.user_id}" title="{#show_userdata_linktitle#|replace:"[user]":$row.user_name}"><span class="author-name">{$row.user_name}</span></a></td>
 <td><span class="small">{if $row.user_type==2}{#admin#}{elseif $row.user_type==1}{#mod#}{else}{#user#}{/if}</span></td>
 <td><span class="small">{if $row.user_hp!=''}<a href="{$row.user_hp}" title="{$row.user_hp}"><img src="{$THEMES_DIR}/{$theme}/images/homepage.png" alt="{#homepage#}" width="13" height="13" /></a>{else}&nbsp;{/if}</span></td>
 <td><span class="small">{if $row.user_email}<a href="index.php?mode=contact&amp;recipient_user_id={$row.user_id}" title="{#mailto_user#|replace:"[user]":$row.user_name}"><img src="{$THEMES_DIR}/{$theme}/images/email.png" alt="{#email#}" width="13" height="10" /></a>{else}&nbsp;{/if}</span></td>

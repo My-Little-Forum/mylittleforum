@@ -12,14 +12,14 @@
 {/if}
 {if $user_type==2}
 {assign var=admin_title value=$smarty.config.administrator_title}
-{assign var=name value="<span class=\"admin registered_user\" title=\"$admin_title\">$name</span>"}
+{assign var=name value="<span class=\"author-name admin registered_user\" title=\"$admin_title\">$name</span>"}
 {elseif $user_type==1}
 {assign var=mod_title value=$smarty.config.moderator_title}
-{assign var=name value="<span class=\"mod registered_user\" title=\"$mod_title\">$name</span>"}
+{assign var=name value="<span class=\"author-name mod registered_user\" title=\"$mod_title\">$name</span>"}
 {elseif $posting_user_id>0}
-{assign var=name value="<span class=\"registered_user\">$name</span>"}
+{assign var=name value="<span class=\"author-name registered_user\">$name</span>"}
 {else}
-{assign var=name value="$name"}
+{assign var=name value="<span class=\"author-name\">$name</span>"}
 {/if}
 {if (($settings.user_area_access == 0 and ($admin or $mod)) or ($settings.user_area_access == 1 and $user) or $settings.user_area_access == 2) && $posting_user_id>0}
 {assign var=name value="<a href=\"index.php?mode=user&amp;show_user=$posting_user_id\">$name</a>"}
@@ -80,13 +80,13 @@
 
 <span class="metadata">
 {if $data.$element.user_type==2}
-<strong class="admin registered_user">{$data.$element.name}</strong>, 
+<span class="author-name admin registered_user" title="{#administrator_title#}">{$data.$element.name}</span>
 {elseif $data.$element.user_type==1}
-<strong class="mod registered_user">{$data.$element.name}</strong>, 
+<span class="author-name mod registered_user" title="{#moderator_title#}">{$data.$element.name}</span>
 {elseif $data.$element.user_id>0}
-<strong class="registered_user">{$data.$element.name}</strong>, 
+<span class="author-name registered_user">{$data.$element.name}</span>
 {else}
-<strong>{$data.$element.name}</strong>, 
+<span class="author-name">{$data.$element.name}</span>
 {/if}
 
 <span id="p{$data.$element.id}" class="tail">

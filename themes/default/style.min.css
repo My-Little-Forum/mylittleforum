@@ -260,6 +260,7 @@ ul.filelist{list-style-type:none;padding-left:0;margin-left:0;font-size:.82em;li
 ul.filelist img{margin:0 5px -3px 0;padding:0}
 ul.thread span.mod,ul.thread span.admin,td span.admin,td span.mod{cursor:help}
 .registered_user::after{content:" \00AE"}
+.author-name{font-weight:bold}
 #captcha{margin:0;padding:0}
 #captcha p{font-size:1em}
 #captcha img,img.captcha{border:1px solid #000}
