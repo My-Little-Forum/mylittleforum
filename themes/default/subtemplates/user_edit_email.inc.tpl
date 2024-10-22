@@ -6,15 +6,13 @@
 <ul>
 {section name=mysec loop=$errors}
 {assign var="error" value=$errors[mysec]}
-<li>{$smarty.config.$error}</li>
+ <li>{$smarty.config.$error}</li>
 {/section}
 </ul>
 {/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
-<div>
-<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<input type="hidden" name="mode" value="user" />
-</div>
+ <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
+ <input type="hidden" name="mode" value="user" />
  <div>
   <label for="new_email" class="main">{#edit_email_new#}</label>
   <input id="new_email" type="email" size="25" name="new_email" value="{$new_user_email|default:''}" maxlength="{$settings.email_maxlength}" autofocus required />
