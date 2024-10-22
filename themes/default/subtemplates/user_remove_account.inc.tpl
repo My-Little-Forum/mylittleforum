@@ -10,16 +10,16 @@
 {/section}
 </ul>
 {/if}
- <form action="index.php" method="post" accept-charset="{#charset#}">
-  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-  <input type="hidden" name="mode" value="user" />
-  <input type="hidden" name="action" value="edit_profile" />
-  <div>
-   <button name="remove_account_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
-   <button type="reset" value="{#submit_button_cancel#}">{#submit_button_cancel#}</button>
-  </div>
- </form>
+<form action="index.php" method="post" accept-charset="{#charset#}">
+ <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
+ <input type="hidden" name="mode" value="user" />
+ <input type="hidden" name="action" value="edit_profile" />
  <div>
   <label for="password">{#remove_user_confirm_password#}</label>
   <input id="password" type="password" name="user_password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" autofocus required />
  </div>
+ <div>
+  <button name="remove_account_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
+  <button type="reset" value="{#submit_button_cancel#}">{#submit_button_cancel#}</button>
+ </div>
+</form>
