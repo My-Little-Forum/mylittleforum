@@ -9,13 +9,14 @@
 </ul>
 {/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
-<p><strong>{#edit_pw_old#}</strong><br />
-<input type="password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" name="old_pw" /></p>
 <p><strong>{#edit_pw_new#}</strong><br />
 <input type="password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" name="new_pw" maxlength="255" /></p>
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <input type="hidden" name="mode" value="user" />
  <div>
+  <label for="old-pw">{#edit_pw_old#}</label>
+  <input type="password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" name="old_pw" id="old-pw" autofocus required />
+ </div>
   <button name="edit_pw_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
  </div>
 </form>
