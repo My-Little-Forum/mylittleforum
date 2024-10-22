@@ -14,12 +14,16 @@
 <div>
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="mode" value="user" />
-<p><label for="new_email" class="main">{#edit_email_new#}</label><br />
-<input id="new_email" type="text" size="25" name="new_email" value="{$new_user_email|default:''}" maxlength="{$settings.email_maxlength}" /></p>
-<p><label for="new_email_confirm" class="main">{#edit_email_new_confirm#}</label><br />
-<input id="new_email_confirm" type="text" size="25" name="new_email_confirm" value="" maxlength="{$settings.email_maxlength}" /></p>
 <p><label for="pw_new_email" class="main">{#edit_email_pw#}</label><br />
 <input id="pw_new_email" type="password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" name="pw_new_email" /></p>
 <p><input type="submit" name="edit_email_submit" value="{#submit_button_ok#}" /></p>
 </div>
+ <div>
+  <label for="new_email" class="main">{#edit_email_new#}</label>
+  <input id="new_email" type="email" size="25" name="new_email" value="{$new_user_email|default:''}" maxlength="{$settings.email_maxlength}" autofocus required />
+ </div>
+ <div>
+  <label for="new_email_confirm" class="main">{#edit_email_new_confirm#}</label>
+  <input id="new_email_confirm" type="email" size="25" name="new_email_confirm" value="" maxlength="{$settings.email_maxlength}" required />
+ </div>
 </form>
