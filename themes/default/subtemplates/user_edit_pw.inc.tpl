@@ -16,6 +16,8 @@
 <input type="password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" name="old_pw" /></p>
 <p><strong>{#edit_pw_new#}</strong><br />
 <input type="password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" name="new_pw" maxlength="255" /></p>
-<p><input type="submit" name="edit_pw_submit" value="{#submit_button_ok#}" /></p>
 </div>
+ <div>
+  <button name="edit_pw_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
+ </div>
 </form>
