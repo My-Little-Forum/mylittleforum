@@ -16,7 +16,9 @@
 		<input type="hidden" name="mode" value="user" />
 		<input type="hidden" name="action" value="edit_profile" />
 		<p><strong><label for="password">{#remove_user_confirm_password#}</label></strong><br /><input id="password" type="password" name="user_password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" /></p>
-		<input type="submit" name="remove_account_submit" value="{#submit_button_ok#}" />
-		<input type="submit" value="{#submit_button_cancel#}">
 	</form>
+  <div>
+   <button name="remove_account_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
+   <button type="reset" value="{#submit_button_cancel#}">{#submit_button_cancel#}</button>
+  </div>
 </div>
