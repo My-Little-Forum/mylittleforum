@@ -10,7 +10,6 @@
 {/section}
 </ul>
 {/if}
-<div>
  <form action="index.php" method="post" accept-charset="{#charset#}">
   <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
   <input type="hidden" name="mode" value="user" />
@@ -21,4 +20,3 @@
    <button type="reset" value="{#submit_button_cancel#}">{#submit_button_cancel#}</button>
   </div>
  </form>
-</div>
