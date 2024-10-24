@@ -69,6 +69,7 @@
  </div>
 {/if}
 {/if}
-<p><input type="submit" name="register_submit" value="{#submit_button_ok#}" tabindex="8" /></p>
-</div>
+ <div>
+  <button name="register_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
+ </div>
 </form>
