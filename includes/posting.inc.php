@@ -780,18 +780,20 @@ switch ($action) {
 				if ($id == 0 && $categories != false && empty($categories[$p_category]))
 					$errors[] = 'error_invalid_category';
 				
-				// name reserved?
-				$result = mysqli_query($connid, "SELECT user_id, user_name FROM " . $db_settings['userdata_table'] . " WHERE lower(user_name) = '" . mysqli_real_escape_string($connid, my_strtolower($name, $lang['charset'])) . "'") or raise_error('database_error', mysqli_error($connid));
-				if (mysqli_num_rows($result) > 0) {
-					if (empty($_SESSION[$settings['session_prefix'] . 'user_id'])) {
-						$errors[] = 'error_name_reserved';
-					} elseif (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
-						$data = mysqli_fetch_array($result);
-						if (isset($posting_user_id) && $data['user_id'] != $posting_user_id)
+				if (!$isModOrAdmin) {
+					// name reserved?
+					$result = mysqli_query($connid, "SELECT user_id, user_name FROM " . $db_settings['userdata_table'] . " WHERE lower(user_name) = '" . mysqli_real_escape_string($connid, my_strtolower($name, $lang['charset'])) . "'") or raise_error('database_error', mysqli_error($connid));
+					if (mysqli_num_rows($result) > 0) {
+						if (empty($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 							$errors[] = 'error_name_reserved';
+						} elseif (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
+							$data = mysqli_fetch_array($result);
+							if (isset($posting_user_id) && $data['user_id'] != $posting_user_id)
+								$errors[] = 'error_name_reserved';
+						}
 					}
+					mysqli_free_result($result);
 				}
-				mysqli_free_result($result);
 				
 				// check for not accepted words:
 				$joined_message     = my_strtolower($name . ' ' . $email . ' ' . $hp . ' ' . $location . ' ' . $subject . ' ' . $text, $lang['charset']);
