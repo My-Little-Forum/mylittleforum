@@ -405,7 +405,8 @@ ul.thread span.admin,
 td span.admin,
 td span.mod              { cursor:help; }
 
-.registered_user::after  {content:" \00AE"}
+.registered_user::after  { content:" \00AE"; }
+.author-name             { font-weight:bold; }
 
 #captcha                 { margin:0; padding:0; }
 #captcha p               { font-size:1em; }
