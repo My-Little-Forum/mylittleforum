@@ -9,7 +9,9 @@
 <div>
 <input type="hidden" name="mode" value="posting" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<input type="submit" name="delete_spam_submit" value="{#delete_posting_submit#}" />
 </div>
 </form>
+  <div>
+   <button name="delete_spam_submit" value="{#delete_posting_submit#}">{#delete_posting_submit#}</button>
+  </div>
 {/if}
