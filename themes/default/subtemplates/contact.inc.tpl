@@ -38,7 +38,10 @@
 {/if}
 {/if}
 {if $user_id}<p><input id="confirmation_email" type="checkbox" name="confirmation_email" value="1" />&nbsp;<label for="confirmation_email">{#sender_confirmation_caption#}</label></p>{/if}
-<p><input type="submit" name="message_submit" value="{#message_submit_caption#}" onclick="document.getElementById('throbber-submit').classList.remove('js-visibility-hidden');" /> <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
 </div>
 </form>
+  <div>
+   <input type="submit" name="message_submit" value="{#message_submit_caption#}" onclick="document.getElementById('throbber-submit').classList.remove('js-visibility-hidden');" />
+   <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
+  </div>
 {/if}

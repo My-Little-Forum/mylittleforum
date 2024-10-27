@@ -14,7 +14,9 @@
 {if $back}<input type="hidden" name="back" value="{$back}" />{/if}
 {if $page}<input type="hidden" name="page" value="{$page}" />{/if}
 {if $category}<input type="hidden" name="category" value="{$category}" />{/if}
-<input type="submit" name="delete_posting_confirm" value="{#delete_posting_submit#}" />
 </div>
 </form>
+  <div>
+   <button name="delete_posting_confirm" value="{#delete_posting_submit#}">{#delete_posting_submit#}</button>
+  </div>
 {/if}
