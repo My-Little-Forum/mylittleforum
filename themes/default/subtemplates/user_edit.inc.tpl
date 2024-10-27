@@ -77,11 +77,6 @@
 <tr>
 <td class="c"><strong>{#edit_user_cat_selection#}</strong></td>
 <td class="d">
-{*<select id="category_selection" name="category_selection[]" multiple="multiple" size="{if $number_of_categories>10}10{else}{$number_of_categories}{/if}">
-{foreach key=key item=val from=$categories}
-{if $key!=0}<option value="{$key}"{if isset($category_selection) && in_array($key,$category_selection)} selected="selected"{/if}>{$val}</option>{/if}
-{/foreach}
-</select>*}
 <ul class="checkboxlist">
 {foreach key=key item=val from=$categories}
 {if $key!=0}<li><input id="category_{$key}" type="checkbox" name="category_selection[]" value="{$key}"{if isset($category_selection) && in_array($key,$category_selection)} checked="checked"{/if} /><label for="category_{$key}">{$val}</label></li>{/if}
