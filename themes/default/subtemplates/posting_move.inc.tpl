@@ -21,7 +21,9 @@
 <p><input id="move_mode_0" type="radio" name="move_mode" value="0" checked="checked" /> <!--<label for="move_mode_0">-->{#move_posting_new_thread#}<!--</label>--><br />
 <input id="move_mode_1" type="radio" name="move_mode" value="1" /> <!--<label for="move_mode_1">-->{#move_posting#|replace:"[number]":$input_move_to}<!--</label>--></p>
 {/if}
-<p><input type="submit" name="move_posting_submit" value="{#move_posting_submit#}" /></p>
 </div>
 </form>
+  <div>
+   <button name="move_posting_submit" value="{#move_posting_submit#}">{#move_posting_submit#}</button>
+  </div>
 {/if}
