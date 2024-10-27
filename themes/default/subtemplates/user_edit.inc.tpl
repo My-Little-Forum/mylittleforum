@@ -44,7 +44,7 @@
 </tr>
 <tr>
 <td class="c"><label for="user_hp"><strong>{#edit_user_hp#}</strong></label></td>
-<td class="d"><input id="user_hp" type="text" size="40" name="user_hp" value="{$user_hp}" maxlength="{$settings.hp_maxlength}" /></td>
+<td class="d"><input id="user_hp" type="url" size="40" name="user_hp" value="{$user_hp}" maxlength="{$settings.hp_maxlength}" /></td>
 </tr>
 <tr>
 <td class="c"><label for="user_real_name"><strong>{#edit_user_real_name#}</strong></label></td>
@@ -59,7 +59,7 @@
 </tr>
 <tr>
 <td class="c"><label for="user_birthday"><strong>{#edit_user_birthday#}</strong></label></td>
-<td class="d"><input id="user_birthday" type="text" size="40" name="user_birthday" value="{$user_birthday}" /> <span class="small">({#birthday_format#})</span></td>
+<td class="d"><input id="user_birthday" type="date" size="40" name="user_birthday" value="{$user_birthday}" /> <span class="small">({#birthday_format#})</span></td>
 </tr>
 <tr>
 <td class="c"><label for="user_location"><strong>{#edit_user_location#}</strong></label></td>
