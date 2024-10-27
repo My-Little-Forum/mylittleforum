@@ -84,8 +84,8 @@
 
 <div>
 <label for="name" class="input">{#name_marking#}</label>
-<input id="name" type="text" size="40" name="{$fld_user_name}" value="{if $name}{$name}{/if}" maxlength="{$settings.username_maxlength}"  tabindex="1" />
 </div>
+   <input id="name" type="text" size="40" name="{$fld_user_name}" value="{if $name}{$name}{/if}" maxlength="{$settings.username_maxlength}" required />
 
 <div>
 <label for="email" class="input">{#email_marking#} <span class="xsmall">{#optional_email#}</span></label>
@@ -135,8 +135,8 @@
 {/if}
 
 <div><label for="subject" class="input">{#subject_marking#}</label>
-<input id="subject" type="text" size="50" name="{$fld_subject}" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" tabindex="6" />
 </div>
+   <input id="subject" type="text" size="50" name="{$fld_subject}" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" required />
 
 {* Tags
 	0 == Off
