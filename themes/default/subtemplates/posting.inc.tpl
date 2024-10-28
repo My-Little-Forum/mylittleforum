@@ -89,28 +89,28 @@
 
 <div>
 <label for="email" class="input">{#email_marking#} <span class="xsmall">{#optional_email#}</span></label>
-<input id="email" type="email" size="40" name="{$fld_user_email}" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="2" />
 </div>
+   <input id="email" type="email" size="40" name="{$fld_user_email}" value="{if $email}{$email}{/if}" maxlength="{$settings.email_maxlength}" />
 
 <div class="hp">
 <label for="repeat_email" class="main">{#honeypot_field_marking#}</label>
-<input id="repeat_email" type="email" size="40" name="{$fld_repeat_email}" value="{if $honey_pot_email}{$honey_pot_email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="-1" />
 </div>
+   <input id="repeat_email" type="email" size="40" name="{$fld_repeat_email}" value="{if $honey_pot_email}{$honey_pot_email}{/if}" maxlength="{$settings.email_maxlength}" tabindex="-1" />
 
 <div>
 <label for="hp" class="input">{#hp_marking#} <span class="xsmall">{#optional#}</span></label>
-<input id="hp" type="url" size="40" name="{$fld_hp}" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" tabindex="3" />
 </div>
+   <input id="hp" type="url" size="40" name="{$fld_hp}" value="{if $hp}{$hp}{/if}" maxlength="{$settings.hp_maxlength}" />
 
 <div class="hp">
 <label for="phone" class="main">{#honeypot_field_marking#}</label>
-<input id="phone" class="login" type="tel" size="30" name="{$fld_phone}" value="{if $honey_pot_phone}{$honey_pot_phone}{/if}" maxlength="35" tabindex="-1" />
 </div>
+   <input id="phone" class="login" type="tel" size="30" name="{$fld_phone}" value="{if $honey_pot_phone}{$honey_pot_phone}{/if}" maxlength="35" />
 
 <div>
 <label for="location" class="input">{#location_marking#} <span class="xsmall">{#optional#}</span></label>
-<input id="location" type="text" size="40" name="{$fld_location}" value="{if $location}{$location}{/if}" maxlength="{$settings.location_maxlength}" tabindex="4" />
 </div>
+   <input id="location" type="text" size="40" name="{$fld_location}" value="{if $location}{$location}{/if}" maxlength="{$settings.location_maxlength}" />
 
 {if $settings.remember_userdata == 1 && $posting_mode==0 && !$user}
 <div>
@@ -124,7 +124,7 @@
 <fieldset>
 {if $categories}
 	<div><label for="p_category" class="input">{#category_marking#}</label>
-	<select id="p_category" size="1" name="p_category" tabindex="5"{if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0} disabled="disabled"{/if}>
+   <select id="p_category" size="1" name="p_category" {if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0} disabled="disabled"{/if}>
 		{foreach key=key item=val from=$categories}
 			{if $key!=0}<option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>{/if}
 		{/foreach}
@@ -147,8 +147,8 @@
 {if $settings.tags > 0 && ( ($settings.tags == 1 && ($admin || $mod)) || ($settings.tags == 2 && ($user_type === 0 || $admin || $mod)) || $settings.tags > 2 )}
 <div>
 <label for="tags" class="input">{#tags_marking#} <span class="xsmall">{#tags_note#}</span></label>
-<input id="tags" type="text" size="50" name="tags" value="{$tags|default:""}" maxlength="253" tabindex="-1" />
 </div>
+   <input id="tags" type="text" size="50" name="tags" value="{$tags|default:""}" maxlength="253" tabindex="-1" />
 {/if}
 </fieldset>
 
@@ -267,7 +267,7 @@ Like custom BBCode buttons, example:
 
   </div>
 
-  <textarea id="text" cols="80" rows="21" name="text" tabindex="7">{if $text}{$text}{/if}</textarea>
+    <textarea id="text" cols="80" rows="21" name="text">{if $text}{$text}{/if}</textarea>
 
  </div>
 </div>
@@ -302,14 +302,14 @@ Like custom BBCode buttons, example:
 {if $terms_of_use_agreement}
 {assign var=terms_of_use_url value=$settings.terms_of_use_url}
 <div>
-<input id="terms_of_use_agree" tabindex="8" type="checkbox" name="terms_of_use_agree" value="1"{if $terms_of_use_agree && $terms_of_use_agree==1} checked="checked"{/if} />&nbsp;<label for="terms_of_use_agree">{if $terms_of_use_url}{#terms_of_use_agreement#|replace:"[[":"<a id=\"terms_of_use\" href=\"$terms_of_use_url\">"|replace:"]]":"</a>"}{else}{#terms_of_use_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label>
 </div>
+   <input id="terms_of_use_agree" type="checkbox" name="terms_of_use_agree" value="1"{if $terms_of_use_agree && $terms_of_use_agree==1} checked="checked"{/if} /><label for="terms_of_use_agree">{if $terms_of_use_url}{#terms_of_use_agreement#|replace:"[[":"<a id=\"terms_of_use\" href=\"$terms_of_use_url\">"|replace:"]]":"</a>"}{else}{#terms_of_use_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label>
 {/if}
 {if $data_privacy_agreement}
 {assign var=data_privacy_statement_url value=$settings.data_privacy_statement_url}
 <div>
-<input id="data_privacy_statement_agree" tabindex="9" type="checkbox" name="data_privacy_statement_agree" value="1"{if $data_privacy_statement_agree && $data_privacy_statement_agree==1} checked="checked"{/if} />&nbsp;<label for="data_privacy_statement_agree">{if $data_privacy_statement_url}{#data_privacy_agreement#|replace:"[[":"<a id=\"data_privacy_statement\" href=\"$data_privacy_statement_url\">"|replace:"]]":"</a>"}{else}{#data_privacy_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label>
 </div>
+   <input id="data_privacy_statement_agree" type="checkbox" name="data_privacy_statement_agree" value="1"{if $data_privacy_statement_agree && $data_privacy_statement_agree==1} checked="checked"{/if} /><label for="data_privacy_statement_agree">{if $data_privacy_statement_url}{#data_privacy_agreement#|replace:"[[":"<a id=\"data_privacy_statement\" href=\"$data_privacy_statement_url\">"|replace:"]]":"</a>"}{else}{#data_privacy_agreement#|replace:"[[":""|replace:"]]":""}{/if}</label>
 {/if}
 </fieldset>
 {/if}
@@ -320,20 +320,23 @@ Like custom BBCode buttons, example:
 {if $captcha.type==2}
 <p><img class="captcha" src="modules/captcha/captcha_image.php?{$session.name}={$session.id}" alt="{#captcha_image_alt#}" width="180" height="40" /><br />
 <label for="captcha_code">{#captcha_expl_image#}</label><br />
-<input id="captcha_code" type="text" name="captcha_code" value="" size="10" tabindex="9" /></p>
+  <input id="captcha_code" type="text" name="captcha_code" value="" size="10" /></p>
 {else}
-<div><label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" maxlength="5" tabindex="10" /></div>
+  <div>
+   <label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label>
+   <input id="captcha_code" type="text" name="captcha_code" value="" size="5" maxlength="5" />
+  </div>
 {/if}
 </fieldset>
 {/if}
 
 <fieldset>
 <div>
- <button name="save_entry" value="{#message_submit_button#}" title="{#message_submit_title#}" tabindex="11">{#message_submit_button#}</button>
- <button name="preview" value="{#message_preview_button#}" title="{#message_preview_title#}" tabindex="12">{#message_preview_button#}</button>
  <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
 </div>
 </fieldset>
 </div>
+   <button name="save_entry" value="{#message_submit_button#}" title="{#message_submit_title#}">{#message_submit_button#}</button>
+   <button name="preview" value="{#message_preview_button#}" title="{#message_preview_title#}">{#message_preview_button#}</button>
 </form>
 {/if}
