@@ -723,7 +723,10 @@ html[dir="rtl"] .currentreplynew
                          { background-position: 100% -1458px; }
 
 a.internal,
-a.internal:link          { padding-left:18px; color:#0000cc; text-decoration:none; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
+a.internal:link          { padding-inline-start:18px; color:#0000cc; text-decoration:none; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
+html[dir="rtl"] a.internal,
+html[dir="rtl"] a.internal:link
+                         { background-position-x: 100%; }
 a.internal:focus,
 a.internal:hover         { color:#0000ff; text-decoration:underline; }
 a.internal:active        { color:#ff0000; }
