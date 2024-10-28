@@ -1,27 +1,29 @@
 {if !$list_spam}
 <form action="index.php" method="get" accept-charset="{#charset#}">
-<div style="margin-bottom:20px;">
-<input type="hidden" name="mode" value="search" />
-<input type="text" name="search" value="{$search|default:""}" size="30" />
+ <input type="hidden" name="mode" value="search" />
+ <div>
   <label for="search_term">{#search_term#}</label>
   <input type="search" name="search" id="searchterm" value="{$search|default:""}" size="30" />
+ </div>
 {if $categories}
-<select size="1" name="p_category">
-<option value="0"{if $category==0} selected="selected"{/if}>{#all_categories#}</option>
+ <div>
   <label for="search-category">{#search_category#}</label>
   <select size="1" name="p_category" id="search-category">
+   <option value="0"{if $category==0} selected="selected"{/if}>{#all_categories#}</option>
 {foreach key=key item=val from=$categories}
-{if $key!=0}<option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>{/if}
+{if $key!=0}   <option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>{/if}
 {/foreach}
-</select>
-{/if}
-</div></form>
+  </select>
+ </div>{/if}
+{if $settings.tags>0}
  <ul>
   <li><input id="searchfulltext" type="radio" name="method" value="0"{if $method == 'fulltext'} checked="checked"{/if} /><label for="searchfulltext">{#search_fulltext#}</label></li>
   <li><input id="searchtags" type="radio" class="search-radio" name="method" value="tags"{if $method == 'tags'} checked="checked"{/if} /><label for="searchtags">{#search_tags#}</label></li>
  </ul>{/if}
  <div>
   <button name="search_submit" value="{#search_submit_button#}">{#search_submit_button#}</button>
+ </div>
+</form>
 {/if}
 {if $search || $list_spam}
 {if $search_results}
