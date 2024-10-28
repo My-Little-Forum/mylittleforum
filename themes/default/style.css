@@ -704,18 +704,23 @@ ul.thread li > .metadata { text-wrap: nowrap; }
 main:not(:has(table#threadlist)) ul.thread li > a::after
                          { content: " - "; }
 
-.currentthread           { padding-inline-start:18px; color:#ff0000; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
+.currentthread,
+.currentthreadnew,
+.currentreply,
+.currentreplynew         { color:#ff0000; font-weight:bold; }
+
+.currentthread           { padding-inline-start:18px; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
 html[dir="rtl"] .currentthread
-                         { background: url(images/bg_sprite_1.png) no-repeat 100% -148px; }
-.currentthreadnew        { padding-inline-start:18px; color:#ff0000; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -198px; }
+                         { background-position-x: 100%; }
+.currentthreadnew        { padding-inline-start:18px; background:url(images/bg_sprite_1.png) no-repeat 0 -198px; }
 html[dir="rtl"] .currentthreadnew
-                         { background: url(images/bg_sprite_1.png) no-repeat 100% -198px; }
-.currentreply            { padding-inline-start:16px; color:#ff0000; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -348px; }
+                         { background-position-x: 100%; }
+.currentreply            { padding-inline-start:16px; background:url(images/bg_sprite_1.png) no-repeat 0 -348px; }
 html[dir="rtl"] .currentreply
-                         { background: url(images/bg_sprite_1.png) no-repeat 100% -1408px; }
-.currentreplynew         { padding-inline-start:16px; color:#ff0000; font-weight:bold; background:url(images/bg_sprite_1.png) no-repeat 0 -398px; }
+                         { background-position: 100% -1408px; }
+.currentreplynew         { padding-inline-start:16px; background:url(images/bg_sprite_1.png) no-repeat 0 -398px; }
 html[dir="rtl"] .currentreplynew
-                         { background: url(images/bg_sprite_1.png) no-repeat 100% -1458px; }
+                         { background-position: 100% -1458px; }
 
 a.internal,
 a.internal:link          { padding-left:18px; color:#0000cc; text-decoration:none; background:url(images/bg_sprite_1.png) no-repeat 0 -148px; }
