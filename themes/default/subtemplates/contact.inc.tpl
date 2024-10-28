@@ -15,12 +15,11 @@
 {/section}
 </ul>
 {/if}
-<form action="index.php" method="post" accept-charset="{#charset#}">
-<div>
-<input type="hidden" name="mode" value="contact" />
-{if $id}<input type="hidden" name="id" value="{$id}" />{/if}
-{if $recipient_user_id}<input type="hidden" name="recipient_user_id" value="{$recipient_user_id}" />{/if}
-{if $session}<input type="hidden" name="{$session.name}" value="{$session.id}" />{/if}
+ <form action="index.php" method="post" accept-charset="{#charset#}">
+  <input type="hidden" name="mode" value="contact" />
+{if $id}  <input type="hidden" name="id" value="{$id}" />{/if}
+{if $recipient_user_id}  <input type="hidden" name="recipient_user_id" value="{$recipient_user_id}" />{/if}
+{if $session}  <input type="hidden" name="{$session.name}" value="{$session.id}" />{/if}
 {if not $user_id}
   <div>
    <label for="sender_email">{#sender_address_caption#}</label>
@@ -37,19 +36,28 @@
   </div>
 {if $captcha}
 {if $captcha.type==2}
-<p><strong>{#captcha_marking#}</strong><br />
-<img class="captcha" src="modules/captcha/captcha_image.php?{$session.name}={$session.id}" alt="{#captcha_image_alt#}" width="180" height="40" /><br />
-<label for="captcha_code">{#captcha_expl_image#}</label> <input id="captcha_code" type="text" name="captcha_code" value="" size="10" /></p>
+  <div>
+   <span class="label-like">{#captcha_marking#}</span><br />
+   <img class="captcha" src="modules/captcha/captcha_image.php?{$session.name}={$session.id}" alt="{#captcha_image_alt#}" width="180" height="40" /><br />
+   <label for="captcha_code">{#captcha_expl_image#}</label>
+   <input id="captcha_code" type="text" name="captcha_code" value="" size="10" />
+  </div>
 {else}
-<p><strong>{#captcha_marking#}</strong><br />
-<label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label><input id="captcha_code" type="text" name="captcha_code" value="" size="5" /></p>
+  <div>
+   <span class="label-like">{#captcha_marking#}</span><br />
+   <label for="captcha_code">{#captcha_expl_math#} {$captcha.number_1} + {$captcha.number_2} = </label>
+   <input id="captcha_code" type="text" name="captcha_code" value="" size="5" />
+  </div>
 {/if}
 {/if}
-{if $user_id}<p><input id="confirmation_email" type="checkbox" name="confirmation_email" value="1" />&nbsp;<label for="confirmation_email">{#sender_confirmation_caption#}</label></p>{/if}
-</div>
-</form>
+{if $user_id}
+  <div>
+   <input id="confirmation_email" type="checkbox" name="confirmation_email" value="1" /><label for="confirmation_email">{#sender_confirmation_caption#}</label>
+  </div>
+{/if}
   <div>
    <input type="submit" name="message_submit" value="{#message_submit_caption#}" onclick="document.getElementById('throbber-submit').classList.remove('js-visibility-hidden');" />
    <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
   </div>
+ </form>
 {/if}
