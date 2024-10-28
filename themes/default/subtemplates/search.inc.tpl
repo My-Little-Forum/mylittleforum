@@ -11,9 +11,13 @@
 {/foreach}
 </select>
 {/if}
-<input type="submit" name="search_submit" value="{#search_submit_button#}" />{if $settings.tags>0}<br />
-<span class="small"><input id="searchfulltext" type="radio" name="method" value="0"{if $method == 'fulltext'} checked="checked"{/if} /><label for="searchfulltext">{#search_fulltext#}</label> <input id="searchtags" type="radio" class="search-radio" name="method" value="tags"{if $method == 'tags'} checked="checked"{/if} /><label for="searchtags">{#search_tags#}</label></span>{/if}
 </div></form>
+ <ul>
+  <li><input id="searchfulltext" type="radio" name="method" value="0"{if $method == 'fulltext'} checked="checked"{/if} /><label for="searchfulltext">{#search_fulltext#}</label></li>
+  <li><input id="searchtags" type="radio" class="search-radio" name="method" value="tags"{if $method == 'tags'} checked="checked"{/if} /><label for="searchtags">{#search_tags#}</label></li>
+ </ul>{/if}
+ <div>
+  <button name="search_submit" value="{#search_submit_button#}">{#search_submit_button#}</button>
 {/if}
 {if $search || $list_spam}
 {if $search_results}
