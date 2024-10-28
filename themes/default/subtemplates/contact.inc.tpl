@@ -21,16 +21,20 @@
 {if $id}<input type="hidden" name="id" value="{$id}" />{/if}
 {if $recipient_user_id}<input type="hidden" name="recipient_user_id" value="{$recipient_user_id}" />{/if}
 {if $session}<input type="hidden" name="{$session.name}" value="{$session.id}" />{/if}
-<p><label for="subject">{#subject_caption#}</label><br />
-<input id="subject" type="text" name="subject" value="{$subject|default:""}" size="50" maxlength="{$settings.email_subject_maxlength}" /></p>
-<p><label for="message">{#message_caption#}</label><br />
-<textarea id="message" name="text" rows="20" cols="80">{$text|default:""}</textarea></p>
 {if not $user_id}
   <div>
    <label for="sender_email">{#sender_address_caption#}</label>
-   <input id="sender_email" type="email" name="sender_email" value="" size="50" />
+   <input id="sender_email" type="email" name="sender_email" value="" size="50" required />
   </div>
 {/if}
+  <div>
+   <label for="subject">{#subject_caption#}</label>
+   <input id="subject" type="text" name="subject" value="{$subject|default:""}" size="50" maxlength="{$settings.email_subject_maxlength}" required />
+  </div>
+  <div>
+   <label for="message">{#message_caption#}</label>
+   <textarea id="message" name="text" rows="20" cols="80" required>{$text|default:""}</textarea>
+  </div>
 {if $captcha}
 {if $captcha.type==2}
 <p><strong>{#captcha_marking#}</strong><br />
