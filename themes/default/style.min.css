@@ -430,7 +430,7 @@ html[dir="rtl"] .currentreply{background-position:100% -1408px}
 .currentreplynew{padding-inline-start:16px;background:url(images/bg_sprite_1.png) no-repeat 0 -398px}
 html[dir="rtl"] .currentreplynew{background-position:100% -1458px}
 a.internal,a.internal:link{padding-inline-start:18px;color:#00c;text-decoration:none;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
-html[dir="rtl"] a.internal,html[dir="rtl"] a.internal:link{background:url(images/bg_sprite_1.png) no-repeat 100% -148px}
+html[dir="rtl"] a.internal,html[dir="rtl"] a.internal:link{background-position-x:100%}
 a.internal:focus,a.internal:hover{color:#00f;text-decoration:underline}
 a.internal:active{color:red}
 ul.thread{margin:0 0 1.5em;padding:0;list-style-type:none;max-width:100%!important}
