@@ -3,9 +3,13 @@
 <div style="margin-bottom:20px;">
 <input type="hidden" name="mode" value="search" />
 <input type="text" name="search" value="{$search|default:""}" size="30" />
+  <label for="search_term">{#search_term#}</label>
+  <input type="search" name="search" id="searchterm" value="{$search|default:""}" size="30" />
 {if $categories}
 <select size="1" name="p_category">
 <option value="0"{if $category==0} selected="selected"{/if}>{#all_categories#}</option>
+  <label for="search-category">{#search_category#}</label>
+  <select size="1" name="p_category" id="search-category">
 {foreach key=key item=val from=$categories}
 {if $key!=0}<option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>{/if}
 {/foreach}
