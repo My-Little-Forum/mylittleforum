@@ -1,10 +1,10 @@
-<head>
-<title>{$settings.forum_name}{if $page_title} - {$page_title}{elseif $subnav_location} - {$subnav_location}{/if}</title>
-<style type="text/css">
 {config_load file=$language_file section="general"}{config_load file=$language_file section="upload_image"}<!DOCTYPE html>
 <html lang="{#language#}">
+ <head>
   <meta charset="{#charset#}" />
+  <title>{$settings.forum_name}{if $page_title} - {$page_title}{elseif $subnav_location} - {$subnav_location}{/if}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style type="text/css">
 {literal}
 <!--
 body          { color: #000000; background: #ffffff; margin:0; padding:0; font-family: verdana, arial, sans-serif; font-size: 13px; }
@@ -31,8 +31,8 @@ table         { width:100%; margin:5px 0 0 0; padding:0; }
 td            { text-align:center; }
 -->
 {/literal}
-</style>
-<script type="text/javascript">{literal}/* <![CDATA[ */
+  </style>
+  <script type="text/javascript">{literal}/* <![CDATA[ */
 function insertCode(image_url) {
  	if (opener && opener.mlfBBCodeButton) {
 		var bbcodeButton = opener.mlfBBCodeButton;
@@ -46,7 +46,7 @@ function insertCode(image_url) {
 }
 /* ]]> */{/literal}</script>
 {if $browse_images}
-<script type="text/javascript">{literal}/* <![CDATA[ */
+  <script type="text/javascript">{literal}/* <![CDATA[ */
 function getMaxWidth()
  {
   if(document.getElementById('imgtab'))
@@ -63,8 +63,8 @@ window.onload = getMaxWidth;
 window.onresize = getMaxWidth;
 /* ]]> */{/literal}</script>
 {/if}
-</head>
-<body>
+ </head>
+ <body>
 {if $form}
 <div id="wrapper">
 <h1>{#upload_image_hl#}</h1>
