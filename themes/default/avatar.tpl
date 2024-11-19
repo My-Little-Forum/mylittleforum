@@ -4,6 +4,7 @@
 {config_load file=$language_file section="general"}{config_load file=$language_file section="avatar"}<!DOCTYPE html>
 <html lang="{#language#}">
   <meta charset="{#charset#}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 {literal}
 <style type="text/css">
 <!--
