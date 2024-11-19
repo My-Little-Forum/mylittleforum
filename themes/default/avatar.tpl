@@ -1,9 +1,9 @@
 <head>
 <title>{$settings.forum_name}{if $page_title} - {$page_title}{elseif $subnav_location} - {$subnav_location}{/if}</title>
-<meta http-equiv="content-type" content="text/html; charset={#charset#}" />
 <meta http-equiv="cache-control" content="no-cache">
 {config_load file=$language_file section="general"}{config_load file=$language_file section="avatar"}<!DOCTYPE html>
 <html lang="{#language#}">
+  <meta charset="{#charset#}" />
 {literal}
 <style type="text/css">
 <!--
