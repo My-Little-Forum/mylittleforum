@@ -1,12 +1,12 @@
-<head>
-<title>{$settings.forum_name}{if $page_title} - {$page_title}{elseif $subnav_location} - {$subnav_location}{/if}</title>
-<meta http-equiv="cache-control" content="no-cache">
 {config_load file=$language_file section="general"}{config_load file=$language_file section="avatar"}<!DOCTYPE html>
 <html lang="{#language#}">
+ <head>
   <meta charset="{#charset#}" />
+  <title>{$settings.forum_name}{if $page_title} - {$page_title}{elseif $subnav_location} - {$subnav_location}{/if}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="cache-control" content="no-cache">
 {literal}
-<style type="text/css">
+  <style type="text/css">
 <!--
 body          { color: #000000; background: #ffffff; margin: 20px; padding: 0px; font-family: verdana, arial, sans-serif; font-size: 13px; }
 h1            { font-family: verdana, arial, sans-serif; font-size: 18px; font-weight: bold; }
@@ -23,9 +23,9 @@ a:visited     { color: #0000cc; text-decoration: none; }
 a:hover       { color: #0000ff; text-decoration: underline; }
 a:active      { color: #ff0000; text-decoration: none; }
 -->
-</style>
+  </style>
 
-<script type="text/javascript">/* <![CDATA[ */
+  <script type="text/javascript">/* <![CDATA[ */
 function setPictureToProfil(src) {
  	if (opener && opener.document.getElementById("avatar_wrapper")) {
 		var avatarWrapper = opener.document.getElementById("avatar_wrapper")
@@ -49,8 +49,8 @@ setPictureToProfil('');
 {literal}
 /* ]]> */</script>
 {/literal}
-</head>
-<body>
+ </head>
+ <body>
 {if $avatar}
 <h1>{#avatar_hl#}</h1>
 {if $avatar_uploaded}
