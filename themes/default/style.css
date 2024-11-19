@@ -379,7 +379,7 @@ span.userdata            { margin:0; padding:0; }
 ins                      { font-style: italic; }
 del,
 s                        { color: #555; }
-label.main               { font-weight:bold; }
+label.main               { font-weight: bold; display: block; }
 label.active             { color:#000; }
 label.inactive           { color:#808080 !important; }
 label.inactive input     { color:#808080; }
@@ -568,6 +568,7 @@ ul.pagination .current   { border:1px solid #bacbdf; color:red; font-weight:bold
 /* buttonbars */
 .buttonbar               { display:flex; flex-wrap:wrap; gap:0.3em; }
 .buttonbar button        { padding:0.3em; }
+.buttonbar a             { display: inline-block; text-align: center; align-content: center; padding: 0.5em; }
 
 /* admin panel */
 #admin-main-menu         { display: grid; grid-template-areas: "infoboxes" "mainmenu"; grid-template-columns: 1fr; grid-template-rows: auto auto; gap: 0.75em}
