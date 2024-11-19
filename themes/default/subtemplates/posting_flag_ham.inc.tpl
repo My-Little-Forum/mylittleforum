@@ -10,7 +10,7 @@
 {else}
  <p class="notice caution">{#caution#}</p>
  <p>{#flag_ham_warning#}</p>
- <p><strong>{$subject}</strong> - <strong>{$name}</strong>, {$formated_time}</p>
+ <p><span class="subject">{$subject}</span> - <span class="metadata"><span class="author-name">{$name}</span>, <span class="tail"><time datetime="{$ISO_time}">{$formated_time}</time></span></span></p>
  <form action="index.php" method="post" accept-charset="{#charset#}">
   <input type="hidden" name="mode" value="posting" />
   <input type="hidden" name="id" value="{$id}" />

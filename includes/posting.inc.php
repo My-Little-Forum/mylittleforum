@@ -1746,7 +1746,7 @@ switch ($action) {
 		break;
 	case 'flag_ham':
 		$id = intval($_GET['flag_ham']);
-		$result = mysqli_query($connid, "SELECT tid, pid, UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, 
+		$result = mysqli_query($connid, "SELECT tid, pid, UNIX_TIMESTAMP(time) AS time, UNIX_TIMESTAMP(time + INTERVAL " . $time_difference . " MINUTE) AS disp_time, 
 		                              user_id, name, subject, category,
 									  " . $db_settings['akismet_rating_table'] . ".spam AS akismet_spam, spam_check_status, 
 									  " . $db_settings['b8_rating_table'] . ".spam AS b8_spam, training_type 
@@ -1771,7 +1771,7 @@ switch ($action) {
 				$smarty->assign('pid', intval($field['pid']));
 				$smarty->assign('name', htmlspecialchars($field['name']));
 				$smarty->assign('subject', htmlspecialchars($field['subject']));
-				$smarty->assign('disp_time', htmlspecialchars($field['disp_time']));
+				$smarty->assign('ISO_time', htmlspecialchars(format_time('YYYY-MM-dd HH:mm:ss', $field['time'])));
 				$smarty->assign('formated_time', htmlspecialchars(format_time($lang['time_format_full'], $field['disp_time'])));
 				$smarty->assign('akismet_spam', intval($field['akismet_spam']));
 				$smarty->assign('akismet_spam_check_status', intval($field['spam_check_status']));
