@@ -1,9 +1,9 @@
 <head>
 <title>{$settings.forum_name}{if $page_title} - {$page_title}{elseif $subnav_location} - {$subnav_location}{/if}</title>
-<meta http-equiv="content-type" content="text/html; charset={#charset#}" />
 <style type="text/css">
 {config_load file=$language_file section="general"}{config_load file=$language_file section="upload_image"}<!DOCTYPE html>
 <html lang="{#language#}">
+  <meta charset="{#charset#}" />
 {literal}
 <!--
 body          { color: #000000; background: #ffffff; margin:0; padding:0; font-family: verdana, arial, sans-serif; font-size: 13px; }
