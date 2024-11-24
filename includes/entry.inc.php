@@ -32,7 +32,7 @@
 	
 	if (isset($id) && $id > 0) {
 		$result = @mysqli_query($connid, "SELECT ft.id, ft.pid, ft.tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL " . $time_difference . " MINUTE) AS disp_time,
-                         UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . $time_difference . " MINUTE) AS edit_time,
+                         UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited) as etime, UNIX_TIMESTAMP(edited + INTERVAL " . $time_difference . " MINUTE) AS edit_time,
                          UNIX_TIMESTAMP(edited - INTERVAL " . $settings['edit_delay'] . " MINUTE) AS edited_diff, edited_by, name, email,
                          subject, hp, location, ip, text, cache_text, show_signature, category, locked, views, edit_key,
                          user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, rst.user_id AS req_user,
@@ -51,6 +51,8 @@
 			$entrydata = mysqli_fetch_array($result);
 			mysqli_free_result($result);
 			
+			$entrydata['ISO_time']      = format_time('YYYY-MM-dd HH:mm:ss', $entrydata['time']);
+			$entrydata['edit_ISO_time'] = format_time('YYYY-MM-dd HH:mm:ss', $entrydata['etime']);
 			$entrydata['formated_time'] = format_time($lang['time_format_full'], $entrydata['disp_time']);
 			$entrydata['tags']          = getEntryTags($id);
 			
@@ -156,9 +158,10 @@
 				$data['name'] = htmlspecialchars($data['user_name']);
 		} else
 			$data['name'] = htmlspecialchars($data['name']);
+		
 		$data['subject']       = htmlspecialchars($data['subject']);
 		$data['formated_time'] = format_time($lang['time_format'], $data['disp_time']);
-		$data['ISO_time'] = format_time('YYYY-MM-dd HH:mm:ss', $data['time']);
+		$data['ISO_time']      = format_time('YYYY-MM-dd HH:mm:ss', $data['time']);
 		
 		// set read or new status of messages
 		$data = getMessageStatus($data, $last_visit);
@@ -247,6 +250,7 @@
 	
 	$smarty->assign('user_type', htmlspecialchars($entrydata['user_type']));
 	$smarty->assign('disp_time', htmlspecialchars($entrydata['disp_time']));
+	$smarty->assign('ISO_time',  htmlspecialchars($entrydata['ISO_time']));
 	$smarty->assign('formated_time', htmlspecialchars($entrydata['formated_time']));
 	$smarty->assign('locked', htmlspecialchars($entrydata['locked']));
 	
@@ -301,6 +305,7 @@
 	if ($entrydata["edited_diff"] > 0 && $entrydata["edited_diff"] > $entrydata["time"] && $settings['show_if_edited'] == 1) {
 		$smarty->assign('edited', true);
 		$smarty->assign('edit_time', htmlspecialchars($entrydata['edit_time']));
+		$smarty->assign('edit_ISO_time', htmlspecialchars($entrydata['edit_ISO_time']));
 		$entrydata['formated_edit_time'] = format_time($lang['time_format_full'], $entrydata['edit_time']);
 		$smarty->assign('formated_edit_time', htmlspecialchars($entrydata['formated_edit_time']));
 		
