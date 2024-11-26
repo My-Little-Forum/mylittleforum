@@ -54,7 +54,7 @@ if ($categories == false) {
 
 	$pid_result_sql = 
 		"SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " AS ft
-		LEFT JOIN (SELECT eid	FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.eid = ft.id 
+		LEFT JOIN (SELECT eid AS id FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid AS id FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.id = ft.id 
 		WHERE pid = 0"; 
 
 	if (isset($category_selection_query) && $category == -1) {
