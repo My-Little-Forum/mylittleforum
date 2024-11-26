@@ -45,44 +45,41 @@ $_SESSION[$settings['session_prefix'].'usersettings']['current_page'] = $page;
 $descasc = "DESC";
 $ul = ($page - 1) * $settings['threads_per_page'];
 
-$pid_result_sql = 
-		"SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " AS ft
-		LEFT JOIN (SELECT eid AS id FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid AS id FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.id = ft.id 
-		WHERE pid = 0"; 
-
 // database request
 if ($categories == false) {
 	// no categories defined
 	$page_threads_and = "";
-} 
-elseif (is_array($categories) && $category <= 0) {
+}
+elseif (is_array($categories)) {
+	$page_threads_and = "";
+	
+	if ($category > 0 && !in_array($category, $category_ids)) {  // $category_ids defined in main.inc.php
+		// invalid category
+		header('Location: index.php');
+		exit;
+	}
+	// there are categories and only one category should be shown
+	elseif ($category > 0 && in_array($category, $category_ids)) {
+		// how many entries?
+		$page_threads_and = " AND (sticky = 2 OR category = '". mysqli_real_escape_string($connid, $category) ."') ";
+	}
 	// there are categories and all categories or category selection should be shown
-	if (isset($category_selection_query) && $category == -1) {
+	elseif ($category == -1 && isset($category_selection_query)) { // $category_selection_query defined in main.inc.php
 		// category selection
-		$category_ids_query = $category_selection_query;
-		$page_threads_and = " AND (sticky = 2 OR category IN (". $category_ids_query .")) ";
-		$display_pid_result = $pid_result_sql . $spam_sql_and . $page_threads_and;
+		$category_ids_query = $category_selection_query;           // overwrite $category_ids_query, originally defined in main.inc.php
+		$page_threads_and = " AND (sticky = 2 OR category IN (". mysqli_real_escape_string($connid, $category_ids_query) .")) ";
+	}
+	
+	if (!empty($page_threads_and)) {
+		$pid_result_sql = 
+			"SELECT COUNT(*) FROM " . $db_settings['forum_table'] . " AS ft
+			LEFT JOIN (SELECT eid AS id FROM " . $db_settings['akismet_rating_table'] . " WHERE " . $db_settings['akismet_rating_table'] . ".spam = 1 UNION SELECT eid AS id FROM " . $db_settings['b8_rating_table'] . " WHERE " . $db_settings['b8_rating_table'] . ".spam = 1) AS spam_list ON spam_list.id = ft.id 
+			WHERE pid = 0";
+		$display_pid_result = $pid_result_sql . $spam_sql_and . $page_threads_and;  // $spam_sql_and defined in main.inc.php
 		
 		$pid_result = mysqli_query($connid, $display_pid_result);
 		list($total_threads) = mysqli_fetch_row($pid_result);
 		mysqli_free_result($pid_result);
-	}
-} 
-elseif (is_array($categories) && $category > 0) {
-	// there are categories and only one category should be shown
-	if (in_array($category, $category_ids)) {
-		// how many entries?
-		$page_threads_and = " AND (sticky = 2 OR category = '". mysqli_real_escape_string($connid, $category) ."') ";
-		$display_pid_result = $pid_result_sql . $spam_sql_and . $page_threads_and;
-
-		$pid_result = mysqli_query($connid, $display_pid_result);
-		list($total_threads) = mysqli_fetch_row($pid_result);
-		mysqli_free_result($pid_result);
-	
-	} else {
-		// invalid category
-		header('Location: index.php');
-		exit;
 	}
 }
 
@@ -173,7 +170,7 @@ if ($settings['latest_postings'] > 0) {
 		if ($category > 0) {
 			$latest_postings_category_sql = " AND category = " . intval($category);		
 		} else {
-			$latest_postings_category_sql = " AND category IN (". $category_ids_query .")";		
+			$latest_postings_category_sql = " AND category IN (". mysqli_real_escape_string($connid, $category_ids_query) .")";		
 		}
 	}
 	$latest_postings_sql = $latest_postings_body_sql . $latest_postings_category_sql . $latest_postings_order_by_sql;
