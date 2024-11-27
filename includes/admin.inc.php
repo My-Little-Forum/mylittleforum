@@ -954,7 +954,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$browse_images = (isset($_GET['browse_images']) && $_GET['browse_images'] > 0) ? intval($_GET['browse_images']) : 1;
 		$handle = opendir($uploaded_images_path);
 		while ($file = readdir($handle)) {
-			if (preg_match('/\.(gif|png|jpg|svg|webp)$/i', $file)) {
+			if (preg_match('/\.(gif|png|jpe?g|svg|webp)$/i', $file)) {
 				$images[] = $file;
 			}
 		}
