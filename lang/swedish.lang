@@ -318,7 +318,7 @@ error_bookmark_word_too_long =    'Ordet "[word]" för för långt'
 error_bookmark_tags_limit_reached = 'Övre gränsen för antal taggar har nåtts för bokmärke'
 
 [entry]
-edited_by =                       'Redigerad av [name]'
+edited_by =                       'Redigerad av [name]<span class="interpunction">, </span>'
 tags_marking =                    'Sökord:'
 one_view =                        '1 visning'
 several_views =                   '[views] visningar'

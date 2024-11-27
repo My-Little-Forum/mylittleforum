@@ -317,7 +317,7 @@ error_bookmark_word_too_long =    '词汇 "[word]" 过长'
 error_bookmark_tags_limit_reached = '标签数量已达到书签的上限'
 
 [entry]
-edited_by =                       '编辑 by [name]'
+edited_by =                       '编辑 by [name]<span class="interpunction">, </span>'
 tags_marking =                    '标签：'
 one_view =                        '1 次浏览'
 several_views =                   '[views] 次浏览'

@@ -319,7 +319,7 @@ error_bookmark_word_too_long =    'La palabra "[word]" es demasiado larga'
 error_bookmark_tags_limit_reached = 'Alcanzado el límite de etiquetas por marcador'
 
 [entry]
-edited_by =                       'editado por [name]'
+edited_by =                       'editado por [name]<span class="interpunction">, </span>'
 tags_marking =                    'Etiquetas:'
 one_view =                        '1 vista'
 several_views =                   '[views] vistas'

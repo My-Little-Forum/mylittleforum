@@ -328,7 +328,7 @@ error_bookmark_word_too_long =    'Слово "[word]" слишком длинн
 error_bookmark_tags_limit_reached = 'Превышен лимит тэгов для закладки'
 
 [entry]
-edited_by =                       'исправил [name]'
+edited_by =                       'исправил [name]<span class="interpunction">, </span>'
 tags_marking =                    'Тэги:'
 one_view =                        '1 просмотр'
 several_views =                   '[views] просмотров'

@@ -321,7 +321,7 @@ error_bookmark_word_too_long =    'Le mot "[word]" est trop long'
 error_bookmark_tags_limit_reached = 'Il y a trop de tags'
 
 [entry]
-edited_by =                       'édité par [name]'
+edited_by =                       'édité par [name]<span class="interpunction">, </span>'
 tags_marking =                    'Mots-clés :'
 one_view =                        '1 vue'
 several_views =                   '[views] vues'

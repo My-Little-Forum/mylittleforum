@@ -318,7 +318,7 @@ error_bookmark_word_too_long =    '<!-- TODO -->The word "[word]" is too long'
 error_bookmark_tags_limit_reached = '<!-- TODO -->Tags limit reached for bookmark'
 
 [entry]
-edited_by =                       '[name] tarafından'
+edited_by =                       '[name] tarafından<span class="interpunction">, </span>'
 tags_marking =                    'Konular:'
 one_view =                        '1 kez okundu'
 several_views =                   '[views] kez okundu'

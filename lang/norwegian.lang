@@ -315,7 +315,7 @@ error_bookmark_word_too_long =    'Ordet "[word]" er for langt'
 error_bookmark_tags_limit_reached = 'Tagg-grensen nådd for favoritt'
 
 [entry]
-edited_by =                       'redigert av [name]'
+edited_by =                       'redigert av [name]<span class="interpunction">, </span>'
 tags_marking =                    'Merkelapper:'
 one_view =                        '1 visning'
 several_views =                   '[views] visninger'

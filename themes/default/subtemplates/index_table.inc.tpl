@@ -33,7 +33,7 @@
 </ul>
 </td>
 <td><span class="small nowrap">{if $data.$thread.user_type==2}<span class="author-name admin registered_user" title="{#administrator_title#}">{$data.$thread.name}</span>{elseif $data.$thread.user_type==1}<span class="author-name mod registered_user" title="{#moderator_title#}">{$data.$thread.name}</span>{elseif $data.$thread.user_id>0}<span class="author-name registered_user">{$data.$thread.name}</span>{else}<span class="author-name">{$data.$thread.name}</span>{/if}</span></td>
-<td><span class="small nowrap">{$data.$thread.formated_time}</span></td>
+<td><span class="small nowrap"><time datetime="{$data.$thread.ISO_time}">{$data.$thread.formated_time}</time></span></td>
 {if $settings.count_views}<td><span class="small">{$total_views.$thread}</span></td>{/if}
 <td><span class="small">{$replies.$thread}</span></td>
 {if $categories && $category<=0}<td>{if $data.$thread.category_name}<a href="index.php?mode=index&amp;category={$data.$thread.category}" title="{#change_category_link#|replace:"[category]":$data.$thread.category_name|escape:"html"}"><span class="category nowrap">{$data.$thread.category_name}</span></a>{else}&nbsp;{/if}</td>{/if}

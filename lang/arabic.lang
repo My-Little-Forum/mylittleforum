@@ -314,7 +314,7 @@ error_bookmark_word_too_long =    'الكلمة× "[word]" ×طويلة جدًّ
 error_bookmark_tags_limit_reached = 'وسوم العلامات المرجعيّة قد بلغ الحد الممكن'
 
 [entry]
-edited_by =                       'تم تعديله بواسطة× [name]'
+edited_by =                       'تم تعديله بواسطة× [name]<span class="interpunction">, </span>'
 tags_marking =                    'وسوم:'
 one_view =                        'مشاهدة واحدة'
 several_views =                   '[views] ×مشاهدات'

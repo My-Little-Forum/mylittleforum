@@ -317,7 +317,7 @@ error_bookmark_word_too_long =    '<!-- TODO -->The word "[word]" is too long'
 error_bookmark_tags_limit_reached = '<!-- TODO -->Tags limit reached for bookmark'
 
 [entry]
-edited_by =                       'Ispravio [name]'
+edited_by =                       'Ispravio [name]<span class="interpunction">, </span>'
 tags_marking =                    'Oznake:'
 one_view =                        '1 otvaranje'
 several_views =                   '[views] otvaranja'
