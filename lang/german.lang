@@ -318,7 +318,7 @@ error_bookmark_word_too_long =    'das Wort "[word]" ist zu lang'
 error_bookmark_tags_limit_reached = 'Maximale Anzahl an Tags pro Lesezeichen überschritten'
 
 [entry]
-edited_by =                       'bearbeitet von [name]'
+edited_by =                       'bearbeitet von [name]<span class="interpunction">, </span>'
 tags_marking =                    'Tags:'
 one_view =                        'ein View'
 several_views =                   '[views] Views'

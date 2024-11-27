@@ -78,7 +78,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
     $thread_sql = 
 		"SELECT ft.id, ft.pid, ft.tid, ft.user_id, UNIX_TIMESTAMP(ft.time + INTERVAL " . intval($time_difference) . " MINUTE) AS disp_time,
         UNIX_TIMESTAMP(last_reply + INTERVAL " . intval($time_difference) . " MINUTE) AS last_reply,	
-        UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited + INTERVAL " . intval($time_difference) . " MINUTE) AS e_time,
+        UNIX_TIMESTAMP(ft.time) AS time, UNIX_TIMESTAMP(edited) AS edited_time, UNIX_TIMESTAMP(edited + INTERVAL " . intval($time_difference) . " MINUTE) AS e_time,
         UNIX_TIMESTAMP(edited - INTERVAL " . $settings['edit_delay'] . " MINUTE) AS edited_diff, edited_by, name, email,
         subject, hp, location, ip, text, cache_text, show_signature, views, category, locked, ip,
         user_name, user_type, user_email, email_contact, user_hp, user_location, signature, cache_signature, edit_key, rst.user_id AS req_user,
@@ -117,6 +117,8 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 					$data['tags'] = $tags_array;
 			}
 			$data['formated_time'] = format_time($lang['time_format_full'], $data['disp_time']);
+			$data['ISO_time']      = format_time('YYYY-MM-dd HH:mm:ss', $data['time']);
+			
 			$ago['days']           = floor((TIMESTAMP - $data['time']) / 86400);
 			$ago['hours']          = floor(((TIMESTAMP - $data['time']) / 3600) - ($ago['days'] * 24));
 			$ago['minutes']        = floor(((TIMESTAMP - $data['time']) / 60) - ($ago['hours'] * 60 + $ago['days'] * 1440));
@@ -166,6 +168,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 			if ($data['edited_diff'] > 0 && $data["edited_diff"] > $data["time"] && $settings['show_if_edited'] == 1) {
 				$data['edited']             = true;
 				$data['formated_edit_time'] = format_time($lang['time_format_full'], $data['e_time']);
+				$data['ISO_edit_time']      = format_time('YYYY-MM-dd HH:mm:ss', $data['edited_time']);
 				if ($data['user_id'] == $data['edited_by'])
 					$data['edited_by'] = $data['name'];
 				else {
