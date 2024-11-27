@@ -127,7 +127,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		if ($browse_images < 1) $browse_images = 1;
 		$handle = opendir($uploaded_images_path);
 		while ($file = readdir($handle)) {
-			if (preg_match('/\.jpe?g$/i', $file) || preg_match('/\.webp$/i', $file) || preg_match('/\.png$/i', $file) || preg_match('/\.gif$/i', $file)) {
+			if (preg_match('/\.(gif|png|jpe?g|svg|webp)$/i', $file)) {
 				$images[] = $file;
 			}
 		}
