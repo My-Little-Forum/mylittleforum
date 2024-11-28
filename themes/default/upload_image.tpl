@@ -7,7 +7,6 @@
   <style type="text/css">
 {literal}
 <!--
-img           { border:none; }
 *,
 ::before,
 ::after {
@@ -70,8 +69,6 @@ h1 {
   color:green;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png);
 }
-img.delete    { max-width:300px; max-height:150px; }
-img.uploaded  { max-width:300px; max-height:110px; /*cursor:pointer;*/ }
 .deletelink {
   font-size:11px;
   padding-left:13px;
