@@ -49,14 +49,16 @@ h1 {
   background-repeat:no-repeat;
   background-position: 2px 3px;
 }
+.caution h2,
+.ok h2 {
+  font-size: 1em;
+  margin: 0 0 0.5em 0;
 }
 .caution {
-  font-weight: bold;
   color: #cc0000;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png);
 }
 .ok {
-  font-weight:bold;
   color:green;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png);
 }
@@ -112,12 +114,14 @@ window.onresize = getMaxWidth;
 <div id="wrapper">
 <h1>{#upload_image_hl#}</h1>
 {if $errors}
-<p class="caution">{#error_headline#}</p>
-<ul>
+  <div class="caution">
+   <h2>{#error_headline#}</h2>
+   <ul>
 {section name=mysec loop=$errors}
-<li>{assign var="error" value=$errors[mysec]}{$smarty.config.$error|replace:"[width]":$width|replace:"[height]":$height|replace:"[filesize]":$filesize|replace:"[max_width]":$max_width|replace:"[max_height]":$max_height|replace:"[max_filesize]":$max_filesize|replace:"[server_max_filesize]":$server_max_filesize}</li>
+    <li>{assign var="error" value=$errors[mysec]}{$smarty.config.$error|replace:"[width]":$width|replace:"[height]":$height|replace:"[filesize]":$filesize|replace:"[max_width]":$max_width|replace:"[max_height]":$max_height|replace:"[max_filesize]":$max_filesize|replace:"[server_max_filesize]":$server_max_filesize}</li>
 {/section}
-</ul>
+   </ul>
+  </div>
 {/if}
 <form id="uploadform" action="index.php" method="post" enctype="multipart/form-data" accept-charset="{#charset#}">
 <div>
@@ -131,7 +135,9 @@ window.onresize = getMaxWidth;
 {elseif $uploaded_file}
 <div id="wrapper">
 <h1>{#upload_image_hl#}</h1>
-<p class="ok">{#upload_successful#}</p>
+  <div class="ok">
+   <h2>{#upload_successful#}</h2>
+  </div>
 {*<script type="text/javascript">/* <![CDATA[ */document.write('<p>{#insert_image_exp#|escape:quotes}<\/p>'); /* ]]> */</script>*}
 <noscript><p>{#insert_image_exp_no_js#}</p>
 <p><code>[img]images/uploaded/{$uploaded_file}[/img]</code></p></noscript>
@@ -163,7 +169,6 @@ window.onresize = getMaxWidth;
 <div id="nav-1"><a href="index.php?mode=upload_image&amp;browse_images={$current|default:'1'}">{#back#}</a></div>
 </div>
 <div id="wrapper">
-<p class="caution">{#delete_image_confirm#}</p>
 <p><img class="delete" src="images/uploaded/{$delete}" alt="{$delete}" /></p>
 <form id="uploadform" action="index.php" method="post" accept-charset="{#charset#}">
 <div>
@@ -174,10 +179,15 @@ window.onresize = getMaxWidth;
 </div>
 </form>
 </div>
+  <div class="caution">
+   <h2>{#delete_image_confirm#}</h2>
+  </div>
 {else}
 <div id="wrapper">
-<p class="caution">{#image_upload_not_enabled#}</p>
 </div>
+  <div class="caution">
+   <h2>{#image_upload_not_enabled#}</h2>
+  </div>
 {/if}
 </body>
 </html>
