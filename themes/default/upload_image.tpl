@@ -33,6 +33,10 @@ body > * {
   border-bottom: 1px solid #bacbdf;
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 #header > * {
   margin:0;
