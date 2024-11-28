@@ -80,8 +80,31 @@ a:link        { color:#0000cc; text-decoration: none; }
 a:visited     { color:#0000cc; text-decoration: none; }
 a:hover       { color:#0000ff; text-decoration: underline; }
 a:active      { color:#ff0000; text-decoration: none; }
-table         { width:100%; margin:5px 0 0 0; padding:0; }
-td            { text-align:center; }
+ul {
+  list-style:none;
+  margin-block:0.5em;
+  padding: 0;
+}
+#imgtab {
+  display:flex;
+  flex-direction:column;
+  gap:0.75em;
+}
+#imgtab li {
+  text-align:center;
+}
+li > div:last-child {
+  align-content:center;
+}
+img {
+  border:none;
+  display: block;
+  margin-inline: auto;
+}
+#imgtab img {
+  max-width: 100%;
+  cursor: pointer;
+}
 -->
 {/literal}
   </style>
@@ -98,24 +121,6 @@ function insertCode(image_url) {
 	//self.close();
 }
 /* ]]> */{/literal}</script>
-{if $browse_images}
-  <script type="text/javascript">{literal}/* <![CDATA[ */
-function getMaxWidth()
- {
-  if(document.getElementById('imgtab'))
-   {
-    var maxWidth = document.getElementById('imgtab').offsetWidth-20;
-    var obj=getElementsByClassName('browse');
-    for(i=0;i<obj.length;i++)
-     {
-      obj[i].style.maxWidth=maxWidth+'px';
-     }
-   }
- }
-window.onload = getMaxWidth;
-window.onresize = getMaxWidth;
-/* ]]> */{/literal}</script>
-{/if}
  </head>
  <body>
 {if $form}
@@ -163,15 +168,16 @@ window.onresize = getMaxWidth;
   <div id="nav-2">{if $previous}[ <a href="index.php?mode=upload_image&amp;browse_images={$previous}" title="{#previous_page_link_title#}">&laquo;</a> ]{/if}{if $previous && next} {/if}{if $next}[ <a href="index.php?mode=upload_image&amp;browse_images={$next}" title="{#next_page_link_title#}">&raquo;</a> ]{/if}</div>
  </div>
 {if $images}
-<table id="imgtab" border="0" cellpadding="5" cellspacing="1">
  <div id="wrapper">
+  <ul id="imgtab">
 {section name=nr loop=$images start=$start max=$images_per_page}
-{cycle values="odd,even" assign=c}
-<tr class="{$c}">
-<td><img class="browse" src="images/uploaded/{$images[nr]}" title="{#insert_image#}" onclick="insertCode('images/uploaded/{$images[nr]}'); self.close();" alt="{#insert_image#}" />{if $admin || $mod}<br /><a class="deletelink" href="index.php?mode=upload_image&amp;delete={$images[nr]}&amp;current={$current}">{#delete#}</a>{/if}</td>
-</tr>
+   <li>
+    <div><img class="browse" src="images/uploaded/{$images[nr]}" title="{#insert_image#}" onclick="insertCode('images/uploaded/{$images[nr]}'); self.close();" alt="{#insert_image#}" /></div>
+{if $admin || $mod}    <div><a class="deletelink" href="index.php?mode=upload_image&amp;delete={$images[nr]}&amp;current={$current}">{#delete#}</a></div>
+{/if}
+   </li>
 {/section}
-</table>
+  </ul>
  </div>
 {else}
 <p>{#no_images#}</p>
