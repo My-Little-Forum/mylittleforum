@@ -201,14 +201,6 @@ function insertCode(image_url) {
  </div>
 {/if}
 {elseif $delete_confirm}
-<form id="uploadform" action="index.php" method="post" accept-charset="{#charset#}">
-<div>
-<input type="hidden" name="mode" value="upload_image" />
-<input type="hidden" name="delete" value="{$delete}" />
-{if $current}<input type="hidden" name="current" value="{$current}" />{/if}
-<input type="submit" name="delete_confirm" value="{#delete_image_button#}" />
-</div>
-</form>
  <div id="header">
   <div id="nav-1"><a href="index.php?mode=upload_image&amp;browse_images={$current|default:'1'}">{#back#}</a></div>
  </div>
@@ -219,6 +211,14 @@ function insertCode(image_url) {
   <ul id="imgtab" class="shrinked">
    <li><img src="images/uploaded/{$delete}" alt="{$delete}" /></li>
   </ul>
+  <form id="uploadform" action="index.php" method="post" accept-charset="{#charset#}">
+   <input type="hidden" name="mode" value="upload_image" />
+   <input type="hidden" name="delete" value="{$delete}" />
+{if $current}   <input type="hidden" name="current" value="{$current}" />{/if}
+   <div>
+    <button name="delete_confirm" value="{#delete_image_button#}">{#delete_image_button#}</button>
+   </div>
+  </form>
  </div>
 {else}
  <div id="wrapper">
