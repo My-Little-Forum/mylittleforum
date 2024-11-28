@@ -154,10 +154,10 @@ window.onresize = getMaxWidth;
  </div>
 <script type="text/javascript">/* <![CDATA[ */ insertCode('images/uploaded/{$uploaded_file}'); /* ]]> */</script>
 {elseif $browse_images}
-<div id="header">
-<div id="nav-1"><a href="index.php?mode=upload_image">{#back#}</a></div>
-<div id="nav-2">{if $previous}[ <a href="index.php?mode=upload_image&amp;browse_images={$previous}" title="{#previous_page_link_title#}">&laquo;</a> ]{/if}{if $previous && next} {/if}{if $next}[ <a href="index.php?mode=upload_image&amp;browse_images={$next}" title="{#next_page_link_title#}">&raquo;</a> ]{/if}</div>
-</div>
+ <div id="header">
+  <div id="nav-1"><a href="index.php?mode=upload_image">{#back#}</a></div>
+  <div id="nav-2">{if $previous}[ <a href="index.php?mode=upload_image&amp;browse_images={$previous}" title="{#previous_page_link_title#}">&laquo;</a> ]{/if}{if $previous && next} {/if}{if $next}[ <a href="index.php?mode=upload_image&amp;browse_images={$next}" title="{#next_page_link_title#}">&raquo;</a> ]{/if}</div>
+ </div>
 {if $images}
 <table id="imgtab" border="0" cellpadding="5" cellspacing="1">
  <div id="wrapper">
@@ -175,9 +175,6 @@ window.onresize = getMaxWidth;
  </div>
 {/if}
 {elseif $delete_confirm}
-<div id="header">
-<div id="nav-1"><a href="index.php?mode=upload_image&amp;browse_images={$current|default:'1'}">{#back#}</a></div>
-</div>
 <p><img class="delete" src="images/uploaded/{$delete}" alt="{$delete}" /></p>
 <form id="uploadform" action="index.php" method="post" accept-charset="{#charset#}">
 <div>
@@ -187,6 +184,9 @@ window.onresize = getMaxWidth;
 <input type="submit" name="delete_confirm" value="{#delete_image_button#}" />
 </div>
 </form>
+ <div id="header">
+  <div id="nav-1"><a href="index.php?mode=upload_image&amp;browse_images={$current|default:'1'}">{#back#}</a></div>
+ </div>
  <div id="wrapper">
   <div class="caution">
    <h2>{#delete_image_confirm#}</h2>
