@@ -37,10 +37,11 @@ h1 {
   font-size: 1.2em;
   font-weight: bold;
 }
+}
 .caution {
   padding: 0px 0px 0px 20px;
-  color: red;
   font-weight: bold;
+  color: #cc0000;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png);
   background-repeat:no-repeat;
   background-position: left;
@@ -48,7 +49,7 @@ h1 {
 .ok {
   padding: 0px 0px 0px 20px;
   font-weight:bold;
-  color:red;
+  color:green;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png);
   background-repeat:no-repeat;
   background-position: left;
