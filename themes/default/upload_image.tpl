@@ -107,6 +107,8 @@ img {
 #imgtab img {
   max-width: 100%;
   margin-inline: auto;
+}
+#imgtab:not(.shrinked) img {
   cursor: pointer;
 }
 #imgtab.shrinked img {
