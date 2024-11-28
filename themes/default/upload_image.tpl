@@ -8,6 +8,11 @@
 {literal}
 <!--
 img           { border:none; }
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
 body {
   color: #000;
   background: #fff;
