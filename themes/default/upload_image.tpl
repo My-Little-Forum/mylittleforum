@@ -8,7 +8,6 @@
 {literal}
 <!--
 img           { border:none; }
-#wrapper      { margin:0; padding:20px; }
 body {
   color: #000;
   background: #fff;
@@ -18,6 +17,10 @@ body {
   font-size: 1em;
   font-size: 1rem;
   line-height: 1.5;
+}
+body > * {
+  padding-block: 0;
+  padding-inline: 0.5em;
 }
 #header {
   margin: 0;
