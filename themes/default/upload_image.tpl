@@ -77,7 +77,7 @@ img.uploaded  { max-width:300px; max-height:110px; /*cursor:pointer;*/ }
   font-size: 0.86em;
 }
 code {
-  font-family:"courier new", courier;
+  font-family:"courier new", courier, monospace;
   color:#000080;
 }
 a:link        { color:#0000cc; text-decoration: none; }
