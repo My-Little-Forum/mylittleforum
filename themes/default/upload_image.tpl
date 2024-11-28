@@ -34,8 +34,22 @@ h1 {
   font-size: 1.2em;
   font-weight: bold;
 }
-.caution      { padding: 0px 0px 0px 20px; color: red; font-weight: bold; background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png); background-repeat:no-repeat; background-position: left; }
-.ok           { padding: 0px 0px 0px 20px; font-weight:bold; color:red; background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png); background-repeat:no-repeat; background-position: left; }
+.caution {
+  padding: 0px 0px 0px 20px;
+  color: red;
+  font-weight: bold;
+  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png);
+  background-repeat:no-repeat;
+  background-position: left;
+}
+.ok {
+  padding: 0px 0px 0px 20px;
+  font-weight:bold;
+  color:red;
+  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png);
+  background-repeat:no-repeat;
+  background-position: left;
+}
 img.delete    { max-width:300px; max-height:150px; }
 img.uploaded  { max-width:300px; max-height:110px; /*cursor:pointer;*/ }
 img.browse    { max-width:320px; cursor:pointer; }
