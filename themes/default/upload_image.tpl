@@ -196,8 +196,8 @@ function insertCode(image_url) {
   </ul>
  </div>
 {else}
-<p>{#no_images#}</p>
  <div id="wrapper">
+  <p>{#no_images#}</p>
  </div>
 {/if}
 {elseif $delete_confirm}
