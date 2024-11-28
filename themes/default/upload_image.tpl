@@ -75,7 +75,6 @@ img.uploaded  { max-width:300px; max-height:110px; /*cursor:pointer;*/ }
 .deletelink   { font-size:11px; padding-left:13px; background:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/bg_sprite_3.png) no-repeat 0 -47px; }
 .small        {
   font-size:11px;
-  line-height:16px;
 }
 code          { font-family:"courier new", courier; color:#000080; }
 a:link        { color:#0000cc; text-decoration: none; }
