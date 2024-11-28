@@ -31,8 +31,7 @@ body {
   padding:0;
 }
 h1 {
-  font-family: verdana, arial, sans-serif;
-  font-size: 18px;
+  font-size: 1.2em;
   font-weight: bold;
 }
 p             { font-family: verdana, arial, sans-serif; font-size: 13px; line-height: 19px; }
