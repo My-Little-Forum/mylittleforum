@@ -28,8 +28,6 @@ body {
   background: #f9f9f9;
   border-bottom: 1px solid #bacbdf;
   height: 24px;
-  font-size:13px;
-  line-height:22px;
 }
 .caution      { padding: 0px 0px 0px 20px; color: red; font-weight: bold; background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png); background-repeat:no-repeat; background-position: left; }
 .ok           { padding: 0px 0px 0px 20px; font-weight:bold; color:red; background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png); background-repeat:no-repeat; background-position: left; }
