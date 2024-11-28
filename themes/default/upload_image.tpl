@@ -103,10 +103,10 @@ li > div:last-child {
 img {
   border:none;
   display: block;
-  margin-inline: auto;
 }
 #imgtab img {
   max-width: 100%;
+  margin-inline: auto;
   cursor: pointer;
 }
 #imgtab.shrinked img {
