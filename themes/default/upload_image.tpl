@@ -115,7 +115,9 @@ window.onresize = getMaxWidth;
  </head>
  <body>
 {if $form}
-<h1>{#upload_image_hl#}</h1>
+ <div id="header">
+  <h1>{#upload_image_hl#}</h1>
+ </div>
  <div id="wrapper">
 {if $errors}
   <div class="caution">
@@ -137,7 +139,9 @@ window.onresize = getMaxWidth;
 <p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>
  </div>
 {elseif $uploaded_file}
-<h1>{#upload_image_hl#}</h1>
+ <div id="header">
+  <h1>{#upload_image_hl#}</h1>
+ </div>
  <div id="wrapper">
   <div class="ok">
    <h2>{#upload_successful#}</h2>
