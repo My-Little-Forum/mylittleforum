@@ -76,7 +76,10 @@ img.uploaded  { max-width:300px; max-height:110px; /*cursor:pointer;*/ }
 .small        {
   font-size: 0.86em;
 }
-code          { font-family:"courier new", courier; color:#000080; }
+code {
+  font-family:"courier new", courier;
+  color:#000080;
+}
 a:link        { color:#0000cc; text-decoration: none; }
 a:visited     { color:#0000cc; text-decoration: none; }
 a:hover       { color:#0000ff; text-decoration: underline; }
