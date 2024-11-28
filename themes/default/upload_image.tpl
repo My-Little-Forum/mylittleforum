@@ -38,6 +38,10 @@ body > * {
   margin:0;
   padding:0;
 }
+#wrapper {
+  margin-inline: 0;
+  margin-block: 0.5em;
+}
 h1 {
   font-size: 1em;
   font-weight: bold;
@@ -111,8 +115,8 @@ window.onresize = getMaxWidth;
  </head>
  <body>
 {if $form}
-<div id="wrapper">
 <h1>{#upload_image_hl#}</h1>
+ <div id="wrapper">
 {if $errors}
   <div class="caution">
    <h2>{#error_headline#}</h2>
@@ -131,10 +135,10 @@ window.onresize = getMaxWidth;
 </div>
 </form>
 <p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>
-</div>
+ </div>
 {elseif $uploaded_file}
-<div id="wrapper">
 <h1>{#upload_image_hl#}</h1>
+ <div id="wrapper">
   <div class="ok">
    <h2>{#upload_successful#}</h2>
   </div>
@@ -143,7 +147,7 @@ window.onresize = getMaxWidth;
 <p><code>[img]images/uploaded/{$uploaded_file}[/img]</code></p></noscript>
 <img class="uploaded" src="images/uploaded/{$uploaded_file}" title="{#insert_image#}" {*onclick="insertCode('images/uploaded/{$uploaded_file}'); return false;" *}alt="{#insert_image#}" />
 {if $image_downsized}<p class="small">{$smarty.config.image_downsized|replace:"[width]":$new_width|replace:"[height]":$new_height|replace:"[filesize]":$new_filesize}</p>{/if}
-</div>
+ </div>
 <script type="text/javascript">/* <![CDATA[ */ insertCode('images/uploaded/{$uploaded_file}'); /* ]]> */</script>
 {elseif $browse_images}
 <div id="header">
@@ -152,6 +156,7 @@ window.onresize = getMaxWidth;
 </div>
 {if $images}
 <table id="imgtab" border="0" cellpadding="5" cellspacing="1">
+ <div id="wrapper">
 {section name=nr loop=$images start=$start max=$images_per_page}
 {cycle values="odd,even" assign=c}
 <tr class="{$c}">
@@ -159,16 +164,16 @@ window.onresize = getMaxWidth;
 </tr>
 {/section}
 </table>
+ </div>
 {else}
-<div id="wrapper">
 <p>{#no_images#}</p>
-</div>
+ <div id="wrapper">
+ </div>
 {/if}
 {elseif $delete_confirm}
 <div id="header">
 <div id="nav-1"><a href="index.php?mode=upload_image&amp;browse_images={$current|default:'1'}">{#back#}</a></div>
 </div>
-<div id="wrapper">
 <p><img class="delete" src="images/uploaded/{$delete}" alt="{$delete}" /></p>
 <form id="uploadform" action="index.php" method="post" accept-charset="{#charset#}">
 <div>
@@ -178,16 +183,17 @@ window.onresize = getMaxWidth;
 <input type="submit" name="delete_confirm" value="{#delete_image_button#}" />
 </div>
 </form>
-</div>
+ <div id="wrapper">
   <div class="caution">
    <h2>{#delete_image_confirm#}</h2>
   </div>
+ </div>
 {else}
-<div id="wrapper">
-</div>
+ <div id="wrapper">
   <div class="caution">
    <h2>{#image_upload_not_enabled#}</h2>
   </div>
+ </div>
 {/if}
 </body>
 </html>
