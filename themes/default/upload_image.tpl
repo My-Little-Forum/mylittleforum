@@ -72,7 +72,6 @@ h1 {
 }
 img.delete    { max-width:300px; max-height:150px; }
 img.uploaded  { max-width:300px; max-height:110px; /*cursor:pointer;*/ }
-img.browse    { max-width:320px; cursor:pointer; }
 .deletelink   { font-size:11px; padding-left:13px; background:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/bg_sprite_3.png) no-repeat 0 -47px; }
 .small        { font-size:11px; line-height:16px; }
 code          { font-family:"courier new", courier; color:#000080; }
@@ -178,7 +177,7 @@ function insertCode(image_url) {
   <ul id="imgtab">
 {section name=nr loop=$images start=$start max=$images_per_page}
    <li>
-    <div><img class="browse" src="images/uploaded/{$images[nr]}" title="{#insert_image#}" onclick="insertCode('images/uploaded/{$images[nr]}'); self.close();" alt="{#insert_image#}" /></div>
+    <div><img src="images/uploaded/{$images[nr]}" title="{#insert_image#}" onclick="insertCode('images/uploaded/{$images[nr]}'); self.close();" alt="{#insert_image#}" /></div>
 {if $admin || $mod}    <div><a class="deletelink" href="index.php?mode=upload_image&amp;delete={$images[nr]}&amp;current={$current}">{#delete#}</a></div>
 {/if}
    </li>
