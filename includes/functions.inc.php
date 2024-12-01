@@ -1108,14 +1108,23 @@ function smilies($string) {
  */
 function user_online($user_online_period = 10) {
 	global $connid, $db_settings, $settings;
-	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) $user_id = $_SESSION[$settings['session_prefix'].'user_id']; else $user_id = 0;
+	if (isset($_SESSION[$settings['session_prefix'].'user_id']) && is_numeric($_SESSION[$settings['session_prefix'].'user_id'])) {
+		$user_id = $_SESSION[$settings['session_prefix'].'user_id']; 
+		$ip = "uid_" . $user_id;
+	}
+	else {
+		$user_id = 0;
+		$ip = $_SERVER['REMOTE_ADDR'];
+	}
+	
 	$diff = TIMESTAMP-($user_online_period * 60);
-	if (isset($_SESSION[$settings['session_prefix'].'user_id'])) $ip = "uid_".$_SESSION[$settings['session_prefix'].'user_id'];
-	else $ip = $_SERVER['REMOTE_ADDR'];
+	
 	@mysqli_query($connid, "DELETE FROM ".$db_settings['useronline_table']." WHERE time < ".$diff);
-	list($is_online) = @mysqli_fetch_row(@mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['useronline_table']." WHERE ip= '".$ip."'"));
-	if ($is_online > 0) @mysqli_query($connid, "UPDATE ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', user_id='".$user_id."' WHERE ip='".$ip."'");
-	else @mysqli_query($connid, "INSERT INTO ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', ip='".$ip."', user_id='".$user_id."'");
+	list($is_online) = @mysqli_fetch_row(@mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['useronline_table']." WHERE ip= '".mysqli_real_escape_string($connid, $ip)."'"));
+	if ($is_online > 0) 
+		@mysqli_query($connid, "UPDATE ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', user_id='".intval($user_id)."' WHERE ip='".mysqli_real_escape_string($connid, $ip)."'");
+	else 
+		@mysqli_query($connid, "INSERT INTO ".$db_settings['useronline_table']." SET time='".TIMESTAMP."', ip='".mysqli_real_escape_string($connid, $ip)."', user_id='".intval($user_id)."'");
 }
 
 /**
