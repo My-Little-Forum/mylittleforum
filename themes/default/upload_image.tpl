@@ -119,6 +119,11 @@ img {
   max-width: 50%;
   height: auto;
 }
+.buttonbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
 -->
 {/literal}
   </style>
@@ -152,14 +157,17 @@ function insertCode(image_url) {
    </ul>
   </div>
 {/if}
-<form id="uploadform" action="index.php" method="post" enctype="multipart/form-data" accept-charset="{#charset#}">
-<div>
-<input type="hidden" name="mode" value="upload_image" />
-<p><input type="file" name="probe" size="17" /></p>
-<p><input type="submit" name="" value="{#upload_image_button#}" onclick="document.getElementById('throbber-submit').style.visibility='visible'" /> <img id="throbber-submit" style="visibility:hidden;" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
-</div>
-</form>
-<p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>
+  <form id="uploadform" action="index.php" method="post" enctype="multipart/form-data" accept-charset="{#charset#}">
+   <input type="hidden" name="mode" value="upload_image" />
+   <div>
+    <input type="file" name="probe" size="17" />
+   </div>
+   <div class="buttonbar">
+    <button value="{#upload_image_button#}" onclick="document.getElementById('throbber-submit').style.visibility='visible'">{#upload_image_button#}</button>
+    <img id="throbber-submit" style="visibility:hidden;" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
+   </div>
+  </form>
+  <p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>
  </div>
 {elseif $uploaded_file}
  <div id="header">
