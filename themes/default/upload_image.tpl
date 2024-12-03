@@ -71,7 +71,7 @@ h1 {
 }
 .deletelink {
   padding-left:13px;
-  background:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/bg_sprite_3.png) no-repeat 0 -47px;
+  background:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/bg_sprite_3.png) no-repeat 1px -45px;
 }
 .insert-desc,
 .deletelink,
