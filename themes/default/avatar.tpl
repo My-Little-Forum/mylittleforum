@@ -8,20 +8,75 @@
   <style type="text/css">
 {literal}
 <!--
-body          { color: #000000; background: #ffffff; margin: 20px; padding: 0px; font-family: verdana, arial, sans-serif; font-size: 13px; }
-h1            { font-family: verdana, arial, sans-serif; font-size: 18px; font-weight: bold; }
-p             { font-family: verdana, arial, sans-serif; font-size: 13px; line-height: 19px; }
-.caution      { padding: 0px 0px 0px 20px; color: red; font-weight: bold; background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png); background-repeat:no-repeat; background-position: left; }
-.ok           { padding: 0px 0px 0px 20px; font-weight:bold; color:red; background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png); background-repeat:no-repeat; background-position: left; }
-img.uploaded  { border: 1px solid #000; cursor:pointer; }
-.small        { font-size:11px; line-height:16px; }
-.delete a             { text-decoration:none !important; }
-.delete a:hover span  { text-decoration:underline; }
-.delete a img         { border:none; margin:0px 5px -3px 0px; padding:0px; }
-a:link        { color: #0000cc; text-decoration: none; }
-a:visited     { color: #0000cc; text-decoration: none; }
-a:hover       { color: #0000ff; text-decoration: underline; }
-a:active      { color: #ff0000; text-decoration: none; }
+body {
+  color: #000000;
+  background: #ffffff;
+  margin: 20px;
+  padding: 0px;
+  font-family: verdana, arial, sans-serif;
+  font-size: 13px;
+}
+h1 {
+  font-family: verdana, arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+p {
+  font-family: verdana, arial, sans-serif;
+  font-size: 13px;
+  line-height: 19px;
+}
+.caution {
+  padding: 0px 0px 0px 20px;
+  color: red;
+  font-weight: bold;
+  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png);
+  background-repeat:no-repeat;
+  background-position: left;
+}
+.ok {
+  padding: 0px 0px 0px 20px;
+  font-weight:bold;
+  color:red;
+  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png);
+  background-repeat:no-repeat;
+  background-position: left;
+}
+img.uploaded {
+  border: 1px solid #000;
+  cursor:pointer;
+}
+.small {
+  font-size:11px;
+  line-height:16px;
+}
+.delete a {
+  text-decoration:none !important;
+}
+.delete a:hover span  {
+  text-decoration:underline;
+}
+.delete a img {
+  border:none;
+  margin:0px 5px -3px 0px;
+  padding:0px;
+}
+a:link {
+  color: #0000cc;
+  text-decoration: none;
+}
+a:visited {
+  color: #0000cc;
+  text-decoration: none;
+}
+a:hover {
+  color: #0000ff;
+  text-decoration: underline;
+}
+a:active {
+  color: #ff0000;
+  text-decoration: none;
+}
 -->
 {/literal}
   </style>
