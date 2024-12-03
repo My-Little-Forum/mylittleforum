@@ -90,6 +90,7 @@ a:visited {
   color:#0000cc;
   text-decoration: none;
 }
+a:focus,
 a:hover {
   color:#0000ff;
   text-decoration: underline;
