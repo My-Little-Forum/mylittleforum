@@ -99,6 +99,7 @@ ul {
   flex-direction:column;
   gap:0.75em;
 }
+#del-upload-form,
 #imgtab li {
   text-align:center;
 }
