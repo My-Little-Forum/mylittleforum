@@ -49,8 +49,8 @@ img.uploaded {
   cursor:pointer;
 }
 .small {
-  font-size:11px;
   line-height:16px;
+  font-size: 0.82em;
 }
 .delete a {
   text-decoration:none !important;
