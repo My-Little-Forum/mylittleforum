@@ -26,7 +26,7 @@ body > * {
   padding-block: 0;
   padding-inline: 0.5em;
 }
-#header {
+header {
   margin: 0;
   background: #f9f9f9;
   border-bottom: 1px solid #bacbdf;
@@ -37,7 +37,7 @@ body > * {
   left: 0;
   width: 100%;
 }
-#header > * {
+header > * {
   margin:0;
   padding:0;
 }
@@ -172,9 +172,9 @@ window.addEventListener('DOMContentLoaded', function() {
  </head>
  <body>
 {if $form}
- <div id="header">
+ <header>
   <h1>{#upload_image_hl#}</h1>
- </div>
+ </header>
  <main>
 {if $errors}
   <div class="caution">
@@ -199,9 +199,9 @@ window.addEventListener('DOMContentLoaded', function() {
   <p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>
  </main>
 {elseif $uploaded_file}
- <div id="header">
+ <header>
   <h1>{#upload_image_hl#}</h1>
- </div>
+ </header>
  <main>
   <div class="ok">
    <h2>{#upload_successful#}</h2>
@@ -223,10 +223,10 @@ window.addEventListener('DOMContentLoaded', function() {
   <p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>
  </main>
 {elseif $browse_images}
- <div id="header">
+ <header>
   <div id="nav-1"><a href="index.php?mode=upload_image">{#back#}</a></div>
   <div id="nav-2">{if $previous}[ <a href="index.php?mode=upload_image&amp;browse_images={$previous}" title="{#previous_page_link_title#}">&laquo;</a> ]{/if}{if $previous && next} {/if}{if $next}[ <a href="index.php?mode=upload_image&amp;browse_images={$next}" title="{#next_page_link_title#}">&raquo;</a> ]{/if}</div>
- </div>
+ </header>
 {if $images}
  <main>
   <ul id="imgtab">
@@ -253,9 +253,9 @@ window.addEventListener('DOMContentLoaded', function() {
  </main>
 {/if}
 {elseif $delete_confirm}
- <div id="header">
+ <header>
   <div id="nav-1"><a href="index.php?mode=upload_image&amp;browse_images={$current|default:'1'}">{#back#}</a></div>
- </div>
+ </header>
  <main>
   <div class="caution">
    <h2>{#delete_image_confirm#}</h2>
