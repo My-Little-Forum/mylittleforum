@@ -19,14 +19,8 @@ body {
   line-height: 1.5;
 }
 h1 {
-  font-family: verdana, arial, sans-serif;
   font-size: 18px;
   font-weight: bold;
-}
-p {
-  font-family: verdana, arial, sans-serif;
-  font-size: 13px;
-  line-height: 19px;
 }
 .caution {
   padding: 0px 0px 0px 20px;
