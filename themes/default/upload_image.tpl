@@ -208,6 +208,10 @@ function insertCode(image_url) {
       <img src="images/uploaded/{$images[nr]}" title="{#insert_image#}" alt="{#insert_image#}" />
      </button>
     </div>
+    <div class="insert-desc">
+     <p>{#insert_image_exp_no_js#}</p>
+     <p><code>[img]images/uploaded/{$images[nr]}[/img]</code></p>
+    </div>
 {if $admin || $mod}    <div><a class="deletelink" href="index.php?mode=upload_image&amp;delete={$images[nr]}&amp;current={$current}">{#delete#}</a></div>
 {/if}
    </li>
