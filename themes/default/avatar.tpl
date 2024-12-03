@@ -108,6 +108,7 @@ setPictureToProfil('');
  <header>
   <h1>{#avatar_hl#}</h1>
  </header>
+ <main>
 {if $avatar_uploaded}
   <div class="ok">
    <h2>{#upload_successful#}</h2>
@@ -120,6 +121,7 @@ setPictureToProfil('');
 {else}
 <p class="delete"><a href="index.php?mode=avatar&amp;delete=true"><img src="{$THEMES_DIR}/{$settings.theme}/images/delete.png" alt="" width="16" height="16" /><span>{#delete_avatar#}</span></a></p>
 {/if}
+ </main>
 {elseif $upload}
  <header>
   <h1>{#upload_avatar_hl#}</h1>
