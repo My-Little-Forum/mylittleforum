@@ -67,12 +67,12 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #0000ff;
-  text-decoration: underline;
+  color:#00f;
+  text-decoration: underline dotted 9% #45f;
 }
 a:active {
-  color: #ff0000;
-  text-decoration: none;
+  color:#f00;
+  text-decoration: underline solid 7% #d00;
 }
 -->
 {/literal}
