@@ -146,6 +146,9 @@ function insertCode() {
   //self.close();
 }
 window.addEventListener('DOMContentLoaded', function() {
+  if (document.querySelector('#imgtab button')) {
+    document.querySelector('#imgtab').addEventListener('click', insertCode);
+  }
   if (document.querySelector('div.insert-desc')) {
     const descriptors = document.querySelectorAll('div.insert-desc');
     descriptors.forEach(function (descriptor) {
