@@ -27,21 +27,22 @@ h1 {
   font-size: 1em;
   font-weight: bold;
 }
+.caution,
+.ok {
+  margin-block: 0.5em;
+  padding: 0 0 0 24px;
+  background-repeat:no-repeat;
+  background-position: 2px 3px;
+}
 .caution {
-  padding: 0px 0px 0px 20px;
   color: red;
   font-weight: bold;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png);
-  background-repeat:no-repeat;
-  background-position: left;
 }
 .ok {
-  padding: 0px 0px 0px 20px;
   font-weight:bold;
   color:red;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png);
-  background-repeat:no-repeat;
-  background-position: left;
 }
 img.uploaded {
   border: 1px solid #000;
