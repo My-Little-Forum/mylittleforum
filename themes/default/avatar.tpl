@@ -135,7 +135,11 @@ setPictureToProfil('');
 </div>
 </form>
 {else}
-<p class="caution">{#avatars_disabled#}</p>
+ <main>
+  <div class="caution">
+   <h2>{#avatars_disabled#}</h2>
+  </div>
+ </main>
 {/if}
 </body>
 </html>
