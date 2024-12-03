@@ -125,12 +125,14 @@ setPictureToProfil('');
  <main>
 <p>{#upload_avatar_notes#|replace:"[width]":$settings.avatar_max_width|replace:"[height]":$settings.avatar_max_width|replace:"[filesize]":$settings.avatar_max_filesize}</p>
 {if $errors}
-<p class="caution">{#error_headline#}</p>
-<ul>
+  <div class="caution">
+   <h2>{#error_headline#}</h2>
+   <ul>
 {section name=mysec loop=$errors}
-<li>{assign var="error" value=$errors[mysec]}{$smarty.config.$error|replace:"[width]":$width|replace:"[height]":$height|replace:"[filesize]":$filesize|replace:"[max_width]":$max_width|replace:"[max_height]":$max_height|replace:"[max_filesize]":$max_filesize|replace:"[server_max_filesize]":$server_max_filesize}</li>
+    <li>{assign var="error" value=$errors[mysec]}{$smarty.config.$error|replace:"[width]":$width|replace:"[height]":$height|replace:"[filesize]":$filesize|replace:"[max_width]":$max_width|replace:"[max_height]":$max_height|replace:"[max_filesize]":$max_filesize|replace:"[server_max_filesize]":$server_max_filesize}</li>
 {/section}
-</ul>
+   </ul>
+  </div>
 {/if}
   <form id="uploadform" action="index.php" method="post" enctype="multipart/form-data" accept-charset="{#charset#}">
    <input type="hidden" name="mode" value="avatar" />
