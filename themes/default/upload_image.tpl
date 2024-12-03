@@ -140,6 +140,16 @@ function insertCode(image_url) {
 	//self.close();
 }
 /* ]]> */{/literal}</script>
+window.addEventListener('DOMContentLoaded', function() {
+  if (document.querySelector('div.insert-desc')) {
+    const descriptors = document.querySelectorAll('div.insert-desc');
+    descriptors.forEach(function (descriptor) {
+      const description = document.createElement('p');
+      description.textContent = '{/literal}{#insert_image_exp#|escape:quotes}{literal}';
+      descriptor.replaceChildren(description);
+    });
+  }
+});
  </head>
  <body>
 {if $form}
