@@ -9,12 +9,14 @@
 {literal}
 <!--
 body {
-  color: #000000;
-  background: #ffffff;
-  margin: 20px;
-  padding: 0px;
+  color: #000;
+  background: #fff;
+  margin: 0;
+  padding: 0;
   font-family: verdana, arial, sans-serif;
-  font-size: 13px;
+  font-size: 1em;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 h1 {
   font-family: verdana, arial, sans-serif;
