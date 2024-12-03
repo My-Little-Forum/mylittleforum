@@ -62,12 +62,8 @@ img.uploaded {
   margin:0px 5px -3px 0px;
   padding:0px;
 }
-a:link {
-  color: #0000cc;
-  text-decoration: none;
-}
-a:visited {
-  color: #0000cc;
+a {
+  color: #00c;
   text-decoration: none;
 }
 a:hover {
