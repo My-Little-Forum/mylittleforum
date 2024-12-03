@@ -101,7 +101,7 @@ ul {
 #imgtab li {
   text-align:center;
 }
-li > div:last-child {
+li > *:last-child {
   align-content:center;
 }
 img {
