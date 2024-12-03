@@ -109,7 +109,9 @@ setPictureToProfil('');
   <h1>{#avatar_hl#}</h1>
  </header>
 {if $avatar_uploaded}
-<p class="ok">{#upload_successful#}</p>
+  <div class="ok">
+   <h2>{#upload_successful#}</h2>
+  </div>
 {/if}
 <p><img src="{$avatar}" alt="" /></p>
 {if $image_downsized}<p class="small">{$smarty.config.image_downsized|replace:"[width]":$new_width|replace:"[height]":$new_height|replace:"[filesize]":$new_filesize}</p>{/if}
