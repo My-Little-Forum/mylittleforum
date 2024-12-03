@@ -82,11 +82,7 @@ code {
   font-family:"courier new", courier, monospace;
   color:#000080;
 }
-a:link {
-  color:#0000cc;
-  text-decoration: none;
-}
-a:visited {
+a {
   color:#0000cc;
   text-decoration: none;
 }
