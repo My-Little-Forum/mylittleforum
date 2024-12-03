@@ -35,13 +35,13 @@ h1 {
   background-position: 2px 3px;
 }
 .caution {
-  color: red;
+  color: #cc0000;
   font-weight: bold;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png);
 }
 .ok {
   font-weight:bold;
-  color:red;
+  color:green;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png);
 }
 img.uploaded {
