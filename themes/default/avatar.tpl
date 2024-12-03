@@ -117,7 +117,10 @@ setPictureToProfil('');
 <p class="delete"><a href="index.php?mode=avatar&amp;delete=true"><img src="{$THEMES_DIR}/{$settings.theme}/images/delete.png" alt="" width="16" height="16" /><span>{#delete_avatar#}</span></a></p>
 {/if}
 {elseif $upload}
-<h1>{#upload_avatar_hl#}</h1>
+ <header>
+  <h1>{#upload_avatar_hl#}</h1>
+ </header>
+ <main>
 <p>{#upload_avatar_notes#|replace:"[width]":$settings.avatar_max_width|replace:"[height]":$settings.avatar_max_width|replace:"[filesize]":$settings.avatar_max_filesize}</p>
 {if $errors}
 <p class="caution">{#error_headline#}</p>
