@@ -82,10 +82,22 @@ code {
   font-family:"courier new", courier, monospace;
   color:#000080;
 }
-a:link        { color:#0000cc; text-decoration: none; }
-a:visited     { color:#0000cc; text-decoration: none; }
-a:hover       { color:#0000ff; text-decoration: underline; }
-a:active      { color:#ff0000; text-decoration: none; }
+a:link {
+  color:#0000cc;
+  text-decoration: none;
+}
+a:visited {
+  color:#0000cc;
+  text-decoration: none;
+}
+a:hover {
+  color:#0000ff;
+  text-decoration: underline;
+}
+a:active {
+  color:#ff0000;
+  text-decoration: none;
+}
 form > div:not(:last-child) {
   margin-block-end: .75em;
 }
