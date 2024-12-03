@@ -105,7 +105,9 @@ setPictureToProfil('');
  </head>
  <body>
 {if $avatar}
-<h1>{#avatar_hl#}</h1>
+ <header>
+  <h1>{#avatar_hl#}</h1>
+ </header>
 {if $avatar_uploaded}
 <p class="ok">{#upload_successful#}</p>
 {/if}
