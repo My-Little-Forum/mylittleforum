@@ -127,17 +127,23 @@ img {
 -->
 {/literal}
   </style>
-function insertCode(image_url) {
- 	if (opener && opener.mlfBBCodeButton) {
-		var bbcodeButton = opener.mlfBBCodeButton;
-		if (!bbcodeButton.canInsert()) 
-			return;
-		var buttonGroup = bbcodeButton.getButtonGroup();	
-		var txtarea = buttonGroup.getTextArea();
-		txtarea.insertTextRange( txtarea.getSelection() + "[img]" + image_url + "[/img]" );
-	}
-	//self.close();
   <script>{literal}
+/**
+ * function for inserting uploaded images into
+ * a posting from the uploaded images gallery
+ */
+function insertCode() {
+  const clickedButton = event.target.closest('button');
+  if (clickedButton === null) return false;
+  const imagePath = clickedButton.querySelector('img').getAttribute('src');
+  if (opener && opener.mlfBBCodeButton) {
+    const bbcodeButton = opener.mlfBBCodeButton;
+    if (!bbcodeButton.canInsert()) return;
+    const buttonGroup = bbcodeButton.getButtonGroup();
+    const txtarea = buttonGroup.getTextArea();
+    txtarea.insertTextRange( txtarea.getSelection() + "[img]" + imagePath + "[/img]" );
+  }
+  //self.close();
 }
 window.addEventListener('DOMContentLoaded', function() {
   if (document.querySelector('div.insert-desc')) {
