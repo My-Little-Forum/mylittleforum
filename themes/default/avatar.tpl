@@ -8,6 +8,11 @@
   <style type="text/css">
 {literal}
 <!--
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
 body {
   color: #000;
   background: #fff;
