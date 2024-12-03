@@ -49,7 +49,6 @@ img.uploaded {
   cursor:pointer;
 }
 .small {
-  line-height:16px;
   font-size: 0.82em;
 }
 .delete a {
