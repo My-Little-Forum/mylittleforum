@@ -41,7 +41,7 @@ body > * {
   margin:0;
   padding:0;
 }
-#wrapper {
+main {
   margin-inline: 0;
   margin-block: 0.5em;
 }
@@ -175,7 +175,7 @@ window.addEventListener('DOMContentLoaded', function() {
  <div id="header">
   <h1>{#upload_image_hl#}</h1>
  </div>
- <div id="wrapper">
+ <main>
 {if $errors}
   <div class="caution">
    <h2>{#error_headline#}</h2>
@@ -197,12 +197,12 @@ window.addEventListener('DOMContentLoaded', function() {
    </div>
   </form>
   <p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>
- </div>
+ </main>
 {elseif $uploaded_file}
  <div id="header">
   <h1>{#upload_image_hl#}</h1>
  </div>
- <div id="wrapper">
+ <main>
   <div class="ok">
    <h2>{#upload_successful#}</h2>
   </div>
@@ -221,14 +221,14 @@ window.addEventListener('DOMContentLoaded', function() {
   </ul>
 {if $image_downsized}  <p class="small">{$smarty.config.image_downsized|replace:"[width]":$new_width|replace:"[height]":$new_height|replace:"[filesize]":$new_filesize}</p>{/if}
   <p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>
- </div>
+ </main>
 {elseif $browse_images}
  <div id="header">
   <div id="nav-1"><a href="index.php?mode=upload_image">{#back#}</a></div>
   <div id="nav-2">{if $previous}[ <a href="index.php?mode=upload_image&amp;browse_images={$previous}" title="{#previous_page_link_title#}">&laquo;</a> ]{/if}{if $previous && next} {/if}{if $next}[ <a href="index.php?mode=upload_image&amp;browse_images={$next}" title="{#next_page_link_title#}">&raquo;</a> ]{/if}</div>
  </div>
 {if $images}
- <div id="wrapper">
+ <main>
   <ul id="imgtab">
 {section name=nr loop=$images start=$start max=$images_per_page}
    <li>
@@ -246,17 +246,17 @@ window.addEventListener('DOMContentLoaded', function() {
    </li>
 {/section}
   </ul>
- </div>
+ </main>
 {else}
- <div id="wrapper">
+ <main>
   <p>{#no_images#}</p>
- </div>
+ </main>
 {/if}
 {elseif $delete_confirm}
  <div id="header">
   <div id="nav-1"><a href="index.php?mode=upload_image&amp;browse_images={$current|default:'1'}">{#back#}</a></div>
  </div>
- <div id="wrapper">
+ <main>
   <div class="caution">
    <h2>{#delete_image_confirm#}</h2>
   </div>
@@ -271,13 +271,13 @@ window.addEventListener('DOMContentLoaded', function() {
     <button name="delete_confirm" value="{#delete_image_button#}">{#delete_image_button#}</button>
    </div>
   </form>
- </div>
+ </main>
 {else}
- <div id="wrapper">
+ <main>
   <div class="caution">
    <h2>{#image_upload_not_enabled#}</h2>
   </div>
- </div>
+ </main>
 {/if}
 </body>
 </html>
