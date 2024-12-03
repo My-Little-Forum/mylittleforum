@@ -66,6 +66,7 @@ a {
   color: #00c;
   text-decoration: none;
 }
+a:focus,
 a:hover {
   color:#00f;
   text-decoration: underline dotted 9% #45f;
