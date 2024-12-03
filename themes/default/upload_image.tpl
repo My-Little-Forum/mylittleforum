@@ -124,6 +124,9 @@ img {
   flex-wrap: wrap;
   gap: 0.3em;
 }
+button {
+  cursor: pointer;
+}
 -->
 {/literal}
   </style>
