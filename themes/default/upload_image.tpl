@@ -127,6 +127,11 @@ img {
 button {
   cursor: pointer;
 }
+#imgtab li button:has(> img) {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
 -->
 {/literal}
   </style>
