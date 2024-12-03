@@ -26,7 +26,7 @@ a:active      { color: #ff0000; text-decoration: none; }
 {/literal}
   </style>
 
-  <script type="text/javascript">{literal}/* <![CDATA[ */
+  <script type="text/javascript">{literal}
 function setPictureToProfil(src) {
  	if (opener && opener.document.getElementById("avatar_wrapper")) {
 		var avatarWrapper = opener.document.getElementById("avatar_wrapper")
@@ -48,7 +48,7 @@ setPictureToProfil('{$avatar}');
 setPictureToProfil('');
 {/if}
 {literal}
-/* ]]> */{/literal}</script>
+{/literal}</script>
  </head>
  <body>
 {if $avatar}
