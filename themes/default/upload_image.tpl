@@ -137,7 +137,7 @@ function insertCode(image_url) {
 		txtarea.insertTextRange( txtarea.getSelection() + "[img]" + image_url + "[/img]" );
 	}
 	//self.close();
-  <script type="text/javascript">{literal}
+  <script>{literal}
 }
 window.addEventListener('DOMContentLoaded', function() {
   if (document.querySelector('div.insert-desc')) {
