@@ -125,7 +125,7 @@ setPictureToProfil('');
   <h1>{#upload_avatar_hl#}</h1>
  </header>
  <main>
-<p>{#upload_avatar_notes#|replace:"[width]":$settings.avatar_max_width|replace:"[height]":$settings.avatar_max_width|replace:"[filesize]":$settings.avatar_max_filesize}</p>
+  <p class="instruction">{#upload_avatar_notes#|replace:"[width]":$settings.avatar_max_width|replace:"[height]":$settings.avatar_max_width|replace:"[filesize]":$settings.avatar_max_filesize}</p>
 {if $errors}
   <div class="caution">
    <h2>{#error_headline#}</h2>
