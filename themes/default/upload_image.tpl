@@ -157,7 +157,7 @@ function insertCode(image_url) {
    </ul>
   </div>
 {/if}
-  <form id="uploadform" action="index.php" method="post" enctype="multipart/form-data" accept-charset="{#charset#}">
+  <form id="upload-form" action="index.php" method="post" enctype="multipart/form-data" accept-charset="{#charset#}">
    <input type="hidden" name="mode" value="upload_image" />
    <div>
     <input type="file" name="probe" size="17" />
@@ -219,7 +219,7 @@ function insertCode(image_url) {
   <ul id="imgtab" class="shrinked">
    <li><img src="images/uploaded/{$delete}" alt="{$delete}" /></li>
   </ul>
-  <form id="uploadform" action="index.php" method="post" accept-charset="{#charset#}">
+  <form id="del-upload-form" action="index.php" method="post" accept-charset="{#charset#}">
    <input type="hidden" name="mode" value="upload_image" />
    <input type="hidden" name="delete" value="{$delete}" />
 {if $current}   <input type="hidden" name="current" value="{$current}" />{/if}
