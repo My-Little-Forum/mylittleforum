@@ -83,16 +83,16 @@ code {
   color:#000080;
 }
 a {
-  color:#0000cc;
+  color:#00c;
   text-decoration: none;
 }
 a:focus,
 a:hover {
-  color:#0000ff;
+  color:#00f;
   text-decoration: underline;
 }
 a:active {
-  color:#ff0000;
+  color:#f00;
   text-decoration: none;
 }
 form > div:not(:last-child) {
