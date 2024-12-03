@@ -177,9 +177,6 @@ function insertCode(image_url) {
   <div class="ok">
    <h2>{#upload_successful#}</h2>
   </div>
-{*<script type="text/javascript">/* <![CDATA[ */document.write('<p>{#insert_image_exp#|escape:quotes}<\/p>'); /* ]]> */</script>*}
-<noscript><p>{#insert_image_exp_no_js#}</p>
-<p><code>[img]images/uploaded/{$uploaded_file}[/img]</code></p></noscript>
 {if $image_downsized}<p class="small">{$smarty.config.image_downsized|replace:"[width]":$new_width|replace:"[height]":$new_height|replace:"[filesize]":$new_filesize}</p>{/if}
   <ul id="imgtab" class="shrinked">
    <li>
@@ -187,6 +184,10 @@ function insertCode(image_url) {
      <button type="button">
       <img src="images/uploaded/{$uploaded_file}" title="{#insert_image#}" alt="{#insert_image#}" />
      </button>
+    </div>
+    <div class="insert-desc">
+     <p>{#insert_image_exp_no_js#}</p>
+     <p><code>[img]images/uploaded/{$uploaded_file}[/img]</code></p>
     </div>
    </li>
   </ul>
