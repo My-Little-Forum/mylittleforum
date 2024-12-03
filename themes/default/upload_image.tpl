@@ -127,7 +127,6 @@ img {
 -->
 {/literal}
   </style>
-  <script type="text/javascript">{literal}/* <![CDATA[ */
 function insertCode(image_url) {
  	if (opener && opener.mlfBBCodeButton) {
 		var bbcodeButton = opener.mlfBBCodeButton;
@@ -138,8 +137,8 @@ function insertCode(image_url) {
 		txtarea.insertTextRange( txtarea.getSelection() + "[img]" + image_url + "[/img]" );
 	}
 	//self.close();
+  <script type="text/javascript">{literal}
 }
-/* ]]> */{/literal}</script>
 window.addEventListener('DOMContentLoaded', function() {
   if (document.querySelector('div.insert-desc')) {
     const descriptors = document.querySelectorAll('div.insert-desc');
@@ -150,6 +149,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+{/literal}</script>
  </head>
  <body>
 {if $form}
