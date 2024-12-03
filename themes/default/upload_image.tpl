@@ -89,11 +89,11 @@ a {
 a:focus,
 a:hover {
   color:#00f;
-  text-decoration: underline;
+  text-decoration: underline dotted 9% #45f;
 }
 a:active {
   color:#f00;
-  text-decoration: none;
+  text-decoration: underline solid 7% #d00;
 }
 form > div:not(:last-child) {
   margin-block-end: .75em;
