@@ -23,6 +23,26 @@ body {
   font-size: 1rem;
   line-height: 1.5;
 }
+body > * {
+  padding-block: 0;
+  padding-inline: 0.5em;
+}
+header {
+  margin: 0;
+  background: #f9f9f9;
+  border-bottom: 1px solid #bacbdf;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+}
+main {
+  margin-inline: 0;
+  margin-block: 0.5em;
+}
 h1 {
   font-size: 1em;
   font-weight: bold;
