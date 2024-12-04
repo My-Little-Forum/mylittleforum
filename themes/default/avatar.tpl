@@ -119,25 +119,24 @@ ul {
   </style>
 
   <script type="text/javascript">{literal}
-function setPictureToProfil(src) {
- 	if (opener && opener.document.getElementById("avatar_wrapper")) {
-		var avatarWrapper = opener.document.getElementById("avatar_wrapper")
-		if (src) {
-			var img = new Image();
-			img.src = src;
-			avatarWrapper.innerHTML = '';
-			avatarWrapper.appendChild(img);
-		}
-		else {
-			avatarWrapper.innerHTML = '';
-		}
-	}
+function setPictureToProfile(src) {
+  if (opener && opener.document.getElementById("avatar_wrapper")) {
+    const avatarWrapper = opener.document.getElementById("avatar_wrapper")
+    if (src) {
+      const img = new Image();
+      img.src = src;
+      avatarWrapper.innerHTML = '';
+      avatarWrapper.appendChild(img);
+    } else {
+      avatarWrapper.innerHTML = '';
+    }
+  }
 };
 {/literal}
 {if $avatar_uploaded}
-setPictureToProfil('{$avatar}');
+setPictureToProfile('{$avatar}');
 {elseif $avatar_deleted}
-setPictureToProfil('');
+setPictureToProfile('');
 {/if}
 {literal}
 {/literal}</script>
