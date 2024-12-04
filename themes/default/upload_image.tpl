@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style type="text/css">
 {literal}
-<!--
 *,
 ::before,
 ::after {
@@ -152,7 +151,6 @@ button {
   border: none;
   padding: 0;
 }
--->
 {/literal}
   </style>
   <script>{literal}
