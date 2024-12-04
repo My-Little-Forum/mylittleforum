@@ -143,8 +143,6 @@ setPictureToProfile('{$avatar}');
 {elseif $avatar_deleted}
 setPictureToProfile('');
 {/if}
-{literal}
-{/literal}</script>
 
 window.addEventListener('DOMContentLoaded', function() {
   if (document.querySelector('button[name="close-form"]')) {
@@ -153,6 +151,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+  </script>
  </head>
  <body>
 {if $avatar}
