@@ -12,7 +12,7 @@ if ($settings['avatars'] > 0 && isset($_SESSION[$settings['session_prefix'].'use
 	$filename = $avatarInfo === false ? false : $avatarInfo[1];
 
 	// remove existing avatar
-	if (isset($_GET['delete'])) {
+	if (isset($_POST['delete'])) {
 		if ($filename !== false && file_exists($uploaded_images_path.$filename)) {
 			@chmod($uploaded_images_path.$filename, 0777);
 			@unlink($uploaded_images_path.$filename);
