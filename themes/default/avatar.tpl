@@ -114,8 +114,10 @@ setPictureToProfil('');
    <h2>{#upload_successful#}</h2>
   </div>
 {/if}
-<p><img src="{$avatar}" alt="" /></p>
-{if $image_downsized}<p class="small">{$smarty.config.image_downsized|replace:"[width]":$new_width|replace:"[height]":$new_height|replace:"[filesize]":$new_filesize}</p>{/if}
+  <ul id="imgtab" class="shrinked">
+   <li><img src="{$avatar}" alt="" /></li>
+  </ul>
+{if $image_downsized}  <p class="small">{$smarty.config.image_downsized|replace:"[width]":$new_width|replace:"[height]":$new_height|replace:"[filesize]":$new_filesize}</p>{/if}
 {if $avatar_uploaded}
 <script type="text/javascript">/* <![CDATA[ */ document.write('<p><button onclick=\"window.close()\">{#close_window#}</button><\/p>'); /* ]]> */</script>
 {else}
