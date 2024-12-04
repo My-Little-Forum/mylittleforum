@@ -95,6 +95,9 @@ a:active {
   color:#f00;
   text-decoration: underline solid 7% #d00;
 }
+form > div:not(:last-child) {
+  margin-block-end: .75em;
+}
 -->
 {/literal}
   </style>
