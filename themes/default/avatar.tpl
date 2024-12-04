@@ -140,6 +140,14 @@ setPictureToProfile('');
 {/if}
 {literal}
 {/literal}</script>
+
+window.addEventListener('DOMContentLoaded', function() {
+  if (document.querySelector('button[name="close-form"]')) {
+    document.querySelector('button[name="close-form"]').addEventListener('click', function() {
+      window.close();
+    });
+  }
+});
  </head>
  <body>
 {if $avatar}
