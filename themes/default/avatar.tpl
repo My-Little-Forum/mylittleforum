@@ -38,6 +38,9 @@ header {
   left: 0;
   width: 100%;
 }
+header > * {
+  margin:0;
+  padding:0;
 }
 main {
   margin-inline: 0;
@@ -97,6 +100,19 @@ a:active {
 }
 form > div:not(:last-child) {
   margin-block-end: .75em;
+}
+ul {
+  list-style:none;
+  margin-block:0.5em;
+  padding: 0;
+}
+#imgtab {
+  display:flex;
+  flex-direction:column;
+  gap:0.75em;
+}
+#imgtab li {
+  text-align:center;
 }
 -->
 {/literal}
