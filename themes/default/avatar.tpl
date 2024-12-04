@@ -57,6 +57,11 @@ h1 {
   background-repeat:no-repeat;
   background-position: 2px 3px;
 }
+.caution h2,
+.ok h2 {
+  font-size: 1em;
+  margin: 0 0 0.5em 0;
+}
 .caution {
   color: #cc0000;
   font-weight: bold;
