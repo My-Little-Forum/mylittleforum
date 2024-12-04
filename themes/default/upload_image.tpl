@@ -160,11 +160,13 @@ button {
  */
 function insertCode() {
   const clickedButton = event.target.closest('button');
-  if (clickedButton === null) return false;
+  if (clickedButton === null)
+    return false;
   const imagePath = clickedButton.querySelector('img').getAttribute('src');
   if (opener && opener.mlfBBCodeButton) {
     const bbcodeButton = opener.mlfBBCodeButton;
-    if (!bbcodeButton.canInsert()) return;
+    if (!bbcodeButton.canInsert())
+      return false;
     const buttonGroup = bbcodeButton.getButtonGroup();
     const txtarea = buttonGroup.getTextArea();
     txtarea.insertTextRange( txtarea.getSelection() + "[img]" + imagePath + "[/img]" );
