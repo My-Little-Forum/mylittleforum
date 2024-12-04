@@ -138,11 +138,19 @@ setPictureToProfil('');
    <li><img src="{$avatar}" alt="" /></li>
   </ul>
 {if $image_downsized}  <p class="small">{$smarty.config.image_downsized|replace:"[width]":$new_width|replace:"[height]":$new_height|replace:"[filesize]":$new_filesize}</p>{/if}
+  <form id="del-upload-form" action="index.php" method="post" accept-charset="{#charset#}">
+   <input type="hidden" name="mode" value="avatar" />
 {if $avatar_uploaded}
-<script type="text/javascript">/* <![CDATA[ */ document.write('<p><button onclick=\"window.close()\">{#close_window#}</button><\/p>'); /* ]]> */</script>
+   <div>
+    <button type="button" name="close-form">{#close_window#}</button>
+   </div>
 {else}
-<p class="delete"><a href="index.php?mode=avatar&amp;delete=true"><img src="{$THEMES_DIR}/{$settings.theme}/images/delete.png" alt="" width="16" height="16" /><span>{#delete_avatar#}</span></a></p>
+   <div>
+    <button name="delete" value="{#delete_avatar#}">{#delete_avatar#}</button>
+    <button type="button" name="close-form">{#close_window#}</button>
+   </div>
 {/if}
+  </form>
  </main>
 {elseif $upload}
  <header>
