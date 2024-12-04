@@ -82,6 +82,15 @@ code {
   font-family:"courier new", courier, monospace;
   color:#000080;
 }
+.insert-desc {
+  margin-block: 0.5em 0;
+}
+.insert-desc > * {
+  margin-block: 0 0.25em;
+}
+.insert-desc > *:last-child {
+  margin-block: 0;
+}
 a {
   color:#00c;
   text-decoration: none;
