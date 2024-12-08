@@ -115,6 +115,9 @@ ul {
   display:flex;
   flex-direction:column;
   gap:0.75em;
+  min-width: 20em;
+  max-width: 40em;
+  margin-inline: auto;
 }
 #del-upload-form,
 #imgtab li {
