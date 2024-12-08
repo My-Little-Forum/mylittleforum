@@ -81,9 +81,6 @@ code {
   font-family:"courier new", courier, monospace;
   color:#000080;
 }
-.insert-desc {
-  margin-block: 0.5em 0;
-}
 .insert-desc > * {
   margin-block: 0 0.25em;
 }
@@ -119,9 +116,15 @@ ul {
   max-width: 40em;
   margin-inline: auto;
 }
-#del-upload-form,
-#imgtab li {
+#del-upload-form {
   text-align:center;
+}
+#imgtab li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  width: 100%;
 }
 li > *:last-child {
   align-content:center;
