@@ -154,6 +154,9 @@ button {
   border: none;
   padding: 0;
 }
+.invisible {
+  visibility: hidden;
+}
 -->
 {/literal}
   </style>
@@ -183,6 +186,14 @@ window.addEventListener('DOMContentLoaded', function() {
   if (document.querySelector('button[name="close-form"]')) {
     document.querySelector('button[name="close-form"]').addEventListener('click', function() {
       window.close();
+    });
+  }
+  if (document.querySelector('button[name="upload_img"]')) {
+    document.querySelector('button[name="upload_img"]').addEventListener('click', function() {
+      const throbber = document.getElementById('throbber-submit');
+      if (throbber.classList.contains('invisible')) {
+        throbber.classList.remove('invisible');
+      }
     });
   }
 });
@@ -239,8 +250,8 @@ window.addEventListener('DOMContentLoaded', function() {
     <input type="file" name="probe" size="17" />
    </div>
    <div class="buttonbar">
-    <button value="{#upload_image_button#}" onclick="document.getElementById('throbber-submit').style.visibility='visible'">{#upload_image_button#}</button>
-    <img id="throbber-submit" style="visibility:hidden;" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
+    <button name="upload_img" value="{#upload_image_button#}">{#upload_image_button#}</button>
+    <img id="throbber-submit" class="invisible" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
    </div>
   </form>
  </main>
