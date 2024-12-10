@@ -109,9 +109,50 @@ ul {
   display:flex;
   flex-direction:column;
   gap:0.75em;
+  min-width: 20em;
+  max-width: 40em;
+  margin-inline: auto;
+}
+#del-upload-form {
+  text-align:center;
 }
 #imgtab li {
-  text-align:center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  width: 100%;
+}
+li > *:last-child {
+  align-content:center;
+}
+img {
+  border:none;
+  display: block;
+}
+#imgtab img {
+  max-width: 100%;
+  margin-inline: auto;
+}
+#imgtab:not(.shrinked) img {
+  cursor: pointer;
+}
+#imgtab.shrinked img {
+  max-width: 50%;
+  height: auto;
+}
+.buttonbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
+button {
+  cursor: pointer;
+}
+#imgtab li button:has(> img) {
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 -->
 {/literal}
