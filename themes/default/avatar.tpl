@@ -90,6 +90,9 @@ img.uploaded {
   border:none;
   margin:0px 5px -3px 0px;
   padding:0px;
+.instruction,
+p.small {
+  margin-block:0.5em;
 }
 a {
   color: #00c;
