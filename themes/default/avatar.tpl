@@ -7,7 +7,6 @@
   <meta http-equiv="cache-control" content="no-cache">
   <style type="text/css">
 {literal}
-<!--
 *,
 ::before,
 ::after {
@@ -157,7 +156,6 @@ button {
 .invisible {
   visibility: hidden;
 }
--->
 {/literal}
   </style>
 
