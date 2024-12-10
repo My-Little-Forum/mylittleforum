@@ -76,6 +76,7 @@ img.uploaded {
   border: 1px solid #000;
   cursor:pointer;
 }
+.instruction,
 .small {
   font-size: 0.82em;
 }
