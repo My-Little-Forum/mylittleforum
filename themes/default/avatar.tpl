@@ -190,7 +190,9 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   if (document.querySelector('button[name="upload_img"]')) {
     document.querySelector('button[name="upload_img"]').addEventListener('click', function() {
+      const close_btn = document.querySelector('button[name="close-form"]');
       const throbber = document.getElementById('throbber-submit');
+      close_btn.addAttribute('hidden');
       if (throbber.classList.contains('invisible')) {
         throbber.classList.remove('invisible');
       }
@@ -251,6 +253,7 @@ window.addEventListener('DOMContentLoaded', function() {
    </div>
    <div class="buttonbar">
     <button name="upload_img" value="{#upload_image_button#}">{#upload_image_button#}</button>
+    <button type="button" name="close-form">{#close_window#}</button>
     <img id="throbber-submit" class="invisible" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
    </div>
   </form>
