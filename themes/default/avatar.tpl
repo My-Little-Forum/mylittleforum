@@ -158,7 +158,6 @@ button {
 }
 {/literal}
   </style>
-
   <script type="text/javascript">{literal}
 function setPictureToProfile(src) {
   if (opener && opener.document.getElementById("avatar_wrapper")) {
