@@ -780,6 +780,11 @@ switch ($action) {
 				if ($id == 0 && $categories != false && empty($categories[$p_category]))
 					$errors[] = 'error_invalid_category';
 				
+				if ($posting_mode == 1 && !empty($field['time'])) {
+					$posting_time = format_time('YYYY-MM-dd HH:mm:ss', $field['time']);
+				} else {
+					$posting_time = format_time('YYYY-MM-dd HH:mm:ss', time());
+				}
 				if (!$isModOrAdmin) {
 					// name reserved?
 					$result = mysqli_query($connid, "SELECT user_id, user_name FROM " . $db_settings['userdata_table'] . " WHERE lower(user_name) = '" . mysqli_real_escape_string($connid, my_strtolower($name, $lang['charset'])) . "'") or raise_error('database_error', mysqli_error($connid));
