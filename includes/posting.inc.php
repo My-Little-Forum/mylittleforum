@@ -787,7 +787,9 @@ switch ($action) {
 				}
 				if (!$isModOrAdmin) {
 					// name reserved?
-					$result = mysqli_query($connid, "SELECT user_id, user_name FROM " . $db_settings['userdata_table'] . " WHERE lower(user_name) = '" . mysqli_real_escape_string($connid, my_strtolower($name, $lang['charset'])) . "'") or raise_error('database_error', mysqli_error($connid));
+					$result = mysqli_query($connid, "SELECT user_id, user_name FROM " . $db_settings['userdata_table'] . "
+					WHERE lower(user_name) = '" . mysqli_real_escape_string($connid, my_strtolower($name, $lang['charset'])) . "'
+					AND registered > '". mysqli_real_escape_string($connid, $posting_time) ."'") or raise_error('database_error', mysqli_error($connid));
 					if (mysqli_num_rows($result) > 0) {
 						if (empty($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 							$errors[] = 'error_name_reserved';
