@@ -2875,6 +2875,55 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20240729.1'))) {
+	/**
+	 * From here on everything can be done as a transaction in one step
+	 */
+	if (empty($update['errors'])) {
+		mysqli_autocommit($connid, false);
+		if (empty($update['errors'])) {
+			mysqli_begin_transaction($connid);
+			try {
+				// changes in the user data table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
+				`birthday` = NULL
+				WHERE `birthday` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
+				`last_logout` = NULL
+				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
+				`registered` = NULL
+				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				
+				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
+				`last_reply` = NULL
+				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
+				`edited` = NULL
+				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				mysqli_commit($connid);
+			} catch (mysqli_sql_exception $exception) {
+				mysqli_rollback($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
+				//throw $exception;
+			}
+		}
+		mysqli_autocommit($connid, true);
+	}
 	
 	// write the new version number to the database
 	if (empty($update['errors'])) {
@@ -2921,6 +2970,55 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20240827.1'))) {
+	/**
+	 * From here on everything can be done as a transaction in one step
+	 */
+	if (empty($update['errors'])) {
+		mysqli_autocommit($connid, false);
+		if (empty($update['errors'])) {
+			mysqli_begin_transaction($connid);
+			try {
+				// changes in the user data table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
+				`birthday` = NULL
+				WHERE `birthday` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
+				`last_logout` = NULL
+				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
+				`registered` = NULL
+				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				
+				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
+				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
+				`last_reply` = NULL
+				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
+				`edited` = NULL
+				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				mysqli_commit($connid);
+			} catch (mysqli_sql_exception $exception) {
+				mysqli_rollback($connid);
+				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
+				//throw $exception;
+			}
+		}
+		mysqli_autocommit($connid, true);
+	}
 	
 	// write the new version number to the database
 	if (empty($update['errors'])) {
