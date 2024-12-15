@@ -2890,6 +2890,37 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		$update['items'][] = 'themes/default/main.tpl';
 		$update['items'][] = 'themes/default/style.css';
 		$update['items'][] = 'themes/default/style.min.css';
+
+if (empty($update['errors']) && in_array($settings['version'], array('20240827.1'))) {
+	
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
+		}
+	}
+	
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/avatar.inc.php';
+		$update['items'][] = 'includes/entry.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/index.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/thread.inc.php';
+		$update['items'][] = 'includes/upload_image.inc.php';
+		
+		$update['items'][] = 'js/';
+		
+		$update['items'][] = 'lang/';
+		
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
+		
+		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
