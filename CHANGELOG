@@ -1,6 +1,27 @@
 my little forum changelog
 -------------------------
 
+20241215.1 (2024-12-15)
+-----------------------
+
+- change: use modern form elements and field types, where it is appropriate
+- change: set autofocus into the first input element of a form after loading the page, where it is appropriate
+- change: add attribute required for form fields, that must be completed, this might prevent unnecessarily sending form contents
+- change: rearrange the text input field and the formatting buttons in the posting form
+- change: make the posting form behaviour better on mobile devices and for screen-reader programs
+- change: rework of the popups for uploading images for use in postings and also the form for uploading avatar images
+- change: reformatting of the thread tree items with breaking points to behave better in narrow viewports
+- change: move the no-text icon from the end of the subject to the icon list after the metadata (author and date)
+- change: set the posting date into a time element, enhances the machine readability
+- fix: broken SQL query for selecting the postings of a specified category on a thread overview page
+- fix: make images of type WebP appear in the uploaded images gallery in the upload images popup
+- fix: restrict the sidebar in narrow viewports to its width
+- fix: prevent the use of unhidden passwords for the AI training of browser vendors
+- fix: added forgotten writing direction aware formatting for form elements
+- fix: take the time of a posting and the time of registration of a user into account, when checking for a username collision
+- fix: do not check for a username collision when an administrator or moderatior edits a posting of an unregistered forum user
+- fix: remove tabindex attributes from form elements which caused a weird tab order on the posting form page
+
 20240827.1 (2024-08-27)
 -----------------------
 
