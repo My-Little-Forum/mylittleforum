@@ -2187,6 +2187,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
 		$update['items'][] = 'includes/auto_login.inc.php';
+		$update['items'][] = 'includes/avatar.inc.php';
 		$update['items'][] = 'includes/delete_cookie.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
@@ -2200,6 +2201,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'js/';
 		
 		$update['items'][] = 'lang/';
 		
@@ -2448,6 +2451,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
 		$update['items'][] = 'includes/auto_login.inc.php';
+		$update['items'][] = 'includes/avatar.inc.php';
 		$update['items'][] = 'includes/delete_cookie.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
@@ -2461,6 +2465,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'js/';
 		
 		$update['items'][] = 'lang/';
 		
@@ -2709,6 +2715,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
 		$update['items'][] = 'includes/auto_login.inc.php';
+		$update['items'][] = 'includes/avatar.inc.php';
 		$update['items'][] = 'includes/delete_cookie.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
@@ -2718,9 +2725,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
+		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'js/';
 		
 		$update['items'][] = 'lang/';
 		
@@ -2834,6 +2844,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
 		$update['items'][] = 'includes/auto_login.inc.php';
+		$update['items'][] = 'includes/avatar.inc.php';
 		$update['items'][] = 'includes/delete_cookie.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
@@ -2843,9 +2854,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
+		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'js/';
 		
 		$update['items'][] = 'lang/';
 		
@@ -2874,11 +2888,21 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/avatar.inc.php';
+		$update['items'][] = 'includes/entry.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/thread.inc.php';
+		$update['items'][] = 'includes/upload_image.inc.php';
+		
+		$update['items'][] = 'js/';
 		
 		$update['items'][] = 'lang/arabic.lang';
 		$update['items'][] = 'lang/german.lang';
 		$update['items'][] = 'lang/italian.lang';
+		$update['items'][] = 'lang/';
 		
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		
@@ -2890,6 +2914,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		$update['items'][] = 'themes/default/main.tpl';
 		$update['items'][] = 'themes/default/style.css';
 		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/';
+		
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
+	}
+}
 
 if (empty($update['errors']) && in_array($settings['version'], array('20240827.1'))) {
 	
