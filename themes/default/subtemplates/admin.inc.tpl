@@ -905,7 +905,7 @@
 {/foreach}
 </ul>
 {/if}
-<p>{#update_reenable_notice#}</p>
+<p>{#update_reenabling_notice#}</p>
 {if $update_download_url}<p class="small">{#update_download#|replace:"[[":"<a href=\"$update_download_url\">"|replace:"]]":"</a>"}</p>{/if}
 {if $update_message}{$update_message}{/if}
 {elseif $action == 'email_list'}
