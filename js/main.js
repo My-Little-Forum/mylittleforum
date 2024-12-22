@@ -526,18 +526,14 @@ function DragAndDropTable(table,mode,queryKey) {
 		this.isVisible = function() {
 			return !main.classList.contains("js-display-fold");
 		};
-		var links = main.getElementsByTagName("a");
-		for (var i=0; i<links.length; i++) {
-			if (links[i].href.search(/toggle_sidebar/) != -1) {
-				links[i].onclick = function(e) {
-					self.setVisible(!self.isVisible());
-					new Request("index.php", "POST", new Query("toggle_sidebar", true));
-					return false;
-				}
-			}
+		const link = main.querySelector(".sidebar a");
+		link.onclick = function(e) {
+			self.setVisible(!self.isVisible());
+			new Request("index.php", "POST", new Query("toggle_sidebar", true));
+			return false;
 		}
 	};
-		
+	
 	/**
 	 * Thread object, which is created by an UL element or the numerical ID of the UL element,
 	 * which is used to collapse the tree
