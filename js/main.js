@@ -511,23 +511,16 @@ function DragAndDropTable(table,mode,queryKey) {
 	 */
 	function Sidebar(templatePath) {
 		templatePath = templatePath || "";
-		var icon    = document.getElementById("sidebartoggle");
-		if (!main || !icon)
 		const main   = document.getElementById("sidebar") || document.getElementById("bottombar") || false;
 		const self   = this;
+		if (!main)
 			return;
 		this.setVisible = function(visible) {
 			if (visible) {
 				main.classList.remove("js-display-fold");
-				icon.src = templatePath + settings["hide_sidebar_image"];
-				icon.classList.remove("show-sidebar");
-				icon.classList.add("hide-sidebar");
 			}
 			else {
 				main.classList.add("js-display-fold");
-				icon.src = templatePath + settings["show_sidebar_image"];
-				icon.classList.remove("hide-sidebar");
-				icon.classList.add("show-sidebar");
 			}
 		};
 		this.isVisible = function() {
