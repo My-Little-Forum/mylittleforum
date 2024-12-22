@@ -528,8 +528,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_commit($connid);
 				} catch (mysqli_sql_exception $exception) {
 					mysqli_rollback($connid);
-					$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-					//throw $exception;
+					$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 				}
 				mysqli_autocommit($connid, true);
 			}
@@ -975,8 +974,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-				//throw $exception;
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 			}
 		}
 		mysqli_autocommit($connid, true);
@@ -1370,8 +1368,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-				//throw $exception;
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 			}
 		}
 		mysqli_autocommit($connid, true);
@@ -1786,8 +1783,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-				//throw $exception;
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 			}
 		}
 		mysqli_autocommit($connid, true);
@@ -2166,8 +2162,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-				//throw $exception;
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 			}
 		}
 		mysqli_autocommit($connid, true);
@@ -2430,8 +2425,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-				//throw $exception;
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 			}
 		}
 		mysqli_autocommit($connid, true);
@@ -2694,8 +2688,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-				//throw $exception;
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 			}
 		}
 		mysqli_autocommit($connid, true);
@@ -2823,8 +2816,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-				//throw $exception;
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 			}
 		}
 		mysqli_autocommit($connid, true);
@@ -2918,8 +2910,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-				//throw $exception;
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 			}
 		}
 		mysqli_autocommit($connid, true);
@@ -3013,8 +3004,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
-				$update['errors'][] = mysqli_errno($connid) .", ". mysqli_error($connid). ", " . $exception->getMessage();
-				//throw $exception;
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
 			}
 		}
 		mysqli_autocommit($connid, true);
