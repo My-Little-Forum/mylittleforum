@@ -511,40 +511,29 @@ function DragAndDropTable(table,mode,queryKey) {
 	 */
 	function Sidebar(templatePath) {
 		templatePath = templatePath || "";
-		var main    = document.getElementById("sidebar") || document.getElementById("bottombar") || false;
-		var icon    = document.getElementById("sidebartoggle");
-		var self    = this;
-		if (!main || !icon)
+		const main   = document.getElementById("sidebar") || document.getElementById("bottombar") || false;
+		const self   = this;
+		if (!main)
 			return;
 		this.setVisible = function(visible) {
 			if (visible) {
 				main.classList.remove("js-display-fold");
-				icon.src = templatePath + settings["hide_sidebar_image"];
-				icon.classList.remove("show-sidebar");
-				icon.classList.add("hide-sidebar");
 			}
 			else {
 				main.classList.add("js-display-fold");
-				icon.src = templatePath + settings["show_sidebar_image"];
-				icon.classList.remove("hide-sidebar");
-				icon.classList.add("show-sidebar");
 			}
 		};
 		this.isVisible = function() {
 			return !main.classList.contains("js-display-fold");
 		};
-		var links = main.getElementsByTagName("a");
-		for (var i=0; i<links.length; i++) {
-			if (links[i].href.search(/toggle_sidebar/) != -1) {
-				links[i].onclick = function(e) {
-					self.setVisible(!self.isVisible());
-					new Request("index.php", "POST", new Query("toggle_sidebar", true));
-					return false;
-				}
-			}
+		const link = main.querySelector(".sidebar a");
+		link.onclick = function(e) {
+			self.setVisible(!self.isVisible());
+			new Request("index.php", "POST", new Query("toggle_sidebar", true));
+			return false;
 		}
 	};
-		
+	
 	/**
 	 * Thread object, which is created by an UL element or the numerical ID of the UL element,
 	 * which is used to collapse the tree
