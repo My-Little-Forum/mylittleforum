@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+ <style type="text/css">
+  <![CDATA[
+  svg { background: transparent; }
+  path { fill: #a8afbb; stroke-width: 10; stroke: #a8afbb; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <path d="M118,64 42,120 42,8 z" />
+</svg>
+
