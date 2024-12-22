@@ -511,10 +511,10 @@ function DragAndDropTable(table,mode,queryKey) {
 	 */
 	function Sidebar(templatePath) {
 		templatePath = templatePath || "";
-		var main    = document.getElementById("sidebar") || document.getElementById("bottombar") || false;
 		var icon    = document.getElementById("sidebartoggle");
-		var self    = this;
 		if (!main || !icon)
+		const main   = document.getElementById("sidebar") || document.getElementById("bottombar") || false;
+		const self   = this;
 			return;
 		this.setVisible = function(visible) {
 			if (visible) {
