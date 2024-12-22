@@ -100,8 +100,8 @@ html[dir="rtl"] #footermenu a.go-to-top-link{background:url(images/arrow_up.png)
 #sidebar{grid-area:sidebar;position:relative;margin:0;padding:0}
 #sidebar div{position:relative;z-index:2}
 #sidebarcontent div:not(:last-child){margin: 0 0 .75em 0}
-h2.sidebar{font-size:.82em;line-height:1.7em;font-weight:700;margin-block:0 .75em;margin-inline:0;padding-block:0;padding-inline:.375em 17px;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);border:1px solid #bacbdf;z-index:1}
 h2.sidebar a{color:#000;text-decoration:none;z-index:2}
+h2.sidebar{font-size:.82em;line-height:1.7;font-weight:bold;margin-block:0 .75em;margin-inline:0;padding:0;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);border:1px solid #bacbdf;z-index:1}
 .js-display-fold h2.sidebar {margin-block:0}
 #sidebarcontent div h3{font-size:.82em;line-height:1.7;font-weight:400;margin:0;padding:0 .375em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
 #latest-postings{background:#f9f9f9;border:1px solid #bacbdf;padding:0}
