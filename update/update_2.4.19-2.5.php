@@ -15,6 +15,12 @@ if(!defined('IN_INDEX')) exit;
 if(empty($_SESSION[$settings['session_prefix'].'user_type'])) exit;
 if($_SESSION[$settings['session_prefix'].'user_type']!=2) exit;
 
+// configure the error reporting of the MySQL connection
+// defaults to these values with PHP 8.1 and newer
+// but is needed for older PHP versions because it
+// defaults to MYSQLI_REPORT_OFF there 
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 // update data:
 $update['version'] = array('2.4.19', '2.4.19.1', '2.4.20', '2.4.21', '2.4.22', '2.4.23', '2.4.24', '2.4.99.0', '2.4.99.1', '2.4.99.2', '2.4.99.3', '20220508.1', '20220509.1', '20220517.1', '20220529.1', '20220803.1', '20240308.1', '20240729.1', '20240827.1');
 $update['download_url'] = 'https://github.com/My-Little-Forum/mylittleforum/releases/latest';
