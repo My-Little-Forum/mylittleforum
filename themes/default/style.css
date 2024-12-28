@@ -163,11 +163,14 @@ html[dir="rtl"] #footermenu a.go-to-top-link
 #sidebar div             { position:relative; z-index:2; }
 #sidebarcontent div:not(:last-child)
                          { margin: 0 0 0.75em 0; }
-h2.sidebar               { font-size:0.82em; line-height:1.7em; font-weight: bold; margin-block: 0 0.75em; margin-inline: 0; padding-block: 0; padding-inline: 0.375em 17px; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); border: 1px solid #bacbdf; z-index: 1; }
-h2.sidebar a             { color:#000; text-decoration:none; z-index:2; }
+h2.sidebar               { font-size:0.82em; line-height:1.7; font-weight: bold; margin-block: 0 0.75em; margin-inline: 0; padding: 0; padding background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); border: 1px solid #bacbdf; z-index: 1; }
+h2.sidebar a             { display: block; color: #000; padding-inline: 1.625em 0.375em; background: url("images/triangle-top.svg") 0.375em calc(50% + .075em)/0.9em 0.9em no-repeat; text-decoration: none; }
+.js-display-fold h2.sidebar a
+                         { background: url("images/triangle-bottom.svg") 0.375em calc(50% - .075em)/0.9em 0.9em no-repeat; }
+h2.sidebar a:focus, h2.sidebar a:hover, h2.sidebar a:active
+                         { text-decoration: underline; }
 .js-display-fold h2.sidebar
                          { margin-block: 0; }
-#sidebartoggle           { position:absolute; top:7px; inset-inline-end:4px; margin:0; padding:0; z-index:3; }
 #sidebarcontent div h3   { font-size: 0.82em; line-height: 1.7; font-weight: normal; margin: 0; padding: 0 0.375em; background: #d2ddea; background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%); }
 
 #latest-postings         { background:#f9f9f9; border:1px solid #bacbdf; padding:0; }
@@ -844,6 +847,10 @@ form .hp { display: none; }
 	#admin-main-menu { grid-template-areas: "infoboxes mainmenu"; grid-template-columns: 18em auto; grid-template-rows: auto;}
 	#main-grid.threaded { grid-template-areas: "threadlist sidebar"; grid-template-columns: auto 18em; grid-template-rows: auto; }
 	#main-grid.threaded:has(div.js-display-fold) { grid-template-columns: auto 8.5em; }
+	h2.sidebar a { padding-inline: 1.25em 0.375em; background: url("images/triangle-right.svg") 0.175em center/0.9em 0.9em no-repeat; }
+	.js-display-fold h2.sidebar a { background: url("images/triangle-left.svg") 0.325em center/0.9em 0.9em no-repeat; }
+	html[dir="rtl"] h2.sidebar a { background: url("images/triangle-left.svg") calc(100% - 0.175em) center/0.9em 0.9em no-repeat; }
+	html[dir="rtl"] .js-display-fold h2.sidebar a { background: url("images/triangle-right.svg") calc(100% - 0.175em) center/0.9em 0.9em no-repeat; }
 }
 @media screen and (min-width: 48em) {
 	#logo h1 { font-size: 1.6em; }
