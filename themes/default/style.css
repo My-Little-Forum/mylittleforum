@@ -656,8 +656,6 @@ input[name=sort_of_agreement] + iframe {
 	line-height: 1.5em;
 }
 
-.posting {
-}
 .posting img.avatar {
 	float: right;
 	float: inline-end;
@@ -673,8 +671,6 @@ input[name=sort_of_agreement] + iframe {
 .posting .author {
 	margin: 1px 0 18px 0;
 	font-style: italic;
-}
-.posting p {
 }
 *+html .posting ul {
 	padding-left: 17px;
