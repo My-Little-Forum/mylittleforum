@@ -7,7 +7,9 @@
 * <https://yui.github.io/yuicompressor/>.                              *
 ***********************************************************************/
 
-*,::before,::after {
+*,
+::before,
+::after {
 	box-sizing: border-box;
 }
 body {
@@ -53,7 +55,8 @@ a {
 a:visited {
 	color:#0000cc;
 }
-a:focus, a:hover {
+a:focus,
+a:hover {
 	color:#0000ff;
 	text-decoration:underline;
 }
@@ -202,7 +205,8 @@ body > * {
 	display: flex;
 	flex-direction: column;
 }
-#subnav-1, #subnav-2 {
+#subnav-1,
+#subnav-2 {
 	font-size: 0.82em;
 	margin: 0;
 	padding: 0;
@@ -476,7 +480,9 @@ h2.sidebar a {
 .js-display-fold h2.sidebar a {
 	background: url("images/triangle-bottom.svg") 0.375em calc(50% - .075em)/0.9em 0.9em no-repeat;
 }
-h2.sidebar a:focus, h2.sidebar a:hover, h2.sidebar a:active {
+h2.sidebar a:focus,
+h2.sidebar a:hover,
+h2.sidebar a:active {
 	text-decoration: underline;
 }
 .js-display-fold h2.sidebar {
@@ -530,17 +536,21 @@ h2.sidebar a:focus, h2.sidebar a:hover, h2.sidebar a:active {
 	margin:0;
 	padding: 0.25em 0.375em;
 }
-#latest-postings li a:visited, #latest-postings li a.read {
+#latest-postings li a:visited,
+#latest-postings li a.read {
 	background-color: #ffffff;
 }
-#latest-postings li a:visited .entry-title, #latest-postings li a.read .entry-title {
+#latest-postings li a:visited .entry-title,
+#latest-postings li a.read .entry-title {
 	color:#000077;
 }
-#latest-postings li a:focus,#latest-postings li a:hover {
+#latest-postings li a:focus,
+#latest-postings li a:hover {
 	background:#efefef;
 	text-decoration:none;
 }
-#latest-postings li a .entry-date, #latest-postings li a.read .entry-date {
+#latest-postings li a .entry-date,
+#latest-postings li a.read .entry-date {
 	font-size: 0.82em;
 	color: #808080;
 }
@@ -680,7 +690,8 @@ input[name=sort_of_agreement] + iframe {
 	color:#6f6f6f;
 	font-style:italic;
 }
-.edited, .ago {
+.edited,
+.ago {
 	font-size:0.82em;
 	color:#808080;
 }
@@ -877,7 +888,10 @@ html[dir="rtl"] .posting-footer a.unlock-thread {
 	margin:1px 0 0 0;
 	font-style:italic;
 }
-.thread-posting .body,.thread-posting .signature,#content .thread-posting p.tags,.thread-posting .posting-footer{
+.thread-posting .body,
+.thread-posting .signature,
+#content .thread-posting p.tags,
+.thread-posting .posting-footer{
 	margin:0;
 	padding:10px;
 }
@@ -1033,10 +1047,13 @@ html[dir="rtl"] #selectioncontrols::before {
 	font-weight:bold;
 }
 
-.spam, .caution, .ok {
+.spam,
+.caution,
+.ok {
 	font-weight:bold;
 }
-.spam, .caution {
+.spam,
+.caution {
 	color:#882008;
 	background-color:#ff5;
 }
@@ -1049,17 +1066,22 @@ html[dir="rtl"] #selectioncontrols::before {
 .notice.spam {
 	padding: 0.5em;
 }
-.notice.spam, .notice.caution {
+.notice.spam,
+.notice.caution {
 	border-color:#882008;
 }
-.notice.caution, .notice.ok, .notice.spam {
+.notice.caution,
+.notice.ok,
+.notice.spam {
 	padding-block:0.5em;
 	padding-inline: 2.25em 0.5em;
 }
-.notice.caution, .notice.spam {
+.notice.caution,
+.notice.spam {
 	background: #ffffb8 url(images/caution.png) no-repeat 0.5em 0.625em;
 }
-html[dir="rtl"] .notice.caution, html[dir="rtl"] .notice.spam {
+html[dir="rtl"] .notice.caution,
+html[dir="rtl"] .notice.spam {
 	background-position-x: calc(100% - 0.5em);
 }
 .notice.ok {
