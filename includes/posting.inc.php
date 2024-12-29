@@ -1210,7 +1210,9 @@ switch ($action) {
 				// current time:
 				list($preview_time) = mysqli_fetch_row(mysqli_query($connid, "SELECT UNIX_TIMESTAMP(NOW() + INTERVAL " . $time_difference . " MINUTE)"));
 				$smarty->assign('preview_timestamp', $preview_time);
-				$preview_formated_time = format_time($lang['time_format_full'], $preview_time);
+				$preview_ISO_time = format_time('YYYY-MM-dd HH:mm:ss', $posting_time);
+				$smarty->assign('preview_ISO_time', $preview_ISO_time);
+				$preview_formated_time = format_time($lang['time_format_full'], $posting_time);
 				$smarty->assign('preview_formated_time', $preview_formated_time);
 				$smarty->assign('uniqid', htmlspecialchars($uniqid));
 				$smarty->assign('posting_mode', intval($posting_mode));
