@@ -113,9 +113,10 @@
   <div>
    <label for="p_category" class="input">{#category_marking#}</label>
    <select id="p_category" size="1" name="p_category" {if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0} disabled="disabled"{/if}>
-		{foreach key=key item=val from=$categories}
-			{if $key!=0}    <option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>{/if}
-		{/foreach}
+{foreach key=key item=val from=$categories}
+{if $key!=0}    <option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>
+{/if}
+{/foreach}
    </select>
   </div>
 {if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0}
