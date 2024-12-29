@@ -1,5 +1,5 @@
 {config_load file=$language_file section="posting"}
-{config_load file=$language_file section="thread_entry"}
+{config_load file=$language_file section="user"}
 {if $captcha}{config_load file=$language_file section="captcha"}{/if}
 {if $no_authorisation}
 <p class="notice caution">{$smarty.config.$no_authorisation|replace:"[minutes]":$settings.edit_period}</p>
@@ -25,11 +25,11 @@
 
 {if $preview}
 {if $preview_hp && !$email}
-{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"$homepage_alt\" width=\"13\" height=\"13\" /></a>"}
+{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"{#homepage#}\" width=\"13\" height=\"13\" /></a>"}
 {elseif !$preview_hp && $email}
-{assign var=email_hp value=" <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/email.png\" alt=\"$email_alt\" width=\"13\" height=\"10\" /></a>"}
+{assign var=email_hp value=" <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/email.png\" alt=\"{#email#}\" width=\"13\" height=\"10\" /></a>"}
 {elseif $preview_hp && $email}
-{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"$homepage_alt\" width=\"13\" height=\"13\" /></a> <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/email.png\" alt=\"$email_alt\" width=\"13\" height=\"10\" /></a>"}
+{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"{#homepage#}\" width=\"13\" height=\"13\" /></a> <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/email.png\" alt=\"{#email#}\" width=\"13\" height=\"10\" /></a>"}
 {else}
 {assign var=email_hp value=""}
 {/if}
