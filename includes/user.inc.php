@@ -31,101 +31,107 @@ $isUser = isset($_SESSION[$settings['session_prefix'].'user_type']) && isset($_S
 $isModOrAdmin = $isUser && ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2);
 
 // on action event main *AND* only team members ($settings['user_area_access'] = 0) or registered users ($settings['user_area_access'] = 1) have access to this section or the user area is public ($settings['user_area_access'] = 2):
-$hasUserAreaAccess = $action == 'main' && ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 && $isUser) || ($settings['user_area_access'] == 2 && $isModOrAdmin));
+$hasUserAreaAccess = $action == 'main' && ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 && $isUser) || $isModOrAdmin);
 
-if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAccess) {
+if ($isUser || $hasUserAreaAccess) {
 	switch($action) {
 		case 'main':
-			if (isset($_GET['search_user']) && trim($_GET['search_user']) != '') $search_user = trim($_GET['search_user']);
-
-			// count users and pages:
-			if (isset($search_user)) {
-				$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = '' AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'");
-			} else {
-				$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = ''");
-			}
-			list($total_users) = mysqli_fetch_row($user_count_result);
-			mysqli_free_result($user_count_result);
-			$total_pages = ceil($total_users / $settings['users_per_page']);
-
-			// who is online:
-			if ($settings['count_users_online'] > 0) {
-				$useronline_result = mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_name COLLATE utf8mb4_general_ci AS user_name, ".$db_settings['useronline_table'].".user_id
-					FROM ".$db_settings['useronline_table']."
-					LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ".$db_settings['useronline_table'].".user_id
-					WHERE ".$db_settings['useronline_table'].".user_id > 0
-					ORDER BY user_name ASC") or raise_error('database_error', mysqli_error($connid));
+			if ($hasUserAreaAccess) {
+				if (isset($_GET['search_user']) && trim($_GET['search_user']) != '') $search_user = trim($_GET['search_user']);
+	
+				// count users and pages:
+				if (isset($search_user)) {
+					$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = '' AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'");
+				} else {
+					$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = ''");
+				}
+				list($total_users) = mysqli_fetch_row($user_count_result);
+				mysqli_free_result($user_count_result);
+				$total_pages = ceil($total_users / $settings['users_per_page']);
+	
+				// who is online:
+				if ($settings['count_users_online'] > 0) {
+					$useronline_result = mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_name COLLATE utf8mb4_general_ci AS user_name, ".$db_settings['useronline_table'].".user_id
+						FROM ".$db_settings['useronline_table']."
+						LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ".$db_settings['useronline_table'].".user_id
+						WHERE ".$db_settings['useronline_table'].".user_id > 0
+						ORDER BY user_name ASC") or raise_error('database_error', mysqli_error($connid));
+					$i = 0;
+					while($uid_field = mysqli_fetch_array($useronline_result)) {
+						$useronline_array[] = intval($uid_field['user_id']);
+						$users_online[$i]['id'] = intval($uid_field['user_id']);
+						$users_online[$i]['name'] = htmlspecialchars($uid_field['user_name']);
+						++$i;
+					}
+					mysqli_free_result($useronline_result);
+				}
+	
+				if (isset($users_online)) $smarty->assign('users_online', $users_online);
+	
+				if (isset($_GET['page'])) $page = intval($_GET['page']); else $page = 1;
+				if ($page > $total_pages) $page = $total_pages;
+				if ($page < 1) $page = 1;
+	
+				if (isset($_GET['order'])) $order = $_GET['order']; else $order='user_name';
+				if ($order != 'user_id' && $order != 'user_name' && $order != 'user_email' && $order != 'user_type' && $order != 'registered' && $order != 'logins' && $order != 'last_login' && $order != 'user_lock' && $order != 'user_hp' && $order != 'email_contact' && $order != 'online') $order = 'user_name';
+				if ($order == 'user_lock' && (empty($_SESSION[$settings['session_prefix'].'user_type']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] < 1)) $order = 'user_name';
+				if (isset($_GET['descasc'])) $descasc = $_GET['descasc']; else $descasc = "ASC";
+				if ($descasc != 'DESC' && $descasc != 'ASC') $descasc = 'ASC';
+	
+				$ul = ($page - 1) * $settings['users_per_page'];
+	
+				// get userdata:
+				$category_query_add = '';
+	
+				if (isset($search_user)) {
+					$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
+						FROM ".$db_settings['userdata_table']."
+						WHERE activate_code = ''". $category_query_add ." AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'
+						ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
+				} else {
+					$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
+						FROM ".$db_settings['userdata_table']."
+						WHERE activate_code = ''". $category_query_add ."
+						ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
+				}
+	
 				$i = 0;
-				while($uid_field = mysqli_fetch_array($useronline_result)) {
-					$useronline_array[] = intval($uid_field['user_id']);
-					$users_online[$i]['id'] = intval($uid_field['user_id']);
-					$users_online[$i]['name'] = htmlspecialchars($uid_field['user_name']);
-					++$i;
+				while ($row = mysqli_fetch_array($result)) {
+					$userdata[$i]['user_id'] = intval($row['user_id']);
+					$userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
+					if ($isModOrAdmin || $isUser && $row['email_contact'] > 0 || $row['email_contact'] == 2) 
+						$userdata[$i]['user_email'] = TRUE;
+					$userdata[$i]['user_hp'] = htmlspecialchars($row['user_hp']);
+					if (!empty($userdata[$i]['user_hp']) && trim($userdata[$i]['user_hp']) != '') {
+						$userdata[$i]['user_hp'] = add_http_if_no_protocol($userdata[$i]['user_hp']);
+					}
+					$userdata[$i]['user_type'] = intval($row['user_type']);
+					$userdata[$i]['user_lock'] = $row['user_lock'];
+					$i++;
 				}
-				mysqli_free_result($useronline_result);
-			}
-
-			if (isset($users_online)) $smarty->assign('users_online', $users_online);
-
-			if (isset($_GET['page'])) $page = intval($_GET['page']); else $page = 1;
-			if ($page > $total_pages) $page = $total_pages;
-			if ($page < 1) $page = 1;
-
-			if (isset($_GET['order'])) $order = $_GET['order']; else $order='user_name';
-			if ($order != 'user_id' && $order != 'user_name' && $order != 'user_email' && $order != 'user_type' && $order != 'registered' && $order != 'logins' && $order != 'last_login' && $order != 'user_lock' && $order != 'user_hp' && $order != 'email_contact' && $order != 'online') $order = 'user_name';
-			if ($order == 'user_lock' && (empty($_SESSION[$settings['session_prefix'].'user_type']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] < 1)) $order = 'user_name';
-			if (isset($_GET['descasc'])) $descasc = $_GET['descasc']; else $descasc = "ASC";
-			if ($descasc != 'DESC' && $descasc != 'ASC') $descasc = 'ASC';
-
-			$ul = ($page - 1) * $settings['users_per_page'];
-
-			// get userdata:
-			$category_query_add = '';
-
-			if (isset($search_user)) {
-				$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
-					FROM ".$db_settings['userdata_table']."
-					WHERE activate_code = ''". $category_query_add ." AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'
-					ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
-			} else {
-				$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
-					FROM ".$db_settings['userdata_table']."
-					WHERE activate_code = ''". $category_query_add ."
-					ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
-			}
-
-			$i = 0;
-			while ($row = mysqli_fetch_array($result)) {
-				$userdata[$i]['user_id'] = intval($row['user_id']);
-				$userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
-				if ($isModOrAdmin || $isUser && $row['email_contact'] > 0 || $row['email_contact'] == 2) 
-					$userdata[$i]['user_email'] = TRUE;
-				$userdata[$i]['user_hp'] = htmlspecialchars($row['user_hp']);
-				if (!empty($userdata[$i]['user_hp']) && trim($userdata[$i]['user_hp']) != '') {
-					$userdata[$i]['user_hp'] = add_http_if_no_protocol($userdata[$i]['user_hp']);
+				mysqli_free_result($result);
+	
+				$smarty->assign('pagination', pagination($total_pages, $page, 3));
+	
+				if (isset($userdata)) $smarty->assign('userdata', $userdata);
+				$smarty->assign('total_users',$total_users);
+	
+				if (isset($search_user)) {
+					$smarty->assign('search_user', htmlspecialchars($search_user));
+					$smarty->assign('search_user_encoded', urlencode($search_user));
 				}
-				$userdata[$i]['user_type'] = intval($row['user_type']);
-				$userdata[$i]['user_lock'] = $row['user_lock'];
-				$i++;
+				$smarty->assign('order', $order);
+				$smarty->assign('descasc', $descasc);
+				$smarty->assign('ul', $ul);
+				$smarty->assign('page', $page);
+				$smarty->assign('subnav_location', 'subnav_userarea');
+				$smarty->assign('subtemplate', 'user.inc.tpl');
+				$template = 'main.tpl';
 			}
-			mysqli_free_result($result);
-
-			$smarty->assign('pagination', pagination($total_pages, $page, 3));
-
-			if (isset($userdata)) $smarty->assign('userdata', $userdata);
-			$smarty->assign('total_users',$total_users);
-
-			if (isset($search_user)) {
-				$smarty->assign('search_user', htmlspecialchars($search_user));
-				$smarty->assign('search_user_encoded', urlencode($search_user));
+			else {
+				header("Location: index.php");
+				exit;
 			}
-			$smarty->assign('order', $order);
-			$smarty->assign('descasc', $descasc);
-			$smarty->assign('ul', $ul);
-			$smarty->assign('page', $page);
-			$smarty->assign('subnav_location', 'subnav_userarea');
-			$smarty->assign('subtemplate', 'user.inc.tpl');
-			$template = 'main.tpl';
 		break;
 		case 'user_lock':
 			if (isset($_GET['page'])) {
@@ -320,7 +326,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			$template = 'main.tpl';
 		break;
 		case 'edit_profile':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			if ($isUser) {
 				$id = $_SESSION[$settings['session_prefix'].'user_id'];
 				$result = mysqli_query($connid, "SELECT user_id, user_name, user_real_name, gender, birthday, user_email, email_contact, user_hp, user_location, signature, profile, new_posting_notification, new_user_notification, browser_window_target, auto_login_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$row = mysqli_fetch_array($result);
@@ -431,7 +437,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'edit_userdata':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']){
+			if ($isUser && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']){
 				$id = $_SESSION[$settings['session_prefix'].'user_id'];
 				if (isset($_POST['email_contact'])) 
 					$email_contact = intval($_POST['email_contact']);
@@ -681,7 +687,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'remove_account':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			if ($isUser) {
 				$user_id = $_SESSION[$settings['session_prefix'].'user_id'];
 				$result = mysqli_query($connid, "SELECT `user_name` FROM `".$db_settings['userdata_table']."` WHERE `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				if (mysqli_num_rows($result) == 1) {
@@ -700,7 +706,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'remove_account_submitted':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+			if ($isUser && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 				$user_id = $_SESSION[$settings['session_prefix'].'user_id'];
 				$result = @mysqli_query($connid, "SELECT `user_name`, `user_pw` FROM `".$db_settings['userdata_table']."` WHERE `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				if (mysqli_num_rows($result) == 1) {
@@ -738,7 +744,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'edit_pw':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			if ($isUser) {
 				$breadcrumbs[0]['link'] = 'index.php?mode=user';
 				$breadcrumbs[0]['linkname'] = 'subnav_userarea';
 				$breadcrumbs[1]['link'] = 'index.php?mode=user&amp;action=edit_profile';
@@ -750,7 +756,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'edit_pw_submitted':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+			if ($isUser && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 				$user_id = $_SESSION[$settings['session_prefix'].'user_id'];
 				$pw_result = mysqli_query($connid, "SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$field = mysqli_fetch_array($pw_result);
@@ -806,7 +812,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'edit_email':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
+			if ($isUser) {
 				$breadcrumbs[0]['link'] = 'index.php?mode=user';
 				$breadcrumbs[0]['linkname'] = 'subnav_userarea';
 				$breadcrumbs[1]['link'] = 'index.php?mode=user&amp;action=edit_profile';
@@ -818,7 +824,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'edit_email_submit':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+			if ($isUser && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 				$new_email = (!empty($_POST['new_email'])) ? trim($_POST['new_email']) : '';
 				$new_email_confirm = (!empty($_POST['new_email_confirm'])) ? trim($_POST['new_email_confirm']) : '';
 				$pw_new_email = $_POST['pw_new_email'];
