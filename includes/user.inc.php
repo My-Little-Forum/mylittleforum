@@ -31,101 +31,103 @@ $isUser = isset($_SESSION[$settings['session_prefix'].'user_type']) && isset($_S
 $isModOrAdmin = $isUser && ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2);
 
 // on action event main *AND* only team members ($settings['user_area_access'] = 0) or registered users ($settings['user_area_access'] = 1) have access to this section or the user area is public ($settings['user_area_access'] = 2):
-$hasUserAreaAccess = $action == 'main' && ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 && $isUser) || ($settings['user_area_access'] == 2 && $isModOrAdmin));
+$hasUserAreaAccess = $action == 'main' && ($settings['user_area_access'] == 2 || ($settings['user_area_access'] == 1 && $isUser) || $isModOrAdmin);
 
-if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAccess) {
+if ($isUser) {
 	switch($action) {
 		case 'main':
-			if (isset($_GET['search_user']) && trim($_GET['search_user']) != '') $search_user = trim($_GET['search_user']);
-
-			// count users and pages:
-			if (isset($search_user)) {
-				$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = '' AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'");
-			} else {
-				$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = ''");
-			}
-			list($total_users) = mysqli_fetch_row($user_count_result);
-			mysqli_free_result($user_count_result);
-			$total_pages = ceil($total_users / $settings['users_per_page']);
-
-			// who is online:
-			if ($settings['count_users_online'] > 0) {
-				$useronline_result = mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_name COLLATE utf8mb4_general_ci AS user_name, ".$db_settings['useronline_table'].".user_id
-					FROM ".$db_settings['useronline_table']."
-					LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ".$db_settings['useronline_table'].".user_id
-					WHERE ".$db_settings['useronline_table'].".user_id > 0
-					ORDER BY user_name ASC") or raise_error('database_error', mysqli_error($connid));
+			if ($hasUserAreaAccess) {
+				if (isset($_GET['search_user']) && trim($_GET['search_user']) != '') $search_user = trim($_GET['search_user']);
+	
+				// count users and pages:
+				if (isset($search_user)) {
+					$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = '' AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'");
+				} else {
+					$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = ''");
+				}
+				list($total_users) = mysqli_fetch_row($user_count_result);
+				mysqli_free_result($user_count_result);
+				$total_pages = ceil($total_users / $settings['users_per_page']);
+	
+				// who is online:
+				if ($settings['count_users_online'] > 0) {
+					$useronline_result = mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_name COLLATE utf8mb4_general_ci AS user_name, ".$db_settings['useronline_table'].".user_id
+						FROM ".$db_settings['useronline_table']."
+						LEFT JOIN ".$db_settings['userdata_table']." ON ".$db_settings['userdata_table'].".user_id = ".$db_settings['useronline_table'].".user_id
+						WHERE ".$db_settings['useronline_table'].".user_id > 0
+						ORDER BY user_name ASC") or raise_error('database_error', mysqli_error($connid));
+					$i = 0;
+					while($uid_field = mysqli_fetch_array($useronline_result)) {
+						$useronline_array[] = intval($uid_field['user_id']);
+						$users_online[$i]['id'] = intval($uid_field['user_id']);
+						$users_online[$i]['name'] = htmlspecialchars($uid_field['user_name']);
+						++$i;
+					}
+					mysqli_free_result($useronline_result);
+				}
+	
+				if (isset($users_online)) $smarty->assign('users_online', $users_online);
+	
+				if (isset($_GET['page'])) $page = intval($_GET['page']); else $page = 1;
+				if ($page > $total_pages) $page = $total_pages;
+				if ($page < 1) $page = 1;
+	
+				if (isset($_GET['order'])) $order = $_GET['order']; else $order='user_name';
+				if ($order != 'user_id' && $order != 'user_name' && $order != 'user_email' && $order != 'user_type' && $order != 'registered' && $order != 'logins' && $order != 'last_login' && $order != 'user_lock' && $order != 'user_hp' && $order != 'email_contact' && $order != 'online') $order = 'user_name';
+				if ($order == 'user_lock' && (empty($_SESSION[$settings['session_prefix'].'user_type']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] < 1)) $order = 'user_name';
+				if (isset($_GET['descasc'])) $descasc = $_GET['descasc']; else $descasc = "ASC";
+				if ($descasc != 'DESC' && $descasc != 'ASC') $descasc = 'ASC';
+	
+				$ul = ($page - 1) * $settings['users_per_page'];
+	
+				// get userdata:
+				$category_query_add = '';
+	
+				if (isset($search_user)) {
+					$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
+						FROM ".$db_settings['userdata_table']."
+						WHERE activate_code = ''". $category_query_add ." AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'
+						ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
+				} else {
+					$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
+						FROM ".$db_settings['userdata_table']."
+						WHERE activate_code = ''". $category_query_add ."
+						ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
+				}
+	
 				$i = 0;
-				while($uid_field = mysqli_fetch_array($useronline_result)) {
-					$useronline_array[] = intval($uid_field['user_id']);
-					$users_online[$i]['id'] = intval($uid_field['user_id']);
-					$users_online[$i]['name'] = htmlspecialchars($uid_field['user_name']);
-					++$i;
+				while ($row = mysqli_fetch_array($result)) {
+					$userdata[$i]['user_id'] = intval($row['user_id']);
+					$userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
+					if ($isModOrAdmin || $isUser && $row['email_contact'] > 0 || $row['email_contact'] == 2) 
+						$userdata[$i]['user_email'] = TRUE;
+					$userdata[$i]['user_hp'] = htmlspecialchars($row['user_hp']);
+					if (!empty($userdata[$i]['user_hp']) && trim($userdata[$i]['user_hp']) != '') {
+						$userdata[$i]['user_hp'] = add_http_if_no_protocol($userdata[$i]['user_hp']);
+					}
+					$userdata[$i]['user_type'] = intval($row['user_type']);
+					$userdata[$i]['user_lock'] = $row['user_lock'];
+					$i++;
 				}
-				mysqli_free_result($useronline_result);
-			}
-
-			if (isset($users_online)) $smarty->assign('users_online', $users_online);
-
-			if (isset($_GET['page'])) $page = intval($_GET['page']); else $page = 1;
-			if ($page > $total_pages) $page = $total_pages;
-			if ($page < 1) $page = 1;
-
-			if (isset($_GET['order'])) $order = $_GET['order']; else $order='user_name';
-			if ($order != 'user_id' && $order != 'user_name' && $order != 'user_email' && $order != 'user_type' && $order != 'registered' && $order != 'logins' && $order != 'last_login' && $order != 'user_lock' && $order != 'user_hp' && $order != 'email_contact' && $order != 'online') $order = 'user_name';
-			if ($order == 'user_lock' && (empty($_SESSION[$settings['session_prefix'].'user_type']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] < 1)) $order = 'user_name';
-			if (isset($_GET['descasc'])) $descasc = $_GET['descasc']; else $descasc = "ASC";
-			if ($descasc != 'DESC' && $descasc != 'ASC') $descasc = 'ASC';
-
-			$ul = ($page - 1) * $settings['users_per_page'];
-
-			// get userdata:
-			$category_query_add = '';
-
-			if (isset($search_user)) {
-				$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
-					FROM ".$db_settings['userdata_table']."
-					WHERE activate_code = ''". $category_query_add ." AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'
-					ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
-			} else {
-				$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
-					FROM ".$db_settings['userdata_table']."
-					WHERE activate_code = ''". $category_query_add ."
-					ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
-			}
-
-			$i = 0;
-			while ($row = mysqli_fetch_array($result)) {
-				$userdata[$i]['user_id'] = intval($row['user_id']);
-				$userdata[$i]['user_name'] = htmlspecialchars($row['user_name']);
-				if ($isModOrAdmin || $isUser && $row['email_contact'] > 0 || $row['email_contact'] == 2) 
-					$userdata[$i]['user_email'] = TRUE;
-				$userdata[$i]['user_hp'] = htmlspecialchars($row['user_hp']);
-				if (!empty($userdata[$i]['user_hp']) && trim($userdata[$i]['user_hp']) != '') {
-					$userdata[$i]['user_hp'] = add_http_if_no_protocol($userdata[$i]['user_hp']);
+				mysqli_free_result($result);
+	
+				$smarty->assign('pagination', pagination($total_pages, $page, 3));
+	
+				if (isset($userdata)) $smarty->assign('userdata', $userdata);
+				$smarty->assign('total_users',$total_users);
+	
+				if (isset($search_user)) {
+					$smarty->assign('search_user', htmlspecialchars($search_user));
+					$smarty->assign('search_user_encoded', urlencode($search_user));
 				}
-				$userdata[$i]['user_type'] = intval($row['user_type']);
-				$userdata[$i]['user_lock'] = $row['user_lock'];
-				$i++;
+				$smarty->assign('order', $order);
+				$smarty->assign('descasc', $descasc);
+				$smarty->assign('ul', $ul);
+				$smarty->assign('page', $page);
+				$smarty->assign('subnav_location', 'subnav_userarea');
+				$smarty->assign('subtemplate', 'user.inc.tpl');
+				$template = 'main.tpl';
 			}
-			mysqli_free_result($result);
-
-			$smarty->assign('pagination', pagination($total_pages, $page, 3));
-
-			if (isset($userdata)) $smarty->assign('userdata', $userdata);
-			$smarty->assign('total_users',$total_users);
-
-			if (isset($search_user)) {
-				$smarty->assign('search_user', htmlspecialchars($search_user));
-				$smarty->assign('search_user_encoded', urlencode($search_user));
-			}
-			$smarty->assign('order', $order);
-			$smarty->assign('descasc', $descasc);
-			$smarty->assign('ul', $ul);
-			$smarty->assign('page', $page);
-			$smarty->assign('subnav_location', 'subnav_userarea');
-			$smarty->assign('subtemplate', 'user.inc.tpl');
-			$template = 'main.tpl';
 		break;
 		case 'user_lock':
 			if (isset($_GET['page'])) {
@@ -320,118 +322,116 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			$template = 'main.tpl';
 		break;
 		case 'edit_profile':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-				$id = $_SESSION[$settings['session_prefix'].'user_id'];
-				$result = mysqli_query($connid, "SELECT user_id, user_name, user_real_name, gender, birthday, user_email, email_contact, user_hp, user_location, signature, profile, new_posting_notification, new_user_notification, browser_window_target, auto_login_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-				$row = mysqli_fetch_array($result);
-				mysqli_free_result($result);
-				if (!empty($row['birthday'])) {
-					if (trim($row['birthday']) == '' || $row['birthday'] == '0000-00-00') $user_birthday = '';
-					else {
-						$year = my_substr($row['birthday'], 0, 4, $lang['charset']);
-						$month = my_substr($row['birthday'], 5, 2, $lang['charset']);
-						$day = my_substr($row['birthday'], 8, 2, $lang['charset']);
-						$user_birthday = $year.'-'.$month.'-'.$day;
-					}
-				} else {
-					$user_birthday = '';
+			$id = $_SESSION[$settings['session_prefix'].'user_id'];
+			$result = mysqli_query($connid, "SELECT user_id, user_name, user_real_name, gender, birthday, user_email, email_contact, user_hp, user_location, signature, profile, new_posting_notification, new_user_notification, browser_window_target, auto_login_code, language, time_zone, time_difference, theme FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+			$row = mysqli_fetch_array($result);
+			mysqli_free_result($result);
+			if (!empty($row['birthday'])) {
+				if (trim($row['birthday']) == '' || $row['birthday'] == '0000-00-00') $user_birthday = '';
+				else {
+					$year = my_substr($row['birthday'], 0, 4, $lang['charset']);
+					$month = my_substr($row['birthday'], 5, 2, $lang['charset']);
+					$day = my_substr($row['birthday'], 8, 2, $lang['charset']);
+					$user_birthday = $year.'-'.$month.'-'.$day;
 				}
-
-				if (isset($category_selection)) $smarty->assign('category_selection', $category_selection);
-
-				// time zones:
-				if (function_exists('date_default_timezone_set') && $time_zones = get_timezones()) {
-					$smarty->assign('user_time_zone', htmlspecialchars($row['time_zone']));
-					$smarty->assign('time_zones', $time_zones);
-					if (!empty($settings['time_zone'])) $smarty->assign('default_time_zone', $settings['time_zone']);
-				}
-
-				$languages = get_languages(true);
-				if (isset($languages) && count($languages) > 1) {
-					$smarty->assign('user_language', htmlspecialchars($row['language']));
-					$smarty->assign('languages', $languages);
-					foreach ($languages as $l) {
-						if ($l['identifier'] == $settings['language_file']) {
-							$default_language = $l['title'];
-							$smarty->assign('default_language', $default_language);
-							break;
-						}
-					}
-				}
-
-				$themes = get_themes(true);
-				if (isset($themes) && count($themes) > 1) {
-					$smarty->assign('user_theme', htmlspecialchars($row['theme']));
-					$smarty->assign('themes', $themes);
-					foreach ($themes as $t) {
-						if ($t['identifier'] == $settings['theme']) {
-							$default_theme = $t['title'];
-							$smarty->assign('default_theme', $default_theme);
-							break;
-						}
-					}
-				}
-
-				if ($row['time_difference'] < 0) $time_difference_hours = ceil($row['time_difference'] / 60);
-				else $time_difference_hours = floor($row['time_difference'] / 60);
-				$time_difference_minutes = abs($row['time_difference'] - $time_difference_hours * 60);
-				if ($time_difference_minutes < 10) $time_difference_minutes = '0'.$time_difference_minutes;
-				if (intval($row['time_difference']) > 0) $user_time_difference = '+'.$time_difference_hours;
-				else $user_time_difference = $time_difference_hours;
-				if ($time_difference_minutes > 0) $user_time_difference .= ':'.$time_difference_minutes;
-				$smarty->assign('user_time_difference', $user_time_difference);
-
-				if (isset($_GET['msg'])) 
-					$smarty->assign('msg', htmlspecialchars($_GET['msg']));
-				$smarty->assign('user_name', htmlspecialchars($row['user_name']));
-				$smarty->assign('user_real_name', htmlspecialchars($row['user_real_name']));
-				$smarty->assign('user_gender', $row['gender']);
-				$smarty->assign('user_birthday', $user_birthday);
-				$smarty->assign('user_email', htmlspecialchars($row['user_email']));
-				$smarty->assign('email_contact', $row['email_contact']);
-				$smarty->assign('user_hp', htmlspecialchars($row['user_hp']));
-				$smarty->assign('user_location', htmlspecialchars($row['user_location']));
-				$profile = htmlspecialchars($row['profile']);
-				$smarty->assign('profile', htmlspecialchars($row['profile']));
-				$smarty->assign('signature', htmlspecialchars($row['signature']));
-				if (intval($row['browser_window_target']) == 1)
-					$smarty->assign('browser_link_open', 1);
-				elseif (intval($row['browser_window_target']) == 2)
-					$smarty->assign('browser_link_open', 2);
-				elseif (intval($row['browser_window_target']) == 3)
-					$smarty->assign('browser_link_open', 3);
-				else
-					$smarty->assign('browser_link_open', 0);
-				if ($row['auto_login_code'] != '') 
-					$smarty->assign('auto_login', 1);
-				else
-					$smarty->assign('auto_login', 0);
-
-				if($settings['avatars'] > 0) {
-					$avatarInfo = getAvatar($_SESSION[$settings['session_prefix'].'user_id']);
-					$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
-					if (isset($avatar) && $avatar['image'] !== false) {
-						$image_info = getimagesize($avatar['image']);
-						$avatar['width'] = $image_info[0];
-						$avatar['height'] = $image_info[1];
-						$smarty->assign('avatar', $avatar);
-					}
-				}
-
-				if ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2) {
-					$smarty->assign('new_posting_notification', $row['new_posting_notification']);
-					$smarty->assign('new_user_notification', $row['new_user_notification']);
-				}
-				$breadcrumbs[0]['link'] = 'index.php?mode=user';
-				$breadcrumbs[0]['linkname'] = 'subnav_userarea';
-				$smarty->assign('breadcrumbs', $breadcrumbs);
-				$smarty->assign('subnav_location', 'subnav_userarea_edit_user');
-				$smarty->assign('subtemplate', 'user_edit.inc.tpl');
-				$template = 'main.tpl';
+			} else {
+				$user_birthday = '';
 			}
+
+			if (isset($category_selection)) $smarty->assign('category_selection', $category_selection);
+
+			// time zones:
+			if (function_exists('date_default_timezone_set') && $time_zones = get_timezones()) {
+				$smarty->assign('user_time_zone', htmlspecialchars($row['time_zone']));
+				$smarty->assign('time_zones', $time_zones);
+				if (!empty($settings['time_zone'])) $smarty->assign('default_time_zone', $settings['time_zone']);
+			}
+
+			$languages = get_languages(true);
+			if (isset($languages) && count($languages) > 1) {
+				$smarty->assign('user_language', htmlspecialchars($row['language']));
+				$smarty->assign('languages', $languages);
+				foreach ($languages as $l) {
+					if ($l['identifier'] == $settings['language_file']) {
+						$default_language = $l['title'];
+						$smarty->assign('default_language', $default_language);
+						break;
+					}
+				}
+			}
+
+			$themes = get_themes(true);
+			if (isset($themes) && count($themes) > 1) {
+				$smarty->assign('user_theme', htmlspecialchars($row['theme']));
+				$smarty->assign('themes', $themes);
+				foreach ($themes as $t) {
+					if ($t['identifier'] == $settings['theme']) {
+						$default_theme = $t['title'];
+						$smarty->assign('default_theme', $default_theme);
+						break;
+					}
+				}
+			}
+
+			if ($row['time_difference'] < 0) $time_difference_hours = ceil($row['time_difference'] / 60);
+			else $time_difference_hours = floor($row['time_difference'] / 60);
+			$time_difference_minutes = abs($row['time_difference'] - $time_difference_hours * 60);
+			if ($time_difference_minutes < 10) $time_difference_minutes = '0'.$time_difference_minutes;
+			if (intval($row['time_difference']) > 0) $user_time_difference = '+'.$time_difference_hours;
+			else $user_time_difference = $time_difference_hours;
+			if ($time_difference_minutes > 0) $user_time_difference .= ':'.$time_difference_minutes;
+			$smarty->assign('user_time_difference', $user_time_difference);
+
+			if (isset($_GET['msg'])) 
+				$smarty->assign('msg', htmlspecialchars($_GET['msg']));
+			$smarty->assign('user_name', htmlspecialchars($row['user_name']));
+			$smarty->assign('user_real_name', htmlspecialchars($row['user_real_name']));
+			$smarty->assign('user_gender', $row['gender']);
+			$smarty->assign('user_birthday', $user_birthday);
+			$smarty->assign('user_email', htmlspecialchars($row['user_email']));
+			$smarty->assign('email_contact', $row['email_contact']);
+			$smarty->assign('user_hp', htmlspecialchars($row['user_hp']));
+			$smarty->assign('user_location', htmlspecialchars($row['user_location']));
+			$profile = htmlspecialchars($row['profile']);
+			$smarty->assign('profile', htmlspecialchars($row['profile']));
+			$smarty->assign('signature', htmlspecialchars($row['signature']));
+			if (intval($row['browser_window_target']) == 1)
+				$smarty->assign('browser_link_open', 1);
+			elseif (intval($row['browser_window_target']) == 2)
+				$smarty->assign('browser_link_open', 2);
+			elseif (intval($row['browser_window_target']) == 3)
+				$smarty->assign('browser_link_open', 3);
+			else
+				$smarty->assign('browser_link_open', 0);
+			if ($row['auto_login_code'] != '') 
+				$smarty->assign('auto_login', 1);
+			else
+				$smarty->assign('auto_login', 0);
+
+			if($settings['avatars'] > 0) {
+				$avatarInfo = getAvatar($_SESSION[$settings['session_prefix'].'user_id']);
+				$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
+				if (isset($avatar) && $avatar['image'] !== false) {
+					$image_info = getimagesize($avatar['image']);
+					$avatar['width'] = $image_info[0];
+					$avatar['height'] = $image_info[1];
+					$smarty->assign('avatar', $avatar);
+				}
+			}
+
+			if ($_SESSION[$settings['session_prefix'].'user_type'] == 1 || $_SESSION[$settings['session_prefix'].'user_type'] == 2) {
+				$smarty->assign('new_posting_notification', $row['new_posting_notification']);
+				$smarty->assign('new_user_notification', $row['new_user_notification']);
+			}
+			$breadcrumbs[0]['link'] = 'index.php?mode=user';
+			$breadcrumbs[0]['linkname'] = 'subnav_userarea';
+			$smarty->assign('breadcrumbs', $breadcrumbs);
+			$smarty->assign('subnav_location', 'subnav_userarea_edit_user');
+			$smarty->assign('subtemplate', 'user_edit.inc.tpl');
+			$template = 'main.tpl';
 		break;
 		case 'edit_userdata':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']){
+			if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']){
 				$id = $_SESSION[$settings['session_prefix'].'user_id'];
 				if (isset($_POST['email_contact'])) 
 					$email_contact = intval($_POST['email_contact']);
@@ -681,26 +681,24 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'remove_account':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-				$user_id = $_SESSION[$settings['session_prefix'].'user_id'];
-				$result = mysqli_query($connid, "SELECT `user_name` FROM `".$db_settings['userdata_table']."` WHERE `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-				if (mysqli_num_rows($result) == 1) {
-					$row = mysqli_fetch_array($result);
-					mysqli_free_result($result);
-					$smarty->assign('user_name', htmlspecialchars($row['user_name']));
-					$breadcrumbs[0]['link'] = 'index.php?mode=user';
-					$breadcrumbs[0]['linkname'] = 'subnav_userarea';
-					$breadcrumbs[1]['link'] = 'index.php?mode=user&amp;action=edit_profile';
-					$breadcrumbs[1]['linkname'] = 'subnav_userarea_edit_user';
-					$smarty->assign('breadcrumbs', $breadcrumbs);
-					$smarty->assign('subnav_location', 'subnav_userarea_remove_account');
-					$smarty->assign('subtemplate', 'user_remove_account.inc.tpl');
-					$template = 'main.tpl';
-				}
+			$user_id = $_SESSION[$settings['session_prefix'].'user_id'];
+			$result = mysqli_query($connid, "SELECT `user_name` FROM `".$db_settings['userdata_table']."` WHERE `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+			if (mysqli_num_rows($result) == 1) {
+				$row = mysqli_fetch_array($result);
+				mysqli_free_result($result);
+				$smarty->assign('user_name', htmlspecialchars($row['user_name']));
+				$breadcrumbs[0]['link'] = 'index.php?mode=user';
+				$breadcrumbs[0]['linkname'] = 'subnav_userarea';
+				$breadcrumbs[1]['link'] = 'index.php?mode=user&amp;action=edit_profile';
+				$breadcrumbs[1]['linkname'] = 'subnav_userarea_edit_user';
+				$smarty->assign('breadcrumbs', $breadcrumbs);
+				$smarty->assign('subnav_location', 'subnav_userarea_remove_account');
+				$smarty->assign('subtemplate', 'user_remove_account.inc.tpl');
+				$template = 'main.tpl';
 			}
 		break;
 		case 'remove_account_submitted':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+			if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 				$user_id = $_SESSION[$settings['session_prefix'].'user_id'];
 				$result = @mysqli_query($connid, "SELECT `user_name`, `user_pw` FROM `".$db_settings['userdata_table']."` WHERE `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				if (mysqli_num_rows($result) == 1) {
@@ -738,19 +736,17 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'edit_pw':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-				$breadcrumbs[0]['link'] = 'index.php?mode=user';
-				$breadcrumbs[0]['linkname'] = 'subnav_userarea';
-				$breadcrumbs[1]['link'] = 'index.php?mode=user&amp;action=edit_profile';
-				$breadcrumbs[1]['linkname'] = 'subnav_userarea_edit_user';
-				$smarty->assign('breadcrumbs', $breadcrumbs);
-				$smarty->assign('subnav_location', 'subnav_userarea_edit_pw');
-				$smarty->assign('subtemplate', 'user_edit_pw.inc.tpl');
-				$template = 'main.tpl';
-			}
+			$breadcrumbs[0]['link'] = 'index.php?mode=user';
+			$breadcrumbs[0]['linkname'] = 'subnav_userarea';
+			$breadcrumbs[1]['link'] = 'index.php?mode=user&amp;action=edit_profile';
+			$breadcrumbs[1]['linkname'] = 'subnav_userarea_edit_user';
+			$smarty->assign('breadcrumbs', $breadcrumbs);
+			$smarty->assign('subnav_location', 'subnav_userarea_edit_pw');
+			$smarty->assign('subtemplate', 'user_edit_pw.inc.tpl');
+			$template = 'main.tpl';
 		break;
 		case 'edit_pw_submitted':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+			if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 				$user_id = $_SESSION[$settings['session_prefix'].'user_id'];
 				$pw_result = mysqli_query($connid, "SELECT user_pw FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				$field = mysqli_fetch_array($pw_result);
@@ -806,19 +802,17 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) || $hasUserAreaAcces
 			}
 		break;
 		case 'edit_email':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
-				$breadcrumbs[0]['link'] = 'index.php?mode=user';
-				$breadcrumbs[0]['linkname'] = 'subnav_userarea';
-				$breadcrumbs[1]['link'] = 'index.php?mode=user&amp;action=edit_profile';
-				$breadcrumbs[1]['linkname'] = 'subnav_userarea_edit_user';
-				$smarty->assign('breadcrumbs', $breadcrumbs);
-				$smarty->assign('subnav_location', 'subnav_userarea_edit_mail');
-				$smarty->assign('subtemplate', 'user_edit_email.inc.tpl');
-				$template = 'main.tpl';
-			}
+			$breadcrumbs[0]['link'] = 'index.php?mode=user';
+			$breadcrumbs[0]['linkname'] = 'subnav_userarea';
+			$breadcrumbs[1]['link'] = 'index.php?mode=user&amp;action=edit_profile';
+			$breadcrumbs[1]['linkname'] = 'subnav_userarea_edit_user';
+			$smarty->assign('breadcrumbs', $breadcrumbs);
+			$smarty->assign('subnav_location', 'subnav_userarea_edit_mail');
+			$smarty->assign('subtemplate', 'user_edit_email.inc.tpl');
+			$template = 'main.tpl';
 		break;
 		case 'edit_email_submit':
-			if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+			if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 				$new_email = (!empty($_POST['new_email'])) ? trim($_POST['new_email']) : '';
 				$new_email_confirm = (!empty($_POST['new_email_confirm'])) ? trim($_POST['new_email_confirm']) : '';
 				$pw_new_email = $_POST['pw_new_email'];
