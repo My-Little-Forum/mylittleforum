@@ -1,5 +1,5 @@
 {config_load file=$language_file section="posting"}
-{config_load file=$language_file section="thread_entry"}
+{config_load file=$language_file section="user"}
 {if $captcha}{config_load file=$language_file section="captcha"}{/if}
 {if $no_authorisation}
 <p class="notice caution">{$smarty.config.$no_authorisation|replace:"[minutes]":$settings.edit_period}</p>
@@ -25,11 +25,11 @@
 
 {if $preview}
 {if $preview_hp && !$email}
-{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"$homepage_alt\" width=\"13\" height=\"13\" /></a>"}
+{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"{#homepage#}\" width=\"13\" height=\"13\" /></a>"}
 {elseif !$preview_hp && $email}
-{assign var=email_hp value=" <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/email.png\" alt=\"$email_alt\" width=\"13\" height=\"10\" /></a>"}
+{assign var=email_hp value=" <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/email.png\" alt=\"{#email#}\" width=\"13\" height=\"10\" /></a>"}
 {elseif $preview_hp && $email}
-{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"$homepage_alt\" width=\"13\" height=\"13\" /></a> <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/email.png\" alt=\"$email_alt\" width=\"13\" height=\"10\" /></a>"}
+{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"{#homepage#}\" width=\"13\" height=\"13\" /></a> <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/email.png\" alt=\"{#email#}\" width=\"13\" height=\"10\" /></a>"}
 {else}
 {assign var=email_hp value=""}
 {/if}
@@ -38,9 +38,9 @@
 <div class="posting">
 <div class="header">
 <h1 class="postingheadline">{$preview_subject}{if $category_name} <span class="category">({$category_name})</span>{/if}</h1>
-<p class="author">{if $preview_location}{#posted_by_location#|replace:"[name]":$preview_name|replace:"[email_hp]":$email_hp|replace:"[location]":$preview_location|replace:"[time]":$preview_formated_time}{else}{#posted_by#|replace:"[name]":$preview_name|replace:"[email_hp]":$email_hp|replace:"[time]":$preview_formated_time}{/if}</p>
+<p class="author">{if $preview_location}{#posted_by_location#|replace:"[name]":$preview_name|replace:"[email_hp]":$email_hp|replace:"[location]":$preview_location}{else}{#posted_by#|replace:"[name]":$preview_name|replace:"[email_hp]":$email_hp}{/if}<time datetime="{$preview_ISO_time}">{$preview_formated_time}</time></p>
 </div>
-<div class=""wrapper">
+<div class="wrapper">
 <div class="body">{if $preview_text}{$preview_text}{else}<p>{#no_text#}</p>{/if}</div>
 {if $preview_signature && $show_signature==1}
 <div class="signature"><p>---<br />
@@ -113,9 +113,10 @@
   <div>
    <label for="p_category" class="input">{#category_marking#}</label>
    <select id="p_category" size="1" name="p_category" {if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0} disabled="disabled"{/if}>
-		{foreach key=key item=val from=$categories}
-			{if $key!=0}    <option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>{/if}
-		{/foreach}
+{foreach key=key item=val from=$categories}
+{if $key!=0}    <option value="{$key}"{if $key==$p_category} selected="selected"{/if}>{$val}</option>
+{/if}
+{/foreach}
    </select>
   </div>
 {if $posting_mode==0 && $id>0 || $posting_mode==1 && $pid>0}
