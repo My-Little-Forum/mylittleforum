@@ -1066,7 +1066,9 @@
 {section name=nr loop=$images start=$start max=$images_per_page}
   <li>
    <p class="image_container"><img src="images/uploaded/{$images[nr].pathname}" alt="{$images[nr].pathname}" /></p>
-   <p class="management_container"><input type="checkbox" id="{$images[nr].pathname}" name="uploads_remove[]" value="{$images[nr].pathname}" /><label for="{$images[nr].pathname}">{#mark_upload_for_removal#}</label></p>
+   <ul class="management_container">
+    <li><input type="checkbox" id="{$images[nr]}" name="uploads_remove[]" value="{$images[nr]}" /><label for="{$images[nr]}">{#mark_upload_for_removal#}</label></li>
+   </ul>
   </li>
 {/section}
  </ul>

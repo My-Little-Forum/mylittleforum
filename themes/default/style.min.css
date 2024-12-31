@@ -383,10 +383,10 @@ h2#admin_header{margin:0 0 .5em 0}
 .manage-postings{border:1px solid #bacbdf;margin-top:25px;background:#f9f9f9}
 .manage-postings legend{font-size:.82em;font-weight:700}
 ul#uploadlist{list-style:none;margin:0;padding:0;max-width:100%;display:flex;flex-wrap:wrap;gap:.75em}
-#uploadlist li{width:18.5em;margin:0;padding:0;border:1px solid #bacbdf;background:#f9f9f9}
+#uploadlist > li{width:18.5em;margin:0;padding:0;border:1px solid #bacbdf;background:#f9f9f9}
 #uploadlist .image_container{padding:.5em;height:21.5em;width:100%;margin:0 0 .25em 0;text-align:center}
 #uploadlist img{max-width:100%;max-height:100%}
-#uploadlist .management_container{margin:0;padding:.25em 0}
+#uploadlist .management_container{margin:0;padding:.25em 0;list-style:none}
 #uploadlist + p{margin-block:.75em 1em}
 .confirm-selection{list-style:none;padding:0;border-top:1px solid #bacbdf}
 .confirm-selection li{min-height:2.5em;margin:0 0 .25em 0;padding:.25em .5em;border-bottom:1px solid #bacbdf}
