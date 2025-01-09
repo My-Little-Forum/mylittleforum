@@ -965,6 +965,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$handle = opendir($uploaded_images_path);
 		while ($file = readdir($handle)) {
 			if (preg_match('/\.(gif|png|jpe?g|svg|webp)$/i', $file)) {
+				$images[$i]['number'] = $i;
 				$images[$i]['pathname'] = $file;
 				if (!empty($listed) && !in_array($file, $listed)) {
 					$unlisted[] = $file;
@@ -986,7 +987,12 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 		
 		if ($images) {
-			rsort($images);
+			$sort_array = [];
+			foreach ($images as $image) {
+				$sort_array[] = $image['pathname'];
+			}
+			array_multisort($sort_array, SORT_DESC, $images);
+			unset($sort_array);
 			$page_browse['total_items'] = count($images);
 			$page_browse['items_per_page'] = $settings['uploads_per_page'];
 			$total_pages = ceil($page_browse['total_items'] / $page_browse['items_per_page']);
@@ -1007,8 +1013,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	}
 
 	if (isset($_POST['delete_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-		if (isset($_POST['uploads_remove'])) {
-			$selected = $_POST['uploads_remove'];
+		if (isset($_POST['manage_uploads'])) {
+			$selected = $_POST['manage_uploads'];
 			$selected_uploads_count = count($selected);
 			for ($x=0; $x<$selected_uploads_count; $x++) {
 				$selected_uploads[$x]['name'] = htmlspecialchars($selected[$x]);

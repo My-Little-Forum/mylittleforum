@@ -981,6 +981,7 @@ no_users_in_selection =           'Aucun utilisateur dans la sélection'
 # upload management
 upload_administration =           'Gérer les téléchargements'
 mark_upload_for_removal =         'À supprimer'
+mark_upload_for_managing =        '<!-- TODO -->mark for managing'
 no_uploads_found =                'Aucun téléchargement trouvé'
 delete_upload_confirmation =      'Êtes-vous sûr de vouloir supprimer ce téléchargement ?'
 delete_uploads_confirmation =     'Êtes-vous sûr de vouloir supprimer ces téléchargements ?'

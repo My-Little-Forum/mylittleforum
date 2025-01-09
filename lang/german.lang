@@ -978,6 +978,7 @@ no_users_in_selection =           'keine Benutzer in der Auswahl'
 # Uploadverwaltung
 upload_administration =           'Verwaltung der Uploads'
 mark_upload_for_removal =         'zum löschen vormerken'
+mark_upload_for_managing =        'für Verwaltung markieren'
 no_uploads_found =                'Es wurden keine hochgeladenen Dateien gefunden.'
 delete_upload_confirmation =      'Sicher, dass dieser Upload gelöscht werden soll?'
 delete_uploads_confirmation =     'Sicher, dass diese Uploads gelöscht werden sollen?'

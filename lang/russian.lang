@@ -990,6 +990,7 @@ no_users_in_selection =           'Пользователи не выбраны'
 # upload management
 upload_administration =           'Управление загрузкой'
 mark_upload_for_removal =         'отметить для удаления'
+mark_upload_for_managing =        '<!-- TODO -->mark for managing'
 no_uploads_found =                'Загруженных файлов не найдено.'
 delete_upload_confirmation =      'Вы уверены в том, что хотите удалить эту загрузку?'
 delete_uploads_confirmation =     'Вы уверены в том, что хотите удалить следующие загрузки?'

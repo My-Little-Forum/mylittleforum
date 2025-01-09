@@ -978,6 +978,7 @@ no_users_in_selection =           'Ingen brukere i utvalget'
 # upload management
 upload_administration =           'Administrer opplastninger'
 mark_upload_for_removal =         'marker for fjerning'
+mark_upload_for_managing =        '<!-- TODO -->mark for managing'
 no_uploads_found =                'Fant ingen opplastede filer.'
 delete_upload_confirmation =      'Er du sikker på at du vil slette denne opplastingen?'
 delete_uploads_confirmation =     'Er du sikker på at du vil slette følgende opplastinger?'

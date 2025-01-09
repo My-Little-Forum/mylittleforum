@@ -974,6 +974,7 @@ no_users_in_selection =           'لا يوجد مستخدمون في التح�
 # upload management
 upload_administration =           'إدارة الرفع والتحميل'
 mark_upload_for_removal =         'علامة للإزالة'
+mark_upload_for_managing =        '<!-- TODO -->mark for managing'
 no_uploads_found =                'لم يتم العثور على أي ملفات مرفوعة.'
 delete_upload_confirmation =      'هل أنت متأكد أنك تريد حذف هذا التحميل؟'
 delete_uploads_confirmation =     'هل أنت متأكد أنك تريد حذف التحميلات التالية؟'
