@@ -1072,7 +1072,9 @@
   </li>
 {/section}
  </ul>
- <p><input type="submit" name="delete_selected_uploads" value="{#delete#}" /></p>
+ <div>
+  <button name="delete_selected_uploads" value="{#delete#}">{#delete#}</button>
+ </div>
 </form>
 
 {if $pagination}
