@@ -970,8 +970,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				if (!empty($listed) && !in_array($file, $listed)) {
 					$unlisted[] = $file;
 				}
+				$i++;
 			}
-			$i++;
 		}
 		closedir($handle);
 		unset($i, $listed);
