@@ -978,6 +978,7 @@ no_users_in_selection =           'Inga användare finns i detta urval'
 # upload management
 upload_administration =           'Hantering av uppladdade filer'
 mark_upload_for_removal =         'Märk för borttagning'
+mark_upload_for_managing =        '<!-- TODO -->mark for managing'
 no_uploads_found =                'Hittade inga uppladdade filer.'
 delete_upload_confirmation =      'Är du säker på att du vill radera den här uppladdade filen?'
 delete_uploads_confirmation =     'Är du säker på att du vill radera de följande uppladdade filerna?'
