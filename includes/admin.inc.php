@@ -969,6 +969,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$images[$i]['pathname'] = $file;
 				if (!empty($listed) && !in_array($file, $listed)) {
 					$unlisted[] = $file;
+					$images[$i]['status'] = 0;
+				} else {
+					$images[$i]['status'] = 1;
 				}
 				$i++;
 			}
