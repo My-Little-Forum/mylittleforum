@@ -949,8 +949,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	}
 
 	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
-		$listed = [];
 		$images   = [];
+		$listed   = [];
 		$unlisted = [];
 		$rec_row  = [];
 		$rUploadList = mysqli_query($connid, "SELECT filename FROM ". $db_settings['uploads_table']);
