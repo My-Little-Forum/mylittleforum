@@ -950,7 +950,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
 		$listed = [];
+		$images   = [];
 		$unlisted = [];
+		$rec_row  = [];
 		$rUploadList = mysqli_query($connid, "SELECT filename FROM ". $db_settings['uploads_table']);
 		if ($rUploadList !== false && mysqli_num_rows($rUploadList) > 0) {
 			while ($row = mysqli_fetch_assoc($rUploadList)) {
@@ -959,7 +961,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 		
 		$uploaded_images_path = 'images/uploaded/';
-		$images = array();
 		$browse_images = (isset($_GET['browse_images']) && $_GET['browse_images'] > 0) ? intval($_GET['browse_images']) : 1;
 		$i = 0;
 		$handle = opendir($uploaded_images_path);
@@ -980,7 +981,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		unset($i, $listed);
 		
 		if (count($unlisted) > 0) {
-			$rec_row = [];
 			foreach ($unlisted as $rec_upload) {
 				// `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp`
 				$tstamp_temp = substr($rec_upload, 0, 14);
