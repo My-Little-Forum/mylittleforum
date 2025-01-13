@@ -1074,6 +1074,7 @@
 {/section}
  </ul>
  <div>
+  <button name="record_selected_uploads" value="record">{#upload_add_db_entry_button#}</button>
   <button name="delete_selected_uploads" value="{#delete#}">{#delete#}</button>
  </div>
 </form>

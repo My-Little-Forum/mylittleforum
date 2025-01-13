@@ -980,6 +980,7 @@ delete_upload_confirmation =      'Are you sure you want to delete this upload?'
 delete_uploads_confirmation =     'Are you sure you want to delete the following uploads?'
 check_for_unrecorded_uploads =    'record uploads'
 check_for_unrecorded_uploads_desc = 'Check whether there are any uploads that are not yet included in the list of uploads. If any are found, they are entered in the list.'
+upload_add_db_entry_button =      'record to database'
 upload_database_entry_alt =       'There is a database entry for this image'
 upload_database_no_entry_alt =    'There is no database entry for this image'
 
