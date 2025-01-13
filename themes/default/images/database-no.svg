@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="264" height="264" viewBox="0 0 264 264">
+ <defs>
+  <linearGradient id="cyl" x1="0%" y1="0%" x2="100%" y2="0%">
+   <stop offset="0%" stop-color="#7f99b9" />
+   <stop offset="46%" stop-color="#a2bfdf" />
+   <stop offset="66%" stop-color="#bae8fa" />
+   <stop offset="86%" stop-color="#a4c6ed" />
+   <stop offset="100%" stop-color="#98bcde" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  #contour { fill: none; stroke-width: 5; stroke: #7894b2; }
+  #frontcontour { fill: none; stroke-width: 3.5; stroke: #9abfe4; stroke-linecap: round; }
+  #front { fill: url(#cyl); stroke: none; }
+  #cross { stroke-width: 38; stroke: #f80800; stroke-linecap: round; }
+  .gradient {
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(
+      from -90deg,
+      #8f9fbc  0deg,
+      #a2bfdf 25.2deg,
+      #bae8fa 60deg,
+      #a4c6ed 94.8deg,
+      #8f9fbc 180deg
+    );
+  }
+  ]]>
+ </style>
+ <symbol id="disc">
+  <clipPath id="top">
+   <path d="M 28 108 A 104 48 180 0 1 236 108 A 104 48 180 0 1 28 108 z" />
+  </clipPath>
+  <foreignObject x="0" y="60" width="264" height="100" clip-path="url(#top)">
+   <xhtml:div class="gradient" />
+  </foreignObject>
+  <path id="front" d="M 28 108 A 104 48 180 0 0 236 108 l 0 40 A 104 48 180 0 1 28 148 z" />
+  <path id="frontcontour" d="M 28 108 A 104 48 180 0 0 236 108" />
+  <path id="contour" d="M 28 108 A 104 48 180 0 1 236 108 l 0 40 A 104 48 180 0 1 28 148 z" />
+ </symbol>
+ <use href="#disc" x="0" y="63" />
+ <use href="#disc" x="0" y="3" />
+ <use href="#disc" x="0" y="-57" />
+ <path id="cross" d="M 32 32, 232 232 M 232 32, 32 232" />
+</svg>

@@ -1067,6 +1067,7 @@
   <li>
    <p class="image_container"><img src="images/uploaded/{$images[nr].pathname}" alt="{$images[nr].pathname}" /></p>
    <ul class="management_container">
+    <li class="information">{if $images[nr].status == 1}<img src="themes/{$settings.theme}/images/database.svg" alt="{#upload_database_entry_alt#}" width="16" height="16">{else}<img src="themes/{$settings.theme}/images/database-no.svg" alt="{#upload_database_no_entry_alt#}" width="16" height="16">{/if}</li>
     <li><input type="checkbox" id="id-{$images[nr].number}" name="manage_uploads[]" value="{$images[nr].pathname}" /><label for="id-{$images[nr].number}">{#mark_upload_for_managing#}</label></li>
    </ul>
   </li>
