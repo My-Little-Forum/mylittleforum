@@ -983,6 +983,8 @@ delete_upload_confirmation =      'Er du sikker på, du vil slette denne upload?
 delete_uploads_confirmation =     'Er du sikker på, du vil slette disse upload?'
 check_for_unrecorded_uploads =    '<!-- TODO -->record uploads'
 check_for_unrecorded_uploads_desc = '<!-- TODO -->Check whether there are any uploads that are not yet included in the list of uploads. If any are found, they are entered in the list.'
+upload_database_entry_alt =       '<!-- TODO -->There is a database entry for this image'
+upload_database_no_entry_alt =    '<!-- TODO -->There is no database entry for this image'
 
 # spam protection:
 captcha =                         'CAPTCHA'
