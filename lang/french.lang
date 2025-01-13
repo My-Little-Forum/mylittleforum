@@ -987,6 +987,7 @@ delete_upload_confirmation =      'Êtes-vous sûr de vouloir supprimer ce tél�
 delete_uploads_confirmation =     'Êtes-vous sûr de vouloir supprimer ces téléchargements ?'
 check_for_unrecorded_uploads =    '<!-- TODO -->record uploads'
 check_for_unrecorded_uploads_desc = '<!-- TODO -->Check whether there are any uploads that are not yet included in the list of uploads. If any are found, they are entered in the list.'
+upload_add_db_entry_button =      '<!-- TODO -->record to database'
 upload_database_entry_alt =       '<!-- TODO -->There is a database entry for this image'
 upload_database_no_entry_alt =    '<!-- TODO -->There is no database entry for this image'
 
