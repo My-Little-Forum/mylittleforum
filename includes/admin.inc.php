@@ -1027,6 +1027,33 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		else $action = 'list_uploads';
 	}
 
+	if (isset($_POST['record_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if (isset($_POST['manage_uploads'])) {
+			$selected = $_POST['manage_uploads'];
+			$selected_uploads_count = count($selected);
+			for ($x=0; $x<$selected_uploads_count; $x++) {
+				// search for the first occurence of the image in a posting,
+				// determine the ID of the posting author,
+				// assume that it's the uploader
+				$qUploadName = "SELECT
+				user_id
+				FROM ". $db_settings['forum_table'] ."
+				WHERE text LIKE '%". mysqli_real_escape_string($connid, $selected[$x]) ."%'
+				ORDER BY time ASC
+				LIMIT 1";
+				$rUploadName = mysqli_query($connid, $qUploadName);
+				if ($rUploadName !== false && mysqli_num_rows($rUploadName) == 1) {
+					$row = mysqli_fetch_assoc($rUploadName);
+					$uploadAuthor = intval($row['user_id']);
+					if ($uploadAuthor <= 0)
+						$uploadAuthor = null;
+				} else {
+					$uploadAuthor = null;
+				}
+			}
+		}
+		else $action = 'list_uploads';
+	}
 	if (isset($_POST['delete_uploads_confirmed']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		if (isset($_POST['selected_confirmed'])) {
 			foreach ($_POST['selected_confirmed'] as $upload_rm) {
