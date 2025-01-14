@@ -30,6 +30,7 @@
 		{if $show_spam_link}<li><a href="index.php?show_spam=true" class="report"><span>{$smarty.config.show_spam_link|replace:"[number]":$total_spam}</span></a></li>{/if}
 		{if $hide_spam_link}<li><a href="index.php?show_spam=true" class="report"><span>{$smarty.config.hide_spam_link|replace:"[number]":$total_spam}</span></a></li>{/if}
 		{if $delete_spam_link}<li><a href="index.php?mode=posting&amp;delete_spam=true" class="delete-spam"><span>{#delete_spam_link#}</span></a></li>{/if}
+		{if $show_reported_link}<li><a href="index.php?show_reported=true" class="report"><span>{$smarty.config.show_reports_link|replace:"[number]":$total_reports}</span></a></li>{/if}
 	</ul>
 </div>
 {/if}
