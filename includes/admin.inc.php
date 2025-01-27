@@ -952,7 +952,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$images   = [];
 		$listed   = [];
 		$unlisted = [];
-		$rec_row  = [];
 		$rUploadList = mysqli_query($connid, "SELECT filename FROM ". $db_settings['uploads_table']);
 		if ($rUploadList !== false && mysqli_num_rows($rUploadList) > 0) {
 			while ($row = mysqli_fetch_assoc($rUploadList)) {
@@ -979,15 +978,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 		closedir($handle);
 		unset($i, $listed);
-		
-		if (count($unlisted) > 0) {
-			foreach ($unlisted as $rec_upload) {
-				// `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp`
-				$tstamp_temp = substr($rec_upload, 0, 14);
-				$tstamp = substr($tstamp_temp, 0, 4) ."-". substr($tstamp_temp, 4, 2) ."-". substr($tstamp_temp, 6, 2) ." ". substr($tstamp_temp, 8, 2) .":". substr($tstamp_temp, 10, 2) .":" .substr($tstamp_temp, 12, 2);
-				$rec_row[] = "('". mysqli_real_escape_string($connid, $rec_upload) ."', '". mysqli_real_escape_string($connid, $tstamp) ."')";
-			}
-		}
 		
 		if ($images) {
 			$sort_array = [];
