@@ -978,6 +978,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if (isset($_POST['manage_uploads'])) {
 			$selected = $_POST['manage_uploads'];
 			$selected_uploads_count = count($selected);
+			$rec_row  = [];
 			for ($x = 0; $x < $selected_uploads_count; $x++) {
 				// search for the first occurence of the image in a posting,
 				// determine the ID of the posting author,
@@ -997,6 +998,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				} else {
 					$uploadAuthor = null;
 				}
+				// generate a row insert block for use in a statement to inserting multiple rows at once
+				$tstamp_temp = substr($selected[$x], 0, 14);
+				$tstamp = substr($tstamp_temp, 0, 4) ."-". substr($tstamp_temp, 4, 2) ."-". substr($tstamp_temp, 6, 2) ." ". substr($tstamp_temp, 8, 2) .":". substr($tstamp_temp, 10, 2) .":" .substr($tstamp_temp, 12, 2);
+				$rec_row[] = "(". $uploadAuthor .", '". mysqli_real_escape_string($connid, $selected[$x]) ."', '". mysqli_real_escape_string($connid, $tstamp) ."')";
 			}
 		}
 		else $action = 'list_uploads';
