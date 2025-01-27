@@ -948,6 +948,32 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		die();
 	}
 
+	if (isset($_POST['delete_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if (isset($_POST['manage_uploads'])) {
+			$selected = $_POST['manage_uploads'];
+			$selected_uploads_count = count($selected);
+			for ($x=0; $x<$selected_uploads_count; $x++) {
+				$selected_uploads[$x]['name'] = htmlspecialchars($selected[$x]);
+			}
+			$action = 'delete_uploads';
+		}
+		else $action = 'list_uploads';
+	}
+
+	if (isset($_POST['delete_uploads_confirmed']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if (isset($_POST['selected_confirmed'])) {
+			foreach ($_POST['selected_confirmed'] as $upload_rm) {
+				$path_rm = 'images/uploaded/'. $upload_rm;
+				if (file_exists($path_rm)) {
+					@chmod($path_rm, 0777);
+					@unlink($path_rm);
+				}
+			}
+		}
+		header("location: index.php?mode=admin&action=list_uploads");
+		die();
+	}
+
 	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
 		$images   = [];
 		$listed   = [];
@@ -1005,18 +1031,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$action = 'list_uploads';
 	}
 
-	if (isset($_POST['delete_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-		if (isset($_POST['manage_uploads'])) {
-			$selected = $_POST['manage_uploads'];
-			$selected_uploads_count = count($selected);
-			for ($x=0; $x<$selected_uploads_count; $x++) {
-				$selected_uploads[$x]['name'] = htmlspecialchars($selected[$x]);
-			}
-			$action = 'delete_uploads';
-		}
-		else $action = 'list_uploads';
-	}
-
 	if (isset($_POST['record_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
 		if (isset($_POST['manage_uploads'])) {
 			$selected = $_POST['manage_uploads'];
@@ -1044,20 +1058,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 		else $action = 'list_uploads';
 	}
-	if (isset($_POST['delete_uploads_confirmed']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-		if (isset($_POST['selected_confirmed'])) {
-			foreach ($_POST['selected_confirmed'] as $upload_rm) {
-				$path_rm = 'images/uploaded/'. $upload_rm;
-				if (file_exists($path_rm)) {
-					@chmod($path_rm, 0777);
-					@unlink($path_rm);
-				}
-			}
-		}
-		header("location: index.php?mode=admin&action=list_uploads");
-		die();
-	}
-
 	if (empty($action)) $action='main';
 	$smarty->assign('action', $action);
 
