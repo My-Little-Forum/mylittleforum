@@ -1003,6 +1003,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$tstamp = substr($tstamp_temp, 0, 4) ."-". substr($tstamp_temp, 4, 2) ."-". substr($tstamp_temp, 6, 2) ." ". substr($tstamp_temp, 8, 2) .":". substr($tstamp_temp, 10, 2) .":" .substr($tstamp_temp, 12, 2);
 				$rec_row[] = "(". $uploadAuthor .", '". mysqli_real_escape_string($connid, $selected[$x]) ."', '". mysqli_real_escape_string($connid, $tstamp) ."')";
 			}
+			$qInsertUploadData = "INSERT INTO `". $db_settings['uploads_table'] . "` (`uploader`, `filename`, `tstamp`)
+			VALUES ". join(",\n", $rec_row)."
+			ON DUPLICATE KEY UPDATE `filename` = `filename`";
+			$rInsertUploadData = mysqli_query($connid, $qInsertUploadData);
 		}
 		else $action = 'list_uploads';
 	}
