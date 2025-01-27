@@ -303,7 +303,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			
 			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_wordlist_table'] . "` (`token` varchar(255) character set utf8mb4 collate utf8mb4_bin NOT NULL DEFAULT '', `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
-			if (!@mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp` datetime NULL, PRIMARY KEY (id)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			if (!@mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(128) NULL, `tstamp` datetime NULL, PRIMARY KEY (id), UNIQUE KEY `pathname` (`filename`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
 			
 			/**
@@ -969,6 +969,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `filename` VARCHAR(128) NULL,
+				ADD UNIQUE KEY `pathname` (`filename`);");
+				
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
@@ -1362,6 +1366,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				// changes in the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `filename` VARCHAR(128) NULL,
+				ADD UNIQUE KEY `pathname` (`filename`);");
 				
 				
 				// changes in the user online table
@@ -1778,6 +1786,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `filename` VARCHAR(128) NULL,
+				ADD UNIQUE KEY `pathname` (`filename`);");
+				
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
@@ -2157,6 +2169,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `filename` VARCHAR(128) NULL,
+				ADD UNIQUE KEY `pathname` (`filename`);");
+				
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
@@ -2419,6 +2435,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				// changes in the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `filename` VARCHAR(128) NULL,
+				ADD UNIQUE KEY `pathname` (`filename`);");
 				
 				
 				// changes in the user online table
@@ -2683,6 +2703,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `filename` VARCHAR(128) NULL,
+				ADD UNIQUE KEY `pathname` (`filename`);");
+				
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
@@ -2819,6 +2843,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
+				
+				// changes in the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `filename` VARCHAR(128) NULL,
+				ADD UNIQUE KEY `pathname` (`filename`);");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -2913,6 +2943,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				`edited` = NULL
 				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
 				
+				
+				// changes in the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `filename` VARCHAR(128) NULL,
+				ADD UNIQUE KEY `pathname` (`filename`);");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -3006,6 +3042,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				
+				// changes in the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `filename` VARCHAR(128) NULL,
+				ADD UNIQUE KEY `pathname` (`filename`);");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
