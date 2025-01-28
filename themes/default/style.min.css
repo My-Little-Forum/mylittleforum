@@ -387,7 +387,11 @@ ul#uploadlist{list-style:none;margin:0;padding:0;max-width:100%;display:flex;fle
 #uploadlist .image_container{padding:.5em;height:21.5em;width:100%;margin:0 0 .25em 0;text-align:center}
 #uploadlist img{max-width:100%;max-height:100%}
 #uploadlist .management_container{margin:0;padding:.25em 0;list-style:none}
+#uploadlist .management_container > li{margin:0;padding-block:.125em;padding-inline:.25em}
+#uploadlist .management_container input{margin:0 .125em}
 #uploadlist + p{margin-block:.75em 1em}
+#uploadlist .information{display:flex;}
+#uploadlist .information > img{display:block;}
 .confirm-selection{list-style:none;padding:0;border-top:1px solid #bacbdf}
 .confirm-selection li{min-height:2.5em;margin:0 0 .25em 0;padding:.25em .5em;border-bottom:1px solid #bacbdf}
 .confirm-selection .item{margin:0 0 .25em 0}

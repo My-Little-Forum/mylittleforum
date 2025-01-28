@@ -948,9 +948,72 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		die();
 	}
 
+	if (isset($_POST['delete_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if (isset($_POST['manage_uploads'])) {
+			$selected = $_POST['manage_uploads'];
+			$selected_uploads_count = count($selected);
+			for ($x=0; $x<$selected_uploads_count; $x++) {
+				$selected_uploads[$x]['name'] = htmlspecialchars($selected[$x]);
+			}
+			$action = 'delete_uploads';
+		}
+		else $action = 'list_uploads';
+	}
+
+	if (isset($_POST['delete_uploads_confirmed']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if (isset($_POST['selected_confirmed'])) {
+			foreach ($_POST['selected_confirmed'] as $upload_rm) {
+				$path_rm = 'images/uploaded/'. $upload_rm;
+				if (file_exists($path_rm)) {
+					@chmod($path_rm, 0777);
+					@unlink($path_rm);
+				}
+			}
+		}
+		header("location: index.php?mode=admin&action=list_uploads");
+		die();
+	}
+
+	if (isset($_POST['record_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+		if (isset($_POST['manage_uploads'])) {
+			$selected = $_POST['manage_uploads'];
+			$selected_uploads_count = count($selected);
+			$rec_row  = [];
+			for ($x = 0; $x < $selected_uploads_count; $x++) {
+				// search for the first occurence of the image in a posting,
+				// determine the ID of the posting author,
+				// assume that it's the uploader
+				$qUploadName = "SELECT
+				user_id
+				FROM ". $db_settings['forum_table'] ."
+				WHERE text LIKE '%". mysqli_real_escape_string($connid, $selected[$x]) ."%'
+				ORDER BY time ASC
+				LIMIT 1";
+				$rUploadName = mysqli_query($connid, $qUploadName);
+				if ($rUploadName !== false && mysqli_num_rows($rUploadName) == 1) {
+					$row = mysqli_fetch_assoc($rUploadName);
+					$uploadAuthor = intval($row['user_id']);
+					if ($uploadAuthor <= 0)
+						$uploadAuthor = null;
+				} else {
+					$uploadAuthor = null;
+				}
+				// generate a row insert block for use in a statement to inserting multiple rows at once
+				$tstamp_temp = substr($selected[$x], 0, 14);
+				$tstamp = substr($tstamp_temp, 0, 4) ."-". substr($tstamp_temp, 4, 2) ."-". substr($tstamp_temp, 6, 2) ." ". substr($tstamp_temp, 8, 2) .":". substr($tstamp_temp, 10, 2) .":" .substr($tstamp_temp, 12, 2);
+				$rec_row[] = "(". $uploadAuthor .", '". mysqli_real_escape_string($connid, $selected[$x]) ."', '". mysqli_real_escape_string($connid, $tstamp) ."')";
+			}
+			$qInsertUploadData = "INSERT INTO `". $db_settings['uploads_table'] . "` (`uploader`, `filename`, `tstamp`)
+			VALUES ". join(",\n", $rec_row)."
+			ON DUPLICATE KEY UPDATE `filename` = `filename`";
+			$rInsertUploadData = mysqli_query($connid, $qInsertUploadData);
+		}
+		else $action = 'list_uploads';
+	}
+
 	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
-		$listed = [];
-		$unlisted = [];
+		$images   = [];
+		$listed   = [];
 		$rUploadList = mysqli_query($connid, "SELECT filename FROM ". $db_settings['uploads_table']);
 		if ($rUploadList !== false && mysqli_num_rows($rUploadList) > 0) {
 			while ($row = mysqli_fetch_assoc($rUploadList)) {
@@ -959,7 +1022,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 		
 		$uploaded_images_path = 'images/uploaded/';
-		$images = array();
 		$browse_images = (isset($_GET['browse_images']) && $_GET['browse_images'] > 0) ? intval($_GET['browse_images']) : 1;
 		$i = 0;
 		$handle = opendir($uploaded_images_path);
@@ -968,23 +1030,15 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$images[$i]['number'] = $i;
 				$images[$i]['pathname'] = $file;
 				if (!empty($listed) && !in_array($file, $listed)) {
-					$unlisted[] = $file;
+					$images[$i]['status'] = 0;
+				} else {
+					$images[$i]['status'] = 1;
 				}
 				$i++;
 			}
 		}
 		closedir($handle);
 		unset($i, $listed);
-		
-		if (count($unlisted) > 0) {
-			$rec_row = [];
-			foreach ($unlisted as $rec_upload) {
-				// `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp`
-				$tstamp_temp = substr($rec_upload, 0, 14);
-				$tstamp = substr($tstamp_temp, 0, 4) ."-". substr($tstamp_temp, 4, 2) ."-". substr($tstamp_temp, 6, 2) ." ". substr($tstamp_temp, 8, 2) .":". substr($tstamp_temp, 10, 2) .":" .substr($tstamp_temp, 12, 2);
-				$rec_row[] = "('". mysqli_real_escape_string($connid, $rec_upload) ."', '". mysqli_real_escape_string($connid, $tstamp) ."')";
-			}
-		}
 		
 		if ($images) {
 			$sort_array = [];
@@ -1010,32 +1064,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			$start = $page_browse['page'] * $page_browse['items_per_page'] - $page_browse['items_per_page'];
 		}
 		$action = 'list_uploads';
-	}
-
-	if (isset($_POST['delete_selected_uploads']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-		if (isset($_POST['manage_uploads'])) {
-			$selected = $_POST['manage_uploads'];
-			$selected_uploads_count = count($selected);
-			for ($x=0; $x<$selected_uploads_count; $x++) {
-				$selected_uploads[$x]['name'] = htmlspecialchars($selected[$x]);
-			}
-			$action = 'delete_uploads';
-		}
-		else $action = 'list_uploads';
-	}
-
-	if (isset($_POST['delete_uploads_confirmed']) && isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-		if (isset($_POST['selected_confirmed'])) {
-			foreach ($_POST['selected_confirmed'] as $upload_rm) {
-				$path_rm = 'images/uploaded/'. $upload_rm;
-				if (file_exists($path_rm)) {
-					@chmod($path_rm, 0777);
-					@unlink($path_rm);
-				}
-			}
-		}
-		header("location: index.php?mode=admin&action=list_uploads");
-		die();
 	}
 
 	if (empty($action)) $action='main';
