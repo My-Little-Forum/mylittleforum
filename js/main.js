@@ -1219,26 +1219,7 @@ function DragAndDropTable(table,mode,queryKey) {
 			pEls = pEls.length>0?pEls:document.getElementsByClassName("thread-posting");
 			new FullSizeImage(pEls);
 		};
-
-		/**
-		 * Set the default value to an INPUT element
-		 */
-		var setDefaultInputValue = function(id) {
-			var inp = document.getElementById(id);
-			if (!inp) 
-				return;
-
-			var value = (inp.alt) ? inp.alt : inp.value;
-			inp.onfocus = function(e) {
-				if (this.value == value) 
-					this.value="";
-			};
-			inp.onblur = function(e) {
-				if(this.value.trim() == "") 
-					this.value = value;
-			};
-		};
-
+		
 		/**
 		 * Set focus to first INPUT element on the page, if exists
 		 */
@@ -1467,8 +1448,6 @@ function DragAndDropTable(table,mode,queryKey) {
 		this.init = function( ajaxPreviewStructure ) {
 			ajaxPreviewStructure = ajaxPreviewStructure || false;
 			setFocusToContentForm();
-			setDefaultInputValue("search-input");
-			setDefaultInputValue("search-user");
 			templatePath = this.getTemplatePath();
 			if (ajaxPreviewStructure)
 				ajaxPreviewWindow = new AjaxPreviewWindow( ajaxPreviewStructure, templatePath );
