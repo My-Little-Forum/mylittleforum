@@ -280,6 +280,9 @@
 	$smarty->assign('ip', $entrydata['ip']);
 	if ($entrydata['akismet_spam'] == 1 || $entrydata['b8_spam'] == 1)
 		$smarty->assign('spam', true);
+	if (isset($_GET['report_message']) && in_array($_GET['report_message'], array('report_entry_successful', 'report_entry_error', 'report_entry_before'))) {
+		$smarty->assign('report', $_GET['report_message']);
+	}
 	if (isset($categories[$entrydata["category"]]) && $categories[$entrydata['category']] != '') {
 		$smarty->assign('category_name', $categories[$entrydata["category"]]);
 	}
@@ -365,6 +368,9 @@
 			$options['report_spam'] = true;
 		if (($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $entrydata['akismet_spam'] == 1 && $entrydata['spam_check_status'] > 0) || ($settings['b8_entry_check'] == 1 && $entrydata['b8_spam'] == 1 || $entrydata['training_type'] == 0))
 			$options['flag_ham'] = true;
+	}
+	if (isset($_SESSION[$settings['session_prefix'] . 'user_type']) && $settings['reports_by_registered'] == 1) {
+		$options['report_entry'] = true;
 	}
 
 	if (isset($options))

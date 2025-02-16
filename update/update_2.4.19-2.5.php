@@ -251,11 +251,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 		$db_settings_file .= "\$db_settings['b8_rating_table']      = '{#ph-tbl-b8-rating}';\r\n";
 		$db_settings_file .= "\$db_settings['akismet_rating_table'] = '{#ph-tbl-akismet-rating}';\r\n";
 		$db_settings_file .= "\$db_settings['uploads_table']        = '{#ph-tbl-uploads}';\r\n";
+		$db_settings_file .= "\$db_settings['entries_reports_table'] = '{#ph-tbl-entries-reports}';\r\n";
 		// add new database tables to the array $db_settings
 		$db_settings['b8_wordlist_table'] = $table_prefix . 'b8_wordlist';
 		$db_settings['b8_rating_table'] = $table_prefix . 'b8_rating';
 		$db_settings['akismet_rating_table'] = $table_prefix . 'akismet_rating';
 		$db_settings['uploads_table'] = $table_prefix . 'uploads';
+		$db_settings['entries_reports_table'] = $table_prefix . 'entries_reports':
 		//replace the placeholders
 		$db_settings_file = str_replace('{#ph-dbhost}', addslashes($db_settings['host']), $db_settings_file);
 		$db_settings_file = str_replace('{#ph-dbuser}', addslashes($db_settings['user']), $db_settings_file);
@@ -283,6 +285,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 		$db_settings_file = str_replace('{#ph-tbl-b8-rating}', addslashes($db_settings['b8_rating_table']), $db_settings_file);
 		$db_settings_file = str_replace('{#ph-tbl-akismet-rating}', addslashes($db_settings['akismet_rating_table']), $db_settings_file);
 		$db_settings_file = str_replace('{#ph-tbl-uploads}', addslashes($db_settings['uploads_table']), $db_settings_file);
+		$db_settings_file = str_replace('{#ph-tbl-entries-reports}', addslashes($db_settings['entries_reports_table']), $db_settings_file);
 		// open the file to overwrite its content
 		$db_settings_fp = @fopen("./config/db_settings.php", "w") or $update['errors'][] = str_replace("[CHMOD]", $chmod, $lang['error_overwrite_config_file']);
 		if (empty($update['errors'])) {
@@ -296,6 +299,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_rating_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_wordlist_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['uploads_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['entries_reports_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			// new tables
 			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['akismet_rating_table'] . "` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `akismet_spam` (`spam`), KEY spam_check_status (spam_check_status)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
@@ -305,6 +309,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			
 			if (!@mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp` datetime NULL, PRIMARY KEY (id)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
+			if (!@mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `eid` int(10) UNSIGNED NOT NULL, `user_id` int(10) UNSIGNED NOT NULL, `reason` tinyint(3) UNSIGNED NOT NULL, `description` varchar(255) DEFAULT NULL, PRIMARY KEY (`id`), KEY `eid` (`eid`), KEY `reason` (`reason`), KEY `user_id` (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
 			/**
 			 * From here on everything can be done as a transaction in one step
@@ -748,6 +753,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// new table for reports about entries
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (
+					`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`eid` int(10) UNSIGNED NOT NULL
+					`user_id` int(10) UNSIGNED NOT NULL,
+					`reason` tinyint(3) UNSIGNED NOT NULL,
+					`description` varchar(255) DEFAULT NULL,
+					PRIMARY KEY (`id`),
+					KEY `eid` (`eid`),
+					KEY `reason` (`reason`),
+					KEY `user_id` (`user_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+				
+				
 				// changes in the setting table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -1179,6 +1198,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// new table for reports about entries
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (
+					`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`eid` int(10) UNSIGNED NOT NULL
+					`user_id` int(10) UNSIGNED NOT NULL,
+					`reason` tinyint(3) UNSIGNED NOT NULL,
+					`description` varchar(255) DEFAULT NULL,
+					PRIMARY KEY (`id`),
+					KEY `eid` (`eid`),
+					KEY `reason` (`reason`),
+					KEY `user_id` (`user_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+				
+				
 				// changes in the setting table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -1573,6 +1606,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// new table for reports about entries
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (
+					`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`eid` int(10) UNSIGNED NOT NULL
+					`user_id` int(10) UNSIGNED NOT NULL,
+					`reason` tinyint(3) UNSIGNED NOT NULL,
+					`description` varchar(255) DEFAULT NULL,
+					PRIMARY KEY (`id`),
+					KEY `eid` (`eid`),
+					KEY `reason` (`reason`),
+					KEY `user_id` (`user_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+				
+				
 				// changes in the setting table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -1965,6 +2012,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// new table for reports about entries
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (
+					`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`eid` int(10) UNSIGNED NOT NULL
+					`user_id` int(10) UNSIGNED NOT NULL,
+					`reason` tinyint(3) UNSIGNED NOT NULL,
+					`description` varchar(255) DEFAULT NULL,
+					PRIMARY KEY (`id`),
+					KEY `eid` (`eid`),
+					KEY `reason` (`reason`),
+					KEY `user_id` (`user_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+				
+				
 				// changes in the settings table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -2228,6 +2289,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// new table for reports about entries
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (
+					`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`eid` int(10) UNSIGNED NOT NULL
+					`user_id` int(10) UNSIGNED NOT NULL,
+					`reason` tinyint(3) UNSIGNED NOT NULL,
+					`description` varchar(255) DEFAULT NULL,
+					PRIMARY KEY (`id`),
+					KEY `eid` (`eid`),
+					KEY `reason` (`reason`),
+					KEY `user_id` (`user_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+				
+				
 				// changes in the settings table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -2491,6 +2566,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// new table for reports about entries
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (
+					`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`eid` int(10) UNSIGNED NOT NULL
+					`user_id` int(10) UNSIGNED NOT NULL,
+					`reason` tinyint(3) UNSIGNED NOT NULL,
+					`description` varchar(255) DEFAULT NULL,
+					PRIMARY KEY (`id`),
+					KEY `eid` (`eid`),
+					KEY `reason` (`reason`),
+					KEY `user_id` (`user_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+				
+				
 				// changes in the settings table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -2754,6 +2843,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// new table for reports about entries
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (
+					`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`eid` int(10) UNSIGNED NOT NULL
+					`user_id` int(10) UNSIGNED NOT NULL,
+					`reason` tinyint(3) UNSIGNED NOT NULL,
+					`description` varchar(255) DEFAULT NULL,
+					PRIMARY KEY (`id`),
+					KEY `eid` (`eid`),
+					KEY `reason` (`reason`),
+					KEY `user_id` (`user_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+				
+				
 				// changes in the settings table
 				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
 				WHERE name = 'bad_behavior';");
@@ -2881,6 +2984,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// new table for reports about entries
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (
+					`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`eid` int(10) UNSIGNED NOT NULL
+					`user_id` int(10) UNSIGNED NOT NULL,
+					`reason` tinyint(3) UNSIGNED NOT NULL,
+					`description` varchar(255) DEFAULT NULL,
+					PRIMARY KEY (`id`),
+					KEY `eid` (`eid`),
+					KEY `reason` (`reason`),
+					KEY `user_id` (`user_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+				
+				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
@@ -2975,6 +3092,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// new table for reports about entries
+				mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `". $db_settings['entries_reports_table'] ."` (
+					`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+					`eid` int(10) UNSIGNED NOT NULL
+					`user_id` int(10) UNSIGNED NOT NULL,
+					`reason` tinyint(3) UNSIGNED NOT NULL,
+					`description` varchar(255) DEFAULT NULL,
+					PRIMARY KEY (`id`),
+					KEY `eid` (`eid`),
+					KEY `reason` (`reason`),
+					KEY `user_id` (`user_id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+				
+				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
