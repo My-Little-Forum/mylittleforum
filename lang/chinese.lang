@@ -986,6 +986,9 @@ check_for_unrecorded_uploads_desc = '<!-- TODO -->Check whether there are any up
 upload_add_db_entry_button =      '<!-- TODO -->record to database'
 upload_database_entry_alt =       '<!-- TODO -->There is a database entry for this image'
 upload_database_no_entry_alt =    '<!-- TODO -->There is no database entry for this image'
+upload_filter_not_managed_images ='<!-- TODO -->not managed images'
+upload_filter_managed_images =    '<!-- TODO -->managed images'
+upload_filter_all_images =        '<!-- TODO -->all images'
 
 # spam protection:
 captcha =                         'CAPTCHA'
