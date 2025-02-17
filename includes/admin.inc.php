@@ -1009,7 +1009,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$rec_row[] = "(". $uploadAuthor .", '". mysqli_real_escape_string($connid, $selected[$x]) ."', '". mysqli_real_escape_string($connid, $tstamp) ."')";
 			}
 			$qInsertUploadData = "INSERT INTO `". $db_settings['uploads_table'] . "` (`uploader`, `filename`, `tstamp`)
-			VALUES ". join(",\n", $rec_row)."
+			VALUES ". join(",\n", $rec_row) ."
 			ON DUPLICATE KEY UPDATE `filename` = `filename`";
 			$rInsertUploadData = mysqli_query($connid, $qInsertUploadData);
 		}
