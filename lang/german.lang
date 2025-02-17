@@ -987,6 +987,10 @@ check_for_unrecorded_uploads_desc = 'Prüfe, ob Uploads vorhanden sind, die noch
 upload_add_db_entry_button =      'in der Datenbank aufnehmen'
 upload_database_entry_alt =       'Für dieses Bild existiert ein Datenbankeintrag'
 upload_database_no_entry_alt =    'Für dieses Bild existiert kein Datenbankeintrag'
+upload_filter_not_managed_images ='nicht verwaltete Bilder'
+upload_filter_managed_images =    'verwaltete Bilder'
+upload_filter_all_images =        'alle Bilder'
+
 
 # Spamschutz:
 captcha =                         'CAPTCHA'
