@@ -1013,7 +1013,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			ON DUPLICATE KEY UPDATE `filename` = `filename`";
 			$rInsertUploadData = mysqli_query($connid, $qInsertUploadData);
 		}
-		else $action = 'list_uploads';
+		header("location: index.php?mode=admin&action=list_uploads");
+		die();
 	}
 
 	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
