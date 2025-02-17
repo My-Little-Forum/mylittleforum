@@ -999,9 +999,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 					$row = mysqli_fetch_assoc($rUploadName);
 					$uploadAuthor = intval($row['user_id']);
 					if ($uploadAuthor <= 0)
-						$uploadAuthor = null;
+						$uploadAuthor = "Null";
 				} else {
-					$uploadAuthor = null;
+					$uploadAuthor = "Null";
 				}
 				// generate a row insert block for use in a statement to inserting multiple rows at once
 				$tstamp_temp = substr($selected[$x], 0, 14);
