@@ -1221,24 +1221,6 @@ function DragAndDropTable(table,mode,queryKey) {
 		};
 		
 		/**
-		 * Set focus to first INPUT element on the page, if exists
-		 */
-		var setFocusToContentForm = function() {
-			var par = document.getElementById("content");
-			if (par) {
-				var f = par.getElementsByTagName("form");
-				if (f && f.length>0) {
-					for (var i=0; i<f[0].elements.length; i++) {
-						if (f[0].elements[i].type == "text" && f[0].elements[i].name != "search_user" && f[0].elements[i].name != "smiley_code" && f[0].elements[i].name != "new_category") {
-							f[0].elements[i].focus();
-							break;
-						}
-					}
-				}
-			}
-		};
-		
-		/**
 		 * Add a checkbox to a INPUT element of type PASSWORD to show/hid the entered password
 		 */
 		var togglePasswordVisibility = function() {
@@ -1447,7 +1429,6 @@ function DragAndDropTable(table,mode,queryKey) {
 		 */
 		this.init = function( ajaxPreviewStructure ) {
 			ajaxPreviewStructure = ajaxPreviewStructure || false;
-			setFocusToContentForm();
 			templatePath = this.getTemplatePath();
 			if (ajaxPreviewStructure)
 				ajaxPreviewWindow = new AjaxPreviewWindow( ajaxPreviewStructure, templatePath );
