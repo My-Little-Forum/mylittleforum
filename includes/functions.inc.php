@@ -1766,6 +1766,29 @@ function my_strpos($haystack, $needle, $offset = 0, $encoding = 'utf-8') {
 }
 
 /**
+ * remove array elements of a twodimensional array with a specific value of a specified key
+ * 
+ * based on the code from @link https://stackoverflow.com/questions/4466159/delete-element-from-multidimensional-array-based-on-value
+ * 
+ * @param array $array
+ * @param string $key
+ * @param mixed $value
+ * @return array $temp
+ */
+function filter2DArrayWithKeyNValue($array, $key, $value) {
+	// create array $temp
+	$temp = [];
+	foreach ($array as $item) {
+		if ($item[$key] == $value) {
+			// push the element to the array $temp
+			// if the value of $key is not equal to $value
+			array_push($temp, $item);
+		}
+	}
+	return $temp;
+}
+
+/**
  * encodes sender or recipient name
  *
  * @param string $name

@@ -1047,6 +1047,16 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		unset($i, $listed);
 		
 		if ($images) {
+			if (isset($_POST['filter']) && in_array($_POST['filter'], ['not-managed-images', 'managed-images'])) {
+				if ($_POST['filter'] == 'not-managed-images') {
+					$liveFilter['criterium'] = 'status';
+					$liveFilter['value'] = 0;
+				} else {
+					$liveFilter['criterium'] = 'status';
+					$liveFilter['value'] = 1;
+				}
+				$images = filter2DArrayWithKeyNValue($images, $liveFilter['criterium'], $liveFilter['value']);
+			}
 			$sort_array = [];
 			foreach ($images as $image) {
 				$sort_array[] = $image['pathname'];
