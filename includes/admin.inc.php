@@ -1047,8 +1047,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		unset($i, $listed);
 		
 		if ($images) {
-			if (isset($_POST['filter']) && in_array($_POST['filter'], ['not-managed-images', 'managed-images'])) {
-				if ($_POST['filter'] == 'not-managed-images') {
+			if (isset($_GET['filter']) && in_array($_GET['filter'], ['not-managed-images', 'managed-images'])) {
+				if ($_GET['filter'] == 'not-managed-images') {
 					$liveFilter['criterium'] = 'status';
 					$liveFilter['value'] = 0;
 				} else {

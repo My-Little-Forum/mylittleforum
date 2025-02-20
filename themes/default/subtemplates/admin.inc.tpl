@@ -1050,9 +1050,9 @@
 {if $images}
 
  <div>
-  <form action="index.php?action=list_uploads" method="post" accept-charset="{#charset#}">
+  <form action="index.php" method="get" accept-charset="{#charset#}">
    <input type="hidden" name="mode" value="admin" />
-   <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
+   <input type="hidden" name="action" value="list_uploads" />
    <div>
     <button name="filter" value="not-managed-images">{#upload_filter_not_managed_images#}</button>
     <button name="filter" value="managed-images">{#upload_filter_managed_images#}</button>
