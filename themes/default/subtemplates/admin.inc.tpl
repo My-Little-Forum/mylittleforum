@@ -1073,6 +1073,9 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
+{if $filter}
+<input type="hidden" name="filter" value="{$filter}" />
+{/if}
  <ul id="uploadlist">
 {section name=nr loop=$images start=$start max=$images_per_page}
   <li>

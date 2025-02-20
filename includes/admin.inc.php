@@ -1013,7 +1013,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			ON DUPLICATE KEY UPDATE `filename` = `filename`";
 			$rInsertUploadData = mysqli_query($connid, $qInsertUploadData);
 		}
-		header("location: index.php?mode=admin&action=list_uploads");
+		$filterString = (isset($_POST['filter']) && in_array($_POST['filter'], ['not-managed-images', 'managed-images'])) ? '&filter='. urlencode($_POST['filter']) : '';
+		header("location: index.php?mode=admin&action=list_uploads". $filterString);
 		die();
 	}
 
