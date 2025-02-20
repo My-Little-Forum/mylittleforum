@@ -1055,6 +1055,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 					$liveFilter['criterium'] = 'status';
 					$liveFilter['value'] = 1;
 				}
+				$filter = $_GET['filter'];
 				$images = filter2DArrayWithKeyNValue($images, $liveFilter['criterium'], $liveFilter['value']);
 			}
 			$sort_array = [];
@@ -1800,6 +1801,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$smarty->assign('images_per_page', $page_browse['items_per_page']);
 				$smarty->assign('images', $images);
 				if (isset($start)) $smarty->assign('start', $start);
+				if (isset($filter)) $smarty->assign('filter', $filter);
 			}
 		break;
 		case 'delete_uploads':
