@@ -1833,9 +1833,24 @@ ul#uploadlist {
 #uploadlist .management_container {
 	margin: 0;
 	padding: 0.25em 0;
+	list-style: none;
+}
+#uploadlist .management_container > li {
+	margin: 0;
+	padding-block: 0.125em;
+	padding-inline: 0.25em;
+}
+#uploadlist .management_container input {
+	margin: 0 0.125em;
 }
 #uploadlist + p {
 	margin-block: 0.75em 1em;
+}
+#uploadlist .information {
+	display: flex;
+	}
+#uploadlist .information > img {
+	display: block;
 }
 .confirm-selection {
 	list-style: none;
