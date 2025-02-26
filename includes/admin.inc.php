@@ -1008,9 +1008,9 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 				$tstamp = substr($tstamp_temp, 0, 4) ."-". substr($tstamp_temp, 4, 2) ."-". substr($tstamp_temp, 6, 2) ." ". substr($tstamp_temp, 8, 2) .":". substr($tstamp_temp, 10, 2) .":" .substr($tstamp_temp, 12, 2);
 				$rec_row[] = "(". $uploadAuthor .", '". mysqli_real_escape_string($connid, $selected[$x]) ."', '". mysqli_real_escape_string($connid, $tstamp) ."')";
 			}
-			$qInsertUploadData = "INSERT INTO `". $db_settings['uploads_table'] ."` (`uploader`, `filename`, `tstamp`)
+			$qInsertUploadData = "INSERT INTO `". $db_settings['uploads_table'] ."` (`uploader`, `pathname`, `tstamp`)
 			VALUES ". join(",\n", $rec_row) ."
-			ON DUPLICATE KEY UPDATE `filename` = `filename`";
+			ON DUPLICATE KEY UPDATE `pathname` = `pathname`";
 			$rInsertUploadData = mysqli_query($connid, $qInsertUploadData);
 		}
 		$filterString = (isset($_POST['filter']) && in_array($_POST['filter'], ['not-managed-images', 'managed-images'])) ? '&filter='. urlencode($_POST['filter']) : '';
@@ -1021,10 +1021,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	if (isset($_GET['action']) and $_GET['action'] == 'list_uploads') {
 		$images   = [];
 		$listed   = [];
-		$rUploadList = mysqli_query($connid, "SELECT filename FROM ". $db_settings['uploads_table']);
+		$rUploadList = mysqli_query($connid, "SELECT pathname FROM ". $db_settings['uploads_table']);
 		if ($rUploadList !== false && mysqli_num_rows($rUploadList) > 0) {
 			while ($row = mysqli_fetch_assoc($rUploadList)) {
-				$listed[] = $row['filename'];
+				$listed[] = $row['pathname'];
 			}
 		}
 		
