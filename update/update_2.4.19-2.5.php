@@ -3396,6 +3396,32 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
+				CHANGE `filename` `pathname` VARCHAR(128) NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
