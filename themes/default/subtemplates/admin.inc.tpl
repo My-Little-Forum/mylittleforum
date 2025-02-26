@@ -1047,7 +1047,6 @@
 
 {elseif $action=='list_uploads'}
 <h2 id="admin_header">{#upload_administration#}</h2>
-{if $images}
 
  <div>
   <form action="index.php" method="get" accept-charset="{#charset#}">
@@ -1060,6 +1059,7 @@
    </div>
   </form>
  </div>
+{if $images}
 {if $pagination}
 <ul class="pagination">
 {if $pagination.previous}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}{if $pagination.previous>1}&amp;page={$pagination.previous}{/if}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}{if $filter}&amp;filter={$filter}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
