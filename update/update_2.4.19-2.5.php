@@ -303,7 +303,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			
 			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_wordlist_table'] . "` (`token` varchar(255) character set utf8mb4 collate utf8mb4_bin NOT NULL DEFAULT '', `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
-			if (!@mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(128) NULL, `tstamp` datetime NULL, PRIMARY KEY (id), UNIQUE KEY `pathname` (`filename`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			if (!@mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `pathname` varchar(128) NOT NULL, `tstamp` datetime NULL, PRIMARY KEY (id), UNIQUE KEY `pathname` (`pathname`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
 			
 			/**
@@ -966,12 +966,33 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				
 				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `filename` VARCHAR(128) NULL,
-				ADD UNIQUE KEY `pathname` (`filename`);");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
 				
 				
 				// changes in the user online table
@@ -1364,12 +1385,33 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				
 				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `filename` VARCHAR(128) NULL,
-				ADD UNIQUE KEY `pathname` (`filename`);");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
 				
 				
 				// changes in the user online table
@@ -1783,12 +1825,33 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				
 				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `filename` VARCHAR(128) NULL,
-				ADD UNIQUE KEY `pathname` (`filename`);");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
 				
 				
 				// changes in the user online table
@@ -2166,12 +2229,33 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				
 				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `filename` VARCHAR(128) NULL,
-				ADD UNIQUE KEY `pathname` (`filename`);");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
 				
 				
 				// changes in the user online table
@@ -2433,12 +2517,33 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				
 				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `filename` VARCHAR(128) NULL,
-				ADD UNIQUE KEY `pathname` (`filename`);");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
 				
 				
 				// changes in the user online table
@@ -2700,12 +2805,33 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				
 				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `filename` VARCHAR(128) NULL,
-				ADD UNIQUE KEY `pathname` (`filename`);");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
 				
 				
 				// changes in the user online table
@@ -2845,9 +2971,30 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				
 				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `filename` VARCHAR(128) NULL,
-				ADD UNIQUE KEY `pathname` (`filename`);");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
@@ -2945,9 +3092,30 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				
 				
 				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `filename` VARCHAR(128) NULL,
-				ADD UNIQUE KEY `pathname` (`filename`);");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
@@ -3045,9 +3213,30 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				
 				
 				// changes in the uploads table
+				// delete any duplicate file name entries,
+				// keep the first data record
+				mysqli_query($connid, "DELETE FROM `". $db_settings['uploads_table'] ."`
+				WHERE `id` IN (
+					SELECT `temp_id` FROM (
+						SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."` as `t1`
+						INNER JOIN `". $db_settings['uploads_table'] ."` as `t2`
+						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+					) AS c
+				)");
+				
+				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `filename` VARCHAR(128) NULL,
-				ADD UNIQUE KEY `pathname` (`filename`);");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				
+				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+				FROM information_schema.STATISTICS 
+				WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."'
+				AND INDEX_NAME = 'pathname';");
+				if (mysqli_num_rows($rIndex_pathname) === 0) {
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
+					ADD UNIQUE KEY `pathname` (`pathname`);");
+				}
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
