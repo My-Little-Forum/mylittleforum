@@ -541,11 +541,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 					
 					
-					// changes in the uploads table
-					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
-					
-					
 					// changes in the user online table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 					CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
