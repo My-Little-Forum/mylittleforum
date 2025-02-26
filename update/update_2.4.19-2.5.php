@@ -3410,7 +3410,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
