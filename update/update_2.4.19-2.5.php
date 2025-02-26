@@ -3627,5 +3627,19 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		
+		$update['items'][] = 'lang/';
+		
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
+		
+		$update['items'][] = 'themes/default/images/database-no.svg';
+		$update['items'][] = 'themes/default/images/database.svg';
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
