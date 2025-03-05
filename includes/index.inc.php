@@ -69,6 +69,10 @@ elseif (is_array($categories)) {
 		$category_ids_query = $category_selection_query;           // overwrite $category_ids_query, originally defined in main.inc.php
 		$page_threads_and = " AND (sticky = 2 OR category IN (". mysqli_real_escape_string($connid, $category_ids_query) .")) ";
 	}
+	elseif ($category == 0 && isset($category_ids_query)) { // $category_ids_query defined in main.inc.php
+		// show all categories (restricted to user type)
+		$page_threads_and = " AND (sticky = 2 OR category IN (". mysqli_real_escape_string($connid, $category_ids_query) .")) ";
+	}
 	
 	if (!empty($page_threads_and)) {
 		$pid_result_sql = 
