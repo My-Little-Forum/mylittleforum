@@ -980,7 +980,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -1399,7 +1404,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -1839,7 +1849,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -2243,7 +2258,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -2531,7 +2551,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -2819,7 +2844,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -2982,7 +3012,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -3103,7 +3138,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -3224,7 +3264,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
@@ -3301,7 +3346,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
-				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL;");
+				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+				ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+					FOREIGN KEY `fk_uploader` (`uploader`)
+					REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+						ON UPDATE CASCADE
+						ON DELETE SET NULL;");
 				
 				$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 				FROM information_schema.STATISTICS 
