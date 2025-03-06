@@ -155,6 +155,10 @@ if (empty($update['errors'])) {
 }
 
 
+// determine the table name prefix, we need it in different sections, so do it once for all cases
+$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
+
+
 /**
  * change the table engine from MyISAM to InnoDB for the previously existing tables
  *
@@ -221,7 +225,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 	}
 	
 	if (empty($update['errors'])) {
-		$table_prefix = preg_replace('/settings$/u', '', $db_settings['settings_table']);
 		// enlive the config file template
 		$db_settings_file  = "<?php\r\n";
 		$db_settings_file .= "\$db_settings['host']                 = '{#ph-dbhost}';\r\n";
