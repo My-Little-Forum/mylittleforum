@@ -21,7 +21,7 @@ CREATE TABLE mlf2_subscriptions (`user_id` int(12) UNSIGNED NULL, `eid` int(12) 
 CREATE TABLE mlf2_b8_rating (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `training_type` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `b8_spam` (`spam`), KEY `B8_training_type` (`training_type`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 CREATE TABLE mlf2_akismet_rating (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `akismet_spam` (`spam`), KEY spam_check_status (spam_check_status)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 CREATE TABLE mlf2_b8_wordlist (`token` varchar(255) NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-CREATE TABLE mlf2_uploads (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `pathname` varchar(128) NOT NULL, `tstamp` datetime NULL, PRIMARY KEY (id), UNIQUE KEY `pathname` (`pathname`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+CREATE TABLE mlf2_uploads (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `pathname` varchar(128) NOT NULL, `tstamp` datetime NULL, PRIMARY KEY (id), UNIQUE KEY `pathname` (`pathname`), CONSTRAINT `smbl_mlf2_uploader` FOREIGN KEY `fk_uploader` (`uploader`) REFERENCES mlf2_userdata(`user_id`) ON UPDATE CASCADE ON DELETE SET NULL) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 INSERT INTO mlf2_banlists VALUES ('user_agents', '');
 INSERT INTO mlf2_banlists VALUES ('ips', '');
