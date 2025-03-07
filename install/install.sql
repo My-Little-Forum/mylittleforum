@@ -22,6 +22,7 @@ CREATE TABLE mlf2_b8_rating (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL 
 CREATE TABLE mlf2_akismet_rating (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `akismet_spam` (`spam`), KEY spam_check_status (spam_check_status)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 CREATE TABLE mlf2_b8_wordlist (`token` varchar(255) NOT NULL, `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 CREATE TABLE mlf2_uploads (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `filename` varchar(64) NULL, `tstamp` datetime NULL, PRIMARY KEY (id)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+CREATE TABLE mlf2_entries_reports (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `eid` int(10) UNSIGNED NOT NULL, `user_id` int(10) UNSIGNED NOT NULL, `reason` tinyint(3) UNSIGNED NOT NULL, `description` varchar(255) DEFAULT NULL, PRIMARY KEY (`id`), KEY `eid` (`eid`), KEY `reason` (`reason`), KEY `user_id` (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO mlf2_banlists VALUES ('user_agents', '');
 INSERT INTO mlf2_banlists VALUES ('ips', '');
@@ -158,6 +159,7 @@ INSERT INTO mlf2_settings VALUES ('php_mailer', '0');
 INSERT INTO mlf2_settings VALUES ('delete_inactive_users', '30');
 INSERT INTO mlf2_settings VALUES ('notify_inactive_users', '3');
 INSERT INTO mlf2_settings VALUES ('link_open_target', '');
+INSERT INTO mlf2_settings VALUES ('reports_by_registered', '0');
 
 INSERT INTO mlf2_temp_infos (`name`, `value`) VALUES ('access_permission_checks', '0'), ('last_changes', '0'), ('next_daily_actions', '0');
 

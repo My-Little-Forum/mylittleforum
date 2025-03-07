@@ -104,6 +104,8 @@ if (isset($_GET['unlock_thread']))
 	$action = 'unlock_thread';
 if (isset($_GET['edit']))
 	$action = 'edit';
+if (isset($_GET['report_entry']))
+	$action = 'report_entry';
 if (isset($_GET['report_spam']))
 	$action = 'report_spam';
 if (isset($_GET['flag_ham']))
@@ -124,6 +126,8 @@ if (isset($_POST['delete_marked_submit']))
 	$action = 'delete_marked_submit';
 if (isset($_POST['delete_spam_submit']))
 	$action = 'delete_spam_submit';
+if (isset($_POST['report_posting_submit']))
+	$action = 'report_posting_submit';
 if (isset($_POST['save_entry']) || isset($_POST['preview']))
 	$action = 'posting_submitted';
 if (isset($_REQUEST['mark']))
@@ -314,7 +318,34 @@ if ($action == 'unsubscribe' and !empty($_GET['unsubscribe'])) {
 	}
 }
 
-// generate the variable input field names
+if ($action == 'report_posting_submit' && isset($_SESSION[$settings['session_prefix'] . 'user_id']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
+	$qGetEarlierReport = "SELECT COUNT(*) AS earlierReport
+		FROM ". $db_settings['entries_reports_table'] ."
+		WHERE eid = ". intval($_POST['id']);
+	$rGetEarlierReport = @mysqli_query($connid, $qGetEarlierReport);
+	$countEarlierReport = mysqli_fetch_assoc($rGetEarlierReport);
+	mysqli_free_result($rGetEarlierReport);
+	if ($countEarlierReport['earlierReport'] == 0) {
+		$qSetReport = "INSERT INTO ". $db_settings['entries_reports_table'] ." (eid, user_id, reason)
+			VALUES (". intval($_POST['id']) .", ". intval($_SESSION[$settings['session_prefix'] . 'user_id']) .", ". intval($_POST['posting_report_reason']).")";
+		$rSetReport = mysqli_query($connid, $qSetReport);
+		if ($rSetReport === true) {
+			# success message
+			$param = 'report_entry_successful';
+		} else {
+			# error message
+			$param = 'report_entry_error';
+		}
+	} else {
+		# reported before message
+		$param = 'report_entry_before';
+	}
+	$action = 'report_entry_done';
+	header('Location: index.php?report_message='. $param .'&id=' . intval($_POST['id']));
+	exit;
+}
+
+# generate the variable input field names
 $fname_user = hash("sha256", 'user_name' . $_SESSION['csrf_token']);
 $fname_email = hash("sha256", 'user_email' . $_SESSION['csrf_token']);
 $fname_phone = hash("sha256", 'phone' . $_SESSION['csrf_token']);
@@ -1972,6 +2003,82 @@ switch ($action) {
 		$smarty->assign("subnav_link", $subnav_link);
 		$smarty->assign("unsubscribe_status", false);
 		$smarty->assign('subtemplate', 'posting_unsubscribe.inc.tpl');
+		break;
+	case 'report_entry';
+		if (isset($_SESSION[$settings['session_prefix'] . 'user_id']) && $settings['reports_by_registered'] == 1) {
+			$id = intval($_GET['report_entry']);
+			$report_result = mysqli_query($connid, "SELECT subject, name, user_name, time FROM " . $db_settings['forum_table'] . " LEFT JOIN " . $db_settings['userdata_table'] . " ON " . $db_settings['userdata_table'] . ".user_id = " . $db_settings['forum_table'] . ".user_id WHERE " . $db_settings['forum_table'] . ".id = " . $id . " LIMIT 1");
+			if (!$report_result)
+				raise_error('database_error', mysqli_error($connid));
+			$field = mysqli_fetch_assoc($report_result);
+			mysqli_free_result($report_result);
+			if (empty($field['name']) and !empty($field['user_name']))
+				$field['name'] = $field['user_name'];
+			$smarty->configLoad($language_file, 'report_posting');
+			if (!empty($smarty->getConfigVars('report_reason_spam')))
+				$report_reasons[] = array("id"=>"1", "val"=>$smarty->getConfigVars('report_reason_spam'));
+			if (!empty($smarty->getConfigVars('report_reason_tos')))
+				$report_reasons[] = array("id"=>"2", "val"=>$smarty->getConfigVars('report_reason_tos'));
+			if (!empty($smarty->getConfigVars('report_reason_legal')))
+				$report_reasons[] = array("id"=>"3", "val"=>$smarty->getConfigVars('report_reason_legal'));
+			if ($field['name'])
+				$smarty->assign('name_repl_subnav', htmlspecialchars($field['name']));
+			else
+				$smarty->assign('name_repl_subnav', $lang['unknown_user']);
+			$subnav_link = array(
+				'mode' => $back,
+				'id' => $id,
+				'title' => 'back_to_entry_link_title',
+				'name' => 'back_to_entry_link'
+			);
+			$smarty->assign("subnav_link", $subnav_link);
+			$smarty->assign("id", $id);
+			$smarty->assign("subject", $field['subject']);
+			$smarty->assign("name", $field['name']);
+			$smarty->assign("disp_time", $field['time']);
+			$smarty->assign("back", 'entry');
+			$smarty->assign("report_reasons", $report_reasons);
+			$smarty->assign('subtemplate', 'posting_user_report.inc.tpl');
+		} else {
+			header("location: index.php?mode=" . $back . "&id=" . intval($_GET['report_entry']));
+			exit;
+		}
+		break;
+	case 'report_entry_successful':
+		$subnav_link = array(
+			'mode' => $back,
+			'id' => $id,
+			'title' => 'back_to_entry_link_title',
+			'name' => 'back_to_entry_link'
+		);
+		$smarty->assign('lang_section', 'report_posting');
+		$smarty->assign('message', 'report_already_reported');
+		$smarty->assign('subnav_location', $subnav_link);
+		$smarty->assign('subtemplate', 'info.inc.tpl');
+		break;
+	case 'report_entry_error':
+		$subnav_link = array(
+			'mode' => $back,
+			'id' => $id,
+			'title' => 'back_to_entry_link_title',
+			'name' => 'back_to_entry_link'
+		);
+		$smarty->assign('lang_section', 'report_posting');
+		$smarty->assign('message', 'report_already_reported');
+		$smarty->assign('subnav_location', $subnav_link);
+		$smarty->assign('subtemplate', 'info.inc.tpl');
+		break;
+	case 'report_entry_before':
+		$subnav_link = array(
+			'mode' => $back,
+			'id' => $id,
+			'title' => 'back_to_entry_link_title',
+			'name' => 'back_to_entry_link'
+		);
+		$smarty->assign('lang_section', 'report_posting');
+		$smarty->assign('message', 'report_already_reported');
+		$smarty->assign('subnav_location', $subnav_link);
+		$smarty->assign('subtemplate', 'info.inc.tpl');
 		break;
 }
 
