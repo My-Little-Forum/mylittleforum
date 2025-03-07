@@ -984,6 +984,13 @@ delete_upload_confirmation =      'Sicher, dass dieser Upload gelöscht werden s
 delete_uploads_confirmation =     'Sicher, dass diese Uploads gelöscht werden sollen?'
 check_for_unrecorded_uploads =    'erfasse Uploads'
 check_for_unrecorded_uploads_desc = 'Prüfe, ob Uploads vorhanden sind, die noch nicht in der Liste der Uploads erfasst sind. Falls welche gefunden werden, werden sie in der Liste eingetragen.'
+upload_add_db_entry_button =      'in der Datenbank aufnehmen'
+upload_database_entry_alt =       'Für dieses Bild existiert ein Datenbankeintrag'
+upload_database_no_entry_alt =    'Für dieses Bild existiert kein Datenbankeintrag'
+upload_filter_not_managed_images ='nicht verwaltete Bilder'
+upload_filter_managed_images =    'verwaltete Bilder'
+upload_filter_all_images =        'alle Bilder'
+
 
 # Spamschutz:
 captcha =                         'CAPTCHA'

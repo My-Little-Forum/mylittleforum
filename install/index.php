@@ -282,6 +282,7 @@ if (isset($_POST['install_submit'])) {
 			$cleared_lines = array();
 			foreach ($lines as $line) {
 				$line = str_replace(' mlf2_', ' '.$_POST['table_prefix'], $line);
+				$line = str_replace('`smbl_mlf2_', '`smbl_'.$_POST['table_prefix'], $line);
 				$line = trim($line);
 				if (my_substr($line, -1, my_strlen($line, $lang['default']['charset']), $lang['default']['charset']) == ';')
 					$line = my_substr($line,0,-1,$lang['default']['charset']);

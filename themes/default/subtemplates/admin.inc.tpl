@@ -1047,43 +1047,59 @@
 
 {elseif $action=='list_uploads'}
 <h2 id="admin_header">{#upload_administration#}</h2>
-{if $images}
 
+ <div>
+  <form action="index.php" method="get" accept-charset="{#charset#}">
+   <input type="hidden" name="mode" value="admin" />
+   <input type="hidden" name="action" value="list_uploads" />
+   <div>
+    <button name="filter" value="not-managed-images">{#upload_filter_not_managed_images#}</button>
+    <button name="filter" value="managed-images">{#upload_filter_managed_images#}</button>
+    <button name="filter" value="all-images" class="active-filter">{#upload_filter_all_images#}</button>
+   </div>
+  </form>
+ </div>
+{if $images}
 {if $pagination}
 <ul class="pagination">
-{if $pagination.previous}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}{if $pagination.previous>1}&amp;page={$pagination.previous}{/if}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
+{if $pagination.previous}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}{if $pagination.previous>1}&amp;page={$pagination.previous}{/if}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}{if $filter}&amp;filter={$filter}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
 {foreach from=$pagination.items item=item}
-{if $item==0}<li>&hellip;</li>{elseif $item==$pagination.current}<li><span class="current">{$item}</span></li>{else}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$item}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}">{$item}</a></li>{/if}
+{if $item==0}<li>&hellip;</li>{elseif $item==$pagination.current}<li><span class="current">{$item}</span></li>{else}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$item}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}{if $filter}&amp;filter={$filter}{/if}">{$item}</a></li>{/if}
 {/foreach}
-{if $pagination.next}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$pagination.next}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#next_page_link_title#}">{#next_page_link#}</a></li>{/if}
+{if $pagination.next}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$pagination.next}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}{if $filter}&amp;filter={$filter}{/if}" title="{#next_page_link_title#}">{#next_page_link#}</a></li>{/if}
 </ul>
 {/if}
 
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
+{if $filter}
+<input type="hidden" name="filter" value="{$filter}" />
+{/if}
  <ul id="uploadlist">
 {section name=nr loop=$images start=$start max=$images_per_page}
   <li>
    <p class="image_container"><img src="images/uploaded/{$images[nr].pathname}" alt="{$images[nr].pathname}" /></p>
    <ul class="management_container">
+    <li class="information">{if $images[nr].status == 1}<img src="themes/{$settings.theme}/images/database.svg" alt="{#upload_database_entry_alt#}" width="16" height="16">{else}<img src="themes/{$settings.theme}/images/database-no.svg" alt="{#upload_database_no_entry_alt#}" width="16" height="16">{/if}</li>
     <li><input type="checkbox" id="id-{$images[nr].number}" name="manage_uploads[]" value="{$images[nr].pathname}" /><label for="id-{$images[nr].number}">{#mark_upload_for_managing#}</label></li>
    </ul>
   </li>
 {/section}
  </ul>
  <div>
+  <button name="record_selected_uploads" value="record">{#upload_add_db_entry_button#}</button>
   <button name="delete_selected_uploads" value="{#delete#}">{#delete#}</button>
  </div>
 </form>
 
 {if $pagination}
 <ul class="pagination">
-{if $pagination.previous}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}{if $pagination.previous>1}&amp;page={$pagination.previous}{/if}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
+{if $pagination.previous}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}{if $pagination.previous>1}&amp;page={$pagination.previous}{/if}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}{if $filter}&amp;filter={$filter}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
 {foreach from=$pagination.items item=item}
-{if $item==0}<li>&hellip;</li>{elseif $item==$pagination.current}<li><span class="current">{$item}</span></li>{else}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$item}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}">{$item}</a></li>{/if}
+{if $item==0}<li>&hellip;</li>{elseif $item==$pagination.current}<li><span class="current">{$item}</span></li>{else}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$item}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}{if $filter}&amp;filter={$filter}{/if}">{$item}</a></li>{/if}
 {/foreach}
-{if $pagination.next}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$pagination.next}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#next_page_link_title#}">{#next_page_link#}</a></li>{/if}
+{if $pagination.next}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$pagination.next}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}{if $filter}&amp;filter={$filter}{/if}" title="{#next_page_link_title#}">{#next_page_link#}</a></li>{/if}
 </ul>
 {/if}
 {else}
