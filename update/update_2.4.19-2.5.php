@@ -415,6 +415,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					DROP `spam_check_status`;");
 					
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+					CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+					CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+					CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 					CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 					CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 					
@@ -861,6 +864,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -1282,6 +1288,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -1703,6 +1712,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2083,6 +2095,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2347,6 +2362,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2611,6 +2629,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2791,6 +2812,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2914,6 +2938,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -3009,6 +3036,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
