@@ -296,6 +296,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_rating_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_wordlist_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['uploads_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			
+			// make column mlf2_userdata.user_id unsigned
+			// to prevent error when creating table mlf2_uploads
+			if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			
 			// new tables
 			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['akismet_rating_table'] . "` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `akismet_spam` (`spam`), KEY spam_check_status (spam_check_status)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
@@ -410,6 +415,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					DROP `spam_check_status`;");
 					
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+					CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+					CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+					CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 					CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 					CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 					
@@ -457,6 +465,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 					
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+					CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+					CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+					CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
 					
 					// changes in the bookmark tags table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
@@ -466,6 +478,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					// changes in the categories table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+					
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+					CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 					
 					
 					// changes in the entry cache table
@@ -490,6 +505,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 					
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+					CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+					
 					
 					// changes in the read entries table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['read_status_table'] . "`
@@ -500,6 +518,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 					
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+					CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+					
 					
 					// changes in the subscriptions table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
@@ -508,7 +529,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					
 					// changes in the tags table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-					CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;");
+					CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+					CHANGE `id` `id` int UNSIGNED NOT NULL;");
 					
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -526,7 +548,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					
 					// changes in the user online table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-					CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+					CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+					CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 					
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -811,8 +834,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				
 				// changes in the user data table
-				// ???
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
 				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
@@ -856,6 +879,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -903,6 +929,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
 				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
@@ -912,6 +943,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				// changes in the categories table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 				
 				
 				// changes in the entry cache table
@@ -936,6 +970,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				
 				// changes in the read entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['read_status_table'] . "`
@@ -946,6 +983,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				
 				// changes in the subscriptions table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
@@ -954,7 +994,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;");
+				CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -972,7 +1013,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1238,6 +1280,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
 				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
@@ -1276,6 +1319,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -1316,6 +1362,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1326,12 +1379,22 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
 				// changes in the login control table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the pages table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 				
 				
 				// changes in the read entries table
@@ -1343,6 +1406,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				
 				// changes in the subscriptions table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
@@ -1351,7 +1417,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;");
+				CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
 				
 				
 				// changes in the temporary information table
@@ -1366,7 +1433,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1631,6 +1699,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
@@ -1696,6 +1765,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -1736,6 +1808,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1746,12 +1825,22 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
 				// changes in the login control table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the pages table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 				
 				
 				// changes in the read entries table
@@ -1763,10 +1852,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				
 				// changes in the subscriptions table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
 				
 				
 				// changes in the temporary information table
@@ -1781,7 +1878,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2013,6 +2111,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
@@ -2075,6 +2174,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2115,6 +2217,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2125,12 +2234,22 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
 				// changes in the login control table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the pages table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 				
 				
 				// changes in the read entries table
@@ -2142,10 +2261,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				
 				// changes in the subscriptions table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
 				
 				
 				// changes in the temporary information table
@@ -2160,7 +2287,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2276,6 +2404,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
@@ -2338,6 +2467,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2378,6 +2510,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2388,12 +2527,22 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
 				// changes in the login control table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the pages table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 				
 				
 				// changes in the read entries table
@@ -2405,10 +2554,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				
 				// changes in the subscriptions table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
 				
 				
 				// changes in the temporary information table
@@ -2423,7 +2580,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2539,6 +2697,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
@@ -2601,6 +2760,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2641,6 +2803,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2651,12 +2820,22 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
 				// changes in the login control table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the pages table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 				
 				
 				// changes in the read entries table
@@ -2668,10 +2847,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				
 				// changes in the subscriptions table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['subscriptions_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
 				
 				
 				// changes in the temporary information table
@@ -2686,7 +2873,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2761,6 +2949,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
@@ -2780,6 +2969,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2818,6 +3010,38 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
 				
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
+				
+				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the pages table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the smilies table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				
+				
+				// changes in the user online table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
@@ -2883,6 +3107,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 			try {
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
@@ -2902,6 +3127,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -2912,6 +3140,38 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the pages table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the smilies table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				
+				
+				// changes in the user online table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
@@ -2977,6 +3237,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 			try {
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
@@ -2996,6 +3257,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				
 				// changes in the forum/entries table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0',
 				CHANGE `last_reply` `last_reply` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `edited` `edited` TIMESTAMP NULL DEFAULT NULL;");
 				
@@ -3006,6 +3270,38 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the pages table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the smilies table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				
+				
+				// changes in the user online table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
