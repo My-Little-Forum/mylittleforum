@@ -548,7 +548,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					
 					// changes in the user online table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-					CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+					CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+					CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 					
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1012,7 +1013,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1431,7 +1433,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1875,7 +1878,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2283,7 +2287,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2575,7 +2580,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2867,7 +2873,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				// changes in the user online table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
-				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
+				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -3031,6 +3038,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CHANGE `id` `id` int UNSIGNED NOT NULL;");
 				
+				
+				// changes in the user online table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -3156,6 +3168,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CHANGE `id` `id` int UNSIGNED NOT NULL;");
 				
+				
+				// changes in the user online table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -3280,6 +3297,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				
+				
+				// changes in the user online table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
