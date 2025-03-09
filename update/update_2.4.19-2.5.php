@@ -479,6 +479,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 					
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+					CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+					
 					
 					// changes in the entry cache table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['entry_cache_table'] . "`
@@ -933,6 +936,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				
 				// changes in the entry cache table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['entry_cache_table'] . "`
@@ -1355,6 +1361,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				// changes in the entry tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['entry_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 				
 				
 				// changes in the login control table
@@ -1788,6 +1799,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
 				// changes in the login control table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
@@ -2178,6 +2194,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
 				// changes in the login control table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
@@ -2450,6 +2471,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				// changes in the entry tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['entry_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
+				
+				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 				
 				
 				// changes in the login control table
@@ -2726,6 +2752,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
 				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
 				// changes in the login control table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['login_control_table'] . "`
 				CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '';");
@@ -2905,6 +2936,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
 				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
 				
+				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -3010,6 +3046,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
 				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
 				
+				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -3114,6 +3155,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
 				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
