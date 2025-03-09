@@ -296,6 +296,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_rating_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_wordlist_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['uploads_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			
+			// make column mlf2_userdata.user_id unsigned
+			// to prevent error when creating table mlf2_uploads
+			if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			
 			// new tables
 			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['akismet_rating_table'] . "` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `akismet_spam` (`spam`), KEY spam_check_status (spam_check_status)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
@@ -811,8 +816,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				
 				// changes in the user data table
-				// ???
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
 				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
@@ -1238,6 +1243,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_name` `user_name` VARCHAR(128) NOT NULL,
 				CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
@@ -1631,6 +1637,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
@@ -2013,6 +2020,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
@@ -2276,6 +2284,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
@@ -2539,6 +2548,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `user_email` `user_email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
@@ -2761,6 +2771,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
@@ -2883,6 +2894,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 			try {
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
@@ -2977,6 +2989,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 			try {
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 				CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 				CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
 				CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL;");
