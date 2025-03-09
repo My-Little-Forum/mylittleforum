@@ -465,6 +465,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 					
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+					CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+					CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+					CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
 					
 					// changes in the bookmark tags table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
@@ -914,6 +918,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
 				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
 				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
@@ -1329,6 +1338,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
 				
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
+				
+				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
 				
 				
 				// changes in the bookmark tags table
@@ -1755,6 +1771,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2138,6 +2161,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2403,6 +2433,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				FROM `". $db_settings['banlists_table'] ."_old` WHERE `name` = 'words';");
 				
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
+				
+				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
 				
 				
 				// changes in the bookmark tags table
@@ -2672,6 +2709,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
 				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
 				// changes in the bookmark tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -2854,6 +2898,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				mysqli_query($connid, "DROP TABLE IF EXISTS `". $db_settings['banlists_table'] ."_old`;");
 				
+				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -2952,6 +3003,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				`edited` = NULL
 				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
 				
+				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
 				mysqli_rollback($connid);
@@ -3049,6 +3107,13 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
 				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				
+				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
