@@ -473,6 +473,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
 					CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
 					
+					
 					// changes in the bookmark tags table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_tags_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -3628,6 +3629,45 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// changes in the user data table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
+				
+				
+				// changes in the forum/entries table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['forum_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `edited_by` `edited_by` int UNSIGNED NULL DEFAULT NULL,
+				CHANGE `user_id` `user_id` int UNSIGNED NULL DEFAULT '0';");
+				
+				
+				// changes in the bookmarks table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['bookmark_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL,
+				CHANGE `posting_id` `posting_id` int UNSIGNED NOT NULL");
+				
+				
+				// changes in the categories table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['category_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the pages table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['pages_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the smilies table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['smilies_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+				
+				
+				// changes in the tags table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				
+				
 				// changes in the uploads table
 				// delete any duplicate file name entries,
 				// keep the first data record
@@ -3658,6 +3698,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] ."`
 					ADD UNIQUE KEY `pathname` (`pathname`);");
 				}
+				
+				
+				// changes in the user online table
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['useronline_table'] . "`
+				CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
