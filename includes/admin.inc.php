@@ -964,7 +964,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		if (isset($_POST['selected_confirmed'])) {
 			foreach ($_POST['selected_confirmed'] as $upload_rm) {
 				$qDelUploadEntry = "DELETE FROM ". $db_settings['uploads_table'] ."
-				WHERE filename = '". mysqli_real_escape_string($connid, $upload_rm) ."'";
+				WHERE pathname = '". mysqli_real_escape_string($connid, $upload_rm) ."'";
 				$rDelUploadEntry = mysqli_query($connid, $qDelUploadEntry);
 				if ($rDelUploadEntry !== false) {
 					$path_rm = 'images/uploaded/'. $upload_rm;
