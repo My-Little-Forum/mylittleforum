@@ -1036,7 +1036,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (preg_match('/\.(gif|png|jpe?g|svg|webp)$/i', $file)) {
 				$images[$i]['number'] = $i;
 				$images[$i]['pathname'] = $file;
-				if (!empty($listed) && !in_array($file, $listed)) {
+				if (empty($listed) || (!empty($listed) && !in_array($file, $listed))) {
 					$images[$i]['status'] = 0;
 				} else {
 					$images[$i]['status'] = 1;
