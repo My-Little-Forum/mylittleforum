@@ -21,9 +21,9 @@
  <div id="card">
   <p>{#login_advice#}</p>
 {if $settings.autologin==1}
-  <div class="small">
    <input id="autologin" type="checkbox" name="autologin_checked" value="true" /><label for="autologin">{#login_auto#}</label>
   </div>
+   <div class="normalform">
 {/if}
    <button value="{#login_submit#}">{#login_submit#}</button>
  </form>
