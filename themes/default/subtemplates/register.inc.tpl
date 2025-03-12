@@ -72,5 +72,6 @@
   <button name="register_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
 </form>
    <div class="buttonbar">
+    <p><a href="index.php?mode=login">{#register_link_to_login#}</a></p>
    </div>
  </div>
