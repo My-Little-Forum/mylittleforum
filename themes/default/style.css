@@ -1713,6 +1713,10 @@ ul.pagination .current {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.3em;
+	align-items: baseline;
+}
+.buttonbar > * {
+	margin-block: 0;
 }
 .buttonbar button {
 	padding: 0.3em;
@@ -1721,7 +1725,7 @@ ul.pagination .current {
 	display: inline-block;
 	text-align: center;
 	align-content: center;
-	padding: 0.5em;
+	padding: 0.3em;
 }
 
 /* admin panel */

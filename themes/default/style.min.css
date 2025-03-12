@@ -362,9 +362,10 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 #codepicker ul{list-style-type:none;margin:0;padding:0}
 #codepicker ul a{color:#000;display:block;text-decoration:none;padding:1px 5px}
 #codepicker ul a:focus,#codepicker ul a:hover{background:#e0e0e0}
-.buttonbar{display:flex; flex-wrap:wrap; gap:.3em}
+.buttonbar{display:flex; flex-wrap:wrap; gap:.3em;align-items:baseline}
+.buttonbar > *{margin-block:0}
 .buttonbar button{padding:.3em}
-.buttonbar a{display:inline-block;text-align:center;align-content:center;padding:.5em}
+.buttonbar a{display:inline-block;text-align:center;align-content:center;padding:.3em}
 #admin-main-menu{display:grid;grid-template-areas:"infoboxes" "mainmenu";grid-template-columns:1fr;grid-template-rows:auto auto;gap:.75em}
 #admin-main-menu > *{margin:0;padding:0}
 .additional-admin-info{grid-area:infoboxes}

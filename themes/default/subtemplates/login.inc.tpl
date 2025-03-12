@@ -25,10 +25,10 @@
    <input id="autologin" type="checkbox" name="autologin_checked" value="true" /><label for="autologin">{#login_auto#}</label>
   </div>
 {/if}
-  <div>
    <button value="{#login_submit#}">{#login_submit#}</button>
-  </div>
  </form>
  <p class="small"><a href="index.php?mode=login&amp;action=pw_forgotten">{#pw_forgotten_link#}</a></p>
+   <div class="buttonbar">
+   </div>
  </div>
 {/if}
