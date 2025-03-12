@@ -27,8 +27,8 @@
 {/if}
    <button value="{#login_submit#}">{#login_submit#}</button>
  </form>
- <p class="small"><a href="index.php?mode=login&amp;action=pw_forgotten">{#pw_forgotten_link#}</a></p>
    <div class="buttonbar">
+    <p><a href="index.php?mode=login&amp;action=pw_forgotten">{#pw_forgotten_link#}</a></p>
    </div>
  </div>
 {/if}
