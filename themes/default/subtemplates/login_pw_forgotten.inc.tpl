@@ -6,9 +6,9 @@
    <label for="pwf_email" class="main">{#pwf_email#}</label>
    <input id="pwf_email" type="email" name="pwf_email" size="30" autofocus required />
   </div>
-  <div>
    <button name="pwf_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
-  </div>
  </form>
  <div id="card">
+   <div class="buttonbar">
+   </div>
  </div>

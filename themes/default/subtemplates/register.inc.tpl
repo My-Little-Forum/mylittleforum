@@ -69,8 +69,8 @@
  </div>
 {/if}
 {/if}
- <div>
   <button name="register_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
- </div>
 </form>
+   <div class="buttonbar">
+   </div>
  </div>
