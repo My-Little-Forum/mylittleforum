@@ -19,6 +19,7 @@
    <input id="password" class="login" type="password" name="userpw" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25" required />
   </div>
  <div id="card">
+  <p>{#login_advice#}</p>
 {if $settings.autologin==1}
   <div class="small">
    <input id="autologin" type="checkbox" name="autologin_checked" value="true" /><label for="autologin">{#login_auto#}</label>
@@ -28,7 +29,6 @@
    <button value="{#login_submit#}">{#login_submit#}</button>
   </div>
  </form>
- <p class="small">{#login_advice#}</p>
  <p class="small"><a href="index.php?mode=login&amp;action=pw_forgotten">{#pw_forgotten_link#}</a></p>
  </div>
 {/if}
