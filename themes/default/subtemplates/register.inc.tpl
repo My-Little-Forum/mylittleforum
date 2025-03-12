@@ -14,6 +14,7 @@
  <input type="hidden" name="mode" value="register" />
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {if $captcha} <input type="hidden" name="{$captcha.session_name}" value="{$captcha.session_id}" />{/if}
+ <div id="card">
 
  <div>
   <label for="new_user_name" class="main">{#register_username#}</label>
@@ -72,3 +73,4 @@
   <button name="register_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
  </div>
 </form>
+ </div>
