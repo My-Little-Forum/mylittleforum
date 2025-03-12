@@ -1,6 +1,5 @@
 {config_load file=$language_file section="register"}
 {if $captcha}{config_load file=$language_file section="captcha"}{/if}
-<p class="normal">{#register_exp#}</p>
 {if $errors}
 <p class="notice caution">{#error_headline#}</p>
 <ul>
@@ -15,6 +14,7 @@
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {if $captcha} <input type="hidden" name="{$captcha.session_name}" value="{$captcha.session_id}" />{/if}
  <div id="card">
+  <p>{#register_exp#}</p>
 
  <div>
   <label for="new_user_name" class="main">{#register_username#}</label>
