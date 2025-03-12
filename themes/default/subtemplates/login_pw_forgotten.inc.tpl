@@ -10,3 +10,5 @@
    <button name="pwf_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
   </div>
  </form>
+ <div id="card">
+ </div>

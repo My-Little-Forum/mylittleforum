@@ -244,6 +244,10 @@ span.userdata{margin:0;padding:0}
 .underline{text-decoration:underline}
 ins {font-style:italic}
 del,s {color:#555}
+#card {border:1px solid #bacbdf;border-radius:.375em;padding-inline:.5em;padding-block:.5em;margin-inline:auto;min-width:16em;max-width:24em}
+#card > * {margin-inline: 0;margin-block:0 .75rem}
+#card > *:last-child {margin-block:0}
+#card form > *:not(:last-child) {margin-block:0 .375rem}
 label.main{font-weight:bold;display:block}
 label.active{color:#000}
 label.inactive{color:gray!important}
