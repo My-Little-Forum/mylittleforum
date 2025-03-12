@@ -1066,7 +1066,7 @@ update_submit =                   'OK – Update ausführen'
 update_successful =               'Die Datenbank wurde erfolgreich aktualisiert.'
 update_items_note =               'Bitte jetzt die folgenden Dateien/Verzeichnisse der neuen Version ([version]) hochladen:'
 update_download =                 'Falls nicht verfügbar, können diese Dateien [[hier]] heruntergeladen werden.'
-update_reenabling_notice =        'Bitte zu beachten, dass das Forum aktuell reaktiviert ist und <a href="index.php?mode=admin&action=settings">in den Einstellungen</a> wieder eingeschaltet werden muss.'
+update_reenabling_notice =        'Bitte zu beachten, dass das Forum aktuell deaktiviert ist und <a href="index.php?mode=admin&action=settings">in den Einstellungen</a> wieder eingeschaltet werden muss.'
 
 [emails]
 email_subject =                   'Antwort auf "[original_subject]"'
