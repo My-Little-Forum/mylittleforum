@@ -1,6 +1,20 @@
 my little forum changelog
 -------------------------
 
+20250323.1 (2025-03-23)
+-----------------------
+
+- feature: add database entries for uploaded images that was uploaded before the upload management was introduced, add new icons for it as SVG
+- change: change the appearance of the sidebar toggle in its heading, add new icons for it as SVG
+- change: replace a few occurences of JS-based focus setting to form fields with the corresponding HTML attributes
+- change: all index columns and columns, that stores indexes as foreign keys are unsigned now, this doubles their value range
+- change: new appearance of the templates for login, registration and sending forgotten passwords
+- fix: added INTL time format strings to all language files according the languages own rules when known
+- fix: remove the emtying of a search field when setting the focus to the field
+- fix: display MySQL errors in the upgrade script, was broken before
+- fix: a user list, restricted to logged-in users, was still displayed after users logout
+- fix: several errors in the HTML structure in the posting form template
+
 20241215.1 (2024-12-15)
 -----------------------
 
