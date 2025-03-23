@@ -682,10 +682,18 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'themes/default/images/bg_sprite_1.png';
 				// #733
 				$update['items'][] = 'themes/default/images/bg_sprite_4.png';
+				// #789
+				$update['items'][] = 'themes/default/images/database-no.svg';
+				$update['items'][] = 'themes/default/images/database.svg';
 				// #364
 				$update['items'][] = 'themes/default/images/image.png';
 				// #611
 				$update['items'][] = 'themes/default/images/keep_eye_on.png';
+				// #780
+				$update['items'][] = 'themes/default/images/triangle-bottom.svg';
+				$update['items'][] = 'themes/default/images/triangle-left.svg';
+				$update['items'][] = 'themes/default/images/triangle-right.svg';
+				$update['items'][] = 'themes/default/images/triangle-top.svg';
 				// #364, #390, #470, #489, #575, #589, #612, #645, #652, #656, #659
 				$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 				// #656
@@ -1176,8 +1184,16 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
 		// #733
 		$update['items'][] = 'themes/default/images/bg_sprite_4.png';
+		// #789
+		$update['items'][] = 'themes/default/images/database-no.svg';
+		$update['items'][] = 'themes/default/images/database.svg';
 		// #611
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
+		// #780
+		$update['items'][] = 'themes/default/images/triangle-bottom.svg';
+		$update['items'][] = 'themes/default/images/triangle-left.svg';
+		$update['items'][] = 'themes/default/images/triangle-right.svg';
+		$update['items'][] = 'themes/default/images/triangle-top.svg';
 		// #470, #489, #575, #589, #612, #645, #652, #656, #659
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		// #656
@@ -1630,8 +1646,16 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
 		// #733
 		$update['items'][] = 'themes/default/images/bg_sprite_4.png';
+		// #789
+		$update['items'][] = 'themes/default/images/database-no.svg';
+		$update['items'][] = 'themes/default/images/database.svg';
 		// #611
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
+		// #780
+		$update['items'][] = 'themes/default/images/triangle-bottom.svg';
+		$update['items'][] = 'themes/default/images/triangle-left.svg';
+		$update['items'][] = 'themes/default/images/triangle-right.svg';
+		$update['items'][] = 'themes/default/images/triangle-top.svg';
 		// #470, #489, #575, #589, #612, #645, #652, #656, #659
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		// #656
@@ -2092,8 +2116,16 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
 		// #733
 		$update['items'][] = 'themes/default/images/bg_sprite_4.png';
+		// #789
+		$update['items'][] = 'themes/default/images/database-no.svg';
+		$update['items'][] = 'themes/default/images/database.svg';
 		// #611
 		$update['items'][] = 'themes/default/images/keep_eye_on.png';
+		// #780
+		$update['items'][] = 'themes/default/images/triangle-bottom.svg';
+		$update['items'][] = 'themes/default/images/triangle-left.svg';
+		$update['items'][] = 'themes/default/images/triangle-right.svg';
+		$update['items'][] = 'themes/default/images/triangle-top.svg';
 		// #508, #575, #589, #612, #645, #652, #656, #659
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		// #656
@@ -3481,24 +3513,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
+		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'js/';
 		
-		$update['items'][] = 'lang/arabic.lang';
-		$update['items'][] = 'lang/german.lang';
-		$update['items'][] = 'lang/italian.lang';
 		$update['items'][] = 'lang/';
 		
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		
-		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
-		$update['items'][] = 'themes/default/images/bg_sprite_4.png';
-		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
-		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
-		$update['items'][] = 'themes/default/main.tpl';
-		$update['items'][] = 'themes/default/style.css';
-		$update['items'][] = 'themes/default/style.min.css';
 		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
@@ -3647,6 +3669,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
+		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'js/';
 		
@@ -3771,6 +3794,12 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/index.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/user.inc.php';
+		
+		$update['items'][] = 'js/main.js';
+		$update['items'][] = 'js/main.min.js';
 		
 		$update['items'][] = 'lang/';
 		
@@ -3778,7 +3807,17 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		
 		$update['items'][] = 'themes/default/images/database-no.svg';
 		$update['items'][] = 'themes/default/images/database.svg';
+		$update['items'][] = 'themes/default/images/triangle-bottom.svg';
+		$update['items'][] = 'themes/default/images/triangle-left.svg';
+		$update['items'][] = 'themes/default/images/triangle-right.svg';
+		$update['items'][] = 'themes/default/images/triangle-top.svg';
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/login.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/login_pw_forgotten.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/register.inc.tpl';
 		$update['items'][] = 'themes/default/style.css';
 		$update['items'][] = 'themes/default/style.min.css';
 		
