@@ -55,9 +55,9 @@
    <input id="confirmation_email" type="checkbox" name="confirmation_email" value="1" /><label for="confirmation_email">{#sender_confirmation_caption#}</label>
   </div>
 {/if}
-  <div>
-   <input type="submit" name="message_submit" value="{#message_submit_caption#}" onclick="document.getElementById('throbber-submit').classList.remove('js-visibility-hidden');" />
-   <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
+  <div class="buttonbar">
+   <button name="message_submit" value="{#message_submit_caption#}" onclick="document.getElementById('throbber-submit').removeAttribute('hidden');">{#message_submit_caption#}</button>
+   <img id="throbber-submit" src="{$THEMES_DIR}/{$theme}/images/throbber.svg" alt="" width="18" height="18" hidden />
   </div>
  </form>
 {/if}

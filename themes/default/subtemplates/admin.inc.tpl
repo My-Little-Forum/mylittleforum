@@ -882,8 +882,11 @@
 <input type="hidden" name="update_file_submit" value="{$update_file}" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <p>{#admin_confirm_password#}<br /><input type="password" name="update_password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25"/></p>
-<p><input type="submit" name="update_submit" value="{#update_submit#}" onclick="document.getElementById('throbber-submit').style.visibility = 'visible';" /> <img id="throbber-submit" style="visibility:hidden;" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
 </div>
+ <div class="buttonbar">
+  <button name="update_submit" value="{#update_submit#}" onclick="document.getElementById('throbber-submit').removeAttribute('hidden');">{#update_submit#}</button>
+  <img id="throbber-submit" src="{$THEMES_DIR}/{$theme}/images/throbber.svg" alt="" width="18" height="18" hidden />
+ </div>
 </form>
 {elseif $action=='update_done'}
 {if $update_errors}
