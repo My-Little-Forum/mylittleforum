@@ -189,9 +189,7 @@ window.addEventListener('DOMContentLoaded', function() {
   if (document.querySelector('button[name="upload_img"]')) {
     document.querySelector('button[name="upload_img"]').addEventListener('click', function() {
       const throbber = document.getElementById('throbber-submit');
-      if (throbber.classList.contains('invisible')) {
-        throbber.classList.remove('invisible');
-      }
+      throbber.removeAttribute('hidden');
     });
   }
   if (document.querySelector('div.insert-desc')) {
@@ -228,7 +226,7 @@ window.addEventListener('DOMContentLoaded', function() {
    </div>
    <div class="buttonbar">
     <button name="upload_img" value="{#upload_image_button#}">{#upload_image_button#}</button>
-    <img id="throbber-submit" class="invisible" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
+    <img id="throbber-submit" src="{$THEMES_DIR}/{$theme}/images/throbber.svg" alt="" width="18" height="18" hidden />
    </div>
   </form>
   <p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>

@@ -409,7 +409,7 @@ function ButtonGroup(f) {
 			return false;
 		}
 		if (document.getElementById('throbber-submit')) {
-			document.getElementById('throbber-submit').classList.remove('js-visibility-hidden');
+			document.getElementById('throbber-submit').removeAttribute('hidden');
 		}
 		return true;
 	};
