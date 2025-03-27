@@ -148,6 +148,18 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 0.3em;
+  align-items: center;
+}
+.buttonbar > * {
+  margin-block: 0;
+}
+.buttonbar img {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+}
+.buttonbar button {
+  padding: 0.3em;
 }
 button {
   cursor: pointer;
