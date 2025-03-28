@@ -149,7 +149,7 @@ img {
 .buttonbar > * {
   margin-block: 0;
 }
-.buttonbar img {
+.buttonbar img:not([hidden]) {
   display: block;
   width: 1.5em;
   height: 1.5em;
