@@ -125,7 +125,7 @@ ul {
 li > *:last-child {
   align-content:center;
 }
-img {
+img:not(.buttonbar img) {
   border:none;
   display: block;
 }
