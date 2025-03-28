@@ -151,8 +151,8 @@ img:not(.buttonbar img) {
 }
 .buttonbar img:not([hidden]) {
   display: block;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.25em;
+  height: 1.25em;
 }
 .buttonbar button {
   padding: 0.3em;
