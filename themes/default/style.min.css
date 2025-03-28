@@ -365,7 +365,7 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 .buttonbar{display:flex; flex-wrap:wrap; gap:.3em;align-items:center}
 .buttonbar > *{margin-block:0}
 .buttonbar button{padding:.3em}
-.buttonbar img{display:block;width:1.5em;height:1.5em}
+.buttonbar img:not([hidden]){display:block;width:1.5em;height:1.5em}
 .buttonbar a{display:inline-block;text-align:center;align-content:center;padding:.3em}
 #admin-main-menu{display:grid;grid-template-areas:"infoboxes" "mainmenu";grid-template-columns:1fr;grid-template-rows:auto auto;gap:.75em}
 #admin-main-menu > *{margin:0;padding:0}
