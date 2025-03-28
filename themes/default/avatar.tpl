@@ -165,9 +165,6 @@ button {
   border: none;
   padding: 0;
 }
-.invisible {
-  visibility: hidden;
-}
 {/literal}
   </style>
   <script>{literal}
