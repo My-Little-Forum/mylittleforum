@@ -1,0 +1,51 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="264" viewBox="0 0 264 264">
+ <defs>
+  <linearGradient id="frame" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#8896a4" />
+   <stop offset="100%" stop-color="#708090" />
+  </linearGradient>
+  <linearGradient id="bump" x1="0%" y1="0%" x2="100%" y2="0%">
+   <stop offset="0%" stop-color="#8896a4" />
+   <stop offset="100%" stop-color="#708090" />
+  </linearGradient>
+  <linearGradient id="plate" x1="10%" y1="45%" x2="90%" y2="55%">
+   <stop offset="0%" stop-color="#b0becc" />
+   <stop offset="33.33%" stop-color="#98a2af" />
+   <stop offset="50%" stop-color="#8f9dab" />
+   <stop offset="100%" stop-color="#8694a2" />
+  </linearGradient>
+  <linearGradient id="shadow" x1="0%" y1="35%" x2="100%" y2="65%">
+   <stop offset="0%" stop-color="#b0becc00" />
+   <stop offset="25%" stop-color="#b0becc04" />
+   <stop offset="37.5%" stop-color="#98a2af24" />
+   <stop offset="50%" stop-color="#8f9dab48" />
+   <stop offset="100%" stop-color="#8694a26f" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: none; }
+  #bin { fill: url(#plate); stroke: url(#frame); stroke-width: 12; stroke-linejoin: round; }
+  #lid { fill: url(#plate); stroke: url(#frame); stroke-width: 12; }
+  #bulge { stroke: none; fill: url(#bump); }
+  #bead-1, #bead-4 { stroke-width: 10; stroke-linecap: round; }
+  #bead-2, #bead-3 { stroke-width: 11; stroke-linecap: round; }
+  #bead-1 { stroke: #d4e8f4; }
+  #bead-2 { stroke: #bed2dd; }
+  #bead-3 { stroke: #b9c5d3; }
+  #bead-4 { stroke: #a2b6c0; }
+  #glare1 { stroke: none; fill: url(#shadow); stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g>
+  <path id="bin" d="M 50,56 l 16,180 a 110 36, 0, 0, 0, 132,0 l 16,-180 a 110 16, 0, 0, 1 -164,0 z" />
+  <path id="lid" d="M 50,56 a 110 16, 0, 0, 0 164,0 a 24 24, 0, 0, 0, -16,-24 a 110 36, 0, 0, 0 -132,0 a 24 24, 0, 0, 0, -16,24 z" />
+  <path id="bulge" d="M 152, 19.5 a 12 6, 0, 0, 0 -40,0 z" />
+  <line id="bead-1" x1="77" y1="86" x2="85" y2="212" />
+  <line id="bead-2" x1="111" y1="88" x2="115" y2="215" />
+  <line id="bead-3" x1="151" y1="88" x2="147" y2="215" />
+  <line id="bead-4" x1="187" y1="86" x2="179" y2="212" />
+  <path id="glare1" d="M 70.875,204 L 73,229 A 110 36, 0, 0, 0, 190.5,229 L 205.5,65 A 110 16, 0, 0, 1 146,69.375 A 124 184, 0, 0, 1, 71,204 z" />
+ </g>
+</svg>
