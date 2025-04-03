@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <defs>
+  <linearGradient id="photo" x1="20%" y1="0%" x2="50%" y2="100%">
+   <stop offset="0%" stop-color="#b4baff" />
+   <stop offset="40%" stop-color="#c0b8fc" />
+   <stop offset="72.5%" stop-color="#72d684" />
+   <stop offset="80%" stop-color="#58c864" />
+   <stop offset="100%" stop-color="#48b060" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: none; }
+  .photo { fill: url(#photo); stroke: #688cab; stroke-width: 12; stroke-linejoin: round; }
+  .blend-1 { fill: #cfcfd8a8; stroke: none; }
+  .blend-2 { fill: #cfcfcf68; stroke: none; }
+  ]]>
+ </style>
+ <symbol id="paper" viewbox="0 0 212 162">
+  <rect class="photo" x="6" y="6" width="200" height="150" />
+ </symbol>
+ <g>
+  <use href="#paper" x="6" y="8" width="212" height="162" />
+  <rect class="blend-1" x="18" y="20" width="188" height="138" />
+  <use href="#paper" x="26" y="50" width="212" height="162" />
+  <rect class="blend-2" x="38" y="62" width="188" height="138" />
+  <use href="#paper" x="46" y="92" width="212" height="162" />
+ </g>
+</svg>
+
