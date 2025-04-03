@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: none; }
+  line { fill: none; stroke-width: 18; stroke-linecap: round; }
+  ]]>
+ </style>
+ <g id="rotor">
+  <line x1="132" y1="72" x2="132" y2="10" style="stroke: #3a4454ff;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-20, 132, 132)" style="stroke: #3a4252f2;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-40, 132, 132)" style="stroke: #3a4252e5;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-60, 132, 132)" style="stroke: #3a4252d8;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-80, 132, 132)" style="stroke: #3a4252cb;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-100, 132, 132)" style="stroke: #3a4252be;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-120, 132, 132)" style="stroke: #3a4252b1;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-140, 132, 132)" style="stroke: #3a4252a4;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-160, 132, 132)" style="stroke: #3a425297;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-180, 132, 132)" style="stroke: #3a42528a;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-200, 132, 132)" style="stroke: #3a42527d;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-220, 132, 132)" style="stroke: #3a425270;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-240, 132, 132)" style="stroke: #3a425263;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-260, 132, 132)" style="stroke: #3a425256;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-280, 132, 132)" style="stroke: #3a425249;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-300, 132, 132)" style="stroke: #3a42523c;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-320, 132, 132)" style="stroke: #3a42522f;" />
+  <line x1="132" y1="72" x2="132" y2="10" transform="rotate(-340, 132, 132)" style="stroke: #3a425222;" />
+  <animateTransform attributeName="transform" type="rotate" from="0 132 132" to ="360 132 132" dur="2.5s" repeatCount="indefinite" />
+ </g>
+</svg>
+

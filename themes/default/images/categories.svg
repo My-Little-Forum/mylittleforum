@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <defs>
+  <linearGradient id="plate" x1="0%" y1="0%" x2="100%" y2="75%">
+   <stop offset="2.5%" stop-color="#d2e2e8" />
+   <stop offset="15%" stop-color="#e8f0f9" />
+   <stop offset="100%" stop-color="#e8f0f9" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  circle.connector { fill: #739ac3; stroke: none;}
+  path.connector { fill: none; stroke: #739ac3; stroke-width: 12; stroke-linejoin: round; stroke-linecap: round; }
+  #category rect { fill: url(#plate); stroke: #739ac3; stroke-width: 12;
+  ]]>
+ </style>
+ <symbol id="category" viewBox="0 0 180 80">
+  <rect x="8" y="8" width="164" height="48" rx="24" ry="24" />
+ </symbol>
+ <g>
+  <circle class="connector" cx="24" cy="24" r="16" />
+  <path class="connector" d="M 24,24 v 176 a 16 16, 0, 0, 0 16,16 h 16 m -32,-90 a 16 16, 0, 0, 0 16,16 h 16 m -32,-89 a 16 16, 0, 0, 0 16,16 h 16" />
+  <use href="#category" x="68" y="36" height="80" width="180" />
+  <use href="#category" x="68" y="110" height="80" width="180" />
+  <use href="#category" x="68" y="184" height="80" width="180" />
+ </g>
+</svg>

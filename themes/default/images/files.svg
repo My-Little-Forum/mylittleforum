@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="plate" x1="100%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#c8ccd2" />
+   <stop offset="50%" stop-color="#eff4fa" />
+   <stop offset="100%" stop-color="#eaf0fb" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  .sheet { stroke-width: 8; stroke: #c4c8cf; fill: url(#plate); stroke-linejoin: round; }
+  .highlight { stroke-width: 12; stroke: #fafbff; fill: none; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <symbol id="sheet" viewBox="0 0 176 232">
+  <path class="sheet" d="M 4,4 v 206 h 136 v -164 l -42,-42 z" />
+  <path class="highlight" d="M 14,14 v 186 h116 v -146 h -40 v -40 z" />
+ </symbol>
+ <g>
+  <use href="#sheet" x="2" y="2" height="232" width="176" />
+  <use href="#sheet" x="58" y="25" height="232" width="176" />
+  <use href="#sheet" x="118" y="48" height="232" width="176" />
+ </g>
+</svg>
+

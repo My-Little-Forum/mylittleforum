@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <defs>
+  <linearGradient id="ball" x1="50%" y1="0%" x2="50%" y2="75%">
+   <stop offset="0%" stop-color="#c8cfdd" />
+   <stop offset="100%" stop-color="#f6f8fc" />
+  </linearGradient>
+  <linearGradient id="lens" x1="0%" y1="20%" x2="0%" y2="80%">
+   <stop offset="0%" stop-color="#496c7d" />
+   <stop offset="100%" stop-color="#386070" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { background: transparent; }
+  #pupil { fill: url(#lens); stroke: none; }
+  #spot { fill: #f8fafedf; stroke: none; }
+  #lid { fill: none; stroke-width: 8px; stroke: #739ac3; }
+  #eyeball { fill: url(#ball); stroke: none; }
+  ]]>
+ </style>
+ <g transform="translate(-7.5,-7.5) scale(2.175)">
+  <path id="eyeball" d="M 8,64 Q 64,6 120,64 Q 64,122 8,64" />
+  <path id="lid" d="M 11,67 8,64 Q 64,6 120,64" stroke-linecap="round" stroke-linejoin="round" />
+  <g transform="rotate(-33.33, 64, 64)">
+   <circle id="pupil" cx="64" cy="64" r="22" />
+   <circle id="spot" cx="64" cy="51" r="7.5" />
+  </g>
+ </g>
+</svg>
+

@@ -321,10 +321,10 @@ Like custom BBCode buttons, example:
 {/if}
 
  <fieldset>
-  <div>
+  <div class="buttonbar">
    <button name="save_entry" value="{#message_submit_button#}" title="{#message_submit_title#}">{#message_submit_button#}</button>
    <button name="preview" value="{#message_preview_button#}" title="{#message_preview_title#}">{#message_preview_button#}</button>
-   <img id="throbber-submit" class="js-visibility-hidden" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
+   <img id="throbber-submit" src="{$THEMES_DIR}/{$theme}/images/throbber.svg" alt="" width="18" height="18" hidden />
   </div>
  </fieldset>
 </form>

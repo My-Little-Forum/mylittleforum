@@ -720,7 +720,7 @@
 <p><em>{#smilies_disabled#}</em></p>
 {/if}
 <ul class="adminmenu">
-<li>{if $settings.smilies==1}<a href="index.php?mode=admin&amp;disable_smilies=true"><img src="{$THEMES_DIR}/{$theme}/images/smilies_disable.png" alt="" width="16" height="16" /><span>{#disable_smilies#}</span></a>{else}<a href="index.php?mode=admin&amp;enable_smilies=true"><img src="{$THEMES_DIR}/{$theme}/images/smilies.png" alt="" width="16" height="16" /><span>{#enable_smilies#}</span></a>{/if}</li>
+<li>{if $settings.smilies==1}<a href="index.php?mode=admin&amp;disable_smilies=true"><img src="{$THEMES_DIR}/{$theme}/images/smilies-disable.svg" alt="" width="18" height="18" class="icon" /><span>{#disable_smilies#}</span></a>{else}<a href="index.php?mode=admin&amp;enable_smilies=true"><img src="{$THEMES_DIR}/{$theme}/images/smilies.svg" alt="" width="18" height="18" class="icon" /><span>{#enable_smilies#}</span></a>{/if}</li>
 </ul>
 {elseif $action=='spam_protection'}
 {if $errors}
@@ -882,8 +882,11 @@
 <input type="hidden" name="update_file_submit" value="{$update_file}" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <p>{#admin_confirm_password#}<br /><input type="password" name="update_password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="25"/></p>
-<p><input type="submit" name="update_submit" value="{#update_submit#}" onclick="document.getElementById('throbber-submit').style.visibility = 'visible';" /> <img id="throbber-submit" style="visibility:hidden;" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" /></p>
 </div>
+ <div class="buttonbar">
+  <button name="update_submit" value="{#update_submit#}" onclick="document.getElementById('throbber-submit').removeAttribute('hidden');">{#update_submit#}</button>
+  <img id="throbber-submit" src="{$THEMES_DIR}/{$theme}/images/throbber.svg" alt="" width="18" height="18" hidden />
+ </div>
 </form>
 {elseif $action=='update_done'}
 {if $update_errors}
@@ -1150,15 +1153,15 @@
 	</div>
 </div>
 <ul class="adminmenu">
-<li><a href="index.php?mode=admin&amp;action=settings"><img src="{$THEMES_DIR}/{$theme}/images/settings.png" alt="" width="16" height="16" /><span>{#forum_settings_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=user"><img src="{$THEMES_DIR}/{$theme}/images/user.png" alt="" width="16" height="16" /><span>{#user_administr_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=categories"><img src="{$THEMES_DIR}/{$theme}/images/categories.png" alt="" width="16" height="16" /><span>{#category_administr_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=smilies"><img src="{$THEMES_DIR}/{$theme}/images/smilies.png" alt="" width="16" height="16" /><span>{#smilies_administr_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=list_uploads"><img src="{$THEMES_DIR}/{$theme}/images/image.png" alt="" width="16" height="16" /><span>{#upload_administr_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=pages"><img src="{$THEMES_DIR}/{$theme}/images/pages.png" alt="" width="16" height="16" /><span>{#pages_administr_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=spam_protection"><img src="{$THEMES_DIR}/{$theme}/images/spam_protection.png" alt="" width="16" height="16" /><span>{#spam_protection_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=update"><img src="{$THEMES_DIR}/{$theme}/images/update.png" alt="" width="16" height="16" /><span>{#update_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=reset_uninstall"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" alt="" width="16" height="16" /><span>{#reset_uninstall_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=settings"><img src="{$THEMES_DIR}/{$theme}/images/settings.svg" alt="" width="18" height="18" class="icon" /><span>{#forum_settings_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=categories"><img src="{$THEMES_DIR}/{$theme}/images/categories.svg" alt="" width="18" height="18" class="icon" /><span>{#category_administr_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=smilies"><img src="{$THEMES_DIR}/{$theme}/images/smilies.svg" alt="" width="18" height="18" class="icon" /><span>{#smilies_administr_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=list_uploads"><img src="{$THEMES_DIR}/{$theme}/images/images.svg" alt="" width="18" height="18" class="icon" /><span>{#upload_administr_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=pages"><img src="{$THEMES_DIR}/{$theme}/images/files.svg" alt="" width="18" height="18" class="icon" /><span>{#pages_administr_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=spam_protection"><img src="{$THEMES_DIR}/{$theme}/images/spam-shield.svg" alt="" width="18" height="18" class="icon" /><span>{#spam_protection_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=update"><img src="{$THEMES_DIR}/{$theme}/images/update.svg" alt="" width="18" height="18" class="icon" /><span>{#update_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=reset_uninstall"><img src="{$THEMES_DIR}/{$theme}/images/delete-bin.svg" alt="" width="18" height="18" class="icon" /><span>{#reset_uninstall_link#}</span></a></li>
 </ul>
 </div>
 {/if}

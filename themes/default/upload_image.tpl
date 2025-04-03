@@ -129,7 +129,7 @@ ul {
 li > *:last-child {
   align-content:center;
 }
-img {
+img:not(.buttonbar img) {
   border:none;
   display: block;
 }
@@ -148,6 +148,18 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 0.3em;
+  align-items: center;
+}
+.buttonbar > * {
+  margin-block: 0;
+}
+.buttonbar img:not([hidden]) {
+  display: block;
+  width: 1.25em;
+  height: 1.25em;
+}
+.buttonbar button {
+  padding: 0.3em;
 }
 button {
   cursor: pointer;
@@ -156,9 +168,6 @@ button {
   background: transparent;
   border: none;
   padding: 0;
-}
-.invisible {
-  visibility: hidden;
 }
 {/literal}
   </style>
@@ -189,9 +198,7 @@ window.addEventListener('DOMContentLoaded', function() {
   if (document.querySelector('button[name="upload_img"]')) {
     document.querySelector('button[name="upload_img"]').addEventListener('click', function() {
       const throbber = document.getElementById('throbber-submit');
-      if (throbber.classList.contains('invisible')) {
-        throbber.classList.remove('invisible');
-      }
+      throbber.removeAttribute('hidden');
     });
   }
   if (document.querySelector('div.insert-desc')) {
@@ -228,7 +235,7 @@ window.addEventListener('DOMContentLoaded', function() {
    </div>
    <div class="buttonbar">
     <button name="upload_img" value="{#upload_image_button#}">{#upload_image_button#}</button>
-    <img id="throbber-submit" class="invisible" src="{$THEMES_DIR}/{$theme}/images/throbber_submit.gif" alt="" width="16" height="16" />
+    <img id="throbber-submit" src="{$THEMES_DIR}/{$theme}/images/throbber.svg" alt="" width="18" height="18" hidden />
    </div>
   </form>
   <p class="small"><a href="index.php?mode=upload_image&amp;browse_images=1">{#browse_uploaded_images#}</a></p>
