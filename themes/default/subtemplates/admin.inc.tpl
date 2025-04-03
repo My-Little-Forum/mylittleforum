@@ -1154,7 +1154,6 @@
 </div>
 <ul class="adminmenu">
 <li><a href="index.php?mode=admin&amp;action=user"><img src="{$THEMES_DIR}/{$theme}/images/user.png" alt="" width="16" height="16" /><span>{#user_administr_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=pages"><img src="{$THEMES_DIR}/{$theme}/images/pages.png" alt="" width="16" height="16" /><span>{#pages_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=spam_protection"><img src="{$THEMES_DIR}/{$theme}/images/spam_protection.png" alt="" width="16" height="16" /><span>{#spam_protection_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=update"><img src="{$THEMES_DIR}/{$theme}/images/update.png" alt="" width="16" height="16" /><span>{#update_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=reset_uninstall"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" alt="" width="16" height="16" /><span>{#reset_uninstall_link#}</span></a></li>
@@ -1162,6 +1161,7 @@
 <li><a href="index.php?mode=admin&amp;action=categories"><img src="{$THEMES_DIR}/{$theme}/images/categories.svg" alt="" width="18" height="18" class="icon" /><span>{#category_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=smilies"><img src="{$THEMES_DIR}/{$theme}/images/smilies.svg" alt="" width="18" height="18" class="icon" /><span>{#smilies_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=list_uploads"><img src="{$THEMES_DIR}/{$theme}/images/images.svg" alt="" width="18" height="18" class="icon" /><span>{#upload_administr_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=pages"><img src="{$THEMES_DIR}/{$theme}/images/files.svg" alt="" width="18" height="18" class="icon" /><span>{#pages_administr_link#}</span></a></li>
 </ul>
 </div>
 {/if}
