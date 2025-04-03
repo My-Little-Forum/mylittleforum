@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="shield" x1="0%" y1="0%" x2="100%" y2="0%">
+   <stop offset="0%" stop-color="#d0d052" />
+   <stop offset="47.5%" stop-color="#efefbb" />
+   <stop offset="57.5%" stop-color="#e8e8b0" />
+   <stop offset="100%" stop-color="#c4c240" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #shield { fill: url(#shield); stroke: none; stroke-linejoin: round; }
+  #contour { fill: none; stroke: #cfc822; stroke-width: 12; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <path id="shield" d="M 114,10 v 16 l -64,12 -16,-8 -12,0 0,12 8,16 0,80 a 112 112, 0, 0, 0, 102,116 a 112 112, 0, 0, 0, 102,-116 l 0,-80 8,-16 0,-12 -12,0 -16,8 -64,-12 v -16 z" />
+ <path id="contour" d="M 114,10 v 16 l -64,12 -16,-8 -12,0 0,12 8,16 0,80 a 112 112, 0, 0, 0, 102,116 a 112 112, 0, 0, 0, 102,-116 l 0,-80 8,-16 0,-12 -12,0 -16,8 -64,-12 v -16 z" />
+</svg>
+
