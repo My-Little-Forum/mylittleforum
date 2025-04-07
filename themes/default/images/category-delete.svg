@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <defs>
+  <linearGradient id="plate" x1="0%" y1="0%" x2="100%" y2="75%">
+   <stop offset="2.5%" stop-color="#d2e2e8" />
+   <stop offset="15%" stop-color="#e8f0f9" />
+   <stop offset="100%" stop-color="#e8f0f9" />
+  </linearGradient>
+  <linearGradient id="shaft" x1="0%" y1="0%" x2="100%" y2="0%">
+   <stop offset="0%" stop-color="#fff2b8" />
+   <stop offset="100%" stop-color="#b89802" />
+  </linearGradient>
+  <linearGradient id="tipping" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#e8e8c0" />
+   <stop offset="54%" stop-color="#e8e8c0" />
+   <stop offset="55%" stop-color="#9f8640" />
+   <stop offset="100%" stop-color="#9f8640" />
+  </linearGradient>
+  <linearGradient id="head" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#f8685a" />
+   <stop offset="100%" stop-color="#cf2c00" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  circle.connector { fill: #739ac3; stroke: none;}
+  path.connector { fill: none; stroke: #739ac3; stroke-width: 12; stroke-linejoin: round; stroke-linecap: round; }
+  #category rect { fill: url(#plate); stroke: #739ac3; stroke-width: 12; }
+  #shield { fill: url(#head); stroke: #f85450; stroke-width: 12; }
+  #border { fill: none; stroke: #cf2c00; stroke-width: 12; }
+  #sign { fill: #fff; stroke-width: 5; stroke: #fdfdfd; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <symbol id="category" viewBox="0 0 180 80">
+  <rect x="8" y="8" width="164" height="48" rx="24" ry="24" />
+ </symbol>
+ <g>
+  <circle class="connector" cx="24" cy="24" r="16" />
+  <path class="connector" d="M 24,24 v 176 a 16 16, 0, 0, 0 16,16 h 16 m -32,-90 a 16 16, 0, 0, 0 16,16 h 16 m -32,-89 a 16 16, 0, 0, 0 16,16 h 16" />
+  <use href="#category" x="68" y="36" height="80" width="180" />
+  <use href="#category" fill-opacity="0.6" stroke-opacity="0.5" x="68" y="110" height="80" width="180" />
+  <use href="#category" fill-opacity="0.6" stroke-opacity="0.5" x="68" y="184" height="80" width="180" />
+ </g>
+ <g id="delete-sign" transform="translate(101.5, 101.5) scale(0.625)">
+ <circle id="border" cx="132" cy="132" r="122" />
+ <circle id="shield" cx="132" cy="132" r="110" />
+ <path id="sign" d="M 47,102 h 170 v 50 h -170 z" />
+ </g>
+</svg>
