@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="264" viewBox="0 0 264 264">
+ <defs>
+  <linearGradient id="frame" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#87c97d" />
+   <stop offset="100%" stop-color="#286824" />
+  </linearGradient>
+  <linearGradient id="plate" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#a5d49c" />
+   <stop offset="100%" stop-color="#79bd73" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  #arrow { fill: url(#plate); stroke: url(#frame); stroke-width: 12; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g>
+  <path id="arrow" d="M 132,15 187,65 157,65 157,249 107,249 107,65 77,65 z" />
+ </g>
+</svg>
