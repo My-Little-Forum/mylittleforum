@@ -990,7 +990,7 @@
 {else}
 <p>{#no_pages#}</p>
 {/if}
-<ul class="adminmenu"><li><a href="index.php?mode=admin&amp;action=edit_page"><img src="{$THEMES_DIR}/{$theme}/images/add_page.png" alt="" width="16" height="16" /><span>{#add_page_link#}</span></a></li></ul>
+<ul class="adminmenu"><li><a href="index.php?mode=admin&amp;action=edit_page"><img src="{$THEMES_DIR}/{$theme}/images/file-add.svg" alt="" width="18" height="18" /><span>{#add_page_link#}</span></a></li></ul>
 {elseif $action=='edit_page'}
 {if $errors}
 <p class="notice caution">{#error_headline#}</p>
