@@ -10,9 +10,9 @@
   <![CDATA[
   svg { fill: transparent; }
   #face { fill: url(#head); stroke: #fffeb8; stroke-width: 12; }
-  #border { fill: none; stroke: #cfc822; stroke-width: 12; }
-  .eyes { fill: #bbb402; stroke: none; }
-  #mouth { fill: none; stroke-width: 16px; stroke: #bbb402; stroke-linecap: round; }
+  #border { fill: none; stroke: #c8c220; stroke-width: 12; }
+  .eyes { fill: #aca002; stroke: none; }
+  #mouth { fill: none; stroke-width: 16px; stroke: #aca002; stroke-linecap: round; }
   ]]>
  </style>
  <circle id="border" cx="132" cy="132" r="122" />
