@@ -25,7 +25,7 @@
  </defs>
  <style type="text/css">
   <![CDATA[
-  svg { fill: none; }
+  svg { fill: transparent; }
   #bin { fill: url(#plate); stroke: url(#frame); stroke-width: 12; stroke-linejoin: round; }
   #lid { fill: url(#plate); stroke: url(#frame); stroke-width: 12; }
   #bulge { stroke: none; fill: url(#bump); }

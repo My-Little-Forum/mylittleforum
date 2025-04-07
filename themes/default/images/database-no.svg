@@ -11,6 +11,7 @@
  </defs>
  <style type="text/css">
   <![CDATA[
+  svg { fill: transparent; }
   #contour { fill: none; stroke-width: 5; stroke: #7894b2; }
   #frontcontour { fill: none; stroke-width: 3.5; stroke: #9abfe4; stroke-linecap: round; }
   #front { fill: url(#cyl); stroke: none; }

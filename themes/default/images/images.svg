@@ -11,7 +11,7 @@
  </defs>
  <style type="text/css">
   <![CDATA[
-  svg { fill: none; }
+  svg { fill: transparent; }
   .photo { fill: url(#photo); stroke: #688cab; stroke-width: 12; stroke-linejoin: round; }
   .blend-1 { fill: #cfcfd8a8; stroke: none; }
   .blend-2 { fill: #cfcfcf68; stroke: none; }
