@@ -1153,8 +1153,8 @@
 	</div>
 </div>
 <ul class="adminmenu">
-<li><a href="index.php?mode=admin&amp;action=user"><img src="{$THEMES_DIR}/{$theme}/images/user.png" alt="" width="16" height="16" /><span>{#user_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=settings"><img src="{$THEMES_DIR}/{$theme}/images/settings.svg" alt="" width="18" height="18" class="icon" /><span>{#forum_settings_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=user"><img src="{$THEMES_DIR}/{$theme}/images/user.svg" alt="" width="18" height="18" class="icon" /><span>{#user_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=categories"><img src="{$THEMES_DIR}/{$theme}/images/categories.svg" alt="" width="18" height="18" class="icon" /><span>{#category_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=smilies"><img src="{$THEMES_DIR}/{$theme}/images/smilies.svg" alt="" width="18" height="18" class="icon" /><span>{#smilies_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=list_uploads"><img src="{$THEMES_DIR}/{$theme}/images/images.svg" alt="" width="18" height="18" class="icon" /><span>{#upload_administr_link#}</span></a></li>
