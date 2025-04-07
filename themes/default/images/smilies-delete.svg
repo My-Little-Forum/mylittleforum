@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="plate" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#f8e8b0" />
+   <stop offset="100%" stop-color="#ffcc00" />
+  </linearGradient>
+  <linearGradient id="head" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#f8685a" />
+   <stop offset="100%" stop-color="#cf2c00" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #face { fill: url(#plate); stroke: #fffeb8; stroke-width: 12; }
+  #contour { fill: none; stroke: #c8c220; stroke-width: 12; }
+  .eyes { fill: #aca002; stroke: none; }
+  #mouth { fill: none; stroke-width: 16px; stroke: #aca002; stroke-linecap: round; }
+  #shield { fill: url(#head); stroke: #f85450; stroke-width: 12; }
+  #border { fill: none; stroke: #cf2c00; stroke-width: 12; }
+  #sign { fill: #fff; stroke-width: 5; stroke: #fdfdfd; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g id="smiley">
+  <circle id="contour" cx="132" cy="132" r="122" />
+  <circle id="face" cx="132" cy="132" r="110" />
+  <circle class="eyes" cx="92" cy="92" r="16" />
+  <circle class="eyes" cx="172" cy="92" r="16" />
+  <path id="mouth" d="M 72,138 A 45,40 0 1 0 192,138" />
+ </g>
+ <g id="delete-sign" transform="translate(101.5, 101.5) scale(0.625)">
+ <circle id="border" cx="132" cy="132" r="122" />
+ <circle id="shield" cx="132" cy="132" r="110" />
+ <path id="sign" d="M 47,102 h 170 v 50 h -170 z" />
+ </g>
+</svg>
+
