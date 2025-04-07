@@ -1,0 +1,45 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="plate" x1="100%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#c8ccd2" />
+   <stop offset="50%" stop-color="#eff4fa" />
+   <stop offset="100%" stop-color="#eaf0fb" />
+  </linearGradient>
+  <linearGradient id="shaft" x1="0%" y1="0%" x2="100%" y2="0%">
+   <stop offset="0%" stop-color="#fff2b8" />
+   <stop offset="100%" stop-color="#b89802" />
+  </linearGradient>
+  <linearGradient id="tipping" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#e8e8c0" />
+   <stop offset="54%" stop-color="#e8e8c0" />
+   <stop offset="55%" stop-color="#9f8640" />
+   <stop offset="100%" stop-color="#9f8640" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  .sheet { stroke-width: 8; stroke: #c4c8cf; fill: url(#plate); stroke-linejoin: round; }
+  .highlight { stroke-width: 12; stroke: #fafbff; fill: none; stroke-linejoin: round; }
+  #contour { fill: none; stroke: #9f8640; stroke-width: 8; stroke-linejoin: round; stroke-linecap: round; }
+  #pen { fill: url(#shaft); stroke: none; }
+  #cap { fill: url(#shaft); stroke: none; }
+  #tip { fill: url(#tipping); stroke: none; }
+  ]]>
+ </style>
+ <symbol id="sheet" viewBox="0 0 176 218">
+  <path class="sheet" d="M 4,4 v 206 h 136 v -164 l -42,-42 z" />
+  <path class="highlight" d="M 14,14 v 186 h116 v -146 h -40 v -40 z" />
+ </symbol>
+ <g>
+  <use href="#sheet" x="42" y="2" height="264" width="216" />
+ </g>
+ <g id="pencil" transform="translate(68.5, 78.5) scale(0.825) rotate(45, 132, 132)">
+  <path id="cap" d="M 102,20 a 60 96, 0, 0, 1, 60,0  v 8 a 60 64, 0, 0, 1, -60,0 z" />
+  <path id="pen" d="M 102,28 a 60 64, 0, 0, 0, 60,0 v 160 a 60 64, 0, 0, 1, -60,0 z" />
+  <path id="tip" d="M 102,188 a 60 64, 0, 0, 0, 60,0 l -30,68 z" />
+  <path id="contour" d="M 102,20 a 60 96, 0, 0, 1, 60,0 v 168 l -30,68 -30,-68 z M 112,33 a 60 64, 0, 0, 0, 40,0" />
+ </g>
+</svg>
+
