@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
  <defs>
-  <linearGradient id="head" x1="25%" y1="0%" x2="75%" y2="100%">
+  <linearGradient id="plate" x1="25%" y1="0%" x2="75%" y2="100%">
    <stop offset="0%" stop-color="#f8e8b0" />
    <stop offset="100%" stop-color="#ffcc00" />
   </linearGradient>
@@ -9,18 +9,20 @@
  <style type="text/css">
   <![CDATA[
   svg { fill: transparent; }
-  #face { fill: url(#head); stroke: #fffeb8; stroke-width: 12; }
-  #border { fill: none; stroke: #c8c220; stroke-width: 12; }
+  #face { fill: url(#plate); stroke: #fffeb8; stroke-width: 12; }
+  #contour { fill: none; stroke: #c8c220; stroke-width: 12; }
   .eyes { fill: #aca002; stroke: none; }
   #mouth { fill: none; stroke-width: 16px; stroke: #aca002; stroke-linecap: round; }
   #cross { stroke-width: 38; stroke: #f80800; stroke-linecap: round; }
   ]]>
  </style>
- <circle id="border" cx="132" cy="132" r="122" />
- <circle id="face" cx="132" cy="132" r="110" />
- <circle class="eyes" cx="92" cy="92" r="16" />
- <circle class="eyes" cx="172" cy="92" r="16" />
- <path id="mouth" d="M 72,138 A 45,40 0 1 0 192,138" />
- <path id="cross" d="M 32 32, 232 232 M 232 32, 32 232" />
+ <g>
+  <circle id="contour" cx="132" cy="132" r="122" />
+  <circle id="face" cx="132" cy="132" r="110" />
+  <circle class="eyes" cx="92" cy="92" r="16" />
+  <circle class="eyes" cx="172" cy="92" r="16" />
+  <path id="mouth" d="M 72,138 A 45,40 0 1 0 192,138" />
+  <path id="cross" d="M 32 32, 232 232 M 232 32, 32 232" />
+ </g>
 </svg>
 
