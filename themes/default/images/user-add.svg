@@ -1,0 +1,77 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <defs>
+  <linearGradient id="shirt" x1="25%" y1="0%" x2="75%" y2="110%">
+   <stop offset="0%" stop-color="#c2e2f8" />
+   <stop offset="40%" stop-color="#6ac3fe" />
+   <stop offset="100%" stop-color="#4894fa" />
+  </linearGradient>
+  <linearGradient id="shirt-contour" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#4c74df" />
+   <stop offset="100%" stop-color="#204cb0" />
+  </linearGradient>
+  <linearGradient id="face-skin" x1="0%" y1="0%" x2="100%" y2="0%">
+   <stop offset="0%" stop-color="#f6dac2" />
+   <stop offset="33.333%" stop-color="#f0cba3" />
+   <stop offset="66.666%" stop-color="#eec69e" />
+   <stop offset="100%" stop-color="#f0d4ba" />
+  </linearGradient>
+  <linearGradient id="face-contour" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#bc8864" />
+   <stop offset="100%" stop-color="#af8f5c" />
+  </linearGradient>
+  <linearGradient id="hairdo" x1="60%" y1="100%" x2="40%" y2="0%">
+   <stop offset="0%" stop-color="#784420" />
+   <stop offset="15%" stop-color="#7f5024" />
+   <stop offset="30%" stop-color="#8f5020" />
+   <stop offset="80%" stop-color="#a97444" />
+   <stop offset="100%" stop-color="#a97f54" />
+  </linearGradient>
+  <linearGradient id="hand-l" x1="0%" y1="25%" x2="100%" y2="75%">
+   <stop offset="0%" stop-color="#d99146" />
+   <stop offset="20%" stop-color="#e8b57f" />
+   <stop offset="45%" stop-color="#e8b57f" />
+   <stop offset="100%" stop-color="#d99146" />
+  </linearGradient>
+  <linearGradient id="hand-r" x1="100%" y1="25%" x2="0%" y2="75%">
+   <stop offset="0%" stop-color="#d99146" />
+   <stop offset="20%" stop-color="#e8b57f" />
+   <stop offset="45%" stop-color="#e8b57f" />
+   <stop offset="100%" stop-color="#d99146" />
+  </linearGradient>
+  <linearGradient id="head" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#40d848" />
+   <stop offset="100%" stop-color="#149f20" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #torso { fill: url(#shirt); stroke: url(#shirt-contour); stroke-width: 12; stroke-linejoin: round; }
+  #hand-left { fill: url(#hand-l); stroke: none; stroke-width: 1; }
+  #hand-right { fill: url(#hand-r); stroke: none; stroke-width: 1; }
+  .hand-contour { fill: #d28331; stroke: none; stroke-width: 1; }
+  #face { fill: url(#face-skin); stroke: url(#face-contour); stroke-width: 8; stroke-linejoin: round; }
+  #hair { fill: url(#hairdo); stroke: url(#hairdo); stroke-width: 1; stroke-linejoin: round; }
+  #shield { fill: url(#head); stroke: #52dc58; stroke-width: 12; }
+  #border { fill: none; stroke: #08af38; stroke-width: 12; }
+  #sign { fill: #fff; stroke-width: 5; stroke: #fdfdfd; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g>
+  <path id="torso" d="M 80,254 a 120 120, 0, 0, 0 -52,-44 v -24 a 120 120, 0, 0, 1 52,-52 h 104 a 120 120, 0, 0, 1 52,52 v 24 a 120 120, 0, 0, 0 -52,44 z" />
+  <path id="face" d="M 104,142 a 46 46, 0, 0, 1, -36,-36 v -60 h 132 v 60 a 46 46, 0, 0, 1, -36,36 z" />
+  <path id="hair" d="M 76,80 a 8 8, 0, 0, 1, -16,0 a 12 44, 0, 0, 1, 0,-32 a 64 64, 0, 0, 1, 44,-44 a 40 8, 0, 0, 1, 60,0 a 64 64, 0, 0, 1, 44,44 a 12, 44, 0, 0, 1, 0,32 a 8 8, 0, 0, 1, -16,0 v -6 a 6 6, 0, 0, 0, -6,-6 h -38 
+  a 12 12, 0, 0, 1, -11.25,-8 a 12 12, 0, 0, 0, -11.25,-8 h -43.5 a 6 6, 0, 0,0 , -6,6 z" />
+  <path id="hand-right" d="M 12,218 l 12, 18 h 8 a 8 8, 0, 0, 0, 8,-8 v -30 a 8 8, 0, 0, 0, -8,-8 h -12 a 8 8, 0, 0, 0, -8,8 z" />
+  <path class="hand-contour" d="M 8,218 a 12.667 20, 0, 0, 0, 12.667,20 h 11.5 a 8 12, 0, 0, 0, 8,-12 a 6 4, 0, 0, 1, -6,4 h -9.5 a 8 12, 0, 0, 1, -8,-12 v -27.5 a 10 8, 0, 0, 0, -8.667,8 z" />
+  <path id="hand-left" d="M 252,218 l -12, 18 h -8 a 8 8, 0, 0, 1, -8,-8 v -30 a 8 8, 0, 0, 1, 8,-8 h 12 a 8 8, 0, 0, 1, 8,8 z" />
+  <path class="hand-contour" d="M 256,218 a 12.667 20, 0, 0, 1, -12.667,20 h -11.5 a 8 12, 0, 0, 1, -8,-12 a 6 4, 0, 0, 0, 6,4 h 9.5 a 8 12, 0, 0, 0, 8,-12 v -27.5 a 10 8, 0, 0, 1, 8.667,8 z" />
+ </g>
+ <g id="add-sign" transform="translate(101.5, 101.5) scale(0.625)">
+  <circle id="border" cx="132" cy="132" r="122" />
+  <circle id="shield" cx="132" cy="132" r="110" />
+  <path id="sign" d="M 107,47 h 50 v 60 h 60 v 50 h -60 v 60 h -50 v -60 h -60 v -50 h 60 z" />
+ </g>
+</svg>
+
