@@ -435,14 +435,14 @@
 <td><span class="small">{if $userdata[row].logins > 0}{$userdata[row].last_login_time}{else}&nbsp;{/if}</span></td>
 <td><span class="small">{if $userdata[row].user_type>0}{if $userdata[row].user_lock==0}{#unlocked#}{else}{#locked#}{/if}{elseif $userdata[row].user_lock==0}<a href="index.php?mode=admin&amp;user_lock={$userdata[row].user_id}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;page={$page}&amp;order={$order}&amp;descasc={$descasc}" title="{#lock_title#}">{#unlocked#}</a>{else}<a style="color:red;" href="index.php?mode=admin&amp;user_lock={$userdata[row].user_id}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;page={$page}&amp;order={$order}&amp;descasc={$descasc}" title="{#unlock_title#}">{#locked#}</a>{/if}</span></td>
 <td><a href="index.php?mode=admin&amp;edit_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a></td>
-<td><a href="index.php?mode=admin&amp;delete_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16" /></a></td>
+<td><a href="index.php?mode=admin&amp;delete_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/user-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18" /></a></td>
 </tr>
 {/section}
 </tbody>
 </table>
 
 <div id="selectioncontrols">
-<button name="delete_selected_users" value="{#delete_selected_users#}"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" alt="" width="14" height="14" /><span>{#delete_selected_users#}</span></button>
+<button name="delete_selected_users" value="{#delete_selected_users#}"><img src="{$THEMES_DIR}/{$theme}/images/user-delete.svg" alt="" width="18" height="18" /><span>{#delete_selected_users#}</span></button>
 </div>
 
 </div>
