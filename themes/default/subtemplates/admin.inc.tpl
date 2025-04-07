@@ -465,7 +465,7 @@
 <li><a href="index.php?mode=admin&amp;action=reset_tou"><img src="{$THEMES_DIR}/{$theme}/images/file-edit.svg" alt="" width="18" height="18" /><span>{#reset_terms_of_use#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=reset_dps"><img src="{$THEMES_DIR}/{$theme}/images/file-edit.svg" alt="" width="18" height="18" /><span>{#reset_data_privacy_statement#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=email_list"><img src="{$THEMES_DIR}/{$theme}/images/email_list.png" alt="" width="16" height="16" /><span>{#email_list#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=clear_userdata"><img src="{$THEMES_DIR}/{$theme}/images/delete.png" alt="" width="16" height="16" /><span>{#clear_userdata#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=clear_userdata"><img src="{$THEMES_DIR}/{$theme}/images/delete-bin.svg" alt="" width="18" height="18" /><span>{#clear_userdata#}</span></a></li>
 </ul>
 {elseif $action=='edit_user'}
 {config_load file=$language_file section="user_edit"}
