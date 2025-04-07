@@ -682,7 +682,7 @@
 <td>{$smilies[row].title}</td>
 <td>
 
-<a href="index.php?mode=admin&amp;edit_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/edit.png" title="{#edit#}" alt="{#edit#}" width="16" height="16" /></a> &nbsp; <a href="index.php?mode=admin&amp;delete_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/delete.png" title="{#delete#}" alt="{#delete#}" width="16" height="16"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_up.png" alt="{#move_up#}" title="{#move_up#}" width="16" height="16" /></a><a href="index.php?mode=admin&amp;move_down_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow_down.png" alt="{#move_down#}" title="{#move_down#}" width="16" height="16" /></a>
+<a href="index.php?mode=admin&amp;edit_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/smilies-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a> &nbsp; <a href="index.php?mode=admin&amp;delete_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/smilies-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="{#move_up#}" title="{#move_up#}" width="18" height="18" /></a><a href="index.php?mode=admin&amp;move_down_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-down.svg" alt="{#move_down#}" title="{#move_down#}" width="18" height="18" /></a>
 
 </td>
 </tr>
