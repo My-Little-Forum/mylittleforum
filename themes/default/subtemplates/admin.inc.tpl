@@ -344,7 +344,7 @@
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <div>
   <label for="edit_category" class="main">{#edit_category#}</label>
-  <input id="edit_category" type="text" name="category" value="{$edit_category}" size="25" />
+  <input id="edit_category" type="text" name="category" value="{$edit_category}" size="25" required />
  </div>
  <div>
   <span class="like-label">{#category_accessible_by#}</span>
