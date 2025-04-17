@@ -371,10 +371,10 @@
 <h2>{#delete_category_hl#|replace:"[category]":$category_name}</h2>
 <p class="notice caution">{#caution#}</p>
 <form action="index.php" method="post" accept-charset="{#charset#}">
-<div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="category_id" value="{$category_id}" />
+ <div>
 <p><input type="radio" name="delete_mode" value="complete" checked="checked" /> {#delete_category_compl#}</p></td>
 <p><input type="radio" name="delete_mode" value="keep_entries" /> {if $categories_count <= 1}{#del_cat_keep_entries#}
 {else}{#del_cat_move_entries#}
@@ -385,8 +385,10 @@
 {/foreach}
 </select>
 {/if}
+ </div>
+ <div>
 <p><input type="submit" name="delete_category_submit" value="{#delete_category_submit#}" /></p>
-</div>
+ </div>
 </form>
 {elseif $action=='user'}
 <h2 id="admin_header">{#user_list_header#}</h2>
