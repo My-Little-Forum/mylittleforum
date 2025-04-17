@@ -314,7 +314,6 @@
 <input id="cat_accessible_all" type="radio" name="accession" value="0"{if !$accession || acession==0} checked="checked"{/if} /><label for="cat_accessible_all">{#cat_accessible_all#}</label><br />
 <input id="cat_accessible_reg_users" type="radio" name="accession" value="1"{if acession==1} checked="checked"{/if} /><label for="cat_accessible_reg_users">{#cat_accessible_reg_users#}</label><br />
 <input id="cat_accessible_admin_mod" type="radio" name="accession" value="2"{if acession==2} checked="checked"{/if} /><label for="cat_accessible_admin_mod">{#cat_accessible_admin_mod#}</label><br /><br />
-<input type="submit" value="{#submit_button_ok#}" />
  <input type="hidden" name="mode" value="admin" />
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <div>
@@ -324,6 +323,7 @@
  <div>
  </div>
  <div class="buttonbar">
+  <button value="{#submit_button_ok#}">{#submit_button_ok#}</button>
  </div>
 </form>
 {elseif $action=='edit_category'}
