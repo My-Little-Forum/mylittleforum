@@ -846,8 +846,8 @@
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <div>
   <ul class="checkboxlist">
-   <li><input id="delete_postings" type="checkbox" name="delete_postings" value="true" /><label for="delete_postings"> {#delete_postings#}</label></li>
-   <li><input id="delete_userdata" type="checkbox" name="delete_userdata" value="true" /><label for="delete_userdata"> {#delete_userdata#}</label></li>
+   <li><input id="delete_postings" type="checkbox" name="delete_postings" value="true" /><label for="delete_postings">{#delete_postings#}</label></li>
+   <li><input id="delete_userdata" type="checkbox" name="delete_userdata" value="true" /><label for="delete_userdata">{#delete_userdata#}</label></li>
   </ul>
  </div>
  <div>
