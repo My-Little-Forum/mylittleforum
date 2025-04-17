@@ -248,7 +248,7 @@ del,s {color:#555}
 #card > * {margin-inline: 0;margin-block:0 .75rem}
 #card > *:last-child {margin-block:0}
 #card form > *:not(:last-child) {margin-block:0 .375rem}
-label.main{font-weight:bold;display:block}
+label.main,span.like-label{font-weight:bold;display:block}
 label.active{color:#000}
 label.inactive{color:gray!important}
 label.inactive input{color:gray}
