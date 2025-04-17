@@ -375,8 +375,7 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 .additional-admin-info div > *{margin:0;padding-inline:.375em;font-size:.82em !important;}
 .additional-admin-info h3{line-height:1.7em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
 .additional-admin-info p{padding-block:.375em;line-height:1.5}
-#admin-info-install_script_exists h3{color:red}
-#admin-info-install_script_exists h3::before{content:url("images/caution.png"); padding-inline-start:5px}
+#admin-info-install_script_exists h3{color:red;display:flex;align-items:center;gap:.125em}
 main > .adminmenu{margin-block:1em;margin-inline:0;padding:0}
 .adminmenu{list-style-type:none;font-size:.82em;line-height:1.75em;grid-area:mainmenu}
 .adminmenu li:not(:last-child){margin-block-end:.25em}
