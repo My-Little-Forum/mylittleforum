@@ -387,7 +387,7 @@
 {/if}
  </div>
  <div class="buttonbar">
-<p><input type="submit" name="delete_category_submit" value="{#delete_category_submit#}" /></p>
+  <button name="delete_category_submit" value="{#delete_category_submit#}">{#delete_category_submit#}</button>
  </div>
 </form>
 {elseif $action=='user'}
