@@ -51,9 +51,10 @@ h1 {
 .caution,
 .ok {
   margin-block: 0.5em;
-  padding: 0 0 0 24px;
+  padding: 0 0 0 1.75em;
   background-repeat:no-repeat;
-  background-position: 2px 3px;
+  background-position: 0 .025em;
+  background-size: 1.45em;
 }
 .caution h2,
 .ok h2 {
@@ -62,11 +63,11 @@ h1 {
 }
 .caution {
   color: #cc0000;
-  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png);
+  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/general-caution.svg);
 }
 .ok {
   color:green;
-  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png);
+  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/general-information.svg);
 }
 .deletelink {
   padding-left:13px;

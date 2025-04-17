@@ -58,18 +58,21 @@ h1 {
 }
 .caution h2,
 .ok h2 {
-  font-size: 1em;
-  margin: 0 0 0.5em 0;
+  margin-block: 0.5em;
+  padding: 0 0 0 1.75em;
+  background-repeat:no-repeat;
+  background-position: 0 .025em;
+  background-size: 1.45em;
 }
 .caution {
   color: #cc0000;
   font-weight: bold;
-  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/caution.png);
+  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/general-caution.svg);
 }
 .ok {
   font-weight:bold;
   color:green;
-  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/tick.png);
+  background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/general-information.svg);
 }
 img.uploaded {
   border: 1px solid #000;

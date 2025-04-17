@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="head" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#40d848" />
+   <stop offset="100%" stop-color="#149f20" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #face { fill: url(#head); stroke: #fcfcfc; stroke-width: 8; }
+  #border { fill: none; stroke: #08af38; stroke-width: 12; }
+  #eye, #letter { fill: #eeeb; stroke-width: 8; stroke: #fcfcfc; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <circle id="border" cx="132" cy="132" r="122" />
+ <circle id="face" cx="132" cy="132" r="112" />
+ <circle id="eye" cx="132" cy="64" r="20" />
+ <path id="letter" d="M 167,210 h-70 v-12 h 3 a12,8, 0, 0, 0, 12,-8 v-64 a-12,-8, 0, 0, 0,-12,-8 v-10 l32,-8 h20 v90 a12,8, 0, 0, 0, 12,8 h3 z" />
+</svg>
