@@ -864,12 +864,15 @@
 <h2>{#uninstall_forum#}</h2>
 <p>{#uninstall_forum_exp#}</p>
 <form action="index.php" method="post" accept-charset="{#charset#}">
-<div>
-<input type="hidden" name="mode" value="admin" />
-<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<p>{#reset_uninstall_conf_pw#}<br />
-<input type="password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="20" name="confirm_pw" /> <input type="submit" name="uninstall_forum_confirmed" value="{#uninstall_forum_submit#}" /></p>
-</div>
+ <input type="hidden" name="mode" value="admin" />
+ <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
+ <div>
+  <label for="confirm_pw_uninstall" class="main">{#reset_uninstall_conf_pw#}</label>
+  <input type="password" id="confirm_pw_uninstall" name="confirm_pw" spellcheck="false" autocomplete="off" writingsuggestions="false" size="20" />
+ </div>
+ <div class="buttonbar">
+  <button name="uninstall_forum_confirmed" value="{#uninstall_forum_submit#}">{#uninstall_forum_submit#}</button>
+ </div>
 </form>
 {elseif $action=='update'}
 <p style="margin-bottom:25px;"><span style="background:yellow; padding:5px;">{#update_current_version#|replace:"[version]":$settings.version}</span></p>
