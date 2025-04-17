@@ -2,8 +2,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
  <defs>
   <linearGradient id="outside" x1="25%" y1="0%" x2="75%" y2="100%">
-   <stop offset="0%" stop-color="#ecdf12" />
-   <stop offset="100%" stop-color="#c5bd02" />
+   <stop offset="0%" stop-color="#e4d70a" />
+   <stop offset="100%" stop-color="#c0b901" />
   </linearGradient>
   <linearGradient id="plate" x1="25%" y1="0%" x2="75%" y2="100%">
    <stop offset="0%" stop-color="#faf612" />
@@ -16,14 +16,14 @@
   #outer { fill: url(#outside); stroke: none; }
   #inner { fill: #fff8c0; stroke: none; }
   #shield { fill: url(#plate); stroke: url(#plate); stroke-width: 5; stroke-linejoin: round; }
-  .nmark { fill: #927402; stroke: none; }
+  .nmark { fill: #8e7000; stroke: none; }
   ]]>
  </style>
  <g id="figure">
   <path id="outer" d="M 118,22.25 A 16 16, 0, 0, 1, 146,22.25 L 248,199 A 16 16, 0, 0, 1, 233.75,222.75 L 30.25,222.75 A 16 16, 0, 0, 1, 16,199 z" />
   <path id="inner" d="M 124.25,44.375 A 8 8, 0, 0, 1, 139.875,44.75 L 226.125,193.25 A 8 8, 0, 0, 1, 218.4,206.425 L 45.5,206.425 A 8 8, 0, 0, 1, 38.125,193.25 z" />
   <path id="shield" d="M 132,63 206.125,190.625 57.875,190.625 z" />
-  <circle class="nmark" cx="132" cy="172" r="12" />
+  <circle class="nmark" cx="132" cy="175" r="13" />
   <path class="nmark" d="M 120.5,72.75 a 12 12, 0, 0, 1, 23,0 a 135 135, 0, 0,1, 0,70.5 a 12 12, 0, 0, 1, -23,0 a 135 135, 0, 0,1, 0,-70.5 z" />
  </g>
 </svg>
