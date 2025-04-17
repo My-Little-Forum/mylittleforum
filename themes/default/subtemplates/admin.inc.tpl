@@ -310,10 +310,6 @@
 <p>{#no_categories#}</p>
 {/if}
 <form action="index.php" method="post" class="normalform" accept-charset="{#charset#}">
-<strong>{#category_accessible_by#}</strong><br />
-<input id="cat_accessible_all" type="radio" name="accession" value="0"{if !$accession || acession==0} checked="checked"{/if} /><label for="cat_accessible_all">{#cat_accessible_all#}</label><br />
-<input id="cat_accessible_reg_users" type="radio" name="accession" value="1"{if acession==1} checked="checked"{/if} /><label for="cat_accessible_reg_users">{#cat_accessible_reg_users#}</label><br />
-<input id="cat_accessible_admin_mod" type="radio" name="accession" value="2"{if acession==2} checked="checked"{/if} /><label for="cat_accessible_admin_mod">{#cat_accessible_admin_mod#}</label><br /><br />
  <input type="hidden" name="mode" value="admin" />
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <div>
@@ -321,6 +317,12 @@
   <input id="new_category" type="text" name="new_category" size="25" value="{if $new_category}{$new_category}{/if}" />
  </div>
  <div>
+  <p><strong>{#category_accessible_by#}</strong></p>
+  <ul class="radiobar">
+   <li><input id="cat_accessible_all" type="radio" name="accession" value="0"{if !$accession || acession==0} checked="checked"{/if} /><label for="cat_accessible_all">{#cat_accessible_all#}</label></li>
+   <li><input id="cat_accessible_reg_users" type="radio" name="accession" value="1"{if acession==1} checked="checked"{/if} /><label for="cat_accessible_reg_users">{#cat_accessible_reg_users#}</label></li>
+   <li><input id="cat_accessible_admin_mod" type="radio" name="accession" value="2"{if acession==2} checked="checked"{/if} /><label for="cat_accessible_admin_mod">{#cat_accessible_admin_mod#}</label></li>
+  </ul>
  </div>
  <div class="buttonbar">
   <button value="{#submit_button_ok#}">{#submit_button_ok#}</button>
