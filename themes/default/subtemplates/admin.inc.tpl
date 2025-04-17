@@ -867,7 +867,7 @@
  <input type="hidden" name="mode" value="admin" />
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <div>
-  <label for="confirm_pw_uninstall" class="main">{#reset_uninstall_conf_pw#}</label>
+  <label for="confirm_pw_uninstall" class="main">{#admin_confirm_password#}</label>
   <input type="password" id="confirm_pw_uninstall" name="confirm_pw" spellcheck="false" autocomplete="off" writingsuggestions="false" size="20" />
  </div>
  <div class="buttonbar">
