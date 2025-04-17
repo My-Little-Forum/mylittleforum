@@ -317,7 +317,7 @@
   <input id="new_category" type="text" name="new_category" size="25" value="{if $new_category}{$new_category}{/if}" required />
  </div>
  <div>
-  <p><strong>{#category_accessible_by#}</strong></p>
+  <span class="like-label">{#category_accessible_by#}</span>
   <ul class="radiobar">
    <li><input id="cat_accessible_all" type="radio" name="accession" value="0"{if !$accession || acession==0} checked="checked"{/if} /><label for="cat_accessible_all">{#cat_accessible_all#}</label></li>
    <li><input id="cat_accessible_reg_users" type="radio" name="accession" value="1"{if acession==1} checked="checked"{/if} /><label for="cat_accessible_reg_users">{#cat_accessible_reg_users#}</label></li>
