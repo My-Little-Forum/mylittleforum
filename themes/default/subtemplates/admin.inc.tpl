@@ -314,7 +314,7 @@
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <div>
   <label for="new_category" class="main">{#new_category#}</label>
-  <input id="new_category" type="text" name="new_category" size="25" value="{if $new_category}{$new_category}{/if}" />
+  <input id="new_category" type="text" name="new_category" size="25" value="{if $new_category}{$new_category}{/if}" required />
  </div>
  <div>
   <p><strong>{#category_accessible_by#}</strong></p>
