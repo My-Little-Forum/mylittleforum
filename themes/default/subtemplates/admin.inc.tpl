@@ -339,9 +339,6 @@
 </ul>
 {/if}
 <form action="index.php" method="post" class="normalform" accept-charset="{#charset#}">
-<input type="hidden" name="mode" value="admin" />
-<input type="hidden" name="id" value="{$category_id}" />
-<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <strong>{#edit_category#}</strong><br />
 <input type="text" name="category" value="{$edit_category}" size="25" /><br /><br />
 <strong>{#category_accessible_by#}</strong><br />
@@ -349,6 +346,9 @@
 <input id="cat_accessible_reg_users" type="radio" name="accession" value="1"{if $edit_accession==1} checked="checked"{/if} /><label for="cat_accessible_reg_users">{#cat_accessible_reg_users#}</label><br />
 <input id="cat_accessible_admin_mod" type="radio" name="accession" value="2"{if $edit_accession==2} checked="checked"{/if} /><label for="cat_accessible_admin_mod">{#cat_accessible_admin_mod#}</label><br /><br />
 <input type="submit" name="edit_category_submit" value="{#submit_button_ok#}" />
+ <input type="hidden" name="mode" value="admin" />
+ <input type="hidden" name="id" value="{$category_id}" />
+ <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <div>
  </div>
  <div>
