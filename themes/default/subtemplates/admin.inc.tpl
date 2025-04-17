@@ -1134,7 +1134,7 @@
 	</div>
 	{if $install_script_exists}
 	<div id="admin-info-install_script_exists">
-		<h3>{#warning_header#}</h3>
+		<h3><img src="{$THEMES_DIR}/{$theme}/images/general-caution.svg" alt="" width:"14" height="14" /><span>{#warning_header#}</span></h3>
 		<p>{#warning_install_script_exists#}</p>
 	</div>
 	{/if}
