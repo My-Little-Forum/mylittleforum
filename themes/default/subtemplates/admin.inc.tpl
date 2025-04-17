@@ -386,7 +386,7 @@
 </select>
 {/if}
  </div>
- <div>
+ <div class="buttonbar">
 <p><input type="submit" name="delete_category_submit" value="{#delete_category_submit#}" /></p>
  </div>
 </form>
