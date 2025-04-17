@@ -842,14 +842,21 @@
 
 <h2>{#reset_forum#}</h2>
 <form action="index.php" method="post" accept-charset="{#charset#}">
-<div>
-<input type="hidden" name="mode" value="admin" />
-<input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<p><input id="delete_postings" type="checkbox" name="delete_postings" value="true" /><label for="delete_postings"> {#delete_postings#}</label></p>
-<p><input id="delete_userdata" type="checkbox" name="delete_userdata" value="true" /><label for="delete_userdata"> {#delete_userdata#}</label></p>
-<p>{#admin_confirm_password#}<br />
-<input type="password" spellcheck="false" autocomplete="off" writingsuggestions="false" size="20" name="confirm_pw" /> <input type="submit" name="reset_forum_confirmed" value="{#reset_forum_submit#}" /></p>
-</div>
+ <input type="hidden" name="mode" value="admin" />
+ <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
+ <div>
+  <ul class="checkboxlist">
+   <li><input id="delete_postings" type="checkbox" name="delete_postings" value="true" /><label for="delete_postings"> {#delete_postings#}</label></li>
+   <li><input id="delete_userdata" type="checkbox" name="delete_userdata" value="true" /><label for="delete_userdata"> {#delete_userdata#}</label></li>
+  </ul>
+ </div>
+ <div>
+  <label for="confirm_pw_reset" class="main">{#admin_confirm_password#}</label>
+  <input type="password" id="confirm_pw_reset" name="confirm_pw" spellcheck="false" autocomplete="off" writingsuggestions="false" size="20" />
+ </div>
+ <div class="buttonbar">
+  <button name="reset_forum_confirmed" value="{#reset_forum_submit#}">{#reset_forum_submit#}</button>
+ </div>
 </form>
 
 <hr style="margin:20px 0px 20px 0px; border-top: 1px dotted #808080; border-left: 0; border-right: 0; border-bottom: 0; height: 1px;"/>
