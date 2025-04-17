@@ -380,7 +380,7 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 main > .adminmenu{margin-block:1em;margin-inline:0;padding:0}
 .adminmenu{list-style-type:none;font-size:.82em;line-height:1.75em;grid-area:mainmenu}
 .adminmenu li:not(:last-child){margin-block-end:.25em}
-.adminmenu a{padding-inline:.375em;border:1px solid #bacbdf80;background:#bacbdf34;text-decoration:none;display:flex;align-items:center;gap:0.375em}
+.adminmenu a{padding-inline:.375em;border:1px solid #bacbdf80;background:#bacbdf34;text-decoration:none;display:flex;align-items:center;gap:0.25em}
 .adminmenu a:focus,.adminmenu a:hover{border-color:#bacbdf50;background:#bacbdf10}
 .adminmenu a:focus span,.adminmenu a:hover span{text-decoration:underline}
 .adminmenu a img{margin:0;padding:0}
