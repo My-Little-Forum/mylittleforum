@@ -375,8 +375,9 @@
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <input type="hidden" name="category_id" value="{$category_id}" />
  <div>
-<p><input type="radio" name="delete_mode" value="complete" checked="checked" /> {#delete_category_compl#}</p></td>
-<p><input type="radio" name="delete_mode" value="keep_entries" /> {if $categories_count <= 1}{#del_cat_keep_entries#}
+  <ul class="radiolist">
+   <li><input type="radio" id="del_mode_complete" name="delete_mode" value="complete" checked="checked" /><label for="del_mode_complete">{#delete_category_compl#}</label></li>
+   <li><input type="radio" id="del_mode_keep" name="delete_mode" value="keep_entries" /><label for="del_mode_keep">{if $categories_count <= 1}{#del_cat_keep_entries#}
 {else}{#del_cat_move_entries#}
 <select class="kat" size="1" name="move_category">
 <option value="0">&nbsp;</option>
@@ -384,7 +385,8 @@
 {if $key!=0}<option value="{$key}">{$val}</option>{/if}
 {/foreach}
 </select>
-{/if}
+{/if}</label></li>
+  </ul>
  </div>
  <div class="buttonbar">
   <button name="delete_category_submit" value="{#delete_category_submit#}">{#delete_category_submit#}</button>

@@ -362,9 +362,10 @@ ul.pagination .current{border:1px solid #bacbdf;color:red;font-weight:700}
 #codepicker ul{list-style-type:none;margin:0;padding:0}
 #codepicker ul a{color:#000;display:block;text-decoration:none;padding:1px 5px}
 #codepicker ul a:focus,#codepicker ul a:hover{background:#e0e0e0}
+ul.radiolist{list-style:none;padding:0;margin-inline:0}
 ul.radiobar {list-style:none;display:flex;gap:.4em;padding:0;margin-inline:0}
-ul.radiobar li{display:flex;gap:.25em;align-items:center}
-ul.radiobar input[type="radio"]{margin:0}
+ul.radiolist li,ul.radiobar li{display:flex;gap:.25em;align-items:center}
+ul.radiolist input[type="radio"],ul.radiobar input[type="radio"]{margin:0}
 .buttonbar{display:flex; flex-wrap:wrap; gap:.3em;align-items:center}
 .buttonbar > *{margin-block:0}
 .buttonbar button{padding:.3em}
