@@ -538,7 +538,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					// changes in the tags table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 					CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-					CHANGE `id` `id` int UNSIGNED NOT NULL;");
+					CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 					
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1010,7 +1010,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;");
@@ -1475,7 +1475,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
 				CHANGE `tag` `tag` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				
 				// changes in the temporary information table
@@ -1962,7 +1962,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				
 				// changes in the temporary information table
@@ -2413,7 +2413,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				
 				// changes in the temporary information table
@@ -2740,7 +2740,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				
 				// changes in the temporary information table
@@ -3067,7 +3067,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				
 				// changes in the temporary information table
@@ -3279,7 +3279,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				
 				// changes in the uploads table
@@ -3445,7 +3445,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				
 				// changes in the uploads table
@@ -3601,7 +3601,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				
 				// changes in the uploads table
@@ -3732,7 +3732,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 				
 				// changes in the tags table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
-				CHANGE `id` `id` int UNSIGNED NOT NULL;");
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
 				
 				
 				// changes in the uploads table
