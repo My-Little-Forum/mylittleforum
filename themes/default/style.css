@@ -1068,18 +1068,18 @@ html[dir="rtl"] #selectioncontrols::before {
 .notice.ok,
 .notice.spam {
 	padding-block: 0.5em;
-	padding-inline: 2.25em 0.5em;
+	padding-inline: 2.5em 0.5em;
 }
 .notice.caution,
 .notice.spam {
-	background: #ffffb8 url(images/caution.png) no-repeat 0.5em 0.625em;
+	background: #ffffb8 url(images/general-caution.svg) no-repeat 0.55em 0.55em/1.5em;
 }
 html[dir="rtl"] .notice.caution,
 html[dir="rtl"] .notice.spam {
 	background-position-x: calc(100% - 0.5em);
 }
 .notice.ok {
-	background:#5fa url(images/tick.png) no-repeat 0.55em 0.625em;
+	background:#5fa url(images/general-information.svg) no-repeat 0.55em 0.55em/1.5em;
 	border-color: #086620;
 }
 html[dir="rtl"] .notice.ok {
@@ -1143,7 +1143,8 @@ s {
 #card form > *:not(:last-child) {
 	margin-block: 0 0.375rem;
 }
-label.main {
+label.main,
+span.like-label {
 	font-weight: bold;
 	display: block;
 }
@@ -1706,18 +1707,47 @@ ul.pagination .current {
 	background: #e0e0e0;
 }
 
+/*.radiolist*/
+ul.radiolist {
+	list-style: none;
+	padding: 0;
+	margin-inline: 0;
+}
+ul.radiobar {
+	list-style: none;
+	display: flex;
+	gap: 0.4em;
+	padding: 0;
+	margin-inline: 0;
+}
+ul.radiolist li,
+ul.radiobar li {
+	display: flex;
+	gap: 0.25em;
+	align-items: center;
+}
+ul.radiolist input[type="radio"],
+ul.radiobar input[type="radio"]{
+	margin: 0;
+}
+
 /* buttonbars */
 .buttonbar {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.3em;
-	align-items: baseline;
+	align-items: center;
 }
 .buttonbar > * {
 	margin-block: 0;
 }
 .buttonbar button {
 	padding: 0.3em;
+}
+.buttonbar img:not([hidden]) {
+	display: block;
+	width: 1.5em;
+	height: 1.5em;
 }
 .buttonbar a {
 	display: inline-block;
@@ -1765,10 +1795,9 @@ ul.pagination .current {
 }
 #admin-info-install_script_exists h3 {
 	color: red;
-}
-#admin-info-install_script_exists h3::before {
-	content: url("images/caution.png");
-	padding-inline-end: 5px;
+	display: flex;
+	align-items: center;
+	gap: 0.125em
 }
 
 main > .adminmenu {
@@ -1792,7 +1821,7 @@ main > .adminmenu {
 	text-decoration: none;
 	display: flex;
 	align-items: center;
-	gap: 0.375em;
+	gap: 0.25em;
 }
 .adminmenu a:focus,
 .adminmenu a:hover {
