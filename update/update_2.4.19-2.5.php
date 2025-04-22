@@ -1033,6 +1033,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 					) AS c
 				)");
 				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
+				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -1494,6 +1499,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
 					) AS c
 				)");
+				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
 				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
@@ -1982,6 +1992,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 					) AS c
 				)");
 				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
+				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -2433,6 +2448,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 					) AS c
 				)");
 				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
+				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -2759,6 +2779,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
 					) AS c
 				)");
+				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
 				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
@@ -3087,6 +3112,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 					) AS c
 				)");
 				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
+				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
@@ -3294,6 +3324,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 					) AS c
 				)");
 				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
+				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
@@ -3460,6 +3495,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 					) AS c
 				)");
 				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
+				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
@@ -3616,6 +3656,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 					) AS c
 				)");
 				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
+				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
 				CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
@@ -3746,6 +3791,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 						ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
 					) AS c
 				)");
+				
+				// set the column uploader of any entries of deleted users to NULL
+				mysqli_query($connid, "UPDATE `". $db_settings['uploads_table'] ."`
+				SET `uploader` = NULL
+				WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);");
 				
 				// change the definition of the uploads table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['uploads_table'] . "`
