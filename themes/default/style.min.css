@@ -38,7 +38,7 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #usermenu li:not(:last-child) a{margin-inline-end:.4em}
 #usermenu li a{white-space:nowrap}
 #topsearch div{display:inline;font-size:.82em}
-#topsearch #search-input{font-family:verdana,arial,sans-serif;width:14em}
+#topsearch #search-input{width:14em}
 #subnav{background:#f9f9f9;border-top:1px solid #bacbdf;border-bottom:1px solid #bacbdf;line-height:1.8em;display:flex;flex-direction:column}
 #subnav-1,#subnav-2{font-size:.82em;margin:0;padding:0}
 html[dir="ltr"] #subnav p.subnav{margin:0;padding:0 0 0 12px;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -89px}
@@ -75,7 +75,7 @@ html[dir="rtl"] #subnavmenu a.fold-postings{background-position-x:calc(100% + 5p
 a.rss{background:url(images/bg_sprite_1.png) no-repeat 2px -1048px}
 html[dir="rtl"] a.rss{background-position-x:calc(100% + 4px)}
 p.right a.rss{padding-inline-start:15px}
-input.small,select.small{font-family:verdana,arial,sans-serif;font-size:.82em}
+input.small,select.small{font-size:.82em}
 #content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
 #content p,#content ul,#content td,#postingform{font-size:.82em;max-width:60em}
 #content li,#content ul ul{font-size:1em}
