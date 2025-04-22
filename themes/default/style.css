@@ -322,13 +322,13 @@ html[dir="rtl"] #subnavmenu a.hierarchic {
 html[dir="rtl"] #subnavmenu a.fold-postings {
 	background-position-x: calc(100% + 5px);
 }
-a.rss                    {
+a.rss {
 	background: url(images/bg_sprite_1.png) no-repeat 2px -1048px;
 }
-html[dir="rtl"] a.rss    {
+html[dir="rtl"] a.rss {
 	background-position-x: calc(100% + 4px);
 }
-p.right a.rss            {
+p.right a.rss {
 	padding-inline-start: 15px;
 }
 
