@@ -3824,3 +3824,35 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
+
+if (empty($update['errors']) && in_array($settings['version'], array('20250323.1'))) {
+	/**
+	 * From here on everything can be done as a transaction in one step
+	 */
+	if (empty($update['errors'])) {
+		mysqli_autocommit($connid, false);
+		if (empty($update['errors'])) {
+			mysqli_begin_transaction($connid);
+			try {
+				// changes in the tags table
+				// delete failed tags (with id/tid = 0) in preparation
+				// of the correction of definition of column mlf2_tags.id
+				mysqli_query($connid, "DELETE FROM `" . $db_settings['tags_table'] . "`
+				WHERE `id`= 0");
+				mysqli_query($connid, "DELETE FROM `" . $db_settings['entry_tags_table'] . "`
+				WHERE `tid`= 0");
+				mysqli_query($connid, "DELETE FROM `" . $db_settings['bookmark_tags_table'] . "`
+				WHERE `tid`= 0");
+				
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['tags_table'] . "`
+				CHANGE `id` `id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
+				
+				mysqli_commit($connid);
+			} catch (mysqli_sql_exception $exception) {
+				mysqli_rollback($connid);
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
+			}
+		}
+		mysqli_autocommit($connid, true);
+	}
+}
