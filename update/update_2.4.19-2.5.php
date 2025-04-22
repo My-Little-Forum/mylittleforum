@@ -3905,4 +3905,14 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		}
 		mysqli_autocommit($connid, true);
 	}
+	
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
+		}
+	}
 }
