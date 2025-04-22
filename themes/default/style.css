@@ -193,7 +193,6 @@ body > * {
 	font-size: 0.82em;
 }
 #topsearch #search-input {
-	font-family: verdana, arial, sans-serif;
 	width: 14em;
 }
 
@@ -335,7 +334,6 @@ p.right a.rss            {
 
 input.small,
 select.small {
-	font-family: verdana, arial, sans-serif;
 	font-size: 0.82em;
 }
 
