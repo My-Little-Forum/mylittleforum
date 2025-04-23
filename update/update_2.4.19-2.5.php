@@ -3915,4 +3915,70 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 			$update['new_version'] = $newVersion;
 		}
 	}
+	
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['items'][] = 'includes/upload_image.inc.php';
+		
+		$update['items'][] = 'js/posting.js';
+		$update['items'][] = 'js/posting.min.js';
+		
+		$update['items'][] = 'lang/';
+		
+		$update['delete'][] = 'themes/default/images/add_page.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/add_user.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/categories.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/delete_user.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/image.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/pages.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/settings.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/smilies.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/spam_protection.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/update.png (remove if present)';
+		$update['delete'][] = 'themes/default/images/user.png (remove if present)';
+		
+		$update['items'][] = 'themes/default/images/arrow-down.svg';
+		$update['items'][] = 'themes/default/images/arrow-up.svg';
+		$update['items'][] = 'themes/default/images/arrows-update.svg';
+		$update['items'][] = 'themes/default/images/categories.svg';
+		$update['items'][] = 'themes/default/images/category-delete.svg';
+		$update['items'][] = 'themes/default/images/category-edit.svg';
+		$update['items'][] = 'themes/default/images/database-no.svg';
+		$update['items'][] = 'themes/default/images/database.svg';
+		$update['items'][] = 'themes/default/images/delete-bin.svg';
+		$update['items'][] = 'themes/default/images/email-envelope.svg';
+		$update['items'][] = 'themes/default/images/file-add.svg';
+		$update['items'][] = 'themes/default/images/file-delete.svg';
+		$update['items'][] = 'themes/default/images/file-edit.svg';
+		$update['items'][] = 'themes/default/images/files.svg';
+		$update['items'][] = 'themes/default/images/general-caution.svg';
+		$update['items'][] = 'themes/default/images/general-information.svg';
+		$update['items'][] = 'themes/default/images/images.svg';
+		$update['items'][] = 'themes/default/images/keep-eye-on.svg';
+		$update['items'][] = 'themes/default/images/settings.svg';
+		$update['items'][] = 'themes/default/images/smilies-delete.svg';
+		$update['items'][] = 'themes/default/images/smilies-disable.svg';
+		$update['items'][] = 'themes/default/images/smilies-edit.svg';
+		$update['items'][] = 'themes/default/images/smilies.svg';
+		$update['items'][] = 'themes/default/images/spam-shield.svg';
+		$update['items'][] = 'themes/default/images/throbber.svg';
+		$update['items'][] = 'themes/default/images/user-add.svg';
+		$update['items'][] = 'themes/default/images/user-delete.svg';
+		$update['items'][] = 'themes/default/images/user-edit.svg';
+		$update['items'][] = 'themes/default/images/user.svg';
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/avatar.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/upload_image.tpl';
+		
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
+	}
 }
