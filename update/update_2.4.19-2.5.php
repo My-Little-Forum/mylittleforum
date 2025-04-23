@@ -633,15 +633,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'includes/user.inc.php';
 				// #427
 				$update['items'][] = 'includes/';
-				// #554, #589
-				$update['delete'][] = 'includes/classes/ (remove)';
 				
 				// #390, #498, #507
 				$update['items'][] = 'index.php';
 				
-				// #466, #543, #545, #579, #589
-				$update['delete'][] = 'js/admin.js (remove)';
-				$update['delete'][] = 'js/admin.min.js (remove)';
 				// #543, #544, #545, #546, #573, #578, #589
 				$update['items'][] = 'js/main.js';
 				// #574, #578, #589
@@ -659,8 +654,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				
 				// #427, #463, #557, #561, #562
 				$update['items'][] = 'modules/b8/';
-				// #511, #518, #559
-				$update['delete'][] = 'modules/bad-behavior/ (remove)';
 				// #581
 				$update['items'][] = 'modules/geshi/';
 				// #498, #555, #583
@@ -671,20 +664,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'modules/stringparser_bbcode/';
 				// #511, #518
 				$update['items'][] = 'modules/';
-				
-				$update['delete'][] = 'themes/default/images/add_page.png (remove)';
-				$update['delete'][] = 'themes/default/images/add_user.png (remove)';
-				$update['delete'][] = 'themes/default/images/categories.png (remove)';
-				$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
-				$update['delete'][] = 'themes/default/images/image.png (remove)';
-				$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
-				$update['delete'][] = 'themes/default/images/pages.png (remove)';
-				$update['delete'][] = 'themes/default/images/settings.png (remove)';
-				$update['delete'][] = 'themes/default/images/smilies.png (remove)';
-				$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
-				$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
-				$update['delete'][] = 'themes/default/images/update.png (remove)';
-				$update['delete'][] = 'themes/default/images/user.png (remove)';
 				
 				// #809
 				$update['items'][] = 'themes/default/images/arrow-down.svg';
@@ -714,12 +693,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'themes/default/images/user-delete.svg';
 				$update['items'][] = 'themes/default/images/user-edit.svg';
 				$update['items'][] = 'themes/default/images/user.svg';
-				// #589
-				$update['delete'][] = 'themes/default/images/backup.png (remove)';
-				// #612
-				$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-				// #612
-				$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 				// #733
 				$update['items'][] = 'themes/default/images/bg_sprite_1.png';
 				// #733
@@ -809,6 +782,33 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['items'][] = 'themes/default/upload_image.tpl';
 				// #427
 				$update['items'][] = 'themes/default/';
+				
+				// #554, #589
+				$update['delete'][] = 'includes/classes/ (remove)';
+				// #466, #543, #545, #579, #589
+				$update['delete'][] = 'js/admin.js (remove)';
+				$update['delete'][] = 'js/admin.min.js (remove)';
+				// #511, #518, #559
+				$update['delete'][] = 'modules/bad-behavior/ (remove)';
+				// #589
+				$update['delete'][] = 'themes/default/images/backup.png (remove)';
+				// #612
+				$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+				// #612
+				$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+				$update['delete'][] = 'themes/default/images/add_page.png (remove)';
+				$update['delete'][] = 'themes/default/images/add_user.png (remove)';
+				$update['delete'][] = 'themes/default/images/categories.png (remove)';
+				$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
+				$update['delete'][] = 'themes/default/images/image.png (remove)';
+				$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
+				$update['delete'][] = 'themes/default/images/pages.png (remove)';
+				$update['delete'][] = 'themes/default/images/settings.png (remove)';
+				$update['delete'][] = 'themes/default/images/smilies.png (remove)';
+				$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
+				$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
+				$update['delete'][] = 'themes/default/images/update.png (remove)';
+				$update['delete'][] = 'themes/default/images/user.png (remove)';
 				
 				$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 			}
@@ -1184,16 +1184,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		// #470, #478, #505, #525, #527, #550, #551, #566, #575, #594, #595, #654, #657
 		$update['items'][] = 'includes/user.inc.php';
 		$update['items'][] = 'includes/';
-		// #554, #589
-		$update['delete'][] = 'includes/classes/ (remove)';
 		
 		// #498, #507
 		$update['items'][] = 'index.php';
 		
-		// #466, #543, #545, #589
-		$update['delete'][] = 'js/admin.js (remove)';
-		// #466, #579, #589
-		$update['delete'][] = 'js/admin.min.js (remove)';
 		// #543, #544, #545, #546, #573, #578, #589
 		$update['items'][] = 'js/main.js';
 		// #574, #578, #589
@@ -1210,8 +1204,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		
 		// #463, #557, #561, #562
 		$update['items'][] = 'modules/b8/';
-		// #511, #518, #559
-		$update['delete'][] = 'modules/bad-behavior/ (remove)';
 		// #581
 		$update['items'][] = 'modules/geshi/';
 		// #498, #555, #583
@@ -1222,20 +1214,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$update['items'][] = 'modules/stringparser_bbcode/';
 		// #511, #518
 		$update['items'][] = 'modules/';
-		
-		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
-		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/categories.png (remove)';
-		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/image.png (remove)';
-		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
-		$update['delete'][] = 'themes/default/images/pages.png (remove)';
-		$update['delete'][] = 'themes/default/images/settings.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
-		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
-		$update['delete'][] = 'themes/default/images/update.png (remove)';
-		$update['delete'][] = 'themes/default/images/user.png (remove)';
 		
 		// #809
 		$update['items'][] = 'themes/default/images/arrow-down.svg';
@@ -1265,12 +1243,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$update['items'][] = 'themes/default/images/user-delete.svg';
 		$update['items'][] = 'themes/default/images/user-edit.svg';
 		$update['items'][] = 'themes/default/images/user.svg';
-		// #589
-		$update['delete'][] = 'themes/default/images/backup.png (remove)';
-		// #612
-		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-		// #612
-		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		// #733
 		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
 		// #733
@@ -1352,6 +1324,34 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		// #809
 		$update['items'][] = 'themes/default/upload_image.tpl';
 		$update['items'][] = 'themes/default/';
+		
+		// #554, #589
+		$update['delete'][] = 'includes/classes/ (remove)';
+		// #466, #543, #545, #589
+		$update['delete'][] = 'js/admin.js (remove)';
+		// #466, #579, #589
+		$update['delete'][] = 'js/admin.min.js (remove)';
+		// #511, #518, #559
+		$update['delete'][] = 'modules/bad-behavior/ (remove)';
+		// #589
+		$update['delete'][] = 'themes/default/images/backup.png (remove)';
+		// #612
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		// #612
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
+		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/categories.png (remove)';
+		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/image.png (remove)';
+		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
+		$update['delete'][] = 'themes/default/images/pages.png (remove)';
+		$update['delete'][] = 'themes/default/images/settings.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
+		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
+		$update['delete'][] = 'themes/default/images/update.png (remove)';
+		$update['delete'][] = 'themes/default/images/user.png (remove)';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -1695,16 +1695,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		// #470, #478, #505, #525, #527, #550, #551, #566, #575, #594, #595, #654, #657
 		$update['items'][] = 'includes/user.inc.php';
 		$update['items'][] = 'includes/';
-		// #554, #589
-		$update['delete'][] = 'includes/classes/ (remove)';
 		
 		// #498, #507
 		$update['items'][] = 'index.php';
 		
-		// #466, #543, #545, #589
-		$update['delete'][] = 'js/admin.js (remove)';
-		// #466, #579, #589
-		$update['delete'][] = 'js/admin.min.js (remove)';
 		// #543, #544, #545, #546, #573, #578, #589
 		$update['items'][] = 'js/main.js';
 		// #574, #578, #589
@@ -1721,8 +1715,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		
 		// #463, #557, #561, #562
 		$update['items'][] = 'modules/b8/';
-		// #511, #518, #559
-		$update['delete'][] = 'modules/bad-behavior/ (remove)';
 		// #581
 		$update['items'][] = 'modules/geshi/';
 		// #498, #555, #583
@@ -1733,20 +1725,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['items'][] = 'modules/stringparser_bbcode/';
 		// #511, #518
 		$update['items'][] = 'modules/';
-		
-		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
-		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/categories.png (remove)';
-		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/image.png (remove)';
-		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
-		$update['delete'][] = 'themes/default/images/pages.png (remove)';
-		$update['delete'][] = 'themes/default/images/settings.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
-		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
-		$update['delete'][] = 'themes/default/images/update.png (remove)';
-		$update['delete'][] = 'themes/default/images/user.png (remove)';
 		
 		// #809
 		$update['items'][] = 'themes/default/images/arrow-down.svg';
@@ -1776,12 +1754,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['items'][] = 'themes/default/images/user-delete.svg';
 		$update['items'][] = 'themes/default/images/user-edit.svg';
 		$update['items'][] = 'themes/default/images/user.svg';
-		// #589
-		$update['delete'][] = 'themes/default/images/backup.png (remove)';
-		// #612
-		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-		// #612
-		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		// #733
 		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
 		// #733
@@ -1863,6 +1835,34 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		// #809
 		$update['items'][] = 'themes/default/upload_image.tpl';
 		$update['items'][] = 'themes/default/';
+		
+		// #554, #589
+		$update['delete'][] = 'includes/classes/ (remove)';
+		// #466, #543, #545, #589
+		$update['delete'][] = 'js/admin.js (remove)';
+		// #466, #579, #589
+		$update['delete'][] = 'js/admin.min.js (remove)';
+		// #511, #518, #559
+		$update['delete'][] = 'modules/bad-behavior/ (remove)';
+		// #589
+		$update['delete'][] = 'themes/default/images/backup.png (remove)';
+		// #612
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		// #612
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
+		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/categories.png (remove)';
+		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/image.png (remove)';
+		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
+		$update['delete'][] = 'themes/default/images/pages.png (remove)';
+		$update['delete'][] = 'themes/default/images/settings.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
+		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
+		$update['delete'][] = 'themes/default/images/update.png (remove)';
+		$update['delete'][] = 'themes/default/images/user.png (remove)';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -2234,10 +2234,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		// #508
 		$update['items'][] = 'index.php';
 		
-		// #543, #545, #589
-		$update['delete'][] = 'js/admin.js (remove)';
-		// #579, #589
-		$update['delete'][] = 'js/admin.min.js (remove)';
 		// #543, #544, #545, #546, #573, #578, #589
 		$update['items'][] = 'js/main.js';
 		// #574, #578, #589
@@ -2250,22 +2246,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'modules/bad-behavior (remove)';
 		$update['items'][] = 'modules/';
-		
-		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
-		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/categories.png (remove)';
-		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/image.png (remove)';
-		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
-		$update['delete'][] = 'themes/default/images/pages.png (remove)';
-		$update['delete'][] = 'themes/default/images/settings.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
-		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
-		$update['delete'][] = 'themes/default/images/update.png (remove)';
-		$update['delete'][] = 'themes/default/images/user.png (remove)';
 		
 		// #809
 		$update['items'][] = 'themes/default/images/arrow-down.svg';
@@ -2295,12 +2276,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$update['items'][] = 'themes/default/images/user-delete.svg';
 		$update['items'][] = 'themes/default/images/user-edit.svg';
 		$update['items'][] = 'themes/default/images/user.svg';
-		// #589
-		$update['delete'][] = 'themes/default/images/backup.png (remove)';
-		// #612
-		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
-		// #612
-		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
 		// #733
 		$update['items'][] = 'themes/default/images/bg_sprite_1.png';
 		// #733
@@ -2376,6 +2351,33 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		// #809
 		$update['items'][] = 'themes/default/upload_image.tpl';
 		$update['items'][] = 'themes/default/';
+		
+		// #543, #545, #589
+		$update['delete'][] = 'js/admin.js (remove)';
+		// #579, #589
+		$update['delete'][] = 'js/admin.min.js (remove)';
+		//
+		$update['delete'][] = 'modules/bad-behavior (remove)';
+		// #589
+		$update['delete'][] = 'themes/default/images/backup.png (remove)';
+		// #612
+		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove)';
+		// #612
+		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove)';
+		// #809
+		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
+		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/categories.png (remove)';
+		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/image.png (remove)';
+		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
+		$update['delete'][] = 'themes/default/images/pages.png (remove)';
+		$update['delete'][] = 'themes/default/images/settings.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
+		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
+		$update['delete'][] = 'themes/default/images/update.png (remove)';
+		$update['delete'][] = 'themes/default/images/user.png (remove)';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -2702,9 +2704,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['items'][] = 'modules/';
 		
+		$update['items'][] = 'themes/default/';
+		
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove if present)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove if present)';
 		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
@@ -2720,8 +2724,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
 		$update['delete'][] = 'themes/default/images/update.png (remove)';
 		$update['delete'][] = 'themes/default/images/user.png (remove)';
-		
-		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -3048,9 +3050,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['items'][] = 'modules/';
 		
+		$update['items'][] = 'themes/default/';
+		
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove if present)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove if present)';
 		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
@@ -3066,8 +3070,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
 		$update['delete'][] = 'themes/default/images/update.png (remove)';
 		$update['delete'][] = 'themes/default/images/user.png (remove)';
-		
-		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -3394,9 +3396,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['items'][] = 'modules/';
 		
+		$update['items'][] = 'themes/default/';
+		
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove if present)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove if present)';
 		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
@@ -3412,8 +3416,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
 		$update['delete'][] = 'themes/default/images/update.png (remove)';
 		$update['delete'][] = 'themes/default/images/user.png (remove)';
-		
-		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -3613,9 +3615,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['items'][] = 'modules/';
 		
+		$update['items'][] = 'themes/default/';
+		
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_x.png (remove if present)';
 		$update['delete'][] = 'themes/default/images/bg_gradient_y.png (remove if present)';
 		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
@@ -3631,8 +3635,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
 		$update['delete'][] = 'themes/default/images/update.png (remove)';
 		$update['delete'][] = 'themes/default/images/user.png (remove)';
-		
-		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -3791,6 +3793,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		
 		$update['items'][] = 'lang/';
 		
+		$update['items'][] = 'themes/default/';
+		
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
 		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
@@ -3805,8 +3809,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
 		$update['delete'][] = 'themes/default/images/update.png (remove)';
 		$update['delete'][] = 'themes/default/images/user.png (remove)';
-		
-		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -3965,6 +3967,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 		
 		$update['items'][] = 'lang/';
 		
+		$update['items'][] = 'themes/default/';
+		
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
 		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
@@ -3979,8 +3983,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
 		$update['delete'][] = 'themes/default/images/update.png (remove)';
 		$update['delete'][] = 'themes/default/images/user.png (remove)';
-		
-		$update['items'][] = 'themes/default/';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -4111,21 +4113,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'modules/bad-behavior (remove if present)';
-		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
-		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/categories.png (remove)';
-		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/image.png (remove)';
-		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
-		$update['delete'][] = 'themes/default/images/pages.png (remove)';
-		$update['delete'][] = 'themes/default/images/settings.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
-		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
-		$update['delete'][] = 'themes/default/images/update.png (remove)';
-		$update['delete'][] = 'themes/default/images/user.png (remove)';
-		
 		$update['items'][] = 'themes/default/images/arrow-down.svg';
 		$update['items'][] = 'themes/default/images/arrow-up.svg';
 		$update['items'][] = 'themes/default/images/arrows-update.svg';
@@ -4172,6 +4159,21 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		$update['items'][] = 'themes/default/style.css';
 		$update['items'][] = 'themes/default/style.min.css';
 		$update['items'][] = 'themes/default/upload_image.tpl';
+		
+		$update['delete'][] = 'modules/bad-behavior (remove if present)';
+		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
+		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/categories.png (remove)';
+		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/image.png (remove)';
+		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
+		$update['delete'][] = 'themes/default/images/pages.png (remove)';
+		$update['delete'][] = 'themes/default/images/settings.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
+		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
+		$update['delete'][] = 'themes/default/images/update.png (remove)';
+		$update['delete'][] = 'themes/default/images/user.png (remove)';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
@@ -4227,20 +4229,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		
 		$update['items'][] = 'lang/';
 		
-		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
-		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/categories.png (remove)';
-		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
-		$update['delete'][] = 'themes/default/images/image.png (remove)';
-		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
-		$update['delete'][] = 'themes/default/images/pages.png (remove)';
-		$update['delete'][] = 'themes/default/images/settings.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
-		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
-		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
-		$update['delete'][] = 'themes/default/images/update.png (remove)';
-		$update['delete'][] = 'themes/default/images/user.png (remove)';
-		
 		$update['items'][] = 'themes/default/images/arrow-down.svg';
 		$update['items'][] = 'themes/default/images/arrow-up.svg';
 		$update['items'][] = 'themes/default/images/arrows-update.svg';
@@ -4280,6 +4268,20 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		$update['items'][] = 'themes/default/style.css';
 		$update['items'][] = 'themes/default/style.min.css';
 		$update['items'][] = 'themes/default/upload_image.tpl';
+		
+		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
+		$update['delete'][] = 'themes/default/images/add_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/categories.png (remove)';
+		$update['delete'][] = 'themes/default/images/delete_user.png (remove)';
+		$update['delete'][] = 'themes/default/images/image.png (remove)';
+		$update['delete'][] = 'themes/default/images/keep_eye_on.png (remove)';
+		$update['delete'][] = 'themes/default/images/pages.png (remove)';
+		$update['delete'][] = 'themes/default/images/settings.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies.png (remove)';
+		$update['delete'][] = 'themes/default/images/smilies_disable.png (remove)';
+		$update['delete'][] = 'themes/default/images/spam_protection.png (remove)';
+		$update['delete'][] = 'themes/default/images/update.png (remove)';
+		$update['delete'][] = 'themes/default/images/user.png (remove)';
 		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
