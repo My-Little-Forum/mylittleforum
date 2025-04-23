@@ -1,6 +1,16 @@
 my little forum changelog
 -------------------------
 
+20250422.1 (2025-04-22)
+-----------------------
+
+- fix: when introducing the new feature of adding entries for existing but unmanaged uploads we changed a column name but forgot to change in in the upload processing script, corrected the column name
+- fix: when introducing the new feature of adding entries for existing but unmanaged uploads we changed the column definition for the uploaders ID to store only NULL or IDs of existing users, this did not take into account entries from users that have since been deleted, check for such entries and set the uploaders ID to NULL before changing the column definition
+- fix: when adding the attribute UNSIGNED to several index columns we forgot to define AUTO_INCREMENT for column mlf2_tags.id, this caused hiding of completely new tags behind an invalid index
+- fix: remove a superfluous comma in a postings metadata in the template themes/default/subtemplates/entry.inc.tpl
+- change: rework a few forms for providing the admins password and for creating new categories in the admin area
+- change: replace all PNG- and GIF-icons, which are in use in the admin area, with SVG icons
+
 20250323.1 (2025-03-23)
 -----------------------
 
