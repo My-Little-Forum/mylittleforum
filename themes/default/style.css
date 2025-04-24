@@ -412,15 +412,6 @@ select.small {
 #footermenu li a.rss {
 	padding-inline-start: 15px;
 }
-#footermenu a.go-to-top-link {
-	padding-inline-start: 12px;
-}
-html[dir="ltr"] #footermenu a.go-to-top-link {
-	background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%;
-}
-html[dir="rtl"] #footermenu a.go-to-top-link {
-	background: url(images/arrow_up.png) no-repeat 100% 0 / auto 90%;
-}
 
 #pbmlf {
 	text-align: center;
@@ -778,13 +769,6 @@ html[dir="rtl"] .posting-footer a.edit {
 }
 html[dir="rtl"] .posting-footer a.delete {
 	background-position-x: calc(100% + 3px);
-}
-.posting-footer a.go-to-top-link {
-	padding-inline-start: 12px;
-	background: url(images/arrow_up.png) no-repeat 0 0 / auto 90%;
-}
-html[dir="rtl"] .posting-footer a.go-to-top-link {
-	background-position-x: 100%;
 }
 .posting-footer a.add-bookmark {
 	padding-inline-start: 13px;
