@@ -72,8 +72,8 @@
 {if $element.options.edit}<li><a href="index.php?mode=posting&amp;edit={$element.id}&amp;back=thread" class="edit" title="{#edit_message_linktitle#}">{#edit_message_linkname#}</a></li>{/if}
 {if $element.options.delete}<li><a href="index.php?mode=posting&amp;delete_posting={$element.id}&amp;csrf_token={$CSRF_TOKEN}&amp;back=thread" class="delete" title="{#delete_message_linktitle#}">{#delete_message_linkname#}</a></li>{/if}
 {if $element.options.move}<li><a href="index.php?mode=posting&amp;move_posting={$element.id}&amp;back=thread" class="move" title="{#move_posting_linktitle#}">{#move_posting_linkname#}</a></li>{/if}
-{if $element.options.report_spam}<li><a href="index.php?mode=posting&amp;report_spam={$element.id}&amp;back=thread" class="report-spam" title="{#report_spam_linktitle#}">{#report_spam_linkname#}</a></li>{/if}
-{if $element.options.flag_ham}<li><a href="index.php?mode=posting&amp;flag_ham={$element.id}&amp;back=thread" class="report-ham" title="{#flag_ham_linktitle#}">{#flag_ham_linkname#}</a></li>{/if}
+{if $element.options.report_spam}<li><a href="index.php?mode=posting&amp;report_spam={$element.id}&amp;back=thread" title="{#report_spam_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/caution.svg" alt="" width="13" height="13"/><span>{#report_spam_linkname#}</span></a></li>{/if}
+{if $element.options.flag_ham}<li><a href="index.php?mode=posting&amp;flag_ham={$element.id}&amp;back=thread" title="{#flag_ham_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/tick.svg" alt="" width="13" height="13"/><span>{#flag_ham_linkname#}</span></a></li>{/if}
 {if $element.options.lock}<li><a href="index.php?mode=posting&amp;lock={$element.id}&amp;back=thread" class="{if $element.locked==0}lock{else}unlock{/if}" title="{if $element.locked==0}{#lock_linktitle#}{else}{#unlock_linktitle#}{/if}">{if $element.locked==0}{#lock_linkname#}{else}{#unlock_linkname#}{/if}</a></li>
 {if $element.pid==0}
 {if $element.thread_locked == 1}
