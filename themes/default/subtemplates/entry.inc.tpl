@@ -60,8 +60,8 @@
 {if $options.edit}<li><a href="index.php?mode=posting&amp;edit={$id}&amp;back=entry" class="edit" title="{#edit_message_linktitle#}">{#edit_message_linkname#}</a></li>{/if}
 {if $options.delete}<li><a href="index.php?mode=posting&amp;delete_posting={$id}&amp;csrf_token={$CSRF_TOKEN}&amp;back=entry" class="delete" title="{#delete_message_linktitle#}">{#delete_message_linkname#}</a></li>{/if}
 {if $options.move}<li><a href="index.php?mode=posting&amp;move_posting={$id}&amp;back=entry" class="move" title="{#move_posting_linktitle#}">{#move_posting_linkname#}</a></li>{/if}
-{if $options.report_spam}<li><a href="index.php?mode=posting&amp;report_spam={$id}&amp;back=entry" class="report" title="{#report_spam_linktitle#}">{#report_spam_linkname#}</a></li>{/if}
-{if $options.flag_ham}<li><a href="index.php?mode=posting&amp;flag_ham={$id}&amp;back=entry" class="report" title="{#flag_ham_linktitle#}">{#flag_ham_linkname#}</a></li>{/if}
+{if $options.report_spam}<li><a href="index.php?mode=posting&amp;report_spam={$id}&amp;back=entry" class="report-spam" title="{#report_spam_linktitle#}">{#report_spam_linkname#}</a></li>{/if}
+{if $options.flag_ham}<li><a href="index.php?mode=posting&amp;flag_ham={$id}&amp;back=entry" class="report-ham" title="{#flag_ham_linktitle#}">{#flag_ham_linkname#}</a></li>{/if}
 {if $options.lock}<li><a href="index.php?mode=posting&amp;lock={$id}&amp;back=entry" class="{if $locked==0}lock{else}unlock{/if}" title="{if $locked==0}{#lock_linktitle#}{else}{#unlock_linktitle#}{/if}">{if $locked==0}{#lock_linkname#}{else}{#unlock_linkname#}{/if}</a></li>
 <li><a href="index.php?mode=posting&amp;lock_thread={$id}&amp;back=entry" class="lock-thread" title="{#lock_thread_linktitle#}">{#lock_thread_linkname#}</a></li>
 <li><a href="index.php?mode=posting&amp;unlock_thread={$id}&amp;back=entry" class="unlock-thread" title="{#unlock_thread_linktitle#}">{#unlock_thread_linkname#}</a></li>{/if}
