@@ -62,7 +62,7 @@
 {/if}
 </div>
 <footer class="posting-footer">
-<div class="reply">{if $element.locked==0}<a class="stronglink" href="index.php?mode=posting&amp;id={$element.id}&amp;back=thread" title="{#reply_link_title#}">{#reply_link#}</a>{else}<span class="locked">{#posting_locked#}</span>{/if}</div>
+<div class="reply">{if $element.locked==0}<a class="stronglink" href="index.php?mode=posting&amp;id={$element.id}&amp;back=thread" title="{#reply_link_title#}">{#reply_link#}</a>{else}<span class="locked"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-lock-closed.svg" alt="" width="13" height="13"/><span>{#posting_locked#}</span></span>{/if}</div>
 {if $element.views}<div class="views">{if $element.views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$element.views}{/if}</div>{/if}
 {if $element.options}
 <ul class="options">
