@@ -161,10 +161,6 @@ html[dir="rtl"] .posting-footer .locked{background-position-x:calc(100% + 2px)}
 html[dir="rtl"] .posting-footer a.edit{background-position-x:100%}
 .posting-footer a.delete{padding-inline-start:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -47px}
 html[dir="rtl"] .posting-footer a.delete{background-position-x:calc(100% + 3px)}
-.posting-footer a.add-bookmark{padding-inline-start:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -98px}
-html[dir="rtl"] .posting-footer a.add-bookmark{background-position-x:calc(100% + 3px)}
-.posting-footer a.delete-bookmark{padding-inline-start:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -148px}
-html[dir="rtl"] .posting-footer a.delete-bookmark{background-position-x:calc(100% + 3px)}
 .posting-footer a.move{padding-inline-start:13px;background:url(images/bg_sprite_4.png) no-repeat 0 2px}
 html[dir="rtl"] .posting-footer a.move{background-position:100% -449px}
 .posting-footer a.report-spam{padding-inline-start:13px;background:url(images/bg_sprite_4.png) no-repeat 0 -47px}

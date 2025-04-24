@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="plate" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#ebf4fa" />
+   <stop offset="50%" stop-color="#d2e2e8" />
+   <stop offset="100%" stop-color="#b2d2d8" />
+  </linearGradient>
+  <linearGradient id="head" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#40d848" />
+   <stop offset="100%" stop-color="#149f20" />
+  </linearGradient>
+ </defs>
+ <style type="text/css"><![CDATA[
+  svg { fill: transparent; }
+  #bookmark { fill: url(#plate); stroke: #739ac3; stroke-width: 12px; stroke-linejoin: round; }
+  #shield { fill: url(#head); stroke: #52dc58; stroke-width: 12; }
+  #border { fill: none; stroke: #08af38; stroke-width: 12; }
+  #sign { fill: #fff; stroke-width: 5; stroke: #fdfdfd; stroke-linejoin: round; }
+  ]]></style>
+ <g>
+  <path id="bookmark" d="M 68,8 h 128 v 248 l -64,-80 -64,80 z" />
+ </g>
+ <g id="add-sign" transform="translate(101.5, 101.5) scale(0.625)">
+  <circle id="border" cx="132" cy="132" r="122" />
+  <circle id="shield" cx="132" cy="132" r="110" />
+  <path id="sign" d="M 107,47 h 50 v 60 h 60 v 50 h -60 v 60 h -50 v -60 h -60 v -50 h 60 z" />
+ </g>
+</svg>

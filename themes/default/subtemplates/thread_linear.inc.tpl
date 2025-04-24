@@ -67,8 +67,8 @@
 {if $element.options}
 <ul class="options">
 <li><a href="#top" title="{#back_to_top_link_title#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="" width="13" height="13"/><span>{#back_to_top_link#}</span></a></li>
-{if $element.options.add_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$element.id}&amp;back=thread" class="add-bookmark" title="{#add_bookmark_message_linktitle#}">{#add_bookmark_message_linkname#}</a></li>{/if}
-{if $element.options.delete_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$element.id}&amp;back=thread" class="delete-bookmark" title="{#delete_bookmark_message_linktitle#}">{#delete_bookmark_message_linkname#}</a></li>{/if}
+{if $element.options.add_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$element.id}&amp;back=thread" title="{#add_bookmark_message_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/bookmark-add.svg" alt="" width="13" height="13"/><span>{#add_bookmark_message_linkname#}</span></a></li>{/if}
+{if $element.options.delete_bookmark}<li><a href="index.php?mode=posting&amp;bookmark={$element.id}&amp;back=thread" title="{#delete_bookmark_message_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/bookmark-delete.svg" alt="" width="13" height="13"/><span>{#delete_bookmark_message_linkname#}</span></a></li>{/if}
 {if $element.options.edit}<li><a href="index.php?mode=posting&amp;edit={$element.id}&amp;back=thread" class="edit" title="{#edit_message_linktitle#}">{#edit_message_linkname#}</a></li>{/if}
 {if $element.options.delete}<li><a href="index.php?mode=posting&amp;delete_posting={$element.id}&amp;csrf_token={$CSRF_TOKEN}&amp;back=thread" class="delete" title="{#delete_message_linktitle#}">{#delete_message_linkname#}</a></li>{/if}
 {if $element.options.move}<li><a href="index.php?mode=posting&amp;move_posting={$element.id}&amp;back=thread" class="move" title="{#move_posting_linktitle#}">{#move_posting_linkname#}</a></li>{/if}
