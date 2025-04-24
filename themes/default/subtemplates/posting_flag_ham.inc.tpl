@@ -8,7 +8,7 @@
 {elseif $akismet_spam == 0 && $akismet_spam_check_status == 1 && $b8_spam == 0 && $b8_training_type == 1}
  {#posting_not_flagged_as_spam#}
 {else}
- <p class="notice caution">{#caution#}</p>
+ <p class="notice info">{#caution#}</p>
  <p>{#flag_ham_warning#}</p>
  <p><span class="subject">{$subject}</span> - <span class="metadata"><span class="author-name">{$name}</span>, <span class="tail"><time datetime="{$ISO_time}">{$formated_time}</time></span></span></p>
  <form action="index.php" method="post" accept-charset="{#charset#}">
