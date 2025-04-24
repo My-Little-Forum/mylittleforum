@@ -74,9 +74,13 @@
 {if $data.$element.options.move}<li><a href="index.php?mode=posting&amp;move_posting={$data.$element.id}&amp;back=thread" class="move" title="{#move_posting_linktitle#}">{#move_posting_linkname#}</a></li>{/if}
 {if $data.$element.options.report_spam}<li><a href="index.php?mode=posting&amp;report_spam={$data.$element.id}&amp;back=thread" title="{#report_spam_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/caution.svg" alt="" width="13" height="13"/><span>{#report_spam_linkname#}</span></a></li>{/if}
 {if $data.$element.options.flag_ham}<li><a href="index.php?mode=posting&amp;flag_ham={$data.$element.id}&amp;back=thread" title="{#flag_ham_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/tick.svg" alt="" width="13" height="13"/><span>{#flag_ham_linkname#}</span></a></li>{/if}
-{if $data.$element.options.lock}<li><a href="index.php?mode=posting&amp;lock={$data.$element.id}&amp;back=thread" class="{if $data.$element.locked==0}lock{else}unlock{/if}" title="{if $data.$element.locked==0}{#lock_linktitle#}{else}{#unlock_linktitle#}{/if}">{if $data.$element.locked==0}{#lock_linkname#}{else}{#unlock_linkname#}{/if}</a></li>
+{if $data.$element.options.lock}
+{if $data.$element.locked==0}
+<li><a href="index.php?mode=posting&amp;lock={$data.$element.id}&amp;back=thread" title="{#lock_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-lock-closed.svg" alt="" width="13" height="13"/><span>{#lock_linkname#}</span></a></li>
+{else}
+<li><a href="index.php?mode=posting&amp;lock={$data.$element.id}&amp;back=thread" title="{#unlock_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-lock-open.svg" alt="" width="13" height="13"/><span>{#unlock_linkname#}</span></a></li>
+{/if}
 {if $data.$element.pid==0}
-{if $data.$element.thread_locked == 1}
 <li><a href="index.php?mode=posting&amp;unlock_thread={$data.$element.id}&amp;back=thread" class="unlock-thread" title="{#unlock_thread_linktitle#}">{#unlock_thread_linkname#}</a></li>
 {else}
 <li><a href="index.php?mode=posting&amp;lock_thread={$data.$element.id}&amp;back=thread" class="lock-thread" title="{#lock_thread_linktitle#}">{#lock_thread_linkname#}</a></li>
