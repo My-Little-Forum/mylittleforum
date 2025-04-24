@@ -226,13 +226,11 @@ html[dir="rtl"] #selectioncontrols::before{transform:scaleX(-1)}
 .thread li{font-size:1em}
 .thread li li{font-size:1em}
 .thrbeg{font-weight:700}
-.spam,.caution,.ok{font-weight:bold}
 .spam,.caution{color:#882008;background-color:#ff5}
 .ok{color:#086620}
-.notice{border:1px solid}
+.notice{border:1px solid;font-weight:bold;padding-block:.5em;padding-inline:2.5em .5em}
 .notice.spam{padding:.5em}
 .notice.spam,.notice.caution{border-color:#882008}
-.notice.caution,.notice.ok,.notice.spam{padding-block:.5em;padding-inline:2.5em .5em}
 .notice.caution,.notice.spam{background:#ffffb8 url(images/general-caution.svg) no-repeat .55em .55em/1.5em}
 html[dir="rtl"] .notice.caution,html[dir="rtl"] .notice.spam{background-position-x:calc(100% - .5em)}
 .notice.ok{background:#5fa url(images/general-information.svg) no-repeat .55em .55em/1.5em;border-color:#086620}
