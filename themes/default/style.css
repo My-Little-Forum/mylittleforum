@@ -765,13 +765,6 @@ html[dir="rtl"] .posting-footer a.delete {
 html[dir="rtl"] .posting-footer a.move {
 	background-position: 100% -449px;
 }
-.posting-footer a.report {
-	padding-inline-start: 13px;
-	background: url(images/bg_sprite_4.png) no-repeat 0 -48px;
-}
-html[dir="rtl"] .posting-footer a.report {
-	background-position-x: calc(100% + 2px);
-}
 .posting-footer a.lock {
 	padding-inline-start: 14px;
 	background: url(images/bg_sprite_4.png) no-repeat 0 -99px;
