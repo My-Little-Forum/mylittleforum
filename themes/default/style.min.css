@@ -226,9 +226,9 @@ html[dir="rtl"] #selectioncontrols::before{transform:scaleX(-1)}
 .thread li{font-size:1em}
 .thread li li{font-size:1em}
 .thrbeg{font-weight:700}
-.spam,.caution{color:#882008;background-color:#ff5}
 .ok{color:#086620}
 .notice{border:1px solid;font-weight:bold;padding-block:.5em;padding-inline:2.5em .5em}
+.spam,.caution{color:#882008;}
 .notice.spam{padding:.5em}
 .notice.spam,.notice.caution{border-color:#882008}
 .notice.caution,.notice.spam{background:#ffffb8 url(images/general-caution.svg) no-repeat .55em .55em/1.5em}
