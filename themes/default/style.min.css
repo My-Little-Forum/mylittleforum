@@ -178,7 +178,7 @@ html[dir="rtl"] .posting-footer a.delete-bookmark{background-position-x:calc(100
 html[dir="rtl"] .posting-footer a.move{background-position:100% -449px}
 .posting-footer a.report-spam{padding-inline-start:13px;background:url(images/bg_sprite_4.png) no-repeat 0 -47px}
 html[dir="rtl"] .posting-footer a.report-spam{background-position-x:calc(100% + 2px)}
-.posting-footer a.report-ham{padding-inline-start:13px;background:url(images/tick.png) no-repeat 0 2px / 1.1em}
+.posting-footer a.report-ham{padding-inline-start:15px;background:url(images/tick.png) no-repeat 0 1px / 1.1em}
 html[dir="rtl"] .posting-footer a.report-ham{background-position-x:100%}
 .posting-footer a.lock{padding-inline-start:14px;background:url(images/bg_sprite_4.png) no-repeat 0 -100px}
 html[dir="rtl"] .posting-footer a.lock{background-position-x:calc(100% + 2px)}
