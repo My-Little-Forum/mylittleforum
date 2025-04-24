@@ -233,7 +233,7 @@ html[dir="rtl"] #selectioncontrols::before{transform:scaleX(-1)}
 .notice.spam,.notice.caution{border-color:#882008}
 .notice.caution,.notice.spam{background:#ffffb8 url(images/general-caution.svg) no-repeat .55em .55em/1.5em}
 html[dir="rtl"] .notice.caution,html[dir="rtl"] .notice.spam{background-position-x:calc(100% - .5em)}
-.notice.ok{background:#5fa url(images/general-information.svg) no-repeat .55em .55em/1.5em;border-color:#086620}
+.notice.ok{background:#afc url(images/tick.svg) no-repeat .55em .55em/1.5em;border-color:#086620}
 html[dir="rtl"] .notice.ok{background-position-x:calc(100% - .55em)}
 .entryline{clear:both;margin:15px 0;border-top:1px dotted gray;border-left:0;border-right:0;border-bottom:0;height:1px}
 .marked-threads{margin:30px 0 0;font-size:11px}
