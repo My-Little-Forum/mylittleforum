@@ -10,7 +10,6 @@ a:visited{color:#00c}
 a:focus,a:hover{color:#00f;text-decoration:underline}
 a:active{color:red}
 a.stronglink{color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat}
-a:has(img.icon){display:flex;align-items:center;gap:.125em}
 html[dir="ltr"] a.stronglink{padding-left:13px;background-position:left 4px}
 html[dir="rtl"] a.stronglink{padding-right:13px;background-position:right -1306px}
 a.stronglink:visited{color:#00c}
@@ -18,6 +17,7 @@ a.stronglink:focus,a.stronglink:hover{color:#00f;text-decoration:underline;backg
 html[dir="ltr"] a.stronglink:focus,html[dir="ltr"] a.stronglink:hover{background-position:left -46px}
 html[dir="rtl"] a.stronglink:focus,html[dir="rtl"] a.stronglink:hover{background-position:right -1356px}
 a.stronglink:active{color:red}
+:is(a,span):has(img.icon){display:flex;align-items:center;gap:.125em}
 img.next{background:url(images/bg_sprite_2.png) no-repeat 0 -11px}
 img.next:hover{background:url(images/bg_sprite_2.png) no-repeat -6px -11px}
 img.previous{background:url(images/bg_sprite_2.png) no-repeat 0 0}
@@ -151,8 +151,7 @@ html[dir="rtl"] blockquote{background-position-x:right}
 blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 .posting-footer{margin:1em 0 0;padding:0;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas:"pageviews" "replylink" "moderationlinks";gap:.25em}
 .posting-footer .reply{font-size:.82em;grid-area:replylink}
-.posting-footer .locked{font-size:.82em;color:gray;padding-inline-start:16px;background:url(images/locked.png) no-repeat 0 0}
-html[dir="rtl"] .posting-footer .locked{background-position-x:calc(100% + 2px)}
+.posting-footer .locked{font-size:.82em;color:gray}
 .posting-footer .views{font-size:.69em;color:gray;text-align:end;grid-area:pageviews}
 #content .posting-footer .options{font-size:.69em!important;list-style-type:none;max-width:100%;margin:0;padding:0;grid-area:moderationlinks;display:flex;flex-wrap:wrap;gap:.5em;justify-content:flex-start}
 .posting-footer .options li{margin:0}

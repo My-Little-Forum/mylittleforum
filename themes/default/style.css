@@ -100,6 +100,12 @@ a.stronglink:active {
 	color: #ff0000;
 }
 
+:is(a, span):has(img.icon) {
+	display: flex;
+	align-items: center;
+	gap: 0.125em;
+}
+
 img.next {
 	background: url(images/bg_sprite_2.png) no-repeat 0 -11px;
 }
@@ -714,11 +720,6 @@ blockquote code {
 .posting-footer .locked {
 	font-size: 0.82em;
 	color: #808080;
-	padding-inline-start: 16px;
-	background: url(images/locked.png) no-repeat 0 0;
-}
-html[dir="rtl"] .posting-footer .locked {
-	background-position-x: calc(100% + 2px);
 }
 .posting-footer .views {
 	font-size: 0.69em;
