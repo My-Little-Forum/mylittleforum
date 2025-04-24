@@ -176,8 +176,10 @@ html[dir="rtl"] .posting-footer a.add-bookmark{background-position-x:calc(100% +
 html[dir="rtl"] .posting-footer a.delete-bookmark{background-position-x:calc(100% + 3px)}
 .posting-footer a.move{padding-inline-start:13px;background:url(images/bg_sprite_4.png) no-repeat 0 2px}
 html[dir="rtl"] .posting-footer a.move{background-position:100% -449px}
-.posting-footer a.report{padding-inline-start:13px;background:url(images/bg_sprite_4.png) no-repeat 0 -48px}
-html[dir="rtl"] .posting-footer a.report{background-position-x:calc(100% + 2px)}
+.posting-footer a.report-spam{padding-inline-start:13px;background:url(images/bg_sprite_4.png) no-repeat 0 -47px}
+html[dir="rtl"] .posting-footer a.report-spam{background-position-x:calc(100% + 2px)}
+.posting-footer a.report-ham{padding-inline-start:13px;background:url(images/tick.png) no-repeat 0 2px / 1.1em}
+html[dir="rtl"] .posting-footer a.report-ham{background-position-x:100%}
 .posting-footer a.lock{padding-inline-start:14px;background:url(images/bg_sprite_4.png) no-repeat 0 -100px}
 html[dir="rtl"] .posting-footer a.lock{background-position-x:calc(100% + 2px)}
 .posting-footer a.unlock{padding-inline-start:14px;background:url(images/bg_sprite_4.png) no-repeat 0 -149px}
