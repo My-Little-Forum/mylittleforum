@@ -95,8 +95,8 @@ window.MathJax = {
 {if $forum_time_zone}{#forum_time_with_time_zone#|replace:'[time]':$forum_time|replace:'[time_zone]':$forum_time_zone}{else}{#forum_time#|replace:'[time]':$forum_time}{/if}</div>
 <div id="footerlinklist">
 <ul id="footermenu">
- <li><a href="#top" class="go-to-top-link" title="{#back_to_top_link_title#}">{#back_to_top_link#}</a></li>
  <li><a href="index.php?mode=contact" title="{#contact_linktitle#}" rel="nofollow">{#contact_link#}</a></li>
+ <li><a href="#top" title="{#back_to_top_link_title#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="" width="14" height="14"/><span>{#back_to_top_link#}</span></a></li>
 {if $settings.rss_feed==1} <li><a href="index.php?mode=rss" title="{#rss_feed_postings_title#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/rss-logo.svg" alt="" width="14" height="14"/><span>{#rss_feed_postings#}</span></a></li>
  <li><a href="index.php?mode=rss&amp;items=thread_starts" title="{#rss_feed_new_threads_title#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/rss-logo.svg" alt="" width="14" height="14"/><span>{#rss_feed_new_threads#}</span></a></li>{/if}
 </ul>
