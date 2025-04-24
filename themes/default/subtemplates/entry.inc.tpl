@@ -72,7 +72,8 @@
 
 <hr class="entryline" />
 <div class="complete-thread">
-<p class="left"><strong>{#complete_thread_marking#}</strong></p><p class="right">&nbsp;{if $settings.rss_feed==1}<a class="rss" href="index.php?mode=rss&amp;thread={$tid}" title="{#rss_feed_thread_title#}">{#rss_feed_thread#}</a>{/if}</p>
+<p class="left"><strong>{#complete_thread_marking#}</strong></p>
+<p class="right">&nbsp;{if $settings.rss_feed==1}<a href="index.php?mode=rss&amp;thread={$tid}" title="{#rss_feed_thread_title#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/rss-logo.svg" alt="" width="14" height="14"/><span>{#rss_feed_thread#}</span></a>{/if}</p>
 </div>
 
 <ul class="thread openthread">

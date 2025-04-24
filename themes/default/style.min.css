@@ -10,6 +10,7 @@ a:visited{color:#00c}
 a:focus,a:hover{color:#00f;text-decoration:underline}
 a:active{color:red}
 a.stronglink{color:#00c;text-decoration:none;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat}
+a:has(img.icon){display:flex;align-items:center;gap:.125em}
 html[dir="ltr"] a.stronglink{padding-left:13px;background-position:left 4px}
 html[dir="rtl"] a.stronglink{padding-right:13px;background-position:right -1306px}
 a.stronglink:visited{color:#00c}
@@ -72,9 +73,6 @@ html[dir="rtl"] #subnavmenu a.linear{background-position-x:calc(100% + 5px)}
 html[dir="rtl"] #subnavmenu a.hierarchic{background-position-x:calc(100% + 5px)}
 #subnavmenu a.fold-postings{padding-inline-start:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -998px}
 html[dir="rtl"] #subnavmenu a.fold-postings{background-position-x:calc(100% + 5px)}
-a.rss{background:url(images/bg_sprite_1.png) no-repeat 2px -1048px}
-html[dir="rtl"] a.rss{background-position-x:calc(100% + 4px)}
-p.right a.rss{padding-inline-start:15px}
 input.small,select.small{font-size:.82em}
 #content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
 #content p,#content ul,#content td,#postingform{font-size:.82em;max-width:60em}
@@ -89,7 +87,6 @@ input.small,select.small{font-size:.82em}
 #footermenu li{margin:0}
 #footermenu li:not(:last-child):after{content: "|"}
 #footermenu li:not(:last-child) a{margin-inline-end:.4em}
-#footermenu li a.rss{padding-inline-start:15px}
 #footermenu a.go-to-top-link{padding-inline-start:12px}
 html[dir="ltr"] #footermenu a.go-to-top-link{background:url(images/arrow_up.png) no-repeat 0 0 / auto 90%}
 html[dir="rtl"] #footermenu a.go-to-top-link{background:url(images/arrow_up.png) no-repeat 100% 0 / auto 90%}
