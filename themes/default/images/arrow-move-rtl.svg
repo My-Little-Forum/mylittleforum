@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="264" viewBox="0 0 264 264">
+ <defs>
+  <linearGradient id="frame" x1="100%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#87c97d" />
+   <stop offset="100%" stop-color="#286824" />
+  </linearGradient>
+  <linearGradient id="plate" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#a5d49c" />
+   <stop offset="100%" stop-color="#79bd73" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #arrow { fill: url(#plate); stroke: url(#frame); stroke-width: 12; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g>
+  <path transform="rotate(-90) scale(-1,1)" transform-origin="center" id="arrow" d="M 72,15 l 55,50 -30,0 0,70 a 32 32, 0, 0, 0, 32,32 l 100,0 0,50 -100,0 a 82 82, 0, 0, 1, -82,-82 l 0,-70 -30,0 z" />
+ </g>
+</svg>
