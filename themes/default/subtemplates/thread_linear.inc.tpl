@@ -75,8 +75,14 @@
 {if $element.options.report_spam}<li><a href="index.php?mode=posting&amp;report_spam={$element.id}&amp;back=thread" class="report-spam" title="{#report_spam_linktitle#}">{#report_spam_linkname#}</a></li>{/if}
 {if $element.options.flag_ham}<li><a href="index.php?mode=posting&amp;flag_ham={$element.id}&amp;back=thread" class="report-ham" title="{#flag_ham_linktitle#}">{#flag_ham_linkname#}</a></li>{/if}
 {if $element.options.lock}<li><a href="index.php?mode=posting&amp;lock={$element.id}&amp;back=thread" class="{if $element.locked==0}lock{else}unlock{/if}" title="{if $element.locked==0}{#lock_linktitle#}{else}{#unlock_linktitle#}{/if}">{if $element.locked==0}{#lock_linkname#}{else}{#unlock_linkname#}{/if}</a></li>
-{if $element.pid==0}<li><a href="index.php?mode=posting&amp;lock_thread={$element.id}&amp;back=thread" class="lock-thread" title="{#lock_thread_linktitle#}">{#lock_thread_linkname#}</a></li>
-<li><a href="index.php?mode=posting&amp;unlock_thread={$element.id}&amp;back=thread" class="lock-thread" title="{#unlock_thread_linktitle#}">{#unlock_thread_linkname#}</a></li>{/if}{/if}
+{if $element.pid==0}
+{if $element.thread_locked == 1}
+<li><a href="index.php?mode=posting&amp;unlock_thread={$id}&amp;back=entry" class="unlock-thread" title="{#unlock_thread_linktitle#}">{#unlock_thread_linkname#}</a></li>
+{else}
+<li><a href="index.php?mode=posting&amp;lock_thread={$id}&amp;back=entry" class="lock-thread" title="{#lock_thread_linktitle#}">{#lock_thread_linkname#}</a></li>
+{/if}
+{/if}
+{/if}
 </ul>
 {/if}
 </footer>
