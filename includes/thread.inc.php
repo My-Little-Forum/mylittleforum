@@ -96,6 +96,16 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 	$result = mysqli_query($connid, $thread_sql) or raise_error('database_error', mysqli_error($connid));
 	
 	if (mysqli_num_rows($result) > 0) {
+		$tl_result = mysqli_query($connid, "SELECT MIN(locked) AS thread_locked
+		FROM " . $db_settings['forum_table'] ."
+		WHERE tid = ". intval($tid));
+		if ($tl_result ==! false) {
+			$tl_data = mysqli_fetch_assoc($tl_result);
+			$thread_locked = ($tl_data['thread_locked'] == 0) ? 0 : 1;
+		} else {
+			$thread_locked = 1;
+		}
+		
 		while ($data = mysqli_fetch_array($result)) {
 			
 			// tags:
@@ -118,6 +128,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 			}
 			$data['formated_time'] = format_time($lang['time_format_full'], $data['disp_time']);
 			$data['ISO_time']      = format_time('YYYY-MM-dd HH:mm:ss', $data['time']);
+			$data['thread_locked'] = $thread_locked;
 			
 			$ago['days']           = floor((TIMESTAMP - $data['time']) / 86400);
 			$ago['hours']          = floor(((TIMESTAMP - $data['time']) / 3600) - ($ago['days'] * 24));
