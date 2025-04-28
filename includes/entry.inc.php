@@ -51,6 +51,16 @@
 			$entrydata = mysqli_fetch_array($result);
 			mysqli_free_result($result);
 			
+			$tl_result = mysqli_query($connid, "SELECT MIN(locked) AS thread_locked
+			FROM " . $db_settings['forum_table'] . "
+			WHERE tid = ". intval($entrydata["tid"]));
+			if ($tl_result ==! false) {
+				$tl_data = mysqli_fetch_assoc($tl_result);
+				$entrydata['thread_locked'] = ($tl_data['thread_locked'] == 0) ? 0 : 1;
+			} else {
+				$entrydata['thread_locked'] = 1;
+			}
+			
 			$entrydata['ISO_time']      = format_time('YYYY-MM-dd HH:mm:ss', $entrydata['time']);
 			$entrydata['edit_ISO_time'] = format_time('YYYY-MM-dd HH:mm:ss', $entrydata['etime']);
 			$entrydata['formated_time'] = format_time($lang['time_format_full'], $entrydata['disp_time']);
@@ -253,6 +263,7 @@
 	$smarty->assign('ISO_time',  htmlspecialchars($entrydata['ISO_time']));
 	$smarty->assign('formated_time', htmlspecialchars($entrydata['formated_time']));
 	$smarty->assign('locked', htmlspecialchars($entrydata['locked']));
+	$smarty->assign('thread_locked', htmlspecialchars($entrydata['thread_locked']));
 	
 	$ago['days']    = floor((TIMESTAMP - $entrydata['time']) / 86400);
 	$ago['hours']   = floor(((TIMESTAMP - $entrydata['time']) / 3600) - ($ago['days'] * 24));
