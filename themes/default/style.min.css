@@ -156,8 +156,6 @@ blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 #content .posting-footer .options{font-size:.69em!important;list-style-type:none;max-width:100%;margin:0;padding:0;grid-area:moderationlinks;display:flex;flex-wrap:wrap;gap:.5em;justify-content:flex-start}
 .posting-footer .options li{margin:0}
 .posting-footer a{white-space:nowrap}
-.posting-footer a.edit{padding-inline-start:16px;background:url(images/bg_sprite_3.png) no-repeat 0 2px}
-html[dir="rtl"] .posting-footer a.edit{background-position-x:100%}
 .posting-footer a.delete{padding-inline-start:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -47px}
 html[dir="rtl"] .posting-footer a.delete{background-position-x:calc(100% + 3px)}
 .posting-footer a.move{padding-inline-start:13px;background:url(images/bg_sprite_4.png) no-repeat 0 2px}
