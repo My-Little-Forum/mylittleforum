@@ -766,20 +766,6 @@ html[dir="rtl"] .posting-footer a.delete {
 html[dir="rtl"] .posting-footer a.move {
 	background-position: 100% -449px;
 }
-.posting-footer a.lock-thread {
-	padding-inline-start: 16px;
-	background: url(images/bg_sprite_4.png) no-repeat 0 -200px;
-}
-html[dir="rtl"] .posting-footer a.lock-thread {
-	background-position-x: 100%;
-}
-.posting-footer a.unlock-thread {
-	padding-inline-start: 16px;
-	background: url(images/bg_sprite_4.png) no-repeat 0 -250px;
-}
-html[dir="rtl"] .posting-footer a.unlock-thread {
-	background-position-x: 100%;
-}
 
 .thread-posting {
 	position: relative;

@@ -69,9 +69,9 @@
 <li><a href="index.php?mode=posting&amp;lock={$id}&amp;back=entry" title="{#unlock_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-lock-open.svg" alt="" width="13" height="13"/><span>{#unlock_linkname#}</span></a></li>
 {/if}
 {if $thread_locked == 1}
-<li><a href="index.php?mode=posting&amp;unlock_thread={$id}&amp;back=entry" class="unlock-thread" title="{#unlock_thread_linktitle#}">{#unlock_thread_linkname#}</a></li>
+<li><a href="index.php?mode=posting&amp;unlock_thread={$id}&amp;back=entry" title="{#unlock_thread_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-unlock.svg" alt="" width="13" height="13"/><span>{#unlock_thread_linkname#}</span></a></li>
 {else}
-<li><a href="index.php?mode=posting&amp;lock_thread={$id}&amp;back=entry" class="lock-thread" title="{#lock_thread_linktitle#}">{#lock_thread_linkname#}</a></li>
+<li><a href="index.php?mode=posting&amp;lock_thread={$id}&amp;back=entry" title="{#lock_thread_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-lock.svg" alt="" width="13" height="13"/><span>{#lock_thread_linkname#}</span></a></li>
 {/if}
 {/if}
 </ul>
