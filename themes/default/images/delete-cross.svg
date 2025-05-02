@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="264" height="264" viewBox="0 0 264 264">
+ <defs>
+  <linearGradient id="cyl" x1="75%" y1="0%" x2="25%" y2="100%">
+   <stop offset="0%" stop-color="#ff786b" />
+   <stop offset="36%" stop-color="#f2504c" />
+   <stop offset="86%" stop-color="#ee4024" />
+   <stop offset="100%" stop-color="#b8241a" />
+  </linearGradient>
+  <linearGradient id="contour" x1="75%" y1="0%" x2="25%" y2="100%">
+   <stop offset="0%" stop-color="#f45852" />
+   <stop offset="100%" stop-color="#bc2a28" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #cross { fill: url(#cyl); stroke-width: 12; stroke: url(#contour); stroke-linecap: round; }
+  ]]>
+ </style>
+ <g transform="rotate(-45, 132, 132)"><!--g-->
+  <path id="cross" d="M106,108 a 2 2,0,0,0, 2,-2 v-90 a 24 24, 0, 0, 1, 48,0 v90 a 2 2,0,0,0, 2,2 h90 a 24 24, 0, 0, 1, 0, 48 h-90 a 2 2,0,0,0, -2,2 v90 a 24 24, 0, 0, 1, -48,0 v-90 a 2 2,0,0,0, -2,-2 h-90 a 24 24, 0, 0, 1, 0,-48 z" />
+ </g>
+</svg>

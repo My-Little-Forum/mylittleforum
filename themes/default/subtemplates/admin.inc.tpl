@@ -1188,7 +1188,7 @@
 <li><a href="index.php?mode=admin&amp;action=pages"><img src="{$THEMES_DIR}/{$theme}/images/files.svg" alt="" width="18" height="18" class="icon" /><span>{#pages_administr_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=spam_protection"><img src="{$THEMES_DIR}/{$theme}/images/spam-shield.svg" alt="" width="18" height="18" class="icon" /><span>{#spam_protection_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=update"><img src="{$THEMES_DIR}/{$theme}/images/arrows-update.svg" alt="" width="18" height="18" class="icon" /><span>{#update_link#}</span></a></li>
-<li><a href="index.php?mode=admin&amp;action=reset_uninstall"><img src="{$THEMES_DIR}/{$theme}/images/delete-bin.svg" alt="" width="18" height="18" class="icon" /><span>{#reset_uninstall_link#}</span></a></li>
+<li><a href="index.php?mode=admin&amp;action=reset_uninstall"><img src="{$THEMES_DIR}/{$theme}/images/delete-cross.svg" alt="" width="18" height="18" class="icon" /><span>{#reset_uninstall_link#}</span></a></li>
 </ul>
 </div>
 {/if}
