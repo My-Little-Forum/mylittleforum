@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #arrow { fill: #f80800; stroke: #f80800; stroke-width: 12; stroke-linejoin: round; }
+  .helpline { stroke-width: 1; stroke: #888; fill: none; }
+  ]]>
+ </style>
+ <g>
+  <path id="arrow" d="M 246,132 l -96,96 0,-48 -132,0 0,-96 132,0 0,-48 z" />
+ </g>
+</svg>
+
