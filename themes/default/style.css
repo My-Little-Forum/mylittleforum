@@ -105,6 +105,9 @@ a.stronglink:active {
 	align-items: center;
 	gap: 0.125em;
 }
+html[dir="rtl"] img.icon.wd-dependent {
+	transform: scale(-1, 1);
+}
 
 img.next {
 	background: url(images/bg_sprite_2.png) no-repeat 0 -11px;
