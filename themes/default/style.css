@@ -745,13 +745,6 @@ blockquote code {
 .posting-footer a {
 	white-space: nowrap;
 }
-.posting-footer a.delete {
-	padding-inline-start: 13px;
-	background: url(images/bg_sprite_3.png) no-repeat 0 -47px;
-}
-html[dir="rtl"] .posting-footer a.delete {
-	background-position-x: calc(100% + 3px);
-}
 .posting-footer a.move   {
 	padding-inline-start: 13px;
 	background: url(images/bg_sprite_4.png) no-repeat 0 2px;
