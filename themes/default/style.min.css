@@ -162,10 +162,6 @@ html[dir="rtl"] .posting-footer a.edit{background-position-x:100%}
 html[dir="rtl"] .posting-footer a.delete{background-position-x:calc(100% + 3px)}
 .posting-footer a.move{padding-inline-start:13px;background:url(images/bg_sprite_4.png) no-repeat 0 2px}
 html[dir="rtl"] .posting-footer a.move{background-position:100% -449px}
-.posting-footer a.lock-thread{padding-inline-start:16px;background:url(images/bg_sprite_4.png) no-repeat 0 -200px}
-html[dir="rtl"] .posting-footer a.lock-thread{background-position-x:100%}
-.posting-footer a.unlock-thread{padding-inline-start:16px;background:url(images/bg_sprite_4.png) no-repeat 0 -250px}
-html[dir="rtl"] .posting-footer a.unlock-thread{background-position-x:100%}
 .thread-posting{position:relative;border-inline-start:10px solid #d2ddea;border-inline-end:1px solid #f0f0f0;border-top:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;margin:0 0 20px;padding:0;background:#fff}
 .new{border-inline-start-color:#88a9cf !important}
 .thread-posting h1,.thread-posting h2{margin:0 0 2px;padding:0}
