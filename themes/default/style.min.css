@@ -18,6 +18,7 @@ html[dir="ltr"] a.stronglink:focus,html[dir="ltr"] a.stronglink:hover{background
 html[dir="rtl"] a.stronglink:focus,html[dir="rtl"] a.stronglink:hover{background-position:right -1356px}
 a.stronglink:active{color:red}
 :is(a,span):has(img.icon){display:flex;align-items:center;gap:.125em}
+html[dir="rtl"] img.icon.wd-dependent{transform:scale(-1,1)}
 img.next{background:url(images/bg_sprite_2.png) no-repeat 0 -11px}
 img.next:hover{background:url(images/bg_sprite_2.png) no-repeat -6px -11px}
 img.previous{background:url(images/bg_sprite_2.png) no-repeat 0 0}
