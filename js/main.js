@@ -796,7 +796,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		}
 		
 		closeEl.onclick = function() { self.setVisible(false); return false; };
-		var throbberIcon = document.createElementWithAttributes("img", {"id": "ajax-preview-throbber", "src": templatePath + settings["ajax_preview_throbber_image"], "alt": "[*]"}, contentEl);
+		var throbberIcon = document.createElementWithAttributes("img", {"id": "ajax-preview-throbber", "src": templatePath + settings["ajax_preview_throbber_image"], "alt": "[*]", "width": "18", "height": "18"}, contentEl);
 		var replylinkWrapper = document.createElementWithAttributes("p", {"id": "ajax-preview-replylink-wrapper", "className": "js-display-none"}, contentEl);
 		var replylinkLink = document.createElementWithAttributes("a", {"id": "ajax-preview-replylink", "href": "#"}, null);
 		replylinkLink.appendChild( document.createTextNode( lang["reply_link"] ));
