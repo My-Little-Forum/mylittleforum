@@ -157,7 +157,7 @@ document.getElementPoSi = function(el){
     var r = { top:0, left:0, width:0, height:0 };
  
     if(!el || typeof(el) != 'object') 
-		return r;
+         return r;
  
     if(typeof(el.offsetTop) != 'undefined') {
          r.height = el.offsetHeight;
@@ -166,7 +166,7 @@ document.getElementPoSi = function(el){
          while(el && el.tagName != 'BODY') {
             r.top  += parseInt( el.offsetTop );
             r.left += parseInt( el.offsetLeft );
-			
+
             el = el.offsetParent;
          }
     }
@@ -382,9 +382,9 @@ function DragAndDropTable(table,mode,queryKey) {
 			this.className = "drag";
 			this.elementPos = document.getElementPoSi(this);
 			this.handlePos  = document.getMousePosition(e);
-			dragObject = this; 
+			dragObject = this;
 			start();
-			return false;  
+			return false;
 		};	
 		
 		var links = row.cells[row.cells.length-1].getElementsByTagName("a");
@@ -477,7 +477,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				obj[func](false, args);
 			return;
 		}
-		var qStr = "";	
+		var qStr = "";
 		if (q instanceof Query)
 			qStr = q.toString();
 		else if((typeof q == "object"||typeof q == "function") && q.length > 0)
@@ -489,7 +489,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		httpRequest.onreadystatechange = function() {
 			if (httpRequest.readyState == 4) { 
 				if (obj && typeof obj[func] == "function") {
-					obj[func]( (resXML?httpRequest.responseXML:httpRequest.responseText), args);				
+					obj[func]( (resXML?httpRequest.responseXML:httpRequest.responseText), args);
 				}
 				httpRequest = false;
 			}
@@ -681,7 +681,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		els = (typeof els == "object" || typeof els == "function") && typeof els.length == "number"?els:[els];
 		var hashTrigger = null;
 		var body = document.body;
-   		var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", {"id": "image-canvas"}, body);	
+   		var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", {"id": "image-canvas"}, body);
 		imageCanvas.setVisible = function(visible) {
 			if (visible)
 				this.classList.remove("js-display-none");
@@ -694,7 +694,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				var scrollPos = document.getScrollPosition();
 				window.history.back();
 				// Fuer den Fall, dass man bei eingeblendeten Bild gescrollt hat
-				window.scrollTo(scrollPos.left, scrollPos.top);	
+				window.scrollTo(scrollPos.left, scrollPos.top);
 			}
 		};
 		
@@ -711,7 +711,7 @@ function DragAndDropTable(table,mode,queryKey) {
 			imageCanvas.setVisible(false);
 			stopTrigger();
 		}; 
-		imageCanvas.setVisible(false);			
+		imageCanvas.setVisible(false);
 		var fullSizeImage = document.getElementById("fullSizeImage") || document.createElementWithAttributes("img", {"id": "fullSizeImage"}, imageCanvas);
 		for (var i=0; i<els.length; i++) {
 			var links = els[i].getElementsByTagName("a");
@@ -724,11 +724,11 @@ function DragAndDropTable(table,mode,queryKey) {
 						imageCanvas.setVisible(true);
 						var imgPoSi = document.getElementPoSi(fullSizeImage);
 						var scrollPos = document.getScrollPosition();
-						var winSize = document.getWindowSize();							
+						var winSize = document.getWindowSize();
 						imageCanvas.style.height=winSize.pageHeight+"px";
-						fullSizeImage.style.marginTop = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px"; 
+						fullSizeImage.style.marginTop = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px";
 						
-						hashTrigger = window.setInterval( 
+						hashTrigger = window.setInterval(
 							function() {
 								if ( this.location.hash != currentHash ) {
 									imageCanvas.setVisible(false);
@@ -736,7 +736,7 @@ function DragAndDropTable(table,mode,queryKey) {
 							},50 
 						);
 						return false;
-					};				
+					};
 				}
 			}
 		}
@@ -748,14 +748,14 @@ function DragAndDropTable(table,mode,queryKey) {
 	 * @param structure
 	 * @param templatePath
 	 */
-	function AjaxPreviewWindow(structure, templatePath) { 
+	function AjaxPreviewWindow(structure, templatePath) {
 		templatePath = templatePath?templatePath:"";
 		var hideURI = false;
 		var pinned  = false;
 		var win = document.getElementById('ajax-preview');
 		var self = this;
 		if (!win) {
-			win = document.createElementWithAttributes("div", {"id": "ajax-preview", "className": "js-display-none"}, null);	
+			win = document.createElementWithAttributes("div", {"id": "ajax-preview", "className": "js-display-none"}, null);
 			document.body.appendChild( win );
 		}
 		win.innerHTML = structure.stripslashes().trim();
@@ -764,22 +764,22 @@ function DragAndDropTable(table,mode,queryKey) {
 		
 		var closeEl   = document.getElementById("ajax-preview-close");
 		var contentEl = document.getElementById("ajax-preview-content");
-		var mainEl    = document.getElementById("ajax-preview-main");	
+		var mainEl    = document.getElementById("ajax-preview-main");
 		
 		if (!closeEl || !contentEl || !mainEl)
 			console.log("main.js: Fail to init ajax-Elements!");
 		
 		var oldOnMouseDownFunc = window.document.onmousedown;
-		window.document.onmousedown = function(e) { 
-			self.closeByOutSideClick(e);	
+		window.document.onmousedown = function(e) {
+			self.closeByOutSideClick(e);
 			if (typeof oldOnMouseDownFunc == "function")
 				oldOnMouseDownFunc(e);
 		};
 
 		var oldOnKeyPressFunc = window.document.onkeypress;
-		window.document.onkeypress = function(e) { 
+		window.document.onkeypress = function(e) {
 			if (e.key == "Esc") {
-				self.setVisible(false);	
+				self.setVisible(false);
 			}
 			if (typeof oldOnKeyPressFunc == "function")
 				oldOnKeyPressFunc(e);
@@ -843,13 +843,13 @@ function DragAndDropTable(table,mode,queryKey) {
 		this.setPosition = function(x, y) {
 			win.style.left = x + "px";
 			win.style.top  = y + "px";
-			var winWidth = this.getWidth();	
+			var winWidth = this.getWidth();
 			var documentWidth = document.getWindowSize().windowWidth;
 			if ((x+winWidth) >= documentWidth) {
-				this.moveHorizontal( documentWidth-25-(x+winWidth) );			
+				this.moveHorizontal( documentWidth-25-(x+winWidth) );
 			}
 			else {
-				this.moveHorizontal( 0 );	
+				this.moveHorizontal( 0 );
 			}
 		};
 		
@@ -1020,11 +1020,11 @@ function DragAndDropTable(table,mode,queryKey) {
 		 */
 		var setPreviewBoxToProfil = function(el) {
 			if (!el || !ajaxPreviewWindow)
-				return;		
+				return;
 			var pid = getPostingId(el);
 			if (pid && el.parentNode) {
 				el.parentNode.appendChild( document.createTextNode( String.fromCharCode(160) ) );
-				el.parentNode.appendChild( createAjaxPreviewLink(pid) );	
+				el.parentNode.appendChild( createAjaxPreviewLink(pid) );
 			}
 		};
 		
@@ -1043,7 +1043,7 @@ function DragAndDropTable(table,mode,queryKey) {
 			}
 			if (pid) {
 				el.appendChild( document.createTextNode( String.fromCharCode(160) ) );
-				el.appendChild( createAjaxPreviewLink(pid)  );	
+				el.appendChild( createAjaxPreviewLink(pid) );
 			}
 		};
 		
@@ -1283,7 +1283,7 @@ function DragAndDropTable(table,mode,queryKey) {
 			link.appendChild( document.createTextNode( lang["fold_postings"] ) );
 			link.onclick = function(e) {
 				this.isExpand = !this.isExpand;
-				expandAllPostings(this.isExpand);  
+				expandAllPostings(this.isExpand);
 				this.blur();
 				return false;
 			}
@@ -1350,7 +1350,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				ajaxPreviewWindow.pin();
 				if (!ajaxPreviewWindow.isPinned()) {
 					ajaxPreviewWindow.setVisible(false);
-					ajaxPreviewWindow.setOpener(null);					
+					ajaxPreviewWindow.setOpener(null);
 				}
 			}
 			else if (!ajaxPreviewWindow.isPinned()) {
@@ -1418,7 +1418,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				pEls = (typeof pEls == "object" || typeof pEls == "function") && typeof pEls.length == "number"?pEls:[pEls];
 				for (var i=0; i<pEls.length; i++) {
 					var entry = new Entry(pEls[i]);
-					entry.setLinkTarget(trg, dflTrg); 
+					entry.setLinkTarget(trg, dflTrg);
 				}
 			}
 		};
@@ -1446,7 +1446,7 @@ function DragAndDropTable(table,mode,queryKey) {
 			togglePasswordVisibility();
 			
 			if (typeof preload == "object") 
-				document.preloadImages(preload, templatePath);		
+				document.preloadImages(preload, templatePath);
 		};
 	
 	}
