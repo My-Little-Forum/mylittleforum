@@ -9,8 +9,8 @@
  </defs>
  <style type="text/css"><![CDATA[
   svg { fill: transparent; }
-	#postings { stroke: #808080; stroke-width: 32; fill: none; stroke-linecap: round; }
-	#replies { stroke: #c1c1c1; stroke-width: 32; fill: none; stroke-linecap: round; }
+	#postings { stroke: #808080; stroke-width: 30; fill: none; stroke-linecap: round; }
+	#replies { stroke: #c1c1c1; stroke-width: 30; fill: none; stroke-linecap: round; }
   ]]></style>
  <g>
   <path id="postings" d="M 22,24 h 140" />
