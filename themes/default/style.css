@@ -275,20 +275,6 @@ html[dir="rtl"] #subnavmenu a.order-1 {
 html[dir="rtl"] #subnavmenu a.order-2 {
 	background-position-x: calc(100% + 6px);
 }
-#subnavmenu a.fold-1 {
-	padding-inline-start: 12px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -648px;
-}
-html[dir="rtl"] #subnavmenu a.fold-1 {
-	background-position-x: calc(100% + 6px);
-}
-#subnavmenu a.fold-2 {
-	padding-inline-start: 12px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -698px;
-}
-html[dir="rtl"] #subnavmenu a.fold-2 {
-	background-position-x: calc(100% + 6px);
-}
 #subnavmenu a.tableview {
 	padding-inline-start: 12px;
 	background: url(images/bg_sprite_1.png) no-repeat 0 -748px;

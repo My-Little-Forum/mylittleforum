@@ -2,8 +2,8 @@
  <ul id="subnavmenu">
   <li><a class="refresh" href="index.php?refresh=1&amp;category={$category}" title="{#refresh_linktitle#}" rel="nofollow">{#refresh_link#}</a></li>
   <li>{if $thread_order==0}<a class="order-1" href="index.php?mode=index&amp;thread_order=1" title="{#order_link_title_1#}" rel="nofollow">{#order_link#}</a>{else}<a class="order-2" href="index.php?mode=index&amp;thread_order=0" title="{#order_link_title_2#}" rel="nofollow">{#order_link#}</a>{/if}</li>
-  <li>{if $usersettings.fold_threads==0}<a class="fold-1" href="index.php?fold_threads=1" title="{#fold_threads_linktitle#}">{#fold_threads#}</a>{else}<a class="fold-2" href="index.php?fold_threads=0" title="{#expand_threads_linktitle#}">{#expand_threads#}</a>{/if}</li>
   <li>{if $usersettings.user_view==0}<a class="tableview" href="index.php?toggle_view=1" title="{#table_view_linktitle#}">{#table_view#}</a>{else}<a class="threadview" href="index.php?toggle_view=0" title="{#thread_view_linktitle#}">{#thread_view#}</a>{/if}</li>
+  <li>{if $usersettings.fold_threads==0}<a href="index.php?fold_threads=1" title="{#fold_threads_linktitle#}"><img class="icon wd-dependent" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-list-fold.svg" alt="" width="11" height="11" /><span>{#fold_threads#}</span></a>{else}<a href="index.php?fold_threads=0" title="{#expand_threads_linktitle#}"><img class="icon wd-dependent" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-list-nested.svg" alt="" width="11" height="11" /><span>{#expand_threads#}</span></a>{/if}</li>
  </ul>
 {elseif $mode=='entry'}
  <ul id="subnavmenu">
