@@ -9,7 +9,7 @@
  </defs>
  <style type="text/css"><![CDATA[
   svg { fill: transparent; }
-	#lines { stroke: #808080; stroke-width: 28; fill: none; stroke-linecap: round; }
+	#lines { stroke: #808080; stroke-width: 30; fill: none; stroke-linecap: round; }
   ]]></style>
  <g>
   <path id="lines" d="M 44,24 h 176 m -176,54 h 176 m -176,54 h 176 m -176,54 h 176 m -176,54 h 176" />
