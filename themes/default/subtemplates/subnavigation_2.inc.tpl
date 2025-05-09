@@ -11,7 +11,7 @@
  </ul>
 {elseif $mode=='thread'}
  <ul id="subnavmenu">
-  <li>{if $usersettings.thread_display==0}<a class="linear" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=1" title="{#thread_linear_linktitle#}">{#thread_linear#}</a>{else}<a class="hierarchic" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=0" title="{#thread_hierarchical_linktitle#}">{#thread_hierarchical#}</a>{/if}</li>
+  <li>{if $usersettings.thread_display==0}<a href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=1" title="{#thread_linear_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-flat.svg" alt="" width="11" height="11" /><span>{#thread_linear#}</span></a>{else}<a class="hierarchic" href="index.php?mode=thread&amp;id={$id}&amp;toggle_thread_display=0" title="{#thread_hierarchical_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-nested.svg" alt="" width="11" height="11" /><span>{#thread_hierarchical#}</span></a>{/if}</li>
  </ul>
 {/if}
 {if $categories && $mode=='index'}
