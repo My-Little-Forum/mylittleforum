@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="plate" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#ebf4fa" />
+   <stop offset="50%" stop-color="#d2e2e8" />
+   <stop offset="100%" stop-color="#b2d2d8" />
+  </linearGradient>
+ </defs>
+ <style type="text/css"><![CDATA[
+  svg { fill: transparent; }
+	#lines { stroke: #808080; stroke-width: 28; fill: none; stroke-linecap: round; }
+  ]]></style>
+ <g>
+  <path id="lines" d="M 44,24 h 176 m -176,54 h 176 m -176,54 h 176 m -176,54 h 176 m -176,54 h 176" />
+ </g>
+</svg>

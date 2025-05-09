@@ -57,10 +57,6 @@ html[dir="rtl"] #subnavmenu a.refresh{background-position-x:calc(100% + 4px)}
 html[dir="rtl"] #subnavmenu a.order-1{background-position-x:calc(100% + 6px)}
 #subnavmenu a.order-2{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -598px}
 html[dir="rtl"] #subnavmenu a.order-2{background-position-x:calc(100% + 6px)}
-#subnavmenu a.tableview{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -748px}
-html[dir="rtl"] #subnavmenu a.tableview{background-position-x:calc(100% + 6px)}
-#subnavmenu a.threadview{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -798px}
-html[dir="rtl"] #subnavmenu a.threadview{background-position-x:calc(100% + 6px)}
 
 #subnavmenu a.openthread{padding-inline-start:13px;background:url(images/bg_sprite_1.png) no-repeat 0 -848px}
 html[dir="rtl"] #subnavmenu a.openthread{background-position-x:calc(100% + 5px)}
