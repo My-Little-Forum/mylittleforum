@@ -282,20 +282,6 @@ html[dir="rtl"] #subnavmenu a.order-2 {
 html[dir="rtl"] #subnavmenu a.openthread {
 	background-position-x: calc(100% + 5px);
 }
-#subnavmenu a.linear {
-	padding-inline-start: 13px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -898px;
-}
-html[dir="rtl"] #subnavmenu a.linear {
-	background-position-x: calc(100% + 5px);
-}
-#subnavmenu a.hierarchic {
-	padding-inline-start: 13px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -948px;
-}
-html[dir="rtl"] #subnavmenu a.hierarchic {
-	background-position-x: calc(100% + 5px);
-}
 #subnavmenu a.fold-postings {
 	padding-inline-start: 13px;
 	background: url(images/bg_sprite_1.png) no-repeat 0 -998px;
