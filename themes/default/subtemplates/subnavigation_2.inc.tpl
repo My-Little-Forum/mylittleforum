@@ -7,7 +7,7 @@
  </ul>
 {elseif $mode=='entry'}
  <ul id="subnavmenu">
-  <li><a class="openthread" href="index.php?mode=thread&amp;id={$tid}#p{$id}" title="{#open_in_thread_linktitle#}">{#open_in_thread_link#}</a></li>
+  <li><a href="index.php?mode=thread&amp;id={$tid}#p{$id}" title="{#open_in_thread_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-nested.svg" alt="" width="11" height="11" /><span>{#open_in_thread_link#}</span></a></li>
  </ul>
 {elseif $mode=='thread'}
  <ul id="subnavmenu">
