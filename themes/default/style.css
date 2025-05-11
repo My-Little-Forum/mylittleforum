@@ -275,13 +275,6 @@ html[dir="rtl"] #subnavmenu a.order-1 {
 html[dir="rtl"] #subnavmenu a.order-2 {
 	background-position-x: calc(100% + 6px);
 }
-#subnavmenu a.openthread {
-	padding-inline-start: 13px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -848px;
-}
-html[dir="rtl"] #subnavmenu a.openthread {
-	background-position-x: calc(100% + 5px);
-}
 
 input.small,
 select.small {
