@@ -1279,8 +1279,11 @@ function DragAndDropTable(table,mode,queryKey) {
 			if (postings.length == 0 || !(menu=document.getElementById("subnavmenu")))
 				return;
 			var listEntry = document.createElementWithAttributes("li", {}, menu);
-			var link = document.createElementWithAttributes("a", {"isExpand": true, "title": lang["fold_postings_title"],"href": "#", "className": "fold-postings"}, listEntry);
-			link.appendChild( document.createTextNode( lang["fold_postings"] ) );
+			var link = document.createElementWithAttributes("a", {"isExpand": true, "title": lang["fold_postings_title"],"href": "#"}, listEntry);
+			const icon = document.createElementWithAttributes("img", {"src": templatePath + settings["fold_single_thread_image"], "className": "icon wd-dependent", "alt": "", "width": "11", "height": "11"}, link);
+			const linkspan = document.createElement("span");
+			linkspan.textContent = lang["fold_postings"];
+			link.appendChild( linkspan );
 			link.onclick = function(e) {
 				this.isExpand = !this.isExpand;
 				expandAllPostings(this.isExpand);
