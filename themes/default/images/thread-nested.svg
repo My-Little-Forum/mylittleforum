@@ -1,12 +1,5 @@
 <?xml version="1.0" standalone="yes"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
- <defs>
-  <linearGradient id="plate" x1="100%" y1="0%" x2="0%" y2="100%">
-   <stop offset="0%" stop-color="#8d9daa" />
-   <stop offset="50%" stop-color="#ecf3fa" />
-   <stop offset="100%" stop-color="#eaf0fb" />
-  </linearGradient>
- </defs>
  <style type="text/css">
   <![CDATA[
   svg { fill: transparent; }

@@ -10,30 +10,6 @@
  <style type="text/css"><![CDATA[
   svg { fill: transparent; }
   #contour { fill: url(#plate); stroke: #739ac3; stroke-width: 16; stroke-linejoin: round; }
-  /*#contour { fill: none; stroke: #739ac3; stroke-width: 1; stroke-linejoin: round; }*/
-  .helpline { stroke: #888; stroke-width: 1; fill: none; }
   ]]></style>
- <!--g>
-  <path class="helpline" d="M 10,0 v 264" />
-  <path class="helpline" d="M 50,0 v 264" />
-  <path class="helpline" d="M 70,0 v 264" />
-  <path class="helpline" d="M 214,0 v 264" />
-  <path class="helpline" d="M 254,0 v 264" />
-  
-  <path class="helpline" d="M 0,10 h 264" />
-  <path class="helpline" d="M 0,50 h 264" />
-  
-  <path class="helpline" d="M 0,135 h 264" />
-  <path class="helpline" d="M 0,175 h 264" />
-  
-  <path class="helpline" d="M 0,254 h 264" />
-  
-  <path class="helpline" d="M 70,254 L 254,10" />
-  
-  <circle class="helpline"  cx="50" cy="50" r="40" />
-  <circle class="helpline"  cx="214" cy="50" r="40" />
-  <circle class="helpline"  cx="50" cy="135" r="40" />
-  <circle class="helpline"  cx="214" cy="135" r="40" />
- </g-->
  <path id="contour" d="M 70,254 v-84 h-10 a 50 50, 0, 0, 1, -50,-50 v-60 a 50 50, 0, 0, 1, 50,-50 h144 a 50 50, 0, 0, 1, 50,50 v 60 a 50 50, 0, 0, 1, -50,50 h -73 z" />
 </svg>
