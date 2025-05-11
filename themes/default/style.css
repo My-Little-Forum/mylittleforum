@@ -282,13 +282,6 @@ html[dir="rtl"] #subnavmenu a.order-2 {
 html[dir="rtl"] #subnavmenu a.openthread {
 	background-position-x: calc(100% + 5px);
 }
-#subnavmenu a.fold-postings {
-	padding-inline-start: 13px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -998px;
-}
-html[dir="rtl"] #subnavmenu a.fold-postings {
-	background-position-x: calc(100% + 5px);
-}
 
 input.small,
 select.small {

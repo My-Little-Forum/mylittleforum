@@ -89,6 +89,7 @@ settings["show_sidebar_image"] =           "<?php echo $theme_config['show_sideb
 settings["expand_thread_image"] =          "<?php echo $theme_config['expand_thread_image']; ?>";
 settings["fold_thread_image"] =            "<?php echo $theme_config['fold_thread_image']; ?>";
 settings["expand_thread_inactive_image"] = "<?php echo $theme_config['expand_thread_inactive_image']; ?>";
+settings["fold_single_thread_image"] =  "<?php echo $theme_config['fold_single_thread_image']; ?>";
 <?php if($settings['terms_of_use_agreement']): ?>
 settings["terms_of_use_popup_width"] =     <?php echo $theme_config['terms_of_use_popup_width']; ?>;
 settings["terms_of_use_popup_height"] =    <?php echo $theme_config['terms_of_use_popup_height']; ?>;
