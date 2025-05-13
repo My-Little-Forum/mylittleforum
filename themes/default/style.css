@@ -202,8 +202,7 @@ body > * {
 	display: flex;
 	flex-direction: column;
 }
-#subnav-1,
-#subnav-2 {
+#subnav > * {
 	margin: 0;
 	padding: 0;
 }
