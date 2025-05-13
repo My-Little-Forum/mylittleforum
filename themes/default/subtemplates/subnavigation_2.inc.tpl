@@ -33,19 +33,27 @@
 {if $key!=0}<option value="{$key}"{if $key==$category} selected="selected"{/if}>{$val}</option>{/if}
 {/foreach}
 </select><noscript><div class="inline"><input class="small" type="submit" value="&raquo;" title="{#go#}" /></div></noscript></div></form>{/if}
-{if $pagination_top}next
-&nbsp; {if $pagination_top.previous}<a href="index.php?mode={$mode}&amp;page={$pagination_top.previous}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-left.svg" alt="[&laquo;]" title="{#previous_page_link_title#}" width="11" height="11" /></a>{/if}
-<form action="index.php" method="get"><div class="inline">
-<input type="hidden" name="mode" value="{$mode}" />
-{if $order}<input type="hidden" name="order" value="{$order}" />{/if}
-{if $category}<input type="hidden" name="category" value="{$category}" />{/if}
-<select class="small" size="1" name="page" title="{#browse_page_title#}">
+{if $pagination_top}
  <div id="subnav-pagination">
+{if $pagination_top.previous}  <a href="index.php?mode={$mode}&amp;page={$pagination_top.previous}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-left.svg" alt="[&laquo;]" title="{#previous_page_link_title#}" width="11" height="11" /></a>
+{/if}
+  <form action="index.php" method="get">
+   <input type="hidden" name="mode" value="{$mode}" />
+{if $order}   <input type="hidden" name="order" value="{$order}" />{/if}
+{if $category}   <input type="hidden" name="category" value="{$category}" />{/if}
+   <div class="inline">
+    <select class="small" size="1" name="page" title="{#browse_page_title#}">
 {foreach from=$pagination_top.items item=item}
-{if $item!=0}<option value="{$item}"{if $item==$page} selected="selected"{/if}>{$item}</option>{/if}
+{if $item!=0}     <option value="{$item}"{if $item==$page} selected="selected"{/if}>{$item}</option>
+{/if}
 {/foreach}
-</select><noscript><div class="inline"><input class="small" type="submit" value="&raquo;" title="{#go#}" /></div></noscript>
-</div></form>
-{if $pagination_top.next}<a href="index.php?mode={$mode}&amp;page={$pagination_top.next}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-right.svg" alt="[&raquo;]" title="{#next_page_link_title#}" width="11" height="11" /></a>{/if}
+    </select>
+    <noscript>
+     <div class="inline"><input class="small" type="submit" value="&raquo;" title="{#go#}" /></div>
+    </noscript>
+   </div>
+  </form>
+{if $pagination_top.next}  <a href="index.php?mode={$mode}&amp;page={$pagination_top.next}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-right.svg" alt="[&raquo;]" title="{#next_page_link_title#}" width="11" height="11" /></a>
+{/if}
  </div>
 {/if}
