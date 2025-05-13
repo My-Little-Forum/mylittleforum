@@ -43,8 +43,7 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #topsearch #search-input{width:14em}
 #subnav{background:#f9f9f9;border-top:1px solid #bacbdf;border-bottom:1px solid #bacbdf;line-height:1.8em;display:flex;flex-direction:column}
 #subnav-1,#subnav-2{font-size:.82em;margin:0;padding:0}
-html[dir="ltr"] #subnav p.subnav{margin:0;padding:0 0 0 12px;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat 0 -89px}
-html[dir="rtl"] #subnav p.subnav{margin:0;padding:0 12px 0 0;font-weight:700;background:url(images/bg_sprite_1.png) no-repeat calc(100% + 6px) -89px}
+#subnav p.subnav{margin:0;padding:0;font-weight:bold}
 #subnav .small{font-size:.82em}
 #subnav form{display:inline}
 #subnav form div{display:inline}

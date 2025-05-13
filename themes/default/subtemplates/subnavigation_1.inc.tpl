@@ -1,12 +1,13 @@
 {if $subnav_location}
 <p class="subnav">
+<img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-bullet.svg" alt="" width="11" height="11" />
 {if $breadcrumbs}
 {section name=nr loop=$breadcrumbs}
 {assign var="breadcrumb_linkname" value=$breadcrumbs[nr].linkname}
 <a href="{$breadcrumbs[nr].link}">{$smarty.config.$breadcrumb_linkname}</a> &raquo;
 {/section}
 {/if}
-{$subnav_location}</p>
+<span>{$subnav_location}</span></p>
 {elseif $subnav_link}
 {assign var="link_name" value=$subnav_link.name}
 {if $subnav_link.title}{assign var="link_title" value=$subnav_link.title}{/if}
