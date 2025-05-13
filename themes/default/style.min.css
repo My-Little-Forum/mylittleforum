@@ -51,8 +51,6 @@ html[dir="rtl"] #subnav p.subnav{margin:0;padding:0 12px 0 0;font-weight:700;bac
 #subnavmenu{display:inline;margin:0;padding:0;font-size:.82em;list-style-type:none}
 #subnavmenu li{display:inline}
 #subnavmenu li:not(:first-child){margin-inline-start:10px}
-#subnavmenu a.refresh{padding-inline-start:14px;background:url(images/bg_sprite_1.png) no-repeat 0 -498px}
-html[dir="rtl"] #subnavmenu a.refresh{background-position-x:calc(100% + 4px)}
 #subnavmenu a.order-1{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -548px}
 html[dir="rtl"] #subnavmenu a.order-1{background-position-x:calc(100% + 6px)}
 #subnavmenu a.order-2{padding-inline-start:12px;background:url(images/bg_sprite_1.png) no-repeat 0 -598px}
