@@ -197,13 +197,13 @@ body > * {
 	background: #f9f9f9;
 	border-top: 1px solid #bacbdf;
 	border-bottom: 1px solid #bacbdf;
+	font-size: 0.82em;
 	line-height: 1.8em;
 	display: flex;
 	flex-direction: column;
 }
 #subnav-1,
 #subnav-2 {
-	font-size: 0.82em;
 	margin: 0;
 	padding: 0;
 }
