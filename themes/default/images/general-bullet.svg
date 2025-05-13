@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #bullet { fill: #f80800; stroke: none; }
+  ]]>
+ </style>
+ <g>
+  <circle id="bullet" cx="132" cy="132" r="84" />
+ </g>
+</svg>
+

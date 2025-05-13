@@ -219,17 +219,10 @@ body > * {
 	margin: 0;
 	padding: 0;
 }
-html[dir="ltr"] #subnav p.subnav {
+#subnav p.subnav {
 	margin: 0;
-	padding: 0 0 0 12px;
+	padding: 0;
 	font-weight: bold;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -89px;
-}
-html[dir="rtl"] #subnav p.subnav {
-	margin: 0;
-	padding: 0 12px 0 0;
-	font-weight: bold;
-	background: url(images/bg_sprite_1.png) no-repeat calc(100% + 6px) -89px;
 }
 #subnav .small {
 	font-size: 0.82em;
