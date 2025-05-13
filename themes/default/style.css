@@ -206,6 +206,11 @@ body > * {
 	margin: 0;
 	padding: 0;
 }
+#subnav-2 {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 0.5em;
+}
 #subnav p.subnav {
 	margin: 0;
 	padding: 0;
