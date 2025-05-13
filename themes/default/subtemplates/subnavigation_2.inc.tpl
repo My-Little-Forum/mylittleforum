@@ -24,9 +24,9 @@
  </ul>
 {/if}
 {if $categories && $mode=='index'}
-<form action="index.php" method="get" accept-charset="{#charset#}"><div>
-<input type="hidden" name="mode" value="{$mode}" />
-&nbsp;<select class="small" size="1" name="category" title="{#category_title#}">
+ <form action="index.php" method="get" accept-charset="{#charset#}">
+  <input type="hidden" name="mode" value="{$mode}" />
+  <div>&nbsp;<select class="small" size="1" name="category" title="{#category_title#}">
 <option value="0"{if $category==0} selected="selected"{/if}>{#all_categories#}</option>
 {if $category_selection}<option value="-1"{if $category==-1} selected="selected"{/if}>{#my_category_selection#}</option>{/if}
 {foreach key=key item=val from=$categories}
