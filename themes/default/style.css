@@ -242,17 +242,12 @@ html[dir="rtl"] #subnav p.subnav {
 }
 
 #subnavmenu {
-	display:inline;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 0.5em;
 	margin: 0;
 	padding: 0;
-	font-size: 0.82em;
-	list-style-type: none;
-}
-#subnavmenu li {
-	display: inline;
-}
-#subnavmenu li:not(:first-child) {
-	margin-inline-start: 10px;
+	list-style: none;
 }
 #subnavmenu a.order-1 img.icon {
 	transform: rotate(180deg);

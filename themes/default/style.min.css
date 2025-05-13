@@ -48,9 +48,7 @@ html[dir="rtl"] #subnav p.subnav{margin:0;padding:0 12px 0 0;font-weight:700;bac
 #subnav .small{font-size:.82em}
 #subnav form{display:inline}
 #subnav form div{display:inline}
-#subnavmenu{display:inline;margin:0;padding:0;font-size:.82em;list-style-type:none}
-#subnavmenu li{display:inline}
-#subnavmenu li:not(:first-child){margin-inline-start:10px}
+#subnavmenu{display:flex;flex-wrap:wrap;gap:0 .5em;margin:0;padding:0;list-style:none}
 #subnavmenu a.order-1 img.icon{transform:rotate(180deg)}
 input.small,select.small{font-size:.82em}
 #content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
