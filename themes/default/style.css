@@ -109,18 +109,6 @@ html[dir="rtl"] img.icon.wd-dependent {
 	transform: scale(-1, 1);
 }
 
-img.next {
-	background: url(images/bg_sprite_2.png) no-repeat 0 -11px;
-}
-img.next:hover {
-	background: url(images/bg_sprite_2.png) no-repeat -6px -11px;
-}
-img.previous {
-	background: url(images/bg_sprite_2.png) no-repeat 0 0;
-}
-img.previous:hover {
-	background: url(images/bg_sprite_2.png) no-repeat -6px 0;
-}
 img.hide-sidebar {
 	background: url(images/bg_sprite_2.png) no-repeat -9px -22px;
 }
