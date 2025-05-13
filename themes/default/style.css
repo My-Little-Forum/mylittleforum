@@ -254,19 +254,8 @@ html[dir="rtl"] #subnav p.subnav {
 #subnavmenu li:not(:first-child) {
 	margin-inline-start: 10px;
 }
-#subnavmenu a.order-1 {
-	padding-inline-start: 12px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -548px;
-}
-html[dir="rtl"] #subnavmenu a.order-1 {
-	background-position-x: calc(100% + 6px);
-}
-#subnavmenu a.order-2 {
-	padding-inline-start: 12px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -598px;
-}
-html[dir="rtl"] #subnavmenu a.order-2 {
-	background-position-x: calc(100% + 6px);
+#subnavmenu a.order-1 img.icon {
+	transform: rotate(180deg);
 }
 
 input.small,

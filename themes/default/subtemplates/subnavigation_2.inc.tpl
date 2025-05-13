@@ -1,7 +1,16 @@
 {if $mode=='index'}
  <ul id="subnavmenu">
-  <li>{if $thread_order==0}<a class="order-1" href="index.php?mode=index&amp;thread_order=1" title="{#order_link_title_1#}" rel="nofollow">{#order_link#}</a>{else}<a class="order-2" href="index.php?mode=index&amp;thread_order=0" title="{#order_link_title_2#}" rel="nofollow">{#order_link#}</a>{/if}</li>
   <li><a href="index.php?refresh=1&amp;category={$category}" title="{#refresh_linktitle#}" rel="nofollow"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-refresh-two-arrows.svg" alt="" width="11" height="11" /><span>{#refresh_link#}</span></a></li>
+{if $thread_order==0}
+{assign var=order_class value="order-1"}
+{assign var=order_param value="thread_order=1"}
+{assign var=order_title value={#order_link_title_1#}}
+{else}
+{assign var=order_class value="order-2"}
+{assign var=order_param value="thread_order=0"}
+{assign var=order_title value={#order_link_title_2#}}
+{/if}
+  <li><a class="{$order_class}" href="index.php?mode=index&amp;{$order_param}" title="{$order_title}" rel="nofollow"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-order-two-arrows.svg" alt="" width="11" height="11" /><span>{#order_link#}</span></a></li>
   <li>{if $usersettings.fold_threads==0}<a href="index.php?fold_threads=1" title="{#fold_threads_linktitle#}"><img class="icon wd-dependent" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-list-fold.svg" alt="" width="11" height="11" /><span>{#fold_threads#}</span></a>{else}<a href="index.php?fold_threads=0" title="{#expand_threads_linktitle#}"><img class="icon wd-dependent" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-list-nested.svg" alt="" width="11" height="11" /><span>{#expand_threads#}</span></a>{/if}</li>
   <li>{if $usersettings.user_view==0}<a href="index.php?toggle_view=1" title="{#table_view_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-list-tabularised.svg" alt="" width="11" height="11" /><span>{#table_view#}</span></a>{else}<a href="index.php?toggle_view=0" title="{#thread_view_linktitle#}"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/thread-list-nested.svg" alt="" width="11" height="11" /><span>{#thread_view#}</span></a>{/if}</li>
  </ul>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="plate" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#ebf4fa" />
+   <stop offset="50%" stop-color="#d2e2e8" />
+   <stop offset="100%" stop-color="#b2d2d8" />
+  </linearGradient>
+ </defs>
+ <style type="text/css"><![CDATA[
+  svg { fill: transparent; }
+  #active, #inactive { stroke-width: 30; stroke-linecap: round; stroke-linejoin: round; }
+  #active { stroke: #808080; fill: #808080; }
+  #inactive { stroke: #c1c1c1; fill: #c1c1c1; }
+  ]]></style>
+ <symbol id="arrow" viewBox="0 0 100 264">
+  <path d="M 50,234 v-204 m 0,0 l -35,35 70,0 z" />
+ </symbol>
+ <g>
+  <use id="inactive" href="#arrow" x="34" y="0" width="100" height="264" />
+  <use transform="scale(1,-1)" transform-origin="center" id="active" href="#arrow" x="130" y="0" width="100" height="264" />
+ </g>
+</svg>
