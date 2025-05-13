@@ -33,8 +33,8 @@
 {if $key!=0}<option value="{$key}"{if $key==$category} selected="selected"{/if}>{$val}</option>{/if}
 {/foreach}
 </select><noscript><div class="inline"><input class="small" type="submit" value="&raquo;" title="{#go#}" /></div></noscript></div></form>{/if}
-{if $pagination_top}
-&nbsp; {if $pagination_top.previous}<a href="index.php?mode={$mode}&amp;page={$pagination_top.previous}{if $category}&amp;category={$category}{/if}"><img class="previous" src="{$THEMES_DIR}/{$theme}/images/plain.png" alt="[&laquo;]" title="{#previous_page_link_title#}" width="6" height="11" /></a>{/if}
+{if $pagination_top}next
+&nbsp; {if $pagination_top.previous}<a href="index.php?mode={$mode}&amp;page={$pagination_top.previous}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-left.svg" alt="[&laquo;]" title="{#previous_page_link_title#}" width="11" height="11" /></a>{/if}
 <form action="index.php" method="get"><div class="inline">
 <input type="hidden" name="mode" value="{$mode}" />
 {if $order}<input type="hidden" name="order" value="{$order}" />{/if}
@@ -45,5 +45,5 @@
 {/foreach}
 </select><noscript><div class="inline"><input class="small" type="submit" value="&raquo;" title="{#go#}" /></div></noscript>
 </div></form>
-{if $pagination_top.next}<a href="index.php?mode={$mode}&amp;page={$pagination_top.next}{if $category}&amp;category={$category}{/if}"><img class="next" src="{$THEMES_DIR}/{$theme}/images/plain.png" alt="[&raquo;]" title="{#next_page_link_title#}" width="6" height="11" /></a>{/if}
+{if $pagination_top.next}<a href="index.php?mode={$mode}&amp;page={$pagination_top.next}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-right.svg" alt="[&raquo;]" title="{#next_page_link_title#}" width="11" height="11" /></a>{/if}
 {/if}
