@@ -406,6 +406,50 @@ function make_link($string) {
 	return $string;
 }
 
+
+/**
+ * replaces Youtube urls with iframe playable videos
+ *
+ * @param string $string
+ * @return string
+ */
+function embed_youtube($string) {
+    // Regular expression to match YouTube URLs
+    $regex = '#(?:https?://)?(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)([\w-]{11})#i';
+
+    // Replace YouTube URLs with embedded iframes
+    $string = preg_replace_callback($regex, function ($matches) {
+        $youtube_id = $matches[1];
+        $iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $youtube_id . '" frameborder="0" allowfullscreen></iframe>';
+        return $iframe;
+    }, $string);
+
+    return $string;
+}
+
+/**
+ * replaces mp4 video urls with playable <video>
+ *
+ * @param string $string
+ * @return string
+ */
+function embed_mp4($string) {
+    // Regular expression to match MP4 URLs
+    $regex = '#\b(https?://[^\s]+\.mp4)\b#i';
+
+    // Replace MP4 URLs with <video> tags
+    $string = preg_replace_callback($regex, function ($matches) {
+        $mp4_url = $matches[1];
+        $video_tag = '<video width="640" height="360" controls>
+                        <source src="' . htmlspecialchars($mp4_url) . '" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>';
+        return $video_tag;
+    }, $string);
+
+    return $string;
+}
+
 /**
  * unifies line breaks
  *
@@ -862,8 +906,10 @@ function html_format($string){
 		$bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'smilies');
 	}
 	if($settings['autolink'] == 1) {
-		$bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'make_link');
-	}
+    $bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'embed_youtube');
+    $bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'embed_mp4');
+	$bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'make_link');
+}
 	
 	$bbcode->addCode ('quote', 'simple_replace', null, array ('start_tag' => '<blockquote>', 'end_tag' => '</blockquote>'), 'quote', array ('block','quote'), array ());
 	$bbcode->setCodeFlag ('quote', 'paragraphs', true);
@@ -962,8 +1008,10 @@ function signature_format($string) {
 		$bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'smilies');
 	}
 	if($settings['autolink'] == 1) {
-		$bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'make_link');
-	}
+    $bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'embed_youtube');
+    $bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'embed_mp4');
+	$bbcode->addParser (array ('block', 'inline', 'listitem', 'quote', 'rtl', 'ltr'), 'make_link');
+}
 	
 	if($settings['bbcode'] == 1) {
 		$bbcode->setGlobalCaseSensitive(false);
