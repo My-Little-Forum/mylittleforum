@@ -198,7 +198,7 @@ body > * {
 	border-top: 1px solid #bacbdf;
 	border-bottom: 1px solid #bacbdf;
 	font-size: 0.82em;
-	line-height: 1.8;
+	line-height: 2;
 	display: flex;
 	flex-direction: column;
 }
