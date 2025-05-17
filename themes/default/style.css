@@ -1833,11 +1833,7 @@ html[dir="rtl"] a.threadnew-locked:link {
 a.threadnew,
 a.threadnew:link {
 	padding-inline-start: 18px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -198px;
-}
-html[dir="rtl"] a.threadnew,
-html[dir="rtl"] a.threadnew:link {
-	background-position-x: 100%;
+	background: url(images/thread-marker-with-change.svg) no-repeat 0 center/14px;
 }
 /* replies: */
 a.reply,
@@ -1899,10 +1895,7 @@ main:not(:has(table#threadlist)) ul.thread li > a::after {
 }
 .currentthreadnew {
 	padding-inline-start: 18px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -198px;
-}
-html[dir="rtl"] .currentthreadnew {
-	background-position-x: 100%;
+	background: url(images/thread-marker-with-change.svg) no-repeat 0 center/14px;
 }
 .currentreply {
 	padding-inline-start: 16px;
