@@ -1010,7 +1010,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		 */
 		var createAjaxPreviewLink = function(id) {
 			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) { if (settings["ajax_preview_onmouseover"]) {self.showAjaxPreviewWindow(this, false); this.blur(); } return false; }, "tabIndex": -1 }, null);
-			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "title": lang["ajax_preview_title"], "alt": "[…]", "width": "12", "height": "12"}, link);
+			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "title": lang["ajax_preview_title"], "alt": "[…]", "width": "11", "height": "11"}, link);
 			return link;
 		};
 		
