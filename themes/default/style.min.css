@@ -382,7 +382,9 @@ ul.thread li > a,ul.thread li .currentreply,ul.thread li > .metadata{text-wrap:n
 main:not(:has(table#threadlist)) ul.thread li > a::after{content:" - "}
 .currentthread,.currentthreadnew,.currentreply,.currentreplynew{color:#ff0000;font-weight:bold}
 .currentthread{padding-inline-start:18px;background:url(images/thread-marker-no-change.svg) no-repeat 0 center/14px}
+html[dir="rtl"] .currentthread{background-position-x:100%}
 .currentthreadnew{padding-inline-start:18px;background:url(images/thread-marker-with-change.svg) no-repeat 0 center/14px}
+html[dir="rtl"] .currentthreadnew{background-position-x:100%}
 .currentreply{padding-inline-start:16px;background:url(images/thread-tree-no-change-ltr.svg) no-repeat 0 center/14px}
 html[dir="rtl"] .currentreply{background:url(images/thread-tree-no-change-rtl.svg) no-repeat 100% center/14px}
 .currentreplynew{padding-inline-start:16px;background:url(images/thread-tree-with-change-ltr.svg) no-repeat 0 center/14px}

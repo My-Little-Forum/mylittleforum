@@ -1901,9 +1901,15 @@ main:not(:has(table#threadlist)) ul.thread li > a::after {
 	padding-inline-start: 18px;
 	background: url(images/thread-marker-no-change.svg) no-repeat 0 center/14px;
 }
+html[dir="rtl"] .currentthread {
+	background-position-x: 100%;
+}
 .currentthreadnew {
 	padding-inline-start: 18px;
 	background: url(images/thread-marker-with-change.svg) no-repeat 0 center/14px;
+}
+html[dir="rtl"] .currentthreadnew {
+	background-position-x: 100%;
 }
 .currentreply {
 	padding-inline-start: 16px;
