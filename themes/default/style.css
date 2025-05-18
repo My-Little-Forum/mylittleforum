@@ -1799,11 +1799,7 @@ html[dir="rtl"] a.thread-locked:link {
 a.threadnew-sticky,
 a.threadnew-sticky:link {
 	padding-inline-start: 18px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -300px;
-}
-html[dir="rtl"] a.threadnew-sticky,
-html[dir="rtl"] a.threadnew-sticky:link {
-	background-position-x: 100%;
+	background: url(images/thread-marker-pinned-with-change.svg) no-repeat 0 center/14px;
 }
 /* new sticky and locked threads: */
 a.threadnew-sticky-locked,
