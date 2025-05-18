@@ -355,12 +355,11 @@ a.subject,a.subject:link{color:#00c}
 a.subject:visited{color:#007}
 a.subject:focus,a.subject:hover{color:#00f;text-decoration:underline}
 a.subject:active{color:red}
-a.thread-sticky-locked,a.thread-sticky-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1210px}
-html[dir="rtl"] a.thread-sticky-locked,html[dir="rtl"] a.thread-sticky-locked:link{background-position-x:100%}
 a.threadnew-sticky-locked,a.threadnew-sticky-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1260px}
 html[dir="rtl"] a.threadnew-sticky-locked,html[dir="rtl"] a.threadnew-sticky-locked:link{background-position-x:100%}
 a.thread,a.thread:link{padding-inline-start:18px;background:url(images/thread-marker-no-change.svg) no-repeat 0 center/14px}
 a.thread-sticky,a.thread-sticky:link{padding-inline-start:18px;background:url(images/thread-marker-pinned-no-change.svg) no-repeat 0 center/14px}
+a.thread-sticky-locked,a.thread-sticky-locked:link{padding-inline-start:18px;background:url(images/thread-marker-locked-pinned-no-change.svg) no-repeat 0 center/14px}
 a.thread-locked,a.thread-locked:link{padding-inline-start:18px;background:url(images/thread-marker-locked-no-change.svg) no-repeat 0 center/14px}
 a.threadnew-sticky,a.threadnew-sticky:link{padding-inline-start:18px;background:url(images/thread-marker-pinned-with-change.svg) no-repeat 0 center/14px}
 a.threadnew-locked,a.threadnew-locked:link{padding-inline-start:18px;background:url(images/thread-marker-locked-with-change.svg) no-repeat 0 center/14px}
