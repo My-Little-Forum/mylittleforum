@@ -1816,11 +1816,11 @@ a.reply,
 a.reply:link {
 	padding-inline-start: 16px;
 	font-weight: normal;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -348px;
+	background: url(images/thread-tree-no-change-ltr.svg) no-repeat 0 center/14px;
 }
 html[dir="rtl"] a.reply,
 html[dir="rtl"] a.reply:link {
-	background-position: 100% -1408px;
+	background: url(images/thread-tree-no-change-rtl.svg) no-repeat 100% center/14px;
 }
 /* unread replies */
 a.replynew,
@@ -1875,10 +1875,10 @@ main:not(:has(table#threadlist)) ul.thread li > a::after {
 }
 .currentreply {
 	padding-inline-start: 16px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -348px;
+	background: url(images/thread-tree-no-change-ltr.svg) no-repeat 0 center/14px;
 }
 html[dir="rtl"] .currentreply {
-	background-position: 100% -1408px;
+	background: url(images/thread-tree-no-change-rtl.svg) no-repeat 100% center/14px;
 }
 .currentreplynew {
 	padding-inline-start: 16px;
