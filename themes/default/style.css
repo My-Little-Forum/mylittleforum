@@ -1827,11 +1827,11 @@ a.replynew,
 a.replynew:link {
 	padding-inline-start: 16px;
 	font-weight: normal;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -398px;
+	background: url(images/thread-tree-with-change-ltr.svg) no-repeat 0 center/14px;
 }
 html[dir="rtl"] a.replynew,
 html[dir="rtl"] a.replynew:link {
-	background-position: 100% -1458px;
+	background: url(images/thread-tree-with-change-rtl.svg) no-repeat 100% center/14px;
 }
 
 a.read,
@@ -1882,10 +1882,10 @@ html[dir="rtl"] .currentreply {
 }
 .currentreplynew {
 	padding-inline-start: 16px;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -398px;
+	background: url(images/thread-tree-with-change-ltr.svg) no-repeat 0 center/14px;
 }
 html[dir="rtl"] .currentreplynew {
-	background-position: 100% -1458px;
+	background: url(images/thread-tree-with-change-rtl.svg) no-repeat 100% center/14px;
 }
 
 a.internal,
