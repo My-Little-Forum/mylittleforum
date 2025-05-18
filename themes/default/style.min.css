@@ -357,14 +357,13 @@ a.subject:focus,a.subject:hover{color:#00f;text-decoration:underline}
 a.subject:active{color:red}
 a.thread-sticky-locked,a.thread-sticky-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1210px}
 html[dir="rtl"] a.thread-sticky-locked,html[dir="rtl"] a.thread-sticky-locked:link{background-position-x:100%}
-a.thread-locked,a.thread-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1109px}
-html[dir="rtl"] a.thread-locked,html[dir="rtl"] a.thread-locked:link{background-position-x:100%}
 a.threadnew-sticky-locked,a.threadnew-sticky-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1260px}
 html[dir="rtl"] a.threadnew-sticky-locked,html[dir="rtl"] a.threadnew-sticky-locked:link{background-position-x:100%}
 a.threadnew-locked,a.threadnew-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1160px}
 html[dir="rtl"] a.threadnew-locked,html[dir="rtl"] a.threadnew-locked:link{background-position-x:100%}
 a.thread,a.thread:link{padding-inline-start:18px;background:url(images/thread-marker-no-change.svg) no-repeat 0 center/14px}
 a.thread-sticky,a.thread-sticky:link{padding-inline-start:18px;background:url(images/thread-marker-pinned-no-change.svg) no-repeat 0 center/14px}
+a.thread-locked,a.thread-locked:link{padding-inline-start:18px;background:url(images/thread-marker-locked-no-change.svg) no-repeat 0 center/14px}
 a.threadnew-sticky,a.threadnew-sticky:link{padding-inline-start:18px;background:url(images/thread-marker-pinned-with-change.svg) no-repeat 0 center/14px}
 a.threadnew,a.threadnew:link{padding-inline-start:18px;background:url(images/thread-marker-with-change.svg) no-repeat 0 center/14px}
 a.reply,a.reply:link{padding-inline-start:16px;font-weight:normal;background:url(images/bg_sprite_1.png) no-repeat 0 -348px}
