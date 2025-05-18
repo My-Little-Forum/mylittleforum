@@ -356,14 +356,21 @@ a.subject:visited{color:#007}
 a.subject:focus,a.subject:hover{color:#00f;text-decoration:underline}
 a.subject:active{color:red}
 a.thread,a.thread:link{padding-inline-start:18px;background:url(images/thread-marker-no-change.svg) no-repeat 0 center/14px}
+html[dir="rtl"] a.thread,html[dir="rtl"] a.thread:link{background-position-x:100%}
 a.thread-sticky,a.thread-sticky:link{padding-inline-start:18px;background:url(images/thread-marker-pinned-no-change.svg) no-repeat 0 center/14px}
+html[dir="rtl"] a.thread-sticky,html[dir="rtl"] a.thread-sticky:link{background-position-x:100%}
 a.thread-sticky-locked,a.thread-sticky-locked:link{padding-inline-start:18px;background:url(images/thread-marker-locked-pinned-no-change.svg) no-repeat 0 center/14px}
+html[dir="rtl"] a.thread-sticky-locked,html[dir="rtl"] a.thread-sticky-locked:link{background-position-x:100%}
 a.thread-locked,a.thread-locked:link{padding-inline-start:18px;background:url(images/thread-marker-locked-no-change.svg) no-repeat 0 center/14px}
+html[dir="rtl"] a.thread-locked,html[dir="rtl"] a.thread-locked:link{background-position-x:100%}
 a.threadnew-sticky,a.threadnew-sticky:link{padding-inline-start:18px;background:url(images/thread-marker-pinned-with-change.svg) no-repeat 0 center/14px}
+html[dir="rtl"] a.threadnew-sticky,html[dir="rtl"] a.threadnew-sticky:link{background-position-x:100%}
 a.threadnew-sticky-locked,a.threadnew-sticky-locked:link{padding-inline-start:18px;background:url(images/thread-marker-locked-pinned-with-change.svg) no-repeat 0 center/14px}
+html[dir="rtl"] a.threadnew-sticky-locked,html[dir="rtl"] a.threadnew-sticky-locked:link{background-position-x:100%}
 a.threadnew-locked,a.threadnew-locked:link{padding-inline-start:18px;background:url(images/thread-marker-locked-with-change.svg) no-repeat 0 center/14px}
+html[dir="rtl"] a.threadnew-locked,html[dir="rtl"] a.threadnew-locked:link{background-position-x:100%}
 a.threadnew,a.threadnew:link{padding-inline-start:18px;background:url(images/thread-marker-with-change.svg) no-repeat 0 center/14px}
-html[dir="rtl"] a.replynew,html[dir="rtl"] a.replynew:link{background-position:100% -1458px}
+html[dir="rtl"] a.threadnew,html[dir="rtl"] a.threadnew:link{background-position-x:100%}
 a.reply,a.reply:link{padding-inline-start:16px;font-weight:normal;background:url(images/thread-tree-no-change-ltr.svg) no-repeat 0 center/14px}
 html[dir="rtl"] a.reply,html[dir="rtl"] a.reply:link{background:url(images/thread-tree-no-change-rtl.svg) no-repeat 100% center/14px}
 a.replynew,a.replynew:link{padding-inline-start:16px;font-weight:normal;background:url(images/thread-tree-with-change-ltr.svg) no-repeat 0 center/14px}
