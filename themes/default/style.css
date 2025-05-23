@@ -1880,12 +1880,12 @@ a.read:active {
 	color: #f00;
 }
 
-ul.thread li > a,
-ul.thread li .currentreply,
-ul.thread li > .metadata {
+ul.thread li .entry > a,
+ul.thread li .current,
+ul.thread li .entry > .metadata {
 	text-wrap: nowrap;
 }
-main:not(:has(table#threadlist)) ul.thread li > a::after {
+main:not(:has(table#threadlist)) ul.thread li .entry > a::after {
 	content: " - ";
 }
 
