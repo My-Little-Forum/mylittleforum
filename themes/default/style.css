@@ -1927,7 +1927,7 @@ td ul.thread ul ul {
 td ul.folded {
 	margin: 0;
 	padding: 0;
-	padding-inline-start 15px;
+	padding-inline-start 1em;
 }
 
 /* postings in search results: */

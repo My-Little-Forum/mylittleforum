@@ -390,7 +390,7 @@ img.fold-thread{width:9px;height:9px;background:url(images/bg_sprite_2.png) no-r
 td ul.thread{margin:0;padding:0;list-style-type:none;font-size:1em!important}
 td ul.thread ul{font-size:.82em!important;line-height:1.25em}
 td ul.thread ul ul{font-size:1em!important}
-td ul.folded{margin:0;padding:0;padding-inline-start:15px}
+td ul.folded{margin:0;padding:0;padding-inline-start:1em}
 ul.searchresults{margin:0 0 20px;padding:0;list-style-type:none;max-width:100%!important}
 ul.searchresults li{font-size:1em;padding:0 0 10px}
 ul.searchresults li li{font-size:1em}
