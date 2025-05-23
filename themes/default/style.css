@@ -109,13 +109,6 @@ html[dir="rtl"] img.icon.wd-dependent {
 	transform: scale(-1, 1);
 }
 
-img.hide-sidebar {
-	background: url(images/bg_sprite_2.png) no-repeat -9px -22px;
-}
-img.show-sidebar {
-	background: url(images/bg_sprite_2.png) no-repeat 0 -22px;
-}
-
 body > * {
 	margin: 0;
 	padding: 0 1em;
