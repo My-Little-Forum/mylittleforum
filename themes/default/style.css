@@ -1880,6 +1880,9 @@ a.read:active {
 	color: #f00;
 }
 
+html[dir="rtl"] ul.thread img.icon.wd-dependent {
+	transform: scale(-1,1);
+}
 ul.thread li .entry > a,
 ul.thread li .current,
 ul.thread li .entry > .metadata {
