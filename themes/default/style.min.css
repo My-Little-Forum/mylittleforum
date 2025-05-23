@@ -378,7 +378,6 @@ html[dir="rtl"] a.replynew,html[dir="rtl"] a.replynew:link{background:url(images
 a.read,a.read:link,a.read:visited,#latest-postings li a span.read{color:#007}
 a.read:focus,a.read:hover{color:#00f}
 a.read:active{color:red}
-.currentthread,.currentthreadnew,.currentreply,.currentreplynew{color:#ff0000;font-weight:bold}
 .currentthread{padding-inline-start:18px;background:url(images/thread-marker-no-change.svg) no-repeat 0 center/14px}
 html[dir="rtl"] .currentthread{background-position-x:100%}
 .currentthreadnew{padding-inline-start:18px;background:url(images/thread-marker-with-change.svg) no-repeat 0 center/14px}
@@ -390,6 +389,7 @@ html[dir="rtl"] .currentreplynew{background:url(images/thread-tree-with-change-r
 html[dir="rtl"] ul.thread img.icon.wd-dependent{transform:scale(-1,1)}
 ul.thread li .entry > a, ul.thread li .current, ul.thread li .entry > .metadata{text-wrap:nowrap}
 main:not(:has(table#threadlist)) ul.thread li .entry > a::after{content:" - "}
+.current{color:#ff0000;font-weight:bold}
 a.internal,a.internal:link{padding-inline-start:18px;color:#00c;text-decoration:none;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
 html[dir="rtl"] a.internal,html[dir="rtl"] a.internal:link{background-position-x:100%}
 a.internal:focus,a.internal:hover{color:#00f;text-decoration:underline}
