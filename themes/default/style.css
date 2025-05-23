@@ -1836,6 +1836,12 @@ ul.thread li .replies {
 ul.thread li .category {
 	font-size: 0.82em;
 }
+ul.thread .entry {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0 0.25em;
+}
 ul.reply,
 ul.deep-reply,
 ul.very-deep-reply {

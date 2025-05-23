@@ -371,6 +371,7 @@ ul.thread li{margin:0;position:relative}
 ul.thread li span.tail{white-space:nowrap}
 ul.thread li .replies{color:gray;font-size:.82em}
 ul.thread li .category{font-size:.82em}
+ul.thread .entry{display:flex;align-items:center;flex-wrap:wrap;gap:0 .25em}
 ul.reply,ul.deep-reply,ul.very-deep-reply{margin:0;padding:0;list-style-type:none;max-width:100%!important}
 ul.reply li{margin-inline-start:1.5em}
 td ul.reply li{margin-inline-start:1.25em}
