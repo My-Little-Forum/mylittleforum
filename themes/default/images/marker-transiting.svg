@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="plate" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#ebf0f8" />
+   <stop offset="50%" stop-color="#dae4e6" />
+   <stop offset="100%" stop-color="#d2d8da" />
+  </linearGradient>
+  <linearGradient id="cyl" x1="75%" y1="0%" x2="25%" y2="100%">
+   <stop offset="0%" stop-color="#cbced0" />
+   <stop offset="36%" stop-color="#bcbfc2" />
+   <stop offset="86%" stop-color="#a0a2a2" />
+   <stop offset="100%" stop-color="#888c8d" />
+  </linearGradient>
+  <linearGradient id="contour" x1="75%" y1="0%" x2="25%" y2="100%">
+   <stop offset="0%" stop-color="#bdbfc0" />
+   <stop offset="100%" stop-color="#808285" />
+  </linearGradient>
+ </defs>
+ <style type="text/css"><![CDATA[
+  svg { fill: transparent; }
+  #radio { fill: url(#plate); stroke: #789fa4; stroke-width: 16; stroke-linejoin: round; }
+  #cross { fill: url(#cyl); stroke-width: 12; stroke: url(#contour); stroke-linecap: round; }
+  ]]></style>
+ <g>
+  <circle id="radio" cx="132" cy="132" r="120" />
+  <path transform="rotate(-45, 132, 132)" id="cross" d="M106,108 a 2 2,0,0,0, 2,-2 v-90 a 24 24, 0, 0, 1, 48,0 v90 a 2 2,0,0,0, 2,2 h90 a 24 24, 0, 0, 1, 0, 48 h-90 a 2 2,0,0,0, -2,2 v90 a 24 24, 0, 0, 1, -48,0 v-90 a 2 2,0,0,0, -2,-2 h-90 a 24 24, 0, 0, 1, 0,-48 z" />
+ </g>
+</svg>
