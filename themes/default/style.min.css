@@ -379,9 +379,8 @@ ul.deep-reply li{margin-inline-start:.75em}
 td ul.deep-reply li{margin-inline-start:.375em}
 ul.very-deep-reply li,td ul.very-deep-reply li{margin-inline-start:0}
 ul.complete-thread{margin:0 0 20px;padding:0;list-style-type:none;clear:both;max-width:100%!important}
-ul.reply ul{background:url(images/thread_connecting_line.png) repeat-y left center}
-html[dir="rtl"] ul.reply ul{background:url(images/thread_connecting_line.png) repeat-y 100% center}
-ul.reply li:last-child>ul{background:none}
+ul.reply ul {border-inline-start:round(0.2em, 1px) dotted #bfc1be}
+ul.reply li:last-child > ul {border:none}
 span.fold-expand{display:none}
 ul.folded{margin:0 0 10px;padding:0;padding-inline-start:15px}
 ul.folded span.fold-expand{position:absolute;inset-block-start:-2px;inset-inline-start:-15px;display:inline;margin-inline-end:5px}

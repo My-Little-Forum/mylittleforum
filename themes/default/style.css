@@ -1874,13 +1874,10 @@ ul.complete-thread {
 	max-width: 100% !important;
 }
 ul.reply ul {
-	background: url(images/thread_connecting_line.png) repeat-y left center;
+	border-inline-start: round(0.2em, 1px) dotted #bfc1be;
 }
-html[dir="rtl"] ul.reply ul {
-	background: url(images/thread_connecting_line.png) repeat-y 100% center;
-}
-ul.reply li:last-child>ul {
-	background: none;
+ul.reply li:last-child > ul {
+	border: none;
 }
 
 span.fold-expand {
