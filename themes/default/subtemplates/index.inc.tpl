@@ -42,7 +42,25 @@
 {foreach from=$threads item=thread}
 <ul id="thread-{$thread}" class="thread {if $fold_threads==1}folded{else}expanded{/if}">
 {function name=tree level=0}
-<li><a class="subject {if $data.$element.pid==0 && $data.$element.new}{if $data.$element.sticky>0 && $data.$element.locked==1}threadnew-sticky-locked{elseif $data.$element.sticky>0}threadnew-sticky{elseif $data.$element.locked==1}threadnew-locked{else}threadnew{/if}{elseif $data.$element.pid==0}{if $data.$element.sticky>0 && $data.$element.locked==1}thread-sticky-locked{elseif $data.$element.sticky>0}thread-sticky{elseif $data.$element.locked==1}thread-locked{else}thread{/if}{elseif $data.$element.pid!=0 && $data.$element.new}replynew{else}reply{/if}{if $data.$element.is_read} read{/if}" href="index.php?id={$data.$element.id}"{if $data.$element.spam==1} title="{#spam#}"{/if}>{if $data.$element.spam==1}<span class="spam">{$data.$element.subject}</span>{else}{$data.$element.subject}{/if}</a>
+ <li>
+  <div class="entry">
+{if $data.$element.pid==0 && $data.$element.new}
+{if $data.$element.sticky>0 && $data.$element.locked==1}{$iconSrc="images/thread-marker-locked-pinned-with-change.svg"}{$wdClass=""}
+{elseif $data.$element.sticky>0}{$iconSrc="images/thread-marker-pinned-with-change.svg"}{$wdClass=""}
+{elseif $data.$element.locked==1}{$iconSrc="images/thread-marker-locked-with-change.svg"}{$wdClass=""}
+{else}{$iconSrc="images/thread-marker-with-change.svg"}{$wdClass=""}
+{/if}
+{elseif $data.$element.pid==0}
+{if $data.$element.sticky>0 && $data.$element.locked==1}{$iconSrc="images/thread-marker-locked-pinned-no-change.svg"}{$wdClass=""}
+{elseif $data.$element.sticky>0}{$iconSrc="images/thread-marker-pinned-no-change.svg"}{$wdClass=""}
+{elseif $data.$element.locked==1}{$iconSrc="images/thread-marker-locked-no-change.svg"}{$wdClass=""}
+{else}{$iconSrc="images/thread-marker-no-change.svg"}{$wdClass=""}
+{/if}
+{elseif $data.$element.pid!=0 && $data.$element.new}{$iconSrc="images/thread-tree-with-change.svg"}{$wdClass=" wd-dependent"}
+{else}{$iconSrc="images/thread-tree-no-change.svg"}{$wdClass=" wd-dependent"}
+{/if}
+   <img class="icon{$wdClass}" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/{$iconSrc}" alt="" width="14" height="14" />
+   <a class="subject {if $data.$element.is_read} read{/if}" href="index.php?id={$data.$element.id}"{if $data.$element.spam==1} title="{#spam#}"{/if}>{if $data.$element.spam==1}<span class="spam">{$data.$element.subject}</span>{else}{$data.$element.subject}{/if}</a>
 
 <span class="metadata">
 {if $data.$element.user_type==2}
@@ -61,6 +79,7 @@
 {if $data.$element.category_name && $data.$element.pid==0 && $category<=0} <a href="index.php?mode=index&amp;category={$data.$element.category}" title="{#change_category_link#|replace:"[category]":$data.$element.category_name|escape:"html"}"><span class="category">({$data.$element.category_name})</span></a>{/if}{if $fold_threads==1 && $data.$element.pid==0 && $replies.$thread>0} <span class="replies" title="{*{if $replies.$thread==0}{#no_replies#}*}{if $replies.$thread==1}{#one_reply#}{else}{$smarty.config.several_replies|replace:"[replies]":$replies.$thread}{/if}">({$replies.$thread})</span>{/if}
 </span>
 </span>
+</div>
 {if is_array($child_array[$element])}
 <ul class="{if $level<$settings.deep_reply}reply{elseif $level>=$settings.deep_reply&&$level<$settings.very_deep_reply}deep-reply{else}very-deep-reply{/if}{if $fold_threads==1} js-display-none{/if}">{foreach from=$child_array[$element] item=child}{tree element=$child level=$level+1}{/foreach}</ul>{/if}</li>{/function}
 {tree element=$thread}
