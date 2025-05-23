@@ -400,12 +400,11 @@ ul.thread li span.tail{white-space:nowrap}
 ul.thread li .replies{color:gray;font-size:.82em}
 ul.thread li .category{font-size:.82em}
 ul.reply,ul.deep-reply,ul.very-deep-reply{margin:0;padding:0;list-style-type:none;max-width:100%!important}
-ul.reply li{margin-inline-start:24px}
-td ul.reply li{margin-inline-start:20px}
-ul.deep-reply li{margin-inline-start:10px}
-td ul.deep-reply li{margin-inline-start:5px}
-ul.very-deep-reply li{margin-inline-start:0}
-td ul.very-deep-reply li{margin-inline-start:0}
+ul.reply li{margin-inline-start:1.5em}
+td ul.reply li{margin-inline-start:1.25em}
+ul.deep-reply li{margin-inline-start:.75em}
+td ul.deep-reply li{margin-inline-start:.375em}
+ul.very-deep-reply li,td ul.very-deep-reply li{margin-inline-start:0}
 ul.complete-thread{margin:0 0 20px;padding:0;list-style-type:none;clear:both;max-width:100%!important}
 ul.reply ul{background:url(images/thread_connecting_line.png) repeat-y left center}
 html[dir="rtl"] ul.reply ul{background:url(images/thread_connecting_line.png) repeat-y 100% center}
