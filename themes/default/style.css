@@ -1892,10 +1892,7 @@ main:not(:has(table#threadlist)) ul.thread li .entry > a::after {
 	content: " - ";
 }
 
-.currentthread,
-.currentthreadnew,
-.currentreply,
-.currentreplynew {
+.current {
 	color: #ff0000;
 	font-weight: bold;
 }
