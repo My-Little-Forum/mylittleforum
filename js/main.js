@@ -1149,8 +1149,8 @@ function DragAndDropTable(table,mode,queryKey) {
 			for (var i=0; i<els.length; i++) {
 				var el = els[i];
 				var li = el.closest("li");
-				var pLink = li.querySelector(":scope > a.subject");
-				var pEmptyEl = li.querySelector(":scope > .metadata .tail img.no-text");
+				var pLink = li.querySelector(":scope > .entry a.subject");
+				var pEmptyEl = li.querySelector(":scope > .entry:has(img.no-text)");
 				var pEmpty = (pEmptyEl !== null) ? true: false;
 				var pid = parseInt( el.id.substring(1) );
 				if (!pid) 
