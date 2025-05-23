@@ -26,7 +26,7 @@
  </style>
  <g>
   <path id="container" d="M12,74 a30 30, 0, 0, 1, 30,-30 h180 a30 30, 0, 0, 1, 30,30 v116 a30 30, 0, 0, 1, -30,30 h-180 a30 30, 0, 0, 1, -30,-30 z" />
-  <path id="lines" d="M52,86 h160 M52,118 h86 M52,150 h74 M172,150 h40 M52,182 h64" />
+  <path id="lines" d="M52,84 h160 m-160,32 h86 m-86,32 h74 m46,0 h40 m-160,32 h64" />
  </g>
  <g id="sticky-pin" transform="translate(57,-46) scale(0.75) rotate(37.5)" transform-origin="center">
   <path id="pin" d="M120,82 v 90 l7,80 a5 5, 0, 0, 0, 10,0 l7,-80 v-90 z" />
