@@ -1010,7 +1010,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		 */
 		var createAjaxPreviewLink = function(id) {
 			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) { if (settings["ajax_preview_onmouseover"]) {self.showAjaxPreviewWindow(this, false); this.blur(); } return false; }, "tabIndex": -1 }, null);
-			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "title": lang["ajax_preview_title"], "alt": "[…]", "width": "12", "height": "12"}, link);
+			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "title": lang["ajax_preview_title"], "alt": "[…]", "width": "11", "height": "11"}, link);
 			return link;
 		};
 		
@@ -1149,8 +1149,8 @@ function DragAndDropTable(table,mode,queryKey) {
 			for (var i=0; i<els.length; i++) {
 				var el = els[i];
 				var li = el.closest("li");
-				var pLink = li.querySelector(":scope > a.subject");
-				var pEmptyEl = li.querySelector(":scope > .metadata .tail img.no-text");
+				var pLink = li.querySelector(":scope > .entry a.subject");
+				var pEmptyEl = li.querySelector(":scope > .entry:has(img.no-text)");
 				var pEmpty = (pEmptyEl !== null) ? true: false;
 				var pid = parseInt( el.id.substring(1) );
 				if (!pid) 

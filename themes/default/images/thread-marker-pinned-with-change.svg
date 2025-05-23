@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="264" viewBox="0 0 264 264">
+ <defs>
+  <linearGradient id="lockbody" x1="100%" y1="0%" x2="0%" y2="0%">
+   <stop offset="0%" stop-color="#cbb632" />
+   <stop offset="27.5%" stop-color="#ceb43c" />
+   <stop offset="40%" stop-color="#d4c024" />
+   <stop offset="60%" stop-color="#d4c024" />
+   <stop offset="72.5%" stop-color="#efe154" />
+   <stop offset="100%" stop-color="#efe258" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #container { fill: #fff; stroke-width: 20; stroke: #f80800; stroke-linejoin: round; }
+  #lines { fill: none; stroke-width: 16; stroke: #222; stroke-linecap: round; }
+  #pinhead { fill: #d81f10; stroke: none; }
+  #pin { fill: #467; stroke-width: 1; stroke: #467; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g>
+  <path id="container" d="M12,74 a30 30, 0, 0, 1, 30,-30 h180 a30 30, 0, 0, 1, 30,30 v116 a30 30, 0, 0, 1, -30,30 h-180 a30 30, 0, 0, 1, -30,-30 z" />
+  <path id="lines" d="M52,84 h160 m-160,32 h160 m-160,32 h160 m-160,32 h160" />
+ </g>
+ <g id="sticky-pin" transform="translate(57,-46) scale(0.75) rotate(37.5)" transform-origin="center">
+  <path id="pin" d="M120,82 v 90 l7,80 a5 5, 0, 0, 0, 10,0 l7,-80 v-90 z" />
+  <circle id="pinhead" cx="132" cy="46" r="44" />
+ </g>
+</svg>
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" height="264" width="264" viewBox="0 0 264 264">
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #angled-arrow { stroke-width: 12; stroke: #bfc1be; fill: #bfc1be; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g>
+  <path id="angled-arrow" d="M6,16 v108 a57 57, 0, 0, 0, 57, 57 h92 v27 l 45.5,-45.5 -45.5,-45.5 v27 h-92 a20 20, 0, 0, 1, -20,-20 v-108 z"/>
+ </g>
+</svg>
+

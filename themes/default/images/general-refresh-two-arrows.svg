@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
  <style type="text/css"><![CDATA[
   svg { fill: transparent; }
-  #active, #tip { stroke: #808080; stroke-width: 30; stroke-linecap: round; stroke-linejoin: round; }
+  #active, #tip { stroke: #808080; stroke-width: 25; stroke-linecap: round; stroke-linejoin: round; }
   #active { fill: none; }
   #tip { fill: #808080; }
   ]]></style>
@@ -10,7 +10,7 @@
   <path id="tip" d="M 52,114.5 l -35,35 70,0 z M 50,132 " />
   <path id="active" d="M 52,149.5 a 82 82, 0, 0, 0, 135,43.35" />
  </symbol>
- <g transform="scale(1.05) rotate(45)" transform-origin="center">
+ <g transform="scale(1.12) rotate(45)" transform-origin="center">
   <use href="#arrow" x="0" y="0" width="264" height="264" />
   <use transform="rotate(180, 132, 132)" href="#arrow" x="0" y="0" width="264" height="264" />
  </g>
