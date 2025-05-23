@@ -19,8 +19,6 @@ html[dir="rtl"] a.stronglink:focus,html[dir="rtl"] a.stronglink:hover{background
 a.stronglink:active{color:red}
 :is(a,span):has(img.icon){display:flex;align-items:center;gap:.125em}
 html[dir="rtl"] img.icon.wd-dependent{transform:scale(-1,1)}
-img.hide-sidebar{background:url(images/bg_sprite_2.png) no-repeat -9px -22px}
-img.show-sidebar{background:url(images/bg_sprite_2.png) no-repeat 0 -22px}
 body > *{margin:0;padding:0 1em;padding:0 1rem}
 #top{background:#d2ddea;background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 2.5em, rgb(237, 242, 245) 100%);display:flex;flex-direction:column}
 #logo{margin:0;padding:7px 0}
