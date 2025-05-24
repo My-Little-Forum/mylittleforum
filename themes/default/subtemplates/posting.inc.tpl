@@ -199,6 +199,13 @@ JavaScript isn't available.
      <dd><a href="index.php?mode=upload_image">{#bbcode_upload_instruction#}</a></dd>
     </div>
 {/if}
+{if $settings.bbcode_media}
+    <div>
+     <dt id="media" title="{#bbcode_media_label#}">{#bbcode_size_title#}</dt>
+     <dd id="video" title="{#bbcode_media_label_video#}">{#bbcode_media_instruction_video#}</dd>
+     <dd id="audio" title="{#bbcode_media_label_audio#}">{#bbcode_media_instruction_audio#}</dd>
+    </div>
+{/if}
 {if $settings.bbcode_latex && $settings.bbcode_latex_uri}
     <div>
      <dt id="tex" title="{#bbcode_tex_label#}">{#bbcode_tex_title#}</dt>

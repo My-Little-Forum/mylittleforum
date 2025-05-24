@@ -4286,3 +4286,51 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
+
+if (empty($update['errors']) && in_array($settings['version'], array('20259999.1'))) {
+	/**
+	 * From here on everything can be done as a transaction in one step
+	 */
+	if (empty($update['errors'])) {
+		mysqli_autocommit($connid, false);
+		if (empty($update['errors'])) {
+			mysqli_begin_transaction($connid);
+			try {
+				// changes in the tags table
+				// delete failed tags (with id/tid = 0) in preparation
+				// of the correction of definition of column mlf2_tags.id
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('bbcode_media', '0');");
+				
+				mysqli_commit($connid);
+			} catch (mysqli_sql_exception $exception) {
+				mysqli_rollback($connid);
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
+			}
+		}
+		mysqli_autocommit($connid, true);
+	}
+	
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
+		}
+	}
+	
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['items'][] = 'lang/';
+		
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		
+		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		
+		$update['items'][] = 'js/posting.js';
+		$update['items'][] = 'js/posting.min.js';
+
+	}
+}
