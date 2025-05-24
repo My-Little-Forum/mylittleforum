@@ -137,6 +137,7 @@ INSERT INTO mlf2_settings VALUES ('read_state_expiration_method', '0');
 INSERT INTO mlf2_settings VALUES ('uploads_per_page', '20');
 INSERT INTO mlf2_settings VALUES ('data_privacy_agreement', '0');
 INSERT INTO mlf2_settings VALUES ('data_privacy_statement_url', '');
+INSERT INTO mlf2_settings VALUES ('bbcode_media', '0');
 INSERT INTO mlf2_settings VALUES ('bbcode_latex', '0');
 INSERT INTO mlf2_settings VALUES ('bbcode_latex_uri', 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js');
 INSERT INTO mlf2_settings VALUES ('min_posting_time', '5'); 
