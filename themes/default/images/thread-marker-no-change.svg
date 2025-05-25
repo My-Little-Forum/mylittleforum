@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="264" viewBox="0 0 264 264">
+ <style type="text/css">
+  <![CDATA[
+  svg { border: 1px solid #666; fill: transparent; }
+  #container { fill: #fff; stroke-width: 20; stroke: #bbb; stroke-linejoin: round; }
+  #lines { fill: none; stroke-width: 16; stroke: #222; stroke-linecap: round; }
+  ]]>
+ </style>
+ <g>
+  <path id="container" d="M12,74 a30 30, 0, 0, 1, 30,-30 h180 a30 30, 0, 0, 1, 30,30 v116 a30 30, 0, 0, 1, -30,30 h-180 a30 30, 0, 0, 1, -30,-30 z" />
+  <path id="lines" d="M52,84 h160 m-160,32 h160 m-160,32 h160 m-160,32 h160" />
+ </g>
+</svg>
+

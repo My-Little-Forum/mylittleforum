@@ -355,60 +355,32 @@ a.subject,a.subject:link{color:#00c}
 a.subject:visited{color:#007}
 a.subject:focus,a.subject:hover{color:#00f;text-decoration:underline}
 a.subject:active{color:red}
-a.thread,a.thread:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
-html[dir="rtl"] a.thread,html[dir="rtl"] a.thread:link{background-position-x:100%}
-a.thread-sticky,a.thread-sticky:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -250px}
-html[dir="rtl"] a.thread-sticky,html[dir="rtl"] a.thread-sticky:link{background-position-x:100%}
-a.thread-sticky-locked,a.thread-sticky-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1210px}
-html[dir="rtl"] a.thread-sticky-locked,html[dir="rtl"] a.thread-sticky-locked:link{background-position-x:100%}
-a.thread-locked,a.thread-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1109px}
-html[dir="rtl"] a.thread-locked,html[dir="rtl"] a.thread-locked:link{background-position-x:100%}
-a.threadnew-sticky,a.threadnew-sticky:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -300px}
-html[dir="rtl"] a.threadnew-sticky,html[dir="rtl"] a.threadnew-sticky:link{background-position-x:100%}
-a.threadnew-sticky-locked,a.threadnew-sticky-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1260px}
-html[dir="rtl"] a.threadnew-sticky-locked,html[dir="rtl"] a.threadnew-sticky-locked:link{background-position-x:100%}
-a.threadnew-locked,a.threadnew-locked:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -1160px}
-html[dir="rtl"] a.threadnew-locked,html[dir="rtl"] a.threadnew-locked:link{background-position-x:100%}
-a.threadnew,a.threadnew:link{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -198px}
-html[dir="rtl"] a.threadnew,html[dir="rtl"] a.threadnew:link{background-position-x:100%}
-a.reply,a.reply:link{padding-inline-start:16px;font-weight:normal;background:url(images/bg_sprite_1.png) no-repeat 0 -348px}
-html[dir="rtl"] a.reply,html[dir="rtl"] a.reply:link{background-position:100% -1408px}
-a.replynew,a.replynew:link{padding-inline-start:16px;font-weight:normal;background:url(images/bg_sprite_1.png) no-repeat 0 -398px}
-html[dir="rtl"] a.replynew,html[dir="rtl"] a.replynew:link{background-position:100% -1458px}
 a.read,a.read:link,a.read:visited,#latest-postings li a span.read{color:#007}
 a.read:focus,a.read:hover{color:#00f}
 a.read:active{color:red}
-ul.thread li > a,ul.thread li .currentreply,ul.thread li > .metadata{text-wrap:nowrap}
-main:not(:has(table#threadlist)) ul.thread li > a::after{content:" - "}
-.currentthread,.currentthreadnew,.currentreply,.currentreplynew{color:#ff0000;font-weight:bold}
-.currentthread{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
-html[dir="rtl"] .currentthread{background-position-x:100%}
-.currentthreadnew{padding-inline-start:18px;background:url(images/bg_sprite_1.png) no-repeat 0 -198px}
-html[dir="rtl"] .currentthreadnew{background-position-x:100%}
-.currentreply{padding-inline-start:16px;background:url(images/bg_sprite_1.png) no-repeat 0 -348px}
-html[dir="rtl"] .currentreply{background-position:100% -1408px}
-.currentreplynew{padding-inline-start:16px;background:url(images/bg_sprite_1.png) no-repeat 0 -398px}
-html[dir="rtl"] .currentreplynew{background-position:100% -1458px}
+html[dir="rtl"] ul.thread img.icon.wd-dependent{transform:scale(-1,1)}
+ul.thread li .entry > a, ul.thread li .current, ul.thread li .entry > .metadata{text-wrap:nowrap}
+main:not(:has(table#threadlist)) ul.thread li .entry > a::after{content:" - "}
+.current{color:#ff0000;font-weight:bold}
 a.internal,a.internal:link{padding-inline-start:18px;color:#00c;text-decoration:none;background:url(images/bg_sprite_1.png) no-repeat 0 -148px}
 html[dir="rtl"] a.internal,html[dir="rtl"] a.internal:link{background-position-x:100%}
 a.internal:focus,a.internal:hover{color:#00f;text-decoration:underline}
 a.internal:active{color:red}
 ul.thread{margin:0 0 1.5em;padding:0;list-style-type:none;max-width:100%!important}
-ul.thread li{text-indent:-18px;margin:0;margin-inline-start:18px;position:relative}
+ul.thread li{margin:0;position:relative}
 ul.thread li span.tail{white-space:nowrap}
 ul.thread li .replies{color:gray;font-size:.82em}
 ul.thread li .category{font-size:.82em}
-ul.reply,ul.deep-reply,ul.very-deep-reply{margin:0;margin-inline-start:-16px;padding:0;padding-inline-start:16px;list-style-type:none;max-width:100%!important}
-ul.reply li{text-indent:-16px;margin-inline-start:24px}
-td ul.reply li{text-indent:-16px;margin-inline-start:20px}
-ul.deep-reply li{text-indent:-16px;margin-inline-start:10px}
-td ul.deep-reply li{text-indent:-16px;margin-inline-start:5px}
-ul.very-deep-reply li{text-indent:-16px;margin-inline-start:0}
-td ul.very-deep-reply li{text-indent:-16px;margin-inline-start:0}
+ul.thread .entry{display:flex;align-items:center;flex-wrap:wrap;gap:0 .25em}
+ul.reply,ul.deep-reply,ul.very-deep-reply{margin:0;padding:0;list-style-type:none;max-width:100%!important}
+ul.reply li{margin-inline-start:1.5em}
+td ul.reply li{margin-inline-start:1.25em}
+ul.deep-reply li{margin-inline-start:.75em}
+td ul.deep-reply li{margin-inline-start:.375em}
+ul.very-deep-reply li,td ul.very-deep-reply li{margin-inline-start:0}
 ul.complete-thread{margin:0 0 20px;padding:0;list-style-type:none;clear:both;max-width:100%!important}
-ul.reply ul{background:url(images/thread_connecting_line.png) repeat-y left center}
-html[dir="rtl"] ul.reply ul{background:url(images/thread_connecting_line.png) repeat-y 100% center}
-ul.reply li:last-child>ul{background:none}
+ul.reply ul {border-inline-start:round(0.2em, 1px) dotted #bfc1be}
+ul.reply li:last-child > ul {border:none}
 span.fold-expand{display:none}
 ul.folded{margin:0 0 10px;padding:0;padding-inline-start:15px}
 ul.folded span.fold-expand{position:absolute;inset-block-start:-2px;inset-inline-start:-15px;display:inline;margin-inline-end:5px}
@@ -416,9 +388,9 @@ img.expand-thread-inactive{width:9px;height:9px;background:url(images/bg_sprite_
 img.expand-thread{width:9px;height:9px;background:url(images/bg_sprite_2.png) no-repeat 0 -22px}
 img.fold-thread{width:9px;height:9px;background:url(images/bg_sprite_2.png) no-repeat -9px -22px}
 td ul.thread{margin:0;padding:0;list-style-type:none;font-size:1em!important}
-td ul.thread ul{font-size:.82em!important;line-height:1em}
+td ul.thread ul{font-size:.82em!important;line-height:1.25em}
 td ul.thread ul ul{font-size:1em!important}
-td ul.folded{margin:0;padding:0;padding-inline-start:15px}
+td ul.folded{margin:0;padding:0;padding-inline-start:1em}
 ul.searchresults{margin:0 0 20px;padding:0;list-style-type:none;max-width:100%!important}
 ul.searchresults li{font-size:1em;padding:0 0 10px}
 ul.searchresults li li{font-size:1em}
