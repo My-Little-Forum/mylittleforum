@@ -624,17 +624,18 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 		$media = '';
 		$mediaTypes = array(
 			"mp3"  => "mpeg",
+			"wav"  => "wav",
 			"mp4"  => "mp4",
 			"ogg"  => "ogg",
 			"webm" => "webm"
 		);
 		switch ($attributes['default']) {
 			case 'audio':
-				$audioPattern = "/^https?:\/\/[^\s]+\.(mp3|ogg)$/i";
+				$audioPattern = "/^https?:\/\/[^\s]+\.(mp3|ogg|wav)$/i";
 				preg_match($audioPattern, $content, $audioMatches);
 				if ($action == 'validate')
 					return !empty($audioMatches) && isset($mediaTypes[$audioMatches[1]]);
-				$media = "<audio controls><source src=\"" . htmlspecialchars($audioMatches[0]) . "\" type=\"video/" . htmlspecialchars($mediaTypes[$audioMatches[1]]) . "\">Your browser does not support the audio tag.</audio>";
+				$media = "<audio controls src=\"" . htmlspecialchars($audioMatches[0]) . "\" type=\"audio/" . htmlspecialchars($mediaTypes[$audioMatches[1]]) . "\">Your browser does not support the audio tag. Please visit <a href=\"" . htmlspecialchars($audioMatches[0]) . "\">" . htmlspecialchars($audioMatches[0]) . "</a>.</audio>";
 					
 			break;
 			
@@ -650,7 +651,7 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 					return !empty($videoMatches) && isset($mediaTypes[$videoMatches[1]]) || !empty($youtubeMatches);
 				
 				if (!empty($videoMatches) && isset($mediaTypes[$videoMatches[1]]))
-					$media = "<video width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" controls><source src=\"" . htmlspecialchars($videoMatches[0]) . "\" type=\"video/" . htmlspecialchars($mediaTypes[$videoMatches[1]]) . "\">Your browser does not support the video tag.</video>";
+					$media = "<video width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" controls src=\"" . htmlspecialchars($videoMatches[0]) . "\" type=\"video/" . htmlspecialchars($mediaTypes[$videoMatches[1]]) . "\">Your browser does not support the video tag. Please visit <a href=\"" . htmlspecialchars($videoMatches[0]) . "\">" . htmlspecialchars($videoMatches[0]) . "</a>.</video>";
 				else
 					$media = "<iframe width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" src=\"https://www.youtube.com/embed/" . htmlspecialchars($youtubeMatches[1]) . "\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
 				
