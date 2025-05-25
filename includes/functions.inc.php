@@ -620,6 +620,9 @@ function do_bbcode_color($action, $attributes, $content, $params, $node_object) 
  * processes BBCode media
  */
 function do_bbcode_media($action, $attributes, $content, $params, $node_object) {
+	if (!isset($attributes['default']))
+		$attributes['default'] = 'video'; // for flash-tag
+	
 	if (isset($attributes['default'])) {
 		$media = '';
 		$mediaTypes = array(
