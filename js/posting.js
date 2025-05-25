@@ -567,6 +567,12 @@ function ButtonGroup(f) {
 		case "link":
 			bbCodeButton = new BBCodeLinkButton( button );
 		break;
+		case "media":
+			if (list && list.length > 1)
+				bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_media_url"], "https://" );
+			else
+				bbCodeButton = new BBCodePromtButton( button, lang["bbcode_media_url"], "https://" );
+		break;
 		case "img":
 			if (list && list.length > 1)
 				bbCodeButton = new BBCodeOptionButton(button, list, lang["bbcode_image_url"], "https://" );
