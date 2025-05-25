@@ -55,6 +55,8 @@ lang["hide_password_title"] =              "<?php echo addslashes($lang['hide_pa
 		lang["bbcode_link_text"] =                 "<?php echo addslashes($lang['bbcode_link_text']); ?>";
 		lang["bbcode_link_url"] =                  "<?php echo addslashes($lang['bbcode_link_url']); ?>";
 		lang["bbcode_image_url"] =                 "<?php echo addslashes($lang['bbcode_image_url']); ?>";
+	<?php endif; ?>
+	<?php if($settings['bbcode_media']): ?>
 		lang["bbcode_media_url"] =                 "<?php echo addslashes($lang['bbcode_media_url']); ?>";
 	<?php endif; ?>
 	<?php if($settings['bbcode_latex'] && !empty($settings['bbcode_latex_uri'])): ?>
