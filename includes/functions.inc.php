@@ -983,6 +983,7 @@ function html_format($string){
 		}
 		if($settings['bbcode_media']==1) {
 			$bbcode->addCode ('media', 'usecontent', 'do_bbcode_media', array ('usecontent_param' => 'default'), 'block', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
+			$bbcode->addCode ('flash', 'usecontent', 'do_bbcode_media', array ('usecontent_param' => 'default'), 'block', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		}
 	}
 
