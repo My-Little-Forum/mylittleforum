@@ -20,7 +20,7 @@
   #cap { fill: url(#shaft); stroke: none; }
   #tip { fill: url(#tipping); stroke: none; }
   ]]></style>
- <g>
+ <g transform="scale(0.75)">
   <path id="lines" d="M 16,28 h 232 m -232,52 h 232 m -232,52 h 232 m -232,52 h 232 m -232,52 h 232" />
  </g>
  <g id="pencil" transform="translate(68.5, 78.5) scale(0.825) rotate(45, 132, 132)">
