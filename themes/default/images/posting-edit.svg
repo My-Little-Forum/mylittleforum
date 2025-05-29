@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="shaft" x1="0%" y1="0%" x2="100%" y2="0%">
+   <stop offset="0%" stop-color="#fff2b8" />
+   <stop offset="100%" stop-color="#b89802" />
+  </linearGradient>
+  <linearGradient id="tipping" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#e8e8c0" />
+   <stop offset="54%" stop-color="#e8e8c0" />
+   <stop offset="55%" stop-color="#9f8640" />
+   <stop offset="100%" stop-color="#9f8640" />
+  </linearGradient>
+ </defs>
+ <style type="text/css"><![CDATA[
+  svg { fill: transparent; }
+  #lines { stroke: #808080; stroke-width: 22; fill: none; stroke-linecap: round; }
+  #contour { fill: none; stroke: #9f8640; stroke-width: 8; stroke-linejoin: round; stroke-linecap: round; }
+  #pen { fill: url(#shaft); stroke: none; }
+  #cap { fill: url(#shaft); stroke: none; }
+  #tip { fill: url(#tipping); stroke: none; }
+  ]]></style>
+ <g>
+  <path id="lines" d="M 16,28 h 232 m -232,52 h 232 m -232,52 h 232 m -232,52 h 232 m -232,52 h 232" />
+ </g>
+ <g id="pencil" transform="translate(68.5, 78.5) scale(0.825) rotate(45, 132, 132)">
+  <path id="cap" d="M 102,20 a 60 96, 0, 0, 1, 60,0  v 8 a 60 64, 0, 0, 1, -60,0 z" />
+  <path id="pen" d="M 102,28 a 60 64, 0, 0, 0, 60,0 v 160 a 60 64, 0, 0, 1, -60,0 z" />
+  <path id="tip" d="M 102,188 a 60 64, 0, 0, 0, 60,0 l -30,68 z" />
+  <path id="contour" d="M 102,20 a 60 96, 0, 0, 1, 60,0 v 168 l -30,68 -30,-68 z M 112,33 a 60 64, 0, 0, 0, 40,0" />
+ </g>
+</svg>
