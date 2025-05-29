@@ -656,7 +656,7 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 				if (!empty($videoMatches) && isset($mediaTypes[$videoMatches[1]]))
 					$media = "<video width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" controls src=\"" . htmlspecialchars($videoMatches[0]) . "\" type=\"video/" . htmlspecialchars($mediaTypes[$videoMatches[1]]) . "\">Your browser does not support the video tag. Please visit <a href=\"" . htmlspecialchars($videoMatches[0]) . "\">" . htmlspecialchars($videoMatches[0]) . "</a>.</video>";
 				else
-					$media = "<iframe width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" src=\"https://www.youtube.com/embed/" . htmlspecialchars($youtubeMatches[1]) . "\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
+					$media = "<iframe width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" src=\"https://www.youtube.com/embed/" . htmlspecialchars($youtubeMatches[1]) . "\" frameborder=\"0\" allowfullscreen>Your browser does not support iframes. Please visit <a href=\"" . htmlspecialchars($youtubeMatches[0]) . "\">" . htmlspecialchars($youtubeMatches[0]) . "</a>.</iframe>";
 				
 			break;
 		}
