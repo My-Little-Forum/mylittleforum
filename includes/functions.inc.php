@@ -620,10 +620,10 @@ function do_bbcode_color($action, $attributes, $content, $params, $node_object) 
  * processes BBCode media
  */
 function do_bbcode_media($action, $attributes, $content, $params, $node_object) {
-	if (!isset($attributes['default']))
-		$attributes['default'] = 'video'; // for flash-tag
+	if (!isset($attributes['type']))
+		$attributes['type'] = 'video'; // Fall-back case for obsolete Flash tags
 	
-	if (isset($attributes['default'])) {
+	if (isset($attributes['type']) && in_array($attributes['type'], ["audio", "video"])) {
 		$media = '';
 		$mediaTypes = array(
 			"mp3"  => "mpeg",
@@ -632,7 +632,7 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 			"ogg"  => "ogg",
 			"webm" => "webm"
 		);
-		switch ($attributes['default']) {
+		switch ($attributes['type']) {
 			case 'audio':
 				$audioPattern = "/^https?:\/\/[^\s]+\.(mp3|ogg|wav)$/i";
 				preg_match($audioPattern, $content, $audioMatches);
@@ -643,8 +643,14 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 			break;
 			
 			case 'video':
-				$videoWidth  = 320;
+				$videoWidth  = 320; // default values
 				$videoHeight = 240;
+				
+				if (isset($attributes['width']) && intval($attributes['width']) > 0 && intval($attributes['width']) <= 1024 && isset($attributes['height']) && intval($attributes['height']) > 0 && intval($attributes['height']) <= 768) {
+					$videoWidth  = intval($attributes['width']);
+					$videoHeight = intval($attributes['height']);
+				}
+
 				$videoPattern   = '/^https?:\/\/[^\s]+\.(mp4|ogg|webm)$/i';
 				$youtubePattern = '/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})$/i';
 				preg_match($videoPattern,   $content, $videoMatches);
@@ -657,7 +663,6 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 					$media = "<video width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" controls src=\"" . htmlspecialchars($videoMatches[0]) . "\" type=\"video/" . htmlspecialchars($mediaTypes[$videoMatches[1]]) . "\">Your browser does not support the video tag. Please visit <a href=\"" . htmlspecialchars($videoMatches[0]) . "\">" . htmlspecialchars($videoMatches[0]) . "</a>.</video>";
 				else
 					$media = "<iframe width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" src=\"https://www.youtube.com/embed/" . htmlspecialchars($youtubeMatches[1]) . "\" frameborder=\"0\" allowfullscreen>Your browser does not support iframes. Please visit <a href=\"" . htmlspecialchars($youtubeMatches[0]) . "\">" . htmlspecialchars($youtubeMatches[0]) . "</a>.</iframe>";
-				
 			break;
 		}
 		return $media;
@@ -985,8 +990,8 @@ function html_format($string){
 			$bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		}
 		if($settings['bbcode_media']==1) {
-			$bbcode->addCode ('media', 'usecontent', 'do_bbcode_media', array ('usecontent_param' => 'default'), 'block', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
-			$bbcode->addCode ('flash', 'usecontent', 'do_bbcode_media', array ('usecontent_param' => 'default'), 'block', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
+			$bbcode->addCode ('media', 'usecontent', 'do_bbcode_media', array('usecontent_param' => array('width', 'height', 'type')), 'block', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
+			$bbcode->addCode ('flash', 'usecontent', 'do_bbcode_media', array (), 'block', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		}
 	}
 
