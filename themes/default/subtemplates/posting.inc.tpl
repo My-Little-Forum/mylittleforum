@@ -202,7 +202,7 @@ JavaScript isn't available.
 {if $settings.bbcode_media}
 	<div>
      <dt id="media" title="{#bbcode_media_label#}">{#bbcode_media_title#}</dt>
-     <dd id="type=video width=320 height=240" title="{#bbcode_media_label_video#}">{#bbcode_media_instruction_video#}</dd>
+     <dd id="type=video width=560 height=315" title="{#bbcode_media_label_video#}">{#bbcode_media_instruction_video#}</dd>
      <dd id="type=audio" title="{#bbcode_media_label_audio#}">{#bbcode_media_instruction_audio#}</dd>
     </div>
 {/if}

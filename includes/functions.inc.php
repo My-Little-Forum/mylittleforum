@@ -643,8 +643,8 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 			break;
 			
 			case 'video':
-				$videoWidth  = 320; // default values
-				$videoHeight = 240;
+				$videoWidth  = 560; // default values
+				$videoHeight = 315;
 				
 				if (isset($attributes['width']) && intval($attributes['width']) > 0 && intval($attributes['width']) <= 1024 && isset($attributes['height']) && intval($attributes['height']) > 0 && intval($attributes['height']) <= 768) {
 					$videoWidth  = intval($attributes['width']);
