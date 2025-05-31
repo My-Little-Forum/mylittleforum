@@ -200,10 +200,10 @@ JavaScript isn't available.
     </div>
 {/if}
 {if $settings.bbcode_media}
-    <div>
+	<div>
      <dt id="media" title="{#bbcode_media_label#}">{#bbcode_media_title#}</dt>
-     <dd id="video" title="{#bbcode_media_label_video#}">{#bbcode_media_instruction_video#}</dd>
-     <dd id="audio" title="{#bbcode_media_label_audio#}">{#bbcode_media_instruction_audio#}</dd>
+     <dd id="type=video width=560 height=315" title="{#bbcode_media_label_video#}">{#bbcode_media_instruction_video#}</dd>
+     <dd id="type=audio" title="{#bbcode_media_label_audio#}">{#bbcode_media_instruction_audio#}</dd>
     </div>
 {/if}
 {if $settings.bbcode_latex && $settings.bbcode_latex_uri}

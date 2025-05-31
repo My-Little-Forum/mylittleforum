@@ -230,6 +230,8 @@ function BBCodeOptionButton(el, list, quest, par) {
 			if (obj.attribute != null && obj.attribute.trim() != "") {
 				if (obj.attribute.trim().toLowerCase() == "inlinecode")
 					codestart = codeend = obj.attribute;
+				else if (obj.attribute.includes("="))
+					codestart += " " + obj.attribute;
 				else
 					codestart += "=" + obj.attribute;
 			}
