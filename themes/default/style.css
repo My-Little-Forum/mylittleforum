@@ -481,8 +481,6 @@ h2.sidebar a:active {
 }
 #mod-options a {
 	padding-inline: 0.375em;
-	display: block;
-}
 }
 input[name=sort_of_agreement] + iframe {
 	height: 400px;
