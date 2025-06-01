@@ -486,12 +486,6 @@ h2.sidebar a:active {
 #mod-options a span {
 	padding-inline-start: 16px;
 }
-#mod-options a.manage {
-	background: url(images/bg_sprite_4.png) no-repeat .375em -344px;
-}
-html[dir="rtl"] #mod-options a.manage {
-	background-position-x: calc(100% - .375em);
-}
 #mod-options a.report {
 	background: url(images/bg_sprite_4.png) no-repeat .375em -45px;
 }
