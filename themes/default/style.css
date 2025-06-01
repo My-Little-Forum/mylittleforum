@@ -486,12 +486,6 @@ h2.sidebar a:active {
 #mod-options a span {
 	padding-inline-start: 16px;
 }
-#mod-options a.delete-spam {
-	background: url(images/bg_sprite_3.png) no-repeat .375em -45px;
-}
-html[dir="rtl"] #mod-options a.delete-spam {
-	background-position-x: calc(100% - .375em);
-}
 input[name=sort_of_agreement] + iframe {
 	height: 400px;
 	height: 60vh;
