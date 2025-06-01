@@ -486,12 +486,6 @@ h2.sidebar a:active {
 #mod-options a span {
 	padding-inline-start: 16px;
 }
-#mod-options a.delete-marked {
-	background: url(images/bg_sprite_4.png) no-repeat .375em -293px;
-}
-html[dir="rtl"] #mod-options a.delete-marked {
-	background-position-x: calc(100% - .375em);
-}
 #mod-options a.manage {
 	background: url(images/bg_sprite_4.png) no-repeat .375em -344px;
 }
