@@ -510,12 +510,6 @@ html[dir="rtl"] #mod-options a.report {
 html[dir="rtl"] #mod-options a.delete-spam {
 	background-position-x: calc(100% - .375em);
 }
-#mod-options a.non-activated-users {
-	background: url(images/bg_sprite_4.png) no-repeat .375em -393px;
-}
-html[dir="rtl"] #mod-options a.non-activated-users {
-	background-position-x: calc(100% - .375em);
-}
 input[name=sort_of_agreement] + iframe {
 	height: 400px;
 	height: 60vh;
