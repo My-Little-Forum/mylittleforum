@@ -96,12 +96,12 @@
 <div id="modmenu">
 	<h3>{#options#}</h3>
 	<ul id="mod-options">
-		{if $show_spam_link}<li><a href="index.php?show_spam=true" class="report"><span>{$smarty.config.show_spam_link|replace:"[number]":$total_spam}</span></a></li>{/if}
-		{if $hide_spam_link}<li><a href="index.php?show_spam=true" class="report"><span>{$smarty.config.hide_spam_link|replace:"[number]":$total_spam}</span></a></li>{/if}
 		{if $delete_spam_link}<li><a href="index.php?mode=posting&amp;delete_spam=true" class="delete-spam"><span>{#delete_spam_link#}</span></a></li>{/if}
 		{if $number_of_non_activated_users}<li><a href="index.php?mode=user" class="non-activated-users"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/user-add.svg" alt="" width="12" height="12"/><span>{#non_activated_users_link#|replace:'[counter]':$number_of_non_activated_users}</span></a></li>{/if}
 		<li><a href="index.php?mode=posting&amp;delete_marked=true" class="delete-marked"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/marker-active.svg" alt="" width="12" height="12"/><span>{#delete_marked_link#}</span></a></li>
 		<li><a href="index.php?mode=posting&amp;manage_postings=true" class="manage"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/manage-marked-postings.svg" alt="" width="12" height="12"/><span>{#manage_postings_link#}</span></a></li>
+		{if $show_spam_link}<li><a href="index.php?show_spam=true" class="report"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-caution.svg" alt="" width="12" height="12"/><span>{$smarty.config.show_spam_link|replace:"[number]":$total_spam}</span></a></li>{/if}
+		{if $hide_spam_link}<li><a href="index.php?show_spam=true" class="report"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-caution.svg" alt="" width="12" height="12"/><span>{$smarty.config.hide_spam_link|replace:"[number]":$total_spam}</span></a></li>{/if}
 	</ul>
 </div>{/if}
 </div>
