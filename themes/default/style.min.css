@@ -90,8 +90,6 @@ h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underl
 #mod-options li:not(:last-child){margin-block-end:0.25em}
 #mod-options a{padding-inline:.375em;display:block}
 #mod-options a span{padding-inline-start:16px}
-#mod-options a.report{background:url(images/bg_sprite_4.png) no-repeat .375em -45px}
-html[dir="rtl"] #mod-options a.report{background-position-x:calc(100% - .375em)}
 #mod-options a.delete-spam{background:url(images/bg_sprite_3.png) no-repeat .375em -45px}
 html[dir="rtl"] #mod-options a.delete-spam{background-position-x:calc(100% - .375em)}
 input[name=sort_of_agreement] + iframe {height:400px;height:60vh}
