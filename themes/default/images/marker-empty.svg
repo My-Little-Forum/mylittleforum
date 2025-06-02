@@ -12,6 +12,6 @@
   #contour { fill: url(#plate); stroke: #789fa4; stroke-width: 16; stroke-linejoin: round; }
   ]]></style>
  <g>
-  <circle id="contour" cx="132" cy="132" r="120" />
+  <circle id="contour" cx="132" cy="132" r="112" />
  </g>
 </svg>
