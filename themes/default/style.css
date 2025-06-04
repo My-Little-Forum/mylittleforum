@@ -100,7 +100,7 @@ a.stronglink:active {
 	color: #ff0000;
 }
 
-:is(a, span):has(img.icon) {
+:is(a, span, button):has(img.icon) {
 	display: flex;
 	align-items: center;
 	gap: 0.125em;

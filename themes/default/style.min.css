@@ -17,7 +17,7 @@ a.stronglink:focus,a.stronglink:hover{color:#00f;text-decoration:underline;backg
 html[dir="ltr"] a.stronglink:focus,html[dir="ltr"] a.stronglink:hover{background-position:left -46px}
 html[dir="rtl"] a.stronglink:focus,html[dir="rtl"] a.stronglink:hover{background-position:right -1356px}
 a.stronglink:active{color:red}
-:is(a,span):has(img.icon){display:flex;align-items:center;gap:.125em}
+:is(a,span,button):has(img.icon){display:flex;align-items:center;gap:.125em}
 html[dir="rtl"] img.icon.wd-dependent{transform:scale(-1,1)}
 body > *{margin:0;padding:0 1em;padding:0 1rem}
 #top{background:#d2ddea;background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 2.5em, rgb(237, 242, 245) 100%);display:flex;flex-direction:column}
