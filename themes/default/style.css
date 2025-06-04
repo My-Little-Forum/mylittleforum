@@ -100,7 +100,7 @@ a.stronglink:active {
 	color: #ff0000;
 }
 
-:is(a, span):has(img.icon) {
+:is(a, span, button):has(img.icon) {
 	display: flex;
 	align-items: center;
 	gap: 0.125em;
@@ -1238,26 +1238,12 @@ div#format-bar {
 	text-decoration: underline;
 }
 #bbcodebutton-color span {
-	padding: 0 0 0 15px;
 	color: red;
-	background: url(images/bg_sprite_5.png) no-repeat 0 1px;
 }
 #bbcodebutton-size span {
 	padding: 0 0 0 16px;
 	background: url(images/bg_sprite_5.png) no-repeat 0 -47px;
 }
-#bbcodebutton-list span {
-	padding: 0 0 0 11px;
-	background: url(images/bg_sprite_5.png) no-repeat 0 -99px;
-}
-#bbcodebutton-img span {
-	padding: 0 0 0 15px;
-	background: url(images/bg_sprite_5.png) no-repeat 0 -148px;
-}
-#bbcodebutton-upload span {
-	padding: 0 0 0 11px;
-	background: url(images/bg_sprite_5.png) no-repeat 0 -199px;
-	 }
 #bbcodebutton-tex span {
 	padding: 0 0 0 19px;
 	background: url(images/bg_sprite_5.png) no-repeat 0 -299px;
