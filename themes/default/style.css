@@ -1238,9 +1238,7 @@ div#format-bar {
 	text-decoration: underline;
 }
 #bbcodebutton-color span {
-	padding: 0 0 0 15px;
 	color: red;
-	background: url(images/bg_sprite_5.png) no-repeat 0 1px;
 }
 #bbcodebutton-size span {
 	padding: 0 0 0 16px;

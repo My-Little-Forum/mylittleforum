@@ -248,7 +248,7 @@ div#format-bar{margin:0 !important;padding:.375em;background:#f2f2f2}
 #bbcodebutton-b span{font-weight:700}
 #bbcodebutton-i span{font-style:italic}
 #bbcodebutton-link span{color:#00c;text-decoration:underline}
-#bbcodebutton-color span{padding:0 0 0 15px;color:red;background:url(images/bg_sprite_5.png) no-repeat 0 1px}
+#bbcodebutton-color span{color:red}
 #bbcodebutton-size span{padding:0 0 0 16px;background:url(images/bg_sprite_5.png) no-repeat 0 -47px}
 #bbcodebutton-list span{padding:0 0 0 11px;background:url(images/bg_sprite_5.png) no-repeat 0 -99px}
 #bbcodebutton-img span{padding:0 0 0 15px;background:url(images/bg_sprite_5.png) no-repeat 0 -148px}

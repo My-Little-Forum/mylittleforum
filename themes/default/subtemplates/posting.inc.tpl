@@ -167,7 +167,7 @@ JavaScript isn't available.
     </div>
 {if $settings.bbcode_color}
     <div>
-     <dt id="color" title="{#bbcode_color_label#}" data-icon="">{#bbcode_color_title#}</dt>
+     <dt id="color" title="{#bbcode_color_label#}" data-icon="bbcode-colour.svg">{#bbcode_color_title#}</dt>
      <dd>{#bbcode_color_instruction#}</dd>
     </div>
 {/if}
