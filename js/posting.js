@@ -489,6 +489,7 @@ function ButtonGroup(f) {
 						label   : term.getAttribute("title"),
 						title   : term.textContent,
 						classes : term.getAttribute("class"),
+						iconfile: term.getAttribute("data-icon"),
 						childs  : []
 					};
 				}
@@ -546,6 +547,12 @@ function ButtonGroup(f) {
 			par["id"] = id;
 			
 		var b = document.createElementWithAttributes("button", par, buttonBar);
+		if (obj.iconfile !== undefined && obj.iconfile.length > 0) {
+			const cssElem = document.querySelector('link[rel="stylesheet"]');
+			const templatePath = cssElem.href.substring(0, cssElem.href.lastIndexOf("/")+1);
+			const buttonIcon = document.createElementWithAttributes("img",{"className": "icon", "src": templatePath + "images/"+ obj.iconfile, "alt": "", "width": "14", "height": "14"});
+			b.appendChild(buttonIcon);
+		}
 		var buttonSpan = document.createElement("span");
 		if (typeof obj.label == "string")
 			buttonSpan.appendChild(document.createTextNode( obj.label ));
