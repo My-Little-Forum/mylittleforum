@@ -154,37 +154,37 @@ JavaScript isn't available.
 -->*}
    <dl id="bbcode-instructions">
     <div>
-     <dt id="b" title="{#bbcode_bold_label#}">{#bbcode_bold_title#}</dt>
+     <dt id="b" title="{#bbcode_bold_label#}" data-icon="">{#bbcode_bold_title#}</dt>
      <dd>{#bbcode_bold_instruction#}</dd>
     </div>
     <div>
-     <dt id="i" title="{#bbcode_italic_label#}">{#bbcode_italic_title#}</dt>
+     <dt id="i" title="{#bbcode_italic_label#}" data-icon="">{#bbcode_italic_title#}</dt>
      <dd>{#bbcode_italic_instruction#}</dd>
     </div>
     <div>
-     <dt id="link" title="{#bbcode_link_label#}">{#bbcode_link_title#}</dt>
+     <dt id="link" title="{#bbcode_link_label#}" data-icon="">{#bbcode_link_title#}</dt>
      <dd>{#bbcode_link_instruction#}</dd>
     </div>
 {if $settings.bbcode_color}
     <div>
-     <dt id="color" title="{#bbcode_color_label#}">{#bbcode_color_title#}</dt>
+     <dt id="color" title="{#bbcode_color_label#}" data-icon="">{#bbcode_color_title#}</dt>
      <dd>{#bbcode_color_instruction#}</dd>
     </div>
 {/if}
 {if $settings.bbcode_size}
     <div>
-     <dt id="size" title="{#bbcode_size_label#}">{#bbcode_size_title#}</dt>
+     <dt id="size" title="{#bbcode_size_label#}" data-icon="">{#bbcode_size_title#}</dt>
      <dd id="small" title="{#bbcode_size_label_small#}">{#bbcode_size_instruction_small#}</dd>
      <dd id="large" title="{#bbcode_size_label_large#}">{#bbcode_size_instruction_large#}</dd>
     </div>
 {/if}
     <div>
-     <dt id="list" title="{#bbcode_list_label#}">{#bbcode_list_title#}</dt>
+     <dt id="list" title="{#bbcode_list_label#}" data-icon="">{#bbcode_list_title#}</dt>
      <dd>{#bbcode_list_instruction#}</dd>
     </div>
 {if $settings.bbcode_img}
     <div>
-     <dt id="img" title="{#bbcode_image_label#}">{#bbcode_image_title#}</dt>
+     <dt id="img" title="{#bbcode_image_label#}" data-icon="">{#bbcode_image_title#}</dt>
      <dd title="{#bbcode_image_label_default#}">{#bbcode_image_instr_default#}</dd>
      <dd id="left" title="{#bbcode_image_label_left#}">{#bbcode_image_instr_left#}</dd>
      <dd id="right" title="{#bbcode_image_label_right#}">{#bbcode_image_instr_right#}</dd>
@@ -195,26 +195,26 @@ JavaScript isn't available.
 {/if}
 {if $upload_images}
     <div>
-     <dt id="upload" title="{#bbcode_upload_label#}">{#bbcode_upload_title#}</dt>
+     <dt id="upload" title="{#bbcode_upload_label#}" data-icon="">{#bbcode_upload_title#}</dt>
      <dd><a href="index.php?mode=upload_image">{#bbcode_upload_instruction#}</a></dd>
     </div>
 {/if}
 {if $settings.bbcode_media}
 	<div>
-     <dt id="media" title="{#bbcode_media_label#}">{#bbcode_media_title#}</dt>
+     <dt id="media" title="{#bbcode_media_label#}" data-icon="">{#bbcode_media_title#}</dt>
      <dd id="type=video width=560 height=315" title="{#bbcode_media_label_video#}">{#bbcode_media_instruction_video#}</dd>
      <dd id="type=audio" title="{#bbcode_media_label_audio#}">{#bbcode_media_instruction_audio#}</dd>
     </div>
 {/if}
 {if $settings.bbcode_latex && $settings.bbcode_latex_uri}
     <div>
-     <dt id="tex" title="{#bbcode_tex_label#}">{#bbcode_tex_title#}</dt>
+     <dt id="tex" title="{#bbcode_tex_label#}" data-icon="">{#bbcode_tex_title#}</dt>
      <dd>{#bbcode_tex_instruction#}</dd>
     </div>
 {/if}
 {if $settings.bbcode_code}
     <div>
-     <dt id="code" title="{#bbcode_code_label#}">{#bbcode_code_title#}</dt>
+     <dt id="code" title="{#bbcode_code_label#}" data-icon="">{#bbcode_code_title#}</dt>
      <dd id="inlinecode" title="{#bbcode_code_label_inline#}">{#bbcode_code_instruction_inline#}</dd>
      <dd title="{#bbcode_code_label_general#}">{#bbcode_code_instruction_general#}</dd>
 {if $code_languages}
