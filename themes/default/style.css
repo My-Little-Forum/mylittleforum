@@ -1244,10 +1244,6 @@ div#format-bar {
 	padding: 0 0 0 16px;
 	background: url(images/bg_sprite_5.png) no-repeat 0 -47px;
 }
-#bbcodebutton-list span {
-	padding: 0 0 0 11px;
-	background: url(images/bg_sprite_5.png) no-repeat 0 -99px;
-}
 #bbcodebutton-tex span {
 	padding: 0 0 0 19px;
 	background: url(images/bg_sprite_5.png) no-repeat 0 -299px;
