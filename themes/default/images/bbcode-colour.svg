@@ -1,0 +1,26 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="head" x1="25%" y1="0%" x2="75%" y2="100%">
+   <stop offset="0%" stop-color="#40d848" />
+   <stop offset="100%" stop-color="#149f20" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  .quarter { stroke-width: 8; fill: none; stroke-linejoin: round; }
+  #f1 { fill: #e00; stroke: #e00; }
+  #f2 { fill: #ee0; stroke: #ee0; }
+  #f3 { fill: #0e0; stroke: #0e0; }
+  #f4 { fill: #00e; stroke: #00e; }
+  ]]>
+ </style>
+ <g>
+  <path id="f1" class="quarter" d="M 122,122 h-114 a 124 124, 0, 0, 1, 114,-114 z" />
+  <path id="f2" class="quarter" d="M 142,122 v-114 a 124 124, 0, 0, 1, 114, 114 z" />
+  <path id="f3" class="quarter" d="M 142,142 h 114 a 124 124, 0, 0, 1,-114, 114 z" />
+  <path id="f4" class="quarter" d="M 122,142 v 114 a 124 124, 0, 0, 1,-114,-114 z" />
+ </g>
+</svg>
+
