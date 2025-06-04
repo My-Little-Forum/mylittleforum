@@ -179,7 +179,7 @@ JavaScript isn't available.
     </div>
 {/if}
     <div>
-     <dt id="list" title="{#bbcode_list_label#}" data-icon="">{#bbcode_list_title#}</dt>
+     <dt id="list" title="{#bbcode_list_label#}" data-icon="bbcode-list.svg">{#bbcode_list_title#}</dt>
      <dd>{#bbcode_list_instruction#}</dd>
     </div>
 {if $settings.bbcode_img}
