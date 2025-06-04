@@ -184,7 +184,7 @@ JavaScript isn't available.
     </div>
 {if $settings.bbcode_img}
     <div>
-     <dt id="img" title="{#bbcode_image_label#}" data-icon="">{#bbcode_image_title#}</dt>
+     <dt id="img" title="{#bbcode_image_label#}" data-icon="image.svg">{#bbcode_image_title#}</dt>
      <dd title="{#bbcode_image_label_default#}">{#bbcode_image_instr_default#}</dd>
      <dd id="left" title="{#bbcode_image_label_left#}">{#bbcode_image_instr_left#}</dd>
      <dd id="right" title="{#bbcode_image_label_right#}">{#bbcode_image_instr_right#}</dd>
