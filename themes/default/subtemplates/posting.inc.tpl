@@ -158,7 +158,7 @@ JavaScript isn't available.
      <dd>{#bbcode_bold_instruction#}</dd>
     </div>
     <div>
-     <dt id="i" title="{#bbcode_italic_label#}" data-icon="">{#bbcode_italic_title#}</dt>
+     <dt id="i" title="{#bbcode_italic_label#}" data-icon="bbcode-italic.svg">{#bbcode_italic_title#}</dt>
      <dd>{#bbcode_italic_instruction#}</dd>
     </div>
     <div>
