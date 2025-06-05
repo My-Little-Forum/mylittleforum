@@ -154,7 +154,7 @@ JavaScript isn't available.
 -->*}
    <dl id="bbcode-instructions">
     <div>
-     <dt id="b" title="{#bbcode_bold_label#}" data-icon="">{#bbcode_bold_title#}</dt>
+     <dt id="b" title="{#bbcode_bold_label#}" data-icon="bbcode-bold.svg">{#bbcode_bold_title#}</dt>
      <dd>{#bbcode_bold_instruction#}</dd>
     </div>
     <div>
