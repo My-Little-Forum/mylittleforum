@@ -2,10 +2,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
  <defs>
   <linearGradient id="photo" x1="20%" y1="0%" x2="50%" y2="100%">
-   <stop offset="0%" stop-color="#b4baff" />
-   <stop offset="40%" stop-color="#c0b8fc" />
+   <stop offset="0%" stop-color="#d4dbff" />
+   <stop offset="36%" stop-color="#c0c8fd" />
+   <stop offset="42%" stop-color="#c0b8fc" />
    <stop offset="72.5%" stop-color="#72d684" />
-   <stop offset="80%" stop-color="#58c864" />
+   <stop offset="85%" stop-color="#5ecf68" />
    <stop offset="100%" stop-color="#48b060" />
   </linearGradient>
  </defs>
