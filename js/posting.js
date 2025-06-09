@@ -711,7 +711,11 @@ function ButtonGroup(f) {
 		if (textarea.getQuote() != "" && document.getElementById("message")) {
 			var label = document.querySelector('label[for="text"]');
 			if (label) {
-				var quoteButton = document.createElementWithAttributes("button", {"type": "button", "id": "insert-quote", "title": lang["quote_title"], "tabIndex": -1});
+				const quoteButton = document.createElementWithAttributes("button", {"type": "button", "id": "insert-quote", "title": lang["quote_title"], "tabIndex": -1});
+				const cssElem = document.querySelector('link[rel="stylesheet"]');
+				const templatePath = cssElem.href.substring(0, cssElem.href.lastIndexOf("/")+1);
+				const buttonIcon = document.createElementWithAttributes("img",{"className": "icon", "src": templatePath +  settings["quote_image"], "alt": "", "width": "12", "height": "12"});
+				quoteButton.appendChild(buttonIcon);
 				quoteButton.onclick = function(e) {
 					textarea.value = textarea.getQuote() + "\r\n\r\n" + textarea.value;
 					this.classList.add("js-display-none");
