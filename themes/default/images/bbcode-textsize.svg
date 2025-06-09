@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="264" viewBox="0 0 264 264">
+ <style type="text/css">
+  <![CDATA[
+	svg { fill: transparent; }
+	.contour { stroke: #808080; stroke-width: 12; fill: #808080; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <symbol id="letter" viewBox="0 0 264 264">
+  <path d="M35,22 a 3 45, 0, 0, 1 -3,45 h12 a 13 31, 0, 0, 1, 13,-31 h20 a35 13, 0, 0, 1, 35,13 v161 a35 14, 0, 0, 1, -35,14 v18 h 110 v-18 a35 14, 0, 0, 1, -35,-14 v-161 a35 13, 0, 0, 1, 35,-13 h20 a 13 31, 0, 0, 1, 13,31 h12 a 3 45, 0, 0, 1 -3,-45 z" />
+ </symbol>
+ <g>
+  <use class="contour" href="#letter" x="-5" y="12" height="220" width="220" />
+  <use class="contour" href="#letter" x="132" y="116" height="130" width="130" />
+ </g>
+</svg>

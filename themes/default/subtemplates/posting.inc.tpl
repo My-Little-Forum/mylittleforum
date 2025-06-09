@@ -173,7 +173,7 @@ JavaScript isn't available.
 {/if}
 {if $settings.bbcode_size}
     <div>
-     <dt id="size" title="{#bbcode_size_label#}" data-icon="">{#bbcode_size_title#}</dt>
+     <dt id="size" title="{#bbcode_size_label#}" data-icon="bbcode-textsize.svg">{#bbcode_size_title#}</dt>
      <dd id="small" title="{#bbcode_size_label_small#}">{#bbcode_size_instruction_small#}</dd>
      <dd id="large" title="{#bbcode_size_label_large#}">{#bbcode_size_instruction_large#}</dd>
     </div>
