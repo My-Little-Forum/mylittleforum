@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #formula { stroke: #808080; stroke-width: 12; fill: #808080; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g id="formula">
+  <path d="M10,126 v12 h19.125 l32.875,104 h31.375 l65.625,-208 h95 v-12 h-104 l-62.875,200 -30.125,-96 z" />
+  <path transform="skewX(-8)" transform-origin="center" d="M146,130 a 19 10, 0, 0, 1, 18.5,8
+  l21.25,55.75 -19.25,36.25
+  a20.375 10, 0, 0, 1, -20.5,8 v4
+  a33.5 12, 0, 0, 0, 33,-10
+  l12.5,-23.125 8.75,23.125
+  a51 12, 0, 0, 0, 49.75,10
+  v-4 a19 10, 0, 0, 1, -18.5,-8
+  l-21.12,-56.25 19,-35.75
+  a20.375 10, 0, 0, 1, 20.5,-8 v-4
+  a33.5 12, 0, 0, 0, -33,10
+  l-12.5,23 -8.75,-23
+  a51 12, 0, 0, 0,-49.75,-10 z" />
+ </g>
+</svg>

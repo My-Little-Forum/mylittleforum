@@ -1240,10 +1240,6 @@ div#format-bar {
 #bbcodebutton-color span {
 	color: red;
 }
-#bbcodebutton-tex span {
-	padding: 0 0 0 19px;
-	background: url(images/bg_sprite_5.png) no-repeat 0 -299px;
-}
 #bbcodebutton-code span {
 	font-family: "courier new", courier;
 	color: #000080;
