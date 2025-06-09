@@ -12,10 +12,11 @@
  </defs>
  <style type="text/css">
   <![CDATA[
+  svg { fill: transparent; }
   #arrow { fill: url(#plate); stroke: url(#frame); stroke-width: 12; stroke-linejoin: round; }
   ]]>
  </style>
  <g>
-  <path id="arrow" d="M 132,249 187,199 157,199 157,15 107,15 107,199 78,199 z" />
+  <path id="arrow" d="M 132,244 192,184 160,184 160,20 104,20 104,184 72,184 z" />
  </g>
 </svg>
