@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="head" x1="0%" y1="25%" x2="100%" y2="75%">
+   <stop offset="0%" stop-color="#8fafb8" />
+   <stop offset="100%" stop-color="#708798" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  .chain-link { fill: url(#head); stroke: none; }
+  .contour { fill: #4f6c7a; stroke: none; stroke-width: 0; }
+  ]]>
+ </style>
+ <g transform="rotate(45) scale(1.3)" transform-origin="center">
+  <path class="chain-link" d="M136,120.5 a20 20, 0, 0, 0, -24,19.5 v60 a20 20, 0, 0, 0, 40,0
+  v-25.75 a46 46, 0, 0, 0, 18,-11.75 v37.5
+  a38 38, 0, 0, 1, -76,0 v-60 a38 38, 0, 0, 1, 42,-38 z" />
+  <path class="contour" d="M136,102 v-8 a46 46, 0, 0, 0,-50,46 v60
+  a46 46, 0, 0, 0, 92,0 v-47.5
+  a46 46, 0, 0, 1, -8,10 v37.5 a38 38,0, 0, 1, -76,0
+  v-60 a38 38, 0, 0, 1, 42,-38 z
+  m0,22 a4 4, 0, 0, 1, -4,4 a12 12, 0, 0, 0, -12,12 v60
+  a 12 12, 0, 0, 0, 24,0 v-23.5 a46 46, 0, 0, 0, 8,-2.25 v25.75
+  a20 20, 0, 0, 1, -40,0 v-60 a20 20, 0, 0, 1, 24, -19.5 z" />
+  <path class="chain-link" d="M128,143.5 a20 20, 0, 0, 0, 24,-19.5 v-60 a20 20, 0, 0, 0, -40,0
+  v25.75 a46 46, 0, 0, 0, -18,11.75 v-37.5
+  a38 38, 0, 0, 1, 76,0 v60 a38 38, 0, 0, 1, -42,38 z" />
+  <path class="contour" d="M128,170 a46 46, 0, 0, 0, 50,-46 v-60
+  a46 46, 0, 0, 0, -92,0 v47.5
+  a46 46, 0, 0, 1, 8,-10 v-37.5 a38 38,0, 0, 1, 76,0
+  v60 a38 38, 0, 0, 1, -42,38 z
+  m0,-30 a4 4, 0, 0, 1, 4,-4 a12 12, 0, 0, 0, 12,-12 v-60
+  a12 12, 0, 0, 0,-24,0 v23.5 a46 46, 0, 0, 0, -8,2.25 v-25.75
+  a20 20, 0, 0, 1, 40,0 v60 a20 20, 0, 0, 1, -24, 19.5 z" />
+ </g>
+</svg>

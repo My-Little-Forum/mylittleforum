@@ -162,7 +162,7 @@ JavaScript isn't available.
      <dd>{#bbcode_italic_instruction#}</dd>
     </div>
     <div>
-     <dt id="link" title="{#bbcode_link_label#}" data-icon="">{#bbcode_link_title#}</dt>
+     <dt id="link" title="{#bbcode_link_label#}" data-icon="bbcode-link.svg">{#bbcode_link_title#}</dt>
      <dd>{#bbcode_link_instruction#}</dd>
     </div>
 {if $settings.bbcode_color}
