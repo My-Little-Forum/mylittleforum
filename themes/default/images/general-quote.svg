@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #quotesign { fill: #808080; stroke: #808080; stroke-width: 12; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <symbol id="character" viewBox="0 0 81 159">
+  <path d="M64.75,6.5 a98 98, 0, 0, 0, -51.75,126
+  a 32 32, 0, 1, 0, 28.375,-44
+  a8 8, 0, 0, 1, -8.75,-6.25
+  a66 66, 0, 0, 1, 40, -76 z" />
+ </symbol>
+ <g id="quotesign">
+  <use href="#character" x="29" y="52.5" width="81" height="159" />
+  <use href="#character" x="154" y="52.5" width="81" height="159" />
+ </g>
+</svg>
