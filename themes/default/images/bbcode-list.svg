@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
- <defs>
-  <linearGradient id="plate" x1="0%" y1="0%" x2="100%" y2="75%">
-   <stop offset="2.5%" stop-color="#d2e2e8" />
-   <stop offset="15%" stop-color="#e8f0f9" />
-   <stop offset="100%" stop-color="#e8f0f9" />
-  </linearGradient>
- </defs>
  <style type="text/css">
   <![CDATA[
   svg { fill: transparent; }
-  #listitem .dot { fill: #739ac3; stroke: none; }
-  #listitem .item { fill: none; stroke: #739ac3; stroke-width: 25; stroke-linecap: round; }
+  #listitem .dot { fill: #808080; stroke: none; }
+  #listitem .item { fill: none; stroke: #808080; stroke-width: 25; stroke-linecap: round; }
   ]]>
  </style>
  <symbol id="listitem" viewBox="0 0 130 32">

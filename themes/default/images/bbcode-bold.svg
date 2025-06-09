@@ -1,19 +1,9 @@
 <?xml version="1.0" standalone="yes"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="264" height="264" viewBox="0 0 264 264">
- <defs>
-  <linearGradient id="frame" x1="0%" y1="75%" x2="100%" y2="25%">
-   <stop offset="0%" stop-color="#87c97d" />
-   <stop offset="100%" stop-color="#286824" />
-  </linearGradient>
-  <linearGradient id="plate" x1="0%" y1="75%" x2="100%" y2="25%">
-   <stop offset="0%" stop-color="#a5d49c" />
-   <stop offset="100%" stop-color="#79bd73" />
-  </linearGradient>
- </defs>
  <style type="text/css">
   <![CDATA[
 	svg { fill: transparent; }
-	#contour { stroke: #739ac3; stroke-width: 12; fill: #739ac3; stroke-linejoin: round; }
+	#contour { stroke: #808080; stroke-width: 12; fill: #808080; stroke-linejoin: round; }
   ]]>
  </style>
  <g>
