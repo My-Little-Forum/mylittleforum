@@ -1240,10 +1240,6 @@ div#format-bar {
 #bbcodebutton-color span {
 	color: red;
 }
-#bbcodebutton-size span {
-	padding: 0 0 0 16px;
-	background: url(images/bg_sprite_5.png) no-repeat 0 -47px;
-}
 #bbcodebutton-tex span {
 	padding: 0 0 0 19px;
 	background: url(images/bg_sprite_5.png) no-repeat 0 -299px;
