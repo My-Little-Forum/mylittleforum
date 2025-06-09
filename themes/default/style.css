@@ -1152,11 +1152,6 @@ p.userdata {
 	margin-inline: 0;
 	margin-block: 0 0.25em;
 }
-#postingform label.textarea {
-	font-weight: bold;
-	margin-block: 0 .25em;
-	margin-inline: 0;
-}
 div#entry-input,
 #postingform input[type="text"],
 #postingform input[type="email"],
@@ -1164,19 +1159,24 @@ div#entry-input,
 #postingform input[type="tel"] {
 	max-width: calc(100vw - 4em);
 }
-#postingform #insert-quote {
+#textarea-label {
+	display: flex;
+	justify-content: start;
+	align-items: baseline;
+	gap: 0.5em;
 	margin-block: 0 0.25em;
-	margin-inline: 0.25em 0;
-	font-weight: normal;
+}
+#postingform label.textarea {
+	font-weight: bold;
+	margin: 0;
+}
+#postingform #insert-quote {
+	margin: 0;
 	font-size: 0.82em;
-	padding-block: 0;
-	padding-inline: 14px 0;
-	background: url(images/quote_message.png) no-repeat left center transparent;
+	padding: 0;
+	background: transparent;
 	border: none;
 	color: #00c;
-}
-html[dir="rtl"] #postingform #insert-quote {
-	background-position-x: right;
 }
 #postingform #insert-quote:focus,
 #postingform #insert-quote:hover {

@@ -240,7 +240,9 @@ JavaScript isn't available.
   </div>
 
   <div id="entry-input">
-   <label for="text" class="textarea">{#message_marking#}</label>
+   <div id="textarea-label">
+    <label for="text" class="textarea">{#message_marking#}</label>
+   </div>
 
    <div>
 
