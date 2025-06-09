@@ -106,7 +106,7 @@ img.no-text{cursor:help}
 pre{max-width:100%;overflow:auto}
 code{font-family:"courier new",courier;color:navy}
 code.monospace{color:#000}
-blockquote{margin:0;padding-block:0;padding-inline:30px 0;color:#646464;font-style:italic;background:url(images/quote.png) no-repeat top left}
+blockquote{margin:0;padding-block:0;padding-inline:1.5em 0;color:#646464;font-style:italic;background:url(images/general-quote.svg) no-repeat top left/1em}
 html[dir="rtl"] blockquote{background-position-x:right}
 blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 .posting-footer{margin:1em 0 0;padding:0;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas:"pageviews" "replylink" "moderationlinks";gap:.25em}
