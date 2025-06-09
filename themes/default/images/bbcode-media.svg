@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <defs>
+  <linearGradient id="photo" x1="20%" y1="0%" x2="50%" y2="100%">
+   <stop offset="0%" stop-color="#d4dbff" />
+   <stop offset="36%" stop-color="#c0c8fd" />
+   <stop offset="42%" stop-color="#c0b8fc" />
+   <stop offset="72.5%" stop-color="#72d684" />
+   <stop offset="85%" stop-color="#5ecf68" />
+   <stop offset="100%" stop-color="#48b060" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  .photo { fill: url(#photo); stroke: none; stroke-width: 1; stroke-linejoin: round; }
+  #film { fill: #283048;  stroke: none; }
+  .note { fill: #d22; stroke: #d22; stroke-width: 3; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g>
+  <path id="film" d="M4,14 h 208 v236 h-208 z
+  M14,25 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M14,65 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M14,105 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M14,145 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M14,185 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M14,225 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M188,25 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M188,65 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M188,105 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M188,145 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M188,185 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z
+  M188,225 a 3 3, 0, 0, 0, -3,3 v10 a 3 3, 0, 0, 0, 3,3 h14 a 3 3, 0, 0, 0, 3,-3 v-10 a 3 3, 0, 0, 0, -3,-3 z" />
+  <rect class="photo" x="39" y="26" width="138" height="92" />
+  <rect class="photo" x="39" y="148" width="138" height="92" />
+  <path transform="translate(0,6) skewY(-12)" transform-origin="bottom" class="note" d="M246,24 v190 a 47 32, 0, 0, 0, -82,21 a 47 32, 0, 0, 0, 94,0 v-208.5 z" />
+ </g>
+</svg>
