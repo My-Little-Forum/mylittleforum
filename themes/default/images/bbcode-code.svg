@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #codesign { fill: #808080; stroke: #808080; stroke-width: 12; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <symbol id="bracket" viewbox="0 0 110 110">
+  <path d="M22.968,6  a 16.968 16.968, 0, 0, 0, -16.968,16.968 v69.032 a 12 12, 0, 0, 0, 24,0 v-62 h62 a 12 12, 0, 0, 0, 0,-24 z" />
+ </symbol>
+ <g id="codesign">
+  <path transform="rotate(15, 132, 132)" id="slash" d="M 120, 45 a 12 12, 0, 0, 1, 24,0 v170 a 12 12, 0, 0, 1, -24,0 z" />
+  <use transform="rotate(-45, 6, 132)" href="#bracket" x="-2" y="124" width="110" height="110" />
+  <use transform="translate(99,0) rotate(135, 159, 132)" href="#bracket" x="151" y="124" width="110" height="110" />
+ </g>
+</svg>

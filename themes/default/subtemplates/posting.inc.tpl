@@ -214,7 +214,7 @@ JavaScript isn't available.
 {/if}
 {if $settings.bbcode_code}
     <div>
-     <dt id="code" title="{#bbcode_code_label#}" data-icon="">{#bbcode_code_title#}</dt>
+     <dt id="code" title="{#bbcode_code_label#}" data-icon="bbcode-code.svg">{#bbcode_code_title#}</dt>
      <dd id="inlinecode" title="{#bbcode_code_label_inline#}">{#bbcode_code_instruction_inline#}</dd>
      <dd title="{#bbcode_code_label_general#}">{#bbcode_code_instruction_general#}</dd>
 {if $code_languages}
