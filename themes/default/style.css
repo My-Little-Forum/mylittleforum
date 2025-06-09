@@ -1220,7 +1220,7 @@ div#format-bar {
 	min-height: 2.4em;
 	margin: 0;
 	padding-block: 0.25em;
-	padding-inline: 1em;
+	padding-inline: 0.75em;
 }
 #format-bar button span {
 	display: block;
