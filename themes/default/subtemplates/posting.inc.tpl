@@ -208,7 +208,7 @@ JavaScript isn't available.
 {/if}
 {if $settings.bbcode_latex && $settings.bbcode_latex_uri}
     <div>
-     <dt id="tex" title="{#bbcode_tex_label#}" data-icon="">{#bbcode_tex_title#}</dt>
+     <dt id="tex" title="{#bbcode_tex_label#}" data-icon="bbcode-formula.svg">{#bbcode_tex_title#}</dt>
      <dd>{#bbcode_tex_instruction#}</dd>
     </div>
 {/if}
