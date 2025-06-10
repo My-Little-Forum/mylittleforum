@@ -7,7 +7,7 @@
  <form action="index.php" method="post" accept-charset="{#charset#}">
   <input type="hidden" name="mode" value="posting" />
   <fieldset class="manage-postings">
-   <legend><img src="{$THEMES_DIR}/{$theme}/images/marked.png" width="11" height="11" alt="" />&nbsp;{#mark_postings#}</legend>
+   <legend><img class="icon" src="{$THEMES_DIR}/{$theme}/images/marker-active.svg" width="12" height="12" alt="" /><span>{#mark_postings#}</span></legend>
    <ul>
     <li><input id="mark_mode_1" type="radio" name="mark_mode" value="1" /><label for="mark_mode_1">{$smarty.config.mark_old_threads|replace:"[days]":$input_days}</li>
     <li><input id="mark_mode_2" type="radio" name="mark_mode" value="2" /><label for="mark_mode_2">{#mark_all_postings#}</label></li>
