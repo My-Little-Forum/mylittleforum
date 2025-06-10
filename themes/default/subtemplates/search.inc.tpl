@@ -28,18 +28,25 @@
 {if $search || $list_spam}
 {if $search_results}
 <p>{if $search_results_count>1}{$smarty.config.several_postings_found|replace:"[number]":$search_results_count}{else}{#one_posting_found#}{/if}</p>
-<ul class="searchresults">
+<ul class="searchresults thread">
 {section name=result loop=$search_results}
- <li><a class="subject {if $search_results[result].pid==0}thread-search{else}reply-search{/if}{if $search_results[result].is_read} read{/if}" href="index.php?id={$search_results[result].id}">{$search_results[result].subject}</a>
-  <span class="metadata">
-   <span class="author-name">{$search_results[result].name}</span>
-   <span id="p{$search_results[result].id}" class="tail">
+ <li>
+  <div class="entry">
+{if $search_results[result].pid==0}{$iconSrc="images/thread-marker-no-change.svg"}{$wdClass=""}
+{else}{$iconSrc="images/thread-tree-no-change.svg"}{$wdClass=" wd-dependent"}
+{/if}
+   <img class="icon{$wdClass}" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/{$iconSrc}" alt="" width="14" height="14" />
+   <a class="subject{if $search_results[result].pid==0} thread-search{else} reply-search{/if}{if $search_results[result].is_read} read{/if}" href="index.php?id={$search_results[result].id}">{$search_results[result].subject}</a>
+   <span class="metadata">
+    <span class="author-name">{$search_results[result].name}</span>
+    <span id="p{$search_results[result].id}" class="tail">
     {$search_results[result].formated_time}
     {if $search_results[result].no_text}<img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="{#no_text_alt#}" width="11" height="9" />{/if}
     <a href="index.php?mode=thread&amp;id={$search_results[result].id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" alt="{#open_whole_thread#}" width="11" height="11" /></a>
     {if $search_results[result].category}<a href="index.php?mode=index&amp;category={$search_results[result].category}"><span class="category">({$search_results[result].category_name})</span></a>{/if}
+    </span>
    </span>
-  </span>
+  </div>
  </li>
 {/section}
 </ul>

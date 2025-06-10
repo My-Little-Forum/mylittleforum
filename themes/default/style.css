@@ -1881,23 +1881,6 @@ ul.searchresults li {
 ul.searchresults li li {
 	font-size: 1em;
 }
-a.thread-search {
-	padding-inline-start: 18px;
-	color: #0000cc;
-	font-weight: bold;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -148px;
-}
-html[dir="rtl"] a.thread-search {
-	background: url(images/bg_sprite_1.png) no-repeat calc(100% + 2px) -148px;
-}
-a.reply-search {
-	padding-inline-start: 18px;
-	color: #0000cc;
-	font-weight: bold;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -448px;
-}
-html[dir="rtl"] a.reply-search {
-	background: url(images/bg_sprite_1.png) no-repeat 100% -1508px;
 }
 a.thread-search:visited,
 a.reply-search:visited {
