@@ -23,7 +23,7 @@
   <input type="hidden" name="mode" value="posting" />
   <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
   <fieldset class="manage-postings">
-   <legend><img src="{$THEMES_DIR}/{$theme}/images/locked.png" width="14" height="12" alt="" />&nbsp;{#lock_postings#}</legend>
+   <legend><img class="icon" src="{$THEMES_DIR}/{$theme}/images/general-lock-closed.svg" width="12" height="12" alt="" /><span>{#lock_postings#}</span></legend>
    <ul>
     <li><input id="lock_mode_1" type="radio" name="lock_mode" value="1" /><label for="lock_mode_1">{$smarty.config.lock_old_threads|replace:"[days]":$input_days}</li>
     <li><input id="lock_mode_2" type="radio" name="lock_mode" value="2" /><label for="lock_mode_2">{#lock_all_postings#}</label></li>
