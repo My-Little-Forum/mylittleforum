@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <defs>
+  <linearGradient id="shield" x1="15%" y1="0%" x2="85%" y2="100%">
+   <stop offset="0%" stop-color="#efefbb" />
+   <stop offset="25.5%" stop-color="#e8e8b0" />
+   <stop offset="100%" stop-color="#c4c240" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #contour { stroke-width: 12; stroke: #cfc822; fill: none; }
+  #spot { stroke-width: 16; stroke: #fffef0; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+  .folder{ stroke: none; fill: url(#shield); }
+  ]]>
+ </style>
+ <g>
+  <path id="contour" d="M8,40 a14 14, 0, 0, 1, 14,-14 h88 a14 14, 0, 0, 1, 14,14
+  v2 a16 16, 0, 0, 0, 16,16 h102 a14 14, 0, 0, 1, 14,14 v150
+  a14 14, 0, 0, 1, -14,14 h-220 a14 14, 0, 0, 1, -14,-14 z" />
+ <path class="folder" d="M22,40 h88 v2 a30 30, 0, 0, 0, 30,30 h102 v30 h-118
+  a30 30, 0, 0, 0, -30,30 h-72 z" />
+ <path class="folder" d="M22,132 h72 a30 30, 0, 0, 1, 30,-30 h118 v128 h-220 z" />
+  <path id="spot" d="M22,222 v-182 h88 v2 a30 30, 0, 0, 0, 30,30 h102 v150
+  m0,-120 h-118 a30 30, 0, 0, 0, -30,30 h-70" />
+ </g>
+</svg>

@@ -1,0 +1,34 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="264" viewBox="0 0 264 264">
+ <defs>
+  <linearGradient id="plate" x1="100%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#dc4f1f" />
+   <stop offset="100%" stop-color="#c43400" />
+  </linearGradient>
+  <linearGradient id="bordershadow" x1="0%" y1="0%" x2="100%" y2="100%">
+   <stop offset="0%" stop-color="#ef564f" />
+   <stop offset="17.5%" stop-color="#de4734" />
+   <stop offset="42.5%" stop-color="#db432c" />
+   <stop offset="57.5%" stop-color="#bc3c02" />
+   <stop offset="82.5%" stop-color="#b03400" />
+   <stop offset="100%" stop-color="#902200" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  rect { stroke: none; fill: url(#plate); }
+  #cross { fill: none; stroke-width: 34.5; stroke: #fff; stroke-linecap: round; }
+  #border { fill: url(#bordershadow); stroke: none; }
+  ]]>
+ </style>
+ <g transform="scale(0.9)" transform-origin="center">
+  <g>
+   <rect x="1" y="1" width="262" height="262" rx="53" ry="53" />
+   <path id="border" d="M 1,54 A 53 53, 0, 0, 1 54,1 L 210,1 A 53 53, 0, 0, 1 263,54 L 263,210 A 53 53, 0, 0, 1 210,263 L 54,263 A 53 53, 0, 0, 1 1,210 z M 16,54 L 16,210 A 38 38, 0, 0, 0 54,248 L 210,248 A 38 38, 0, 0, 0 248,210 L 248,54 A 38 38, 0, 0, 0 210,16 L 54,16 A 38 38, 0, 0, 0 16,54 z" />
+  </g>
+  <g>
+   <path id="cross" d="M 60 60, 204 204 M 204 60, 60 204" />
+  </g>
+ </g>
+</svg>
