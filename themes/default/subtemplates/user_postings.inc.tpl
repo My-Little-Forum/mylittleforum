@@ -24,7 +24,7 @@
     <span class="author-name">{$user_postings_data[ix].name}</span>
     <span id="p{$user_postings_data[ix].id}" class="tail">
     {$user_postings_data[ix].disp_time}
-     <a href="index.php?mode=thread&amp;id={$user_postings_data[ix].id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/complete_thread.png" alt="{#open_whole_thread#}" width="11" height="11" /></a>
+     <a href="index.php?mode=thread&amp;id={$user_postings_data[ix].id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/thread-nested.svg" alt="[*]" width="11" height="11" /></a>
     {if $user_postings_data[ix].category}<a href="index.php?mode=index&amp;category={$user_postings_data[ix].category}"><span class="category">({$user_postings_data[ix].category_name})</span></a>{/if}
     </span>
    </span>
