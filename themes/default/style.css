@@ -1881,15 +1881,6 @@ ul.searchresults li {
 ul.searchresults li li {
 	font-size: 1em;
 }
-}
-a.thread-search:visited,
-a.reply-search:visited {
-	/*color:#800080;*/
-}
-a.thread-search:active,
-a.reply-search:active {
-	color: #ff0000;
-}
 
 img.thumbnail {
 	width: 150px;

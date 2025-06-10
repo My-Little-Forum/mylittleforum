@@ -376,7 +376,6 @@ td ul.folded{margin:0;padding:0;padding-inline-start:1em}
 ul.searchresults{margin:0 0 20px;padding:0;list-style-type:none;max-width:100%!important}
 ul.searchresults li{font-size:1em;padding:0 0 10px}
 ul.searchresults li li{font-size:1em}
-a.thread-search:active,a.reply-search:active{color:red}
 img.thumbnail{width:150px;border:1px solid silver;margin:0;height:auto}
 a:link img.thumbnail{color:#00f;border:1px solid silver}
 a:visited img.thumbnail{color:#00f;border:1px solid silver}
