@@ -69,14 +69,15 @@ h1 {
   color:green;
   background-image:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/general-information.svg);
 }
-.deletelink {
-  padding-left:13px;
-  background:url({/literal}{$THEMES_DIR}/{$settings.theme}{literal}/images/bg_sprite_3.png) no-repeat 1px -45px;
-}
 .insert-desc,
 .deletelink,
 .small {
   font-size: 0.82em;
+}
+a:has(img.icon) {
+  display: flex;
+  align-items: center;
+  gap: 0.125em;
 }
 code {
   font-family:"courier new", courier, monospace;
@@ -284,7 +285,7 @@ window.addEventListener('DOMContentLoaded', function() {
      <p>{#insert_image_exp_no_js#}</p>
      <p><code>[img]images/uploaded/{$images[nr]}[/img]</code></p>
     </div>
-{if $admin || $mod}    <div><a class="deletelink" href="index.php?mode=upload_image&amp;delete={$images[nr]}&amp;current={$current}">{#delete#}</a></div>
+{if $admin || $mod}    <div><a class="deletelink" href="index.php?mode=upload_image&amp;delete={$images[nr]}&amp;current={$current}"><img class="icon" src="{$THEMES_DIR}/{$settings.theme}/images/delete-cross.svg" alt="" width="12" height="12" /><span>{#delete#}</span></a></div>
 {/if}
    </li>
 {/section}
