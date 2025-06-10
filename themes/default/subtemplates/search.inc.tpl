@@ -41,7 +41,7 @@
     <span class="author-name">{$search_results[result].name}</span>
     <span id="p{$search_results[result].id}" class="tail">
     {$search_results[result].formated_time}
-    {if $search_results[result].no_text}<img class="no-text" src="{$THEMES_DIR}/{$theme}/images/no_text.png" title="{#no_text_title#}" alt="{#no_text_alt#}" width="11" height="9" />{/if}
+    {if $search_results[result].no_text}<span><img class="no-text" src="{$THEMES_DIR}/{$theme}/images/posting-no-text.svg" title="{#no_text_title#}" alt="{#no_text_alt#}" width="11" height="11" /></span>{/if}
     <a href="index.php?mode=thread&amp;id={$search_results[result].id}" title="{#open_whole_thread#}"><img src="{$THEMES_DIR}/{$theme}/images/thread-nested.svg" alt="[*]" width="11" height="11" /></a>
     {if $search_results[result].category}<a href="index.php?mode=index&amp;category={$search_results[result].category}"><span class="category">({$search_results[result].category_name})</span></a>{/if}
     </span>
