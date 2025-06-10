@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <style type="text/css"><![CDATA[
+  svg { fill: transparent; }
+  #order-dir { fill: #d81f10; stroke: #d81f10; stroke-width: 30; stroke-linecap: round; stroke-linejoin: round; }
+  .letter { fill: none; stroke: #d81f10; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
+  ]]></style>
+ <g>
+  <path id="order-dir" d="M 80,234 v-204 m 0,0 l -35,35 70,0 z" />
+  <path class="letter" d="M152,30 l 72,0 -72,82 72,0" />
+  <path class="letter" d="M152,234 l 36,-82 36,82 m-58,-30 h44" />
+ </g>
+</svg>
