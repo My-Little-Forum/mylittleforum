@@ -101,7 +101,7 @@
 
 {if $settings.remember_userdata == 1 && $posting_mode==0 && !$user}
   <div>
-   <input id="setcookie" type="checkbox" name="setcookie" value="1"{if $setcookie} checked="checked"{/if} /><label for="setcookie">{#remember_userdata_marking#}</label>{if $cookie} <span id="delete_cookie"><a href="index.php?mode=delete_cookie">{#delete_cookie_linkname#}</a></span>{/if}
+   <input id="setcookie" type="checkbox" name="setcookie" value="1"{if $setcookie} checked="checked"{/if} /><label for="setcookie">{#remember_userdata_marking#}</label>{if $cookie} <a href="index.php?mode=delete_cookie"><img src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/delete-cross.svg" alt="" width="12" height="12" /><span>{#delete_cookie_linkname#}</span></a>{/if}
   </div>
 {/if}
 

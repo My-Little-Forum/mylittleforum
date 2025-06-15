@@ -238,7 +238,6 @@ div#entry-input,#postingform input[type="text"],#postingform input[type="email"]
 #postingform #text{margin:0;width:100%;height:24em}
 #postingform .small,#postingform .xsmall{font-size:.82em}
 #delete_cookie{font-size:.82em}
-#delete_cookie a{padding-left:13px;background:url(images/bg_sprite_3.png) no-repeat 0 -47px}
 div#format-bar{margin:0 !important;padding:.375em;background:#f4f4f6}
 #postingform #format-bar > *{display:flex;flex-wrap:wrap;gap:.25em}
 #postingform #format-bar > *:not(:last-child){margin-block-end:.375em}
