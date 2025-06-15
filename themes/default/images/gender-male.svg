@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" height="264" width="264">
+ <defs>
+  <linearGradient id="plate" x1="0%" y1="25%" x2="100%" y2="75%">
+   <stop offset="0%" stop-color="#fbfbff" />
+   <stop offset="100%" stop-color="#dadcf1" />
+  </linearGradient>
+ </defs>
+ <style type="text/css"><![CDATA[
+  svg { fill: transparent; }
+  .sign { fill: url(#plate); stroke: #739ac3; stroke-width: 12; stroke-linejoin: round; }
+  ]]></style>
+ <g id="sign-male">
+  <g class="sign" transform="translate(-30,-15) rotate(45, 132, 177)">
+   <path d="M110,103.25 v-54.75 h-44 l 66,-66 66,66 h-44 v54.75 a77 77, 0, 1, 1, -44,0 z M132,210 a33 33,0, 0, 0, 0,-66 a33 33,0, 0, 0, 0,66 z" />
+  </g>
+ </g>
+</svg>
