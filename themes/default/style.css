@@ -65,39 +65,8 @@ a:active {
 }
 
 /* strong links */
-a.stronglink {
-	color: #0000cc;
-	text-decoration: none;
-	font-weight: 700;
-	background: url(images/bg_sprite_1.png) no-repeat;
-}
-html[dir="ltr"] a.stronglink {
-	padding-left: 13px;
-	background-position: left 4px;
-}
-html[dir="rtl"] a.stronglink {
-	padding-right: 13px;
-	background-position: right -1306px;
-}
-a.stronglink:visited {
-	color: #0000cc;
-}
-a.stronglink:focus,
-a.stronglink:hover {
-	color: #0000ff;
-	text-decoration: underline;
-	background: url(images/bg_sprite_1.png) no-repeat;
-}
-html[dir="ltr"] a.stronglink:focus,
-html[dir="ltr"]  a.stronglink:hover {
-	background-position: left -46px;
-}
-html[dir="rtl"] a.stronglink:focus,
-html[dir="rtl"] a.stronglink:hover {
-	background-position: right -1356px;
-}
-a.stronglink:active {
-	color: #ff0000;
+a.boldlink {
+	font-weight: bold;
 }
 
 :is(a, span, button):has(img.icon) {
@@ -559,10 +528,10 @@ code.monospace {
 blockquote {
 	margin: 0;
 	padding-block: 0;
-	padding-inline: 30px 0;
+	padding-inline: 1.5em 0;
 	color: #646464;
 	font-style: italic;
-	background: url(images/quote.png) no-repeat top left;
+	background: url(images/general-quote.svg) no-repeat top left/1em;
 }
 html[dir="rtl"] blockquote {
 	background-position-x: right;
@@ -612,13 +581,6 @@ blockquote code {
 }
 .posting-footer a {
 	white-space: nowrap;
-}
-.posting-footer a.move   {
-	padding-inline-start: 13px;
-	background: url(images/bg_sprite_4.png) no-repeat 0 2px;
-}
-html[dir="rtl"] .posting-footer a.move {
-	background-position: 100% -449px;
 }
 
 .thread-posting {
@@ -1196,10 +1158,6 @@ div#entry-input,
 #delete_cookie {
 	font-size: 0.82em;
 }
-#delete_cookie a {
-	padding-left: 13px;
-	background: url(images/bg_sprite_3.png) no-repeat 0 -47px;
-}
 
 div#format-bar {
 	margin: 0 !important;
@@ -1737,7 +1695,7 @@ a.internal:link {
 	padding-inline-start: 18px;
 	color: #0000cc;
 	text-decoration: none;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -148px;
+	background: url(images/thread-marker-no-change.svg) no-repeat 0 center/0.9em;
 }
 html[dir="rtl"] a.internal,
 html[dir="rtl"] a.internal:link {
