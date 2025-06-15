@@ -359,11 +359,11 @@ h2.sidebar a {
 	display: block;
 	color: #000;
 	padding-inline: 1.625em 0.375em;
-	background: url("images/triangle-top.svg") 0.375em calc(50% + .075em)/0.9em 0.9em no-repeat;
+	background: url("images/triangle-full-top.svg") 0.375em calc(50% + .075em)/0.9em 0.9em no-repeat;
 	text-decoration: none;
 }
 .js-display-fold h2.sidebar a {
-	background: url("images/triangle-bottom.svg") 0.375em calc(50% - .075em)/0.9em 0.9em no-repeat;
+	background: url("images/triangle-full-bottom.svg") 0.375em calc(50% - .075em)/0.9em 0.9em no-repeat;
 }
 h2.sidebar a:focus,
 h2.sidebar a:hover,
@@ -2078,16 +2078,16 @@ form .hp {
 }
 	h2.sidebar a {
 		padding-inline: 1.25em 0.375em;
-		background: url("images/triangle-right.svg") 0.175em center/0.9em 0.9em no-repeat;
+		background: url("images/triangle-full-right.svg") 0.175em center/0.9em 0.9em no-repeat;
 }
 	.js-display-fold h2.sidebar a {
-		background: url("images/triangle-left.svg") 0.325em center/0.9em 0.9em no-repeat;
+		background: url("images/triangle-full-left.svg") 0.325em center/0.9em 0.9em no-repeat;
 }
 	html[dir="rtl"] h2.sidebar a {
-		background: url("images/triangle-left.svg") calc(100% - 0.175em) center/0.9em 0.9em no-repeat;
+		background: url("images/triangle-full-left.svg") calc(100% - 0.175em) center/0.9em 0.9em no-repeat;
 }
 	html[dir="rtl"] .js-display-fold h2.sidebar a {
-		background: url("images/triangle-right.svg") calc(100% - 0.175em) center/0.9em 0.9em no-repeat;
+		background: url("images/triangle-full-right.svg") calc(100% - 0.175em) center/0.9em 0.9em no-repeat;
 }
 }
 @media screen and (min-width: 48em) {

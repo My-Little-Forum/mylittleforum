@@ -35,7 +35,7 @@
 </select><noscript><div class="inline"><input class="small" type="submit" value="&raquo;" title="{#go#}" /></div></noscript></div></form>{/if}
 {if $pagination_top}
  <div id="subnav-pagination">
-{if $pagination_top.previous}  <a href="index.php?mode={$mode}&amp;page={$pagination_top.previous}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-left.svg" alt="[&laquo;]" title="{#previous_page_link_title#}" width="11" height="11" /></a>
+{if $pagination_top.previous}  <a href="index.php?mode={$mode}&amp;page={$pagination_top.previous}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-full-left.svg" alt="[&laquo;]" title="{#previous_page_link_title#}" width="11" height="11" /></a>
 {/if}
   <form action="index.php" method="get">
    <input type="hidden" name="mode" value="{$mode}" />
@@ -53,7 +53,7 @@
     </noscript>
    </div>
   </form>
-{if $pagination_top.next}  <a href="index.php?mode={$mode}&amp;page={$pagination_top.next}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-right.svg" alt="[&raquo;]" title="{#next_page_link_title#}" width="11" height="11" /></a>
+{if $pagination_top.next}  <a href="index.php?mode={$mode}&amp;page={$pagination_top.next}{if $category}&amp;category={$category}{/if}"><img src="{$THEMES_DIR}/{$theme}/images/triangle-full-right.svg" alt="[&raquo;]" title="{#next_page_link_title#}" width="11" height="11" /></a>
 {/if}
  </div>
 {/if}
