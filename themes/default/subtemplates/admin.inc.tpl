@@ -233,7 +233,7 @@
 </table>
 </div>
 </form>
-<p style="margin-top:10px;"><a class="stronglink" href="index.php?mode=admin&amp;action=advanced_settings">{#advanced_settings_link#}</a></p>
+<p style="margin-top:10px;"><a class="boldlink" href="index.php?mode=admin&amp;action=advanced_settings"><img class="icon wd-dependent" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/arrow-bold-horizontal.svg" alt="" width="11" height="11" /><span>{#advanced_settings_link#}</span></a></p>
 {elseif $action=='advanced_settings'}
 {if $saved}<p class="notice ok">{#settings_saved#}</p>{/if}
 <form action="index.php" method="post" accept-charset="{#charset#}">
