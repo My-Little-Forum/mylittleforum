@@ -195,7 +195,7 @@ JavaScript isn't available.
 {/if}
 {if $upload_images}
     <div>
-     <dt id="upload" title="{#bbcode_upload_label#}" data-icon="arrow-up.svg">{#bbcode_upload_title#}</dt>
+     <dt id="upload" title="{#bbcode_upload_label#}" data-icon="upload.svg">{#bbcode_upload_title#}</dt>
      <dd><a href="index.php?mode=upload_image">{#bbcode_upload_instruction#}</a></dd>
     </div>
 {/if}

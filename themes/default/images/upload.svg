@@ -1,0 +1,49 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="264" height="264" viewBox="0 0 264 264">
+ <defs>
+  <linearGradient id="frame" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#87c97d" />
+   <stop offset="100%" stop-color="#286824" />
+  </linearGradient>
+  <linearGradient id="plate" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#a5d49c" />
+   <stop offset="100%" stop-color="#79bd73" />
+  </linearGradient>
+  <linearGradient id="c-surface" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#dfe2f2" />
+   <stop offset="25%" stop-color="#c8d0e0" />
+   <stop offset="85%" stop-color="#bbcbd4" />
+   <stop offset="100%" stop-color="#90a1bb" />
+  </linearGradient>
+  <linearGradient id="c-contour" x1="0%" y1="0%" x2="0%" y2="100%">
+   <stop offset="0%" stop-color="#caddec" />
+   <stop offset="25%" stop-color="#bcd0dd" />
+   <stop offset="85%" stop-color="#bacacd" />
+   <stop offset="100%" stop-color="#90a1bb" />
+  </linearGradient>
+ </defs>
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #arrow { fill: url(#plate); stroke: url(#frame); stroke-width: 12; stroke-linejoin: round; }
+  #cloud-contour { fill: none; stroke: url(#c-contour); stroke-width: 12; stroke-linejoin: round; stroke-linecap: round; }
+  #cloud-surface { fill: url(#c-surface); stroke: none; }
+  ]]>
+ </style>
+ <g>
+  <path id="arrow" d="M160,244 h-56 v-64 h-32 l60,-60 60,60 h-32 z" />
+ </g>
+ <g>
+	<path id="cloud-surface" d="M72,202 a22 22, 0, 0, 1, -15.75,-37.25
+	l60,-60 a22 22, 0, 0, 1, 31.5,0 l 60,60
+	 a22 22, 0, 0, 1, -15.75,37.25 h24 a36 36, 0, 0, 0, 9.75,-70.675
+	 a80 80, 0, 1, 0, -153.45,-24
+	 a48 48, 0, 1, 0, -12.75,94.525 z" />
+	<path id="cloud-contour" d="M84,202 h-12 a22 22, 0, 0, 1, -15.75,-37.25
+	l60,-60 a22 22, 0, 0, 1, 31.5,0 l 60,60
+	 a22 22, 0, 0, 1, -15.75,37.25 h-12
+	 m12,0 h24 a36 36, 0, 0, 0, 9.75,-70.675
+	 a80 80, 0, 1, 0, -153.45,-24
+	 a48 48, 0, 1, 0, -12.75,94.525 h12" />
+ </g>
+</svg>
