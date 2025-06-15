@@ -25,11 +25,11 @@
 
 {if $preview}
 {if $preview_hp && !$email}
-{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"{#homepage#}\" width=\"13\" height=\"13\" /></a>"}
+{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/general-homepage.svg\" alt=\"{#homepage#}\" width=\"13\" height=\"13\" /></a>"}
 {elseif !$preview_hp && $email}
 {assign var=email_hp value=" <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/e-mail-envelope.svg\" alt=\"{#email#}\" width=\"13\" height=\"13\" /></a>"}
 {elseif $preview_hp && $email}
-{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/homepage.png\" alt=\"{#homepage#}\" width=\"13\" height=\"13\" /></a> <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/e-mail-envelope.svg\" alt=\"{#email#}\" width=\"13\" height=\"13\" /></a>"}
+{assign var=email_hp value=" <a href=\"$preview_hp\"><img src=\"$THEMES_DIR/$theme/images/general-homepage.svg\" alt=\"{#homepage#}\" width=\"13\" height=\"13\" /></a> <a href=\"index.php?mode=contact&amp;id=$id\"><img src=\"$THEMES_DIR/$theme/images/e-mail-envelope.svg\" alt=\"{#email#}\" width=\"13\" height=\"13\" /></a>"}
 {else}
 {assign var=email_hp value=""}
 {/if}
