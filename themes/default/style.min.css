@@ -365,10 +365,10 @@ ul.reply ul {border-inline-start:round(0.2em, 1px) dotted #bfc1be}
 ul.reply li:last-child > ul {border:none}
 span.fold-expand{display:none}
 ul.folded{margin:0 0 10px;padding:0;padding-inline-start:15px}
-ul.folded span.fold-expand{position:absolute;inset-block-start:-2px;inset-inline-start:-15px;display:inline;margin-inline-end:5px}
-img.expand-thread-inactive{width:9px;height:9px;background:url(images/bg_sprite_2.png) no-repeat 0 -31px}
-img.expand-thread{width:9px;height:9px;background:url(images/bg_sprite_2.png) no-repeat 0 -22px}
-img.fold-thread{width:9px;height:9px;background:url(images/bg_sprite_2.png) no-repeat -9px -22px}
+ul.folded span.fold-expand{position:absolute;inset-inline-start:-1.25em;display:inline}
+img.expand-thread-inactive{width:11px;height:11px;background:url(images/triangle-empty-bottom.svg) no-repeat center/11px}
+img.expand-thread{width:11px;height:11px;background:url(images/triangle-full-bottom.svg) no-repeat center/11px}
+img.fold-thread{width:11px;height:11px;background:url(images/triangle-full-top.svg) no-repeat center/11px}
 td ul.thread{margin:0;padding:0;list-style-type:none;font-size:1em!important}
 td ul.thread ul{font-size:.82em!important;line-height:1.25em}
 td ul.thread ul ul{font-size:1em!important}

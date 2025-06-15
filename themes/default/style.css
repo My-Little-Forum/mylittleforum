@@ -1827,25 +1827,23 @@ ul.folded {
 }
 ul.folded span.fold-expand {
 	position: absolute;
-	inset-block-start: -2px;
-	inset-inline-start: -15px;
+	inset-inline-start: -1.25em;
 	display: inline;
-	margin-inline-end: 5px;
 }
 img.expand-thread-inactive {
-	width: 9px;
-	height: 9px;
-	background: url(images/bg_sprite_2.png) no-repeat 0 -31px;
+	width: 11px;
+	height: 11px;
+	background: url(images/triangle-empty-bottom.svg) no-repeat center/11px;
 }
 img.expand-thread {
-	width: 9px;
-	height: 9px;
-	background: url(images/bg_sprite_2.png) no-repeat 0 -22px;
+	width: 11px;
+	height: 11px;
+	background: url(images/triangle-full-bottom.svg) no-repeat center/11px;
 }
 img.fold-thread {
-	width: 9px;
-	height: 9px;
-	background: url(images/bg_sprite_2.png) no-repeat -9px -22px;
+	width: 11px;
+	height: 11px;
+	background: url(images/triangle-full-top.svg) no-repeat center/11px;
 }
 
 td ul.thread {
