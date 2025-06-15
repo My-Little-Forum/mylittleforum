@@ -1189,10 +1189,6 @@ div#entry-input,
 #delete_cookie {
 	font-size: 0.82em;
 }
-#delete_cookie a {
-	padding-left: 13px;
-	background: url(images/bg_sprite_3.png) no-repeat 0 -47px;
-}
 
 div#format-bar {
 	margin: 0 !important;
