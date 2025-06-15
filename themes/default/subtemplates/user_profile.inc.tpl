@@ -78,9 +78,9 @@
 {if $mod||$admin}
 <ul class="adminmenu">
 {if $admin}{if $postings}<li><a href="index.php?mode=admin&amp;user_delete_all_entries={$p_user_id}"><img src="{$THEMES_DIR}/{$theme}/images/delete_entries.png" alt="" width="16" height="16" /><span>{#user_delete_all_entries#}</span></a></li>{/if}{/if}
-{if $p_user_type==0}<li><a href="index.php?mode=user&amp;user_lock={$p_user_id}">{if $user_is_locked}<img src="{$THEMES_DIR}/{$theme}/images/unlock_user.png" alt="" width="16" height="16" /><span>{#user_unlock_account#}</span></a>{else}<img src="{$THEMES_DIR}/{$theme}/images/lock_user.png" alt="" width="16" height="16" /><span>{#user_lock_account#}</span></a>{/if}</li>{/if}
 {if $admin}<li><a href="index.php?mode=admin&amp;edit_user={$p_user_id}"><img src="{$THEMES_DIR}/{$theme}/images/edit_user.png" alt="" width="16" height="16" /><span>{#user_edit_account#}</span></a></li>{/if}
 {if $admin}<li><a href="index.php?mode=admin&amp;delete_user={$p_user_id}"><img src="{$THEMES_DIR}/{$theme}/images/delete_user.png" alt="" width="16" height="16" /><span>{#user_delete_account#}</span></a></li>{/if}
+{if $p_user_type==0}<li><a href="index.php?mode=user&amp;user_lock={$p_user_id}">{if $user_is_locked}<img class="icon" src="{$THEMES_DIR}/{$theme}/images/user-unlock.svg" alt="" width="18" height="18" /><span>{#user_unlock_account#}</span></a>{else}<img class="icon" src="{$THEMES_DIR}/{$theme}/images/user-lock.svg" alt="" width="18" height="18" /><span>{#user_lock_account#}</span></a>{/if}</li>{/if}
 </ul>
 {/if}
 
