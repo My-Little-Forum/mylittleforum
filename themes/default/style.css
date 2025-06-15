@@ -1738,7 +1738,7 @@ a.internal:link {
 	padding-inline-start: 18px;
 	color: #0000cc;
 	text-decoration: none;
-	background: url(images/bg_sprite_1.png) no-repeat 0 -148px;
+	background: url(images/thread-marker-no-change.svg) no-repeat 0 center/0.9em;
 }
 html[dir="rtl"] a.internal,
 html[dir="rtl"] a.internal:link {
