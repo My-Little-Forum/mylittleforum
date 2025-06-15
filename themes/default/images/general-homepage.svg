@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" width="264" height="264">
+ <style type="text/css">
+  <![CDATA[
+  svg { fill: transparent; }
+  #roof { fill: none; stroke: #224; stroke-width: 20; stroke-linejoin: round; stroke-linecap: round; }
+  #housesurface { fill: #ebebf4; stroke: none; }
+  #housecontour { fill: none; stroke: #334; stroke-width: 16; stroke-linejoin: round; stroke-linecap: round; }
+  #door { fill: #640; stroke: #334; stroke-width: 12; stroke-linejoin: round; }
+  ]]>
+ </style>
+ <g>
+  <path id="housesurface" d="M40,118 v130 h184 v-130 l-92,-92 z" />
+  <path id="housecontour" d="M40,120 v128 h184 v-128" />
+  <path transform="rotate(-45, 132, 24)" id="roof" d="M132,24 v165  m0,-165 h-165" />
+  <rect id="door" x="92" y="120" width="80" height="126" />
+ </g>
+</svg>
+
