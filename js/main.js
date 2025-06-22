@@ -699,6 +699,12 @@ function DragAndDropTable(table,mode,queryKey) {
 		};
 		const isPopoverSupported = () => HTMLElement.prototype.hasOwnProperty("popover");
 		if (!isPopoverSupported) return;
+		const imgTemplate = document.getElementById("tmpl-img-popover");
+		if (!imgTemplate) {
+			imgTemplate = document.createElementWithAttributes("figure", {"id": "", "className": "full-size-img", "popover": ""});
+			const imgPopTemplate = document.createElementWithAttributes("img", {"src": "", "width": "", "height": "", "alt": ""});
+			imgTemplate.appendChild(imgPopTemplate);
+		}
 		
 		var oldOnKeyPressFunc = window.document.onkeypress;
 		window.document.onkeypress = function(e) { 
