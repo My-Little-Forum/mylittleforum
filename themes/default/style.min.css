@@ -383,7 +383,7 @@ button[type=button].thumbnail img,a[rel=thumbnail] img{display:block}
 img.thumbnail{width:12em;border:1px solid silver;margin:0;height:auto}
 :is(button,a):has(img.left){float:left;float:inline-start;margin-block:0 .75em;margin-inline:0 .75em}
 :is(button,a):has(img.right){float:right;float:inline-end;margin-block:0 .75em;margin-inline:.75em 0}
-figure.full-size-img{padding:.5em;background:#e8e8e8;border:round(.1em,1px) solid #bacbdf}
+figure.full-size-img{padding:.5em;background:#e8e8e8;border:round(.1em,1px) solid #bacbdf;max-width:90vw}
 figure.full-size-img::backdrop{background:#0008}
 figure.full-size-img img{display:block}
 #ajax-preview{position:absolute;top:100px;inset-inline-start:100px;margin-block:13px 0;margin-inline:-3px 0;z-index:10;width:20px}

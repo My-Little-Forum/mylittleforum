@@ -1923,6 +1923,7 @@ figure.full-size-img {
 	padding: 0.5em;
 	background: #e8e8e8;
 	border: round(.1em,1px) solid #bacbdf;
+	max-width: 90vw;
 }
 figure.full-size-img::backdrop {
 	background:#0008;
