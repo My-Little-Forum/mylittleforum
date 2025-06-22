@@ -689,6 +689,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		}
 		
 		for (let el of els) {
+			const pID = el.id;
 		}
 	}
 		
