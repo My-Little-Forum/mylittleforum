@@ -690,6 +690,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		
 		for (let el of els) {
 			const pID = el.id;
+			const thumbnails = el.querySelectorAll('a[rel=thumbnail]');
 		}
 	}
 		
