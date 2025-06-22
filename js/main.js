@@ -711,6 +711,8 @@ function DragAndDropTable(table,mode,queryKey) {
 					const imgButton = document.createElementWithAttributes("button", {"type": "button", "className": "thumbnail"});
 					imgButton.setAttribute("popovertarget", poTarget);
 					imgButton.appendChild(imgEl);
+					thumb.replaceWith(imgButton);
+					i++;
 				}
 			}
 		}
