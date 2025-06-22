@@ -1998,23 +1998,6 @@ figure.full-size-img img {
 	height: auto;
 }
 
-#image-canvas {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: url(images/canvas_bg.png);
-	z-index: 20;
-}
-#image-canvas img {
-	display: block;
-	margin: 2em auto 0 auto;
-	border: 1px solid #000;
-	z-index: 30;
-	max-width: 90%;
-}
-
 /* JS Classes */
 .js-display-none {
 	display: none;
