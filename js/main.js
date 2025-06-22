@@ -701,6 +701,8 @@ function DragAndDropTable(table,mode,queryKey) {
 					const popOverTempl = document.importNode(imgTemplate.content, true);
 					const popFigure = popOverTempl.querySelector("figure");
 					popFigure.setAttribute("id", poTarget);
+					popFigure.querySelector("img").setAttribute("src", imgEl.getAttribute("src"));
+					postingBody.appendChild(popFigure);
 				}
 			}
 		}
