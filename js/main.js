@@ -697,6 +697,8 @@ function DragAndDropTable(table,mode,queryKey) {
 				window.scrollTo(scrollPos.left, scrollPos.top);
 			}
 		};
+		const isPopoverSupported = () => HTMLElement.prototype.hasOwnProperty("popover");
+		if (!isPopoverSupported) return;
 		
 		var oldOnKeyPressFunc = window.document.onkeypress;
 		window.document.onkeypress = function(e) { 
