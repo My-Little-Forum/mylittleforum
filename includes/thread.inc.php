@@ -282,6 +282,8 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 		exit;
 	}
 	
+	$html_templates = file_get_contents("themes/". $settings['theme'] ."/subtemplates/popover-full-size-img.inc.tpl");
+	
 	$subnav_link = array(
 		'mode' => 'index',
 		'name' => 'thread_entry_back_link',
@@ -299,6 +301,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 		$smarty->assign('subtemplate', 'thread.inc.tpl');
 	else
 		$smarty->assign('subtemplate', 'thread_linear.inc.tpl');
+	$smarty->assign('html5_templ', $html_templates);
 	$template = 'main.tpl';
 }
 
