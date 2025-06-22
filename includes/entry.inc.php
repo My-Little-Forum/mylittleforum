@@ -377,10 +377,13 @@
 		if (($settings['akismet_key'] != '' && $settings['akismet_entry_check'] == 1 && $entrydata['akismet_spam'] == 1 && $entrydata['spam_check_status'] > 0) || ($settings['b8_entry_check'] == 1 && $entrydata['b8_spam'] == 1 || $entrydata['training_type'] == 0))
 			$options['flag_ham'] = true;
 	}
+	
+	$html_templates = file_get_contents("themes/". $settings['theme'] ."/subtemplates/popover-full-size-img.inc.tpl");
 
 	if (isset($options))
 		$smarty->assign('options', $options);
 	$smarty->assign('subtemplate', 'entry.inc.tpl');
+	$smarty->assign('html5_templ', $html_templates);
 	$template = 'main.tpl';
 
 ?>
