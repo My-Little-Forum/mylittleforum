@@ -695,6 +695,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				let i = 1;
 				for (thumb of thumbnails) {
 					const postingBody = el.querySelector("div.body");
+					const imgEl = thumb.querySelector("img");
 				}
 			}
 		}
