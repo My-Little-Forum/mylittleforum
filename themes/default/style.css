@@ -1919,6 +1919,17 @@ img.thumbnail {
 	margin-block: 0 0.75em;
 	margin-inline: 0.75em 0;
 }
+figure.full-size-img {
+	padding: 0.5em;
+	background: #e8e8e8;
+	border: round(.1em,1px) solid #bacbdf;
+}
+figure.full-size-img::backdrop {
+	background:#0008;
+}
+figure.full-size-img img {
+	display: block;
+}
 
 /* ajax preview: */
 #ajax-preview {
