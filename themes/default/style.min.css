@@ -378,12 +378,11 @@ td ul.folded{margin:0;padding:0;padding-inline-start:1em}
 ul.searchresults{margin:0 0 20px;padding:0;list-style-type:none;max-width:100%!important}
 ul.searchresults li{font-size:1em;padding:0 0 10px}
 ul.searchresults li li{font-size:1em}
-img.thumbnail{width:150px;border:1px solid silver;margin:0;height:auto}
-a:link img.thumbnail{color:#00f;border:1px solid silver}
-a:visited img.thumbnail{color:#00f;border:1px solid silver}
-a:focus img.thumbnail,a:hover img.thumbnail{color:#00f;border:1px solid #000}
-img.left{display:block;float:left;float:inline-start;margin:0 10px 10px 0}
-img.right{float:right;float:inline-end;margin:0 0 10px 10px}
+button[type=button].thumbnail{background:transparent;padding:0;border:none}
+button[type=button].thumbnail img,a[rel=thumbnail] img{display:block}
+img.thumbnail{width:12em;border:1px solid silver;margin:0;height:auto}
+:is(button,a):has(img.left){float:left;float:inline-start;margin-block:0 .75em;margin-inline:0 .75em}
+:is(button,a):has(img.right){float:right;float:inline-end;margin-block:0 .75em;margin-inline:.75em 0}
 #ajax-preview{position:absolute;top:100px;inset-inline-start:100px;margin-block:13px 0;margin-inline:-3px 0;z-index:10;width:20px}
 #ajax-preview-top{position:absolute;width:100%;top:0;height:16px;background:transparent url(images/bg_sprite_2.png) no-repeat 8px -40px;z-index:10}
 #ajax-preview-main{border-top:1px solid silver;position:absolute;top:15px;inset-inline-end:0;width:500px}
