@@ -707,6 +707,10 @@ function DragAndDropTable(table,mode,queryKey) {
 						popFigure.querySelector("img").setAttribute("width", imgEl.naturalWidth);
 						popFigure.querySelector("img").setAttribute("height", imgEl.naturalHeight);
 					});
+					
+					const imgButton = document.createElementWithAttributes("button", {"type": "button", "className": "thumbnail"});
+					imgButton.setAttribute("popovertarget", poTarget);
+					imgButton.appendChild(imgEl);
 				}
 			}
 		}
