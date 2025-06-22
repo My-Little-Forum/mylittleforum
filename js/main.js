@@ -681,11 +681,15 @@ function DragAndDropTable(table,mode,queryKey) {
 		const isPopoverSupported = () => HTMLElement.prototype.hasOwnProperty("popover");
 		if (!isPopoverSupported) return;
 		els = (typeof els == "object" || typeof els == "function") && typeof els.length == "number" ? els : [els];
-		const imgTemplate = document.getElementById("tmpl-img-popover");
-		if (!imgTemplate) {
-			imgTemplate = document.createElementWithAttributes("figure", {"id": "", "className": "full-size-img", "popover": ""});
-			const imgPopTemplate = document.createElementWithAttributes("img", {"src": "", "width": "", "height": "", "alt": ""});
-			imgTemplate.appendChild(imgPopTemplate);
+		let popFigureRaw;
+		const imgTemplEl = document.getElementById("tmpl-img-popover");
+		if (imgTemplEl != null) {
+			const popOverTempl = document.importNode(imgTemplEl.content, true);
+			popFigureRaw = popOverTempl.querySelector("figure");
+		} else {
+			popFigureRaw = document.createElementWithAttributes("figure", {"id": "", "className": "full-size-img", "popover": ""});
+			const imgImgTemplate = document.createElementWithAttributes("img", {"src": "", "width": "", "height": "", "alt": ""});
+			popFigureRaw.appendChild(imgImgTemplate);
 		}
 		
 		for (let el of els) {
@@ -698,8 +702,7 @@ function DragAndDropTable(table,mode,queryKey) {
 					const imgEl = thumb.querySelector("img");
 					const poTarget = [pID, "-img", i].join('');
 					
-					const popOverTempl = document.importNode(imgTemplate.content, true);
-					const popFigure = popOverTempl.querySelector("figure");
+					const popFigure = popFigureRaw.cloneNode(true);
 					popFigure.setAttribute("id", poTarget);
 					popFigure.querySelector("img").setAttribute("src", imgEl.getAttribute("src"));
 					postingBody.appendChild(popFigure);
