@@ -678,9 +678,9 @@ function DragAndDropTable(table,mode,queryKey) {
 	 */
 	function FullSizeImage(els) {
 		if (!els) return;
-		els = (typeof els == "object" || typeof els == "function") && typeof els.length == "number"?els:[els];
 		const isPopoverSupported = () => HTMLElement.prototype.hasOwnProperty("popover");
 		if (!isPopoverSupported) return;
+		els = (typeof els == "object" || typeof els == "function") && typeof els.length == "number" ? els : [els];
 		const imgTemplate = document.getElementById("tmpl-img-popover");
 		if (!imgTemplate) {
 			imgTemplate = document.createElementWithAttributes("figure", {"id": "", "className": "full-size-img", "popover": ""});
