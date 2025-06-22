@@ -688,6 +688,7 @@ function DragAndDropTable(table,mode,queryKey) {
 			imgTemplate.appendChild(imgPopTemplate);
 		}
 		
+		for (let el of els) {
 				}
 			}
 		}
