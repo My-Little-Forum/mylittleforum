@@ -697,6 +697,10 @@ function DragAndDropTable(table,mode,queryKey) {
 					const postingBody = el.querySelector("div.body");
 					const imgEl = thumb.querySelector("img");
 					const poTarget = [pID, "-img", i].join('');
+					
+					const popOverTempl = document.importNode(imgTemplate.content, true);
+					const popFigure = popOverTempl.querySelector("figure");
+					popFigure.setAttribute("id", poTarget);
 				}
 			}
 		}
