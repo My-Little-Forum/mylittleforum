@@ -687,6 +687,9 @@ function DragAndDropTable(table,mode,queryKey) {
 			const imgPopTemplate = document.createElementWithAttributes("img", {"src": "", "width": "", "height": "", "alt": ""});
 			imgTemplate.appendChild(imgPopTemplate);
 		}
+		
+		for (let el of els) {
+		}
 	}
 		
 	/**
