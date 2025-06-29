@@ -686,9 +686,7 @@ function DragAndDropTable(table,mode,queryKey) {
 			const popOverTempl = document.importNode(imgTemplEl.content, true);
 			popFigureRaw = popOverTempl.querySelector("figure");
 		} else {
-			popFigureRaw = document.createElementWithAttributes("figure", {"id": "", "className": "full-size-img", "popover": ""});
-			const imgImgTemplate = document.createElementWithAttributes("img", {"src": "", "width": "", "height": "", "alt": ""});
-			popFigureRaw.appendChild(imgImgTemplate);
+			return;
 		}
 		
 		for (let el of els) {
