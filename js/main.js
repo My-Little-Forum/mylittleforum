@@ -678,65 +678,41 @@ function DragAndDropTable(table,mode,queryKey) {
 	 */
 	function FullSizeImage(els) {
 		if (!els) return;
-		els = (typeof els == "object" || typeof els == "function") && typeof els.length == "number"?els:[els];
-		var hashTrigger = null;
-		var body = document.body;
-   		var imageCanvas = document.getElementById("image-canvas") || document.createElementWithAttributes("div", {"id": "image-canvas"}, body);
-		imageCanvas.setVisible = function(visible) {
-			if (visible)
-				this.classList.remove("js-display-none");
-			else
-				this.classList.add("js-display-none");
-		};
-		var stopTrigger = function() {
-			if (hashTrigger) {
-				window.clearInterval(hashTrigger);
-				var scrollPos = document.getScrollPosition();
-				window.history.back();
-				// Fuer den Fall, dass man bei eingeblendeten Bild gescrollt hat
-				window.scrollTo(scrollPos.left, scrollPos.top);
-			}
-		};
+		els = (typeof els == "object" || typeof els == "function") && typeof els.length == "number" ? els : [els];
+		if (!HTMLElement.prototype.hasOwnProperty("popover")) return;
+		let popFigureRaw;
+		const imgTemplEl = document.getElementById("tmpl-img-popover");
+		if (imgTemplEl != null) {
+			const popOverTempl = document.importNode(imgTemplEl.content, true);
+			popFigureRaw = popOverTempl.querySelector("figure");
+		} else {
+			return;
+		}
 		
-		var oldOnKeyPressFunc = window.document.onkeypress;
-		window.document.onkeypress = function(e) { 
-			if (e.key == "Esc") {
-				imageCanvas.setVisible(false);
-				stopTrigger();
-			}
-			if (typeof oldOnKeyPressFunc == "function")
-				oldOnKeyPressFunc(e);
-		};
-		imageCanvas.onclick = function(e) {
-			imageCanvas.setVisible(false);
-			stopTrigger();
-		}; 
-		imageCanvas.setVisible(false);
-		var fullSizeImage = document.getElementById("fullSizeImage") || document.createElementWithAttributes("img", {"id": "fullSizeImage"}, imageCanvas);
-		for (var i=0; i<els.length; i++) {
-			var links = els[i].getElementsByTagName("a");
-			for (var j=0; j<links.length; j++) {
-				if(links[j].rel.search(/thumbnail/) != -1) {
-					links[j].onclick = function(e) {
-						window.location.hash="image";
-   						var currentHash = window.location.hash;
-						fullSizeImage.src = this.href;
-						imageCanvas.setVisible(true);
-						var imgPoSi = document.getElementPoSi(fullSizeImage);
-						var scrollPos = document.getScrollPosition();
-						var winSize = document.getWindowSize();
-						imageCanvas.style.height=winSize.pageHeight+"px";
-						fullSizeImage.style.marginTop = (scrollPos.top+(winSize.windowHeight-imgPoSi.height)/2) + "px";
-						
-						hashTrigger = window.setInterval(
-							function() {
-								if ( this.location.hash != currentHash ) {
-									imageCanvas.setVisible(false);
-								}
-							},50 
-						);
-						return false;
-					};
+		for (let el of els) {
+			const pID = el.id;
+			const thumbnails = el.querySelectorAll('a[rel=thumbnail]');
+			if (thumbnails.length > 0) {
+				let i = 1;
+				for (thumb of thumbnails) {
+					const postingBody = el.querySelector("div.body");
+					const imgEl = thumb.querySelector("img");
+					const poTarget = pID + "-img" + i;
+					
+					const popFigure = popFigureRaw.cloneNode(true);
+					popFigure.setAttribute("id", poTarget);
+					popFigure.querySelector("img").setAttribute("src", imgEl.getAttribute("src"));
+					postingBody.appendChild(popFigure);
+					imgEl.addEventListener("load", (event) => {
+						popFigure.querySelector("img").setAttribute("width", imgEl.naturalWidth);
+						popFigure.querySelector("img").setAttribute("height", imgEl.naturalHeight);
+					});
+					
+					const imgButton = document.createElementWithAttributes("button", {"type": "button", "className": "thumbnail"});
+					imgButton.setAttribute("popovertarget", poTarget);
+					imgButton.appendChild(imgEl);
+					thumb.replaceWith(imgButton);
+					i++;
 				}
 			}
 		}

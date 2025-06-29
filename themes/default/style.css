@@ -1880,35 +1880,44 @@ ul.searchresults li li {
 	font-size: 1em;
 }
 
+button[type=button].thumbnail {
+	background: transparent;
+	padding: 0;
+	border: none;
+}
+button[type=button].thumbnail img,
+a[rel=thumbnail] img {
+	display: block;
+}
 img.thumbnail {
-	width: 150px;
+	width: 12em;
 	border: 1px solid #c0c0c0;
 	margin: 0;
 	height: auto;
 }
-a:link img.thumbnail {
-	color: #0000ff;
-	border: 1px solid #c0c0c0;
-}
-a:visited img.thumbnail {
-	color: #0000ff;
-	border: 1px solid #c0c0c0;
-}
-a:focus img.thumbnail,
-a:hover img.thumbnail {
-	color: #0000ff;
-	border: 1px solid #000000;
-}
-img.left {
-	display: block;
+:is(button, a):has(img.left) {
 	float: left;
 	float: inline-start;
-	margin: 0 10px 10px 0;
+	margin-block: 0 0.75em;
+	margin-inline: 0 0.75em;
 }
-img.right {
+:is(button, a):has(img.right) {
 	float: right;
 	float: inline-end;
-	margin: 0 0 10px 10px;
+	margin-block: 0 0.75em;
+	margin-inline: 0.75em 0;
+}
+figure.full-size-img {
+	padding: 0.5em;
+	background: #e8e8e8;
+	border: round(.1em,1px) solid #bacbdf;
+	max-width: 90vw;
+}
+figure.full-size-img::backdrop {
+	background:#0008;
+}
+figure.full-size-img img {
+	display: block;
 }
 
 /* ajax preview: */
@@ -1987,23 +1996,6 @@ img.right {
 #ajax-preview-content img {
 	max-width: 100%;
 	height: auto;
-}
-
-#image-canvas {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: url(images/canvas_bg.png);
-	z-index: 20;
-}
-#image-canvas img {
-	display: block;
-	margin: 2em auto 0 auto;
-	border: 1px solid #000;
-	z-index: 30;
-	max-width: 90%;
 }
 
 /* JS Classes */
