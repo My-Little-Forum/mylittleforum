@@ -678,9 +678,8 @@ function DragAndDropTable(table,mode,queryKey) {
 	 */
 	function FullSizeImage(els) {
 		if (!els) return;
-		const isPopoverSupported = () => HTMLElement.prototype.hasOwnProperty("popover");
-		if (!isPopoverSupported) return;
 		els = (typeof els == "object" || typeof els == "function") && typeof els.length == "number" ? els : [els];
+		if (!HTMLElement.prototype.hasOwnProperty("popover")) return;
 		let popFigureRaw;
 		const imgTemplEl = document.getElementById("tmpl-img-popover");
 		if (imgTemplEl != null) {
