@@ -697,7 +697,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				for (thumb of thumbnails) {
 					const postingBody = el.querySelector("div.body");
 					const imgEl = thumb.querySelector("img");
-					const poTarget = [pID, "-img", i].join('');
+					const poTarget = pID + "-img" + i;
 					
 					const popFigure = popFigureRaw.cloneNode(true);
 					popFigure.setAttribute("id", poTarget);
