@@ -692,9 +692,9 @@ function DragAndDropTable(table,mode,queryKey) {
 		for (let el of els) {
 			const pID = el.id;
 			const thumbnails = el.querySelectorAll('a[rel=thumbnail]');
-			if (thumbnails.length > 0) {
-				let i = 1;
-				for (thumb of thumbnails) {
+			const j = thumbnails.length;
+			if (j > 0) {
+				for (let i = 1; i <= j; i++) {
 					const postingBody = el.querySelector("div.body");
 					const imgEl = thumb.querySelector("img");
 					const poTarget = pID + "-img" + i;
@@ -712,7 +712,6 @@ function DragAndDropTable(table,mode,queryKey) {
 					imgButton.setAttribute("popovertarget", poTarget);
 					imgButton.appendChild(imgEl);
 					thumb.replaceWith(imgButton);
-					i++;
 				}
 			}
 		}
