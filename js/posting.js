@@ -554,6 +554,9 @@ function ButtonGroup(f) {
 			b.appendChild(buttonIcon);
 		}
 		var buttonSpan = document.createElement("span");
+		if (!obj.isSmilie) {
+			buttonSpan.setAttribute("class", "sr-only");
+		}
 		if (typeof obj.label == "string")
 			buttonSpan.appendChild(document.createTextNode( obj.label ));
 		else
