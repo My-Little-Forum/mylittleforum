@@ -2006,6 +2006,16 @@ img.right {
 	max-width: 90%;
 }
 
+/* class to make alements visually hiddeb but leave them accessible for screenreaders (.sr-only = screen readers only) */
+.sr-only:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+}
 /* JS Classes */
 .js-display-none {
 	display: none;
