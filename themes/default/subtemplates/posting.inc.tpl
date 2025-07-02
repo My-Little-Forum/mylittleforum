@@ -246,7 +246,7 @@ JavaScript isn't available.
 
    <div>
 
-    <div id="format-bar">
+    <div id="format-bar" hidden>
 {if $settings.bbcode}
      <div id="bbcode-bar">
 {*<!--
