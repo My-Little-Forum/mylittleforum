@@ -243,7 +243,7 @@ div#entry-input,#postingform input[type="text"],#postingform input[type="email"]
 div#format-bar{margin:0 !important;padding:.375em;background:#f4f4f6}
 #postingform #format-bar > *{display:flex;flex-wrap:wrap;gap:.25em}
 #postingform #format-bar > *:not(:last-child){margin-block-end:.375em}
-#format-bar button{font-size:.82em;min-height:2.4em;margin:0;padding-block:.675em;padding-inline:.675em;background-color:#ececf2;border:1px solid #888;border-radius:.25em}
+#format-bar button{font-size:.82em;margin:0;padding-block:.675em;padding-inline:.675em;background-color:#ececf2;border:1px solid #888;border-radius:.25em}
 #format-bar button:hover,#format-bar button:focus,#format-bar button:focus-within{background-color:#f4f4fa;border-color:#d01210}
 #format-bar button:active{background-color:#f4f4dc;border-color:#f03434}
 #format-bar button span{display:block;line-height:1.4em}
