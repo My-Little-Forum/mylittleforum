@@ -693,26 +693,24 @@ function DragAndDropTable(table,mode,queryKey) {
 			const pID = el.id;
 			const thumbnails = el.querySelectorAll('a[rel=thumbnail]');
 			const j = thumbnails.length;
-			if (j > 0) {
-				for (let i = 1; i <= j; i++) {
-					const postingBody = el.querySelector("div.body");
-					const imgEl = thumb.querySelector("img");
-					const poTarget = pID + "-img" + i;
-					
-					const popFigure = popFigureRaw.cloneNode(true);
-					popFigure.setAttribute("id", poTarget);
-					popFigure.querySelector("img").setAttribute("src", imgEl.getAttribute("src"));
-					postingBody.appendChild(popFigure);
-					imgEl.addEventListener("load", function(event) {
-						popFigure.querySelector("img").setAttribute("width", imgEl.naturalWidth);
-						popFigure.querySelector("img").setAttribute("height", imgEl.naturalHeight);
-					});
-					
-					const imgButton = document.createElementWithAttributes("button", {"type": "button", "className": "thumbnail"});
-					imgButton.setAttribute("popovertarget", poTarget);
-					imgButton.appendChild(imgEl);
-					thumb.replaceWith(imgButton);
-				}
+			for (let i = 0; i < j; i++) {
+				const postingBody = el.querySelector("div.body");
+				const imgEl = thumbnails[i].querySelector("img");
+				const poTarget = pID + "-img" + i;
+				
+				const popFigure = popFigureRaw.cloneNode(true);
+				popFigure.setAttribute("id", poTarget);
+				popFigure.querySelector("img").setAttribute("src", imgEl.getAttribute("src"));
+				postingBody.appendChild(popFigure);
+				imgEl.addEventListener("load", function(event) {
+					popFigure.querySelector("img").setAttribute("width", imgEl.naturalWidth);
+					popFigure.querySelector("img").setAttribute("height", imgEl.naturalHeight);
+				});
+				
+				const imgButton = document.createElementWithAttributes("button", {"type": "button", "className": "thumbnail"});
+				imgButton.setAttribute("popovertarget", poTarget);
+				imgButton.appendChild(imgEl);
+				thumbnails[i].replaceWith(imgButton);
 			}
 		}
 	}
