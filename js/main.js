@@ -710,7 +710,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		imageCanvas.onclick = function(e) {
 			imageCanvas.setVisible(false);
 			stopTrigger();
-		}; 
+		};
 		imageCanvas.setVisible(false);
 		var fullSizeImage = document.getElementById("fullSizeImage") || document.createElementWithAttributes("img", {"id": "fullSizeImage"}, imageCanvas);
 		for (var i=0; i<els.length; i++) {
