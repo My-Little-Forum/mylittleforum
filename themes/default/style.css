@@ -1234,6 +1234,14 @@ div#format-bar {
 	background-color: #f4f4dc;
 	border-color: #f03434;
 }
+#format-bar button img,
+#additional-smilies button img {
+	display: block;
+	width: 1.375em;
+	height: auto;
+	margin: 0;
+	padding: 0;
+}
 #format-bar button span {
 	display: block;
 	line-height: 1.4em;
@@ -1324,14 +1332,6 @@ div#format-bar {
 	padding-inline: 1em;
 	background: transparent;
 	border: none;
-}
-#smiley-bar button img,
-#additional-smilies button img {
-	display: block;
-	width: 1.2em;
-	height: auto;
-	margin: 0;
-	padding: 0;
 }
 
 #formatting-help > * {
