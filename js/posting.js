@@ -474,6 +474,10 @@ function ButtonGroup(f) {
 	var convertInstructionsToButton = function() {
 		if (!document.getElementById("bbcode-bar"))
 			return;
+		const formattingBar = document.getElementById("format-bar");
+		if (formattingBar.hasAttribute("hidden")) {
+			formattingBar.removeAttribute("hidden");
+		}
 		var buttonBar = document.getElementById("bbcode-bar");
 		
 		if (document.getElementById("bbcode-instructions")) {
