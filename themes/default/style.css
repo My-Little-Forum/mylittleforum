@@ -1204,7 +1204,7 @@ div#entry-input,
 div#format-bar {
 	margin: 0 !important;
 	padding: 0.375em;
-	background: #f2f2f2;
+	background: #f4f4f6;
 }
 #postingform #format-bar > * {
 	display: flex;
