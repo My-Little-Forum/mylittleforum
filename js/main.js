@@ -703,7 +703,7 @@ function DragAndDropTable(table,mode,queryKey) {
 					popFigure.setAttribute("id", poTarget);
 					popFigure.querySelector("img").setAttribute("src", imgEl.getAttribute("src"));
 					postingBody.appendChild(popFigure);
-					imgEl.addEventListener("load", (event) => {
+					imgEl.addEventListener("load", function(event) {
 						popFigure.querySelector("img").setAttribute("width", imgEl.naturalWidth);
 						popFigure.querySelector("img").setAttribute("height", imgEl.naturalHeight);
 					});
