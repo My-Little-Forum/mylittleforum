@@ -62,7 +62,7 @@
 {/if}
 </div>
 <footer class="posting-footer">
-<div class="reply">{if $element.locked==0}<a href="index.php?mode=posting&amp;id={$element.id}&amp;back=thread" title="{#reply_link_title#}"><img class="icon wd-dependent" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/arrow-bold-horizontal.svg" alt="" width="13" height="13"/><span>{#reply_link#}</span></a>{else}<span class="locked"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-lock-closed.svg" alt="" width="13" height="13"/><span>{#posting_locked#}</span></span>{/if}</div>
+<div class="reply">{if $element.locked==0}<a class="boldlink" href="index.php?mode=posting&amp;id={$element.id}&amp;back=thread" title="{#reply_link_title#}"><img class="icon wd-dependent" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/arrow-bold-horizontal.svg" alt="" width="13" height="13"/><span>{#reply_link#}</span></a>{else}<span class="locked"><img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/general-lock-closed.svg" alt="" width="13" height="13"/><span>{#posting_locked#}</span></span>{/if}</div>
 {if $element.views}<div class="views">{if $element.views==1}{#one_view#}{else}{#several_views#|replace:"[views]":$element.views}{/if}</div>{/if}
 {if $element.options}
 <ul class="options">

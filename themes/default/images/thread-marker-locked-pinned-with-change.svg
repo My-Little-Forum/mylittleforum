@@ -13,7 +13,7 @@
  <style type="text/css">
   <![CDATA[
   svg { fill: transparent; }
-  #container { fill: #fff; stroke-width: 20; stroke: #f80800; stroke-linejoin: round; }
+  #container { fill: #fff; stroke-width: 24; stroke: #f80800; stroke-linejoin: round; }
   #lines { fill: none; stroke-width: 16; stroke: #222; stroke-linecap: round; }
   #pinhead { fill: #d81f10; stroke: none; }
   #pin { fill: #467; stroke-width: 1; stroke: #467; stroke-linejoin: round; }
@@ -25,12 +25,12 @@
   ]]>
  </style>
  <g>
-  <path id="container" d="M12,74 a30 30, 0, 0, 1, 30,-30 h180 a30 30, 0, 0, 1, 30,30 v116 a30 30, 0, 0, 1, -30,30 h-180 a30 30, 0, 0, 1, -30,-30 z" />
-  <path id="lines" d="M52,84 h160 m-160,32 h86 m-86,32 h74 m46,0 h40 m-160,32 h64" />
+  <path id="container" d="M13,70 a30 30, 0, 0, 1, 30,-30 h178 a30 30, 0, 0, 1, 30,30 v124 a30 30, 0, 0, 1, -30,30 h-178 a30 30, 0, 0, 1, -30,-30 z" />
+  <path id="lines" d="M54,81 h156 m-156,34 h86 m-86,34 h72 m47,0 h37 m-156,34 h62" />
  </g>
  <g id="sticky-pin" transform="translate(57,-46) scale(0.75) rotate(37.5)" transform-origin="center">
   <path id="pin" d="M120,82 v 90 l7,80 a5 5, 0, 0, 0, 10,0 l7,-80 v-90 z" />
-  <circle id="pinhead" cx="132" cy="46" r="44" />
+  <circle id="pinhead" cx="132" cy="46" r="46" />
  </g>
  <g id="lock-closed" transform="translate(106, 86) scale(0.675)">
   <path id="shackle" d="M76,132 h-28 v-24 a 84 84, 0, 0, 1, 168,0 v24 h-28 v-24
