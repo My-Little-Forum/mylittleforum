@@ -584,6 +584,8 @@ function DragAndDropTable(table,mode,queryKey) {
 				icon.classList.add("expand-thread");
 				icon.title = lang["expand_fold_thread_linktitle"]; 
 				icon.alt = "[+]";
+				icon.width = 12;
+				icon.height = 12;
 				
 				if (repliesInfo)
 					repliesInfo.classList.remove("js-display-none");
@@ -598,6 +600,8 @@ function DragAndDropTable(table,mode,queryKey) {
 				icon.classList.remove("expand-thread");
 				icon.classList.add("fold-thread");
 				icon.alt = "[-]";
+				icon.width = 12;
+				icon.height = 12;
 				icon.title = lang["expand_fold_thread_linktitle"]; 
 				
 				if (repliesInfo)
@@ -628,7 +632,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		var foldExpandWrapper = document.createElementWithAttributes("span", {"className": "fold-expand"}, null);
 		
 		if (lis.length == 1) {
-			var inactiveFoldExpandImg = document.createElementWithAttributes("img", {"src": templatePath + settings["expand_thread_inactive_image"], "className": "expand-thread-inactive", "alt": "[ ]"}, foldExpandWrapper)
+			var inactiveFoldExpandImg = document.createElementWithAttributes("img", {"src": templatePath + settings["expand_thread_inactive_image"], "className": "expand-thread-inactive", "alt": "[ ]", "width": "12", "height": "12"}, foldExpandWrapper)
 			setIcon(foldExpandWrapper);  
 		}
 		else {
