@@ -582,10 +582,10 @@ function DragAndDropTable(table,mode,queryKey) {
 				icon.src = templatePath + settings["expand_thread_image"];
 				icon.classList.remove("fold-thread");
 				icon.classList.add("expand-thread");
-				icon.title = lang["expand_fold_thread_linktitle"]; 
 				icon.alt = "[+]";
 				icon.width = 12;
 				icon.height = 12;
+				icon.title = lang["expand_fold_thread_linktitle"];
 				
 				if (repliesInfo)
 					repliesInfo.classList.remove("js-display-none");
