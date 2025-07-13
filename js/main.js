@@ -582,9 +582,8 @@ function DragAndDropTable(table,mode,queryKey) {
 				icon.src = templatePath + settings["expand_thread_image"];
 				icon.classList.remove("fold-thread");
 				icon.classList.add("expand-thread");
-				icon.alt = "";
-				icon.onerror = function(e) { this.alt = "[+]"; };
 				icon.title = lang["expand_fold_thread_linktitle"]; 
+				icon.alt = "[+]";
 				
 				if (repliesInfo)
 					repliesInfo.classList.remove("js-display-none");
@@ -598,8 +597,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				icon.src = templatePath + settings["fold_thread_image"];
 				icon.classList.remove("expand-thread");
 				icon.classList.add("fold-thread");
-				icon.alt = "";
-				icon.onerror = function(e) { this.alt = "[-]"; };
+				icon.alt = "[-]";
 				icon.title = lang["expand_fold_thread_linktitle"]; 
 				
 				if (repliesInfo)
@@ -630,7 +628,7 @@ function DragAndDropTable(table,mode,queryKey) {
 		var foldExpandWrapper = document.createElementWithAttributes("span", {"className": "fold-expand"}, null);
 		
 		if (lis.length == 1) {
-			var inactiveFoldExpandImg = document.createElementWithAttributes("img", {"src": templatePath + settings["expand_thread_inactive_image"], "className": "expand-thread-inactive", "alt": "", "onerror": function(e) { this.alt = "[]"; } }, foldExpandWrapper)
+			var inactiveFoldExpandImg = document.createElementWithAttributes("img", {"src": templatePath + settings["expand_thread_inactive_image"], "className": "expand-thread-inactive", "alt": "[ ]"}, foldExpandWrapper)
 			setIcon(foldExpandWrapper);  
 		}
 		else {
