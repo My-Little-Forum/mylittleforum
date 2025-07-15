@@ -31,6 +31,7 @@
 {/if}
 <link rel="search" href="index.php?mode=search" />
 <link rel="shortcut icon" href="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/favicon.svg" />
 {if $mode=='entry'}<link rel="canonical" href="{$settings.forum_address}index.php?mode=thread&amp;id={$tid}" />{/if}
 <script src="{$FORUM_ADDRESS}/index.php?mode=js_defaults&amp;t={$settings.last_changes}{if $user}&amp;user_type={if $mod}1{elseif $admin}2{else}0{/if}{/if}" type="text/javascript" charset="utf-8"></script>
 <script src="{$FORUM_ADDRESS}/js/main.js" type="text/javascript" charset="utf-8"></script>
