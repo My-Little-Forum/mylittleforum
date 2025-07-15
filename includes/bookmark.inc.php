@@ -58,7 +58,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 				ORDER BY ".$db_settings['bookmark_table'].".`order_id` ASC") or raise_error('database_error',mysqli_error($connid));
 
 			$total_bookmarks = mysqli_num_rows($bookmark_result);
-			$bookmarkdata = false;
+			$bookmarkdata = [];
 			
 			if (empty($row['user_name']))
 				$row['user_name'] = $lang['unknown_user'];
@@ -90,7 +90,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			}
 
 			mysqli_free_result($bookmark_result);
-			if ($bookmarkdata)
+			if (!empty($bookmarkdata))
 				$smarty->assign('bookmarkdata',$bookmarkdata);
 
 			$breadcrumbs[0]['link'] = 'index.php?mode=bookmarks';
