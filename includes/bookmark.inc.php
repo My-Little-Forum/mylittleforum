@@ -63,7 +63,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			if (empty($row['user_name']))
 				$row['user_name'] = $lang['unknown_user'];
 			
-			while ($row = mysqli_fetch_array($bookmark_result)) {
+			while ($row = mysqli_fetch_assoc($bookmark_result)) {
 				$tag = $row['tag'];
 				$tags_array = false;
 				if (!is_null($tag)) {
