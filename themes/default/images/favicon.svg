@@ -1,12 +1,12 @@
 <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
  <defs>
   <style>
-   svg { background-color: #ffffffc8; }
+   svg { background-color: #ffffff28; }
    rect.dot, rect.line { stroke: #444; stroke-width: 0.5; stroke-linejoin: round; }
    rect.dot { fill: #a3beda; stroke: #a3beda; }
    rect.line { fill: #d4d4d4; stroke: #d4d4d4; }
    @media (prefers-color-scheme: dark) {
-     svg { background-color: #14143fd4; }
+     svg { background-color: #14143b28; }
    }
   </style>
   <symbol id="singleline" viewBox="0 0 26.5 5">
