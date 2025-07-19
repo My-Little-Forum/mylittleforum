@@ -457,8 +457,8 @@
 </tbody>
 </table>
 
-<div id="selectioncontrols">
 <button name="delete_selected_users" value="{#delete_selected_users#}"><img src="{$THEMES_DIR}/{$theme}/images/user-delete.svg" alt="" width="18" height="18" /><span>{#delete_selected_users#}</span></button>
+<div id="selectioncontrols" class="buttonbar">
 </div>
 
 </div>

@@ -742,12 +742,6 @@ ul.openthread {
 	align-items: center;
 	gap: 0.25em;
 }
-#selectioncontrols button {
-	align-self: flex-end;
-	display: flex;
-	align-items: center;
-	gap: 0.25em;
-}
 #selectioncontrols .checkall {
 	margin-inline-start: 1em;
 	font-size: 0.69em;
