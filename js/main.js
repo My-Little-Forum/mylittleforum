@@ -1412,6 +1412,9 @@ function DragAndDropTable(table,mode,queryKey) {
 			if (selectButton.hasAttribute('hidden')) selectButton.removeAttribute('hidden');
 			selectButton.addEventListener('click', function (event) {
 				let rows = document.querySelectorAll('#itemlist tbody td input[type="checkbox"]');
+				for (row of rows) {
+					row.toggleAttribute('checked');
+				}
 			});
 		}
 		//craig@worldofbb.com
