@@ -1408,6 +1408,8 @@ function DragAndDropTable(table,mode,queryKey) {
 		var enliveSelectAllButton = function() {
 			const selectButton = document.getElementById('select-all-entries');
 			if (selectButton == null) return false;
+			
+			if (selectButton.hasAttribute('hidden')) selectButton.removeAttribute('hidden');
 		}
 		//craig@worldofbb.com
 		/**
