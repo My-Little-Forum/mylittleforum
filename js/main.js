@@ -1417,7 +1417,7 @@ function DragAndDropTable(table,mode,queryKey) {
 				}
 			});
 		}
-		//craig@worldofbb.com
+		
 		/**
 		 * Init. MyLittelJavaScript
 		 * @param ajaxPreviewStructure
