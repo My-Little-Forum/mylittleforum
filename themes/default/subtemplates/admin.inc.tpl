@@ -423,7 +423,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table id="itemlist" class="normaltab" border="0" cellpadding="5" cellspacing="1">
 <thead>
 <tr>
 <th>&nbsp;</th>
