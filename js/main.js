@@ -1410,6 +1410,8 @@ function DragAndDropTable(table,mode,queryKey) {
 			if (selectButton == null) return false;
 			
 			if (selectButton.hasAttribute('hidden')) selectButton.removeAttribute('hidden');
+			selectButton.addEventListener('click', function (event) {
+			});
 		}
 		//craig@worldofbb.com
 		/**
