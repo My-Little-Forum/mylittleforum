@@ -1402,6 +1402,15 @@ function DragAndDropTable(table,mode,queryKey) {
 		};
 		
 		/**
+		 * initialise the button to select all displayed datasets
+		 * and give it a function
+		 */
+		var enliveSelectAllButton = function() {
+			const selectButton = document.getElementById('select-all-entries');
+			if (selectButton == null) return false;
+		}
+		//craig@worldofbb.com
+		/**
 		 * Init. MyLittelJavaScript
 		 * @param ajaxPreviewStructure
 		 */
@@ -1420,6 +1429,8 @@ function DragAndDropTable(table,mode,queryKey) {
 			initPopUpLinks();
 			setAutoSubmitSubNaviForms();
 			sidebar = new Sidebar(templatePath);
+			
+			enliveSelectAllButton();
 			
 			togglePasswordVisibility();
 			
