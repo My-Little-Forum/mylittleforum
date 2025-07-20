@@ -1412,10 +1412,18 @@ function DragAndDropTable(table,mode,queryKey) {
 			if (selectButton.hasAttribute('hidden')) selectButton.removeAttribute('hidden');
 			let currentState = 'unchecked'
 			selectButton.addEventListener('click', function (event) {
-				let rows = document.querySelectorAll('#itemlist tbody td input[type="checkbox"]');
-				for (row of rows) {
-					row.toggleAttribute('checked');
 				if (selectButton.hasAttribute('data-status')) currentState = selectButton.getAttribute('data-status');
+				const rows = document.querySelectorAll('#itemlist tbody td input[type="checkbox"]');
+				if (currentState == 'unchecked') {
+					for (row of rows) {
+						row.checked = true;
+					}
+					selectButton.setAttribute('data-status', 'checked');
+				} else {
+					for (row of rows) {
+						row.checked = false;
+					}
+					selectButton.setAttribute('data-status', 'unchecked');
 				}
 			});
 		}
