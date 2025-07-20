@@ -1402,6 +1402,33 @@ function DragAndDropTable(table,mode,queryKey) {
 		};
 		
 		/**
+		 * initialise the button to select all displayed datasets
+		 * and give it a function
+		 */
+		var enliveSelectAllButton = function() {
+			const selectButton = document.getElementById('select-all-entries');
+			if (selectButton == null) return false;
+			
+			if (selectButton.hasAttribute('hidden')) selectButton.removeAttribute('hidden');
+			let currentState = 'unchecked'
+			selectButton.addEventListener('click', function (event) {
+				if (selectButton.hasAttribute('data-status')) currentState = selectButton.getAttribute('data-status');
+				const rows = document.querySelectorAll('#itemlist tbody td input[type="checkbox"]');
+				if (currentState == 'unchecked') {
+					for (row of rows) {
+						row.checked = true;
+					}
+					selectButton.setAttribute('data-status', 'checked');
+				} else {
+					for (row of rows) {
+						row.checked = false;
+					}
+					selectButton.setAttribute('data-status', 'unchecked');
+				}
+			});
+		}
+		
+		/**
 		 * Init. MyLittelJavaScript
 		 * @param ajaxPreviewStructure
 		 */
@@ -1420,6 +1447,8 @@ function DragAndDropTable(table,mode,queryKey) {
 			initPopUpLinks();
 			setAutoSubmitSubNaviForms();
 			sidebar = new Sidebar(templatePath);
+			
+			enliveSelectAllButton();
 			
 			togglePasswordVisibility();
 			

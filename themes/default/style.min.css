@@ -139,7 +139,6 @@ ul.openthread{clear:both}
 #usersearch div,#usersearch form{display:inline}
 #usernav-bottom{margin:15px 0 0;padding:0;text-align:end;font-size:.82em}
 #selectioncontrols{margin:0.5em 0 0;padding-inline-start: 2.25em;background:url(images/triangle-full-top.svg) no-repeat calc(0% + .5em) center/1em;display:flex;align-items:center;gap:.25em}
-#selectioncontrols button{align-self:flex-end;display:flex;align-items:center;gap:0.25em}
 #selectioncontrols .checkall{margin-inline-start:1em;font-size:.69em}
 #admin-usernav-bottom #userpagination{float:right;float:inline-end;height:2em;text-align:end}
 .thread ul{font-size:1em}
