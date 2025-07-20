@@ -216,11 +216,12 @@ if ($isUser || $hasUserAreaAccess) {
 				if ($days_registered < 1) $days_registered = 1;
 				$smarty->assign('logins_per_day', number_format($row['logins'] / $days_registered, 2));
 				$smarty->assign('postings_per_day', number_format($postings / $days_registered, 2));
-				$smarty->assign('last_posting_id', intval($last_posting['id']));
-				$smarty->assign('last_posting_formated_time', htmlspecialchars(format_time($lang['time_format_full'], $last_posting['disp_time'])));
-				$smarty->assign('last_posting_time', $last_posting['disp_time']);
-				$smarty->assign('last_posting_subject', htmlspecialchars($last_posting['subject']));
-
+				if ($last_posting !== null) {
+					$smarty->assign('last_posting_id', intval($last_posting['id']));
+					$smarty->assign('last_posting_formated_time', htmlspecialchars(format_time($lang['time_format_full'], $last_posting['disp_time'])));
+					$smarty->assign('last_posting_time', $last_posting['disp_time']);
+					$smarty->assign('last_posting_subject', htmlspecialchars($last_posting['subject']));
+				}
 				if ($settings['avatars']>0) {
 					$avatarInfo = getAvatar($id);
 					$avatar['image'] = $avatarInfo === false ? false : $avatarInfo[2];
