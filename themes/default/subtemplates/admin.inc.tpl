@@ -458,7 +458,7 @@
 </table>
 
 <div id="selectioncontrols" class="buttonbar">
-<button type="button" id="select-all-entries" hidden><img class="icon" src="{$THEMES_DIR}/{$theme}/images/tick.svg" alt="" width="18" height="18" /><span>{#select_all_entries#}</span></button>
+<button type="button" id="select-all-entries" hidden data-status="unchecked"><img class="icon" src="{$THEMES_DIR}/{$theme}/images/tick.svg" alt="" width="18" height="18" /><span>{#select_all_entries#}</span></button>
 <button name="delete_selected_users" value="{#delete_selected_users#}"><img class="icon" src="{$THEMES_DIR}/{$theme}/images/user-delete.svg" alt="" width="18" height="18" /><span>{#delete_selected_users#}</span></button>
 </div>
 
