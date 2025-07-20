@@ -174,7 +174,10 @@ if ($isUser || $hasUserAreaAccess) {
 				// last posting:
 				if ($categories == false) $result = mysqli_query($connid, "SELECT id, subject, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time FROM ".$db_settings['forum_table']." WHERE user_id = ". intval($id) ." ORDER BY time DESC LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				else $result = mysqli_query($connid, "SELECT id, subject, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time FROM ".$db_settings['forum_table']." WHERE user_id = ". intval($id) ." AND category IN (". $category_ids_query .") ORDER BY time DESC LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-				$last_posting = mysqli_fetch_array($result);
+				$last_posting = null;
+				if (mysqli_num_rows($result) > 0) {
+					$last_posting = mysqli_fetch_assoc($result);
+				}
 				mysqli_free_result($result);
 
 				$year = my_substr($row['birthday'], 0, 4, $lang['charset']);
