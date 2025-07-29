@@ -1069,6 +1069,7 @@ update_confirm =                  'هل تريد حقًا تشغيل ملف ال
 update_submit =                   'حسنًا - تشغيل التحديث'
 update_successful =               'تم تحديث قاعدة البيانات بنجاح.'
 update_items_note =               ' (version [version]) ×:يرجى الآن تحميل الملفات/المجلدات التالية من حزمة المنتدى الجديدة (الإصدار) إلى الخادم الخاص بك'
+update_delete_note =              '<!-- TODO -->Please remove now the following files/folders from your installation:'
 update_download =                 ' [[here]]×إذا لم يكن لديك هذه الملفات بعد، يمكنك تنزيلها.'
 update_reenabling_notice =        '<!-- TODO -->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 
