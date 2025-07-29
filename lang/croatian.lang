@@ -1073,6 +1073,7 @@ update_confirm =                'Želite li zaista pokrenuti ovu instalacijsku d
 update_submit =                 'Pokreni instalaciju'
 update_successful =             'Baza je uspješno ažurirana.'
 update_items_note =             'Molimo vas da sada pošaljete sljedeće datoteke/direktorije iz arhive foruma (verzija [version]) na vaš poslužitelj:'
+update_delete_note =              '<!-- TODO -->Please remove now the following files/folders from your installation:'
 update_download =               'Ako nemate potrebne datoteke možete ih naći ovdje: [[here]].'
 update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 

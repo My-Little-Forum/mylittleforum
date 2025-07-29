@@ -1070,6 +1070,7 @@ update_confirm =                  'Do you really want to run the following updat
 update_submit =                   'OK - Run update'
 update_successful =               'The database has been updated successfully.'
 update_items_note =               'Please upload now the following files/folders of the new forum package (version [version]) to your server:'
+update_delete_note =              'Please remove now the following files/folders from your installation:'
 update_download =                 'If you do not have these files yet you can download them [[here]].'
 update_reenabling_notice =        'Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 

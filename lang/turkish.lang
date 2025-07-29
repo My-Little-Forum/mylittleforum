@@ -1074,6 +1074,7 @@ update_confirm =                  'Aşağıdaki güncellemeyi çalıştırmak is
 update_submit =                   'Tamam - Güncelle'
 update_successful =               'Veritabanı başarıyla güncelleştirildi.'
 update_items_note =               'Lütfen şimdi yeni forum paketinin (version [version]) şu dosyalarını/klasörlerini sunucunuza yükleyin:'
+update_delete_note =              '<!-- TODO -->Please remove now the following files/folders from your installation:'
 update_download =                 'Eğer henüz bu dosyalara sahip değilseniz [[buradan]] yükleyebilirsiniz.'
 update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 

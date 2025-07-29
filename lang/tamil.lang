@@ -1070,6 +1070,7 @@ update_confirm =                  'இந்த புதுப்பிப்�
 update_submit =                   'சரி - புதுப்பிக்கவும்'
 update_successful =               'டேடாபேஸ் புதுப்பிக்கமுடியவில்லை.'
 update_items_note =               'தயவு செய்து இந்த புதிய பொது மன்றத்தின் (பதிப்பு [version]) உறை / கோப்பை உங்கள் சேவை மைய்யத்திற்கு  நகற்த்துக :'
+update_delete_note =              '<!-- TODO -->Please remove now the following files/folders from your installation:'
 update_download =                 'நீங்கள் இன்னும் இந்த கோப்புகளை பொறவில்லையேல் அநுகவும் [[here]] .'
 update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 
