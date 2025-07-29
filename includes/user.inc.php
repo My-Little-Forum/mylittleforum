@@ -174,7 +174,7 @@ if ($isUser || $hasUserAreaAccess) {
 				// last posting:
 				if ($categories == false) $result = mysqli_query($connid, "SELECT id, subject, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time FROM ".$db_settings['forum_table']." WHERE user_id = ". intval($id) ." ORDER BY time DESC LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				else $result = mysqli_query($connid, "SELECT id, subject, UNIX_TIMESTAMP(time + INTERVAL ".$time_difference." MINUTE) AS disp_time FROM ".$db_settings['forum_table']." WHERE user_id = ". intval($id) ." AND category IN (". $category_ids_query .") ORDER BY time DESC LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-				$last_posting = null;
+				$last_posting = [];
 				if (mysqli_num_rows($result) > 0) {
 					$last_posting = mysqli_fetch_assoc($result);
 				}
@@ -216,7 +216,7 @@ if ($isUser || $hasUserAreaAccess) {
 				if ($days_registered < 1) $days_registered = 1;
 				$smarty->assign('logins_per_day', number_format($row['logins'] / $days_registered, 2));
 				$smarty->assign('postings_per_day', number_format($postings / $days_registered, 2));
-				if ($last_posting !== null) {
+				if (count($last_posting) > 0) {
 					$smarty->assign('last_posting_id', intval($last_posting['id']));
 					$smarty->assign('last_posting_formated_time', htmlspecialchars(format_time($lang['time_format_full'], $last_posting['disp_time'])));
 					$smarty->assign('last_posting_time', $last_posting['disp_time']);
