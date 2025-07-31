@@ -1070,6 +1070,7 @@ update_confirm =                  '是否确定要执行更新档？'
 update_submit =                   '执行更新'
 update_successful =               '数据库已更新成功。'
 update_items_note =               '请立即上传以下新压缩档内的文件和目录 (版本为 [version]) 到您的服务器中：'
+update_delete_note =              '<!-- TODO -->Please remove now the following files/folders from your installation:'
 update_download =                 '若您还没有这些文件，可以从 [[here]] 下载。'
 update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 

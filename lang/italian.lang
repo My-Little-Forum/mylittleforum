@@ -1073,6 +1073,7 @@ update_confirm =                  'Confermi l\'aggiornamento di con questo file?
 update_submit =                   'OK - ESEGUI AGGIORNAMENTO'
 update_successful =               'La base dati è stata aggiornata con successo.'
 update_items_note =               'Si prega di aggiornare ora i files/cartelle del nuovo forum (versione [version]) sul tuo server:'
+update_delete_note =              '<!-- TODO -->Please remove now the following files/folders from your installation:'
 update_download =                 'Se non possiedi questi files, puoi scaricarti [[qui]].'
 update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 

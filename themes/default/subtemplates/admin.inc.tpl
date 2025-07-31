@@ -936,6 +936,14 @@
 {/foreach}
 </ul>
 {/if}
+{if $delete_items}
+<p>{#update_delete_note#}</p>
+<ul class="filelist">
+{foreach from=$delete_items item=item}
+<li><img class="icon" src="{$THEMES_DIR}/{$theme}/images/{if $item.type==0}dir-open.svg{else}file.svg{/if}" alt="[{if $item.type==0}{#folder_alt#}{else}{#file_alt#}{/if}]" width="16" height="16" />{$item.name}</li>
+{/foreach}
+</ul>
+{/if}
 <p>{#update_reenabling_notice#}</p>
 {if $update_download_url}<p class="small">{#update_download#|replace:"[[":"<a href=\"$update_download_url\">"|replace:"]]":"</a>"}</p>{/if}
 {if $update_message}{$update_message}{/if}
