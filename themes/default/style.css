@@ -171,6 +171,7 @@ body > * {
 #subnav-1 * {
 	margin: 0;
 	padding: 0;
+	text-wrap: nowrap;
 	font-weight: bold;
 }
 #subnav-2 {

@@ -30,7 +30,7 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #topsearch #search-input{width:14em}
 #subnav{background:#f9f9f9;border-top:1px solid #bacbdf;border-bottom:1px solid #bacbdf;font-size:.82em;line-height:2;display:flex;flex-direction:column}
 #subnav > *{margin:0;padding:0}
-#subnav-1 *{margin:0;padding:0;font-weight:bold}
+#subnav-1 *{margin:0;padding:0;text-wrap:nowrap;font-weight:bold}
 #subnav-2 {display:flex;flex-wrap:wrap;gap:0 .5em}
 #subnav .small{font-size:.82em}
 #subnav form{display:inline}
