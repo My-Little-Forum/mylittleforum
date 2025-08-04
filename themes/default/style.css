@@ -556,6 +556,9 @@ blockquote code {
 	font-size: 0.82em;
 	grid-area: replylink;
 }
+.posting-footer .reply a {
+	font-weight: bold;
+}
 .posting-footer .locked {
 	font-size: 0.82em;
 	color: #808080;
