@@ -323,7 +323,8 @@ ul#uploadlist{list-style:none;margin-inline:0;margin-block:0 .75em;padding:0;max
 .confirm-selection li{min-height:2.5em;margin:0 0 .25em 0;padding:.25em .5em;border-bottom:1px solid #bacbdf}
 .confirm-selection .item{margin:0 0 .25em 0}
 .confirm-selection .info{font-weight:bold;margin:0}
-span.subject,a.subject,a.subject:link{text-decoration:none;font-weight:bold}
+span.subject,a.subject,a.subject:link{text-decoration:none;}
+ul.thread > li > .entry a.subject,span.subject{font-weight:bold}
 a.subject,a.subject:link{color:#00c}
 a.subject:visited{color:#007}
 a.subject:focus,a.subject:hover{color:#00f;text-decoration:underline}
