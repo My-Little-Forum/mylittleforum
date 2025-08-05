@@ -1638,6 +1638,9 @@ span.subject,
 a.subject,
 a.subject:link {
 	text-decoration: none;
+}
+ul.thread > li > .entry a.subject,
+span.subject {
 	font-weight: bold;
 }
 a.subject,
