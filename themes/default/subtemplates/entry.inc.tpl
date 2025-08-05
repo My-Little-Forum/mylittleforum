@@ -108,7 +108,7 @@
 {/if}
 {/if}
    <img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/{$iconSrc}" alt="" width="14" height="14" />
-   <span class="current">{$data.$element.subject}</span>
+   <span class="subject current">{$data.$element.subject}</span>
 {/if}
 
 <span class="metadata">

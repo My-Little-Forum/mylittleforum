@@ -1687,7 +1687,6 @@ main:not(:has(table#threadlist)) ul.thread li .entry > a::after {
 
 .current {
 	color: #ff0000;
-	font-weight: bold;
 }
 
 a.internal,
