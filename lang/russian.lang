@@ -1085,6 +1085,7 @@ update_confirm =                  'Вы уверены, что хотите вы
 update_submit =                   'Выполнить'
 update_successful =               'База данных была успешно обновлена.'
 update_items_note =               'Теперь загрузите на ваш сервер следующие файлы и папки из нового пакета обновления форума (версии [version]):'
+update_delete_note =              '<!-- TODO -->Please remove now the following files/folders from your installation:'
 update_download =                 'Если у вас ещё нет этих файлов, вы можете загрузить [[отсюда]].'
 update_reenabling_notice =        'Пожалуйста, обратите внимание, что форум в настоящее время отключен, и вы должны снова включить его в <a href="index.php?mode=admin&action=settings">настройках</a>.'
 
