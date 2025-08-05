@@ -332,7 +332,6 @@ a.subject:active{color:red}
 a.read,a.read:link,a.read:visited,#latest-postings li a span.read{color:#007}
 a.read:focus,a.read:hover{color:#00f}
 a.read:active{color:red}
-html[dir="rtl"] ul.thread img.icon.wd-dependent{transform:scale(-1,1)}
 ul.thread li .entry > a, ul.thread li .current, ul.thread li .entry > .metadata{text-wrap:nowrap}
 main:not(:has(table#threadlist)) ul.thread li .entry > a::after{content:" - "}
 .current{color:#ff0000}
