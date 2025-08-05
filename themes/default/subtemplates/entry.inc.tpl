@@ -107,7 +107,7 @@
 {else}{$iconSrc="images/thread-tree-no-change.svg"}
 {/if}
 {/if}
-   <img class="icon" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/{$iconSrc}" alt="" width="14" height="14" />
+   <img class="icon{$wdClass}" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/{$iconSrc}" alt="" width="14" height="14" />
    <span class="subject current">{$data.$element.subject}</span>
 {/if}
 
