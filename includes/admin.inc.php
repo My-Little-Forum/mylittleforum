@@ -518,7 +518,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 								}
 								$i++;
 							}
-							$smarty->assign('update_items', $items);
+							$smarty->assign('upload_items', $items);
 						}
 						if (isset($update['delete'])) {
 							$i = 0;
