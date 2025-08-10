@@ -928,14 +928,6 @@
 {else}
 <p class="notice ok">{#update_successful#}</p>
 {/if}
-{if $update_items}
-<p>{#update_items_note#|replace:"[version]":$update_new_version}</p>
-<ul class="filelist">
-{foreach from=$update_items item=item}
-<li><img class="icon" src="{$THEMES_DIR}/{$theme}/images/{if $item.type==0}dir-open.svg{else}file.svg{/if}" alt="[{if $item.type==0}{#folder_alt#}{else}{#file_alt#}{/if}]" width="16" height="16" />{$item.name}</li>
-{/foreach}
-</ul>
-{/if}
 {if $upload_items}
 <p>{#update_items_note#|replace:"[version]":$update_new_version}</p>
 <ul class="filelist">
