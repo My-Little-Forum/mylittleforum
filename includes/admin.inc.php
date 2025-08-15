@@ -508,6 +508,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 					else {
 						if (isset($update['items'])) {
 							$i = 0;
+							$items = [];
 							foreach ($update['items'] as $item) {
 								if (my_substr($item, -1, 1, $lang['charset']) == '/') {
 									$items[$i]['type'] = 0;
@@ -522,6 +523,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 						}
 						if (isset($update['delete'])) {
 							$i = 0;
+							$items = [];
 							foreach ($update['delete'] as $item) {
 								if (my_substr($item, -1, 1, $lang['charset']) == '/') {
 									$items[$i]['type'] = 0;
