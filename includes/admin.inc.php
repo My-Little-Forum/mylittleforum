@@ -508,6 +508,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 					else {
 						if (isset($update['items'])) {
 							$i = 0;
+							$items = [];
 							foreach ($update['items'] as $item) {
 								if (my_substr($item, -1, 1, $lang['charset']) == '/') {
 									$items[$i]['type'] = 0;
@@ -518,7 +519,22 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 								}
 								$i++;
 							}
-							$smarty->assign('update_items', $items);
+							$smarty->assign('upload_items', $items);
+						}
+						if (isset($update['delete'])) {
+							$i = 0;
+							$items = [];
+							foreach ($update['delete'] as $item) {
+								if (my_substr($item, -1, 1, $lang['charset']) == '/') {
+									$items[$i]['type'] = 0;
+									$items[$i]['name'] = my_substr($item, 0, -1, $lang['charset']);
+								} else {
+									$items[$i]['type'] = 1;
+									$items[$i]['name'] = $item;
+								}
+								$i++;
+							}
+							$smarty->assign('delete_items', $items);
 						}
 						if (isset($update['download_url'])) $smarty->assign('update_download_url', $update['download_url']);
 						if (isset($update['message'])) $smarty->assign('update_message', $update['message']);

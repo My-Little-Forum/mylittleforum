@@ -1073,6 +1073,7 @@ update_confirm =                  'Vil du virkelig kjøre følgende oppdaterings
 update_submit =                   'OK - Kjør oppdatering'
 update_successful =               'Databasen ble oppdatert.'
 update_items_note =               'Last opp følgende filer fra den nye forumpakken (version [version]) til serveren din:'
+update_delete_note =              '<!-- TODO -->Please remove now the following files/folders from your installation:'
 update_download =                 'Dersom du ikke har disse filene kan de lastes ned [[her]].'
 update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 

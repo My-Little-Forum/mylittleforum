@@ -4287,7 +4287,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 	}
 }
 
-if (empty($update['errors']) && in_array($settings['version'], array('20259999.1'))) {
+if (empty($update['errors']) && in_array($settings['version'], array('20250422.1'))) {
 	/**
 	 * From here on everything can be done as a transaction in one step
 	 */
@@ -4332,5 +4332,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20259999.1
 		$update['items'][] = 'js/posting.js';
 		$update['items'][] = 'js/posting.min.js';
 
+		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }

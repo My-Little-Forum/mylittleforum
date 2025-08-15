@@ -1073,6 +1073,7 @@ update_confirm =                  'Vill Du verkligen installera följande uppdat
 update_submit =                   'OK - Uppdatera'
 update_successful =               'Databasen har uppdaterats.'
 update_items_note =               'Ladda upp följande filer/mappar från den hämtade uppdaterineg (version [version]) till servern:'
+update_delete_note =              '<!-- TODO -->Please remove now the following files/folders from your installation:'
 update_download =                 'Om Du inte laddat ner filerna kan Du göra det här: [[here]].'
 update_reenabling_notice =        '<!--TODO-->Please be aware, that the forum is currently deactivated and you must reenable it in <a href="index.php?mode=admin&action=settings">the settings</a>.'
 
