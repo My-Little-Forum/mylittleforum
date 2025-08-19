@@ -37,6 +37,7 @@ forum_time_with_time_zone =       'Vrijeme na forumu: [time] ([time_zone])'
 unknown_user =                    'nepoznat'
 db_error =                        'Greška na bazi!'
 mail_error =                      'Mail poslužitelj nije dostupan - pokušajte kasnije!'
+forum_disabled_admin_message =    '<!-- TODO -->The forum is currently disabled. Enable it in the forum settings.'
 
 [general]
 subject =                         'Tema'

@@ -37,6 +37,7 @@ forum_time_with_time_zone =       '論壇時間：[time] ([time_zone])'
 unknown_user =                    '訪客'
 db_error =                        '資料庫錯誤！'
 mail_error =                      '郵件伺服器無法使用，請稍後再試！'
+forum_disabled_admin_message =    '<!-- TODO -->The forum is currently disabled. Enable it in the forum settings.'
 
 [general]
 subject =                         '標題'

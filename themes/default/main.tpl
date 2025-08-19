@@ -84,6 +84,9 @@ window.MathJax = {
 </nav>
 
 <main id="content">
+{if $admin_notice}
+<p class="notice caution">{$admin_notice}</p>
+{/if}
 {if $subtemplate}
 {include file="$theme/subtemplates/$subtemplate"}
 {else}

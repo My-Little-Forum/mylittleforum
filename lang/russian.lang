@@ -47,6 +47,7 @@ forum_time_with_time_zone =       'Время форума: [time] ([time_zone])
 unknown_user =                    'неизвестный'
 db_error =                        'Ошибка базы данных!'
 mail_error =                      'Почтовый сервер недоступен - пожалуйста, попробуйте позже!'
+forum_disabled_admin_message =    '<!-- TODO -->The forum is currently disabled. Enable it in the forum settings.'
 
 [general]
 subject =                         'Тема'

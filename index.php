@@ -119,6 +119,7 @@ if ($settings['access_for_users_only'] == 1 && empty($_SESSION[$settings['sessio
 if ($settings['forum_enabled'] != 1) {
     if (!empty($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] == 2) {
         $smarty->assign('additional_body_classes', 'disabled');
+        $smarty->assign('admin_notice', $lang['forum_disabled_admin_message']);
     } else {
         if (empty($mode) || $mode != 'disabled' && $mode != 'rss' && $mode != 'login' && $mode != 'js_defaults')
             $mode = 'disabled';
