@@ -57,7 +57,7 @@ window.MathJax = {
 {/if}
 </head>
 
-<body class="tex2jax_ignore">
+<body class="tex2jax_ignore{if $additional_body_classes} {$additional_body_classes}{/if}">
 
 <header id="top">
 
