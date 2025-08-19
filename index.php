@@ -116,9 +116,13 @@ if ($settings['access_for_users_only'] == 1 && empty($_SESSION[$settings['sessio
     if (empty($mode) || $mode != 'account_locked' && $mode != 'register' && $mode != 'page' && $mode != 'js_defaults')
         $mode = 'login';
 }
-if ($settings['forum_enabled'] != 1 && (empty($_SESSION[$settings['session_prefix'] . 'user_type']) || $_SESSION[$settings['session_prefix'] . 'user_type'] < 2)) {
-    if (empty($mode) || $mode != 'disabled' && $mode != 'rss' && $mode != 'login' && $mode != 'js_defaults')
-        $mode = 'disabled';
+if ($settings['forum_enabled'] != 1) {
+    if (!empty($_SESSION[$settings['session_prefix'] . 'user_type']) && $_SESSION[$settings['session_prefix'] . 'user_type'] == 2) {
+        $smarty->assign('additional_body_classes', 'disabled');
+    } else {
+        if (empty($mode) || $mode != 'disabled' && $mode != 'rss' && $mode != 'login' && $mode != 'js_defaults')
+            $mode = 'disabled';
+    }
 }
 if (empty($mode) && isset($_REQUEST['id']))
     $mode = 'entry';
