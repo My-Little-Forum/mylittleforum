@@ -41,6 +41,7 @@ forum_time_with_time_zone =       'Temps actuel sur le forum : [time] ([time_zon
 unknown_user =                    'inconnu'
 db_error =                        'Erreur base données !'
 mail_error =                      'Serveur de email indisponible - veuillez réessayer plus tard !'
+forum_disabled_admin_message =    '<!-- TODO -->The forum is currently disabled. Enable it in the forum settings.'
 
 [general]
 subject =                         'Sujet'

@@ -34,6 +34,7 @@ forum_time_with_time_zone =       'توقيت المنتدى:× [time] ([time_zo
 unknown_user =                    'مستخدم غير معروف'
 db_error =                        'خطأ في قاعدة البيانات!'
 mail_error =                      'خادم البريد ليس متوفر الآن - الرجاء المحاولة مرةً أخرى لاحقًا!'
+forum_disabled_admin_message =    '<!-- TODO -->The forum is currently disabled. Enable it in the forum settings.'
 
 [general]
 subject =                         'عنوان'

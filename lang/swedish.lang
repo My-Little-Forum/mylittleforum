@@ -38,6 +38,7 @@ forum_time_with_time_zone =       'Forum tidszon: [time] ([time_zone])'
 unknown_user =                    'Okänd'
 db_error =                        'Databasfel!'
 mail_error =                      'Mail server inte tillgänglig - försök senare!'
+forum_disabled_admin_message =    '<!-- TODO -->The forum is currently disabled. Enable it in the forum settings.'
 
 [general]
 subject =                         'Ämne'

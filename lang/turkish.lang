@@ -38,6 +38,7 @@ forum_time_with_time_zone =       'Forum zamanı: [time] ([time_zone])'
 unknown_user =                    'bilinmeyen'
 db_error =                        'Veritabanı hatası!'
 mail_error =                      'Posta sunucusu çalışmamaktadır - lütfen daha sonra tekrar deneyiniz!'
+forum_disabled_admin_message =    '<!-- TODO -->The forum is currently disabled. Enable it in the forum settings.'
 
 [general]
 subject =                         'Konu'

@@ -37,6 +37,7 @@ forum_time_with_time_zone = 'Forumtid: [time] ([time_zone])'
 unknown_user =              'ukendt'
 db_error =                  'Database fejl!'
 mail_error =                'Mail server ikke tilgængelig - prøv venligst igen senere!'
+forum_disabled_admin_message =    '<!-- TODO -->The forum is currently disabled. Enable it in the forum settings.'
 
 [general]
 subject =                   'Emne'

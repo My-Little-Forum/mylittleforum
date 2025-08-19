@@ -37,6 +37,7 @@ forum_time_with_time_zone =       '论坛时间：[time] ([time_zone])'
 unknown_user =                    '游客'
 db_error =                        '数据库错误！'
 mail_error =                      '邮件服务器无法使用，请稍後再试！'
+forum_disabled_admin_message =    '<!-- TODO -->The forum is currently disabled. Enable it in the forum settings.'
 
 [general]
 subject =                         '标题'
