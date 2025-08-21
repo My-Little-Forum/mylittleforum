@@ -362,7 +362,7 @@ td ul.thread{margin:0;padding:0;list-style-type:none;font-size:1em!important}
 td ul.thread ul{font-size:.82em!important;line-height:1.25em}
 td ul.thread ul ul{font-size:1em!important}
 td ul.folded{margin:0;padding:0;padding-inline-start:1em}
-#advanced-search{display:flex;align-items:center;flex-wrap:wrap;gap:.5em}
+#advanced-search{margin-block:0 1em;display:flex;align-items:center;flex-wrap:wrap;gap:.5em}
 #advanced-search ul{list-style:none;margin:0;padding:0;display:flex;gap:.25em}
 #advanced-search li{padding-inline:0 .25em}
 #search-results h2{margin-block:0 1em;margin-block:0 1rem}
