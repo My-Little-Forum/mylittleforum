@@ -1821,6 +1821,13 @@ td ul.folded {
 	flex-wrap: wrap;
 	gap: 0.5em;
 }
+#advanced-search ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	gap: 0.25em;
+}
 
 /* postings in search results: */
 ul.searchresults {
