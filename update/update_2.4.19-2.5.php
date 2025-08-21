@@ -4322,9 +4322,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
-		
-		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/bookmark.inc.php';
+		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/thread.inc.php';
+		$update['items'][] = 'includes/user.inc.php';
+		
+		$update['items'][] = 'index.php';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -4333,7 +4339,79 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		
 		$update['items'][] = 'lang/';
 		
+		$update['delete'][] = 'themes/default/images/add.png';
+		$update['delete'][] = 'themes/default/images/ajax_preview.png';
+		$update['delete'][] = 'themes/default/images/arrow_down.png';
+		$update['delete'][] = 'themes/default/images/arrow_selected.png';
+		$update['delete'][] = 'themes/default/images/arrow_up.png';
+		$update['delete'][] = 'themes/default/images/asc.png';
+		$update['delete'][] = 'themes/default/images/bg_sprite_1.png';
+		$update['delete'][] = 'themes/default/images/bg_sprite_3.png';
+		$update['delete'][] = 'themes/default/images/bg_sprite_4.png';
+		$update['delete'][] = 'themes/default/images/bg_sprite_5.png';
+		$update['delete'][] = 'themes/default/images/canvas_bg.png';
+		$update['delete'][] = 'themes/default/images/caution.png';
+		$update['delete'][] = 'themes/default/images/close.png';
+		$update['delete'][] = 'themes/default/images/complete_thread.png';
+		$update['delete'][] = 'themes/default/images/delete.png';
+		$update['delete'][] = 'themes/default/images/delete_entries.png';
+		$update['delete'][] = 'themes/default/images/delete_posting.png';
+		$update['delete'][] = 'themes/default/images/desc.png';
+		$update['delete'][] = 'themes/default/images/disk.png';
+		$update['delete'][] = 'themes/default/images/edit.png';
+		$update['delete'][] = 'themes/default/images/edit_user.png';
+		$update['delete'][] = 'themes/default/images/email.png';
+		$update['delete'][] = 'themes/default/images/email_list.png';
+		$update['delete'][] = 'themes/default/images/female.png';
+		$update['delete'][] = 'themes/default/images/file.png';
+		$update['delete'][] = 'themes/default/images/fold_thread.png';
+		$update['delete'][] = 'themes/default/images/folder.png';
+		$update['delete'][] = 'themes/default/images/homepage.png';
+		$update['delete'][] = 'themes/default/images/locked.png';
+		$update['delete'][] = 'themes/default/images/lock_user.png';
+		$update['delete'][] = 'themes/default/images/male.png';
+		$update['delete'][] = 'themes/default/images/mark_process.png';
+		$update['delete'][] = 'themes/default/images/marked.png';
+		$update['delete'][] = 'themes/default/images/no_text.png';
+		$update['delete'][] = 'themes/default/images/plain.png';
+		$update['delete'][] = 'themes/default/images/quote.png';
+		$update['delete'][] = 'themes/default/images/quote_message.png';
+		$update['delete'][] = 'themes/default/images/restore.png';
+		$update['delete'][] = 'themes/default/images/submit.png';
+		$update['delete'][] = 'themes/default/images/thread_connecting_line.png';
+		$update['delete'][] = 'themes/default/images/throbber.gif';
+		$update['delete'][] = 'themes/default/images/throbber_submit.gif';
+		$update['delete'][] = 'themes/default/images/tick.png';
+		$update['delete'][] = 'themes/default/images/unlock_user.png';
+		$update['delete'][] = 'themes/default/images/unmarked.png';
+		
+		$update['items'][] = 'themes/default/images/';
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/contact.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/popover-full-size-img.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting_flag_ham.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting_manage_postings.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/search.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/subnavigation_1.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/subnavigation_2.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
+		
+		$update['items'][] = 'themes/default/ajax_preview.tpl';
+		$update['items'][] = 'themes/default/js_config.ini';
+		$update['items'][] = 'themes/default/main.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/upload_image.tpl';
+		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
