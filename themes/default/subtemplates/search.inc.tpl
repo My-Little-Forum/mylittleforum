@@ -25,9 +25,10 @@
  </div>
 </form>
 {/if}
-<section>
+<section id="search-results">
 {if $search || $list_spam}
 {if $search_results}
+<h2>{#search_results_heading#}</h2>
 <p>{if $search_results_count>1}{$smarty.config.several_postings_found|replace:"[number]":$search_results_count}{else}{#one_posting_found#}{/if}</p>
 {if $page_browse && $page_browse.total_items > $page_browse.items_per_page}
 <ul class="pagination">
