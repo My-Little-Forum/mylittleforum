@@ -4329,6 +4329,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['items'][] = 'includes/js_defaults.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
 		
+		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
 		$update['delete'][] = 'js/main.min.js';
 		$update['delete'][] = 'js/posting.min.js';
