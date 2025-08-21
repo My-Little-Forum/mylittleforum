@@ -25,6 +25,7 @@
  </div>
 </form>
 {/if}
+<section>
 {if $search || $list_spam}
 {if $search_results}
 <p>{if $search_results_count>1}{$smarty.config.several_postings_found|replace:"[number]":$search_results_count}{else}{#one_posting_found#}{/if}</p>
@@ -72,4 +73,4 @@
 <p>{#no_postings_found#}</p>
 {/if}
 {/if}
-
+</section>
