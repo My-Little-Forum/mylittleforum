@@ -1828,6 +1828,9 @@ td ul.folded {
 	display: flex;
 	gap: 0.25em;
 }
+#advanced-search li{
+	padding-inline: 0 0.25em;
+}
 
 /* postings in search results: */
 ul.searchresults {
