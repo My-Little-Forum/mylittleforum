@@ -1816,6 +1816,7 @@ td ul.folded {
 
 /* advanced search form */
 #advanced-search{
+	margin-block: 0 1em;
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
