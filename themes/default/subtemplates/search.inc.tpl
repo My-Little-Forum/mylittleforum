@@ -28,6 +28,15 @@
 {if $search || $list_spam}
 {if $search_results}
 <p>{if $search_results_count>1}{$smarty.config.several_postings_found|replace:"[number]":$search_results_count}{else}{#one_posting_found#}{/if}</p>
+{if $page_browse && $page_browse.total_items > $page_browse.items_per_page}
+<ul class="pagination">
+{if $page_browse.previous_page!=0}<li><a href="index.php?mode={$mode}{if $list_spam}&amp;list_spam=1{/if}{if $action}&amp;action={$action}{/if}{if $search_encoded}&amp;search={$search_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}{if $page_browse.previous_page>1}&amp;page={$page_browse.previous_page}{/if}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
+{section name=x loop=$page_browse.browse_array}
+{if $page_browse.browse_array[x]==$page_browse.page}<li><span class="current">{$page_browse.browse_array[x]}</span></li>{elseif $page_browse.browse_array[x]==0}<li>&hellip;</li>{else}<li><a href="index.php?mode={$mode}{if $list_spam}&amp;list_spam=1{/if}{if $action}&amp;action={$action}{/if}{if $search_encoded}&amp;search={$search_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}{if $page_browse.browse_array[x]>1}&amp;page={$page_browse.browse_array[x]}{/if}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}">{$page_browse.browse_array[x]}</a></li>{/if}
+{/section}
+{if $page_browse.next_page!=0}<li><a href="index.php?mode={$mode}{if $list_spam}&amp;list_spam=1{/if}{if $action}&amp;action={$action}{/if}{if $search_encoded}&amp;search={$search_encoded}{/if}{if $method && $method!='fulltext'}&amp;method={$method}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$page_browse.next_page}{if $p_category && $p_category>0}&amp;p_category={$p_category}{/if}{if $order}&amp;order={$order}{/if}{if $descasc}&amp;descasc={$descasc}{/if}" title="{#next_page_link_title#}">{#next_page_link#}</a></li>{/if}
+</ul>
+{/if}
 <ul class="searchresults thread">
 {section name=result loop=$search_results}
  <li>
