@@ -1814,6 +1814,14 @@ td ul.folded {
 	padding-inline-start 1em;
 }
 
+/* advanced search form */
+#advanced-search{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.5em;
+}
+
 /* postings in search results: */
 ul.searchresults {
 	margin: 0 0 20px 0;
