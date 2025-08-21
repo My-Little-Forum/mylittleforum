@@ -4330,8 +4330,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['items'][] = 'includes/functions.inc.php';
 		
 		$update['items'][] = 'js/posting.js';
-		$update['items'][] = 'js/posting.min.js';
-
+		$update['delete'][] = 'js/main.min.js';
+		$update['delete'][] = 'js/posting.min.js';
+		
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
