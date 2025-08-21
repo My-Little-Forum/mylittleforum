@@ -1,5 +1,5 @@
 {if !$list_spam}
-<form action="index.php" method="get" accept-charset="{#charset#}">
+<form id="advanced-search" action="index.php" method="get" accept-charset="{#charset#}">
  <input type="hidden" name="mode" value="search" />
  <div>
   <label for="search_term">{#search_term#}</label>
