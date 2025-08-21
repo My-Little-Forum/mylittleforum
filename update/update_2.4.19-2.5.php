@@ -4322,9 +4322,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
-		$update['items'][] = 'lang/';
-		
-		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
 		
 		$update['items'][] = 'includes/js_defaults.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
@@ -4334,6 +4331,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['delete'][] = 'js/main.min.js';
 		$update['delete'][] = 'js/posting.min.js';
 		
+		$update['items'][] = 'lang/';
+		
+		$update['items'][] = 'themes/default/subtemplates/posting.inc.tpl';
 		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
 	}
 }
