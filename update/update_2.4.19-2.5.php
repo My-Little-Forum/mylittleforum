@@ -4367,8 +4367,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['delete'][] = 'themes/default/images/fold_thread.png';
 		$update['delete'][] = 'themes/default/images/folder.png';
 		$update['delete'][] = 'themes/default/images/homepage.png';
-		$update['delete'][] = 'themes/default/images/locked.png';
 		$update['delete'][] = 'themes/default/images/lock_user.png';
+		$update['delete'][] = 'themes/default/images/locked.png';
 		$update['delete'][] = 'themes/default/images/male.png';
 		$update['delete'][] = 'themes/default/images/mark_process.png';
 		$update['delete'][] = 'themes/default/images/marked.png';
