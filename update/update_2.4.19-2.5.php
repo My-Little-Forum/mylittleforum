@@ -4382,6 +4382,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['delete'][] = 'themes/default/images/throbber.gif';
 		$update['delete'][] = 'themes/default/images/throbber_submit.gif';
 		$update['delete'][] = 'themes/default/images/tick.png';
+		$update['delete'][] = 'themes/default/images/triangle-bottom.svg';
+		$update['delete'][] = 'themes/default/images/triangle-left.svg';
+		$update['delete'][] = 'themes/default/images/triangle-right.svg';
+		$update['delete'][] = 'themes/default/images/triangle-top.svg';
 		$update['delete'][] = 'themes/default/images/unlock_user.png';
 		$update['delete'][] = 'themes/default/images/unmarked.png';
 		
