@@ -1,6 +1,9 @@
 my little forum changelog
 -------------------------
 
+20250921.1 (2025-09-21)
+-----------------------
+
 - feature: BB-code for video and audio media (supports native HTML elements audio and video and YouTube content in iframes, old media which BB-code flash is supported again (read only))
 - feature: almost all pixel images of the default theme are now replaced with natively scalable SVG images
 - feature: add a message bar on all pages for the case, that the forum is disabled; for logged in administrators the forum is accessible and looks enabled so they may overlook the actual status of the forum
