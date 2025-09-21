@@ -1,6 +1,17 @@
 my little forum changelog
 -------------------------
 
+- feature: BB-code for video and audio media (supports native HTML elements audio and video and YouTube content in iframes, old media which BB-code flash is supported again (read only))
+- feature: almost all pixel images of the default theme are now replaced with natively scalable SVG images
+- feature: add a message bar on all pages for the case, that the forum is disabled; for logged in administrators the forum is accessible and looks enabled so they may overlook the actual status of the forum
+- feature: replace the JS-based popover code for images which are displayed with their thumbnails in postings with the native HTML popover which are still generated with JavaScript, without working JavaScript the thumbnails still link to the image itself
+- feature: add the infrastructure to separate the lists for files to upload and files to delete in the upgrade process; this will work only with future versions, not for the current upgrade!
+- featurette: add a pagination bar at the top of the search results list if this is necessary
+- featurette: combine the links to block and lock a thread, was two permanently displayed links before
+- featurette: introduce a SVG favicon and larger favicons in PNG format
+- fix: initialise the variable $last_posting in includes/user.inc.php as array and not with NULL
+- fix: several styling issues (dedoupling HTML- and CSS-code, removing unused HTML- and CSS-code, simplifying HTML- and CSS-code)
+
 20250422.1 (2025-04-22)
 -----------------------
 
