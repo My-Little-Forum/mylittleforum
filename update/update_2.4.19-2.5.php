@@ -4299,7 +4299,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 				// changes in the tags table
 				// delete failed tags (with id/tid = 0) in preparation
 				// of the correction of definition of column mlf2_tags.id
-				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('bbcode_media', '0');");
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES ('bbcode_media', '0');");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
