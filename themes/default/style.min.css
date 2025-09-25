@@ -183,7 +183,7 @@ form ul:has(li input[type="checkbox"],li input[type="radio"]) {list-style:none;m
 .login{width:17em}
 .nowrap{white-space:nowrap}
 .user-locked{color:red!important}
-ul.filelist{list-style-type:none;padding-left:0;margin-left:0;font-size:.82em;line-height:1.7em!important}
+ul.filelist{list-style-type:none;padding-inline-start:0;margin-inline-start:0;font-size:.82em;line-height:1.7!important}
 ul.filelist img{margin:0 5px -3px 0;padding:0}
 ul.thread span.mod,ul.thread span.admin,td span.admin,td span.mod{cursor:help}
 .registered_user::after{content:" \00AE"}
