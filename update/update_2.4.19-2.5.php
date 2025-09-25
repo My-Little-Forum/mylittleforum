@@ -339,7 +339,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 						('php_mailer', '0'),
 						('delete_inactive_users', '30'),
 						('notify_inactive_users', '3'),
-						('link_open_target', '');");
+						('link_open_target', ''),
+						('bbcode_media', '0');");
 					
 					mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
 						`name`='spam_check_registered'
@@ -690,7 +691,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 					('php_mailer', '0'),
 					('delete_inactive_users', '30'),
 					('notify_inactive_users', '3'),
-					('link_open_target', '');");
+					('link_open_target', ''),
+					('bbcode_media', '0');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
 				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
@@ -1095,7 +1097,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 					('php_mailer', '0'),
 					('delete_inactive_users', '30'),
 					('notify_inactive_users', '3'),
-					('link_open_target', '');");
+					('link_open_target', ''),
+					('bbcode_media', '0');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
 				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
@@ -1470,7 +1473,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				VALUES
 					('delete_inactive_users', '30'),
 					('notify_inactive_users', '3'),
-					('link_open_target', '');");
+					('link_open_target', ''),
+					('bbcode_media', '0');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
 				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
@@ -1867,6 +1871,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES ('bbcode_media', '0');");
+				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
 				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
 				WHERE name = 'bbcode_latex_uri';");
@@ -2261,6 +2268,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				// changes in the settings table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
+				
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES ('bbcode_media', '0');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
 				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
@@ -2658,6 +2668,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 				CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
 				
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES ('bbcode_media', '0');");
+				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "` SET
 				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
 				WHERE name = 'bbcode_latex_uri';");
@@ -3046,6 +3059,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 			mysqli_begin_transaction($connid);
 			try {
 				// changes in the settings table
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES ('bbcode_media', '0');");
+				
 				mysqli_query($connid, "DELETE FROM `" . $db_settings['settings_table'] . "`
 				WHERE name = 'bad_behavior';");
 				
@@ -3313,6 +3329,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// changes in the settings table
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES ('bbcode_media', '0');");
+				
+				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -3540,6 +3561,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// changes in the settings table
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES ('bbcode_media', '0');");
+				
+				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -3769,6 +3795,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// changes in the settings table
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES ('bbcode_media', '0');");
+				
+				
 				// changes in the user data table
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
 				CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT;");
@@ -3999,6 +4030,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		if (empty($update['errors'])) {
 			mysqli_begin_transaction($connid);
 			try {
+				// changes in the settings table
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+				VALUES ('bbcode_media', '0');");
+				
+				
 				// changes in the tags table
 				// delete failed tags (with id/tid = 0) in preparation
 				// of the correction of definition of column mlf2_tags.id
