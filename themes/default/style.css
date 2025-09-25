@@ -925,10 +925,10 @@ form ul:has(li input[type="checkbox"], li input[type="radio"]) {
 
 ul.filelist {
 	list-style-type: none;
-	padding-left: 0;
-	margin-left: 0;
+	padding-inline-start: 0;
+	margin-inline-start: 0;
 	font-size: 0.82em;
-	line-height: 1.7em !important;
+	line-height: 1.7 !important;
 }
 ul.filelist img {
 	margin: 0 5px -3px 0;
