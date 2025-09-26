@@ -1616,7 +1616,7 @@ function format_time($format, $timestamp = 0) {
 	$formatter = new IntlDateFormatter(
 		setlocale(LC_TIME, '0'),
 		IntlDateFormatter::FULL,
-		IntlDateFormatter::FULL,
+		IntlDateFormatter::FULL
 	);
 	$formatter->setPattern($format);
 	
