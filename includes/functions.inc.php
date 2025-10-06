@@ -176,6 +176,7 @@ function daily_actions($current_time=0) {
 			}
 		}
 		$savePHPVersion = getVersionPHP($connid);
+		$saveDBSVersion = getVersionDB($connid);
 		
 		if (isset($settings) && isset($settings['notify_inactive_users']) && isset($settings['delete_inactive_users']) && $settings['notify_inactive_users'] > 0 && $settings['delete_inactive_users'] > 0)
 			handleInactiveUsers();
@@ -2299,10 +2300,40 @@ function getVersionPHP($connid) {
 }
 
 /**
+ * checks the database server version and writes the information into the table mlf2_temp_infos
+ *
+ * @param connection $connid
+ * @return bool
+ */
+function getVersionDB($connid) {
+	global $settings, $db_settings;
+	if ($connid === false) return false;
+	
+	$query1 = "SELECT @@version AS ServerVersion";
+	$result1 = mysqli_query($connid, $query1);
+	
+	if ($result1 === false) return false;
+	
+	if (mysqli_num_rows($result1) == 1) {
+		$row = mysqli_fetch_assoc($result1);
+		
+		$query2 = "INSERT INTO ". $db_settings['temp_infos_table'] ."
+		(name, value, time)
+		VALUES ('db_server_version', '". mysqli_real_escape_string($connid, $row['ServerVersion']) ."', NOW())
+		ON DUPLICATE KEY UPDATE
+		value = '". mysqli_real_escape_string($connid, $row['ServerVersion']) ."',
+		time = NOW()";
+		$result2 = mysqli_query($connid, $query2);
+		if ($result2 !== false) return true;
+	}
+	return false;
+}
+
+/**
  * checks for invalid characters, used for username checks
  *
  * @param string $string
- * @reurn bool
+ * @return bool
  */
 function contains_special_characters($string) {
 	if(preg_match("/([[:cntrl:]]|\p{Cf})/u", $string)) 
