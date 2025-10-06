@@ -177,6 +177,7 @@ function daily_actions($current_time=0) {
 		}
 		$savePHPVersion = getVersionPHP($connid);
 		$saveDBSVersion = getVersionDB($connid);
+		$saveDBSType = getTypeDB($connid);
 		
 		if (isset($settings) && isset($settings['notify_inactive_users']) && isset($settings['delete_inactive_users']) && $settings['notify_inactive_users'] > 0 && $settings['delete_inactive_users'] > 0)
 			handleInactiveUsers();
@@ -2322,6 +2323,44 @@ function getVersionDB($connid) {
 		VALUES ('db_server_version', '". mysqli_real_escape_string($connid, $row['ServerVersion']) ."', NOW())
 		ON DUPLICATE KEY UPDATE
 		value = '". mysqli_real_escape_string($connid, $row['ServerVersion']) ."',
+		time = NOW()";
+		$result2 = mysqli_query($connid, $query2);
+		if ($result2 !== false) return true;
+	}
+	return false;
+}
+
+/**
+ * checks the database server type (MySQL, MariaDB)
+ * and writes the information into the table mlf2_temp_infos
+ *
+ * @param connection $connid
+ * @return bool
+ */
+function getTypeDB($connid) {
+	global $settings, $db_settings;
+	if ($connid === false) return false;
+	
+	$query1 = "SHOW VARIABLES WHERE variable_name = 'version_comment';";
+	$result1 = mysqli_query($connid, $query1);
+	
+	if ($result1 === false) return false;
+	
+	if (mysqli_num_rows($result1) == 1) {
+		$row = mysqli_fetch_assoc($result1);
+		
+		// read the value for the server type (MySQL or MariaDB)
+		if (preg_match("/MariaDB/ui", $row['Value'])) {
+			$row['ServerType'] = "MariaDB";
+		} else {
+			$row['ServerType'] = "MySQL";
+		}
+		
+		$query2 = "INSERT INTO ". $db_settings['temp_infos_table'] ."
+		(name, value, time)
+		VALUES ('db_server_type', '". mysqli_real_escape_string($connid, $row['ServerType']) ."', NOW())
+		ON DUPLICATE KEY UPDATE
+		value = '". mysqli_real_escape_string($connid, $row['ServerType']) ."',
 		time = NOW()";
 		$result2 = mysqli_query($connid, $query2);
 		if ($result2 !== false) return true;
