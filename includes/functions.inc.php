@@ -2277,7 +2277,8 @@ function checkUpdate($currentVersion = '0.0') {
 }
 
 /**
- * checks the PHP version and writes the information into the table mlf2_temp_infos
+ * checks the PHP interpreter version
+ * and writes the information into the table mlf2_temp_infos
  *
  * @param connection $connid
  * @return bool
@@ -2301,7 +2302,8 @@ function getVersionPHP($connid) {
 }
 
 /**
- * checks the database server version and writes the information into the table mlf2_temp_infos
+ * checks the database server version
+ * and writes the information into the table mlf2_temp_infos
  *
  * @param connection $connid
  * @return bool
