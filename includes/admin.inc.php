@@ -1836,8 +1836,21 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	// show the version number of the installation
 	if (isset($settings) && isset($settings['version'])) {
 		$smarty->assign('installed_version_number', htmlspecialchars($settings['version']));
+		$smarty->assign('installed_version_MLF', htmlspecialchars($settings['version']));
 	}
 
+	// show the version number of the PHP interpreter, if available
+	if (isset($settings) && isset($settings['php_version'])) {
+		$smarty->assign('installed_version_PHP', htmlspecialchars($settings['php_version']));
+	}
+	// show the version number of the database server, if available
+	if (isset($settings) && isset($settings['db_server_version'])) {
+		$smarty->assign('installed_version_db', htmlspecialchars($settings['db_server_version']));
+	}
+	// show the type of the database server, if available
+	if (isset($settings) && isset($settings['db_server_type'])) {
+		$smarty->assign('installed_type_db', htmlspecialchars($settings['db_server_type']));
+	}
 	// Prueft, ob die Datei install/index.php noch existiert
 	$smarty->assign('install_script_exists', file_exists('./install/index.php'));
 
