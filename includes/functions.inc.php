@@ -88,7 +88,7 @@ function get_settings() {
 	global $connid, $db_settings;
 	$qGetSettings = "SELECT name, value FROM ". $db_settings['settings_table'] ."
 	UNION SELECT name, value FROM ". $db_settings['temp_infos_table'] ."
-	WHERE name IN('access_permission_checks', 'version')";
+	WHERE name IN('access_permission_checks', 'version', 'php_version', 'db_server_type', 'db_server_version')";
 	$result = mysqli_query($connid, $qGetSettings) or raise_error('database_error', mysqli_error($connid));
 	while ($line = mysqli_fetch_array($result)) {
 		$settings[$line['name']] = $line['value'];
