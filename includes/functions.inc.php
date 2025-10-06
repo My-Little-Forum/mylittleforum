@@ -175,6 +175,7 @@ function daily_actions($current_time=0) {
 				@mysqli_query($connid, "INSERT INTO ".$db_settings['temp_infos_table']." (`name`, `value`) VALUES ('last_version_uri', '" . mysqli_real_escape_string($connid, $latestRelease->uri) . "') ON DUPLICATE KEY UPDATE `value` = '" . mysqli_real_escape_string($connid, $latestRelease->uri) . "';");
 			}
 		}
+		$savePHPVersion = getVersionPHP($connid);
 		
 		if (isset($settings) && isset($settings['notify_inactive_users']) && isset($settings['delete_inactive_users']) && $settings['notify_inactive_users'] > 0 && $settings['delete_inactive_users'] > 0)
 			handleInactiveUsers();
@@ -2269,6 +2270,30 @@ function checkUpdate($currentVersion = '0.0') {
 			);
 			return $release;
 		}
+	}
+	return false;
+}
+
+/**
+ * checks the PHP version and writes the information into the table mlf2_temp_infos
+ *
+ * @param connection $connid
+ * @return bool
+ */
+function getVersionPHP($connid) {
+	global $settings, $db_settings;
+	if ($connid === false) return false;
+	
+	if (defined("PHP_VERSION") && !empty(PHP_VERSION)) {
+		$query2 = "INSERT INTO ". $db_settings['temp_infos_table'] ."
+		(name, value, time)
+		VALUES ('php_version', '". mysqli_real_escape_string($connid, PHP_VERSION) ."', NOW())
+		ON DUPLICATE KEY UPDATE
+		value = '". mysqli_real_escape_string($connid, PHP_VERSION) ."',
+		time = NOW()";
+		$result2 = mysqli_query($connid, $query2);
+		
+		if ($result2 !== false) return true;
 	}
 	return false;
 }
