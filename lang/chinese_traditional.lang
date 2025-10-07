@@ -768,8 +768,6 @@ releases_info_header =            '可用版本'
 releases_list_link =              '在釋出版本中檢查有無可用版本。'
 warning_header =                  '警告'
 warning_install_script_exists =   '由於安全考量，建議刪除 (或重新命名) <code>install/index.php</code> 檔案！'
-actual_installed_version_header = '目前版本'
-actual_installed_version =        '目前安裝的版本編號：<strong>[current_version_string]</strong>'
 
 # forum settings:
 clear_chache =                    '清除緩存以套用至目前已經存在的文章'

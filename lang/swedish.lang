@@ -769,8 +769,6 @@ releases_info_header =            'Aktuel tillgänglig version'
 releases_list_link =              'Kolla utgivningslistan för den aktuella tillgängliga versionen.'
 warning_header =                  'Varning'
 warning_install_script_exists =   'Av säkerhetsskäl rekommenderas det att radera (eller byta namn på) filen <code>install/index.php</code>!'
-actual_installed_version_header = 'Aktuel tillgänglig version'
-actual_installed_version =        'Versionsnumret för din installation: <strong>[current_version_string]</strong>'
 
 # forum settings:
 clear_chache =                    'Rensa cache för att ändringen ska börja gälla på befintliga inlägg'

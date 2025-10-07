@@ -768,8 +768,6 @@ releases_info_header =      'Aktuel tilgængelig version'
 releases_list_link =        'Se versionslisten for seneste tilgængelige version.'
 warning_header =            'Advarsel'
 warning_install_script_exists = 'Af sikkerhedshensyn anbefales det at slette eller omdøbe <code>install/index.php</code> filen!'
-actual_installed_version_header = '<!-- TODO -->Aktuel version'
-actual_installed_version =  'Versionsnummer: <strong>[current_version_string]</strong>'
 
 # forum settings:
 clear_chache =              'Ryd cache for at tilføje ændringerne til allerede eksisterende indlæg'
