@@ -768,6 +768,11 @@ releases_info_header =            '可用版本'
 releases_list_link =              '在释出版本中检查有无可用版本。'
 warning_header =                  '警告'
 warning_install_script_exists =   '由于安全考量，建议删除 (或重新命名) <code>install/index.php</code> 文件！'
+installed_versions_header =       '<!-- TODO -->Currently installed versions'
+installed_version_mlf =           '<!-- TODO -->MLF version'
+installed_version_php =           '<!-- TODO -->PHP version'
+installed_database_type =         '<!-- TODO -->Database type'
+installed_database_version =      '<!-- TODO -->Database-server version'
 
 # forum settings:
 clear_chache =                    '清除缓存以套用至目前已经存在的帖子'

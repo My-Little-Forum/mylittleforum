@@ -781,6 +781,11 @@ releases_info_header =            'Доступная актуальная ве�
 releases_list_link =              'Проверьте список версий на наличие доступной актуальной.'
 warning_header =                  'Предупреждение'
 warning_install_script_exists =   'В целях безопасности рекомендуется удалить (или переименовать) скрипт <code>install/index.php</code>!'
+installed_versions_header =       '<!-- TODO -->Currently installed versions'
+installed_version_mlf =           '<!-- TODO -->MLF version'
+installed_version_php =           '<!-- TODO -->PHP version'
+installed_database_type =         '<!-- TODO -->Database type'
+installed_database_version =      '<!-- TODO -->Database-server version'
 
 # настройки форума:
 clear_chache =                    'Очистка кэша для внесения изменений в уже существующие записи'

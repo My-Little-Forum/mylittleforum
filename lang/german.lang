@@ -769,6 +769,11 @@ releases_info_header =            'Aktuell verfügbarer Release'
 releases_list_link =              'Prüfe die Releases-Liste auf die aktuell verfügbare Version.'
 warning_header =                  'Warnung'
 warning_install_script_exists =   'Die Datei <code>install/index.php</code> sollte aus Sicherheitsgründen gelöscht (oder zumindest umbenannt) werden!'
+installed_versions_header =       'Gegenwärtig installierte Versionen'
+installed_version_mlf =           'MLF-Version'
+installed_version_php =           'PHP-Version'
+installed_database_type =         'Datenbanktyp'
+installed_database_version =      'Datenbank-Server-Version'
 
 # Einstellungen:
 clear_chache =                    'Cache löschen um Einstellungen auch auf bereits bestehende Einträge anzuwenden'

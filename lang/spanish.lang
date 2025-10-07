@@ -770,6 +770,11 @@ releases_info_header =            'Versión disponible actualmente'
 releases_list_link =              'Comprobar la lista de versiones para verificar la versión disponible actual'
 warning_header =                  'Advertencia'
 warning_install_script_exists =   '¡Por razones de seguridad, se recomienda borrar (o renombrar) el script <code>install/index.php</code>!'
+installed_versions_header =       '<!-- TODO -->Currently installed versions'
+installed_version_mlf =           '<!-- TODO -->MLF version'
+installed_version_php =           '<!-- TODO -->PHP version'
+installed_database_type =         '<!-- TODO -->Database type'
+installed_database_version =      '<!-- TODO -->Database-server version'
 
 # forum settings:
 clear_chache =                    'Borrar la caché para aplicar los cambios a las entradas ya existentes'

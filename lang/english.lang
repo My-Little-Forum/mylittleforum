@@ -765,6 +765,11 @@ releases_info_header =            'Currently available release'
 releases_list_link =              'Check the releases list for the actual available version.'
 warning_header =                  'Warning'
 warning_install_script_exists =   'For security reasons, it is recommended to delete (or rename) the <code>install/index.php</code> script!'
+installed_versions_header =       'Currently installed versions'
+installed_version_mlf =           'MLF version'
+installed_version_php =           'PHP version'
+installed_database_type =         'Database type'
+installed_database_version =      'Database-server version'
 
 # forum settings:
 clear_chache =                    'Clear chache to apply the changes to yet existing entries'
