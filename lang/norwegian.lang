@@ -768,6 +768,11 @@ releases_info_header =            'Nyeste tilgjengelige oppdatering'
 releases_list_link =              'Sjekk listen over oppdateringer for siste tilgjengelige versjon.'
 warning_header =                  'Advarsel'
 warning_install_script_exists =   'Av sikkerhetsgrunner er det anbefalt å slette (eller endre navn på) <code>install/index.php</code>-skriptet.'
+installed_versions_header =       '<!-- TODO -->Currently installed versions'
+installed_version_mlf =           '<!-- TODO -->MLF version'
+installed_version_php =           '<!-- TODO -->PHP version'
+installed_database_type =         '<!-- TODO -->Database type'
+installed_database_version =      '<!-- TODO -->Database-server version'
 
 # forum settings:
 clear_chache =                    'Tøm cache (bufferfil) for å gjøre endringene gjeldende for eksisterende innlegg'

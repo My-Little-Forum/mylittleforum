@@ -1164,8 +1164,37 @@
 {else}
 <div id="admin-main-menu">
 <div class="additional-admin-info">
+{if $installed_version_MLF || $installed_version_PHP || $installed_type_db || $installed_version_db}
 	<div id="admin-info-current-version">
+		<h3>{#installed_versions_header#}</h3>
+			<dl>
+			{if $installed_version_MLF}
+				<div>
+					<dt>{#installed_version_mlf#}</dt>
+					<dd>{$installed_version_MLF}</dd>
+				</div>
+			{/if}
+			{if $installed_version_PHP}
+				<div>
+					<dt>{#installed_version_php#}</dt>
+					<dd>{$installed_version_PHP}</dd>
+				</div>
+			{/if}
+			{if $installed_type_db}
+				<div>
+					<dt>{#installed_database_type#}</dt>
+					<dd>{$installed_type_db}</dd>
+				</div>
+			{/if}
+			{if $installed_version_db}
+				<div>
+					<dt>{#installed_database_version#}</dt>
+					<dd>{$installed_version_db}</dd>
+				</div>
+			{/if}
+			</dl>
 	</div>
+{/if}
 	{if $install_script_exists}
 	<div id="admin-info-install_script_exists">
 		<h3><img src="{$THEMES_DIR}/{$theme}/images/general-caution.svg" alt="" width:"14" height="14" /><span>{#warning_header#}</span></h3>

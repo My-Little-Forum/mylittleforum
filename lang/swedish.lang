@@ -769,6 +769,11 @@ releases_info_header =            'Aktuel tillgänglig version'
 releases_list_link =              'Kolla utgivningslistan för den aktuella tillgängliga versionen.'
 warning_header =                  'Varning'
 warning_install_script_exists =   'Av säkerhetsskäl rekommenderas det att radera (eller byta namn på) filen <code>install/index.php</code>!'
+installed_versions_header =       '<!-- TODO -->Currently installed versions'
+installed_version_mlf =           '<!-- TODO -->MLF version'
+installed_version_php =           '<!-- TODO -->PHP version'
+installed_database_type =         '<!-- TODO -->Database type'
+installed_database_version =      '<!-- TODO -->Database-server version'
 
 # forum settings:
 clear_chache =                    'Rensa cache för att ändringen ska börja gälla på befintliga inlägg'
