@@ -765,8 +765,6 @@ releases_info_header =            'الإصدار المتوفر حاليا'
 releases_list_link =              '.تحقق من قائمة الإصدارات لمعرفة الإصدار الفعلي المتاح'
 warning_header =                  'تحذير'
 warning_install_script_exists =   ' <code>install/index.php</code> !لأسباب أمنيّة, يُنصح بحذف أو إعادة تسمية ملف التنصيب'
-actual_installed_version_header = 'الإصدار المنصّب حاليًّا'
-actual_installed_version =        ' <strong>[current_version_string]</strong> رقم الإصدارة المنصّبة لديك:'
 
 # forum settings:
 clear_chache =                    'امسح ذاكرة التخزين المؤقتة لتطبيق التغييرات على الإدخالات الموجودة حتى الآن'

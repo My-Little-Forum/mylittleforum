@@ -772,8 +772,6 @@ releases_info_header =            'Dernière version disponible'
 releases_list_link =              'Vérifier la disponibilité d\'une nouvelle version'
 warning_header =                  'Attention'
 warning_install_script_exists =   'Par sécurité, il est recommandé de supprimer (ou de renommer) <code>install/index.php</code>'
-actual_installed_version_header = 'Version actuelle'
-actual_installed_version =        'Version installée : <strong>[current_version_string]</strong>'
 
 # forum settings:
 clear_chache =                    'Effacer les réglages et appliquer les changements aux entrées existantes'

@@ -1835,7 +1835,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 	// show the version number of the installation
 	if (isset($settings) && isset($settings['version'])) {
-		$smarty->assign('installed_version_number', htmlspecialchars($settings['version']));
 		$smarty->assign('installed_version_MLF', htmlspecialchars($settings['version']));
 	}
 

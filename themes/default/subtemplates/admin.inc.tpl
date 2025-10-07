@@ -1165,8 +1165,6 @@
 <div id="admin-main-menu">
 <div class="additional-admin-info">
 	<div id="admin-info-current-version">
-		<h3>{#actual_installed_version_header#}</h3>
-		<p>{#actual_installed_version#|replace:"[current_version_string]":$installed_version_number}</p>
 	</div>
 	{if $install_script_exists}
 	<div id="admin-info-install_script_exists">
