@@ -655,7 +655,7 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 				}
 
 				$videoPattern   = '/^https?:\/\/[^\s]+\.(mp4|ogg|webm)$/i';
-				$youtubePattern = '/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})$/i';
+				$youtubePattern = '/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtube\.com\/v\/|youtu\.be\/)([\w-]{11})/i';
 				preg_match($videoPattern,   $content, $videoMatches);
 				preg_match($youtubePattern, $content, $youtubeMatches);
 				
@@ -993,8 +993,8 @@ function html_format($string){
 			$bbcode->addCode ('tex', 'usecontent', 'do_bbcode_tex', array (), 'tex', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		}
 		if($settings['bbcode_media']==1) {
-			$bbcode->addCode ('media', 'usecontent', 'do_bbcode_media', array('usecontent_param' => array('width', 'height', 'type')), 'block', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
-			$bbcode->addCode ('flash', 'usecontent', 'do_bbcode_media', array (), 'block', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
+			$bbcode->addCode ('media', 'usecontent', 'do_bbcode_media', array('usecontent_param' => array('width', 'height', 'type')), 'media', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
+			$bbcode->addCode ('flash', 'usecontent', 'do_bbcode_media', array (), 'flash', array ('listitem', 'block', 'inline', 'link', 'quote', 'rtl', 'ltr'), array ());
 		}
 	}
 
