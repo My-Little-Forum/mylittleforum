@@ -3471,6 +3471,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
@@ -3703,6 +3704,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
@@ -3911,6 +3913,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
@@ -4074,6 +4077,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
@@ -4220,6 +4224,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
