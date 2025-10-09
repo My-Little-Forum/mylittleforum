@@ -1856,8 +1856,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	// Pruefe, ob eine neue Version zur Verfuegung steht
 	$lastVersionCheck = false;
 	$lastVersionURI   = false;
-	$lastVersionCheck = @mysqli_query($connid, "SELECT `value` AS `version` FROM `".$db_settings['temp_infos_table']."` WHERE `name` = 'last_version_check'");
-	$lastVersionURI   = @mysqli_query($connid, "SELECT `value` AS `uri` FROM `".$db_settings['temp_infos_table']."` WHERE `name` = 'last_version_uri'");
+	$lastVersionInfo  = @mysqli_query($connid, "SELECT `value`, `name` FROM `".$db_settings['temp_infos_table']."` WHERE `name` IN('last_version_check', 'last_version_uri')");
 
 	if (($lastVersionCheck !== false && mysqli_num_rows($lastVersionCheck) == 1) && ($lastVersionURI !== false and mysqli_num_rows($lastVersionURI) == 1) && (isset($settings) && isset($settings['version']))) {
 		$lastVC = mysqli_fetch_assoc($lastVersionCheck);
