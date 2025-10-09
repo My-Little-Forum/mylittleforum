@@ -1854,9 +1854,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	$smarty->assign('install_script_exists', file_exists('./install/index.php'));
 
 	// Pruefe, ob eine neue Version zur Verfuegung steht
-	$lastVersionCheck = false;
-	$lastVersionURI   = false;
-	$lastVersionInfo  = @mysqli_query($connid, "SELECT `value`, `name` FROM `".$db_settings['temp_infos_table']."` WHERE `name` IN('last_version_check', 'last_version_uri')");
+	$lastVersionInfo = false;
+	$lastVersionInfo = @mysqli_query($connid, "SELECT `value`, `name` FROM `".$db_settings['temp_infos_table']."` WHERE `name` IN('last_version_check', 'last_version_uri')");
 
 	if (($lastVersionCheck !== false && mysqli_num_rows($lastVersionCheck) == 1) && ($lastVersionURI !== false and mysqli_num_rows($lastVersionURI) == 1) && (isset($settings) && isset($settings['version']))) {
 		$lastVC = mysqli_fetch_assoc($lastVersionCheck);
