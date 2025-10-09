@@ -1856,18 +1856,37 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	// Pruefe, ob eine neue Version zur Verfuegung steht
 	$lastVersionInfo = false;
 	$lastVersionInfo = @mysqli_query($connid, "SELECT `value`, `name` FROM `".$db_settings['temp_infos_table']."` WHERE `name` IN('last_version_check', 'last_version_uri')");
-
-	if (($lastVersionCheck !== false && mysqli_num_rows($lastVersionCheck) == 1) && ($lastVersionURI !== false and mysqli_num_rows($lastVersionURI) == 1) && (isset($settings) && isset($settings['version']))) {
-		$lastVC = mysqli_fetch_assoc($lastVersionCheck);
-		$lastVU = mysqli_fetch_assoc($lastVersionURI);
-		mysqli_free_result($lastVersionCheck);
-		mysqli_free_result($lastVersionURI);
-
-		if ($lastVC !== NULL) {
-			$smarty->assign('latest_release_uri', $lastVU == NULL ? "https://github.com/My-Little-Forum/mylittleforum/releases/latest" : htmlspecialchars($lastVU['uri']));
-			$smarty->assign('latest_release_version', htmlspecialchars($lastVC['version']));
+	
+	if (($lastVersionInfo !== false && mysqli_num_rows($lastVersionInfo) == 2) && (isset($settings) && isset($settings['version']))) {
+		$lastVI = [];
+		while ($row = mysqli_fetch_assoc($lastVersionInfo)) {
+			$lastVI[$row['name']] = $row['value'];
 		}
+		mysqli_free_result($lastVersionInfo);
+		
+		if (count($lastVI) == 2 && !empty($lastVI['last_version_check']) && !empty($lastVI['last_version_uri'])) {
+			if (version_compare($lastVI['last_version_check'], $settings['version'], ">") === true) {
+				$smarty->assign('latest_release_uri', htmlspecialchars($lastVI['last_version_uri']));
+				$smarty->assign('latest_release_version', htmlspecialchars($lastVI['last_version_check']));
+				// information about releases is available,
+				// a newer release is available
+				$smarty->assign('latest_release_newer', 1);
+			} else {
+				// information about releases is available,
+				// there is no newer release
+				$smarty->assign('latest_release_newer', 0);
+			}
+		} else {
+			// no information about releases available,
+			// show more general information instead
+			$smarty->assign('latest_release_newer', -1);
+		}
+	} else {
+		// no information about releases available,
+		// show more general information instead
+		$smarty->assign('latest_release_newer', -1);
 	}
+	
 	$smarty->assign('subtemplate', 'admin.inc.tpl');
 	$template = 'main.tpl';
 } else {
