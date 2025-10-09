@@ -1201,19 +1201,16 @@
 		<p>{#warning_install_script_exists#}</p>
 	</div>
 	{/if}
+	{if isset($latest_release_newer) && $latest_release_newer !== 0}
 	<div id="admin-info-releases">
-	{if $latest_release_version}
 		<h3>{#releases_info_header#}</h3>
-		{if $latest_release_uri}
-			<p><a href="{$latest_release_uri}">Download {$latest_release_version}</a></p>
-		{else}
-			<p><a href="https://github.com/My-Little-Forum/mylittleforum/releases/latest">Download {$latest_release_version}</a></p>
-		{/if}
-	{else}
-		<h3>{#releases_info_header#}</h3>
+		{if $latest_release_newer === 1}
+		<p><a href="{$latest_release_uri}">Download {$latest_release_version}</a></p>
+		{else if $latest_release_newer === -1}
 		<p><a href="https://github.com/My-Little-Forum/mylittleforum/releases/latest">{#releases_list_link#}</a></p>
-	{/if}
+		{/if}
 	</div>
+	{/if}
 </div>
 <ul class="adminmenu">
 <li><a href="index.php?mode=admin&amp;action=settings"><img src="{$THEMES_DIR}/{$theme}/images/settings.svg" alt="" width="18" height="18" class="icon" /><span>{#forum_settings_link#}</span></a></li>
