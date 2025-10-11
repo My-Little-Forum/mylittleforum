@@ -596,6 +596,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$update['delete'][] = 'js/posting.min.js (remove)';
 				
 				$update['items'][] = 'lang/';
+				$update['delete'][] = 'lang/turkish.lang (remove)';
 				
 				$update['items'][] = 'modules/';
 				$update['delete'][] = 'modules/bad-behavior/ (remove)';
@@ -1006,6 +1007,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['items'][] = 'modules/';
 		$update['delete'][] = 'modules/bad-behavior/ (remove)';
@@ -1384,6 +1386,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['items'][] = 'modules/';
 		$update['delete'][] = 'modules/bad-behavior (remove)';
@@ -1786,6 +1789,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['items'][] = 'modules/';
 		$update['delete'][] = 'modules/bad-behavior (remove)';
@@ -2185,6 +2189,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['items'][] = 'modules/';
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
@@ -2583,6 +2588,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['items'][] = 'modules/';
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
@@ -2977,6 +2983,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		$update['items'][] = 'js/';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['items'][] = 'modules/';
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
@@ -3249,6 +3256,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['items'][] = 'modules/';
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
@@ -3485,6 +3493,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		
@@ -3718,6 +3727,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['items'][] = 'themes/default/';
 		
@@ -3927,6 +3937,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		
@@ -4090,6 +4101,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['delete'][] = 'themes/default/images/add.png (remove)';
 		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
@@ -4236,6 +4248,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['delete'][] = 'themes/default/images/add.png (remove)';
 		$update['delete'][] = 'themes/default/images/ajax_preview.png (remove)';
@@ -4337,6 +4350,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250921.1
 		$update['items'][] = 'includes/main.inc.php';
 		
 		$update['items'][] = 'lang/';
+		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		$update['items'][] = 'themes/default/style.css';
