@@ -1,6 +1,15 @@
 my little forum changelog
 -------------------------
 
+20251010.1 (2025-10-10)
+-----------------------
+
+- feature: show the version numbers of PHP and the database server as well as the product name of the database server in the version info box in the admin panel
+- featurette: show the information about a new release if the version number is newer than the installed version; show the link to the latest release in the case that the script was not able to read the version data of the latest release from Github.
+- fix: correct the BB-code [media] and [flash] rendering, it didn't work if the forum setting autolink was enabled
+- fix: rendering of old entries with BB-code [flash], regular expression didn't match links to Youtube
+- fix: remove the turkish transalation in its current state; when setting the turkish language the forum breaks and is not accessible anymore
+
 20250921.1 (2025-09-21)
 -----------------------
 
