@@ -4356,6 +4356,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250921.1
 		$update['upload'][] = 'themes/default/style.css';
 		$update['upload'][] = 'themes/default/style.min.css';
 		
-		$update['items'] = array_merge(reorderUpgradeFiles($update['items']), reorderUpgradeFiles($update['delete']));
+		$update['upload'] = reorderUpgradeFiles($update['upload']);
+		$update['delete'] = reorderUpgradeFiles($update['delete']);
 	}
 }

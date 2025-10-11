@@ -506,10 +506,10 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 
 					if (isset($update['errors'])) $smarty->assign('update_errors', $update['errors']);
 					else {
-						if (isset($update['items'])) {
+						if (isset($update['upload'])) {
 							$i = 0;
 							$items = [];
-							foreach ($update['items'] as $item) {
+							foreach ($update['upload'] as $item) {
 								if (my_substr($item, -1, 1, $lang['charset']) == '/') {
 									$items[$i]['type'] = 0;
 									$items[$i]['name'] = my_substr($item, 0, -1, $lang['charset']);
