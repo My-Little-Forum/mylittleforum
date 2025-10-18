@@ -215,8 +215,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			break;
 			
 		case 'reorder':
-			if (isset($_POST['bookmarks'])) {		
-				$items = array_map(function($item) use($connid) { return mysqli_real_escape_string($connid, $item); }, explode(',', $_POST['bookmarks']));
+			if (isset($_POST['bookmarks'])) {
+				$items = array_map('intval', explode(',', $_POST['bookmarks']));
 				$order_result = @mysqli_query($connid, "SELECT `id`, `order_id` FROM ".$db_settings['bookmark_table']." WHERE `id` IN (".implode(",", $items).") ORDER BY `order_id` ASC");
 				$order = false;
 				
