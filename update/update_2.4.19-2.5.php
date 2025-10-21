@@ -4356,6 +4356,27 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250921.1
 		$update['upload'][] = 'themes/default/style.css';
 		$update['upload'][] = 'themes/default/style.min.css';
 		
+		$update['upload'] = reorderUpgradeFiles($update['items']);
+		$update['delete'] = reorderUpgradeFiles($update['delete']);
+	}
+}
+
+if (empty($update['errors']) && in_array($settings['version'], array('20251010.1'))) {
+	
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
+		}
+	}
+	
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['upload'][] = 'includes/bookmark.inc.php';
+		
 		$update['upload'] = reorderUpgradeFiles($update['upload']);
 		$update['delete'] = reorderUpgradeFiles($update['delete']);
 	}
