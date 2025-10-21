@@ -4380,6 +4380,5 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251010.1
 		$update['upload'][] = 'includes/bookmark.inc.php';
 		
 		$update['upload'] = reorderUpgradeFiles($update['upload']);
-		$update['delete'] = reorderUpgradeFiles($update['delete']);
 	}
 }
