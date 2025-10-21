@@ -4346,19 +4346,19 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250921.1
 	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
-		$update['upload'][] = 'includes/admin.inc.php';
-		$update['upload'][] = 'includes/bookmark.inc.php';
-		$update['upload'][] = 'includes/functions.inc.php';
-		$update['upload'][] = 'includes/main.inc.php';
+		$update['items'][] = 'includes/admin.inc.php';
+		$update['items'][] = 'includes/bookmark.inc.php';
+		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/main.inc.php';
 		
-		$update['upload'][] = 'lang/';
+		$update['items'][] = 'lang/';
 		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
-		$update['upload'][] = 'themes/default/subtemplates/admin.inc.tpl';
-		$update['upload'][] = 'themes/default/style.css';
-		$update['upload'][] = 'themes/default/style.min.css';
+		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['items'][] = 'themes/default/style.css';
+		$update['items'][] = 'themes/default/style.min.css';
 		
-		$update['upload'] = reorderUpgradeFiles($update['items']);
+		$update['items'] = reorderUpgradeFiles($update['items']);
 		$update['delete'] = reorderUpgradeFiles($update['delete']);
 	}
 }
