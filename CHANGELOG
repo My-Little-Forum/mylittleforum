@@ -1,6 +1,11 @@
 my little forum changelog
 -------------------------
 
+20251021.1 (2025-10-21)
+-----------------------
+
+- fix: sanitise numeric input with PHP function intval in preparation of saving it to the database to prevent a possible SQL-injection, reported by Github user @XY20130630 (CVE-2025-62606)
+
 20251010.1 (2025-10-10)
 -----------------------
 
