@@ -2966,6 +2966,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		$update['items'][] = 'includes/admin.inc.php';
 		$update['items'][] = 'includes/auto_login.inc.php';
 		$update['items'][] = 'includes/avatar.inc.php';
+		$update['items'][] = 'includes/bookmark.inc.php';
 		$update['items'][] = 'includes/delete_cookie.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
@@ -4346,6 +4347,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250921.1
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
 		$update['upload'][] = 'includes/admin.inc.php';
+		$update['upload'][] = 'includes/bookmark.inc.php';
 		$update['upload'][] = 'includes/functions.inc.php';
 		$update['upload'][] = 'includes/main.inc.php';
 		
