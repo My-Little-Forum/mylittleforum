@@ -773,6 +773,7 @@ installed_version_mlf =           '<!-- TODO -->MLF version'
 installed_version_php =           '<!-- TODO -->PHP version'
 installed_database_type =         '<!-- TODO -->Database type'
 installed_database_version =      '<!-- TODO -->Database-server version'
+installed_versions_renew_info =   '<!-- TODO -->Reload version information'
 
 # forum settings:
 clear_chache =                    'Obriši pričuvnu memoriju kako bi tekuće postavke postale važeće za postojeći sadržaj'

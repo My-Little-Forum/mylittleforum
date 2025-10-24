@@ -774,6 +774,7 @@ installed_version_mlf =           'MLF-version'
 installed_version_php =           'PHP-version'
 installed_database_type =         'Databas typ'
 installed_database_version =      'databasserverversion'
+installed_versions_renew_info =   '<!-- TODO -->Reload version information'
 
 # forum settings:
 clear_chache =                    'Rensa cache för att ändringen ska börja gälla på befintliga inlägg'

@@ -774,6 +774,7 @@ installed_version_mlf =           'Versione MLF'
 installed_version_php =           'Versione PHP'
 installed_database_type =         'Tipo di database'
 installed_database_version =      'Versione server database'
+installed_versions_renew_info =   '<!-- TODO -->Reload version information'
 
 # forum settings:
 clear_chache =                    'Pulisci la chache per applicare i cambiamenti operati'
