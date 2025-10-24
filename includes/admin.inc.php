@@ -1099,6 +1099,17 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		}
 		$action = 'list_uploads';
 	}
+	
+	if (isset($_GET['action']) && $_GET['action'] == 'versioninfo_renew') {
+		// renew the determination of the versions of PHP
+		// and the database server as well as its product type
+		$savePHPVersion = getVersionPHP($connid);
+		$saveDBSVersion = getVersionDB($connid);
+		$saveDBSType = getTypeDB($connid);
+		
+		header("location: index.php?mode=admin");
+		die();
+	}
 
 	if (empty($action)) $action='main';
 	$smarty->assign('action', $action);
