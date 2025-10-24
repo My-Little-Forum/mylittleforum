@@ -1517,6 +1517,9 @@ ul.radiobar input[type="radio"]{
 	text-align: end;
 	margin: 0;
 }
+#renew-versioninfo {
+	border-block-start: 1px solid #bacbdf;
+}
 #admin-info-install_script_exists h3 {
 	color: red;
 	display: flex;
