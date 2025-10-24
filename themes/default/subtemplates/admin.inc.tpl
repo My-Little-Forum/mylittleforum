@@ -1194,7 +1194,7 @@
 			{/if}
 			</dl>
 		<p id="renew-versioninfo">
-			<a href="index.php?mode=admin&amp;action=versioninfo_renew">{#installed_versions_renew_info#}</a>
+			<a href="index.php?mode=admin&amp;action=versioninfo_renew&amp;csrf_token={$CSRF_TOKEN}">{#installed_versions_renew_info#}</a>
 		</p>
 	</div>
 {/if}
