@@ -1193,6 +1193,9 @@
 				</div>
 			{/if}
 			</dl>
+		<p id="renew-versioninfo">
+			<a href="index.php?mode=admin&amp;action=versioninfo_renew">{#installed_versions_renew_info#}</a>
+		</p>
 	</div>
 {/if}
 	{if $install_script_exists}

@@ -786,6 +786,7 @@ installed_version_mlf =           'Версия MLF'
 installed_version_php =           'Версия PHP'
 installed_database_type =         'Тип базы данных'
 installed_database_version =      'Версия сервера базы данных'
+installed_versions_renew_info =   '<!-- TODO -->Reload version information'
 
 # настройки форума:
 clear_chache =                    'Очистка кэша для внесения изменений в уже существующие записи'

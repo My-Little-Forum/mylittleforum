@@ -773,6 +773,7 @@ installed_version_mlf =           'MLF 版本'
 installed_version_php =           'PHP 版本'
 installed_database_type =         '資料庫類型'
 installed_database_version =      '資料庫伺服器版本'
+installed_versions_renew_info =   '<!-- TODO -->Reload version information'
 
 # forum settings:
 clear_chache =                    '清除緩存以套用至目前已經存在的文章'

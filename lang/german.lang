@@ -774,6 +774,7 @@ installed_version_mlf =           'MLF-Version'
 installed_version_php =           'PHP-Version'
 installed_database_type =         'Datenbanktyp'
 installed_database_version =      'Datenbank-Server-Version'
+installed_versions_renew_info =   'Versionsinformationen neu einlesen'
 
 # Einstellungen:
 clear_chache =                    'Cache löschen um Einstellungen auch auf bereits bestehende Einträge anzuwenden'
