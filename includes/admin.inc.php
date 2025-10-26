@@ -1103,9 +1103,18 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	if (isset($_GET['action']) && $_GET['action'] == 'versioninfo_renew' && isset($_GET['csrf_token']) && $_GET['csrf_token'] === $_SESSION['csrf_token']) {
 		// renew the determination of the versions of PHP
 		// and the database server as well as its product type
-		$savePHPVersion = getVersionPHP($connid);
-		$saveDBSVersion = getVersionDB($connid);
-		$saveDBSType = getTypeDB($connid);
+		// take into account a 10-second delay
+		$rDelayTime = mysqli_query($connid, "SELECT UNIX_TIMESTAMP(time) AS latest
+		FROM ". $db_settings['temp_infos_table'] ."
+		WHERE name = 'php_version'");
+		if ($rDelayTime !== false) {
+			$delay = mysqli_fetch_assoc($rDelayTime);
+			if ($delay['latest'] < (time() - 10)) {
+				$savePHPVersion = getVersionPHP($connid);
+				$saveDBSVersion = getVersionDB($connid);
+				$saveDBSType = getTypeDB($connid);
+			}
+		}
 		
 		header("location: index.php?mode=admin");
 		die();
