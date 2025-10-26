@@ -42,6 +42,7 @@
     - coloured text, text size
     - links
     - images
+    - media (**video** in the formats MP4, OGG-Vorbis, WEBM or as Youtube URL, **audio** as MP3, OGG-Vorbis or WAV)
     - code examples
     - preformatted text
     - mathematical formulas, realised with LaTex (optional with including the MathJax library)
