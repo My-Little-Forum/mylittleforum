@@ -21,7 +21,7 @@
 - forum script is highly configurable
 - theming support, using [Smarty](https://www.smarty.net/) as template language
 - data storage in a MySQL or MariaDB database
-- currently 14 available languages (more or less complete) with the strings for the user interface
+- currently 13 available languages (more or less complete) with the strings for the user interface
     - arabic (beta)
     - simplified chinese
     - traditional chinese
@@ -36,7 +36,6 @@
     - spanish
     - swedish
     - tamil
-    - turkish
 - since version 20220508.1 (2.5.0) the forum can store the whole utf-8-range including emojis 🎉
 - formatting of entries with BB-codes, most BB-codes are accessible by buttons, the system is extendable
     - common text formatting (bold, italic, strike through and so on)
