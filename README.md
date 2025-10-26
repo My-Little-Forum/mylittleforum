@@ -43,7 +43,7 @@
     - coloured text, text size
     - links
     - images
-    - code exapmles
+    - code examples
     - preformatted text
     - mathematical formulas, realised with LaTex (optional with including the MathJax library)
 
@@ -75,7 +75,7 @@
 - management of categories
     - sorting of the existing categories for the selection in the user interface
     - renaming a category
-    - deleting an category
+    - deleting a category
     - changing the access restrictions
 
 ### Spam prevention
@@ -128,7 +128,7 @@
     - adding new users
     - editing the data of a single user
     - deleting single users
-    - deleting uxsers according to definable criteria
+    - deleting users according to definable criteria
     - reset previous consents to the terms of use and/or the privacy policy because of changes in one or the other document
 
 ### Additional pages
