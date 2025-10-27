@@ -61,8 +61,8 @@
 				$entrydata['thread_locked'] = 1;
 			}
 			
-			$entrydata['ISO_time']      = format_time('YYYY-MM-dd HH:mm:ss', $entrydata['time']);
-			$entrydata['edit_ISO_time'] = format_time('YYYY-MM-dd HH:mm:ss', $entrydata['etime']);
+			$entrydata['ISO_time']      = date(DATE_ATOM, $entrydata['time']);
+			$entrydata['edit_ISO_time'] = date(DATE_ATOM, $entrydata['etime']);
 			$entrydata['formated_time'] = format_time($lang['time_format_full'], $entrydata['disp_time']);
 			$entrydata['tags']          = getEntryTags($id);
 			
@@ -171,7 +171,7 @@
 		
 		$data['subject']       = htmlspecialchars($data['subject']);
 		$data['formated_time'] = format_time($lang['time_format'], $data['disp_time']);
-		$data['ISO_time']      = format_time('YYYY-MM-dd HH:mm:ss', $data['time']);
+		$data['ISO_time']      = date(DATE_ATOM, $data['time']);
 		
 		// set read or new status of messages
 		$data = getMessageStatus($data, $last_visit);

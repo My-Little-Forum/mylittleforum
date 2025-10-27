@@ -143,7 +143,7 @@ if ($result_count > 0) {
 			$data = getMessageStatus($data, $last_visit, $fold_threads);
 			// convert formated time to a utf-8:
 			$data['formated_time'] = format_time($lang['time_format'], $data['timestamp']);
-			$data['ISO_time'] = format_time('YYYY-MM-dd HH:mm:ss', $data['time']);
+			$data['ISO_time'] = date(DATE_ATOM, $data['time']);
 			// set key 'not_classified_spam_ham' to decide, if an mod or admin should get notified about need of classification with an icon
 			if ((isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] >= 1) && (($settings['akismet_entry_check'] == 1 && $data['akismet_checked'] == 0) || ($settings['b8_entry_check'] == 1 && $data['b8_checked'] == 0))) {
 			  $data['not_classified_spam_ham'] = 1;
