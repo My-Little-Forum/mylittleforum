@@ -127,7 +127,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 					$data['tags'] = $tags_array;
 			}
 			$data['formated_time'] = format_time($lang['time_format_full'], $data['disp_time']);
-			$data['ISO_time']      = format_time('YYYY-MM-dd HH:mm:ss', $data['time']);
+			$data['ISO_time']      = date(DATE_ATOM, $data['time']);
 			$data['thread_locked'] = $thread_locked;
 			
 			$ago['days']           = floor((TIMESTAMP - $data['time']) / 86400);
@@ -179,7 +179,7 @@ if (is_array($category_ids) && !in_array($data['category'], $category_ids)) {
 			if ($data['edited_diff'] > 0 && $data["edited_diff"] > $data["time"] && $settings['show_if_edited'] == 1) {
 				$data['edited']             = true;
 				$data['formated_edit_time'] = format_time($lang['time_format_full'], $data['e_time']);
-				$data['ISO_edit_time']      = format_time('YYYY-MM-dd HH:mm:ss', $data['edited_time']);
+				$data['ISO_edit_time']      = date(DATE_ATOM, $data['edited_time']);
 				if ($data['user_id'] == $data['edited_by'])
 					$data['edited_by'] = $data['name'];
 				else {

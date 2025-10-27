@@ -1210,7 +1210,7 @@ switch ($action) {
 				// current time:
 				list($preview_time) = mysqli_fetch_row(mysqli_query($connid, "SELECT UNIX_TIMESTAMP(NOW() + INTERVAL " . $time_difference . " MINUTE)"));
 				$smarty->assign('preview_timestamp', $preview_time);
-				$preview_ISO_time = format_time('YYYY-MM-dd HH:mm:ss', $posting_time);
+				$preview_ISO_time = date(DATE_ATOM, $posting_time);
 				$smarty->assign('preview_ISO_time', $preview_ISO_time);
 				$preview_formated_time = format_time($lang['time_format_full'], $posting_time);
 				$smarty->assign('preview_formated_time', $preview_formated_time);
@@ -1651,7 +1651,7 @@ switch ($action) {
 				$smarty->assign('pid', intval($field['pid']));
 				$smarty->assign('name', htmlspecialchars($field['name']));
 				$smarty->assign('subject', htmlspecialchars($field['subject']));
-				$smarty->assign('ISO_time', htmlspecialchars(format_time('YYYY-MM-dd HH:mm:ss', $field['time'])));
+				$smarty->assign('ISO_time', htmlspecialchars(date(DATE_ATOM, $field['time'])));
 				$smarty->assign('formated_time', htmlspecialchars(format_time($lang['time_format_full'], $field['disp_time'])));
 				$smarty->assign('akismet_spam', intval($field['akismet_spam']));
 				$smarty->assign('akismet_spam_check_status', intval($field['spam_check_status']));
@@ -1780,7 +1780,7 @@ switch ($action) {
 				$smarty->assign('pid', intval($field['pid']));
 				$smarty->assign('name', htmlspecialchars($field['name']));
 				$smarty->assign('subject', htmlspecialchars($field['subject']));
-				$smarty->assign('ISO_time', htmlspecialchars(format_time('YYYY-MM-dd HH:mm:ss', $field['time'])));
+				$smarty->assign('ISO_time', htmlspecialchars(date(DATE_ATOM, $field['time'])));
 				$smarty->assign('formated_time', htmlspecialchars(format_time($lang['time_format_full'], $field['disp_time'])));
 				$smarty->assign('akismet_spam', intval($field['akismet_spam']));
 				$smarty->assign('akismet_spam_check_status', intval($field['spam_check_status']));
