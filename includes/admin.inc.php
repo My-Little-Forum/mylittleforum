@@ -1857,7 +1857,6 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	if (isset($settings) && isset($settings['version'])) {
 		$smarty->assign('installed_version_MLF', htmlspecialchars($settings['version']));
 	}
-
 	// show the version number of the PHP interpreter, if available
 	if (isset($settings) && isset($settings['php_version'])) {
 		$smarty->assign('installed_version_PHP', htmlspecialchars($settings['php_version']));
@@ -1870,6 +1869,15 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	if (isset($settings) && isset($settings['db_server_type'])) {
 		$smarty->assign('installed_type_db', htmlspecialchars($settings['db_server_type']));
 	}
+	$nextReload = 0;
+	$rNextPossibleVersionReload = mysqli_query($connid,"SELECT (UNIX_TIMESTAMP(time) + 10) AS next_reload
+	FROM ". $db_settings['temp_infos_table']."
+	WHERE name = 'php_version'");
+	if ($rNextPossibleVersionReload !== false && mysqli_num_rows($rNextPossibleVersionReload) == 1) {
+		$reloadTStamp = mysqli_fetch_assoc($rNextPossibleVersionReload);
+		$nextReload = $reloadTStamp['next_reload'];
+	}
+	$smarty->assign('next_possible_version_reload', $nextReload);
 	// Prueft, ob die Datei install/index.php noch existiert
 	$smarty->assign('install_script_exists', file_exists('./install/index.php'));
 
