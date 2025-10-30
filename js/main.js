@@ -1439,6 +1439,40 @@ function capsuledPreventDefault(event) {
 		}
 		
 		/**
+		 *
+		 */
+		var delayForVersionDetermination = async function () {
+			// determine the timestamp of the possible next version information reload
+			const versionInfoBlock = document.getElementById('admin-info-current-version');
+			if (!versionInfoBlock)
+				return false;
+			
+			let delayTime = versionInfoBlock.getAttribute('data-next-reload') * 1000;
+			if (!delayTime)
+				delayTime = Date.now() + 10000;
+			
+			let currentTime = Date.now();
+			//console.log(delayTime);
+			//console.log(currentTime);
+			if (currentTime < delayTime) {
+				const delay = delayTime - currentTime;
+				//console.log(delay);
+				const reloadLink = document.querySelector('#renew-versioninfo a');
+				if (!reloadLink.hasAttribute('aria-disabled')) {
+					reloadLink.setAttribute('aria-disabled', 'true');
+				}
+				reloadLink.addEventListener('touchstart', capsuledPreventDefault);
+				reloadLink.addEventListener('click', capsuledPreventDefault);
+				await delay_execution(delay);
+				if (reloadLink.hasAttribute('aria-disabled')) {
+					reloadLink.removeAttribute('aria-disabled');
+				}
+				reloadLink.removeEventListener('touchstart', capsuledPreventDefault);
+				reloadLink.removeEventListener('click', capsuledPreventDefault);
+			}
+		}
+		
+		/**
 		 * Init. MyLittelJavaScript
 		 * @param ajaxPreviewStructure
 		 */
@@ -1456,6 +1490,7 @@ function capsuledPreventDefault(event) {
 			initPostingFolding( document.getElementsByClassName("thread-posting") );
 			initPopUpLinks();
 			setAutoSubmitSubNaviForms();
+			delayForVersionDetermination();
 			sidebar = new Sidebar(templatePath);
 			
 			enliveSelectAllButton();
