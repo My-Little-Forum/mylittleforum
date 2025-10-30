@@ -423,6 +423,10 @@ function delay_execution(msec) {
 	});
 }
 
+function capsuledPreventDefault(event) {
+	event.preventDefault();
+}
+
 /************************ MyLittleForum-Objekte *************************************/
 
 	/**
