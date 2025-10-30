@@ -1520,6 +1520,12 @@ ul.radiobar input[type="radio"]{
 #renew-versioninfo {
 	border-block-start: 1px solid #bacbdf;
 }
+a[aria-disabled]{
+	pointer-events: none;
+	cursor: default;
+	color: #666;
+	text-decoration: line-through;
+}
 #admin-info-install_script_exists h3 {
 	color: red;
 	display: flex;
