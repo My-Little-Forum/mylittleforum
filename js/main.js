@@ -417,6 +417,12 @@ function DragAndDropTable(table,mode,queryKey) {
 	}());
 };
 
+function delay_execution(msec) {
+	return new Promise(function(resolve) {
+		setTimeout(resolve, msec);
+	});
+}
+
 /************************ MyLittleForum-Objekte *************************************/
 
 	/**
