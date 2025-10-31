@@ -1452,11 +1452,8 @@ function capsuledPreventDefault(event) {
 				delayTime = Date.now() + 10000;
 			
 			let currentTime = Date.now();
-			//console.log(delayTime);
-			//console.log(currentTime);
 			if (currentTime < delayTime) {
 				const delay = delayTime - currentTime;
-				//console.log(delay);
 				const reloadLink = document.querySelector('#renew-versioninfo a');
 				if (!reloadLink.hasAttribute('aria-disabled')) {
 					reloadLink.setAttribute('aria-disabled', 'true');
