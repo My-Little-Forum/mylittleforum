@@ -1869,7 +1869,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 	if (isset($settings) && isset($settings['db_server_type'])) {
 		$smarty->assign('installed_type_db', htmlspecialchars($settings['db_server_type']));
 	}
-	$nextReload = 0;
+	$nextReload = time() + 10;
 	$rNextPossibleVersionReload = mysqli_query($connid,"SELECT (UNIX_TIMESTAMP(time) + 10) AS next_reload
 	FROM ". $db_settings['temp_infos_table']."
 	WHERE name = 'php_version'");
