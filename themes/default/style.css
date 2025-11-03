@@ -1022,12 +1022,12 @@ table.normaltab {
 	width: 100%;
 	border: 1px solid #bacbdf;
 	border-collapse: collapse;
+	font-size: 0.82em;
 	background: #fff;
 }
 table.normaltab th {
 	padding: 0.25em;
 	vertical-align: top;
-	font-size: 0.82em;
 	font-weight: bold;
 	text-align: left;
 	background: #d2ddea;
@@ -1036,7 +1036,6 @@ table.normaltab th {
 table.normaltab td {
 	padding: 0.25em;
 	vertical-align: top;
-	font-size: 0.82em;
 	font-weight: normal;
 }
 table.normaltab tr.a td {
