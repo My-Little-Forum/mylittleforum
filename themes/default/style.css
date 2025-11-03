@@ -1021,9 +1021,11 @@ table.wide {
 table.normaltab {
 	width: 100%;
 	border: 1px solid #bacbdf;
+	border-collapse: collapse;
 	background: #fff;
 }
 table.normaltab th {
+	padding: 0.25em;
 	vertical-align: top;
 	font-size: 0.82em;
 	font-weight: bold;
@@ -1032,6 +1034,7 @@ table.normaltab th {
 	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
 }
 table.normaltab td {
+	padding: 0.25em;
 	vertical-align: top;
 	font-size: 0.82em;
 	font-weight: normal;

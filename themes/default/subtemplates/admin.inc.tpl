@@ -5,7 +5,7 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table class="normaltab">
 <tr>
 <td class="c"><strong>{#forum_name#}</strong><br /><span class="small">{#forum_name_desc#}</span></td>
 <td class="d"><input type="text" name="forum_name" value="{$edSet.forum_name|escape}" size="40" /></td>
@@ -241,7 +241,7 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="return_to" value="advanced_settings" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table class="normaltab">
 {section name=nr loop=$settings_sorted}
 <tr>
 <td class="c"><strong>{$settings_sorted[nr].key}</strong></td>
@@ -283,7 +283,7 @@
 </ul>
 {/if}
 {if $categories_count>0}
-<table id="sortable" class="normaltab" cellspacing="1" cellpadding="5">
+<table id="sortable" class="normaltab">
 <thead>
 <tr>
 <th>{#category_name#}</th>
@@ -423,7 +423,7 @@
 <form action="index.php" method="post" accept-charset="{#charset#}">
 <div>
 <input type="hidden" name="mode" value="admin" />
-<table id="itemlist" class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table id="itemlist" class="normaltab">
 <thead>
 <tr>
 <th>&nbsp;</th>
@@ -501,7 +501,7 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="edit_user_id" value="{$edit_user_id}" />
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table class="normaltab">
 <tr>
 <td class="c"><strong>{#edit_user_name#}</strong></td>
 <td class="d"><input type="text" size="40" name="edit_user_name" value="{$edit_user_name}" maxlength="{$settings.name_maxlength}" /></td>
@@ -681,7 +681,7 @@
 </ul>
 {/if}
 {if $settings.smilies==1}
-<table id="sortable" class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table id="sortable" class="normaltab">
 <thead>
 <tr>
 <th>{#smiley_image#}</th>
@@ -754,7 +754,7 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table class="normaltab">
 
 <tr>
 <td class="c"><strong>{#captcha#}</strong><br /><span class="small">{#captcha_desc#}{if !$graphical_captcha_available || !$font_available}<br />{#captcha_graphical_desc#}{/if}</span></td>
@@ -976,7 +976,7 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="id" value="{$id}" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table class="normaltab">
 <tr>
 <td class="c"><strong>{#edit_smilies_smiley#}</strong></td>
 <td class="d"><select name="file" size="1">
@@ -1002,7 +1002,7 @@
 </form>
 {elseif $action=='pages'}
 {if $pages}
-<table id="sortable" class="normaltab" cellspacing="1" cellpadding="5">
+<table id="sortable" class="normaltab">
 <thead>
 <tr>
 <th>{#page_title#}</th>
@@ -1042,7 +1042,7 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {if $id}<input type="hidden" name="id" value="{$id}" />{/if}
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table class="normaltab">
 <tr>
 <td class="c"><strong>{#page_title#}</strong></td>
 <td class="d"><input type="text" name="title" value="{$title|default:""}" size="50" /></td>

@@ -2,7 +2,7 @@
 
 {if $action == 'bookmark'}
 	{if $total_bookmarks > 0}
-		<table id="sortable" class="normaltab" border="0" cellpadding="5" cellspacing="1">
+		<table id="sortable" class="normaltab">
 			<thead>
 				<tr>
 					<th>{#bookmark_title#}</th>
