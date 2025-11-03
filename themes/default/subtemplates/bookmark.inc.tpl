@@ -15,8 +15,7 @@
 			</thead>
 			<tbody>
 				{foreach from=$bookmarkdata item=row}
-					{cycle values="a,b" assign=c}
-					<tr id="id_{$row.bid}" class="{$c}">
+					<tr id="id_{$row.bid}">
 						<td><a href="index.php?id={$row.id}" title="{$row.subject}"><strong>{$row.subject}</strong></a></td>
 						<td>{if $row.user_id > 0}<a href="index.php?mode=user&amp;show_user={$row.user_id}" title="{#show_userdata_linktitle#|replace:"[user]":$row.user_name}">{/if}<span class="author-name">{$row.user_name}</span>{if $row.user_id > 0}</a>{/if}</td>
 						<td><span class="small">{$row.bookmark_time}</span></td>
