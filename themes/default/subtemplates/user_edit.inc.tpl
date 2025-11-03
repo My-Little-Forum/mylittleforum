@@ -13,7 +13,7 @@
 <div>
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="mode" value="user" />
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table class="normaltab">
 <tr>
 <td class="c"><strong>{#edit_user_name#}</strong></td>
 <td class="d"><strong>{$user_name}</strong></td>

@@ -21,7 +21,7 @@
 {/if}
 
 {if $total_users > 0}
-<table class="normaltab" border="0" cellpadding="5" cellspacing="1">
+<table class="normaltab">
 <thead>
 <tr>
 <th><a href="index.php?mode=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;order=user_name&amp;descasc={if $descasc=="ASC" && $order=="user_name"}DESC{else}ASC{/if}&amp;ul={$ul}" title="{#order_linktitle#}">{#user_name#}</a>{if $order=="user_name" && $descasc=="ASC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/order-asc.svg" alt="[asc]" width="11" height="11" />{elseif $order=="user_name" && $descasc=="DESC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/order-desc.svg" alt="[desc]" width="11" height="11" />{/if}</th>
