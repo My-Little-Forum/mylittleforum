@@ -14,8 +14,7 @@
 </thead>
 <tbody>
 {foreach from=$threads item=thread}
-{cycle values="a,b" assign=c}
-<tr class="{$c}">
+<tr>
 {*{if $fold_threads==1}<td class="fold"></td>{/if}*}
 <td class="subject">
 <ul id="thread-{$thread}" class="thread {if $fold_threads==1}folded{else}expanded{/if}">
