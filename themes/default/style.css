@@ -732,9 +732,6 @@ ul.openthread {
 	margin: 0.5em 0 0;
 	padding-inline-start: 2.25em;
 	background: url(images/triangle-full-top.svg) no-repeat calc(0% + .5em) center/1em;
-	display: flex;
-	align-items: center;
-	gap: 0.25em;
 }
 #admin-usernav-bottom #userpagination {
 	float: right;
