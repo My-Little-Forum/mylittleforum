@@ -297,7 +297,7 @@ ul.radiolist input[type="radio"],ul.radiobar input[type="radio"]{margin:0}
 a[aria-disabled]{pointer-events:none;cursor:default;color:#666;text-decoration:line-through}
 #admin-info-install_script_exists h3{color:red;display:flex;align-items:center;gap:.125em}
 main > .adminmenu{margin-block:1em;margin-inline:0;padding:0}
-.adminmenu{list-style-type:none;font-size:.82em;line-height:1.75em;grid-area:mainmenu}
+.adminmenu{list-style-type:none;line-height:1.75;grid-area:mainmenu}
 .adminmenu li:not(:last-child){margin-block-end:.25em}
 .adminmenu a{padding-inline:.375em;border:1px solid #bacbdf80;background:#bacbdf34;text-decoration:none;display:flex;align-items:center;gap:0.25em}
 .adminmenu a:focus,.adminmenu a:hover{border-color:#bacbdf50;background:#bacbdf10}
