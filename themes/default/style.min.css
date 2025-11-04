@@ -110,7 +110,6 @@ blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 #content .posting-footer .options{font-size:.69em!important;list-style-type:none;max-width:100%;margin:0;padding:0;grid-area:moderationlinks;display:flex;flex-wrap:wrap;gap:.5em;justify-content:flex-start}
 .posting-footer .options li{margin:0}
 .posting-footer a{white-space:nowrap}
-html[dir="rtl"] .posting-footer a.move{background-position:100% -449px}
 .thread-posting{position:relative;border-inline-start:10px solid #d2ddea;border-inline-end:1px solid #f0f0f0;border-top:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;margin:0 0 20px;padding:0;background:#fff}
 .new{border-inline-start-color:#88a9cf !important}
 .thread-posting h1,.thread-posting h2{margin:0 0 2px;padding:0}
@@ -140,7 +139,6 @@ ul.openthread{clear:both}
 #usersearch div,#usersearch form{display:inline}
 #usernav-bottom{margin:15px 0 0;padding:0;text-align:end;font-size:.82em}
 #selectioncontrols{margin:0.5em 0 0;padding-inline-start: 2.25em;background:url(images/triangle-full-top.svg) no-repeat calc(0% + .5em) center/1em;display:flex;align-items:center;gap:.25em}
-#selectioncontrols .checkall{margin-inline-start:1em;font-size:.69em}
 #admin-usernav-bottom #userpagination{float:right;float:inline-end;height:2em;text-align:end}
 .thread ul{font-size:1em}
 .thread li{font-size:1em}
@@ -192,11 +190,6 @@ ul.thread span.mod,ul.thread span.admin,td span.admin,td span.mod{cursor:help}
 #captcha p{font-size:1em}
 #captcha img,img.captcha{border:1px solid #000}
 .category{color:navy;font-size:.82em;font-weight:400}
-.category-regusers{color:navy;font-size:.82em;font-weight:400;background:#e7e7e7}
-.category-adminmod{color:navy;font-size:.82em;font-weight:400;background:#d5d5d5}
-.category-b{color:#00c;font-size:.82em;font-weight:400}
-.category-regusers-b{color:#00c;font-size:.82em;font-weight:400;border-bottom:1px dotted #00c}
-.category-adminmod-b{color:#00c;font-size:.82em;font-weight:400;border-bottom:1px solid #00c}
 h3.preview{margin:10px 0 3px;font-size:.82em;font-weight:700;color:red}
 div.preview{margin:0 0 25px;padding:10px;border:1px dotted red}
 table.wide{width:100%}
