@@ -1450,7 +1450,7 @@ ul.radiobar input[type="radio"]{
 .additional-admin-info > div > * {
 	margin: 0;
 	padding-inline: 0.375em;
-	font-size: 0.82em !important;
+	font-size: 0.82em;
 }
 .additional-admin-info h3 {
 	line-height: 1.7em;
