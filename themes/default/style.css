@@ -979,17 +979,18 @@ table.normaltab {
 	font-size: 0.82em;
 	background: #fff;
 }
-table.normaltab th {
-	padding: 0.25em;
+table.normaltab :is(th, td) {
+	padding: 0.375em;
 	vertical-align: top;
+	border: round(0.125em, 1px) solid #fff;
+}
+table.normaltab th {
 	font-weight: bold;
 	text-align: left;
 	background: #d2ddea;
 	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
 }
 table.normaltab td {
-	padding: 0.25em;
-	vertical-align: top;
 	font-weight: normal;
 }
 table.normaltab tr:nth-child(odd) {
