@@ -541,6 +541,7 @@ blockquote code {
 	grid-template-rows: auto auto auto;
 	grid-template-areas: "pageviews" "replylink" "moderationlinks";
 	gap: 0.25em;
+	font-size: 0.82em;
 }
 .posting-footer .reply {
 	font-size: 0.82em;

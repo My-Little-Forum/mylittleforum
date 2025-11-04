@@ -102,8 +102,8 @@ code.monospace{color:#000}
 blockquote{margin:0;padding-block:0;padding-inline:1.5em 0;color:#646464;font-style:italic;background:url(images/general-quote.svg) no-repeat top left/1em}
 html[dir="rtl"] blockquote{background-position-x:right}
 blockquote code{font-family:"courier new",courier;color:#6f6f6f}
-.posting-footer{margin:1em 0 0;padding:0;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas:"pageviews" "replylink" "moderationlinks";gap:.25em}
 .posting-footer .reply{font-size:.82em;grid-area:replylink}
+.posting-footer{margin:1em 0 0;padding:0;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas:"pageviews" "replylink" "moderationlinks";gap:.25em;font-size:.82em}
 .posting-footer .reply a{font-weight:bold}
 .posting-footer .locked{color:gray}
 .posting-footer .views{font-size:.69em;color:gray;text-align:end;grid-area:pageviews}
