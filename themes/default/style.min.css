@@ -52,7 +52,7 @@ input.small,select.small{font-size:.82em}
 #footermenu{margin:0;padding:0;list-style-type:none;display:flex;flex-wrap:wrap;gap:3px .4em}
 #footermenu li{margin:0}
 #footermenu li:not(:last-child){border-inline-end:1px solid #000;padding-inline-end:.4em}
-#pbmlf{text-align:center;font-size:.69em;color:gray;grid-area:projectlink}
+#pbmlf{text-align:center;font-size:.82em;color:gray;grid-area:projectlink}
 #pbmlf a{color:gray;text-decoration:none}
 #main-grid{display:grid;grid-template-columns:calc(100vw - 2em);grid-template-rows:auto auto;gap:.75em;grid-template-areas:"sidebar" "threadlist"}
 #threadlist{grid-area:threadlist;}
