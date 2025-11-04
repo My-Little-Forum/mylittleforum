@@ -1497,8 +1497,7 @@ main > .adminmenu {
 }
 .adminmenu {
 	list-style-type: none;
-	font-size: 0.82em;
-	line-height: 1.75em;
+	line-height: 1.75;
 	grid-area: mainmenu;
 }
 .adminmenu li:not(:last-child) {
