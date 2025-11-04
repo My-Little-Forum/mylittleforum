@@ -746,10 +746,6 @@ ul.openthread {
 	align-items: center;
 	gap: 0.25em;
 }
-#selectioncontrols .checkall {
-	margin-inline-start: 1em;
-	font-size: 0.69em;
-}
 #admin-usernav-bottom #userpagination {
 	float: right;
 	float: inline-end;
@@ -972,35 +968,6 @@ img.captcha {
 	color: #000080;
 	font-size: 0.82em;
 	font-weight: normal;
-}
-.category-regusers {
-	color: #000080;
-	font-size: 0.82em;
-	font-weight: normal;
-	background: #e7e7e7;
-}
-.category-adminmod {
-	color: #000080;
-	font-size: 0.82em;
-	font-weight: normal;
-	background: #d5d5d5;
-}
-.category-b {
-	color: #0000cc;
-	font-size: 0.82em;
-	font-weight: normal;
-}
-.category-regusers-b {
-	color: #0000cc;
-	font-size: 0.82em;
-	font-weight: normal;
-	border-bottom: 1px dotted #0000cc;
-}
-.category-adminmod-b {
-	color: #0000cc;
-	font-size: 0.82em;
-	font-weight: normal;
-	border-bottom: 1px solid #0000cc;
 }
 
 h3.preview {
