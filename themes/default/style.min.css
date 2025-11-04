@@ -365,8 +365,7 @@ td ul.folded{margin:0;padding:0;padding-inline-start:1em}
 #advanced-search li{padding-inline:0 .25em}
 #search-results h2{margin-block:0 1em;margin-block:0 1rem}
 ul.searchresults{margin:0 0 20px;padding:0;list-style-type:none;max-width:100%!important}
-ul.searchresults li{font-size:1em;padding:0 0 10px}
-ul.searchresults li li{font-size:1em}
+ul.searchresults li{padding:0 0 10px}
 button[type=button].thumbnail{background:transparent;padding:0;border:none}
 button[type=button].thumbnail img,a[rel=thumbnail] img{display:block}
 img.thumbnail{width:12em;border:1px solid silver;margin:0;height:auto}
