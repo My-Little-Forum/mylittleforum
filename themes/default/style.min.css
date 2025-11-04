@@ -41,7 +41,7 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #subnavmenu a.order-1 img.icon{transform:rotate(180deg)}
 input.small,select.small{font-size:.82em}
 #content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
-#content p,#content ul,#content td,#postingform{font-size:.82em;max-width:60em}
+#content p,#content ul,#content td,#postingform{max-width:60em}
 #content li,#content ul ul{font-size:1em}
 #content .xsmall{font-size:.69em;line-height:1.19em;color:gray;font-weight:400}
 #content .small{font-size:.69em;line-height:1.19em;font-weight:400}
