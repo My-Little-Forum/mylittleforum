@@ -1821,11 +1821,7 @@ ul.searchresults {
 	max-width: 100% !important;
 }
 ul.searchresults li {
-	font-size: 1em;
 	padding: 0 0 10px 0;
-}
-ul.searchresults li li {
-	font-size: 1em;
 }
 
 button[type=button].thumbnail {
