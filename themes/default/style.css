@@ -544,7 +544,6 @@ blockquote code {
 	font-size: 0.82em;
 }
 .posting-footer .reply {
-	font-size: 0.82em;
 	grid-area: replylink;
 }
 .posting-footer .reply a {
@@ -554,13 +553,11 @@ blockquote code {
 	color: #808080;
 }
 .posting-footer .views {
-	font-size: 0.69em;
 	color: #808080;
 	text-align: end;
 	grid-area: pageviews;
 }
 #content .posting-footer .options {
-	font-size: 0.69em !important;
 	list-style-type: none;
 	max-width: 100% !important;
 	margin: 0;
