@@ -653,9 +653,10 @@ blockquote code {
 	list-style-type: none;
 }
 
-.op-link,
+.op-link {
+	font-size: 0.82em;
+}
 .op-link a {
-	font-size: 0.9em;
 	color: #808080;
 }
 
