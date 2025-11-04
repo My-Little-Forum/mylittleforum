@@ -20,6 +20,7 @@ body {
 	text-align: start;
 	font-family: verdana, arial, sans-serif;
 	font-size: 1em;
+	font-size: clamp(1rem, 0.7rem + 0.7vw, 1.2rem);
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
