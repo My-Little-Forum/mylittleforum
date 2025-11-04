@@ -307,13 +307,6 @@ select.small {
 	margin: 0;
 	padding: 0;
 }
-#sidebar div {
-	position: relative;
-	z-index: 2;
-}
-#sidebarcontent div:not(:last-child) {
-	margin: 0 0 0.75em 0;
-}
 h2.sidebar {
 	font-size: 0.82em;
 	line-height: 1.7;
@@ -345,7 +338,14 @@ h2.sidebar a:active {
 	margin-block: 0;
 }
 #sidebarcontent div h3 {
+#sidebar div {
+	position: relative;
+	z-index: 2;
+}
 	font-size: 0.82em;
+#sidebarcontent > div:not(:last-child) {
+	margin: 0 0 0.75em 0;
+}
 	line-height: 1.7;
 	font-weight: normal;
 	margin: 0;
