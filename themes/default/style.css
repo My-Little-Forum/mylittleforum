@@ -343,6 +343,11 @@ h2.sidebar a:active {
 	z-index: 2;
 }
 	font-size: 0.82em;
+#sidebarcontent > div {
+	background: #f9f9f9;
+	border: 1px solid #bacbdf;
+	padding: 0;
+}
 #sidebarcontent > div:not(:last-child) {
 	margin: 0 0 0.75em 0;
 }
@@ -354,11 +359,6 @@ h2.sidebar a:active {
 	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
 }
 
-#latest-postings  {
-	background: #f9f9f9;
-	border: 1px solid #bacbdf;
-	padding: 0;
-}
 #latest-postings a.hide-sidebar {
 	position: absolute;
 	top: 2px;
@@ -411,11 +411,6 @@ h2.sidebar a:active {
 	color: #808080;
 }
 
-#tagcloud {
-	background: #f9f9f9;
-	border: 1px solid #bacbdf;
-	padding: 0;
-}
 #tagcloud p {
 	margin: 0;
 	padding: 5px;
@@ -433,11 +428,6 @@ h2.sidebar a:active {
 #tagcloud strong {
 	font-weight: bold;
 	font-size: 1.051em;
-}
-
-#modmenu {
-	background: #f9f9f9;
-	border: 1px solid #bacbdf;
 }
 
 #mod-options {
