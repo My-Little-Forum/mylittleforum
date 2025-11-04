@@ -332,12 +332,11 @@ h2.sidebar a:active {
 .js-display-fold h2.sidebar {
 	margin-block: 0;
 }
-#sidebarcontent div h3 {
+
 #sidebar div {
 	position: relative;
 	z-index: 2;
 }
-	font-size: 0.82em;
 #sidebarcontent > div {
 	background: #f9f9f9;
 	border: 1px solid #bacbdf;
@@ -346,6 +345,11 @@ h2.sidebar a:active {
 #sidebarcontent > div:not(:last-child) {
 	margin: 0 0 0.75em 0;
 }
+#sidebarcontent {
+	font-size: 0.82em;
+}
+#sidebarcontent div h3 {
+	font-size: 1em;
 	line-height: 1.7;
 	font-weight: normal;
 	margin: 0;
@@ -364,7 +368,6 @@ h2.sidebar a:active {
 }
 #latest-postings ul {
 	max-width: 100%;
-	font-size: 0.82em;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -429,7 +432,6 @@ h2.sidebar a:active {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	font-size: 0.82em;
 	line-height: 1.7;
 }
 #mod-options li:not(:last-child) {
