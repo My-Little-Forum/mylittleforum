@@ -733,6 +733,7 @@ ul.openthread {
 	padding-inline-start: 2.25em;
 	background: url(images/triangle-full-top.svg) no-repeat calc(0% + .5em) center/1em;
 }
+
 #admin-usernav-bottom #userpagination {
 	float: right;
 	float: inline-end;
