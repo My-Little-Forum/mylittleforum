@@ -11,7 +11,7 @@
   svg { fill: transparent; }
   #face { fill: url(#head); stroke: #fcfcfc; stroke-width: 8; }
   #border { fill: none; stroke: #08af38; stroke-width: 12; }
-  #eye, #letter { fill: #eeeb; stroke-width: 8; stroke: #fcfcfc; stroke-linejoin: round; }
+  #eye, #letter { fill: #eeee; stroke-width: 8; stroke: #fcfcfc; stroke-linejoin: round; }
   ]]>
  </style>
  <circle id="border" cx="132" cy="132" r="122" />
