@@ -1159,7 +1159,7 @@
 </form>
 {else}
 <div id="admin-main-menu">
-<div class="additional-admin-info">
+<div id="additional-admin-info">
 {if $installed_version_MLF || $installed_version_PHP || $installed_type_db || $installed_version_db}
 	<div id="admin-info-current-version" data-next-reload="{$next_possible_version_reload}">
 		<h3>{#installed_versions_header#}</h3>
