@@ -1424,6 +1424,7 @@ ul.radiobar input[type="radio"]{
 	padding: 0;
 }
 #additional-admin-info {
+	font-size: 0.82em;
 	grid-area: infoboxes;
 }
 #additional-admin-info > div {
@@ -1437,9 +1438,9 @@ ul.radiobar input[type="radio"]{
 #additional-admin-info > div > * {
 	margin: 0;
 	padding-inline: 0.375em;
-	font-size: 0.82em;
 }
 #additional-admin-info h3 {
+	font-size: 1em;
 	line-height: 1.7em;
 	background: #d2ddea;
 	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
