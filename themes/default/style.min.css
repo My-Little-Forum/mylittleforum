@@ -22,7 +22,6 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #logo h1{margin:0;padding:0;font-size:1.4em}
 #logo h1 a{color:navy;text-decoration:none}
 #logo h1 a:focus,#logo h1 a:hover{color:#00a;text-decoration:none}
-#nav{margin:0;padding:7px 0}
 #usermenu{margin:0 0 .75em;padding:0;font-size:.82em;text-align:start;list-style-type:none;display:flex;flex-wrap:wrap;gap:3px .4em}
 #usermenu li{margin:0}
 #usermenu li:not(:last-child):after{content:"|"}
@@ -63,6 +62,7 @@ h2.sidebar a{display:block;color:#000;padding-inline:1.625em .375em;background:u
 h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underline}
 .js-display-fold h2.sidebar {margin-block:0}
 #sidebar div{position:relative;z-index:2}
+#sidebarcontent{font-size:.82em}
 #sidebarcontent > div{background:#f9f9f9;border:1px solid #bacbdf;padding:0}
 #sidebarcontent > div:not(:last-child){margin: 0 0 .75em 0}
 #sidebarcontent{font-size:.82em}
@@ -362,8 +362,8 @@ td ul.folded{margin:0;padding:0;padding-inline-start:1em}
 #advanced-search ul{list-style:none;margin:0;padding:0;display:flex;gap:.25em}
 #advanced-search li{padding-inline:0 .25em}
 #search-results h2{margin-block:0 1em;margin-block:0 1rem}
-ul.searchresults{margin:0 0 20px;padding:0;list-style-type:none;max-width:100%!important}
-ul.searchresults li{padding:0 0 10px}
+ul.searchresults{max-width:100%!important;display:flex;flex-direction:column;gap:.675em}
+ul.searchresults li{padding:0}
 button[type=button].thumbnail{background:transparent;padding:0;border:none}
 button[type=button].thumbnail img,a[rel=thumbnail] img{display:block}
 img.thumbnail{width:12em;border:1px solid silver;margin:0;height:auto}
