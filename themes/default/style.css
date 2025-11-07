@@ -1423,40 +1423,40 @@ ul.radiobar input[type="radio"]{
 	margin: 0;
 	padding: 0;
 }
-.additional-admin-info {
+#additional-admin-info {
 	grid-area: infoboxes;
 }
-.additional-admin-info > div {
+#additional-admin-info > div {
 	background: #f9f9f9;
 	border: 1px solid #bacbdf;
 	padding: 0;
 }
-.additional-admin-info > div:not(:last-child) {
+#additional-admin-info > div:not(:last-child) {
 	margin: 0 0 0.75em 0;
 }
-.additional-admin-info > div > * {
+#additional-admin-info > div > * {
 	margin: 0;
 	padding-inline: 0.375em;
 	font-size: 0.82em;
 }
-.additional-admin-info h3 {
+#additional-admin-info h3 {
 	line-height: 1.7em;
 	background: #d2ddea;
 	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
 }
-.additional-admin-info :is(p, dl, ul, ol) {
+#additional-admin-info :is(p, dl, ul, ol) {
 	padding-block: 0.375em;
 	line-height: 1.5;
 }
-.additional-admin-info dl {
+#additional-admin-info dl {
 	display: grid;
 	gap: 0.25em;
 }
-.additional-admin-info dl > div dt {
+#additional-admin-info dl > div dt {
 	float: inline-start;
 	margin-inline-end: 0.625em;
 }
-.additional-admin-info dl > div dd {
+#additional-admin-info dl > div dd {
 	font-weight: bold;
 	text-align: end;
 	margin: 0;
