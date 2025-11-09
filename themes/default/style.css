@@ -1412,7 +1412,6 @@ ul.radiobar input[type="radio"]{
 }
 #additional-admin-info :is(p, dl, ul, ol) {
 	padding-block: 0.375em;
-	line-height: 1.5;
 }
 #additional-admin-info dl {
 	display: grid;

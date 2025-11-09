@@ -282,7 +282,7 @@ ul.radiolist input[type="radio"],ul.radiobar input[type="radio"]{margin:0}
 #additional-admin-info{grid-area:infoboxes}
 #additional-admin-info > div:not(:last-child){margin:0 0 .75em 0}
 #additional-admin-info > div > *{margin:0;padding-inline:.375em}
-#additional-admin-info :is(p, dl, ul, ol){padding-block:.375em;line-height:1.5}
+#additional-admin-info :is(p, dl, ul, ol){padding-block:.375em}
 #additional-admin-info dl{display:grid;gap:.25em}
 #additional-admin-info dl > div dt{float:inline-start;margin-inline-end:.625em}
 #additional-admin-info dl > div dd{font-weight:bold;text-align:end;margin:0}
