@@ -371,14 +371,13 @@ figure.full-size-img img{display:block}
 #ajax-preview-main{border-top:1px solid silver;position:absolute;top:15px;inset-inline-end:0;width:500px}
 #ajax-preview-close{float:right;float:inline-end;cursor:pointer}
 #ajax-preview-body{background:#ffc;margin:0;padding:0;border-inline:1px solid silver;border-bottom:1px solid silver}
-#ajax-preview-content{margin:0;padding:0 14px;max-height:350px;overflow:auto;clear:both;padding-bottom:16px}
-#ajax-preview-replylink-wrapper{margin:0;padding:0;font-size:.69em!important}
+#ajax-preview-content{margin:0;padding:0 14px;font-size:.82em;max-height:350px;overflow:auto;clear:both;padding-bottom:16px}
+#ajax-preview-replylink-wrapper{margin:0;padding:0;font-size:.82em;}
 #ajax-preview-replylink-wrapper:before{content:"[ "}
 #ajax-preview-replylink-wrapper:after{content:" ]"}
 #ajax-preview-replylink{margin:0;padding:0}
 #ajax-preview-throbber{display:block;margin-inline:auto;}
-#ajax-preview-content p,#ajax-preview-content ul{font-size:.82em;line-height:1.5em}
-#ajax-preview-content li,#ajax-preview-content ul ul{font-size:1em}
+#ajax-preview-content p,#ajax-preview-content ul{line-height:1.5em}
 #ajax-preview-content img{max-width:100%;height:auto}
 .sr-only:not(:focus):not(:active){clip:rect(0 0 0 0);clip-path:inset(50%);width:1px;height:1px;overflow:hidden;position:absolute;white-space:nowrap}
 .js-display-none{display:none}
