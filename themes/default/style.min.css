@@ -57,7 +57,7 @@ aside h3{font-size:1em;line-height:1.7;font-weight:400;margin:0;padding-block:0;
 #main-grid{display:grid;grid-template-columns:calc(100vw - 2em);grid-template-rows:auto auto;gap:.75em;grid-template-areas:"sidebar" "threadlist"}
 #threadlist{grid-area:threadlist;}
 #sidebar{grid-area:sidebar;position:relative;margin:0;padding:0}
-h2.sidebar{font-size:.82em;line-height:1.7;font-weight:bold;margin-block:0 .75em;margin-inline:0;padding:0;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);border:1px solid #bacbdf;z-index:1}
+h2.sidebar{font-size:1em;line-height:1.7;font-weight:bold;margin-block:0 .75em;margin-inline:0;padding:0;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);border:1px solid #bacbdf;z-index:1}
 h2.sidebar a{display:block;color:#000;padding-inline:1.625em .375em;background:url("images/triangle-full-top.svg") 0.375em calc(50% + .075em)/0.9em 0.9em no-repeat;text-decoration:none}
 .js-display-fold h2.sidebar a{background:url("images/triangle-full-bottom.svg") 0.375em calc(50% - .075em)/0.9em 0.9em no-repeat}
 h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underline}
