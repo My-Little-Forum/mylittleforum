@@ -444,12 +444,13 @@ input[name=sort_of_agreement] + iframe {
 	height: 60vh;
 }
 #usersonline {
+	font-size: 0.82em;
 	background: #f9f9f9;
 	border: 1px solid #bacbdf;
 	margin: 20px 0 20px 0;
 }
 #usersonline h3 {
-	font-size: 0.69em;
+	font-size: 1em;
 	line-height: 1.7em;
 	font-weight: normal;
 	margin: 0;
@@ -460,7 +461,6 @@ input[name=sort_of_agreement] + iframe {
 #usersonline p {
 	margin: 0;
 	padding: 7px 5px 7px 5px;
-	font-size: 0.82em;
 	line-height: 1.5em;
 }
 
