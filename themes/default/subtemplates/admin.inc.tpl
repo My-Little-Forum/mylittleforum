@@ -1159,7 +1159,7 @@
 </form>
 {else}
 <div id="admin-main-menu">
-<div id="additional-admin-info">
+<aside id="additional-admin-info">
 {if $installed_version_MLF || $installed_version_PHP || $installed_type_db || $installed_version_db}
 	<div id="admin-info-current-version" data-next-reload="{$next_possible_version_reload}">
 		<h3>{#installed_versions_header#}</h3>
@@ -1210,7 +1210,7 @@
 		{/if}
 	</div>
 	{/if}
-</div>
+</aside>
 <ul class="adminmenu">
 <li><a href="index.php?mode=admin&amp;action=settings"><img src="{$THEMES_DIR}/{$theme}/images/settings.svg" alt="" width="18" height="18" class="icon" /><span>{#forum_settings_link#}</span></a></li>
 <li><a href="index.php?mode=admin&amp;action=user"><img src="{$THEMES_DIR}/{$theme}/images/user.svg" alt="" width="18" height="18" class="icon" /><span>{#user_administr_link#}</span></a></li>
