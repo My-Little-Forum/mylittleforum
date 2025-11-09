@@ -1723,7 +1723,6 @@ td ul.thread {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
-	font-size: 1em !important;
 }
 td ul.thread ul {
 	font-size: 0.82em !important;
