@@ -26,7 +26,7 @@ body {
 	min-height: 100vh;
 }
 .small {
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 h1 {
 	margin-top: 0;
@@ -106,7 +106,7 @@ body > * {
 #logo .home {
 	margin: 0 0 0.3em 0;
 	padding: 0;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 #logo h1 {
 	margin: 0;
@@ -126,7 +126,7 @@ body > * {
 #usermenu {
 	margin: 0 0 0.75em 0;
 	padding: 0;
-	font-size: 0.82em;
+	font-size: 0.86em;
 	text-align: start;
 	list-style-type: none;
 	display: flex;
@@ -148,7 +148,7 @@ body > * {
 
 #topsearch div {
 	display:inline;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 #topsearch #search-input {
 	width: 14em;
@@ -158,7 +158,7 @@ body > * {
 	background: #f9f9f9;
 	border-top: 1px solid #bacbdf;
 	border-bottom: 1px solid #bacbdf;
-	font-size: 0.82em;
+	font-size: 0.86em;
 	line-height: 2;
 	display: flex;
 	flex-direction: column;
@@ -225,7 +225,7 @@ body > * {
 }
 
 #footer {
-	font-size: 0.82em;
+	font-size: 0.86em;
 	line-height: 1.5;
 	padding: 0.5em 1em;
 	padding: 0.5rem 1rem;
@@ -267,7 +267,7 @@ body > * {
 
 #pbmlf {
 	text-align: center;
-	font-size: 0.82em;
+	font-size: 0.86em;
 	color: #808080;
 	grid-area: projectlink;
 }
@@ -276,7 +276,8 @@ body > * {
 	text-decoration: none;
 }
 aside {
-	font-size: 0.82em;
+	font-size: 0.86em;
+	background-color: #f9f9f9;
 }
 aside h3 {
 	font-size:1 em;
@@ -394,7 +395,7 @@ h2.sidebar a:active {
 }
 #latest-postings li a .entry-date,
 #latest-postings li a.read .entry-date {
-	font-size: 0.82em;
+	font-size: 0.86em;
 	color: #808080;
 }
 
@@ -454,7 +455,7 @@ input[name=sort_of_agreement] + iframe {
 	padding: 0;
 }
 .posting h1 .category {
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 .posting .author {
 	margin: 1px 0 18px 0;
@@ -469,7 +470,7 @@ input[name=sort_of_agreement] + iframe {
 }
 .edited,
 .ago {
-	font-size: 0.82em;
+	font-size: 0.86em;
 	color: #808080;
 }
 img.no-text {
@@ -510,7 +511,7 @@ blockquote code {
 	grid-template-rows: auto auto auto;
 	grid-template-areas: "pageviews" "replylink" "moderationlinks";
 	gap: 0.25em;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 .posting-footer .reply {
 	grid-area: replylink;
@@ -619,7 +620,7 @@ blockquote code {
 }
 
 .op-link {
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 .op-link a {
 	color: #808080;
@@ -636,14 +637,14 @@ blockquote code {
 	margin: 20px 0 0 0;
 	padding: 0;
 	color: #808080;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 #content .signature p {
 	margin: 10px 0 0 0;
 	padding: 0;
 	color: #808080;
 	font-weight: normal;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 
 h2.postingform {
@@ -664,7 +665,7 @@ div.complete-thread p.left {
 	float: right;
 	float: inline-end;
 	text-align: end;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 ul.openthread {
 	clear: both;
@@ -676,7 +677,7 @@ ul.openthread {
 	overflow: hidden;
 }
 #usersearch {
-	font-size: 0.82em;
+	font-size: 0.86em;
 	margin: 0.5em 0;
 	padding: 0.5em 0 .75em 0;
 	border-bottom: 1px solid #bacbdf;
@@ -689,7 +690,7 @@ ul.openthread {
 	margin: 15px 0 0 0;
 	padding: 0;
 	text-align: end;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 
 #selectioncontrols {
@@ -762,14 +763,6 @@ html[dir="rtl"] .notice.ok {
 	border-right: 0;
 	border-bottom: 0;
 	height: 1px;
-}
-.marked-threads {
-	margin: 30px 0 0 0;
-	font-size: 11px;
-}
-.marked-threads-board {
-	margin: 10px 1px 0 1px;
-	font-size: 11px;
 }
 .ip {
 	font-size: 11px;
@@ -866,7 +859,7 @@ ul.filelist {
 	list-style-type: none;
 	padding-inline-start: 0;
 	margin-inline-start: 0;
-	font-size: 0.82em;
+	font-size: 0.86em;
 	line-height: 1.7 !important;
 }
 ul.filelist img {
@@ -909,13 +902,13 @@ img.captcha {
 /* categories: */
 .category {
 	color: #000080;
-	font-size: 0.82em;
+	font-size: 0.86em;
 	font-weight: normal;
 }
 
 h3.preview {
 	margin: 10px 0 3px 0;
-	font-size: 0.82em;
+	font-size: 0.86em;
 	font-weight: bold;
 	color: red;
 }
@@ -932,7 +925,7 @@ table.normaltab {
 	width: 100%;
 	border: 1px solid #bacbdf;
 	border-collapse: collapse;
-	font-size: 0.82em;
+	font-size: 0.86em;
 	background: #fff;
 }
 table.normaltab :is(th, td) {
@@ -970,7 +963,7 @@ table.normaltab td.subject {
 	font-size: 1em;
 }
 #content table.normaltab .xsmall {
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 table.normaltab tr.drag td {
 	background: #ddd;
@@ -980,7 +973,7 @@ p.userdata {
 	margin: 0;
 }
 .normalform {
-	font-size: 0.82em;
+	font-size: 0.86em;
 	margin: 0;
 }
 .normalform:not(:first-child) {
@@ -1031,7 +1024,7 @@ div#entry-input,
 }
 #postingform #insert-quote {
 	margin: 0;
-	font-size: 0.82em;
+	font-size: 0.86em;
 	padding: 0;
 	background: transparent;
 	border: none;
@@ -1049,10 +1042,10 @@ div#entry-input,
 }
 
 #postingform .xsmall {
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 #delete_cookie {
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 
 div#format-bar {
@@ -1070,7 +1063,7 @@ div#format-bar {
 }
 
 #format-bar button {
-	font-size: 0.82em;
+	font-size: 0.86em;
 	margin: 0;
 	padding-block: 0.675em;
 	padding-inline: 0.675em;
@@ -1126,7 +1119,7 @@ div#format-bar {
 	background: #efefef;
 	border: 1px solid #c0c0c0;
 	padding: 0;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 #bbcode-options ul {
 	list-style-type: none;
@@ -1179,7 +1172,6 @@ div#format-bar {
 	gap: 0.125em;
 }
 #additional-smilies button {
-	font-size: 0.82em;
 	min-height: 2.4em;
 	margin: 0;
 	padding-block: 0.25em;
@@ -1480,7 +1472,7 @@ h2#admin_header {
 	background: #f9f9f9;
 }
 .manage-postings legend {
-	font-size:0.82em;
+	font-size: 0.86em;
 	font-weight:bold;
 }
 
@@ -1642,10 +1634,10 @@ ul.thread li span.tail {
 }
 ul.thread li .replies {
 	color: #808080;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 ul.thread li .category {
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 ul.thread .entry {
 	display: flex;
@@ -1717,7 +1709,7 @@ td ul.thread {
 	list-style-type: none;
 }
 td ul.thread ul {
-	font-size: 0.82em;
+	font-size: 0.86em;
 	line-height: 1.33em;
 }
 td ul.thread ul ul {
@@ -1844,7 +1836,7 @@ figure.full-size-img img {
 #ajax-preview-content {
 	margin: 0;
 	padding: 0 14px;
-	font-size: 0.82em;
+	font-size: 0.86em;
 	max-height: 350px;
 	overflow: auto;
 	clear: both;
@@ -1853,7 +1845,7 @@ figure.full-size-img img {
 #ajax-preview-replylink-wrapper {
 	margin: 0;
 	padding: 0;
-	font-size: 0.82em;
+	font-size: 0.86em;
 }
 #ajax-preview-replylink-wrapper:before {
 	content: "[ ";
