@@ -440,7 +440,6 @@ input[name=sort_of_agreement] + iframe {
 	height: 60vh;
 }
 #usersonline {
-	font-size: 0.82em;
 	background: #f9f9f9;
 	border: 1px solid #bacbdf;
 	margin: 20px 0 20px 0;
@@ -1405,7 +1404,6 @@ ul.radiobar input[type="radio"]{
 	padding: 0;
 }
 #additional-admin-info {
-	font-size: 0.82em;
 	grid-area: infoboxes;
 }
 #additional-admin-info > div {
