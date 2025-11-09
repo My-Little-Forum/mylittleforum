@@ -254,7 +254,7 @@ div#format-bar{margin:0 !important;padding:.375em;background:#f4f4f6}
 button.insert-smiley{margin:0;padding:0;font-size:11px;font-weight:400}
 #smilies li{display:inline-block;min-width:50px;padding:0 10px 10px 0;white-space:nowrap}
 ul.pagination{margin:.75em 0;padding:0;list-style-type:none}
-#content ul.pagination li{display:inline;font-size:.9em;margin-inline-start:.5em;position:relative}
+#content ul.pagination li{display:inline;margin-inline-start:.5em}
 #content ul.pagination li:first-child{margin-inline-start:0}
 ul.pagination a,ul.pagination span{border:1px solid #bacbdf;background:#f9f9f9;padding:1px 6px}
 ul.pagination a:focus,ul.pagination a:hover{border:1px solid #00c;background:#efefef;text-decoration:none}

@@ -1267,9 +1267,7 @@ ul.pagination {
 }
 #content ul.pagination li {
 	display: inline;
-	font-size: 0.9em;
 	margin-inline-start: 0.5em;
-	/* for IE 7: */ position: relative;
 }
 #content ul.pagination li:first-child {
 	margin-inline-start: 0;
