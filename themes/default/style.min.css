@@ -82,7 +82,7 @@ h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underl
 #mod-options li:not(:last-child){margin-block-end:0.25em}
 #mod-options a{padding-inline:.375em}
 input[name=sort_of_agreement] + iframe {height:400px;height:60vh}
-#usersonline{font-size:.82em;background:#f9f9f9;border:1px solid #bacbdf;margin:20px 0}
+#usersonline{background-color:#f9f9f9;border:1px solid #bacbdf;margin:20px 0}
 #usersonline p{margin:0;padding:7px 5px}
 .posting img.avatar{float:right;float:inline-end;margin:0 0 20px 20px}
 .posting h1{margin:0 0 2px;padding:0}
@@ -279,8 +279,8 @@ ul.radiolist input[type="radio"],ul.radiobar input[type="radio"]{margin:0}
 .buttonbar a{display:inline-block;text-align:center;align-content:center;padding:.3em}
 #admin-main-menu{display:grid;grid-template-areas:"infoboxes" "mainmenu";grid-template-columns:1fr;grid-template-rows:auto auto;gap:.75em}
 #admin-main-menu > *{margin:0;padding:0}
-#additional-admin-info{font-size:.82em;grid-area:infoboxes}
 #additional-admin-info > div{background:#f9f9f9;border:1px solid #bacbdf;padding:0}
+#additional-admin-info{grid-area:infoboxes}
 #additional-admin-info > div:not(:last-child){margin:0 0 .75em 0}
 #additional-admin-info > div > *{margin:0;padding-inline:.375em}
 #additional-admin-info :is(p, dl, ul, ol){padding-block:.375em;line-height:1.5}
