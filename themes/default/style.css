@@ -372,7 +372,6 @@ h2.sidebar a:active {
 #latest-postings li {
 	margin: 0;
 	padding: 0;
-	line-height: 1.5em;
 	word-wrap: break-word;
 	overflow: hidden;
 }
@@ -381,7 +380,6 @@ h2.sidebar a:active {
 }
 #latest-postings li a {
 	background-color: #f0f0f0;
-	line-height: 1.5;
 	text-decoration: none;
 	display: block;
 	margin: 0;
