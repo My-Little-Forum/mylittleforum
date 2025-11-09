@@ -1,6 +1,6 @@
 {if $tag_cloud || $latest_postings || $admin || $mod}
 <div id="main-grid" class="threaded">
-<div id="sidebar"{if $usersettings.sidebar==0} class="js-display-fold"{/if}>
+<aside id="sidebar"{if $usersettings.sidebar==0} class="js-display-fold"{/if}>
 <h2 class="sidebar"><a href="index.php?toggle_sidebar=true" title="{#toggle_sidebar#}">{#sidebar#}</a></h2>
 <div id="sidebarcontent">
 {if $latest_postings}
@@ -34,7 +34,7 @@
 </div>
 {/if}
 </div>
-</div>
+</aside>
 <div id="threadlist">
 {/if}
 

@@ -52,6 +52,8 @@ input.small,select.small{font-size:.82em}
 #footermenu li:not(:last-child){border-inline-end:1px solid #000;padding-inline-end:.4em}
 #pbmlf{text-align:center;font-size:.82em;color:gray;grid-area:projectlink}
 #pbmlf a{color:gray;text-decoration:none}
+aside{font-size:.82em}
+aside h3{font-size:1em;line-height:1.7;font-weight:400;margin:0;padding-block:0;padding-inline:.375em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
 #main-grid{display:grid;grid-template-columns:calc(100vw - 2em);grid-template-rows:auto auto;gap:.75em;grid-template-areas:"sidebar" "threadlist"}
 #threadlist{grid-area:threadlist;}
 #sidebar{grid-area:sidebar;position:relative;margin:0;padding:0}
@@ -61,11 +63,8 @@ h2.sidebar a{display:block;color:#000;padding-inline:1.625em .375em;background:u
 h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underline}
 .js-display-fold h2.sidebar {margin-block:0}
 #sidebar div{position:relative;z-index:2}
-#sidebarcontent{font-size:.82em}
 #sidebarcontent > div{background:#f9f9f9;border:1px solid #bacbdf;padding:0}
 #sidebarcontent > div:not(:last-child){margin: 0 0 .75em 0}
-#sidebarcontent{font-size:.82em}
-#sidebarcontent > div h3{font-size:1em;line-height:1.7;font-weight:400;margin:0;padding:0 .375em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
 #latest-postings a.hide-sidebar{position:absolute;top:2px;right:4px;margin:0;padding:0;line-height:11px}
 #latest-postings ul{max-width:100%;list-style:none;margin:0;padding:0}
 #latest-postings li{margin:0;padding:0;line-height:1.5em;word-wrap:break-word;overflow:hidden}
@@ -84,7 +83,6 @@ h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underl
 #mod-options a{padding-inline:.375em}
 input[name=sort_of_agreement] + iframe {height:400px;height:60vh}
 #usersonline{font-size:.82em;background:#f9f9f9;border:1px solid #bacbdf;margin:20px 0}
-#usersonline h3{font-size:1em;line-height:1.7;font-weight:400;margin:0;padding:0 .375em;background:#d2ddea; background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
 #usersonline p{margin:0;padding:7px 5px}
 .posting img.avatar{float:right;float:inline-end;margin:0 0 20px 20px}
 .posting h1{margin:0 0 2px;padding:0}
@@ -285,7 +283,6 @@ ul.radiolist input[type="radio"],ul.radiobar input[type="radio"]{margin:0}
 #additional-admin-info > div{background:#f9f9f9;border:1px solid #bacbdf;padding:0}
 #additional-admin-info > div:not(:last-child){margin:0 0 .75em 0}
 #additional-admin-info > div > *{margin:0;padding-inline:.375em}
-#additional-admin-info h3{font-size:1em;line-height:1.7em;background:#d2ddea;background:linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%)}
 #additional-admin-info :is(p, dl, ul, ol){padding-block:.375em;line-height:1.5}
 #additional-admin-info dl{display:grid;gap:.25em}
 #additional-admin-info dl > div dt{float:inline-start;margin-inline-end:.625em}

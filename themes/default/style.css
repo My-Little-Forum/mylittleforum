@@ -281,6 +281,19 @@ select.small {
 	color: #808080;
 	text-decoration: none;
 }
+aside {
+	font-size: 0.82em;
+}
+aside h3 {
+	font-size:1 em;
+	line-height: 1.7;
+	font-weight: 400;
+	margin: 0;
+	padding-block: 0;
+	padding-inline: 0.375em;
+	background :#d2ddea;
+	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
+}
 
 #main-grid {
 	display: grid;
@@ -333,9 +346,6 @@ h2.sidebar a:active {
 	position: relative;
 	z-index: 2;
 }
-#sidebarcontent {
-	font-size: 0.82em;
-}
 #sidebarcontent > div {
 	background: #f9f9f9;
 	border: 1px solid #bacbdf;
@@ -343,18 +353,6 @@ h2.sidebar a:active {
 }
 #sidebarcontent > div:not(:last-child) {
 	margin: 0 0 0.75em 0;
-}
-#sidebarcontent {
-	font-size: 0.82em;
-}
-#sidebarcontent div h3 {
-	font-size: 1em;
-	line-height: 1.7;
-	font-weight: normal;
-	margin: 0;
-	padding: 0 0.375em;
-	background: #d2ddea;
-	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
 }
 
 #latest-postings a.hide-sidebar {
@@ -448,15 +446,6 @@ input[name=sort_of_agreement] + iframe {
 	background: #f9f9f9;
 	border: 1px solid #bacbdf;
 	margin: 20px 0 20px 0;
-}
-#usersonline h3 {
-	font-size: 1em;
-	line-height: 1.7em;
-	font-weight: normal;
-	margin: 0;
-	padding: 0 5px 0 5px;
-	background: #d2ddea;
-	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
 }
 #usersonline p {
 	margin: 0;
@@ -1432,12 +1421,6 @@ ul.radiobar input[type="radio"]{
 #additional-admin-info > div > * {
 	margin: 0;
 	padding-inline: 0.375em;
-}
-#additional-admin-info h3 {
-	font-size: 1em;
-	line-height: 1.7em;
-	background: #d2ddea;
-	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
 }
 #additional-admin-info :is(p, dl, ul, ol) {
 	padding-block: 0.375em;
