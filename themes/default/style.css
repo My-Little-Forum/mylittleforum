@@ -402,8 +402,6 @@ h2.sidebar a:active {
 #tagcloud p {
 	margin: 0;
 	padding: 5px;
-	font-size: 0.69em;
-	line-height: 1.5em;
 }
 #tagcloud a.hide-sidebar {
 	position: absolute;
