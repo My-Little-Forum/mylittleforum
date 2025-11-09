@@ -60,8 +60,10 @@
 
 {if $users_online}
 <aside id="usersonline">
-<h3>{#currently_online#}</h3>
-<p>{foreach name="users_online" from=$users_online item=user}<a href="index.php?mode=user&amp;show_user={$user.id}">{$user.name}</a>{if !$smarty.foreach.users_online.last}, {/if}{/foreach}</p>
+ <div>
+  <h3>{#currently_online#}</h3>
+  <p>{foreach name="users_online" from=$users_online item=user}<a href="index.php?mode=user&amp;show_user={$user.id}">{$user.name}</a>{if !$smarty.foreach.users_online.last}, {/if}{/foreach}</p>
+ </div>
 </aside>
 {/if}
 
