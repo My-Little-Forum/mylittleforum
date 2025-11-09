@@ -73,8 +73,8 @@ h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underl
 #latest-postings li a:visited .entry-title,#latest-postings li a.read .entry-title{color:#007}
 #latest-postings li a:focus,#latest-postings li a:hover{background:#efefef;text-decoration:none}
 #latest-postings li a:focus .entry-title,#latest-postings li a:hover .entry-title{text-decoration:underline}
-#tagcloud p{margin:0;padding:5px;font-size:.69em;line-height:1.5em}
 #latest-postings li a .entry-date,#latest-postings li a.read .entry-date{font-size:.86em;color:gray}
+#tagcloud p{margin:0;padding:5px}
 #tagcloud a.hide-sidebar{position:absolute;top:2px;right:4px;margin:0;padding:0;line-height:11px}
 #tagcloud strong{font-weight:700;font-size:1.051em}
 #mod-options{list-style:none;margin:0;padding:0;line-height:1.7}
