@@ -1853,6 +1853,7 @@ figure.full-size-img img {
 #ajax-preview-content {
 	margin: 0;
 	padding: 0 14px;
+	font-size: 0.82em;
 	max-height: 350px;
 	overflow: auto;
 	clear: both;
@@ -1861,7 +1862,7 @@ figure.full-size-img img {
 #ajax-preview-replylink-wrapper {
 	margin: 0;
 	padding: 0;
-	font-size: 0.69em !important;
+	font-size: 0.82em;
 }
 #ajax-preview-replylink-wrapper:before {
 	content: "[ ";
@@ -1879,7 +1880,6 @@ figure.full-size-img img {
 }
 #ajax-preview-content p,
 #ajax-preview-content ul {
-	font-size: 0.82em;
 	line-height: 1.5em;
 }
 #ajax-preview-content li,
