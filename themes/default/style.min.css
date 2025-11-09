@@ -41,7 +41,6 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 input.small,select.small{font-size:.82em}
 #content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
 #content p,#content ul,#content td,#postingform{max-width:60em}
-#content li,#content ul ul{font-size:1em}
 #content .xsmall{font-size:.69em;line-height:1.19em;color:gray;font-weight:400}
 #content .small{font-size:.82em;line-height:1.19em;font-weight:400}
 #footer{font-size:.82em;line-height:1.5;padding:.5em 1em;padding:0.5rem 1rem;background:#f9f9f9;border-top:1px solid #bacbdf;display:grid;gap:.75em;grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas: "statistics" "footerlinks" "projectlink"}
