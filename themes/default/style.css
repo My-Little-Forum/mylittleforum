@@ -462,13 +462,6 @@ input[name=sort_of_agreement] + iframe {
 }
 *+html .posting ul {
 	padding-left: 17px;
-} /* IE 7 only */
-.posting li {
-	font-size: 0.82em;
-	line-height: 1.5em;
-}
-.posting li li {
-	font-size:1em;
 }
 .quote {
 	color: #6f6f6f;

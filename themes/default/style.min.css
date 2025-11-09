@@ -88,8 +88,6 @@ input[name=sort_of_agreement] + iframe {height:400px;height:60vh}
 .posting h1 .category{font-size:.82em}
 .posting .author{margin:1px 0 18px;font-style:italic}
 *+html .posting ul{padding-left:17px}
-.posting li{font-size:.82em;line-height:1.5em}
-.posting li li{font-size:1em}
 .quote{color:#6f6f6f;font-style:italic}
 .edited,.ago{font-size:.82em;color:gray}
 img.no-text{cursor:help}
