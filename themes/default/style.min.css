@@ -367,8 +367,8 @@ figure.full-size-img img{display:block}
 #ajax-preview-main{border-top:1px solid silver;position:absolute;top:15px;inset-inline-end:0;width:500px}
 #ajax-preview-close{float:right;float:inline-end;cursor:pointer}
 #ajax-preview-body{background:#ffc;margin:0;padding:0;border-inline:1px solid silver;border-bottom:1px solid silver}
-#ajax-preview-content{margin:0;padding:0 14px;font-size:.82em;max-height:350px;overflow:auto;clear:both;padding-bottom:16px}
-#ajax-preview-replylink-wrapper{margin:0;padding:0;font-size:.82em;}
+#ajax-preview-content{margin:0;padding:0 14px;font-size:.86em;max-height:350px;overflow:auto;clear:both;padding-bottom:16px}
+#ajax-preview-replylink-wrapper{margin:0;padding:0;font-size:.86em;}
 #ajax-preview-replylink-wrapper:before{content:"[ "}
 #ajax-preview-replylink-wrapper:after{content:" ]"}
 #ajax-preview-replylink{margin:0;padding:0}
