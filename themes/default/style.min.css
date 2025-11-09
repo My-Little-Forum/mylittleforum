@@ -1,5 +1,6 @@
 *,::before,::after{box-sizing:border-box}
 body{color:#000;background:#f9f9f9;margin:0;padding:0;text-align:start;font-family:verdana,arial,sans-serif;font-size:1em;font-size:clamp(1rem,.7rem + .7vw,1.2rem);display:flex;flex-direction:column;min-height:100vh}
+.small{font-size:.82em}
 h1{margin-top:0;font-size:1.25em;font-weight:700}
 h2{margin-top:20px;font-size:1.25em;font-weight:700}
 p{margin-top:0}
@@ -33,16 +34,14 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #subnav > *{margin:0;padding:0}
 #subnav-1 *{margin:0;padding:0;text-wrap:nowrap;font-weight:bold}
 #subnav-2 {display:flex;flex-wrap:wrap;gap:0 .5em}
-#subnav .small{font-size:.82em}
 #subnav form{display:inline}
 #subnav form div{display:inline}
 #subnavmenu{display:flex;flex-wrap:wrap;gap:0 .5em;margin:0;padding:0;list-style:none}
 #subnavmenu a.order-1 img.icon{transform:rotate(180deg)}
-input.small,select.small{font-size:.82em}
 #content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
 #content p,#content ul,#content td,#postingform{max-width:60em}
 #content .xsmall{font-size:.69em;line-height:1.19em;color:gray;font-weight:400}
-#content .small{font-size:.82em;line-height:1.19em;font-weight:400}
+#content .small{line-height:1.19em;font-weight:400}
 #footer{font-size:.82em;line-height:1.5;padding:.5em 1em;padding:0.5rem 1rem;background:#f9f9f9;border-top:1px solid #bacbdf;display:grid;gap:.75em;grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas: "statistics" "footerlinks" "projectlink"}
 #footer > *{margin:0;padding:0;}
 #statistics{grid-area:statistics}
@@ -198,7 +197,7 @@ table.normaltab td.c{width:15em;background:#d2ddea;background:linear-gradient(to
 table.normaltab td.d{background:#f5f5f5}
 table.normaltab td.subject{min-width:50%}
 #content table.normaltab p{font-size:1em}
-#content table.normaltab .small,#content table.normaltab .xsmall{font-size:.82em}
+#content table.normaltab .xsmall{font-size:.82em}
 table.normaltab tr.drag td{background:#ddd}
 p.userdata{margin:0}
 .normalform{font-size:.82em;margin:0}
@@ -215,7 +214,7 @@ div#entry-input,#postingform input[type="text"],#postingform input[type="email"]
 #postingform #insert-quote{margin:0;font-size:.82em;padding:0;background:transparent;border:none;color:#00c}
 #postingform #insert-quote:focus,#postingform #insert-quote:hover{color:#00f}
 #postingform #text{margin:0;width:100%;height:24em}
-#postingform .small,#postingform .xsmall{font-size:.82em}
+#postingform .xsmall{font-size:.82em}
 #delete_cookie{font-size:.82em}
 div#format-bar{margin:0 !important;padding:.375em;background:#f4f4f6}
 #postingform #format-bar > *{display:flex;flex-wrap:wrap;gap:.25em}
@@ -297,7 +296,6 @@ main > .adminmenu{margin-block:1em;margin-inline:0;padding:0}
 .adminmenu a:focus,.adminmenu a:hover{border-color:#bacbdf50;background:#bacbdf10}
 .adminmenu a:focus span,.adminmenu a:hover span{text-decoration:underline}
 .adminmenu a img{margin:0;padding:0}
-#content .adminmenu .small{font-size:.82em}
 h2#admin_header{margin:0 0 .5em 0}
 .manage-postings{border:1px solid #bacbdf;margin-top:25px;background:#f9f9f9}
 .manage-postings legend{font-size:.82em;font-weight:700}

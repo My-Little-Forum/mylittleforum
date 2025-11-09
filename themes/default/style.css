@@ -25,6 +25,9 @@ body {
 	flex-direction: column;
 	min-height: 100vh;
 }
+.small {
+	font-size: 0.82em;
+}
 h1 {
 	margin-top: 0;
 	font-size: 1.25em;
@@ -176,9 +179,6 @@ body > * {
 	flex-wrap: wrap;
 	gap: 0 0.5em;
 }
-#subnav .small {
-	font-size: 0.82em;
-}
 #subnav form {
 	display: inline;
 }
@@ -196,11 +196,6 @@ body > * {
 }
 #subnavmenu a.order-1 img.icon {
 	transform: rotate(180deg);
-}
-
-input.small,
-select.small {
-	font-size: 0.82em;
 }
 
 #content {
@@ -225,7 +220,6 @@ select.small {
 	font-weight: normal;
 }
 #content .small {
-	font-size: 0.82em;
 	line-height: 1.19em;
 	font-weight: normal;
 }
@@ -982,7 +976,6 @@ table.normaltab td.subject {
 #content table.normaltab p {
 	font-size: 1em;
 }
-#content table.normaltab .small,
 #content table.normaltab .xsmall {
 	font-size: 0.82em;
 }
@@ -1062,7 +1055,6 @@ div#entry-input,
 	height: 24em;
 }
 
-#postingform .small,
 #postingform .xsmall {
 	font-size: 0.82em;
 }
@@ -1485,9 +1477,6 @@ main > .adminmenu {
 .adminmenu a img {
 	margin: 0;
 	padding: 0;
-}
-#content .adminmenu .small {
-	font-size: 0.82em;
 }
 h2#admin_header {
 	margin: 0 0 0.5em 0;
