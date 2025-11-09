@@ -1725,11 +1725,11 @@ td ul.thread {
 	list-style-type: none;
 }
 td ul.thread ul {
-	font-size: 0.82em !important;
 	line-height: 1.25em;
+	font-size: 0.82em;
 }
 td ul.thread ul ul {
-	font-size: 1em !important;
+	font-size: 1em;
 }
 td ul.folded {
 	margin: 0;
