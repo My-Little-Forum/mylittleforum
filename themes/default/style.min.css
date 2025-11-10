@@ -81,7 +81,6 @@ h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underl
 #mod-options li:not(:last-child){margin-block-end:0.25em}
 #mod-options a{padding-inline:.375em}
 input[name=sort_of_agreement] + iframe {height:400px;height:60vh}
-#usersonline{background-color:#f9f9f9;border:1px solid #bacbdf;margin:20px 0}
 #usersonline p{margin:0;padding:7px 5px}
 .posting img.avatar{float:right;float:inline-end;margin:0 0 20px 20px}
 .posting h1{margin:0 0 2px;padding:0}

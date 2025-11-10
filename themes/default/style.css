@@ -440,15 +440,10 @@ input[name=sort_of_agreement] + iframe {
 	height: 400px;
 	height: 60vh;
 }
-#usersonline {
-	background: #f9f9f9;
-	border: 1px solid #bacbdf;
-	margin: 20px 0 20px 0;
-}
+
 #usersonline p {
 	margin: 0;
 	padding: 7px 5px 7px 5px;
-	line-height: 1.5em;
 }
 
 .posting img.avatar {
