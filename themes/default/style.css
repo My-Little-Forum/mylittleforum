@@ -300,7 +300,6 @@ aside h3 {
 	padding-block: 0;
 	padding-inline: 0.375em;
 	background: #d2ddea;
->>>>>>> 243b4908 (Change: summarise the identical CSS rules for aside children elements)
 	background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 100%);
 }
 
@@ -354,11 +353,6 @@ h2.sidebar a:active {
 #sidebar div {
 	position: relative;
 	z-index: 2;
-}
-#sidebarcontent > div {
-	background: #f9f9f9;
-	border: 1px solid #bacbdf;
-	padding: 0;
 }
 #sidebarcontent > div:not(:last-child) {
 	margin: 0 0 0.75em 0;
