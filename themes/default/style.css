@@ -1898,7 +1898,7 @@ figure.full-size-img img {
 	cursor: move;
 }
 .js-display-fold .wrapper,
-.js-display-fold #sidebarcontent {
+#sidebar.js-display-fold > div {
 	display: none;
 }
 .js-display-fold img.avatar {
