@@ -1946,7 +1946,7 @@ form .hp {
 		grid-template-columns: auto 18em;
 		grid-template-rows: auto;
 }
-	#main-grid.threaded:has(div.js-display-fold) {
+	#main-grid.threaded:has(aside.js-display-fold) {
 		grid-template-columns: auto 8.5em;
 }
 	h2.sidebar a {
