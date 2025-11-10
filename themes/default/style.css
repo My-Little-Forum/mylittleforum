@@ -354,7 +354,7 @@ h2.sidebar a:active {
 	position: relative;
 	z-index: 2;
 }
-#sidebarcontent > div:not(:last-child) {
+#sidebar > div:not(:last-child) {
 	margin: 0 0 0.75em 0;
 }
 
