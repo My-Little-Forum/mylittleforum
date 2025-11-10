@@ -443,7 +443,7 @@ input[name=sort_of_agreement] + iframe {
 
 #usersonline p {
 	margin: 0;
-	padding: 7px 5px 7px 5px;
+	padding: 0.375em;
 }
 
 .posting img.avatar {
