@@ -379,7 +379,7 @@ figure.full-size-img img{display:block}
 .js-visibility-hidden{visibility:hidden}
 .js-cursor-pointer{cursor:pointer}
 .js-cursor-move{cursor:move}
-.js-display-fold .wrapper,.js-display-fold #sidebarcontent{display:none}
+.js-display-fold .wrapper,#sidebar.js-display-fold > div{display:none}
 .js-display-fold img.avatar{width:1.6em;height:1.6em}
 form .hp{display:none}
 @media screen and (min-width:38em) {
