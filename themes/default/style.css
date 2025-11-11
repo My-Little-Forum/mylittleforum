@@ -1877,7 +1877,10 @@ figure.full-size-img img {
 	height: auto;
 }
 
-/* class to make alements visually hiddeb but leave them accessible for screenreaders (.sr-only = screen readers only) */
+/**
+ * class to make elements visually hidden but to leave them
+ * accessible for screenreaders (.sr-only = screen readers only)
+ */
 .sr-only:not(:focus):not(:active) {
 	clip: rect(0 0 0 0);
 	clip-path: inset(50%);
