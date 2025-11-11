@@ -446,7 +446,7 @@ input[name=sort_of_agreement] + iframe {
 }
 #usersonline p {
 	margin: 0;
-	padding: 0.375em;
+	padding: 0.25em 0.375em;
 }
 
 .posting img.avatar {
