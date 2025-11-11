@@ -82,6 +82,7 @@ h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underl
 #mod-options a{padding-inline:.375em}
 input[name=sort_of_agreement] + iframe {height:400px;height:60vh}
 #usersonline p{margin:0;padding:0.375em}
+#usersonline{margin-block:1em 0}
 .posting img.avatar{float:right;float:inline-end;margin:0 0 20px 20px}
 .posting h1{margin:0 0 2px;padding:0}
 .posting h1 .category{font-size:.86em}

@@ -441,6 +441,9 @@ input[name=sort_of_agreement] + iframe {
 	height: 60vh;
 }
 
+#usersonline {
+	margin-block: 1em 0;
+}
 #usersonline p {
 	margin: 0;
 	padding: 0.375em;
