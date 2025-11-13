@@ -2,7 +2,6 @@
 <div id="main-grid" class="threaded">
 <aside id="sidebar"{if $usersettings.sidebar==0} class="js-display-fold"{/if}>
 <h2 class="sidebar"><a href="index.php?toggle_sidebar=true" title="{#toggle_sidebar#}">{#sidebar#}</a></h2>
-<div id="sidebarcontent">
 {if $latest_postings}
 <div id="latest-postings">
 <h3>{#latest_postings_hl#}</h3>
@@ -33,7 +32,6 @@
 	</ul>
 </div>
 {/if}
-</div>
 </aside>
 <div id="threadlist">
 {/if}
