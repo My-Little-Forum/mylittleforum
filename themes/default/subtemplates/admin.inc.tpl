@@ -300,7 +300,14 @@
 <td>{if $categories_list[row].accession==2}{#cat_accessible_admin_mod#}{elseif $categories_list[row].accession==1}{#cat_accessible_reg_users#}{else}{#cat_accessible_all#}{/if}</td>
 <td>{$categories_list[row].threads_in_category}</td>
 <td>{$categories_list[row].postings_in_category}</td>
-<td><a href="index.php?mode=admin&amp;edit_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/category-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a> &nbsp; <a href="index.php?mode=admin&amp;delete_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/category-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="{#up#}" title="{#up#}" width="18" height="18" /></a>&nbsp;<a href="index.php?mode=admin&amp;move_down_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-down.svg" alt="{#down#}" title="{#down#}" width="18" height="18" /></a></td>
+<td>
+ <span class="function-menu">
+  <a href="index.php?mode=admin&amp;edit_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/category-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a>
+  <a href="index.php?mode=admin&amp;delete_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/category-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18"/></a>
+  <a href="index.php?mode=admin&amp;move_up_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="{#up#}" title="{#up#}" width="18" height="18" /></a>
+  <a href="index.php?mode=admin&amp;move_down_category={$categories_list[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-down.svg" alt="{#down#}" title="{#down#}" width="18" height="18" /></a>
+ </span>
+</td>
 </tr>
 {/section}
 </tbody>
@@ -434,7 +441,7 @@
 <th><a href="index.php?mode=admin&amp;action=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;order=logins&amp;descasc={if $descasc=="ASC" && $order=="logins"}DESC{else}ASC{/if}&amp;ul={$ul}" title="{#order_linktitle#}">{#user_logins#}</a>{if $order=="logins" && $descasc=="ASC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/order-asc.svg" alt="[asc]" width="11" height="11" />{elseif $order=="logins" && $descasc=="DESC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/order-desc.svg" alt="[desc]" width="11" height="11" />{/if}</th>
 <th><a href="index.php?mode=admin&amp;action=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;order=last_login&amp;descasc={if $descasc=="ASC" && $order=="last_login"}DESC{else}ASC{/if}&amp;ul={$ul}" title="{#order_linktitle#}">{#last_login#}</a>{if $order=="last_login" && $descasc=="ASC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/order-asc.svg" alt="[asc]" width="11" height="11" />{elseif $order=="last_login" && $descasc=="DESC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/order-desc.svg" alt="[desc]" width="11" height="11" />{/if}</th>
 <th><a href="index.php?mode=admin&amp;action=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;order=user_lock&amp;descasc={if $descasc=="ASC" && $order=="user_lock"}DESC{else}ASC{/if}&amp;ul={$ul}" title="{#order_linktitle#}">{#lock#}</a>{if $order=="user_lock" && $descasc=="ASC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/order-asc.svg" alt="[asc]" width="11" height="11" />{elseif $order=="user_lock" && $descasc=="DESC"}&nbsp;<img src="{$THEMES_DIR}/{$theme}/images/order-desc.svg" alt="[desc]" width="11" height="11" />{/if}</th>
-<th colspan="2">&nbsp;</th>
+<th>&nbsp;</th>
 </tr>
 </thead>
 <tbody>
@@ -448,8 +455,12 @@
 <td><span class="small">{$userdata[row].logins}</span></td>
 <td><span class="small">{if $userdata[row].logins > 0}{$userdata[row].last_login_time}{else}&nbsp;{/if}</span></td>
 <td><span class="small">{if $userdata[row].user_type>0}{if $userdata[row].user_lock==0}{#unlocked#}{else}{#locked#}{/if}{elseif $userdata[row].user_lock==0}<a href="index.php?mode=admin&amp;user_lock={$userdata[row].user_id}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;page={$page}&amp;order={$order}&amp;descasc={$descasc}" title="{#lock_title#}">{#unlocked#}</a>{else}<a style="color:red;" href="index.php?mode=admin&amp;user_lock={$userdata[row].user_id}{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;page={$page}&amp;order={$order}&amp;descasc={$descasc}" title="{#unlock_title#}">{#locked#}</a>{/if}</span></td>
-<td><a href="index.php?mode=admin&amp;edit_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/user-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a></td>
-<td><a href="index.php?mode=admin&amp;delete_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/user-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18" /></a></td>
+<td>
+ <span class="function-menu">
+  <a href="index.php?mode=admin&amp;edit_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/user-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a>
+  <a href="index.php?mode=admin&amp;delete_user={$userdata[row].user_id}"><img src="{$THEMES_DIR}/{$theme}/images/user-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18" /></a>
+ </span>
+</td>
 </tr>
 {/section}
 </tbody>
@@ -695,9 +706,12 @@
 <td>{$smilies[row].codes}</td>
 <td>{$smilies[row].title}</td>
 <td>
-
-<a href="index.php?mode=admin&amp;edit_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/smilies-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a> &nbsp; <a href="index.php?mode=admin&amp;delete_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/smilies-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="{#move_up#}" title="{#move_up#}" width="18" height="18" /></a><a href="index.php?mode=admin&amp;move_down_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-down.svg" alt="{#move_down#}" title="{#move_down#}" width="18" height="18" /></a>
-
+ <span class="function-menu">
+  <a href="index.php?mode=admin&amp;edit_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/smilies-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a>
+  <a href="index.php?mode=admin&amp;delete_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/smilies-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18"/></a>
+  <a href="index.php?mode=admin&amp;move_up_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="{#move_up#}" title="{#move_up#}" width="18" height="18" /></a>
+  <a href="index.php?mode=admin&amp;move_down_smiley={$smilies[row].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-down.svg" alt="{#move_down#}" title="{#move_down#}" width="18" height="18" /></a>
+ </span>
 </td>
 </tr>
 {/section}
@@ -1014,7 +1028,14 @@
 <td><a href="index.php?mode=page&amp;id={$pages[page].id}" title="{$pages[page].title}"><strong class="control">{$pages[page].title}</strong></a></td>
 <td><span class="small">{if $pages[page].menu_linkname!=''}{$pages[page].menu_linkname}{else}&nbsp;{/if}</span></td>
 <td><span class="small">{if $pages[page].access==1}{#page_access_reg_users#}{elseif $pages[page].access==0}{#page_access_public#}{/if}</span></td>
-<td><a href="index.php?mode=admin&amp;edit_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/file-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a> &#160; <a href="index.php?mode=admin&amp;delete_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/file-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18"/></a> &nbsp; <a href="index.php?mode=admin&amp;move_up_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="{#move_up#}" title="{#move_up#}" width="18" height="18" /></a>&nbsp;<a href="index.php?mode=admin&amp;move_down_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-down.svg" alt="{#move_down#}" title="{#move_down#}" width="18" height="18" /></a></td>
+<td>
+ <span class="function-menu">
+  <a href="index.php?mode=admin&amp;edit_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/file-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a>
+  <a href="index.php?mode=admin&amp;delete_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/file-delete.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18"/></a>
+  <a href="index.php?mode=admin&amp;move_up_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="{#move_up#}" title="{#move_up#}" width="18" height="18" /></a>
+  <a href="index.php?mode=admin&amp;move_down_page={$pages[page].id}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-down.svg" alt="{#move_down#}" title="{#move_down#}" width="18" height="18" /></a>
+ </span>
+</td>
 </tr>
 {/section}
 </tbody>
