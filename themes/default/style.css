@@ -85,6 +85,10 @@ img.icon {
 	width: 0.875em;
 	height: auto;
 }
+.tail a img {
+	width: 0.75em;
+	height: auto;
+}
 
 body > * {
 	margin: 0;
