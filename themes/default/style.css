@@ -81,6 +81,14 @@ a.boldlink {
 html[dir="rtl"] img.icon.wd-dependent {
 	transform: scale(-1, 1);
 }
+img.icon {
+	width: 0.875em;
+	height: auto;
+}
+.tail a img {
+	width: 0.75em;
+	height: auto;
+}
 
 body > * {
 	margin: 0;
@@ -441,9 +449,12 @@ input[name=sort_of_agreement] + iframe {
 	height: 60vh;
 }
 
+#usersonline {
+	margin-block: 1em 0;
+}
 #usersonline p {
 	margin: 0;
-	padding: 0.375em;
+	padding: 0.25em 0.375em;
 }
 
 .posting img.avatar {
@@ -1870,7 +1881,10 @@ figure.full-size-img img {
 	height: auto;
 }
 
-/* class to make alements visually hiddeb but leave them accessible for screenreaders (.sr-only = screen readers only) */
+/**
+ * class to make elements visually hidden but to leave them
+ * accessible for screenreaders (.sr-only = screen readers only)
+ */
 .sr-only:not(:focus):not(:active) {
 	clip: rect(0 0 0 0);
 	clip-path: inset(50%);
