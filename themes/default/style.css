@@ -980,6 +980,10 @@ table.normaltab td.subject {
 table.normaltab tr.drag td {
 	background: #ddd;
 }
+table .function-menu {
+	display: flex;
+	gap: 0 0.25em;
+}
 
 p.userdata {
 	margin: 0;

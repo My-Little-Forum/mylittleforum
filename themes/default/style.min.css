@@ -195,6 +195,7 @@ table.normaltab td.subject{min-width:50%}
 #content table.normaltab p{font-size:1em}
 #content table.normaltab .xsmall{font-size:.86em}
 table.normaltab tr.drag td{background:#ddd}
+table .function-menu{display:flex;gap:0 .25em}
 p.userdata{margin:0}
 .normalform{font-size:.86em;margin:0}
 .normalform:not(:first-child){margin:1em 0 0}

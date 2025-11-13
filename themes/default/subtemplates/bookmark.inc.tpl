@@ -27,7 +27,14 @@
 							{/foreach}
 						</span></td>
 						
-						<td><a href="index.php?mode=bookmarks&amp;edit_bookmark={$row.bid}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/file-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a> &nbsp; <a href="index.php?mode=bookmarks&amp;delete_bookmark={$row.bid}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/delete-cross.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18"/></a> &nbsp; <a href="index.php?mode=bookmarks&amp;move_up_bookmark={$row.bid}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="{#up#}" title="{#up#}" width="18" height="18" /></a>&nbsp;<a href="index.php?mode=bookmarks&amp;move_down_bookmark={$row.bid}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-down.svg" alt="{#down#}" title="{#down#}" width="18" height="18" /></a></td>
+						<td>
+							<span class="function-menu">
+								<a href="index.php?mode=bookmarks&amp;edit_bookmark={$row.bid}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/file-edit.svg" title="{#edit#}" alt="{#edit#}" width="18" height="18" /></a>
+								<a href="index.php?mode=bookmarks&amp;delete_bookmark={$row.bid}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/delete-cross.svg" title="{#delete#}" alt="{#delete#}" width="18" height="18"/></a>
+								<a href="index.php?mode=bookmarks&amp;move_up_bookmark={$row.bid}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-up.svg" alt="{#up#}" title="{#up#}" width="18" height="18" /></a>
+								<a href="index.php?mode=bookmarks&amp;move_down_bookmark={$row.bid}"><img class="control" src="{$THEMES_DIR}/{$theme}/images/arrow-down.svg" alt="{#down#}" title="{#down#}" width="18" height="18" /></a>
+							</span>
+						</td>
 					</tr>
 				{/foreach}
 			</tbody>
