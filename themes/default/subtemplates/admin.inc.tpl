@@ -5,32 +5,32 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<table class="normaltab">
+<table class="normaltab descript">
 <tr>
-<td class="c"><strong>{#forum_name#}</strong><br /><span class="small">{#forum_name_desc#}</span></td>
-<td class="d"><input type="text" name="forum_name" value="{$edSet.forum_name|escape}" size="40" /></td>
+<td><strong>{#forum_name#}</strong><br /><span class="small">{#forum_name_desc#}</span></td>
+<td><input type="text" name="forum_name" value="{$edSet.forum_name|escape}" size="40" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#forum_description#}</strong><br /><span class="small">{#forum_description_desc#}</span></td>
-<td class="d"><input type="text" name="forum_description" value="{$edSet.forum_description|escape}" size="40" /></td>
+<td><strong>{#forum_description#}</strong><br /><span class="small">{#forum_description_desc#}</span></td>
+<td><input type="text" name="forum_description" value="{$edSet.forum_description|escape}" size="40" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#forum_address#}</strong><br /><span class="small">{#forum_address_desc#}</span></td>
-<td class="d"><input type="text" name="forum_address" value="{$edSet.forum_address|escape}" size="40" /></td>
+<td><strong>{#forum_address#}</strong><br /><span class="small">{#forum_address_desc#}</span></td>
+<td><input type="text" name="forum_address" value="{$edSet.forum_address|escape}" size="40" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#forum_email#}</strong><br /><span class="small">{#forum_email_desc#}</span></td>
-<td class="d"><input type="text" name="forum_email" value="{$edSet.forum_email|escape}" size="40" /></td>
+<td><strong>{#forum_email#}</strong><br /><span class="small">{#forum_email_desc#}</span></td>
+<td><input type="text" name="forum_email" value="{$edSet.forum_email|escape}" size="40" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#forum_target_name#}</strong><br /><span class="small">{#forum_target_name_desc#}</span></td>
-<td class="d"><input type="text" name="link_open_target" value="{$edSet.link_open_target|escape}" size="20" /></td>
+<td><strong>{#forum_target_name#}</strong><br /><span class="small">{#forum_target_name_desc#}</span></td>
+<td><input type="text" name="link_open_target" value="{$edSet.link_open_target|escape}" size="20" /></td>
 </tr>
 
 {if $languages}
 <tr>
-<td class="c"><strong>{#default_language#}</strong><br /><span class="small">{#default_language_desc#}</span></td>
-<td class="d"><select name="language_file" size="1">
+<td><strong>{#default_language#}</strong><br /><span class="small">{#default_language_desc#}</span></td>
+<td><select name="language_file" size="1">
 {foreach from=$languages item=l}
 <option value="{$l.identifier}"{if $l.identifier==$edSet.language_file} selected="selected"{/if}>{$l.title}</option>
 {/foreach}
@@ -39,8 +39,8 @@
 {/if}
 
 <tr>
-<td class="c"><strong>{#default_time_zone#}</strong><br /><span class="small">{#default_time_zone_desc#}</span></td>
-<td class="d">
+<td><strong>{#default_time_zone#}</strong><br /><span class="small">{#default_time_zone_desc#}</span></td>
+<td>
 {if $time_zones}
 <p>
 <select id="time_zone" name="time_zone" size="1">
@@ -58,8 +58,8 @@
 
 {if $themes}
 <tr>
-<td class="c"><strong>{#default_theme#}</strong><br /><span class="small">{#default_theme_desc#}</span></td>
-<td class="d"><select name="theme" size="1">
+<td><strong>{#default_theme#}</strong><br /><span class="small">{#default_theme_desc#}</span></td>
+<td><select name="theme" size="1">
 {foreach from=$themes item=t}
 <option value="{$t.identifier}"{if $t.identifier==$edSet.theme} selected="selected"{/if}>{$t.title}</option>
 {/foreach}
@@ -68,17 +68,16 @@
 {/if}
 
 <tr>
-<td class="c"><strong>{#home_link#}</strong><br /><span class="small">{#home_link_desc#}</span></td>
-<td class="d"><input type="text" name="home_linkaddress" value="{$edSet.home_linkaddress|escape}" size="40" /></td>
+<td><strong>{#home_link#}</strong><br /><span class="small">{#home_link_desc#}</span></td>
+<td><input type="text" name="home_linkaddress" value="{$edSet.home_linkaddress|escape}" size="40" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#home_link_name#}</strong><br /><span class="small">{#home_link_name_desc#}</span></td>
-<td class="d"><input type="text" name="home_linkname" value="{$edSet.home_linkname|escape}" size="40" /></td>
+<td><strong>{#home_link_name#}</strong><br /><span class="small">{#home_link_name_desc#}</span></td>
+<td><input type="text" name="home_linkname" value="{$edSet.home_linkname|escape}" size="40" /></td>
 </tr>
-
 <tr>
-<td class="c"><strong>{#terms_of_use_settings#}</strong><br /><span class="small">{#terms_of_use_settings_desc#}</span></td>
-<td class="d">
+<td><strong>{#terms_of_use_settings#}</strong><br /><span class="small">{#terms_of_use_settings_desc#}</span></td>
+<td>
  <ul>
   <li><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $edSet.terms_of_use_agreement==1} checked="checked"{/if} /><label for="terms_of_use_agreement">{#terms_of_use_settings_enabled#}</label></li>
  </ul>
@@ -86,8 +85,8 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#data_privacy_statement#}</strong><br /><span class="small">{#data_privacy_statement_desc#}</span></td>
-<td class="d">
+<td><strong>{#data_privacy_statement#}</strong><br /><span class="small">{#data_privacy_statement_desc#}</span></td>
+<td>
  <ul>
   <li><input id="data_privacy_agreement" type="checkbox" name="data_privacy_agreement" value="1"{if $edSet.data_privacy_agreement==1} checked="checked"{/if} /><label for="data_privacy_agreement">{#data_privacy_settings_enabled#}</label></li>
  </ul>
@@ -96,8 +95,8 @@
 </tr>
 
 <tr>
-<td class="c"><strong>{#accession#}</strong><br /><span class="small">{#accession_desc#}</span></td>
-<td class="d">
+<td><strong>{#accession#}</strong><br /><span class="small">{#accession_desc#}</span></td>
+<td>
  <ul>
   <li><input id="access_for_all" type="radio" name="access_for_users_only" value="0"{if $edSet.access_for_users_only==0} checked="checked"{/if} /><label for="access_for_all">{#all_users#}</label></li>
   <li><input id="access_for_users_only" type="radio" name="access_for_users_only" value="1"{if $edSet.access_for_users_only==1} checked="checked"{/if} /><label for="access_for_users_only">{#only_registered_users#}</label></li>
@@ -105,8 +104,8 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#post_permission#}</strong><br /><span class="small">{#post_permission_desc#}</span></td>
-<td class="d">
+<td><strong>{#post_permission#}</strong><br /><span class="small">{#post_permission_desc#}</span></td>
+<td>
  <ul>
   <li><input id="entries_by_all" type="radio" name="entries_by_users_only" value="0"{if $edSet.entries_by_users_only==0} checked="checked"{/if} /><label for="entries_by_all">{#all_users#}</label></li>
   <li><input id="entries_by_users" type="radio" name="entries_by_users_only" value="1"{if $edSet.entries_by_users_only==1} checked="checked"{/if} /><label for="entries_by_users">{#only_registered_users#}</label></li>
@@ -114,8 +113,8 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#register_permission#}</strong><br /><span class="small">{#register_permission_desc#}</span></td>
-<td class="d">
+<td><strong>{#register_permission#}</strong><br /><span class="small">{#register_permission_desc#}</span></td>
+<td>
  <ul>
   <li><input id="register_mode_0" type="radio" name="register_mode" value="0"{if $edSet.register_mode==0} checked="checked"{/if} /><label for="register_mode_0">{#register_self#}</label></li>
   <li><input id="register_mode_1" type="radio" name="register_mode" value="1"{if $edSet.register_mode==1} checked="checked"{/if} /><label for="register_mode_1">{#register_self_locked#}</label></li>
@@ -124,8 +123,8 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#user_area#}</strong><br /><span class="small">{#user_area_desc#}</span></td>
-<td class="d">
+<td><strong>{#user_area#}</strong><br /><span class="small">{#user_area_desc#}</span></td>
+<td>
  <ul>
   <li><input id="public" type="radio" name="user_area_access" value="2"{if $edSet.user_area_access==2} checked="checked"{/if} /><label for="public">{#public_accessible#}</label></li>
   <li><input id="restricted_2_users" type="radio" name="user_area_access" value="1"{if $edSet.user_area_access==1} checked="checked"{/if} /><label for="restricted_2_users">{#accessible_reg_users_only#}</label></li>
@@ -134,20 +133,20 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#latest_postings#}</strong><br /><span class="small">{#latest_postings_desc#}</span></td>
-<td class="d"><input type="text" name="latest_postings" value="{$edSet.latest_postings|escape}" size="5" /></td>
+<td><strong>{#latest_postings#}</strong><br /><span class="small">{#latest_postings_desc#}</span></td>
+<td><input type="text" name="latest_postings" value="{$edSet.latest_postings|escape}" size="5" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#tag_cloud#}</strong><br /><span class="small">{#tag_cloud_desc#}</span></td>
-<td class="d">
+<td><strong>{#tag_cloud#}</strong><br /><span class="small">{#tag_cloud_desc#}</span></td>
+<td>
  <ul>
   <li><input id="tag_cloud" type="checkbox" name="tag_cloud" value="1"{if $edSet.tag_cloud==1} checked="checked"{/if} /><label for="tag_cloud">{#enable_tag_cloud#}</label></li>
  </ul>
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_postings#}</strong><br /><span class="small">{#edit_postings_desc#}</span></td>
-<td class="d">
+<td><strong>{#edit_postings#}</strong><br /><span class="small">{#edit_postings_desc#}</span></td>
+<td>
 {assign var="settings_edit_delay" value=$edSet.edit_delay}
 {assign var="input_edit_delay" value="<input type=\"text\" name=\"edit_delay\" value=\"$settings_edit_delay\" size=\"3\" />"}
 
@@ -172,8 +171,8 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#bbcode#}</strong><br /><span class="small">{#bbcode_desc#}</span></td>
-<td class="d">
+<td><strong>{#bbcode#}</strong><br /><span class="small">{#bbcode_desc#}</span></td>
+<td>
  <ul>
   <li><input id="bbcode" type="checkbox" name="bbcode" value="1"{if $edSet.bbcode==1} checked="checked"{/if} /><label for="bbcode">{#bbcodes_enabled#}</label></li>
   <li><input id="bbcode_img" type="checkbox" name="bbcode_img" value="1"{if $edSet.bbcode_img==1} checked="checked"{/if} /><label for="bbcode_img">{#bbcodes_img_enabled#}</label></li>
@@ -181,17 +180,16 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#smilies#}</strong><br /><span class="small">{#smilies_desc#}</span></td>
-<td class="d">
+<td><strong>{#smilies#}</strong><br /><span class="small">{#smilies_desc#}</span></td>
+<td>
  <ul>
   <li><input id="smilies" type="checkbox" name="smilies" value="1"{if $edSet.smilies==1} checked="checked"{/if} /><label for="smilies">{#smilies_enabled#}</label></li>
  </ul>
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#enamble_avatars#}</strong><br /><span class="small">{#enamble_avatars_desc#}</span></td>
-
-<td class="d">
+<td><strong>{#enamble_avatars#}</strong><br /><span class="small">{#enamble_avatars_desc#}</span></td>
+<td>
  <ul>
   <li><input id="avatars_profiles_postings" type="radio" name="avatars" value="2"{if $edSet.avatars==2} checked="checked"{/if} /><label for="avatars_profiles_postings">{#avatars_profiles_postings#}</label></li>
   <li><input id="avatars_profiles" type="radio" name="avatars" value="1"{if $edSet.avatars==1} checked="checked"{/if} /><label for="avatars_profiles">{#avatars_profiles#}</label></li>
@@ -203,11 +201,11 @@
 {assign var="input_avatar_max_height" value="<input type=\"text\" name=\"avatar_max_height\" value=\"$settings_avatar_max_height\" size=\"5\" />"}
 {assign var="settings_avatar_max_filesize" value=$edSet.avatar_max_filesize}
 {assign var="input_avatar_max_filesize" value="<input type=\"text\" name=\"avatar_max_filesize\" value=\"$settings_avatar_max_filesize\" size=\"5\" />"}
-<p><label for="avatar_max_width">{#max_avatar_size#|replace:"[width]":$input_avatar_max_width|replace:"[height]":$input_avatar_max_height|replace:"[filesize]":$input_avatar_max_filesize}</label></p></td>
+ <p><label for="avatar_max_width">{#max_avatar_size#|replace:"[width]":$input_avatar_max_width|replace:"[height]":$input_avatar_max_height|replace:"[filesize]":$input_avatar_max_filesize}</label></p></td>
 </tr>
 <tr>
-<td class="c"><strong>{#upload_images#}</strong><br /><span class="small">{#upload_images_desc#}</span></td>
-<td class="d">
+<td><strong>{#upload_images#}</strong><br /><span class="small">{#upload_images_desc#}</span></td>
+<td>
  <ul>
   <li><input id="upload_images_all" type="radio" name="upload_images" value="3"{if $edSet.upload_images==3} checked="checked"{/if} /><label for="upload_images_all">{#upload_enabled_all#}</label></li>
   <li><input id="upload_images_users" type="radio" name="upload_images" value="2"{if $edSet.upload_images==2} checked="checked"{/if} /><label for="upload_images_users">{#upload_enabled_users#}</label></li>
@@ -220,41 +218,40 @@
 {assign var="input_upload_max_height" value="<input type=\"text\" name=\"upload_max_img_height\" value=\"$settings_upload_max_height\" size=\"5\" />"}
 {assign var="settings_upload_max_img_size" value=$edSet.upload_max_img_size}
 {assign var="input_upload_max_filesize" value="<input type=\"text\" name=\"upload_max_img_size\" value=\"$settings_upload_max_img_size\" size=\"5\" />"}
-<p><label for="upload_max_img_width">{#max_upload_size#|replace:"[width]":$input_upload_max_width|replace:"[height]":$input_upload_max_height|replace:"[filesize]":$input_upload_max_filesize}</label></p></td>
+ <p><label for="upload_max_img_width">{#max_upload_size#|replace:"[width]":$input_upload_max_width|replace:"[height]":$input_upload_max_height|replace:"[filesize]":$input_upload_max_filesize}</label></p>
+</td>
 </tr>
 <tr>
-<td class="c"><strong>{#autolink#}</strong><br /><span class="small">{#autolink_desc#}</span></td>
-<td class="d">
+<td><strong>{#autolink#}</strong><br /><span class="small">{#autolink_desc#}</span></td>
+<td>
  <ul>
   <li><input id="autolink" type="checkbox" name="autolink" value="1"{if $edSet.autolink==1} checked="checked"{/if} /><label for="autolink">{#autolink_enabled#}</label></li>
  </ul>
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#count_views#}</strong><br /><span class="small">{#count_views_desc#}</span></td>
-<td class="d">
+<td><strong>{#count_views#}</strong><br /><span class="small">{#count_views_desc#}</span></td>
+<td>
  <ul>
   <li><input id="count_views" type="checkbox" name="count_views" value="1"{if $edSet.count_views==1} checked="checked"{/if} /><label for="count_views">{#views_counter_enabled#}</label></li>
  </ul>
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#rss_feed#}</strong><br /><span class="small">{#rss_feed_desc#}</span></td>
-<td class="d">
+<td><strong>{#rss_feed#}</strong><br /><span class="small">{#rss_feed_desc#}</span></td>
+<td>
  <ul>
   <li><input id="rss_feed" type="checkbox" name="rss_feed" value="1"{if $edSet.rss_feed==1} checked="checked"{/if} /><label for="rss_feed">{#rss_feed_enabled#}</label></li>
  </ul>
 </td>
 </tr>
-
 <tr>
-<td class="c"><strong>{#threads_per_page#}</strong><br /><span class="small">{#threads_per_page_desc#}</span></td>
-<td class="d"><input type="text" name="threads_per_page" value="{$edSet.threads_per_page|escape}" size="5" /></td>
+<td><strong>{#threads_per_page#}</strong><br /><span class="small">{#threads_per_page_desc#}</span></td>
+<td><input type="text" name="threads_per_page" value="{$edSet.threads_per_page|escape}" size="5" /></td>
 </tr>
-
 <tr>
-<td class="c"><strong>{#reset_read_state#}</strong><br><span class="small">{#reset_read_state_desc#}</span></td>
-<td class="d">
+<td><strong>{#reset_read_state#}</strong><br><span class="small">{#reset_read_state_desc#}</span></td>
+<td>
  <ul>
   <li><input name="read_state_expiration_method" value="0" id="read_state_no_reset" type="radio"{if not isset($edSet.read_state_expiration_method) or $edSet.read_state_expiration_method==0} checked="checked"{/if} /><label for="read_state_no_reset">{#read_state_no_reset#}</label></li>
   <li><input id="read_state_number_reset" name="read_state_expiration_method" value="1" type="radio"{if $edSet.read_state_expiration_method==1} checked="checked"{/if} /><label for="read_state_number_reset">{#read_state_numbered_reset#}</label></li>
@@ -264,23 +261,20 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#read_state_value#}</strong><br><span class="small">{#read_state_value_desc#}</span></td>
-<td class="d"><input name="read_state_expiration_value" value="{$edSet.read_state_expiration_value|escape}" size="5" type="text"></td>
+<td><strong>{#read_state_value#}</strong><br><span class="small">{#read_state_value_desc#}</span></td>
+<td><input name="read_state_expiration_value" value="{$edSet.read_state_expiration_value|escape}" size="5" type="text"></td>
 </tr>
-
 <tr>
-<td class="c"><strong>{#auto_lock_old_threads#}</strong><br /><span class="small">{#auto_lock_old_threads_desc#}</span></td>
-<td class="d"><input type="text" name="auto_lock_old_threads" value="{$edSet.auto_lock_old_threads|escape}" size="5" /></td>
+<td><strong>{#auto_lock_old_threads#}</strong><br /><span class="small">{#auto_lock_old_threads_desc#}</span></td>
+<td><input type="text" name="auto_lock_old_threads" value="{$edSet.auto_lock_old_threads|escape}" size="5" /></td>
 </tr>
-
 <tr>
-<td class="c"><strong>{#count_users_online#}</strong><br /><span class="small">{#count_users_online_desc#}</span></td>
-<td class="d"><input type="text" name="count_users_online" value="{$edSet.count_users_online|escape}" size="5" /></td>
+<td><strong>{#count_users_online#}</strong><br /><span class="small">{#count_users_online_desc#}</span></td>
+<td><input type="text" name="count_users_online" value="{$edSet.count_users_online|escape}" size="5" /></td>
 </tr>
-
 <tr>
-<td class="c"><strong>{#forum_enabled_marking#}</strong><br /><span class="small">{#forum_enabled_desc#}</span></td>
-<td class="d">
+<td><strong>{#forum_enabled_marking#}</strong><br /><span class="small">{#forum_enabled_desc#}</span></td>
+<td>
  <ul>
   <li><input id="forum_enabled" type="checkbox" name="forum_enabled" value="1"{if $edSet.forum_enabled==1} checked="checked"{/if} /><label for="forum_enabled">{#forum_enabled#}</label></li>
  </ul>
@@ -288,8 +282,8 @@
 </td>
 </tr>
 <tr>
-<td class="c">&nbsp;</td>
-<td class="d">
+<td>&nbsp;</td>
+<td>
  <ul>
   <li><input id="clear_chache" type="checkbox" name="clear_cache" value="1" /><label for="clear_chache">{#clear_chache#}</label></li>
  </ul>
@@ -306,16 +300,16 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="return_to" value="advanced_settings" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<table class="normaltab">
+<table class="normaltab descript">
 {section name=nr loop=$settings_sorted}
 <tr>
-<td class="c"><strong>{$settings_sorted[nr].key}</strong></td>
-<td class="d"><input type="text" name="{$settings_sorted[nr].key}" value="{$settings_sorted[nr].val|escape}" /></td>
+<td><strong>{$settings_sorted[nr].key}</strong></td>
+<td><input type="text" name="{$settings_sorted[nr].key}" value="{$settings_sorted[nr].val|escape}" /></td>
 </tr>
 {/section}
 <tr>
-<td class="c">&nbsp;</td>
-<td class="d"><input type="submit" name="settings_submit" value="{#settings_submit_button#}" /></td>
+<td>&nbsp;</td>
+<td><input type="submit" name="settings_submit" value="{#settings_submit_button#}" /></td>
 </tr>
 </table>
 </div>
@@ -575,22 +569,22 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="edit_user_id" value="{$edit_user_id}" />
-<table class="normaltab">
+<table class="normaltab descript">
 <tr>
-<td class="c"><strong>{#edit_user_name#}</strong></td>
-<td class="d"><input type="text" size="40" name="edit_user_name" value="{$edit_user_name}" maxlength="{$settings.name_maxlength}" /></td>
+<td><strong>{#edit_user_name#}</strong></td>
+<td><input type="text" size="40" name="edit_user_name" value="{$edit_user_name}" maxlength="{$settings.name_maxlength}" /></td>
 </tr>
 {if $avatar}
 <tr>
-<td class="c"><p class="userdata"><strong>{#edit_user_avatar#}</strong></p></td>
-<td class="d"><p class="userdata"><img src="{$avatar.image}" alt="{#avatar_img_alt#}" width="{$avatar.width}" height="{$avatar.height}" /><br />
+<td><p class="userdata"><strong>{#edit_user_avatar#}</strong></p></td>
+<td><p class="userdata"><img src="{$avatar.image}" alt="{#avatar_img_alt#}" width="{$avatar.width}" height="{$avatar.height}" /><br />
 <input id="delete_avatar" type="checkbox" name="delete_avatar" value="1"{if $delete_avatar=="1"} checked="checked"{/if} /><label for="delete_avatar">{#delete_avatar#}</label></p>
 </td>
 </tr>
 {/if}
 <tr>
-<td class="c"><strong>{#edit_user_type#}</strong></td>
-<td class="d">
+<td><strong>{#edit_user_type#}</strong></td>
+<td>
  <ul>
   <li><input id="edit_user_type_0" type="radio" name="edit_user_type" value="0"{if $edit_user_type==0} checked="checked"{/if} /><label for="edit_user_type_0">{#user#}</label></li>
   <li><input id="edit_user_type_1" type="radio" name="edit_user_type" value="1"{if $edit_user_type==1} checked="checked"{/if} /><label for="edit_user_type_1">{#mod#}</label></li>
@@ -599,47 +593,47 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_email#}</strong></td>
-<td class="d"><input type="text" size="40" name="user_email" value="{$user_email}" /><br />
+<td><strong>{#edit_user_email#}</strong></td>
+<td><input type="text" size="40" name="user_email" value="{$user_email}" /><br />
 <span class="small"><input id="email_contact" type="checkbox" name="email_contact" value="1"{if $email_contact==1} checked="checked"{/if} /><label for="email_contact">{#edit_user_email_contact#}</label></span></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_hp#}</strong></td>
-<td class="d"><input type="text" size="40" name="user_hp" value="{$user_hp}" maxlength="{$settings.hp_maxlength}" /></td>
+<td><strong>{#edit_user_hp#}</strong></td>
+<td><input type="text" size="40" name="user_hp" value="{$user_hp}" maxlength="{$settings.hp_maxlength}" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_real_name#}</strong></td>
-<td class="d"><input type="text" size="40" name="user_real_name" value="{$user_real_name}" maxlength="{$settings.name_maxlength}" /></td>
+<td><strong>{#edit_user_real_name#}</strong></td>
+<td><input type="text" size="40" name="user_real_name" value="{$user_real_name}" maxlength="{$settings.name_maxlength}" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_gender#}</strong></td>
-<td class="d">
+<td><strong>{#edit_user_gender#}</strong></td>
+<td>
 <input id="no-gender" type="radio" name="user_gender" value="0"{if $user_gender=="0"} checked="checked"{/if} /><label for="no-gender">{#gender_not_specified#}</label><br />
 <input id="user_gender_1" type="radio" name="user_gender" value="1"{if $user_gender=="1"} checked="checked"{/if} /><label for="user_gender_1">{#male#}</label><br />
 <input id="user_gender_2" type="radio" name="user_gender" value="2"{if $user_gender=="2"} checked="checked"{/if} /><label for="user_gender_2">{#female#}</label>
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_birthday#}</strong></td>
-<td class="d"><input type="text" size="40" name="user_birthday" value="{$user_birthday}" /> <span class="small">({#birthday_format#})</span></td>
+<td><strong>{#edit_user_birthday#}</strong></td>
+<td><input type="text" size="40" name="user_birthday" value="{$user_birthday}" /> <span class="small">({#birthday_format#})</span></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_location#}</strong></td>
-<td class="d"><input type="text" size="40" name="user_location" value="{$user_location}" maxlength="{$settings.location_maxlength}" /></td>
+<td><strong>{#edit_user_location#}</strong></td>
+<td><input type="text" size="40" name="user_location" value="{$user_location}" maxlength="{$settings.location_maxlength}" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_profile#}</strong></td>
-<td class="d"><textarea cols="65" rows="4" name="profile">{$profile}</textarea></td>
+<td><strong>{#edit_user_profile#}</strong></td>
+<td><textarea cols="65" rows="4" name="profile">{$profile}</textarea></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_signature#}</strong></td>
-<td class="d"><textarea cols="65" rows="4" name="signature">{$signature}</textarea></td>
+<td><strong>{#edit_user_signature#}</strong></td>
+<td><textarea cols="65" rows="4" name="signature">{$signature}</textarea></td>
 </tr>
 
 {if $languages}
 <tr>
-<td class="c"><strong><label for="user_language">{#edit_user_language#}</label></strong></td>
-<td class="d">
+<td><strong><label for="user_language">{#edit_user_language#}</label></strong></td>
+<td>
 <select id="user_language" name="user_language" size="1">
 <option value=""{if $user_language==''} selected="selected"{/if}></option>
 {foreach from=$languages item=l}
@@ -651,8 +645,8 @@
 {/if}
 
 <tr>
-<td class="c"><strong>{#edit_user_time_zone#}</strong></td>
-<td class="d">
+<td><strong>{#edit_user_time_zone#}</strong></td>
+<td>
 {if $time_zones}
 <p>
 <select id="user_time_zone" name="user_time_zone" size="1">
@@ -669,8 +663,8 @@
 
 {if $themes}
 <tr>
-<td class="c"><strong><label for="user_theme">{#edit_user_theme#}</label></strong></td>
-<td class="d">
+<td><strong><label for="user_theme">{#edit_user_theme#}</label></strong></td>
+<td>
 <select id="user_theme" name="user_theme" size="1">
 <option value=""{if $user_theme==''} selected="selected"{/if}></option>
 {foreach from=$themes item=t}
@@ -683,8 +677,8 @@
 
 {if $edit_user_type==2 || $edit_user_type==1}
 <tr>
-<td class="c"><strong>{#edit_user_notification#}</strong></td>
-<td class="d">
+<td><strong>{#edit_user_notification#}</strong></td>
+<td>
  <ul>
   <li><input id="new_posting_notification" type="checkbox" name="new_posting_notification" value="1"{if $new_posting_notification=="1"} checked="checked"{/if} /><label for="new_posting_notification">{#admin_mod_notif_posting#}</label></li>
   <li><input id="new_user_notification" type="checkbox" name="new_user_notification" value="1"{if $new_user_notification=="1"} checked="checked"{/if} /><label for="new_user_notification">{#admin_mod_notif_register#}</label></li>
@@ -840,10 +834,9 @@
 <div>
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<table class="normaltab">
-
+<table class="normaltab descript">
 <tr>
-<td class="c"><strong>{#captcha#}</strong><br /><span class="small">{#captcha_desc#}{if !$graphical_captcha_available || !$font_available}<br />{#captcha_graphical_desc#}{/if}</span></td>
+<td><strong>{#captcha#}</strong><br /><span class="small">{#captcha_desc#}{if !$graphical_captcha_available || !$font_available}<br />{#captcha_graphical_desc#}{/if}</span></td>
 <td class="d">
  <table border="0" cellpadding="0" cellspacing="3">
   <tr>
@@ -871,8 +864,8 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#b8#}</strong><br /><span class="small">{#b8_desc#}</span></td>
-<td class="d">
+<td><strong>{#b8#}</strong><br /><span class="small">{#b8_desc#}</span></td>
+<td>
  <ul>
   <li><input id="b8_entry_check" type="checkbox" name="b8_entry_check" value="1"{if $b8_entry_check==1} checked="checked"{/if} /><label for="b8_entry_check">{#b8_entry_check_enable#}</label></li>
   <li><input id="b8_mail_check" type="checkbox" name="b8_mail_check" value="1"{if $b8_mail_check==1} checked="checked"{/if} /><label for="b8_mail_check">{#b8_mail_check_enable#}</label></li>
@@ -884,19 +877,16 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#stop_forum_spam#}</strong><br /><span class="small">{#stop_forum_spam_desc#}</span></td>
-</tr>
-<tr>
-<td class="c"><strong>{#akismet#}</strong><br /><span class="small">{#akismet_desc#}</span></td>
-<td class="d">
+<td><strong>{#stop_forum_spam#}</strong><br /><span class="small">{#stop_forum_spam_desc#}</span></td>
+<td>
  <ul>
   <li><input id="stop_forum_spam" type="checkbox" name="stop_forum_spam" value="1"{if $stop_forum_spam==1} checked="checked"{/if} /><label for="stop_forum_spam">{#stop_forum_spam_enable#}</label></li>
  </ul>
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#spam_check_registered#}</strong><br /><span class="small">{#spam_check_registered_desc#}</span></td>
-<td class="d">
+<td><strong>{#akismet#}</strong><br /><span class="small">{#akismet_desc#}</span></td>
+<td>
  <p>{#akismet_key#}<br /><input type="text" name="akismet_key" value="{$akismet_key}" size="25" /></p>
  <ul>
   <li><input id="akismet_entry_check" type="checkbox" name="akismet_entry_check" value="1"{if $akismet_entry_check==1} checked="checked"{/if} /><label for="akismet_entry_check">{#akismet_entry#}</label></li>
@@ -905,17 +895,16 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#auto_delete_spam#}</strong><br /><span class="small">{#auto_delete_spam_desc#}</span></td>
-<td class="d">
+<td><strong>{#spam_check_registered#}</strong><br /><span class="small">{#spam_check_registered_desc#}</span></td>
+<td>
  <ul>
   <li><input id="spam_check_registered" type="checkbox" name="spam_check_registered" value="1"{if $spam_check_registered==1} checked="checked"{/if} /><label for="spam_check_registered">{#spam_check_registered_enable#}</label></li>
  </ul>
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#not_accepted_words#}</strong><br /><span class="small">{#not_accepted_words_desc#}</span></td>
-<td class="d"><textarea name="not_accepted_words" cols="35" rows="10">{$not_accepted_words}</textarea></td>
-<td class="d">
+<td><strong>{#auto_delete_spam#}</strong><br /><span class="small">{#auto_delete_spam_desc#}</span></td>
+<td>
  <ul>
   <li><input id="save_spam" type="checkbox" name="save_spam" value="1"{if $save_spam==1} checked="checked"{/if} /><label for="save_spam">{#akismet_save_spam#}</label></li>
  </ul>
@@ -923,16 +912,16 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong>{#banned_ips#}</strong><br /><span class="small">{#banned_ips_desc#}</span></td>
-<td class="d"><textarea name="banned_ips" cols="35" rows="5">{$banned_ips}</textarea></td>
+<td><strong>{#not_accepted_words#}</strong><br /><span class="small">{#not_accepted_words_desc#}</span></td>
+<td><textarea name="not_accepted_words" cols="35" rows="10">{$not_accepted_words}</textarea></td>
 </tr>
 <tr>
-<td class="c"><strong>{#banned_user_agents#}</strong><br /><span class="small">{#banned_user_agents_desc#}</span></td>
-<td class="d"><textarea name="banned_user_agents" cols="35" rows="5">{$banned_user_agents}</textarea></td>
+<td><strong>{#banned_ips#}</strong><br /><span class="small">{#banned_ips_desc#}</span></td>
+<td><textarea name="banned_ips" cols="35" rows="5">{$banned_ips}</textarea></td>
 </tr>
 <tr>
-<td class="c">&nbsp;</td>
-<td class="d"><input type="submit" name="spam_protection_submit" value="{#spam_protection_submit#}" /></td>
+<td><strong>{#banned_user_agents#}</strong><br /><span class="small">{#banned_user_agents_desc#}</span></td>
+<td><textarea name="banned_user_agents" cols="35" rows="5">{$banned_user_agents}</textarea></td>
 </tr>
 </table>
 </div>
@@ -1076,22 +1065,22 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="id" value="{$id}" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
-<table class="normaltab">
+<table class="normaltab descript">
 <tr>
-<td class="c"><strong>{#edit_smilies_smiley#}</strong></td>
-<td class="d"><select name="file" size="1">
+<td><strong>{#edit_smilies_smiley#}</strong></td>
+<td><select name="file" size="1">
 {section name=nr loop=$smiley_files}
 <option value="{$smiley_files[nr]}"{if $file==$smiley_files[nr]} selected="selected"{/if}>{$smiley_files[nr]}</option>
 {/section}
 </select></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_smilies_codes#}</strong></td>
-<td class="d"><input type="text" name="code_1" size="7" value="{$code_1}" /> <input type="text" name="code_2" size="7" value="{$code_2}" /> <input type="text" name="code_3" size="7" value="{$code_3}" /> <input type="text" name="code_4" size="7" value="{$code_4}" /> <input type="text" name="code_5" size="7" value="{$code_5}" /></td>
+<td><strong>{#edit_smilies_codes#}</strong></td>
+<td><input type="text" name="code_1" size="7" value="{$code_1}" /> <input type="text" name="code_2" size="7" value="{$code_2}" /> <input type="text" name="code_3" size="7" value="{$code_3}" /> <input type="text" name="code_4" size="7" value="{$code_4}" /> <input type="text" name="code_5" size="7" value="{$code_5}" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_smilies_title#}</strong></td>
-<td class="d"><input type="text" name="title" size="25" value="{$title}" /></td>
+<td><strong>{#edit_smilies_title#}</strong></td>
+<td><input type="text" name="title" size="25" value="{$title}" /></td>
 </tr>
 <tr>
 <td class="c">&nbsp;</td>
@@ -1148,22 +1137,22 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 {if $id}<input type="hidden" name="id" value="{$id}" />{/if}
-<table class="normaltab">
+<table class="normaltab descript">
 <tr>
-<td class="c"><strong>{#page_title#}</strong></td>
-<td class="d"><input type="text" name="title" value="{$title|default:""}" size="50" /></td>
+<td><strong>{#page_title#}</strong></td>
+<td><input type="text" name="title" value="{$title|default:""}" size="50" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#page_content#}</strong><br /><span class="small">{#page_content_desc#}</span></td>
-<td class="d"><textarea name="content" cols="70" rows="20">{$content|default:""}</textarea></td>
+<td><strong>{#page_content#}</strong><br /><span class="small">{#page_content_desc#}</span></td>
+<td><textarea name="content" cols="70" rows="20">{$content|default:""}</textarea></td>
 </tr>
 <tr>
-<td class="c"><strong>{#page_menu_linkname#}</strong><br /><span class="small">{#page_menu_linkname_desc#}</span></td>
-<td class="d"><input type="text" name="menu_linkname" value="{$menu_linkname|default:""}" size="50" /></td>
+<td><strong>{#page_menu_linkname#}</strong><br /><span class="small">{#page_menu_linkname_desc#}</span></td>
+<td><input type="text" name="menu_linkname" value="{$menu_linkname|default:""}" size="50" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#page_access#}</strong></td>
-<td class="d">
+<td><strong>{#page_access#}</strong></td>
+<td>
  <ul>
   <li><input type="radio" name="access" value="0"{if $access==0} checked="checked"{/if} /><span class="small">{#page_access_public#}</span></li>
   <li><input type="radio" name="access" value="1"{if $access==1} checked="checked"{/if} /><span class="small">{#page_access_reg_users#}</span></li>
