@@ -215,7 +215,7 @@ div#format-bar{margin:0 !important;padding:.375em;background:#f4f4f6}
 #format-bar button:hover,#format-bar button:focus,#format-bar button:focus-within{background-color:#f4f4fa;border-color:#d01210}
 #format-bar button:active{background-color:#f4f4dc;border-color:#f03434}
 #format-bar button img,#additional-smilies button img{display:block;width:1.375em;height:auto;margin:0;padding:0}
-#format-bar button span{display:block;line-height:1.4em}
+#format-bar button span{display:block;line-height:1.4}
 #bbcodebutton-b span{font-weight:700}
 #bbcodebutton-i span{font-style:italic}
 #bbcodebutton-link span{color:#00c;text-decoration:underline}

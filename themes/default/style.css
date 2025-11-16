@@ -1081,7 +1081,7 @@ div#format-bar {
 }
 #format-bar button span {
 	display: block;
-	line-height: 1.4em;
+	line-height: 1.4;
 }
 
 #bbcodebutton-b span {
