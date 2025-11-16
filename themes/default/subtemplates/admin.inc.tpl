@@ -292,6 +292,9 @@
 </tr>
 </tbody>
 </table>
+<div class="buttonbar">
+<button name="settings_submit" value="{#settings_submit_button#}">{#settings_submit_button#}</button>
+</div>
 </div>
 </form>
 <p style="margin-top:10px;"><a class="boldlink" href="index.php?mode=admin&amp;action=advanced_settings"><img class="icon wd-dependent" src="{$FORUM_ADDRESS}/{$THEMES_DIR}/{$theme}/images/arrow-bold-horizontal.svg" alt="" width="11" height="11" /><span>{#advanced_settings_link#}</span></a></p>
@@ -688,11 +691,10 @@
 </td>
 </tr>
 {/if}
-<tr>
-<td class="c">&nbsp;</td>
-<td class="d"><input type="submit" name="edit_user_submit" value="{#userdata_submit_button#}" /></td>
-</tr>
 </table>
+<div class="buttonbar">
+<button name="edit_user_submit" value="{#userdata_submit_button#}">{#userdata_submit_button#}</button>
+</div>
 </div>
 </form>
 {elseif $action=='delete_users'}
@@ -926,6 +928,9 @@
 <td><textarea name="banned_user_agents" cols="35" rows="5">{$banned_user_agents}</textarea></td>
 </tr>
 </table>
+<div class="buttonbar">
+<button name="spam_protection_submit" value="{#spam_protection_submit#}">{#spam_protection_submit#}</button>
+</div>
 </div>
 </form>
 {elseif $action=='reset_uninstall'}
@@ -1084,11 +1089,10 @@
 <td><strong>{#edit_smilies_title#}</strong></td>
 <td><input type="text" name="title" size="25" value="{$title}" /></td>
 </tr>
-<tr>
-<td class="c">&nbsp;</td>
-<td class="d"><input type="submit" name="edit_smiley_submit" value="{#submit_button_ok#}" /></td>
-</tr>
 </table>
+<div class="buttonbar">
+<button name="edit_smiley_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
+</div>
 </div>
 </form>
 {elseif $action=='pages'}
@@ -1161,12 +1165,10 @@
  </ul>
 </td>
 </tr>
-
-<tr>
-<td class="c">&nbsp;</td>
-<td class="d"><input type="submit" name="edit_page_submit" value="{#edit_page_submit#}" /></td>
-</tr>
 </table>
+<div class="buttonbar">
+<button name="edit_page_submit" value="{#edit_page_submit#}">{#edit_page_submit#}</button>
+</div>
 </div>
 </form>
 {elseif $action=='delete_page'}
@@ -1179,7 +1181,9 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="id" value="{$page.id}" />
-<input type="submit" name="delete_page_submit" value="{#delete_page_submit#}" />
+<div class="buttonbar">
+<button name="delete_page_submit" value="{#delete_page_submit#}">{#delete_page_submit#}</button>
+</div>
 </div>
 </form>
 {else}
@@ -1228,7 +1232,7 @@
   </li>
 {/section}
  </ul>
- <div>
+ <div class="buttonbar">
   <button name="record_selected_uploads" value="record">{#upload_add_db_entry_button#}</button>
   <button name="delete_selected_uploads" value="{#delete#}">{#delete#}</button>
  </div>

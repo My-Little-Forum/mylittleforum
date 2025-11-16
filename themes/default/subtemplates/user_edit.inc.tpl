@@ -171,11 +171,10 @@
 </td>
 </tr>
 {/if}
-<tr>
-<td class="c">&nbsp;</td>
-<td class="d"><input type="submit" name="edit_user_submit" value="{#userdata_submit_button#}" /></td>
-</tr>
 </tbody>
 </table>
+<div class="buttonbar">
+ <button name="edit_user_submit" value="{#userdata_submit_button#}">{#userdata_submit_button#}</button>
+</div>
 </div>
 </form>
