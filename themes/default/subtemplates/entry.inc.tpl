@@ -2,11 +2,11 @@
 {assign var=email_alt value=$smarty.config.email}
 {assign var=homepage_alt value=$smarty.config.homepage}
 {if $hp && !$email}
-{assign var=email_hp value=" <a href=\"$hp\"><img src=\"$THEMES_DIR/$theme/images/general-homepage.svg\" title=\"$homepage_alt\" alt=\"⌂\" width=\"13\" height=\"13\" /></a>"}
+{assign var=email_hp value=" <a href=\"$hp\"><img class=\"sa-icon\" src=\"$THEMES_DIR/$theme/images/general-homepage.svg\" title=\"$homepage_alt\" alt=\"⌂\" width=\"13\" height=\"13\" /></a>"}
 {elseif !$hp && $email}
-{assign var=email_hp value=" <a href=\"index.php?mode=contact&amp;id=$id\" rel=\"nofollow\"><img src=\"$THEMES_DIR/$theme/images/e-mail-envelope.svg\" title=\"$email_alt\" alt=\"@\" width=\"13\" height=\"13\" /></a>"}
+{assign var=email_hp value=" <a href=\"index.php?mode=contact&amp;id=$id\" rel=\"nofollow\"><img class=\"sa-icon\" src=\"$THEMES_DIR/$theme/images/e-mail-envelope.svg\" title=\"$email_alt\" alt=\"@\" width=\"13\" height=\"13\" /></a>"}
 {elseif $hp && $email}
-{assign var=email_hp value=" <a href=\"$hp\"><img src=\"$THEMES_DIR/$theme/images/general-homepage.svg\" title=\"$homepage_alt\" alt=\"⌂\" width=\"13\" height=\"13\" /></a> <a href=\"index.php?mode=contact&amp;id=$id\" rel=\"nofollow\"><img src=\"$THEMES_DIR/$theme/images/e-mail-envelope.svg\" title=\"$email_alt\" alt=\"@\" width=\"13\" height=\"13\" /></a>"}
+{assign var=email_hp value=" <a href=\"$hp\"><img class=\"sa-icon\" src=\"$THEMES_DIR/$theme/images/general-homepage.svg\" title=\"$homepage_alt\" alt=\"⌂\" width=\"13\" height=\"13\" /></a> <a href=\"index.php?mode=contact&amp;id=$id\" rel=\"nofollow\"><img class=\"sa-icon\" src=\"$THEMES_DIR/$theme/images/e-mail-envelope.svg\" title=\"$email_alt\" alt=\"@\" width=\"13\" height=\"13\" /></a>"}
 {else}
 {assign var=email_hp value=""}
 {/if}

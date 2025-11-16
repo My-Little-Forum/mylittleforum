@@ -84,7 +84,7 @@ a.boldlink {
 html[dir="rtl"] img.icon.wd-dependent {
 	transform: scale(-1, 1);
 }
-img.icon {
+img:is(.icon, .sa-icon) {
 	width: 0.875em;
 	height: auto;
 }
