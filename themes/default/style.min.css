@@ -1,6 +1,7 @@
 *,::before,::after{box-sizing:border-box}
 body{color:#000;background:#f9f9f9;margin:0;padding:0;text-align:start;font-family:verdana,arial,sans-serif;font-size:1em;font-size:clamp(1rem,.7rem + .7vw,1.2rem);display:flex;flex-direction:column;min-height:100vh}
 .small{font-size:.86em}
+.xsmall{font-size:.74em}
 h1{margin-top:0;font-size:1.25em;font-weight:700}
 h2{margin-top:20px;font-size:1.25em;font-weight:700}
 p{margin-top:0}
@@ -40,8 +41,8 @@ body > *{margin:0;padding:0 1em;padding:0 1rem}
 #subnavmenu a.order-1 img.icon{transform:rotate(180deg)}
 #content{margin:0;padding:1em;padding:1rem;line-height:1.5;background:#fff;flex:1;overflow:auto}
 #content p,#content ul,#content td,#postingform{max-width:60em}
-#content .xsmall{font-size:.69em;line-height:1.19em;color:gray;font-weight:400}
 #content .small{line-height:1.19em;font-weight:400}
+#content .xsmall{line-height:1.2;color:gray;font-weight:400}
 #footer{font-size:.86em;line-height:1.5;padding:.5em 1em;padding:0.5rem 1rem;background:#f9f9f9;border-top:1px solid #bacbdf;display:grid;gap:.75em;grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas: "statistics" "footerlinks" "projectlink"}
 #footer > *{margin:0;padding:0;}
 #statistics{grid-area:statistics}
@@ -209,7 +210,6 @@ div#entry-input,#postingform input[type="text"],#postingform input[type="email"]
 #postingform #insert-quote{margin:0;font-size:.86em;padding:0;background:transparent;border:none;color:#00c}
 #postingform #insert-quote:focus,#postingform #insert-quote:hover{color:#00f}
 #postingform #text{margin:0;width:100%;height:24em}
-#postingform .xsmall{font-size:.86em}
 #delete_cookie{font-size:.86em}
 div#format-bar{margin:0 !important;padding:.375em;background:#f4f4f6}
 #postingform #format-bar > *{display:flex;flex-wrap:wrap;gap:.25em}
