@@ -113,9 +113,9 @@
 {foreach from=$userdata item=row}
 <tr>
 <td><a href="index.php?mode=user&amp;show_user={$row.user_id}" title="{#show_userdata_linktitle#|replace:"[user]":$row.user_name}"><span class="author-name">{$row.user_name}</span></a></td>
-<td><span class="small">{if $row.user_type==2}{#admin#}{elseif $row.user_type==1}{#mod#}{else}{#user#}{/if}</span></td>
-<td><span class="small">{if $row.user_hp!=''}<a href="{$row.user_hp}" title="{$row.user_hp}"><img class="sa-icon" src="{$THEMES_DIR}/{$theme}/images/general-homepage.svg" alt="{#homepage#}" width="13" height="13" /></a>{/if}</span></td>
-<td><span class="small">{if $row.user_email}<a href="index.php?mode=contact&amp;recipient_user_id={$row.user_id}" title="{#mailto_user#|replace:"[user]":$row.user_name}"><img class="sa-icon" src="{$THEMES_DIR}/{$theme}/images/e-mail-envelope.svg" alt="{#email#}" width="13" height="13" /></a>{/if}</span></td>
+<td>{if $row.user_type==2}{#admin#}{elseif $row.user_type==1}{#mod#}{else}{#user#}{/if}</td>
+<td>{if $row.user_hp!=''}<a href="{$row.user_hp}" title="{$row.user_hp}"><img class="sa-icon" src="{$THEMES_DIR}/{$theme}/images/general-homepage.svg" alt="{#homepage#}" width="13" height="13" /></a>{/if}</td>
+<td>{if $row.user_email}<a href="index.php?mode=contact&amp;recipient_user_id={$row.user_id}" title="{#mailto_user#|replace:"[user]":$row.user_name}"><img class="sa-icon" src="{$THEMES_DIR}/{$theme}/images/e-mail-envelope.svg" alt="{#email#}" width="13" height="13" /></a>{/if}</td>
 {if $mod || $admin}<td><span class="small">{if $row.user_type>0}{if $row.user_lock==0}{#unlocked#}{else}{#locked#}{/if}{elseif $row.user_lock==0}<a href="index.php?mode=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;user_lock={$row.user_id}&amp;page={$page}&amp;order={$order}&amp;descasc={$descasc}" title="{#lock_title#}">{#unlocked#}</a>{else}<a class="user-locked" href="index.php?mode=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;user_lock={$row.user_id}&amp;page={$page}&amp;order={$order}&amp;descasc={$descasc}" title="{#unlock_title#}">{#user_locked#}</a>{/if}</span></td>{/if}
 </tr>
 {/foreach}
