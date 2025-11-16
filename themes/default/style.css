@@ -467,7 +467,8 @@ input[name=sort_of_agreement] + iframe {
 	font-style: italic;
 }
 .edited,
-.ago {
+.ago,
+.ip {
 	font-size: 0.86em;
 	color: #808080;
 }
@@ -761,10 +762,6 @@ html[dir="rtl"] .notice.ok {
 	border-right: 0;
 	border-bottom: 0;
 	height: 1px;
-}
-.ip {
-	font-size: 11px;
-	color: #808080;
 }
 span.userdata {
 	margin: 0;

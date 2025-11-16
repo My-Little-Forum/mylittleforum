@@ -88,7 +88,7 @@ input[name=sort_of_agreement] + iframe {height:400px;height:60vh}
 .posting .author{margin:1px 0 18px;font-style:italic}
 *+html .posting ul{padding-left:17px}
 .quote{color:#6f6f6f;font-style:italic}
-.edited,.ago{font-size:.86em;color:gray}
+.edited,.ago,.ip{font-size:.86em;color:gray}
 img.no-text{cursor:help}
 pre{max-width:100%;overflow:auto}
 code{font-family:"courier new",courier;color:navy}
@@ -147,7 +147,6 @@ html[dir="rtl"] .notice.ok{background-position-x:calc(100% - .55em)}
 .notice.info{background:#afc url(images/general-information.svg) no-repeat .55em .55em/1.5em;border-color:#086620}
 html[dir="rtl"] .notice.info{background-position-x:calc(100% - .55em)}
 .entryline{clear:both;margin:15px 0;border-top:1px dotted gray;border-left:0;border-right:0;border-bottom:0;height:1px}
-.ip{font-size:11px;color:gray}
 span.userdata{margin:0;padding:0}
 .online{color:red}
 .underline{text-decoration:underline}
