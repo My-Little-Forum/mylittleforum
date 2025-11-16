@@ -118,7 +118,7 @@ blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 .very-deep-reply-wrapper{margin-block:0;margin-inline:5px 0;padding:0;list-style-type:none}
 .op-link{font-size:.86em}
 .op-link a{color:gray}
-#content .body{overflow:hidden}
+#content .body,#content .body > *:not([popover]){display:flow-root}
 #content .body img{max-width:100%;height:auto}
 #content p.tags{margin:20px 0 0;padding:0;color:gray;font-size:.86em}
 #content .signature p{margin:10px 0 0;padding:0;color:gray;font-weight:400;font-size:.86em}
