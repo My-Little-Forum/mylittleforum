@@ -955,9 +955,6 @@ table.normaltab td.d {
 table.normaltab td.subject {
 	min-width: 50%;
 }
-#content table.normaltab p {
-	font-size: 1em;
-}
 table.normaltab tr.drag td {
 	background: #ddd;
 }
@@ -988,7 +985,6 @@ p.userdata {
 	margin-block: 0 1em;
 }
 #postingform fieldset > *{
-	font-size: 1em;
 	margin: 0;
 	padding: 0;
 }

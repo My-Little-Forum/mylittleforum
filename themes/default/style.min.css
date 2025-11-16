@@ -190,8 +190,6 @@ table.normaltab tr:nth-child(even){background:#f9f9f9}
 table.normaltab td.c{width:15em;background:#d2ddea;background:linear-gradient(to right, rgb(210, 222, 236) 0, rgb(210, 222, 236) 9em, rgb(237, 242, 245) 100%)}
 table.normaltab td.d{background:#f5f5f5}
 table.normaltab td.subject{min-width:50%}
-#content table.normaltab p{font-size:1em}
-#content table.normaltab .xsmall{font-size:.86em}
 table.normaltab tr.drag td{background:#ddd}
 table .function-menu{display:flex;gap:0 .25em}
 p.userdata{margin:0}
@@ -200,7 +198,7 @@ p.userdata{margin:0}
 .inline{display:inline}
 #postingform fieldset{border:none;margin-inline:0;}
 #postingform fieldset:not(:last-child){margin-block:0 1em}
-#postingform fieldset > *{font-size:1em;margin:0;padding:0}
+#postingform fieldset > *{margin:0;padding:0}
 #postingform fieldset > *:not(:last-child){margin-block-end:.75em}
 #postingform label.input{display:block;font-weight:700;margin-inline:0;margin-block:0 .25em}
 div#entry-input,#postingform input[type="text"],#postingform input[type="email"],#postingform input[type="url"],#postingform input[type="tel"]{max-width:calc(100vw - 4em)}
