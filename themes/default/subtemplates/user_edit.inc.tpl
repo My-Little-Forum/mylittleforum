@@ -163,7 +163,7 @@
 {if $mod||$admin}
 <tr>
 <td><strong>{#edit_user_notification#}</strong></td>
-<td class="d">
+<td>
  <ul>
   <li><input id="new_posting_notification" type="checkbox" name="new_posting_notification" value="1"{if $new_posting_notification=="1"} checked="checked"{/if} /><label for="new_posting_notification">{#admin_mod_notif_posting#}</label></li>
   <li><input id="new_user_notification" type="checkbox" name="new_user_notification" value="1"{if $new_user_notification=="1"} checked="checked"{/if} /><label for="new_user_notification">{#admin_mod_notif_register#}</label></li>
