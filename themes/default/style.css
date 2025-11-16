@@ -28,6 +28,9 @@ body {
 .small {
 	font-size: 0.86em;
 }
+.xsmall {
+	font-size: 0.74em;
+}
 h1 {
 	margin-top: 0;
 	font-size: 1.25em;
@@ -222,8 +225,7 @@ body > * {
 	max-width: 60em;
 }
 #content .xsmall {
-	font-size: 0.69em;
-	line-height: 1.19em;
+	line-height: 1.2em;
 	color: #808080;
 	font-weight: normal;
 }
@@ -958,9 +960,6 @@ table.normaltab td.subject {
 #content table.normaltab p {
 	font-size: 1em;
 }
-#content table.normaltab .xsmall {
-	font-size: 0.86em;
-}
 table.normaltab tr.drag td {
 	background: #ddd;
 }
@@ -1041,9 +1040,6 @@ div#entry-input,
 	height: 24em;
 }
 
-#postingform .xsmall {
-	font-size: 0.86em;
-}
 #delete_cookie {
 	font-size: 0.86em;
 }
