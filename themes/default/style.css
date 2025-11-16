@@ -625,8 +625,9 @@ blockquote code {
 	color: #808080;
 }
 
-#content .body {
-	overflow: hidden;
+#content .body,
+#content .body > *:not([popover]) {
+	display: flow-root;
 }
 #content .body img {
 	max-width: 100%;
