@@ -64,7 +64,6 @@ h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underl
 .js-display-fold h2.sidebar {margin-block:0}
 #sidebar div{position:relative;z-index:2}
 #sidebar > div:not(:last-child){margin: 0 0 .75em 0}
-#latest-postings a.hide-sidebar{position:absolute;top:2px;right:4px;margin:0;padding:0;line-height:11px}
 #latest-postings ul{max-width:100%;list-style:none;margin:0;padding:0}
 #latest-postings li{margin:0;padding:0;word-wrap:break-word;overflow:hidden}
 #latest-postings li:not(:last-child){border-bottom:1px dotted #bacbdf}
@@ -75,7 +74,6 @@ h2.sidebar a:focus,h2.sidebar a:hover,h2.sidebar a:active{text-decoration:underl
 #latest-postings li a:focus .entry-title,#latest-postings li a:hover .entry-title{text-decoration:underline}
 #latest-postings li a .entry-date,#latest-postings li a.read .entry-date{font-size:.86em;color:gray}
 #tagcloud p{margin:0;padding:5px}
-#tagcloud a.hide-sidebar{position:absolute;top:2px;right:4px;margin:0;padding:0;line-height:11px}
 #tagcloud strong{font-weight:700;font-size:1.051em}
 #mod-options{list-style:none;margin:0;padding:0;line-height:1.7}
 #mod-options li:not(:last-child){margin-block-end:0.25em}

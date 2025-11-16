@@ -366,14 +366,6 @@ h2.sidebar a:active {
 	margin: 0 0 0.75em 0;
 }
 
-#latest-postings a.hide-sidebar {
-	position: absolute;
-	top: 2px;
-	right: 4px;
-	margin: 0;
-	padding: 0;
-	line-height: 11px;
-}
 #latest-postings ul {
 	max-width: 100%;
 	list-style: none;
@@ -418,14 +410,6 @@ h2.sidebar a:active {
 #tagcloud p {
 	margin: 0;
 	padding: 5px;
-}
-#tagcloud a.hide-sidebar {
-	position: absolute;
-	top: 2px;
-	right: 4px;
-	margin: 0;
-	padding: 0;
-	line-height: 11px;
 }
 #tagcloud strong {
 	font-weight: bold;
