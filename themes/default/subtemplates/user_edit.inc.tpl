@@ -14,6 +14,7 @@
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="mode" value="user" />
 <table class="normaltab descript">
+<tbody>
 <tr>
 <td><strong>{#edit_user_name#}</strong></td>
 <td><strong>{$user_name}</strong></td>
@@ -174,6 +175,7 @@
 <td class="c">&nbsp;</td>
 <td class="d"><input type="submit" name="edit_user_submit" value="{#userdata_submit_button#}" /></td>
 </tr>
+</tbody>
 </table>
 </div>
 </form>

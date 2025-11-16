@@ -6,6 +6,7 @@
 <input type="hidden" name="mode" value="admin" />
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <table class="normaltab descript">
+<tbody>
 <tr>
 <td><strong>{#forum_name#}</strong><br /><span class="small">{#forum_name_desc#}</span></td>
 <td><input type="text" name="forum_name" value="{$edSet.forum_name|escape}" size="40" /></td>
@@ -289,6 +290,7 @@
  </ul>
 </td>
 </tr>
+</tbody>
 </table>
 </div>
 </form>
