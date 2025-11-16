@@ -187,8 +187,8 @@ table.normaltab th{font-weight:700;text-align:left;background:#d2ddea; backgroun
 table.normaltab td{font-weight:400}
 table.normaltab tr:nth-child(odd){background:#f5f5f5}
 table.normaltab tr:nth-child(even){background:#f9f9f9}
-table.normaltab td.c{width:15em;background:#d2ddea;background:linear-gradient(to right, rgb(210, 222, 236) 0, rgb(210, 222, 236) 9em, rgb(237, 242, 245) 100%)}
-table.normaltab td.d{background:#f5f5f5}
+table.normaltab.descript td:first-child{width:15em;background:#d2ddea;background:linear-gradient(to right, rgb(210, 222, 236) 0, rgb(210, 222, 236) 9em, rgb(237, 242, 245) 100%)}
+table.normaltab.descript td:not(:first-child){background:#f5f5f5}
 table.normaltab td.subject{min-width:50%}
 table.normaltab tr.drag td{background:#ddd}
 table .function-menu{display:flex;gap:0 .25em}

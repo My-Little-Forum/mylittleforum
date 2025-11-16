@@ -13,70 +13,70 @@
 <div>
 <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
 <input type="hidden" name="mode" value="user" />
-<table class="normaltab">
+<table class="normaltab descript">
 <tr>
-<td class="c"><strong>{#edit_user_name#}</strong></td>
-<td class="d"><strong>{$user_name}</strong></td>
+<td><strong>{#edit_user_name#}</strong></td>
+<td><strong>{$user_name}</strong></td>
 </tr>
 {if $settings.avatars>0}
 <tr>
-<td class="c"><strong>{#edit_avatar#}</strong></td>
-<td class="d">
+<td><strong>{#edit_avatar#}</strong></td>
+<td>
 <div id="avatar_wrapper">{if $avatar}<img src="{$avatar.image}" alt="{#edit_avatar_link_title#}" width="{$avatar.width}" height="{$avatar.height}" />{/if}</div>
 <span class="small">[ <a id="edit_avatar" href="index.php?mode=avatar">{#edit_avatar_link#}</a> ]</span>
 </td>
 </tr>
 {/if}
 <tr>
-<td class="c"><strong>{#edit_user_pw#}</strong></td>
-<td class="d"><span class="small">[ <a href="index.php?mode=user&amp;action=edit_pw">{#edit_pw#}</a> ]</span></td>
+<td><strong>{#edit_user_pw#}</strong></td>
+<td><span class="small">[ <a href="index.php?mode=user&amp;action=edit_pw">{#edit_pw#}</a> ]</span></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_email#}</strong></td>
-<td class="d"><!--<a href="mailto:{$user_email}">-->{$user_email}<!--</a>--> &nbsp;<span class="small">[ <a href="index.php?mode=user&amp;action=edit_email">{#edit_email#}</a> ]</span></td>
+<td><strong>{#edit_user_email#}</strong></td>
+<td><!--<a href="mailto:{$user_email}">-->{$user_email}<!--</a>--> &nbsp;<span class="small">[ <a href="index.php?mode=user&amp;action=edit_email">{#edit_email#}</a> ]</span></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_contacting#}</strong></td>
-<td class="d">
+<td><strong>{#edit_user_contacting#}</strong></td>
+<td>
 <input id="email_contact_disabled"   type="radio" name="email_contact" value="0"{if $email_contact=="0"} checked="checked"{/if} /><label for="email_contact_disabled">{#edit_user_contacting_disabled#}</label><br/>
 <input id="email_contact_registered" type="radio" name="email_contact" value="1"{if $email_contact=="1"} checked="checked"{/if} /><label for="email_contact_registered">{#edit_user_contacting_registered#}</label><br/>
 <input id="email_contact_public"     type="radio" name="email_contact" value="2"{if $email_contact=="2"} checked="checked"{/if} /><label for="email_contact_public">{#edit_user_contacting_public#}</label></td>
 </tr>
 <tr>
-<td class="c"><label for="user_hp"><strong>{#edit_user_hp#}</strong></label></td>
-<td class="d"><input id="user_hp" type="url" size="40" name="user_hp" value="{$user_hp}" maxlength="{$settings.hp_maxlength}" /></td>
+<td><label for="user_hp"><strong>{#edit_user_hp#}</strong></label></td>
+<td><input id="user_hp" type="url" size="40" name="user_hp" value="{$user_hp}" maxlength="{$settings.hp_maxlength}" /></td>
 </tr>
 <tr>
-<td class="c"><label for="user_real_name"><strong>{#edit_user_real_name#}</strong></label></td>
-<td class="d"><input id="user_real_name" type="text" size="40" name="user_real_name" value="{$user_real_name}" maxlength="{$settings.name_maxlength}" /></td>
+<td><label for="user_real_name"><strong>{#edit_user_real_name#}</strong></label></td>
+<td><input id="user_real_name" type="text" size="40" name="user_real_name" value="{$user_real_name}" maxlength="{$settings.name_maxlength}" /></td>
 </tr>
 <tr>
-<td class="c"><strong>{#edit_user_gender#}</strong></td>
-<td class="d">
+<td><strong>{#edit_user_gender#}</strong></td>
+<td>
 <input id="no-gender" type="radio" name="user_gender" value="0"{if $user_gender=="0"} checked="checked"{/if} /><label for="no-gender">{#gender_not_specified#}</label><br />
 <input id="male" type="radio" name="user_gender" value="1"{if $user_gender=="1"} checked="checked"{/if} /><label for="male">{#male#}</label><br />
 <input id="female" type="radio" name="user_gender" value="2"{if $user_gender=="2"} checked="checked"{/if} /><label for="female">{#female#}</label></td>
 </tr>
 <tr>
-<td class="c"><label for="user_birthday"><strong>{#edit_user_birthday#}</strong></label></td>
-<td class="d"><input id="user_birthday" type="date" size="40" name="user_birthday" value="{$user_birthday}" /> <span class="small">({#birthday_format#})</span></td>
+<td><label for="user_birthday"><strong>{#edit_user_birthday#}</strong></label></td>
+<td><input id="user_birthday" type="date" size="40" name="user_birthday" value="{$user_birthday}" /> <span class="small">({#birthday_format#})</span></td>
 </tr>
 <tr>
-<td class="c"><label for="user_location"><strong>{#edit_user_location#}</strong></label></td>
-<td class="d"><input id="user_location" type="text" size="40" name="user_location" value="{$user_location}" maxlength="{$settings.location_maxlength}" /></td>
+<td><label for="user_location"><strong>{#edit_user_location#}</strong></label></td>
+<td><input id="user_location" type="text" size="40" name="user_location" value="{$user_location}" maxlength="{$settings.location_maxlength}" /></td>
 </tr>
 <tr>
-<td class="c"><label for="profile"><strong>{#edit_user_profile#}</strong></label></td>
-<td class="d"><textarea id="profile" cols="65" rows="12" name="profile">{$profile}</textarea></td>
+<td><label for="profile"><strong>{#edit_user_profile#}</strong></label></td>
+<td><textarea id="profile" cols="65" rows="12" name="profile">{$profile}</textarea></td>
 </tr>
 <tr>
-<td class="c"><label for="signature"><strong>{#edit_user_signature#}</strong></label></td>
-<td class="d"><textarea id="signature" cols="65" rows="4" name="signature">{$signature}</textarea></td>
+<td><label for="signature"><strong>{#edit_user_signature#}</strong></label></td>
+<td><textarea id="signature" cols="65" rows="4" name="signature">{$signature}</textarea></td>
 </tr>
 {if $categories}
 <tr>
-<td class="c"><strong>{#edit_user_cat_selection#}</strong></td>
-<td class="d">
+<td><strong>{#edit_user_cat_selection#}</strong></td>
+<td>
 <ul class="checkboxlist">
 {foreach key=key item=val from=$categories}
 {if $key!=0}<li><input id="category_{$key}" type="checkbox" name="category_selection[]" value="{$key}"{if isset($category_selection) && in_array($key,$category_selection)} checked="checked"{/if} /><label for="category_{$key}">{$val}</label></li>{/if}
@@ -88,8 +88,8 @@
 
 {if $languages}
 <tr>
-<td class="c"><strong><label for="user_language">{#edit_user_language#}</label></strong></td>
-<td class="d">
+<td><strong><label for="user_language">{#edit_user_language#}</label></strong></td>
+<td>
 <select id="user_language" name="user_language" size="1">
 <option value=""{if $user_language==''} selected="selected"{/if}>{#edit_user_default_language#|replace:"[default_language]":$default_language}</option>
 {foreach from=$languages item=l}
@@ -101,8 +101,8 @@
 {/if}
 
 <tr>
-<td class="c"><strong>{if $time_zones}<label for="user_time_zone">{#edit_user_time_zone#}</label>{else}{#edit_user_time_zone#}{/if}</strong></td>
-<td class="d">
+<td><strong>{if $time_zones}<label for="user_time_zone">{#edit_user_time_zone#}</label>{else}{#edit_user_time_zone#}{/if}</strong></td>
+<td>
 {if $time_zones}
 <p>
 <select id="user_time_zone" name="user_time_zone" size="1">
@@ -119,8 +119,8 @@
 
 {if $themes}
 <tr>
-<td class="c"><strong><label for="user_theme">{#edit_user_theme#}</label></strong></td>
-<td class="d">
+<td><strong><label for="user_theme">{#edit_user_theme#}</label></strong></td>
+<td>
 <select id="user_theme" name="user_theme" size="1">
 <option value=""{if $user_theme==''} selected="selected"{/if}>{#edit_user_default_theme#|replace:"[default_theme]":$default_theme}</option>
 {foreach from=$themes item=t}
@@ -133,8 +133,8 @@
 
 {if $settings.autologin==1}
 <tr>
-<td class="c"><strong>{#edit_user_auto_login#}</strong></td>
-<td class="d">
+<td><strong>{#edit_user_auto_login#}</strong></td>
+<td>
  <ul>
   <li><input id="auto_login" type="checkbox" name="auto_login" value="1"{if $auto_login==1} checked="checked"{/if} /><label for="auto_login">{#enable_auto_login#}</label></li>
  </ul>
@@ -143,8 +143,8 @@
 {/if}
 
 <tr>
-<td class="c"><strong>{#edit_user_where_to_open_links#}</strong></td>
-<td class="d">
+<td><strong>{#edit_user_where_to_open_links#}</strong></td>
+<td>
  <ul>
   <li><input id="same-browser-window-forum-default" type="radio" name="browser_link_open" value="0"{if $browser_link_open=="0"} checked="checked"{/if} /><label for="same-browser-window-forum-default">{#where_to_open_links_forum_def#}</label></li>
   <li><input id="same-browser-window-no" type="radio" name="browser_link_open" value="1"{if $browser_link_open=="1"} checked="checked"{/if} /><label for="same-browser-window-no">{#where_to_open_links_same#}</label></li>
@@ -155,13 +155,13 @@
 </td>
 </tr>
 <tr>
-<td class="c"><strong class="caution">{#remove_user_account#}</strong></td>
-<td class="d"><span class="small">[ <a href="index.php?mode=user&amp;action=remove_account">{#remove_user_account_link#}</a> ]</span></td>
+<td><strong class="caution">{#remove_user_account#}</strong></td>
+<td><span class="small">[ <a href="index.php?mode=user&amp;action=remove_account">{#remove_user_account_link#}</a> ]</span></td>
 </tr>
 
 {if $mod||$admin}
 <tr>
-<td class="c"><strong>{#edit_user_notification#}</strong></td>
+<td><strong>{#edit_user_notification#}</strong></td>
 <td class="d">
  <ul>
   <li><input id="new_posting_notification" type="checkbox" name="new_posting_notification" value="1"{if $new_posting_notification=="1"} checked="checked"{/if} /><label for="new_posting_notification">{#admin_mod_notif_posting#}</label></li>
