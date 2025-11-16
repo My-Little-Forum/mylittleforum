@@ -134,17 +134,24 @@
 {if $settings.autologin==1}
 <tr>
 <td class="c"><strong>{#edit_user_auto_login#}</strong></td>
-<td class="d"><input id="auto_login" type="checkbox" name="auto_login" value="1"{if $auto_login==1} checked="checked"{/if} /><label for="auto_login">{#enable_auto_login#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="auto_login" type="checkbox" name="auto_login" value="1"{if $auto_login==1} checked="checked"{/if} /><label for="auto_login">{#enable_auto_login#}</label></li>
+ </ul>
+</td>
 </tr>
 {/if}
 
 <tr>
 <td class="c"><strong>{#edit_user_where_to_open_links#}</strong></td>
 <td class="d">
-<input id="same-browser-window-forum-default" type="radio" name="browser_link_open" value="0"{if $browser_link_open=="0"} checked="checked"{/if} /><label for="same-browser-window-forum-default">{#where_to_open_links_forum_def#}</label><br />
-<input id="same-browser-window-no" type="radio" name="browser_link_open" value="1"{if $browser_link_open=="1"} checked="checked"{/if} /><label for="same-browser-window-no">{#where_to_open_links_same#}</label><br />
-<input id="new-browser-window-ext" type="radio" name="browser_link_open" value="2"{if $browser_link_open=="2"} checked="checked"{/if} /><label for="new-browser-window-ext">{#where_to_open_links_external#}</label><br />
-<input id="new-browser-window-all" type="radio" name="browser_link_open" value="3"{if $browser_link_open=="3"} checked="checked"{/if} /><label for="new-browser-window-all">{#where_to_open_links_all#}</label></td>
+ <ul>
+  <li><input id="same-browser-window-forum-default" type="radio" name="browser_link_open" value="0"{if $browser_link_open=="0"} checked="checked"{/if} /><label for="same-browser-window-forum-default">{#where_to_open_links_forum_def#}</label></li>
+  <li><input id="same-browser-window-no" type="radio" name="browser_link_open" value="1"{if $browser_link_open=="1"} checked="checked"{/if} /><label for="same-browser-window-no">{#where_to_open_links_same#}</label></li>
+  <li><input id="new-browser-window-ext" type="radio" name="browser_link_open" value="2"{if $browser_link_open=="2"} checked="checked"{/if} /><label for="new-browser-window-ext">{#where_to_open_links_external#}</label></li>
+  <li><input id="new-browser-window-all" type="radio" name="browser_link_open" value="3"{if $browser_link_open=="3"} checked="checked"{/if} /><label for="new-browser-window-all">{#where_to_open_links_all#}</label></li>
+ </ul>
+</td>
 </td>
 </tr>
 <tr>
@@ -155,8 +162,12 @@
 {if $mod||$admin}
 <tr>
 <td class="c"><strong>{#edit_user_notification#}</strong></td>
-<td class="d"><input id="new_posting_notification" type="checkbox" name="new_posting_notification" value="1"{if $new_posting_notification=="1"} checked="checked"{/if} /><label for="new_posting_notification">{#admin_mod_notif_posting#}</label><br />
-<input id="new_user_notification" type="checkbox" name="new_user_notification" value="1"{if $new_user_notification=="1"} checked="checked"{/if} /><label for="new_user_notification">{#admin_mod_notif_register#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="new_posting_notification" type="checkbox" name="new_posting_notification" value="1"{if $new_posting_notification=="1"} checked="checked"{/if} /><label for="new_posting_notification">{#admin_mod_notif_posting#}</label></li>
+  <li><input id="new_user_notification" type="checkbox" name="new_user_notification" value="1"{if $new_user_notification=="1"} checked="checked"{/if} /><label for="new_user_notification">{#admin_mod_notif_register#}</label></li>
+ </ul>
+</td>
 </tr>
 {/if}
 <tr>

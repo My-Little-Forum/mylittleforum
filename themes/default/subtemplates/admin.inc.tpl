@@ -78,36 +78,60 @@
 
 <tr>
 <td class="c"><strong>{#terms_of_use_settings#}</strong><br /><span class="small">{#terms_of_use_settings_desc#}</span></td>
-<td class="d"><p><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $edSet.terms_of_use_agreement==1} checked="checked"{/if} /><label for="terms_of_use_agreement">{#terms_of_use_settings_enabled#}</label></p>
-<p><label for="terms_of_use_url">{#terms_of_use_url#}</label><br /><input id="terms_of_use_url" type="text" name="terms_of_use_url" value="{$edSet.terms_of_use_url|escape}" size="40" /></p></td>
+<td class="d">
+ <ul>
+  <li><input id="terms_of_use_agreement" type="checkbox" name="terms_of_use_agreement" value="1"{if $edSet.terms_of_use_agreement==1} checked="checked"{/if} /><label for="terms_of_use_agreement">{#terms_of_use_settings_enabled#}</label></li>
+ </ul>
+ <p><label for="terms_of_use_url">{#terms_of_use_url#}</label><br /><input id="terms_of_use_url" type="text" name="terms_of_use_url" value="{$edSet.terms_of_use_url|escape}" size="40" /></p>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#data_privacy_statement#}</strong><br /><span class="small">{#data_privacy_statement_desc#}</span></td>
-<td class="d"><p><input id="data_privacy_agreement" type="checkbox" name="data_privacy_agreement" value="1"{if $edSet.data_privacy_agreement==1} checked="checked"{/if} /><label for="data_privacy_agreement">{#data_privacy_settings_enabled#}</label></p>
-<p><label for="data_privacy_statement_url">{#data_privacy_url#}</label><br /><input id="data_privacy_statement_url" type="text" name="data_privacy_statement_url" value="{$edSet.data_privacy_statement_url|escape}" size="40" /></p></td>
+<td class="d">
+ <ul>
+  <li><input id="data_privacy_agreement" type="checkbox" name="data_privacy_agreement" value="1"{if $edSet.data_privacy_agreement==1} checked="checked"{/if} /><label for="data_privacy_agreement">{#data_privacy_settings_enabled#}</label></li>
+ </ul>
+ <p><label for="data_privacy_statement_url">{#data_privacy_url#}</label><br /><input id="data_privacy_statement_url" type="text" name="data_privacy_statement_url" value="{$edSet.data_privacy_statement_url|escape}" size="40" /></p>
+</td>
 </tr>
 
 <tr>
 <td class="c"><strong>{#accession#}</strong><br /><span class="small">{#accession_desc#}</span></td>
-<td class="d"><input id="access_for_all" type="radio" name="access_for_users_only" value="0"{if $edSet.access_for_users_only==0} checked="checked"{/if} /><label for="access_for_all">{#all_users#}</label><br />
-<input id="access_for_users_only" type="radio" name="access_for_users_only" value="1"{if $edSet.access_for_users_only==1} checked="checked"{/if} /><label for="access_for_users_only">{#only_registered_users#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="access_for_all" type="radio" name="access_for_users_only" value="0"{if $edSet.access_for_users_only==0} checked="checked"{/if} /><label for="access_for_all">{#all_users#}</label></li>
+  <li><input id="access_for_users_only" type="radio" name="access_for_users_only" value="1"{if $edSet.access_for_users_only==1} checked="checked"{/if} /><label for="access_for_users_only">{#only_registered_users#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#post_permission#}</strong><br /><span class="small">{#post_permission_desc#}</span></td>
-<td class="d"><input id="entries_by_all" type="radio" name="entries_by_users_only" value="0"{if $edSet.entries_by_users_only==0} checked="checked"{/if} /><label for="entries_by_all">{#all_users#}</label><br />
-<input id="entries_by_users" type="radio" name="entries_by_users_only" value="1"{if $edSet.entries_by_users_only==1} checked="checked"{/if} /><label for="entries_by_users">{#only_registered_users#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="entries_by_all" type="radio" name="entries_by_users_only" value="0"{if $edSet.entries_by_users_only==0} checked="checked"{/if} /><label for="entries_by_all">{#all_users#}</label></li>
+  <li><input id="entries_by_users" type="radio" name="entries_by_users_only" value="1"{if $edSet.entries_by_users_only==1} checked="checked"{/if} /><label for="entries_by_users">{#only_registered_users#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#register_permission#}</strong><br /><span class="small">{#register_permission_desc#}</span></td>
-<td class="d"><input id="register_mode_0" type="radio" name="register_mode" value="0"{if $edSet.register_mode==0} checked="checked"{/if} /><label for="register_mode_0">{#register_self#}</label><br />
-<input id="register_mode_1" type="radio" name="register_mode" value="1"{if $edSet.register_mode==1} checked="checked"{/if} /><label for="register_mode_1">{#register_self_locked#}</label><br />
-<input id="register_mode_2" type="radio" name="register_mode" value="2"{if $edSet.register_mode==2} checked="checked"{/if} /><label for="register_mode_2">{#register_only_admin#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="register_mode_0" type="radio" name="register_mode" value="0"{if $edSet.register_mode==0} checked="checked"{/if} /><label for="register_mode_0">{#register_self#}</label></li>
+  <li><input id="register_mode_1" type="radio" name="register_mode" value="1"{if $edSet.register_mode==1} checked="checked"{/if} /><label for="register_mode_1">{#register_self_locked#}</label></li>
+  <li><input id="register_mode_2" type="radio" name="register_mode" value="2"{if $edSet.register_mode==2} checked="checked"{/if} /><label for="register_mode_2">{#register_only_admin#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#user_area#}</strong><br /><span class="small">{#user_area_desc#}</span></td>
-<td class="d"><input id="public" type="radio" name="user_area_access" value="2"{if $edSet.user_area_access==2} checked="checked"{/if} /><label for="public">{#public_accessible#}</label><br />
-<input id="restricted_2_users" type="radio" name="user_area_access" value="1"{if $edSet.user_area_access==1} checked="checked"{/if} /><label for="restricted_2_users">{#accessible_reg_users_only#}</label><br />
-<input id="restricted_2_team" type="radio" name="user_area_access" value="0"{if $edSet.user_area_access==0} checked="checked"{/if} /><label for="restricted_2_team">{#accessible_team_users_only#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="public" type="radio" name="user_area_access" value="2"{if $edSet.user_area_access==2} checked="checked"{/if} /><label for="public">{#public_accessible#}</label></li>
+  <li><input id="restricted_2_users" type="radio" name="user_area_access" value="1"{if $edSet.user_area_access==1} checked="checked"{/if} /><label for="restricted_2_users">{#accessible_reg_users_only#}</label></li>
+  <li><input id="restricted_2_team" type="radio" name="user_area_access" value="0"{if $edSet.user_area_access==0} checked="checked"{/if} /><label for="restricted_2_team">{#accessible_team_users_only#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#latest_postings#}</strong><br /><span class="small">{#latest_postings_desc#}</span></td>
@@ -115,7 +139,11 @@
 </tr>
 <tr>
 <td class="c"><strong>{#tag_cloud#}</strong><br /><span class="small">{#tag_cloud_desc#}</span></td>
-<td class="d"><input id="tag_cloud" type="checkbox" name="tag_cloud" value="1"{if $edSet.tag_cloud==1} checked="checked"{/if} /><label for="tag_cloud">{#enable_tag_cloud#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="tag_cloud" type="checkbox" name="tag_cloud" value="1"{if $edSet.tag_cloud==1} checked="checked"{/if} /><label for="tag_cloud">{#enable_tag_cloud#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#edit_postings#}</strong><br /><span class="small">{#edit_postings_desc#}</span></td>
@@ -146,19 +174,29 @@
 <tr>
 <td class="c"><strong>{#bbcode#}</strong><br /><span class="small">{#bbcode_desc#}</span></td>
 <td class="d">
-<input id="bbcode" type="checkbox" name="bbcode" value="1"{if $edSet.bbcode==1} checked="checked"{/if} /><label for="bbcode">{#bbcodes_enabled#}</label><br />
-<input id="bbcode_img" type="checkbox" name="bbcode_img" value="1"{if $edSet.bbcode_img==1} checked="checked"{/if} /><label for="bbcode_img">{#bbcodes_img_enabled#}</label><br />
+ <ul>
+  <li><input id="bbcode" type="checkbox" name="bbcode" value="1"{if $edSet.bbcode==1} checked="checked"{/if} /><label for="bbcode">{#bbcodes_enabled#}</label></li>
+  <li><input id="bbcode_img" type="checkbox" name="bbcode_img" value="1"{if $edSet.bbcode_img==1} checked="checked"{/if} /><label for="bbcode_img">{#bbcodes_img_enabled#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#smilies#}</strong><br /><span class="small">{#smilies_desc#}</span></td>
-<td class="d"><input id="smilies" type="checkbox" name="smilies" value="1"{if $edSet.smilies==1} checked="checked"{/if} /><label for="smilies">{#smilies_enabled#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="smilies" type="checkbox" name="smilies" value="1"{if $edSet.smilies==1} checked="checked"{/if} /><label for="smilies">{#smilies_enabled#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#enamble_avatars#}</strong><br /><span class="small">{#enamble_avatars_desc#}</span></td>
-<td class="d"><p><input id="avatars_profiles_postings" type="radio" name="avatars" value="2"{if $edSet.avatars==2} checked="checked"{/if} /><label for="avatars_profiles_postings">{#avatars_profiles_postings#}</label><br />
-<input id="avatars_profiles" type="radio" name="avatars" value="1"{if $edSet.avatars==1} checked="checked"{/if} /><label for="avatars_profiles">{#avatars_profiles#}</label><br />
-<input id="avatars_disabled" type="radio" name="avatars" value="0"{if $edSet.avatars==0} checked="checked"{/if} /><label for="avatars_disabled">{#disabled#}</label></p>
 
+<td class="d">
+ <ul>
+  <li><input id="avatars_profiles_postings" type="radio" name="avatars" value="2"{if $edSet.avatars==2} checked="checked"{/if} /><label for="avatars_profiles_postings">{#avatars_profiles_postings#}</label></li>
+  <li><input id="avatars_profiles" type="radio" name="avatars" value="1"{if $edSet.avatars==1} checked="checked"{/if} /><label for="avatars_profiles">{#avatars_profiles#}</label></li>
+  <li><input id="avatars_disabled" type="radio" name="avatars" value="0"{if $edSet.avatars==0} checked="checked"{/if} /><label for="avatars_disabled">{#disabled#}</label></li>
+ </ul>
 {assign var="settings_avatar_max_width" value=$edSet.avatar_max_width}
 {assign var="input_avatar_max_width" value="<input id=\"avatar_max_width\" type=\"text\" name=\"avatar_max_width\" value=\"$settings_avatar_max_width\" size=\"5\" />"}
 {assign var="settings_avatar_max_height" value=$edSet.avatar_max_height}
@@ -169,10 +207,13 @@
 </tr>
 <tr>
 <td class="c"><strong>{#upload_images#}</strong><br /><span class="small">{#upload_images_desc#}</span></td>
-<td class="d"><p><input id="upload_images_all" type="radio" name="upload_images" value="3"{if $edSet.upload_images==3} checked="checked"{/if} /><label for="upload_images_all">{#upload_enabled_all#}</label><br />
-<input id="upload_images_users" type="radio" name="upload_images" value="2"{if $edSet.upload_images==2} checked="checked"{/if} /><label for="upload_images_users">{#upload_enabled_users#}</label><br />
-<input id="upload_images_admins_mods" type="radio" name="upload_images" value="1"{if $edSet.upload_images==1} checked="checked"{/if} /><label for="upload_images_admins_mods">{#upload_enabled_admins_mods#}</label><br />
-<input id="upload_images_disabled" type="radio" name="upload_images" value="0"{if $edSet.upload_images==0} checked="checked"{/if} /><label for="upload_images_disabled">{#disabled#}</label></p>
+<td class="d">
+ <ul>
+  <li><input id="upload_images_all" type="radio" name="upload_images" value="3"{if $edSet.upload_images==3} checked="checked"{/if} /><label for="upload_images_all">{#upload_enabled_all#}</label></li>
+  <li><input id="upload_images_users" type="radio" name="upload_images" value="2"{if $edSet.upload_images==2} checked="checked"{/if} /><label for="upload_images_users">{#upload_enabled_users#}</label></li>
+  <li><input id="upload_images_admins_mods" type="radio" name="upload_images" value="1"{if $edSet.upload_images==1} checked="checked"{/if} /><label for="upload_images_admins_mods">{#upload_enabled_admins_mods#}</label></li>
+  <li><input id="upload_images_disabled" type="radio" name="upload_images" value="0"{if $edSet.upload_images==0} checked="checked"{/if} /><label for="upload_images_disabled">{#disabled#}</label></li>
+ </ul>
 {assign var="settings_upload_max_width" value=$edSet.upload_max_img_width}
 {assign var="input_upload_max_width" value="<input id=\"upload_max_img_width\" type=\"text\" name=\"upload_max_img_width\" value=\"$settings_upload_max_width\" size=\"5\" />"}
 {assign var="settings_upload_max_height" value=$edSet.upload_max_img_height}
@@ -183,15 +224,27 @@
 </tr>
 <tr>
 <td class="c"><strong>{#autolink#}</strong><br /><span class="small">{#autolink_desc#}</span></td>
-<td class="d"><input id="autolink" type="checkbox" name="autolink" value="1"{if $edSet.autolink==1} checked="checked"{/if} /><label for="autolink">{#autolink_enabled#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="autolink" type="checkbox" name="autolink" value="1"{if $edSet.autolink==1} checked="checked"{/if} /><label for="autolink">{#autolink_enabled#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#count_views#}</strong><br /><span class="small">{#count_views_desc#}</span></td>
-<td class="d"><input id="count_views" type="checkbox" name="count_views" value="1"{if $edSet.count_views==1} checked="checked"{/if} /><label for="count_views">{#views_counter_enabled#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="count_views" type="checkbox" name="count_views" value="1"{if $edSet.count_views==1} checked="checked"{/if} /><label for="count_views">{#views_counter_enabled#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#rss_feed#}</strong><br /><span class="small">{#rss_feed_desc#}</span></td>
-<td class="d"><input id="rss_feed" type="checkbox" name="rss_feed" value="1"{if $edSet.rss_feed==1} checked="checked"{/if} /><label for="rss_feed">{#rss_feed_enabled#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="rss_feed" type="checkbox" name="rss_feed" value="1"{if $edSet.rss_feed==1} checked="checked"{/if} /><label for="rss_feed">{#rss_feed_enabled#}</label></li>
+ </ul>
+</td>
 </tr>
 
 <tr>
@@ -202,7 +255,12 @@
 <tr>
 <td class="c"><strong>{#reset_read_state#}</strong><br><span class="small">{#reset_read_state_desc#}</span></td>
 <td class="d">
-<p><input name="read_state_expiration_method" value="0" id="read_state_no_reset" type="radio"{if not isset($edSet.read_state_expiration_method) or $edSet.read_state_expiration_method==0} checked="checked"{/if} /><label for="read_state_no_reset">{#read_state_no_reset#}</label><br /><input id="read_state_number_reset" name="read_state_expiration_method" value="1" type="radio"{if $edSet.read_state_expiration_method==1} checked="checked"{/if} /><label for="read_state_number_reset">{#read_state_numbered_reset#}</label><br /><input name="read_state_expiration_method" value="2" id="read_state_age_reset" type="radio"{if $edSet.read_state_expiration_method==2} checked="checked"{/if} /><label for="read_state_age_reset">{#read_state_timeout_reset#}</label><br /><input name="read_state_expiration_method" value="3" id="read_state_lock_reset" type="radio"{if $edSet.read_state_expiration_method==3} checked="checked"{/if} /><label for="read_state_lock_reset">{#read_state_locktime_reset#}</label></p>
+ <ul>
+  <li><input name="read_state_expiration_method" value="0" id="read_state_no_reset" type="radio"{if not isset($edSet.read_state_expiration_method) or $edSet.read_state_expiration_method==0} checked="checked"{/if} /><label for="read_state_no_reset">{#read_state_no_reset#}</label></li>
+  <li><input id="read_state_number_reset" name="read_state_expiration_method" value="1" type="radio"{if $edSet.read_state_expiration_method==1} checked="checked"{/if} /><label for="read_state_number_reset">{#read_state_numbered_reset#}</label></li>
+  <li><input name="read_state_expiration_method" value="2" id="read_state_age_reset" type="radio"{if $edSet.read_state_expiration_method==2} checked="checked"{/if} /><label for="read_state_age_reset">{#read_state_timeout_reset#}</label></li>
+  <li><input name="read_state_expiration_method" value="3" id="read_state_lock_reset" type="radio"{if $edSet.read_state_expiration_method==3} checked="checked"{/if} /><label for="read_state_lock_reset">{#read_state_locktime_reset#}</label></li>
+ </ul>
 </td>
 </tr>
 <tr>
@@ -222,13 +280,20 @@
 
 <tr>
 <td class="c"><strong>{#forum_enabled_marking#}</strong><br /><span class="small">{#forum_enabled_desc#}</span></td>
-<td class="d"><p><input id="forum_enabled" type="checkbox" name="forum_enabled" value="1"{if $edSet.forum_enabled==1} checked="checked"{/if} /><label for="forum_enabled">{#forum_enabled#}</label></p>
-<p><label for="forum_disabled_message">{#forum_disabled_message#}</label><br /><input id="forum_disabled_message" type="text" name="forum_disabled_message" value="{$edSet.forum_disabled_message|escape}" size="40" /></p></td>
+<td class="d">
+ <ul>
+  <li><input id="forum_enabled" type="checkbox" name="forum_enabled" value="1"{if $edSet.forum_enabled==1} checked="checked"{/if} /><label for="forum_enabled">{#forum_enabled#}</label></li>
+ </ul>
+ <p><label for="forum_disabled_message">{#forum_disabled_message#}</label><br /><input id="forum_disabled_message" type="text" name="forum_disabled_message" value="{$edSet.forum_disabled_message|escape}" size="40" /></p>
+</td>
 </tr>
 <tr>
 <td class="c">&nbsp;</td>
-<td class="d"><p class="small"><input id="clear_chache" type="checkbox" name="clear_cache" value="1" /><label for="clear_chache">{#clear_chache#}</label></p>
-<p><input type="submit" name="settings_submit" value="{#settings_submit_button#}" /></p></td>
+<td class="d">
+ <ul>
+  <li><input id="clear_chache" type="checkbox" name="clear_cache" value="1" /><label for="clear_chache">{#clear_chache#}</label></li>
+ </ul>
+</td>
 </tr>
 </table>
 </div>
@@ -525,7 +590,13 @@
 {/if}
 <tr>
 <td class="c"><strong>{#edit_user_type#}</strong></td>
-<td class="d"><input id="edit_user_type_0" type="radio" name="edit_user_type" value="0"{if $edit_user_type==0} checked="checked"{/if} /><label for="edit_user_type_0">{#user#}</label><br /><input id="edit_user_type_1" type="radio" name="edit_user_type" value="1"{if $edit_user_type==1} checked="checked"{/if} /><label for="edit_user_type_1">{#mod#}</label><br /><input id="edit_user_type_2" type="radio" name="edit_user_type" value="2"{if $edit_user_type==2} checked="checked"{/if} /><label for="edit_user_type_2">{#admin#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="edit_user_type_0" type="radio" name="edit_user_type" value="0"{if $edit_user_type==0} checked="checked"{/if} /><label for="edit_user_type_0">{#user#}</label></li>
+  <li><input id="edit_user_type_1" type="radio" name="edit_user_type" value="1"{if $edit_user_type==1} checked="checked"{/if} /><label for="edit_user_type_1">{#mod#}</label></li>
+  <li><input id="edit_user_type_2" type="radio" name="edit_user_type" value="2"{if $edit_user_type==2} checked="checked"{/if} /><label for="edit_user_type_2">{#admin#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#edit_user_email#}</strong></td>
@@ -613,8 +684,12 @@
 {if $edit_user_type==2 || $edit_user_type==1}
 <tr>
 <td class="c"><strong>{#edit_user_notification#}</strong></td>
-<td class="d"><input id="new_posting_notification" type="checkbox" name="new_posting_notification" value="1"{if $new_posting_notification=="1"} checked="checked"{/if} /><label for="new_posting_notification">{#admin_mod_notif_posting#}</label><br />
-<input id="new_user_notification" type="checkbox" name="new_user_notification" value="1"{if $new_user_notification=="1"} checked="checked"{/if} /><label for="new_user_notification">{#admin_mod_notif_register#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="new_posting_notification" type="checkbox" name="new_posting_notification" value="1"{if $new_posting_notification=="1"} checked="checked"{/if} /><label for="new_posting_notification">{#admin_mod_notif_posting#}</label></li>
+  <li><input id="new_user_notification" type="checkbox" name="new_user_notification" value="1"{if $new_user_notification=="1"} checked="checked"{/if} /><label for="new_user_notification">{#admin_mod_notif_register#}</label></li>
+ </ul>
+</td>
 </tr>
 {/if}
 <tr>
@@ -798,40 +873,54 @@
 <tr>
 <td class="c"><strong>{#b8#}</strong><br /><span class="small">{#b8_desc#}</span></td>
 <td class="d">
-	<p>
-		<input id="b8_entry_check" type="checkbox" name="b8_entry_check" value="1"{if $b8_entry_check==1} checked="checked"{/if} /><label for="b8_entry_check">{#b8_entry_check_enable#}</label><br />
-		<input id="b8_mail_check" type="checkbox" name="b8_mail_check" value="1"{if $b8_mail_check==1} checked="checked"{/if} /><label for="b8_mail_check">{#b8_mail_check_enable#}</label><br />
-		<input id="b8_auto_training" type="checkbox" name="b8_auto_training" value="1"{if $b8_auto_training==1} checked="checked"{/if} /><label for="b8_auto_training">{#b8_auto_training_enable#}</label><br />
-	</p>
-	<p>{#b8_spam_probability_threshold#}<br />
-		<input id="b8_spam_probability_threshold" type="input" name="b8_spam_probability_threshold" value="{$b8_spam_probability_threshold}" size="25" />
-	</p>
+ <ul>
+  <li><input id="b8_entry_check" type="checkbox" name="b8_entry_check" value="1"{if $b8_entry_check==1} checked="checked"{/if} /><label for="b8_entry_check">{#b8_entry_check_enable#}</label></li>
+  <li><input id="b8_mail_check" type="checkbox" name="b8_mail_check" value="1"{if $b8_mail_check==1} checked="checked"{/if} /><label for="b8_mail_check">{#b8_mail_check_enable#}</label></li>
+  <li><input id="b8_auto_training" type="checkbox" name="b8_auto_training" value="1"{if $b8_auto_training==1} checked="checked"{/if} /><label for="b8_auto_training">{#b8_auto_training_enable#}</label></li>
+ </ul>
+ <p>{#b8_spam_probability_threshold#}<br />
+  <input id="b8_spam_probability_threshold" type="input" name="b8_spam_probability_threshold" value="{$b8_spam_probability_threshold}" size="25" />
+ </p>
 </td>
 </tr>
 <tr>
 <td class="c"><strong>{#stop_forum_spam#}</strong><br /><span class="small">{#stop_forum_spam_desc#}</span></td>
-<td class="d"><input id="stop_forum_spam" type="checkbox" name="stop_forum_spam" value="1"{if $stop_forum_spam==1} checked="checked"{/if} /><label for="stop_forum_spam">{#stop_forum_spam_enable#}</label></td>
 </tr>
 <tr>
 <td class="c"><strong>{#akismet#}</strong><br /><span class="small">{#akismet_desc#}</span></td>
-<td class="d"><p>{#akismet_key#}<br />
-<input type="text" name="akismet_key" value="{$akismet_key}" size="25" /></p>
-<p><input id="akismet_entry_check" type="checkbox" name="akismet_entry_check" value="1"{if $akismet_entry_check==1} checked="checked"{/if} /><label for="akismet_entry_check">{#akismet_entry#}</label><br />
-<input id="akismet_mail_check" type="checkbox" name="akismet_mail_check" value="1"{if $akismet_mail_check==1} checked="checked"{/if} /><label for="akismet_mail_check">{#akismet_mail#}</label></td>
+<td class="d">
+ <ul>
+  <li><input id="stop_forum_spam" type="checkbox" name="stop_forum_spam" value="1"{if $stop_forum_spam==1} checked="checked"{/if} /><label for="stop_forum_spam">{#stop_forum_spam_enable#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#spam_check_registered#}</strong><br /><span class="small">{#spam_check_registered_desc#}</span></td>
-<td class="d"><input id="spam_check_registered" type="checkbox" name="spam_check_registered" value="1"{if $spam_check_registered==1} checked="checked"{/if} /><label for="spam_check_registered">{#spam_check_registered_enable#}</label></td>
+<td class="d">
+ <p>{#akismet_key#}<br /><input type="text" name="akismet_key" value="{$akismet_key}" size="25" /></p>
+ <ul>
+  <li><input id="akismet_entry_check" type="checkbox" name="akismet_entry_check" value="1"{if $akismet_entry_check==1} checked="checked"{/if} /><label for="akismet_entry_check">{#akismet_entry#}</label></li>
+  <li><input id="akismet_mail_check" type="checkbox" name="akismet_mail_check" value="1"{if $akismet_mail_check==1} checked="checked"{/if} /><label for="akismet_mail_check">{#akismet_mail#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#auto_delete_spam#}</strong><br /><span class="small">{#auto_delete_spam_desc#}</span></td>
-<td class="d"><input id="save_spam" type="checkbox" name="save_spam" value="1"{if $save_spam==1} checked="checked"{/if} /><label for="save_spam">{#akismet_save_spam#}</label><br />
-<p>{#auto_delete_spam_timespan#}<br />
-<input type="text" name="auto_delete_spam" value="{$auto_delete_spam}" size="5" /></p></td>
+<td class="d">
+ <ul>
+  <li><input id="spam_check_registered" type="checkbox" name="spam_check_registered" value="1"{if $spam_check_registered==1} checked="checked"{/if} /><label for="spam_check_registered">{#spam_check_registered_enable#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#not_accepted_words#}</strong><br /><span class="small">{#not_accepted_words_desc#}</span></td>
 <td class="d"><textarea name="not_accepted_words" cols="35" rows="10">{$not_accepted_words}</textarea></td>
+<td class="d">
+ <ul>
+  <li><input id="save_spam" type="checkbox" name="save_spam" value="1"{if $save_spam==1} checked="checked"{/if} /><label for="save_spam">{#akismet_save_spam#}</label></li>
+ </ul>
+ <p>{#auto_delete_spam_timespan#}<br /><input type="text" name="auto_delete_spam" value="{$auto_delete_spam}" size="5" /></p>
+</td>
 </tr>
 <tr>
 <td class="c"><strong>{#banned_ips#}</strong><br /><span class="small">{#banned_ips_desc#}</span></td>
@@ -1074,7 +1163,12 @@
 </tr>
 <tr>
 <td class="c"><strong>{#page_access#}</strong></td>
-<td class="d"><input type="radio" name="access" value="0"{if $access==0} checked="checked"{/if} /><span class="small">{#page_access_public#}</span> <input type="radio" name="access" value="1"{if $access==1} checked="checked"{/if} /><span class="small">{#page_access_reg_users#}</span></td>
+<td class="d">
+ <ul>
+  <li><input type="radio" name="access" value="0"{if $access==0} checked="checked"{/if} /><span class="small">{#page_access_public#}</span></li>
+  <li><input type="radio" name="access" value="1"{if $access==1} checked="checked"{/if} /><span class="small">{#page_access_reg_users#}</span></li>
+ </ul>
+</td>
 </tr>
 
 <tr>
