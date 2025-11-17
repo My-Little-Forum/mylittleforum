@@ -837,6 +837,7 @@ fieldset.inactive input {
 }
 form ul:has(li input[type="checkbox"], li input[type="radio"]) {
 	list-style: none;
+	margin-block: 0;
 	margin-inline: 0;
 	padding-inline: 0;
 	font-size: 1em !important;
