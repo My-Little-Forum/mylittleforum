@@ -14,7 +14,7 @@
 {if $user_hp || $user_email}
 <tr>
 <td class="c"><p class="userdata"><strong>{#user_hp_email#}</strong></p></td>
-<td class="d"><p class="userdata">{if $user_hp=='' && $user_email==''}-{/if}{if $user_hp!=''}<a href="{$user_hp}" title="{$user_hp}"><img src="{$THEMES_DIR}/{$theme}/images/general-homepage.svg" alt="{#homepage#}" width="13" height="13" /></a> &nbsp;{/if}{if $user_email}<a href="index.php?mode=contact&amp;recipient_user_id={$p_user_id}" title="{#mailto_user#|replace:"[user]":$user_name}" rel="nofollow"><img src="{$THEMES_DIR}/{$theme}/images/e-mail-envelope.svg" alt="{#email#}" width="13" height="13" /></a>{/if}</p></td>
+<td class="d"><p class="userdata">{if $user_hp=='' && $user_email==''}-{/if}{if $user_hp!=''}<a href="{$user_hp}" title="{$user_hp}"><img class="sa-icon" src="{$THEMES_DIR}/{$theme}/images/general-homepage.svg" alt="{#homepage#}" width="13" height="13" /></a> &nbsp;{/if}{if $user_email}<a href="index.php?mode=contact&amp;recipient_user_id={$p_user_id}" title="{#mailto_user#|replace:"[user]":$user_name}" rel="nofollow"><img class="sa-icon" src="{$THEMES_DIR}/{$theme}/images/e-mail-envelope.svg" alt="{#email#}" width="13" height="13" /></a>{/if}</p></td>
 </tr>
 {/if}
 {if $user_real_name}
