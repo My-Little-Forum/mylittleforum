@@ -1572,7 +1572,7 @@ ul.thread li .current,
 ul.thread li .entry > .metadata {
 	text-wrap: nowrap;
 }
-main:not(:has(table#threadlist)) ul.thread li .entry > a::after {
+main:not(:has(table#threadlist)) ul.thread li .entry > .subject::after {
 	content: " - ";
 }
 
