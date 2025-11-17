@@ -877,7 +877,7 @@ td span.mod {
 }
 
 .registered_user::after {
-	content: " \00AE";
+	content: "\202F\00AE";
 }
 .author-name {
 	font-weight: bold;

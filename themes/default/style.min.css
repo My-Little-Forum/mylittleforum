@@ -172,7 +172,7 @@ form ul:has(li input[type="checkbox"],li input[type="radio"]) {list-style:none;m
 ul.filelist{list-style-type:none;padding-inline-start:0;margin-inline-start:0;font-size:.86em;line-height:1.7!important}
 ul.filelist img{margin:0 5px -3px 0;padding:0}
 ul.thread span.mod,ul.thread span.admin,td span.admin,td span.mod{cursor:help}
-.registered_user::after{content:" \00AE"}
+.registered_user::after{content:"\202F\00AE"}
 .author-name{font-weight:bold}
 #captcha{margin:0;padding:0}
 #captcha p{font-size:1em}
