@@ -840,7 +840,6 @@ form ul:has(li input[type="checkbox"], li input[type="radio"]) {
 	margin-block: 0;
 	margin-inline: 0;
 	padding-inline: 0;
-	font-size: 1em !important;
 }
 .login {
 	width: 17em;
