@@ -165,7 +165,7 @@ fieldset.active{border:none;margin:0;padding:0}
 fieldset.active label,fieldset.active input{color:#000}
 fieldset.inactive{border:none;margin:0;padding:0}
 fieldset.inactive label,fieldset.inactive input{color:gray}
-form ul:has(li input[type="checkbox"],li input[type="radio"]) {list-style:none;margin-block:0;margin-inline:0;padding-inline:0;font-size:1em!important}
+form ul:has(li input[type="checkbox"],li input[type="radio"]) {list-style:none;margin-block:0;margin-inline:0;padding-inline:0}
 .login{width:17em}
 .nowrap{white-space:nowrap}
 .user-locked{color:red!important}
