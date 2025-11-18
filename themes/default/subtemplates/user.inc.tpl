@@ -35,8 +35,7 @@
 {if $order=="user_type"}{$sorting_icon}{/if}</th>
 <th><a href="index.php?mode=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;order=user_hp&amp;descasc={if $descasc=="ASC" && $order=="user_hp"}DESC{else}ASC{/if}&amp;ul={$ul}" title="{#order_linktitle#}">{#user_hp#}</a>
 {if $order=="user_hp"}{$sorting_icon}{/if}</th>
-<th><a href="index.php?mode=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;order=email_contact&amp;descasc={if $descasc=="ASC" && $order=="email_contact"}DESC{else}ASC{/if}&amp;ul={$ul}" title="{#order_linktitle#}">{#user_email#}</a>
-{if $order=="email_contact"}{$sorting_icon}{/if}</th>
+<th>{#user_email#}</th>
 {if $mod || $admin}<th><a href="index.php?mode=user{if $search_user_encoded}&amp;search_user={$search_user_encoded}{/if}&amp;order=user_lock&amp;descasc={if $descasc=="ASC" && $order=="user_lock"}DESC{else}ASC{/if}&amp;ul={$ul}" title="{#order_linktitle#}">{#user_blockage#}</a>{if $order=="user_lock" && $descasc=="ASC"}&nbsp;<img class="sa-icon" src="{$THEMES_DIR}/{$theme}/images/order-asc.svg" alt="[asc]" width="11" height="11" />{elseif $order=="user_lock" && $descasc=="DESC"}&nbsp;<img class="sa-icon" src="{$THEMES_DIR}/{$theme}/images/order-desc.svg" alt="[desc]" width="11" height="11" />{/if}
 {if $order=="user_lock"}{$sorting_icon}{/if}</th>{/if}
 </tr>
