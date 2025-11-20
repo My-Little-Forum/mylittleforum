@@ -856,7 +856,7 @@
 <tr>
 <td><strong>{#captcha#}</strong><br /><span class="small">{#captcha_desc#}{if !$graphical_captcha_available || !$font_available}<br />{#captcha_graphical_desc#}{/if}</span></td>
 <td class="d">
- <dl>
+ <dl id="captcha-settings">
   <div>
    <dt><strong>{#captcha_posting#}</strong></dt>
    <dd><input id="captcha_posting_0" type="radio" name="captcha_posting" value="0"{if $captcha_posting==0} checked="checked"{/if} /><label for="captcha_posting_0">{#captcha_disabled#}</label></dd>

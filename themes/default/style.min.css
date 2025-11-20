@@ -135,6 +135,9 @@ ul.openthread{clear:both}
 #usernav-bottom{margin:15px 0 0;padding:0;text-align:end;font-size:.86em}
 #selectioncontrols{margin:0;padding-inline-start:2.25em;background:url(images/triangle-full-top.svg) no-repeat calc(0% + .5em) center/1em}
 #admin-usernav-bottom #userpagination{float:right;float:inline-end;height:2em;text-align:end}
+#captcha-settings{margin:0;max-width:max-content}
+#captcha-settings div{display:flex;justify-content:end;gap:.375em}
+#captcha-settings div > *{margin:0}
 .thrbeg{font-weight:700}
 .notice{border:1px solid;font-weight:bold;padding-block:.5em;padding-inline:2.5em .5em}
 .spam,.caution{color:#882008;}
