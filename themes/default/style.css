@@ -700,6 +700,19 @@ ul.openthread {
 	text-align: end;
 }
 
+#captcha-settings {
+	margin: 0;
+	max-width: max-content;
+}
+#captcha-settings div {
+	display: flex;
+	justify-content: end;
+	gap: 0.375em;
+}
+#captcha-settings div > * {
+	margin: 0;
+}
+
 .thrbeg {
 	font-weight: bold;
 }
