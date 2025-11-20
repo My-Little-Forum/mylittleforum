@@ -288,15 +288,6 @@ body > * {
 aside {
 	font-size: 0.86em;
 }
-aside h3 {
-	font-size:1 em;
-	line-height: 1.7;
-	font-weight: 400;
-	margin: 0;
-	padding-block: 0;
-	padding-inline: 0.375em;
-	background :#d2ddea;
-}
 aside > div {
 	background-color: #f9f9f9;
 	border: 1px solid #bacbdf;
