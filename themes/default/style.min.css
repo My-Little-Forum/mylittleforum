@@ -16,6 +16,7 @@ a.boldlink{font-weight:bold}
 html[dir="rtl"] img.icon.wd-dependent{transform:scale(-1,1)}
 img:is(.icon,.sa-icon){width:.875em;height:auto}
 .tail a img{width:.75em;height:auto}
+select,input,button{font-size:initial;}
 body > *{margin:0;padding:0 1em;padding:0 1rem}
 #top{background:#d2ddea;background: linear-gradient(to bottom, rgb(210, 222, 236) 0, rgb(237, 242, 245) 2.5em, rgb(237, 242, 245) 100%);display:flex;flex-direction:column;padding-block:.5em}
 #top > *{margin:0;padding:0}
