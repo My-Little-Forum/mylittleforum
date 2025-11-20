@@ -268,6 +268,7 @@ ul.radiolist input[type="radio"],ul.radiobar input[type="radio"]{margin:0}
 .buttonbar button{padding:.3em}
 .buttonbar img:not([hidden]){display:block;width:1.5em;height:1.5em}
 .buttonbar a{display:inline-block;text-align:center;align-content:center;padding:.3em}
+table.normaltab:has(+ .buttonbar){margin-block-end:.75em}
 #admin-main-menu{display:grid;grid-template-areas:"infoboxes" "mainmenu";grid-template-columns:1fr;grid-template-rows:auto auto;gap:.75em}
 #admin-main-menu > *{margin:0;padding:0}
 #additional-admin-info{grid-area:infoboxes}
