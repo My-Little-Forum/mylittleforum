@@ -92,7 +92,9 @@ img:is(.icon, .sa-icon) {
 	width: 0.75em;
 	height: auto;
 }
-select,input,button {
+select,
+input,
+button {
 	font-size: initial;
 }
 
