@@ -94,7 +94,8 @@ img:is(.icon, .sa-icon) {
 }
 select,
 input,
-button {
+button,
+textarea {
 	font-size: initial;
 }
 
