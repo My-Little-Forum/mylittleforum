@@ -92,6 +92,9 @@ img:is(.icon, .sa-icon) {
 	width: 0.75em;
 	height: auto;
 }
+select,input,button {
+	font-size: initial;
+}
 
 body > * {
 	margin: 0;
@@ -287,15 +290,6 @@ body > * {
 }
 aside {
 	font-size: 0.86em;
-}
-aside h3 {
-	font-size:1 em;
-	line-height: 1.7;
-	font-weight: 400;
-	margin: 0;
-	padding-block: 0;
-	padding-inline: 0.375em;
-	background :#d2ddea;
 }
 aside > div {
 	background-color: #f9f9f9;
@@ -837,9 +831,9 @@ fieldset.inactive input {
 }
 form ul:has(li input[type="checkbox"], li input[type="radio"]) {
 	list-style: none;
+	margin-block: 0;
 	margin-inline: 0;
 	padding-inline: 0;
-	font-size: 1em !important;
 }
 .login {
 	width: 17em;
@@ -1354,6 +1348,9 @@ ul.radiobar input[type="radio"]{
 	align-content: center;
 	padding: 0.3em;
 }
+table.normaltab:has(+ .buttonbar) {
+	margin-block-end: 0.75em;
+}
 
 /* admin panel */
 #admin-main-menu {
@@ -1572,7 +1569,7 @@ ul.thread li .current,
 ul.thread li .entry > .metadata {
 	text-wrap: nowrap;
 }
-main:not(:has(table#threadlist)) ul.thread li .entry > a::after {
+main:not(:has(table#threadlist)) ul.thread li .entry > .subject::after {
 	content: " - ";
 }
 
