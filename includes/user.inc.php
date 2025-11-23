@@ -73,7 +73,7 @@ if ($isUser || $hasUserAreaAccess) {
 				if ($page < 1) $page = 1;
 	
 				if (isset($_GET['order'])) $order = $_GET['order']; else $order='user_name';
-				if ($order != 'user_id' && $order != 'user_name' && $order != 'user_type' && $order != 'registered' && $order != 'logins' && $order != 'last_login' && $order != 'user_lock' && $order != 'user_hp' && $order != 'email_contact' && $order != 'online') $order = 'user_name';
+				if (!in_array($order, ['user_id', 'user_name', 'user_type', 'registered', 'logins', 'last_login', 'user_lock', 'user_hp', 'email_contact', 'online'])) $order = 'user_name';
 				if ($order == 'user_lock' && (empty($_SESSION[$settings['session_prefix'].'user_type']) || isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] < 1)) $order = 'user_name';
 				if (isset($_GET['descasc'])) $descasc = $_GET['descasc']; else $descasc = "ASC";
 				if ($descasc != 'DESC' && $descasc != 'ASC') $descasc = 'ASC';
