@@ -855,7 +855,7 @@
 <table class="normaltab descript">
 <tr>
 <td><strong>{#captcha#}</strong><br /><span class="small">{#captcha_desc#}{if !$graphical_captcha_available || !$font_available}<br />{#captcha_graphical_desc#}{/if}</span></td>
-<td class="d">
+<td>
  <dl id="captcha-settings">
   <div>
    <dt><strong>{#captcha_posting#}</strong></dt>
