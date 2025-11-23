@@ -312,11 +312,10 @@
 <td><input type="text" name="{$settings_sorted[nr].key}" value="{$settings_sorted[nr].val|escape}" /></td>
 </tr>
 {/section}
-<tr>
-<td>&nbsp;</td>
-<td><input type="submit" name="settings_submit" value="{#settings_submit_button#}" /></td>
-</tr>
 </table>
+<div class="buttonbar">
+<button name="settings_submit" value="{#settings_submit_button#}">{#settings_submit_button#}</button>
+</div>
 </div>
 </form>
 {elseif $action=='categories'}
