@@ -1,5 +1,5 @@
 *,::before,::after{box-sizing:border-box}
-body{color:#000;background:#f9f9f9;margin:0;padding:0;text-align:start;font-family:verdana,arial,sans-serif;font-size:1em;font-size:clamp(1rem,.7rem + .7vw,1.2rem);display:flex;flex-direction:column;min-height:100vh}
+body{color:#000;background:#f9f9f9;margin:0;padding:0;text-align:start;font-family:verdana,arial,sans-serif;font-size:1.125rem;display:flex;flex-direction:column;min-height:100vh}
 .small{font-size:.86em}
 .xsmall{font-size:.74em}
 h1{margin-top:0;font-size:1.25em;font-weight:700}
