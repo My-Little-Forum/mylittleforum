@@ -1199,7 +1199,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 			if (isset($_GET['send_error'])) $smarty->assign('send_error', TRUE);
 
 			if (isset($_GET['order'])) $order = $_GET['order']; else $order = "user_name";
-			if ($order != 'user_id' && $order != 'user_name' && $order != 'user_email' && $order != 'user_type' && $order != 'registered' && $order != 'logins' && $order != 'last_login' && $order != 'user_lock' && $order != 'activate_code') $order = 'user_id';
+			if (!in_array($order, ['user_id', 'user_name', 'user_email', 'user_type', 'registered', 'logins', 'last_login', 'user_lock', 'activate_code'])) $order = 'user_id';
 			if (isset($_GET['descasc'])) $descasc = $_GET['descasc']; else $descasc = "ASC";
 			if ($descasc != 'DESC' && $descasc != 'ASC') $descasc = 'ASC';
 
