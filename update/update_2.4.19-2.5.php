@@ -4382,3 +4382,47 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251010.1
 		$update['upload'] = reorderUpgradeFiles($update['upload']);
 	}
 }
+
+if (empty($update['errors']) && in_array($settings['version'], array('20251021.1'))) {
+
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
+		}
+	}
+
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['upload'][] = 'includes/admin.inc.php';
+		$update['upload'][] = 'includes/entry.inc.php';
+		$update['upload'][] = 'includes/index.inc.php';
+		$update['upload'][] = 'includes/js_defaults.inc.php';
+		$update['upload'][] = 'includes/posting.inc.php';
+		$update['upload'][] = 'includes/thread.inc.php';
+		$update['upload'][] = 'includes/user.inc.php';
+
+		$update['upload'][] = 'js/main.js';
+
+		$update['upload'][] = 'lang/';
+
+		$update['upload'][] = 'themes/default/images/general-information.svg';
+		$update['upload'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/bookmark.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/index.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/user.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/user_edit.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
+		$update['upload'][] = 'themes/default/style.css';
+		$update['upload'][] = 'themes/default/style_min.css';
+
+		$update['upload'] = reorderUpgradeFiles($update['upload']);
+	}
+}
