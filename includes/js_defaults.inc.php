@@ -30,10 +30,10 @@ header('Content-type: application/javascript');
 
 ?>var lang = new Array();
 <?php if ($settings['ajax_preview']): ?>
-	lang["ajax_preview_title"] =               "<?php echo addslashes($lang['ajax_preview_title']); ?>";
-	lang["close"] =                            "<?php echo addslashes($lang['close']); ?>";
-	lang["no_text"] =                          "<?php echo addslashes($lang['no_text']); ?>";
-	lang["reply_link"] =                       "<?php echo addslashes($lang['reply_link']); ?>";
+lang["ajax_preview_title"] =               "<?php echo addslashes($lang['ajax_preview_title']); ?>";
+lang["close"] =                            "<?php echo addslashes($lang['close']); ?>";
+lang["no_text"] =                          "<?php echo addslashes($lang['no_text']); ?>";
+lang["reply_link"] =                       "<?php echo addslashes($lang['reply_link']); ?>";
 <?php endif; ?>
 lang["fold_threads"] =                     "<?php echo addslashes($lang['fold_threads']); ?>";
 lang["fold_threads_linktitle"] =           "<?php echo addslashes($lang['fold_threads_linktitle']); ?>";
@@ -46,43 +46,43 @@ lang["fold_postings_title"] =              "<?php echo addslashes($lang['fold_po
 lang["show_password_title"] =              "<?php echo addslashes($lang['show_password_title']); ?>";
 lang["hide_password_title"] =              "<?php echo addslashes($lang['hide_password_title']); ?>";
 <?php if(isset($user_type) && $user_type >= 0): ?>
-	lang["drag_and_drop_title"] =              "<?php echo addslashes($lang['drag_and_drop_title']); ?>";
+lang["drag_and_drop_title"] =              "<?php echo addslashes($lang['drag_and_drop_title']); ?>";
 <?php endif; ?>
 <?php if($settings['entries_by_users_only']==0 || isset($user_type)): ?>
-	lang["quote_label"] =                      "<?php echo addslashes($lang['quote_label']); ?>";
-	lang["quote_title"] =                      "<?php echo addslashes($lang['quote_title']); ?>";
-	<?php if($settings['bbcode']): ?>
-		lang["bbcode_link_text"] =                 "<?php echo addslashes($lang['bbcode_link_text']); ?>";
-		lang["bbcode_link_url"] =                  "<?php echo addslashes($lang['bbcode_link_url']); ?>";
-		lang["bbcode_image_url"] =                 "<?php echo addslashes($lang['bbcode_image_url']); ?>";
-	<?php endif; ?>
-	<?php if($settings['bbcode_media']): ?>
-		lang["bbcode_media_url"] =                 "<?php echo addslashes($lang['bbcode_media_url']); ?>";
-	<?php endif; ?>
-	<?php if($settings['bbcode_latex'] && !empty($settings['bbcode_latex_uri'])): ?>
-		lang["bbcode_tex_code"] =                  "<?php echo addslashes($lang['bbcode_tex_code']); ?>";
-	<?php endif; ?>
-	<?php if($settings['smilies']): ?>
-		lang["more_smilies_label"] =               "<?php echo addslashes($lang['more_smilies_label']); ?>";
-		lang["more_smilies_title"] =               "<?php echo addslashes($lang['more_smilies_title']); ?>";
-	<?php endif; ?>
-	lang["error_no_name"] =                    "<?php echo addslashes($lang['error_no_name']); ?>";
-	lang["error_no_subject"] =                 "<?php echo addslashes($lang['error_no_subject']); ?>";
-	lang["error_no_text"] =                    "<?php echo addslashes($lang['error_no_text']); ?>";
-	lang["terms_of_use_error_posting"] =       "<?php echo addslashes($lang['terms_of_use_error_posting']); ?>";
+lang["quote_label"] =                      "<?php echo addslashes($lang['quote_label']); ?>";
+lang["quote_title"] =                      "<?php echo addslashes($lang['quote_title']); ?>";
+<?php if($settings['bbcode']): ?>
+lang["bbcode_link_text"] =                 "<?php echo addslashes($lang['bbcode_link_text']); ?>";
+lang["bbcode_link_url"] =                  "<?php echo addslashes($lang['bbcode_link_url']); ?>";
+lang["bbcode_image_url"] =                 "<?php echo addslashes($lang['bbcode_image_url']); ?>";
+<?php endif; ?>
+<?php if($settings['bbcode_media']): ?>
+lang["bbcode_media_url"] =                 "<?php echo addslashes($lang['bbcode_media_url']); ?>";
+<?php endif; ?>
+<?php if($settings['bbcode_latex'] && !empty($settings['bbcode_latex_uri'])): ?>
+lang["bbcode_tex_code"] =                  "<?php echo addslashes($lang['bbcode_tex_code']); ?>";
+<?php endif; ?>
+<?php if($settings['smilies']): ?>
+lang["more_smilies_label"] =               "<?php echo addslashes($lang['more_smilies_label']); ?>";
+lang["more_smilies_title"] =               "<?php echo addslashes($lang['more_smilies_title']); ?>";
+<?php endif; ?>
+lang["error_no_name"] =                    "<?php echo addslashes($lang['error_no_name']); ?>";
+lang["error_no_subject"] =                 "<?php echo addslashes($lang['error_no_subject']); ?>";
+lang["error_no_text"] =                    "<?php echo addslashes($lang['error_no_text']); ?>";
+lang["terms_of_use_error_posting"] =       "<?php echo addslashes($lang['terms_of_use_error_posting']); ?>";
 <?php endif; ?>
 <?php if(isset($user_type) && $user_type==0 && $settings['user_edit']>0 || !isset($user_type) && $settings['user_edit']==2): ?>
-	lang["delete_posting_confirm"] =           "<?php echo addslashes($lang['delete_posting_confirm']); ?>";
+lang["delete_posting_confirm"] =           "<?php echo addslashes($lang['delete_posting_confirm']); ?>";
 <?php elseif(isset($user_type) && $user_type>0): ?>
-	lang["delete_posting_confirm"] =           "<?php echo addslashes($lang['delete_posting_replies_confirm']); ?>";
+lang["delete_posting_confirm"] =           "<?php echo addslashes($lang['delete_posting_replies_confirm']); ?>";
 <?php endif; ?>
 <?php if(isset($user_type) && $user_type>0): ?>
-	lang["mark_linktitle"] =                   "<?php echo addslashes($lang['mark_linktitle']); ?>";
-	lang["unmark_linktitle"] =                 "<?php echo addslashes($lang['unmark_linktitle']); ?>";
+lang["mark_linktitle"] =                   "<?php echo addslashes($lang['mark_linktitle']); ?>";
+lang["unmark_linktitle"] =                 "<?php echo addslashes($lang['unmark_linktitle']); ?>";
 <?php endif; ?>
 <?php if(isset($user_type) && $user_type==2): ?>
-	lang["check_all"] =                        "<?php echo addslashes($lang['check_all']); ?>";
-	lang["uncheck_all"] =                      "<?php echo addslashes($lang['uncheck_all']); ?>";
+lang["check_all"] =                        "<?php echo addslashes($lang['check_all']); ?>";
+lang["uncheck_all"] =                      "<?php echo addslashes($lang['uncheck_all']); ?>";
 <?php endif; ?>
 
 var settings = new Array();
