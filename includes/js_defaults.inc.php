@@ -87,8 +87,6 @@ lang["hide_password_title"] =              "<?php echo addslashes($lang['hide_pa
 
 var settings = new Array();
 settings["session_prefix"] =               "<?php echo addslashes($settings['session_prefix']); ?>";
-settings["hide_sidebar_image"] =           "<?php echo $theme_config['hide_sidebar_image']; ?>";
-settings["show_sidebar_image"] =           "<?php echo $theme_config['show_sidebar_image']; ?>";
 settings["expand_thread_image"] =          "<?php echo $theme_config['expand_thread_image']; ?>";
 settings["fold_thread_image"] =            "<?php echo $theme_config['fold_thread_image']; ?>";
 settings["expand_thread_inactive_image"] = "<?php echo $theme_config['expand_thread_inactive_image']; ?>";
