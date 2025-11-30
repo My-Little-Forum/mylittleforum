@@ -2982,6 +2982,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		$update['items'][] = 'index.php';
 		
 		$update['items'][] = 'js/';
+		$update['delete'][] = 'js/main.min.js (remove)';
+		$update['delete'][] = 'js/posting.min.js (remove)';
 		
 		$update['items'][] = 'lang/';
 		$update['delete'][] = 'lang/turkish.lang (remove)';
