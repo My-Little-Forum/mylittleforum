@@ -4421,7 +4421,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251021.1
 		$update['upload'][] = 'themes/default/subtemplates/user_edit.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
 		$update['upload'][] = 'themes/default/style.css';
-		$update['upload'][] = 'themes/default/style_min.css';
+		$update['upload'][] = 'themes/default/style.min.css';
 
 		$update['upload'] = reorderUpgradeFiles($update['upload']);
 	}
