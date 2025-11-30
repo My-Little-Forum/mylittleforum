@@ -15,6 +15,7 @@ my little forum changelog
 - change: remove the ability to sort the users data listing table (not the one on the admin panel!) by e-mail-addresses because the addresses are invisible for the visitor
 - fix: use classic formatting of the ISO-timestamps with the PHP function date, with INTL-date-formatter the ISO date will falsely be localised
 - fix: remove outdated JS-code to include images which are already gone
+- fix: make the function links in user data, categories, smilies, pages and bookmark tables appearing in one line and not breaking into a second line
 - cleanup: remove CSS code for elements which does no more exist since a long time
 - cleanup: summarise the repeated definitions for similar elements where possible
 
