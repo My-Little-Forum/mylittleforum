@@ -4023,6 +4023,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
 		
@@ -4090,8 +4091,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		$update['items'][] = 'includes/bookmark.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
@@ -4186,6 +4189,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
 		
@@ -4238,8 +4242,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['items'][] = 'includes/bookmark.inc.php';
 		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
@@ -4320,6 +4326,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user_postings.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
 		
@@ -4350,13 +4357,31 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250921.1
 	if (empty($update['errors'])) {
 		$update['items'][] = 'includes/admin.inc.php';
 		$update['items'][] = 'includes/bookmark.inc.php';
+		$update['items'][] = 'includes/entry.inc.php';
 		$update['items'][] = 'includes/functions.inc.php';
+		$update['items'][] = 'includes/index.inc.php';
+		$update['items'][] = 'includes/js_defaults.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
+		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/thread.inc.php';
+		$update['items'][] = 'includes/user.inc.php';
+
+		$update['items'][] = 'js/main.js';
 		
 		$update['items'][] = 'lang/';
 		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
+		$update['items'][] = 'themes/default/images/general-information.svg';
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/bookmark.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_edit.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
 		$update['items'][] = 'themes/default/style.css';
 		$update['items'][] = 'themes/default/style.min.css';
 		
@@ -4379,7 +4404,32 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251010.1
 	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
+		$update['upload'][] = 'includes/admin.inc.php';
 		$update['upload'][] = 'includes/bookmark.inc.php';
+		$update['upload'][] = 'includes/entry.inc.php';
+		$update['upload'][] = 'includes/index.inc.php';
+		$update['upload'][] = 'includes/js_defaults.inc.php';
+		$update['upload'][] = 'includes/posting.inc.php';
+		$update['upload'][] = 'includes/thread.inc.php';
+		$update['upload'][] = 'includes/user.inc.php';
+
+		$update['upload'][] = 'js/main.js';
+
+		$update['upload'][] = 'lang/';
+
+		$update['upload'][] = 'themes/default/images/general-information.svg';
+		$update['upload'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/bookmark.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/entry.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/index.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/thread.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/user.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/user_edit.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/user_profile.inc.tpl';
+		$update['upload'][] = 'themes/default/style.css';
+		$update['upload'][] = 'themes/default/style.min.css';
 		
 		$update['upload'] = reorderUpgradeFiles($update['upload']);
 	}
