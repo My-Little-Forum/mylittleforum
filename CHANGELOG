@@ -1,6 +1,23 @@
 my little forum changelog
 -------------------------
 
+20251129.1 (2025-11-29)
+-----------------------
+
+- featurette: link to instantaneously reload the version information for PHP, the database server and its product name, attention: there is a delay of 10 seconds after the latest reload
+- featurette: make the size of the icons following the font size, until then they only scaled when zooming the site
+- change: the default font size of the main content of the forum pages is now 1rem
+- change: removed many font size and line height definitions which are obsolete with the change to the default font size of 1rem
+- change: put (more or less) all occurences of radio buttons and checkboxes into lists
+- change: use more modern techniques for making the left column of settings tables lookong different than the other column(s) and table rows of other tables striped, this makes the use of classes .a, .b, .c and .d in each row or column obsolete
+- change: optimise the code to generate and set the sorting icons in the heading cells of the user data listing tables
+- change: use the narrow non breaking space for the (R) marker for registered users
+- change: remove the ability to sort the users data listing table (not the one on the admin panel!) by e-mail-addresses because the addresses are invisible for the visitor
+- fix: use classic formatting of the ISO-timestamps with the PHP function date, with INTL-date-formatter the ISO date will falsely be localised
+- fix: remove outdated JS-code to include images which are already gone
+- cleanup: remove CSS code for elements which does no more exist since a long time
+- cleanup: summarise the repeated definitions for similar elements where possible
+
 20251021.1 (2025-10-21)
 -----------------------
 
