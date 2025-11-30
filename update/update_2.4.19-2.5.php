@@ -4450,6 +4450,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251021.1
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
 		$update['upload'][] = 'includes/admin.inc.php';
+		$update['upload'][] = 'includes/bookmark.inc.php';
 		$update['upload'][] = 'includes/entry.inc.php';
 		$update['upload'][] = 'includes/index.inc.php';
 		$update['upload'][] = 'includes/js_defaults.inc.php';
