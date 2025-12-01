@@ -682,12 +682,6 @@ ul.openthread {
 #usersearch form {
 	display: inline;
 }
-#usernav-bottom {
-	margin: 15px 0 0 0;
-	padding: 0;
-	text-align: end;
-	font-size: 0.86em;
-}
 
 #selectioncontrols {
 	margin: 0;
