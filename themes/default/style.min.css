@@ -208,7 +208,6 @@ div#entry-input,#postingform input[type="text"],#postingform input[type="email"]
 #postingform #insert-quote{margin:0;font-size:.86em;padding:0;background:transparent;border:none;color:#00c}
 #postingform #insert-quote:focus,#postingform #insert-quote:hover{color:#00f}
 #postingform #text{margin:0;width:100%;height:24em}
-#delete_cookie{font-size:.86em}
 div#format-bar{margin:0 !important;padding:.375em;background:#f4f4f6}
 #postingform #format-bar > *{display:flex;flex-wrap:wrap;gap:.25em}
 #postingform #format-bar > *:not(:last-child){margin-block-end:.375em}
