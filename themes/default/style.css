@@ -890,9 +890,6 @@ td span.mod {
 	margin: 0;
 	padding: 0;
 }
-#captcha p {
-	font-size: 1em;
-}
 #captcha img,
 img.captcha {
 	border: 1px solid #000;

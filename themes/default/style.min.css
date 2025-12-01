@@ -178,7 +178,6 @@ ul.thread span.mod,ul.thread span.admin,td span.admin,td span.mod{cursor:help}
 .registered_user::after{content:"\202F\00AE"}
 .author-name{font-weight:bold}
 #captcha{margin:0;padding:0}
-#captcha p{font-size:1em}
 #captcha img,img.captcha{border:1px solid #000}
 .category{color:navy;font-size:.86em;font-weight:400}
 h3.preview{margin:10px 0 3px;font-weight:700;color:red}
