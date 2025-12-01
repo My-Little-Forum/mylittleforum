@@ -75,7 +75,7 @@ a.boldlink {
 	font-weight: bold;
 }
 
-:is(a, span, button):has(img.icon) {
+:is(a, span, button, legend):has(img.icon) {
 	display: flex;
 	align-items: center;
 	gap: 0.125em;
