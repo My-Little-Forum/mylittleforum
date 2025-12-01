@@ -132,7 +132,6 @@ ul.openthread{clear:both}
 #usernav{height:1.5em;margin:0 0 15px;padding:0}
 #usersearch{font-size:.86em;margin:.5em 0;padding:.5em 0 .75em 0;border-bottom:1px solid #bacbdf}
 #usersearch div,#usersearch form{display:inline}
-#usernav-bottom{margin:15px 0 0;padding:0;text-align:end;font-size:.86em}
 #selectioncontrols{margin:0;padding-inline-start:2.25em;background:url(images/triangle-full-top.svg) no-repeat calc(0% + .5em) center/1em}
 #admin-usernav-bottom #userpagination{float:right;float:inline-end;height:2em;text-align:end}
 #captcha-settings{margin:0;max-width:max-content}
