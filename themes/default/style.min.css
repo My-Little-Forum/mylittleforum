@@ -289,7 +289,7 @@ main > .adminmenu{margin-block:1em;margin-inline:0;padding:0}
 .adminmenu a img{margin:0;padding:0}
 h2#admin_header{margin:0 0 .5em 0}
 .manage-postings{border:1px solid #bacbdf;margin-top:25px;background:#f9f9f9}
-.manage-postings legend{font-size:.86em;font-weight:700}
+.manage-postings legend{font-weight:700}
 ul#uploadlist{list-style:none;margin-inline:0;margin-block:0 .75em;padding:0;max-width:100%;display:flex;flex-wrap:wrap;gap:.75em}
 #uploadlist > li{width:18.5em;margin:0;padding:0;border:1px solid #bacbdf;background:#f9f9f9}
 #uploadlist .image_container{padding:.5em;height:21.5em;width:100%;margin:0 0 .25em 0;text-align:center}
