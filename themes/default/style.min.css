@@ -12,7 +12,7 @@ a:visited{color:#00c}
 a:focus,a:hover{color:#00f;text-decoration:underline}
 a:active{color:red}
 a.boldlink{font-weight:bold}
-:is(a,span,button):has(img.icon){display:flex;align-items:center;gap:.125em}
+:is(a,span,button,legend):has(img.icon){display:flex;align-items:center;gap:.125em}
 html[dir="rtl"] img.icon.wd-dependent{transform:scale(-1,1)}
 img:is(.icon,.sa-icon){width:.875em;height:auto}
 .tail a img{width:.75em;height:auto}
