@@ -182,7 +182,7 @@ ul.thread span.mod,ul.thread span.admin,td span.admin,td span.mod{cursor:help}
 #captcha p{font-size:1em}
 #captcha img,img.captcha{border:1px solid #000}
 .category{color:navy;font-size:.86em;font-weight:400}
-h3.preview{margin:10px 0 3px;font-size:.86em;font-weight:700;color:red}
+h3.preview{margin:10px 0 3px;font-weight:700;color:red}
 div.preview{margin:0 0 25px;padding:10px;border:1px dotted red}
 table.wide{width:100%}
 table.normaltab{width:100%;border:1px solid #bacbdf;border-collapse:collapse;font-size:.86em;background:#fff}
