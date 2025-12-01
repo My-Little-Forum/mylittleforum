@@ -1187,13 +1187,6 @@ div#format-bar {
 	flex: 0 0 6em;
 }
 
-button.insert-smiley {
-	margin: 0;
-	padding: 0;
-	font-size: 11px;
-	font-weight: normal;
-}
-
 #smilies li {
 	display: inline-block;
 	min-width: 50px;
