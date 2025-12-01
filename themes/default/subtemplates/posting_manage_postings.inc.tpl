@@ -13,7 +13,7 @@
     <li><input id="mark_mode_2" type="radio" name="mark_mode" value="2" /><label for="mark_mode_2">{#mark_all_postings#}</label></li>
     <li><input id="mark_mode_3" type="radio" name="mark_mode" value="3" /><label for="mark_mode_3">{#unmark_all_postings#}</label></li>
    </ul>
-   <div>
+   <div class="buttonbar">
     <button name="mark_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
    </div>
   </fieldset>
@@ -29,7 +29,7 @@
     <li><input id="lock_mode_2" type="radio" name="lock_mode" value="2" /><label for="lock_mode_2">{#lock_all_postings#}</label></li>
     <li><input id="lock_mode_3" type="radio" name="lock_mode" value="3" /><label for="lock_mode_3">{#unlock_all_postings#}</label></li>
    </ul>
-   <div>
+   <div class="buttonbar">
     <button name="lock_submit" value="{#submit_button_ok#}">{#submit_button_ok#}</button>
    </div>
   </fieldset>
