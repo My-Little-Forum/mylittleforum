@@ -183,6 +183,14 @@ if(isset($_GET['refresh'])) {
 if (isset($_GET['show_spam']) && isset($_SESSION[$settings['session_prefix'].'user_id']) && $_SESSION[$settings['session_prefix'].'user_id'] > 0) {
 	if (isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])) unset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam']);
 	else $_SESSION[$settings['session_prefix'].'usersettings']['show_spam'] = true;
+	// reset the page number to 1
+	// moving to the list of spam postings can fail
+	// if one starts from a paginated overview page
+	// one can lands on an probably empty spam overview page
+	// because there aren't so many spam posts
+	// that they reach the same paginated page
+	// whith that quick fix one lands reliable on page 1
+	$_SESSION[$settings['session_prefix'].'usersettings']['page'] = 1;
 	header('location: index.php?mode=index');
 	exit;
 }
