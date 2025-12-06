@@ -994,7 +994,7 @@ function capsuledPreventDefault(event) {
 		 * @return link
 		 */
 		var createAjaxPreviewLink = function(id) {
-			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) { if (settings["ajax_preview_onmouseover"]) {self.showAjaxPreviewWindow(this, false); this.blur(); } return false; }, "tabIndex": -1 }, null);
+			var link = document.createElementWithAttributes("a", {"class": "preview-link", "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) { if (settings["ajax_preview_onmouseover"]) {self.showAjaxPreviewWindow(this, false); this.blur(); } return false; }, "tabIndex": -1 }, null);
 			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "class": "sa-icon", "alt": lang["ajax_preview_title"], "width": "13", "height": "13"}, link);
 			return link;
 		};
@@ -1350,10 +1350,12 @@ function capsuledPreventDefault(event) {
 				ajaxPreviewWindow.setText("");
 				ajaxPreviewWindow.setVisible(true);	
 				ajaxPreviewWindow.setPosition( elPos.left, elPos.top );
+				const pURL = new URL(obj.href).searchParams;
+				const pid = pURL.get('id');
 				var querys = [
-								new Query("mode", "entry"),
-								new Query("ajax_preview", "true"),
-								new Query("id", obj.pid)
+					new Query("mode", "entry"),
+					new Query("ajax_preview", "true"),
+					new Query("id", pid)
 				];
 				new Request(strURL, "POST", querys, this, "updateAjaxPreviewWindow", null, true);
 			}
