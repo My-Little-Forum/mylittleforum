@@ -994,7 +994,7 @@ function capsuledPreventDefault(event) {
 		 * @return link
 		 */
 		var createAjaxPreviewLink = function(id) {
-			var link = document.createElementWithAttributes("a", {"class": "preview-link", "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) { if (settings["ajax_preview_onmouseover"]) {self.showAjaxPreviewWindow(this, false); this.blur(); } return false; }, "tabIndex": -1 }, null);
+			var link = document.createElementWithAttributes("a", {"class": "preview-link", "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "tabIndex": -1 }, null);
 			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "class": "sa-icon", "alt": lang["ajax_preview_title"], "width": "13", "height": "13"}, link);
 			return link;
 		};
@@ -1010,6 +1010,12 @@ function capsuledPreventDefault(event) {
 			if (pid && el.parentNode) {
 				el.parentNode.appendChild( document.createTextNode( String.fromCharCode(160) ) );
 				el.parentNode.appendChild( createAjaxPreviewLink(pid) );
+				
+				const previewLink = el.parentNode.querySelector("a:has(img)");
+				previewLink.addEventListener('click', function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); capsuledPreventDefault(e); });
+				if (settings["ajax_preview_onmouseover"]) {
+					previewLink.addEventListener('mouseover', function(e) {self.showAjaxPreviewWindow(this, false); this.blur(); capsuledPreventDefault(e); });
+				}
 			}
 		};
 		
@@ -1029,6 +1035,12 @@ function capsuledPreventDefault(event) {
 			if (pid) {
 				el.appendChild( document.createTextNode( String.fromCharCode(160) ) );
 				el.appendChild( createAjaxPreviewLink(pid) );
+				
+				const previewLink = el.querySelector("a:has(img)");
+				previewLink.addEventListener('click', function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); capsuledPreventDefault(e); });
+				if (settings["ajax_preview_onmouseover"]) {
+					previewLink.addEventListener('mouseover', function(e) {self.showAjaxPreviewWindow(this, false); this.blur(); capsuledPreventDefault(e); });
+				}
 			}
 		};
 		
@@ -1172,6 +1184,12 @@ function capsuledPreventDefault(event) {
 					else {
 						el.appendChild(document.createTextNode( String.fromCharCode(160) ));
 						el.appendChild(createAjaxPreviewLink(pid));
+					}
+					
+					const previewLink = el.querySelector("a:has(img)");
+					previewLink.addEventListener('click', function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); capsuledPreventDefault(e); });
+					if (settings["ajax_preview_onmouseover"]) {
+						previewLink.addEventListener('mouseover', function(e) {self.showAjaxPreviewWindow(this, false); this.blur(); capsuledPreventDefault(e); });
 					}
 				}
 				// thread, folded oder expanded - Reicht eigentlich die Suche nach thread?
@@ -1333,7 +1351,7 @@ function capsuledPreventDefault(event) {
 		this.showAjaxPreviewWindow = function(obj, pin) {
 			if (!obj || !ajaxPreviewWindow)
 				return;
-
+			
 			if (obj == ajaxPreviewWindow.getOpener() && ajaxPreviewWindow.isVisible() && pin) {
 				ajaxPreviewWindow.pin();
 				if (!ajaxPreviewWindow.isPinned()) {
