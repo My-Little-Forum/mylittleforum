@@ -553,9 +553,6 @@ blockquote code {
 	padding-inline: 0.625em;
 	padding-block: 0.25em;
 }
-.new {
-	border-color: #88a9cf;
-}
 .thread-posting h1,
 .thread-posting h2 {
 	margin: 0 0 2px 0;
@@ -612,6 +609,9 @@ blockquote code {
 	margin-inline: 5px 0;
 	padding: 0;
 	list-style-type: none;
+}
+.new {
+	border-color: #88a9cf;
 }
 
 .op-link {
