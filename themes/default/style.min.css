@@ -106,12 +106,13 @@ blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 .posting-footer .options li{margin:0}
 .posting-footer a{white-space:nowrap}
 .thread-posting{position:relative;border-inline-start:10px solid #d2ddea;border-inline-end:1px solid #f0f0f0;border-top:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;margin:0 0 20px;padding:0;background:#fff}
+.thread-posting > *{padding-inline:.625em;padding-block:.25em}
 .new{border-inline-start-color:#88a9cf !important}
 .thread-posting h1,.thread-posting h2{margin:0 0 2px;padding:0;font-size:1.05em}
-.thread-posting .header{background:#f5f5f5;margin:0;padding-block:0 5px;padding-inline:10px}
+.thread-posting .header{background:#f5f5f5;margin:0}
 .thread-posting .header img.avatar{position:relative;margin:0 20px 20px 20px;padding:5px;background:#f5f5f5;float:right;float:inline-end}
 .thread-posting .author{margin:1px 0 0;font-style:italic}
-.thread-posting .body,.thread-posting .signature,#content .thread-posting p.tags,.thread-posting .posting-footer{margin:0;padding:10px}
+.thread-posting .body,.thread-posting .signature,#content .thread-posting p.tags,.thread-posting .posting-footer{margin:0}
 .hide-posting{position:absolute;top:0;left:-10px}
 .thread-wrapper{margin:0;padding:0}
 .reply-wrapper{margin-block:0;margin-inline:20px 0;padding:0;list-style-type:none}

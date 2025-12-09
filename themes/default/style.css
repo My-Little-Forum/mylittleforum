@@ -550,6 +550,10 @@ blockquote code {
 	padding: 0;
 	background: #fff;
 }
+.thread-posting > * {
+	padding-inline: 0.625em;
+	padding-block: 0.25em;
+}
 .new {
 	border-inline-start-color: #88a9cf !important;
 }
@@ -562,8 +566,6 @@ blockquote code {
 .thread-posting .header {
 	background: #f5f5f5;
 	margin: 0;
-	padding-block: 0 5px;
-	padding-inline: 10px;
 }
 .thread-posting .header img.avatar {
 	position: relative;
@@ -582,7 +584,6 @@ blockquote code {
 #content .thread-posting p.tags,
 .thread-posting .posting-footer{
 	margin: 0;
-	padding: 10px;
 }
 
 .hide-posting {
