@@ -442,7 +442,7 @@ input[name=sort_of_agreement] + iframe {
 .posting img.avatar {
 	float: right;
 	float: inline-end;
-	margin: 0 0 20px 20px;
+	margin: 0 0 0.75em 0.75em;
 }
 .posting h1 {
 	margin: 0 0 2px 0;
@@ -568,8 +568,8 @@ blockquote code {
 }
 .thread-posting .header img.avatar {
 	position: relative;
-	margin: 0 20px 20px 20px;
-	padding: 5px;
+	margin: 0 0.75em 0.75em 0.75em;
+	padding: 0.25em;
 	background: #f5f5f5;
 	float: right;
 	float: inline-end;
@@ -1884,6 +1884,7 @@ figure.full-size-img img {
 .js-display-fold img.avatar {
 	width: 1.6em;
 	height: 1.6em;
+	padding: 0.125em !important;
 }
 
 /* Admin Warning */
