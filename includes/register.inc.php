@@ -15,8 +15,10 @@ if(empty($_SESSION[$settings['session_prefix'].'user_id']) && $settings['captcha
 	$captcha = new Captcha();
 }
 
-if (isset($_REQUEST['action'])) 
-	$action = $_REQUEST['action'];
+if (isset($_GET['action']))
+	$action = $_GET['action'];
+else if (isset($_POST['action']))
+	$action = $_POST['action'];
 else 
 	$action = 'main';
 
