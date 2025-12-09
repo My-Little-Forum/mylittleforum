@@ -542,10 +542,9 @@ blockquote code {
 
 .thread-posting {
 	position: relative;
-	border-inline-start: 10px solid #d2ddea;
-	border-inline-end: 1px solid #f0f0f0;
-	border-top: 1px solid #f0f0f0;
-	border-bottom: 1px solid #f0f0f0;
+	border:1px solid;
+	border-inline-start: 10px solid;
+	border-color: #d2ddea;
 	margin: 0 0 20px;
 	padding: 0;
 	background: #fff;
@@ -555,7 +554,7 @@ blockquote code {
 	padding-block: 0.25em;
 }
 .new {
-	border-inline-start-color: #88a9cf !important;
+	border-color: #88a9cf;
 }
 .thread-posting h1,
 .thread-posting h2 {
