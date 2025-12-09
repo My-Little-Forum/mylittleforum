@@ -87,7 +87,7 @@ img:is(.icon, .sa-icon) {
 	width: 0.875em;
 	height: auto;
 }
-.tail a img {
+.tail :is(a img,span img) {
 	width: 0.75em;
 	height: auto;
 }
