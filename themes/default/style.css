@@ -545,7 +545,7 @@ blockquote code {
 	border:1px solid;
 	border-inline-start: 10px solid;
 	border-color: #d2ddea;
-	margin: 0 0 20px;
+	margin-block: 0 0.875em;
 	padding: 0;
 	background: #fff;
 }

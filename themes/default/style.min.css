@@ -105,7 +105,7 @@ blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 #content .posting-footer .options{list-style-type:none;max-width:100%;margin:0;padding:0;grid-area:moderationlinks;display:flex;flex-wrap:wrap;gap:.5em;justify-content:flex-start}
 .posting-footer .options li{margin:0}
 .posting-footer a{white-space:nowrap}
-.thread-posting{position:relative;border:1px solid;border-inline-start:10px solid;border-color:#d2ddea;margin:0 0 20px;padding:0;background:#fff}
+.thread-posting{position:relative;border:1px solid;border-inline-start:10px solid;border-color:#d2ddea;margin-block:0 .875em;padding:0;background:#fff}
 .thread-posting > *{padding-inline:.625em;padding-block:.25em}
 .new{border-color:#88a9cf}
 .thread-posting h1,.thread-posting h2{margin:0 0 2px;padding:0;font-size:1.05em}
