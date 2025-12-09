@@ -110,7 +110,7 @@ blockquote code{font-family:"courier new",courier;color:#6f6f6f}
 .new{border-color:#88a9cf}
 .thread-posting h1,.thread-posting h2{margin:0 0 2px;padding:0;font-size:1.05em}
 .thread-posting .header{background:#f5f5f5;margin:0}
-.thread-posting .header img.avatar{position:relative;margin:0 .75em .75em .75em;padding:.25em;background:#f5f5f5;float:right;float:inline-end}
+.thread-posting img.avatar{position:relative;margin:0 .75em .75em .75em;padding:.25em;background:#f5f5f5;float:right;float:inline-end}
 .thread-posting .author{margin:1px 0 0;font-style:italic}
 .thread-posting .body,.thread-posting .signature,#content .thread-posting p.tags,.thread-posting .posting-footer{margin:0}
 .hide-posting{position:absolute;top:0;left:-10px}
@@ -378,7 +378,7 @@ figure.full-size-img img{display:block}
 .js-cursor-pointer{cursor:pointer}
 .js-cursor-move{cursor:move}
 .js-display-fold .wrapper,#sidebar.js-display-fold > div{display:none}
-.js-display-fold img.avatar{width:1.6em;height:1.6em;padding:.125em !important}
+.js-display-fold img.avatar{width:1.6em;height:1.6em;padding:.125em}
 form .hp{display:none}
 @media screen and (min-width:38em) {
 	#top {flex-direction:row;justify-content:space-between}
