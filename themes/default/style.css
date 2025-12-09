@@ -1763,6 +1763,7 @@ figure.full-size-img {
 }
 figure.full-size-img::backdrop {
 	background:#0008;
+	backdrop-filter: blur(1.5px);
 }
 figure.full-size-img img {
 	display: block;
