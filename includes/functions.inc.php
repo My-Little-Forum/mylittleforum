@@ -2623,10 +2623,21 @@ function setReceiptTimestamp($offset = 0) {
  * @return bool [false|true]
  */
 function is_valid_image_type($image) {
+	// set the working variable for the file type check
+	$isImg = false;
+	
+	// does the file in itself exist?
 	if (!file_exists($image)) return false;
+	// what is the mimetype of the file?
+	$finfo = finfo_open(FILEINFO_MIME_TYPE);
+	if ($finfo) {
+		$isImg = finfo_file($finfo, $image);
+		finfo_close($finfo);
+	}
+	if (!in_array($isImg, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) return false;
+	// what is the imagetype constant?
 	$type = exif_imagetype($image);
 	if ($type === false) return false;
-	$isImg = false;
 	
 	switch($type) {
 		case 1:
