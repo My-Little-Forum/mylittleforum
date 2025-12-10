@@ -2615,6 +2615,46 @@ function setReceiptTimestamp($offset = 0) {
 }
 
 /**
+ * function to validate of an image, given by file name is really an image of one of the allowed image types
+ *
+ * allowed are the filetypes GIF, JPEG, PNG, WebP
+ *
+ * @param string $image path to an image file
+ * @return bool [false|true]
+ */
+function is_valid_image_type($image) {
+	if (!file_exists($image)) return false;
+	$type = exif_imagetype($image);
+	if ($type === false) return false;
+	$isImg = false;
+	
+	switch($type) {
+		case 1:
+			// GIF
+			$isImg = imagecreatefromgif($image);
+		break;
+		case 2:
+			//JPEG
+			$isImg = imagecreatefromjpeg($image);
+		break;
+		case 3:
+			// PNG
+			$isImg = imagecreatefrompng($image);
+		break;
+		case 18:
+			// WebP
+			$isImg = imagecreatefromwebp($image);
+		break;
+		default:
+			// not allowed filetype
+			$isImg = false;
+	}
+	$type = ($isImg === false) ? false : true; 
+	return $type;
+}
+
+
+/**
  * sends a status code, displays an error message and halts the script
  *
  * @param string $status_code
