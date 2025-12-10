@@ -440,20 +440,36 @@ function parse_inlinecode($string) {
 }
 
 /**
- * checks if a url is valid
+ * checks if a url is valid and starts with http(s)://
  *
  * @param string $url
  * @return bool
  */
-function is_valid_url($url) {
-	if (!preg_match("/^.+\..+$/", $url)) {
-		return false;
-	}
-	if (contains_invalid_string($url)) {
-		return false;
-	}
-	return true;
-}
+function is_valid_url($url){
+    $url = trim($url);
+
+    if (!filter_var($url, FILTER_VALIDATE_URL))
+        return false;
+
+    // Unicode-Spoofing
+    if (strncasecmp($url, 'http://', 7) !== 0 && strncasecmp($url, 'https://', 8) !== 0)
+        return false;
+
+    // Host 
+    $host = parse_url($url, PHP_URL_HOST);
+    if ($host === false || $host === null) 
+        return false;
+
+    // Unicode-Domain ASCII/Punycode
+    $asciiHost = idn_to_ascii($host, IDNA_DEFAULT, INTL_IDNA_VARIANT_UTS46);
+    if ($asciiHost === false) 
+        return false;
+
+    if (!preg_match('/^[A-Za-z0-9.-]+$/', $asciiHost)) 
+        return false;
+
+    return true;
+} 
 
 /**
  * checks if a email address is valid
@@ -462,26 +478,10 @@ function is_valid_url($url) {
  * @return bool
  */
 function is_valid_email($email) {
-	if (!preg_match("/^([\w\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,}|[0-9]{1,3})(\]?)$/", $email)) {
+	if (!preg_match("/^([\w\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,}|[0-9]{1,3})(\]?)$/", $email))
 		return false;
-	}
-	if (contains_invalid_string($email)) {
-		return false;
-	}
-	return true;
-}
 
-/**
- * help function for is_valid_url() and is_valid_email()
- *
- * @param string $string
- * @return bool
- */
-function contains_invalid_string($string) {
-	$invalid_strings = array('<', '>', '\'', '"', 'expression(');
-	if (preg_match('/^(javascript|file|data|jar|phar)\:/i', $string)) return true;
-	foreach ($invalid_strings as $invalid_string) if (strpos(strtolower($string), $invalid_string) !== false) return true;
-	return false;
+	return true;
 }
 
 /**
@@ -531,27 +531,28 @@ function do_bbcode_img($action, $attributes, $content, $params, $node_object) {
 			return false;
 		} else {
 			// [img]image[/img]
-			if (!isset($attributes['default'])) return true;
+			if (!isset($attributes['default'])) 
+				return true;
 			// [img=xxx]image[/img]
-			elseif (isset($attributes['default']) && ($attributes['default'] == 'left' || $attributes['default'] == 'right' || $attributes['default'] == 'thumbnail' || $attributes['default'] == 'thumbnail-left' || $attributes['default'] == 'thumbnail-right')) return true;
-			else return false;
+			elseif (isset($attributes['default']) && ($attributes['default'] == 'left' || $attributes['default'] == 'right' || $attributes['default'] == 'thumbnail' || $attributes['default'] == 'thumbnail-left' || $attributes['default'] == 'thumbnail-right')) 
+				return true;
+			else 
+				return false;
 		}
-	} else {
-		// [img=xxx]image[/img]
-		$strSize = '';
-		if (strpos($content, 'images/uploaded/', 0) !== false) {
-			$size = @getimagesize($content);
-			if ($size !== false && (is_numeric($size[0]) && $size[0] > 0) && (is_numeric($size[1]) && $size[1] > 0)) {
-				$strSize = $size[3];
-			}
-		}
-		if (isset($attributes['default']) && $attributes['default'] == 'left') return '<img src="'. htmlspecialchars($content) .'" loading="lazy" class="left" alt="[image]" '. $strSize .' />';
-		if (isset($attributes['default']) && $attributes['default'] == 'right') return '<img src="'. htmlspecialchars($content) .'" loading="lazy" class="right" alt="[image]" '. $strSize .' />';
-		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'.htmlspecialchars($content).'" loading="lazy" class="thumbnail" alt="[image]" '. $strSize .' /></a>';
-		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-left') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" loading="lazy" class="thumbnail left" alt="[image]" '. $strSize .' /></a>';
-		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-right') return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" loading="lazy" class="thumbnail right" alt="[image]" '. $strSize .' /></a>';
+	} 
+	else {
+		if (isset($attributes['default']) && $attributes['default'] == 'left') 
+			return '<img src="'. htmlspecialchars($content) .'" loading="lazy" class="left" alt="[image]"  />';
+		if (isset($attributes['default']) && $attributes['default'] == 'right') 
+			return '<img src="'. htmlspecialchars($content) .'" loading="lazy" class="right" alt="[image]"  />';
+		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail') 
+			return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'.htmlspecialchars($content).'" loading="lazy" class="thumbnail" alt="[image]"  /></a>';
+		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-left') 
+			return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" loading="lazy" class="thumbnail left" alt="[image]"  /></a>';
+		if (isset($attributes['default']) && $attributes['default'] == 'thumbnail-right') 
+			return '<a rel="thumbnail" href="'. htmlspecialchars($content) .'"><img src="'. htmlspecialchars($content) .'" loading="lazy" class="thumbnail right" alt="[image]"  /></a>';
 		// [img]image[/img]
-		return '<img src="'. htmlspecialchars($content) .'" loading="lazy" alt="[image]" '. $strSize .' />';
+		return '<img src="'. htmlspecialchars($content) .'" loading="lazy" alt="[image]"  />';
 	}
 }
 
