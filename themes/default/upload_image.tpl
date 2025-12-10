@@ -254,12 +254,12 @@ window.addEventListener('DOMContentLoaded', function() {
    <li>
     <div>
      <button type="button">
-      <img src="images/uploaded/{$uploaded_file}" title="{#insert_image#}" alt="{#insert_image#}" />
+      <img src="{$FORUM_ADDRESS}/images/uploaded/{$uploaded_file}" title="{#insert_image#}" alt="{#insert_image#}" />
      </button>
     </div>
     <div class="insert-desc">
      <p>{#insert_image_exp_no_js#}</p>
-     <p><code>[img]images/uploaded/{$uploaded_file}[/img]</code></p>
+     <p><code>[img]{$FORUM_ADDRESS}/images/uploaded/{$uploaded_file}[/img]</code></p>
     </div>
    </li>
   </ul>
@@ -278,12 +278,12 @@ window.addEventListener('DOMContentLoaded', function() {
    <li>
     <div>
      <button type="button">
-      <img src="images/uploaded/{$images[nr]}" title="{#insert_image#}" alt="{#insert_image#}" />
+      <img src="{$FORUM_ADDRESS}/images/uploaded/{$images[nr]}" title="{#insert_image#}" alt="{#insert_image#}" />
      </button>
     </div>
     <div class="insert-desc">
      <p>{#insert_image_exp_no_js#}</p>
-     <p><code>[img]images/uploaded/{$images[nr]}[/img]</code></p>
+     <p><code>[img]{$FORUM_ADDRESS}/images/uploaded/{$images[nr]}[/img]</code></p>
     </div>
 {if $admin || $mod}    <div><a class="deletelink" href="index.php?mode=upload_image&amp;delete={$images[nr]}&amp;current={$current}"><img class="icon" src="{$THEMES_DIR}/{$settings.theme}/images/delete-cross.svg" alt="" width="12" height="12" /><span>{#delete#}</span></a></div>
 {/if}
@@ -305,7 +305,7 @@ window.addEventListener('DOMContentLoaded', function() {
    <h2>{#delete_image_confirm#}</h2>
   </div>
   <ul id="imgtab" class="shrinked">
-   <li><img src="images/uploaded/{$delete}" alt="{$delete}" /></li>
+   <li><img src="{$FORUM_ADDRESS}/images/uploaded/{$delete}" alt="{$delete}" /></li>
   </ul>
   <form id="del-upload-form" action="index.php" method="post" accept-charset="{#charset#}">
    <input type="hidden" name="mode" value="upload_image" />
