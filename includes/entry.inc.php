@@ -4,8 +4,8 @@
 		exit;
 	}
 	
-	if (isset($_REQUEST['id']))
-		$id = intval($_REQUEST['id']);
+	if (isset($_GET['id']))
+		$id = intval($_GET['id']);
 	else {
 		header('Location: index.php');
 		exit;
