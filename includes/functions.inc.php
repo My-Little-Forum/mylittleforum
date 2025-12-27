@@ -2629,11 +2629,7 @@ function is_valid_image_type($image) {
 	// does the file in itself exist?
 	if (!file_exists($image)) return false;
 	// what is the mimetype of the file?
-	$finfo = finfo_open(FILEINFO_MIME_TYPE);
-	if ($finfo) {
-		$isImg = finfo_file($finfo, $image);
-		finfo_close($finfo);
-	}
+	$isImg = mime_content_type($image);
 	if (!in_array($isImg, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) return false;
 	// what is the imagetype constant?
 	$type = exif_imagetype($image);
