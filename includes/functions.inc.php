@@ -2619,10 +2619,11 @@ function setReceiptTimestamp($offset = 0) {
  *
  * allowed are the filetypes GIF, JPEG, PNG, WebP
  *
- * @param string $image path to an image file
  * @return bool [false|true]
+ * @param ressource $image the image name, taken from the $_FILES array
+ * @param string $savePath path to the saving location of the resulting image file
  */
-function is_valid_image_type($image) {
+function is_valid_image_type($image, $savePath) {
 	// set the working variable for the file type check
 	$isImg = false;
 	
