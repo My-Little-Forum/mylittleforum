@@ -2635,8 +2635,8 @@ function validate_image($image, $savePath) {
 	// does the temporary file in itself exist?
 	if (!file_exists($image)) return false;
 	// what is the mimetype of the file?
-	$isImg = mime_content_type($image);
-	if (!in_array($isImg, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) return false;
+	$mimeImg = mime_content_type($image);
+	if (!in_array($mimeImg, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) return false;
 	// what is the imagetype constant?
 	$type = exif_imagetype($image);
 	if ($type === false) return false;
