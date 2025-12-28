@@ -2632,7 +2632,7 @@ function validate_image($image, $savePath) {
 	$imgTmp = false;
 	$imageInfo = ["valid" => false, "mimetype" => false];
 	
-	// does the file in itself exist?
+	// does the temporary file in itself exist?
 	if (!file_exists($image)) return false;
 	// what is the mimetype of the file?
 	$isImg = mime_content_type($image);
