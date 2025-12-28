@@ -2622,9 +2622,10 @@ function setReceiptTimestamp($offset = 0) {
  * Recode the input image to ensure, that it is really an image
  * and not i.e. a malicious script, that is enclosed in an image.
  *
- * @return bool [false|true]
  * @param ressource $image the image name, taken from the $_FILES array
  * @param string $savePath path to the saving location of the resulting image file
+ * @return bool [false]
+ * @return array [success status (true), mimetype]
  */
 function validate_image($image, $savePath) {
 	// set the working variable for the file type check
@@ -2674,9 +2675,9 @@ function validate_image($image, $savePath) {
 			// not allowed filetype
 			$isImg = false;
 	}
-	$type = ($isImg === false) ? false : true; 
-	return $type;
 	if ($isImg === false) return false;
+	$imageInfo = ["valid" => $isImg, "mimeType" => $mimeImg];
+	return $imageInfo;
 }
 
 
