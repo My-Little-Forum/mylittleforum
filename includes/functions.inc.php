@@ -2629,6 +2629,8 @@ function setReceiptTimestamp($offset = 0) {
 function validate_image($image, $savePath) {
 	// set the working variable for the file type check
 	$isImg = false;
+	$imgTmp = false;
+	$imageInfo = ["valid" => false, "mimetype" => false];
 	
 	// does the file in itself exist?
 	if (!file_exists($image)) return false;
