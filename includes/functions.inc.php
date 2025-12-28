@@ -2615,9 +2615,12 @@ function setReceiptTimestamp($offset = 0) {
 }
 
 /**
- * function to validate of an image, given by file name is really an image of one of the allowed image types
+ * function to validate an image, given by the temporary file name
  *
- * allowed are the filetypes GIF, JPEG, PNG, WebP
+ * Check if an image is of one of the allowed image types.
+ * Allowed are the filetypes GIF, JPEG, PNG, WebP.
+ * Recode the input image to ensure, that it is really an image
+ * and not i.e. a malicious script, that is enclosed in an image.
  *
  * @return bool [false|true]
  * @param ressource $image the image name, taken from the $_FILES array
