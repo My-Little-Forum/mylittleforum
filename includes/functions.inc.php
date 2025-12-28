@@ -2676,6 +2676,7 @@ function validate_image($image, $savePath) {
 	}
 	$type = ($isImg === false) ? false : true; 
 	return $type;
+	if ($isImg === false) return false;
 }
 
 
