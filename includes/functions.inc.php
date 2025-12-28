@@ -2644,19 +2644,31 @@ function validate_image($image, $savePath) {
 	switch($type) {
 		case 1:
 			// GIF
-			$isImg = imagecreatefromgif($image);
+			$imgTmp = imagecreatefromgif($image);
+			if ($imgTmp !== false) {
+				$isImg = imagegif($imgTmp, $savePath);
+			}
 		break;
 		case 2:
 			//JPEG
-			$isImg = imagecreatefromjpeg($image);
+			$imgTmp = imagecreatefromjpeg($image);
+			if ($imgTmp !== false) {
+				$isImg = imagejpeg($imgTmp, $savePath, 100);
+			}
 		break;
 		case 3:
 			// PNG
-			$isImg = imagecreatefrompng($image);
+			$imgTmp = imagecreatefrompng($image);
+			if ($imgTmp !== false) {
+				$isImg = imagepng($imgTmp, $savePath, 6);
+			}
 		break;
 		case 18:
 			// WebP
-			$isImg = imagecreatefromwebp($image);
+			$imgTmp = imagecreatefromwebp($image);
+			if ($imgTmp !== false) {
+				$isImg = imagewebp($imgTmp, $savePath, 100);
+			}
 		break;
 		default:
 			// not allowed filetype
