@@ -2654,7 +2654,7 @@ function validate_image($image, $savePath) {
 			//JPEG
 			$imgTmp = imagecreatefromjpeg($image);
 			if ($imgTmp !== false) {
-				$isImg = imagejpeg($imgTmp, $savePath, 100);
+				$isImg = imagejpeg($imgTmp, $savePath, 90);
 			}
 		break;
 		case 3:
@@ -2668,7 +2668,7 @@ function validate_image($image, $savePath) {
 			// WebP
 			$imgTmp = imagecreatefromwebp($image);
 			if ($imgTmp !== false) {
-				$isImg = imagewebp($imgTmp, $savePath, 100);
+				$isImg = imagewebp($imgTmp, $savePath, 90);
 			}
 		break;
 		default:
