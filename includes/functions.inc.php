@@ -1496,7 +1496,7 @@ function move_item($table, $id, $direction) {
  */
 function resize_image($uploaded_file, $file, $new_width, $new_height, $compression=80) {
 	if (file_exists($file)) {
-		@chmod($file, 0777);
+		@chmod($file, 0744);
 	}
 	
 	$image_info = getimagesize($uploaded_file);
