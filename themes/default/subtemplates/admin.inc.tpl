@@ -615,6 +615,16 @@
 <td><input type="text" size="40" name="user_email" value="{$user_email}" /></td>
 </tr>
 <tr>
+<td><strong>{#edit_user_contacting#}</strong></td>
+<td>
+ <ul>
+  <li><input id="email_contact_disabled" type="radio" name="email_contact" value="0"{if $email_contact=="0"} checked="checked"{/if} /><label for="email_contact_disabled">{#edit_user_contacting_disabled#}</label></li>
+  <li><input id="email_contact_registered" type="radio" name="email_contact" value="1"{if $email_contact=="1"} checked="checked"{/if} /><label for="email_contact_registered">{#edit_user_contacting_registered#}</label></li>
+  <li><input id="email_contact_public" type="radio" name="email_contact" value="2"{if $email_contact=="2"} checked="checked"{/if} /><label for="email_contact_public">{#edit_user_contacting_public#}</label></li>
+ </ul>
+</td>
+</tr>
+<tr>
 <td><strong>{#edit_user_hp#}</strong></td>
 <td><input type="text" size="40" name="user_hp" value="{$user_hp}" maxlength="{$settings.hp_maxlength}" /></td>
 </tr>
