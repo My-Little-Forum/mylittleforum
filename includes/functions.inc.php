@@ -1537,7 +1537,7 @@ function resize_image($uploaded_file, $file, $new_width, $new_height, $compressi
 			$current_image = imagecreatefromwebp($uploaded_file) or $error = true;
 			if (empty($error)) $new_image = imagecreatetruecolor($new_width, $new_height) or $error = true;
 			if (empty($error)) imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
-			if (empty($error)) imagewebp($new_image, $file) or $error = $true;
+			if (empty($error)) imagewebp($new_image, $file, $compression) or $error = $true;
 		}
 	}
 	if (empty($error)) return true;
