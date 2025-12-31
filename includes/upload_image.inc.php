@@ -49,7 +49,6 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 						break;
 					}
 					$imageSize = @filesize($uploaded_images_path.$img_tmp_name);
-					if ($imageTemp['mimeType'] != 'image/jpeg' && $file_size > $settings['upload_max_img_size'] * 1000) break;
 					if ($imageSize <= $settings['upload_max_img_size'] * 1000) break;
 				}
 				if ($imageSize > $settings['upload_max_img_size'] * 1000) {
