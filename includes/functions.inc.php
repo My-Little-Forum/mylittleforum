@@ -1502,7 +1502,7 @@ function resize_image($uploaded_file, $file, $new_width, $new_height, $compressi
 	$error = false
 	$image_info = getimagesize($uploaded_file);
 	$imageMIME = mime_content_type($uploaded_file);
-	if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) $error = true;
+	if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp']))  return false;
 	
 	if (empty($error)) {
 		if ($imageMIME == 'image/gif') {
