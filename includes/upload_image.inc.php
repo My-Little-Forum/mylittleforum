@@ -20,10 +20,10 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		if ($imageTemp === false)
 			$errors[] = 'invalid_file_format';
 
-		if (empty($errors)) {
 			if ($_FILES['probe']['size'] > $settings['upload_max_img_size'] * 1000 || $image_info[0] > $settings['upload_max_img_width'] || $image_info[1] > $settings['upload_max_img_height']) {
 				$width = $image_info[0];
 				$height = $image_info[1];
+		if (empty($errors) && $imageTemp['valid'] === true) {
 				// resize if too large:
 				if ($width > $settings['upload_max_img_width'] || $height > $settings['upload_max_img_height']) {
 					if ($width >= $height) {
