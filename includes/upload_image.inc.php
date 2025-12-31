@@ -41,8 +41,8 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 					$new_width = $image_info[0];
 					$new_height = $image_info[1];
 				}
-				clearstatcache();
 				for ($compression = 95; $compression > 50; $compression = $compression - 5) {
+					clearstatcache();
 					if (!resize_image($uploaded_images_path.$img_tmp_name, $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
 						$imageSize = filesize($uploaded_images_path.$img_tmp_name);
 						$imgResized = false;
