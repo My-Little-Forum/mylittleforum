@@ -328,7 +328,7 @@ switch ($action) {
 
 				$lang['new_pw_email_txt'] = str_replace("[name]", $field['user_name'], $lang['new_pw_email_txt']);
 				$lang['new_pw_email_txt'] = str_replace("[password]", $new_pw, $lang['new_pw_email_txt']);
-				$lang['new_pw_email_txt'] = str_replace("[login_link]", $settings['forum_address'].basename($_SERVER['PHP_SELF'])."?mode=login&username=". urlencode($field['user_name']) ."&userpw=".$new_pw, $lang['new_pw_email_txt']);
+				$lang['new_pw_email_txt'] = str_replace("[login_link]", $settings['forum_address'].basename($_SERVER['SCRIPT_NAME'])."?mode=login&username=". urlencode($field['user_name']) ."&userpw=".$new_pw, $lang['new_pw_email_txt']);
 				$lang['new_pw_email_txt'] = $lang['new_pw_email_txt'];
 
 				if (my_mail($field['user_email'], $lang['new_pw_email_sj'], $lang['new_pw_email_txt'])) {
