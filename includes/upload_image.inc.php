@@ -40,8 +40,9 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 					$new_height = $image_info[1];
 				}
 				for ($compression = 100; $compression > 1; $compression = $compression - 10) {
-					if (!resize_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
-						$file_size = $_FILES['probe']['size']; // @filesize($_FILES['probe']['tmp_name']);
+				clearstatcache();
+					if (!resize_image($uploaded_images_path.$img_tmp_name, $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
+						$imageSize = filesize($uploaded_images_path.$img_tmp_name);
 						break;
 					}
 					$file_size = @filesize($uploaded_images_path.$img_tmp_name);
