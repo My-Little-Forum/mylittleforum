@@ -13,10 +13,11 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 	if (isset($_FILES['probe']) && $_FILES['probe']['size'] != 0 && !$_FILES['probe']['error']) {
 		unset($errors);
 		$user_id = (isset($_SESSION[$settings['session_prefix'].'user_id'])) ? intval($_SESSION[$settings['session_prefix'].'user_id']) : NULL;
-		$image_info = getimagesize($_FILES['probe']['tmp_name']);
-		$imageMIME = mime_content_type($_FILES['probe']['tmp_name']);
-		if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp']))
 		$img_tmp_name = uniqid(rand()).'.tmp';
+		$imageTemp = validate_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name);
+		if (!file_exists($uploaded_images_path.$img_tmp_name))
+			$errors[] = 'upload_error';
+		if ($imageTemp === false)
 			$errors[] = 'invalid_file_format';
 
 		if (empty($errors)) {
