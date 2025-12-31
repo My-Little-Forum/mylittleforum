@@ -295,7 +295,7 @@ switch ($action) {
 			$lang = $smarty->getConfigVars();
 			$lang['pwf_activating_email_txt'] = str_replace("[name]", $field["user_name"], $lang['pwf_activating_email_txt']);
 			$lang['pwf_activating_email_txt'] = str_replace("[forum_address]", $settings['forum_address'], $lang['pwf_activating_email_txt']);
-			$lang['pwf_activating_email_txt'] = str_replace("[activating_link]", $settings['forum_address'].basename($_SERVER['PHP_SELF'])."?mode=login&activate=".$field["user_id"]."&code=".$pwf_code, $lang['pwf_activating_email_txt']);
+			$lang['pwf_activating_email_txt'] = str_replace("[activating_link]", $settings['forum_address'].basename($_SERVER['SCRIPT_NAME'])."?mode=login&activate=".$field["user_id"]."&code=".$pwf_code, $lang['pwf_activating_email_txt']);
 
 			if (my_mail($field["user_email"], $lang['pwf_activating_email_sj'], $lang['pwf_activating_email_txt'])) {
 				header("location: index.php?mode=login&login_message=mail_sent");
