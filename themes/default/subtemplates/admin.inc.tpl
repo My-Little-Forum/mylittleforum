@@ -612,8 +612,7 @@
 </tr>
 <tr>
 <td><strong>{#edit_user_email#}</strong></td>
-<td><input type="text" size="40" name="user_email" value="{$user_email}" /><br />
-<span class="small"><input id="email_contact" type="checkbox" name="email_contact" value="1"{if $email_contact==1} checked="checked"{/if} /><label for="email_contact">{#edit_user_email_contact#}</label></span></td>
+<td><input type="text" size="40" name="user_email" value="{$user_email}" /></td>
 </tr>
 <tr>
 <td><strong>{#edit_user_hp#}</strong></td>
