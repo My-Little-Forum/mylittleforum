@@ -39,9 +39,12 @@
 <tr>
 <td><strong>{#edit_user_contacting#}</strong></td>
 <td>
-<input id="email_contact_disabled"   type="radio" name="email_contact" value="0"{if $email_contact=="0"} checked="checked"{/if} /><label for="email_contact_disabled">{#edit_user_contacting_disabled#}</label><br/>
-<input id="email_contact_registered" type="radio" name="email_contact" value="1"{if $email_contact=="1"} checked="checked"{/if} /><label for="email_contact_registered">{#edit_user_contacting_registered#}</label><br/>
-<input id="email_contact_public"     type="radio" name="email_contact" value="2"{if $email_contact=="2"} checked="checked"{/if} /><label for="email_contact_public">{#edit_user_contacting_public#}</label></td>
+ <ul>
+  <li><input id="email_contact_disabled" type="radio" name="email_contact" value="0"{if $email_contact=="0"} checked="checked"{/if} /><label for="email_contact_disabled">{#edit_user_contacting_disabled#}</label></li>
+  <li><input id="email_contact_registered" type="radio" name="email_contact" value="1"{if $email_contact=="1"} checked="checked"{/if} /><label for="email_contact_registered">{#edit_user_contacting_registered#}</label></li>
+  <li><input id="email_contact_public" type="radio" name="email_contact" value="2"{if $email_contact=="2"} checked="checked"{/if} /><label for="email_contact_public">{#edit_user_contacting_public#}</label></li>
+ </ul>
+</td>
 </tr>
 <tr>
 <td><label for="user_hp"><strong>{#edit_user_hp#}</strong></label></td>
