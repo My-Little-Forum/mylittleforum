@@ -45,14 +45,14 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 						$imageSize = filesize($uploaded_images_path.$img_tmp_name);
 						break;
 					}
-					$file_size = @filesize($uploaded_images_path.$img_tmp_name);
 					if ($imageMIME != 'image/jpeg' && $file_size > $settings['upload_max_img_size'] * 1000) break;
-					if ($file_size <= $settings['upload_max_img_size'] * 1000) break;
+					$imageSize = @filesize($uploaded_images_path.$img_tmp_name);
+					if ($imageSize <= $settings['upload_max_img_size'] * 1000) break;
 				}
-				if ($file_size > $settings['upload_max_img_size'] * 1000) {
+				if ($imageSize > $settings['upload_max_img_size'] * 1000) {
 					$smarty->assign('width', $image_info[0]);
 					$smarty->assign('height', $image_info[1]);
-					$smarty->assign('filesize', number_format($_FILES['probe']['size'] / 1000, 0, ',', ''));
+					$smarty->assign('filesize', number_format($imageSize / 1000, 0, ',', ''));
 					$smarty->assign('max_width', $settings['upload_max_img_width']);
 					$smarty->assign('max_height', $settings['upload_max_img_height']);
 					$smarty->assign('max_filesize', $settings['upload_max_img_size']);
@@ -88,9 +88,9 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				$smarty->assign('image_downsized', true);
 				$smarty->assign('new_width', $new_width);
 				$smarty->assign('new_height', $new_height);
-				$smarty->assign('new_filesize', number_format($file_size / 1000, 0, ',', ''));
 			} else {
 				@move_uploaded_file($_FILES['probe']['tmp_name'], $uploaded_images_path.$filename) or $errors[] = 'upload_error';
+				$smarty->assign('new_filesize', number_format($imageSize / 1000, 0, ',', ''));
 			}
 		}
 		if (empty($errors)) {
