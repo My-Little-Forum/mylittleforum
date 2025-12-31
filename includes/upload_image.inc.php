@@ -88,8 +88,6 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				$smarty->assign('image_downsized', true);
 				$smarty->assign('new_width', $new_width);
 				$smarty->assign('new_height', $new_height);
-			} else {
-				@move_uploaded_file($_FILES['probe']['tmp_name'], $uploaded_images_path.$filename) or $errors[] = 'upload_error';
 				$smarty->assign('new_filesize', number_format($imageSize / 1000, 0, ',', ''));
 			}
 		}
