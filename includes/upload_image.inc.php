@@ -11,7 +11,7 @@ $images_per_page = 5;
 if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] > 0) || ($settings['upload_images'] == 2 && isset($_SESSION[$settings['session_prefix'].'user_id'])) || ($settings['upload_images'] == 3)) {
 	// upload:image:
 	if (isset($_FILES['probe']) && $_FILES['probe']['size'] != 0 && !$_FILES['probe']['error']) {
-		unset($errors);
+		$errors = [];
 		$user_id = (isset($_SESSION[$settings['session_prefix'].'user_id'])) ? intval($_SESSION[$settings['session_prefix'].'user_id']) : NULL;
 		$img_tmp_name = uniqid(rand()).'.tmp';
 		$imgResized = false;
@@ -22,7 +22,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		if ($imageTemp === false)
 			$errors[] = 'invalid_file_format';
 
-		if (empty($errors) && $imageTemp['valid'] === true) {
+		if (count($errors) == 0 && $imageTemp['valid'] === true) {
 			clearstatcache();
 			$image_info = getimagesize($uploaded_images_path.$img_tmp_name);
 			$imageSize = @filesize($uploaded_images_path.$img_tmp_name);
@@ -61,7 +61,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 					$smarty->assign('max_filesize', $settings['upload_max_img_size']);
 					$errors[] = 'file_too_large';
 				}
-				if (isset($errors)) {
+				if (count($errors) > 0) {
 					if (file_exists($uploaded_images_path.$img_tmp_name)) {
 						@chmod($uploaded_images_path.$img_tmp_name, 0777);
 						@unlink($uploaded_images_path.$img_tmp_name);
@@ -69,8 +69,8 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				}
 			}
 		}
-
-		if (empty($errors)) {
+		
+		if (count($errors) == 0) {
 			$filename = gmdate("YmdHis").uniqid('');
 			switch($imageTemp['mimeType']) {
 				case 'image/gif':
@@ -94,7 +94,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				$smarty->assign('new_filesize', number_format($imageSize / 1000, 0, ',', ''));
 			}
 		}
-		if (empty($errors)) {
+		if (count($errors) == 0) {
 			@chmod($uploaded_images_path.$filename, 0644);
 			// $user_id can be NULL (see around line #15), because of that do not handle it with intval()
 			// see therefore variable definition of $user_id around line 15 of this script
