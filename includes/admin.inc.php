@@ -121,7 +121,12 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id']) && isset($_SESSION[$
 		$edit_user_name = (!empty($_POST['edit_user_name'])) ? trim($_POST['edit_user_name']) : '';
 		$edit_user_type = intval($_POST['edit_user_type']);
 		$user_email = (!empty($_POST['edit_user_name'])) ? trim($_POST['user_email']) : '';
-		$email_contact = (isset($_POST['email_contact'])) ? 1 : 0;
+		if (isset($_POST['email_contact'])) 
+			$email_contact = intval($_POST['email_contact']);
+		else 
+			$email_contact = 0;
+		if ($email_contact < 0 || $email_contact > 2) 
+			$email_contact = 0;
 		$user_real_name = (!empty($_POST['edit_user_name'])) ? trim($_POST['user_real_name']) : '';
 		$user_birthday = (!empty($_POST['edit_user_name'])) ? trim($_POST['user_birthday']) : '';
 		$gender = (isset($_POST['user_gender'])) ? intval($_POST['user_gender']) : 0;
