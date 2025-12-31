@@ -20,25 +20,24 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		if ($imageTemp === false)
 			$errors[] = 'invalid_file_format';
 
-				$width = $image_info[0];
-				$height = $image_info[1];
 		if (empty($errors) && $imageTemp['valid'] === true) {
 			clearstatcache();
 			$image_info = getimagesize($uploaded_images_path.$img_tmp_name);
 			$imageSize = @filesize($uploaded_images_path.$img_tmp_name);
 			if ($imageSize > $settings['upload_max_img_size'] * 1000 || $image_info[0] > $settings['upload_max_img_width'] || $image_info[1] > $settings['upload_max_img_height']) {
 				// resize if too large:
-				if ($width > $settings['upload_max_img_width'] || $height > $settings['upload_max_img_height']) {
-					if ($width >= $height) {
+				$imgResized = true;
+				if ($image_info[0] > $settings['upload_max_img_width'] || $image_info[1] > $settings['upload_max_img_height']) {
+					if ($image_info[0] >= $image_info[1]) {
 						$new_width = $settings['upload_max_img_width'];
-						$new_height = intval($height*$new_width/$width);
+						$new_height = intval($image_info[1] * $new_width / $image_info[0]);
 					} else {
 						$new_height = $settings['upload_max_img_height'];
-						$new_width = intval($width*$new_height/$height);
+						$new_width = intval($image_info[0] * $new_height / $image_info[1]);
 					}
 				} else {
-					$new_width = $width;
-					$new_height = $height;
+					$new_width = $image_info[0];
+					$new_height = $image_info[1];
 				}
 				for ($compression = 100; $compression > 1; $compression = $compression - 10) {
 					if (!resize_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
