@@ -16,6 +16,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		$image_info = getimagesize($_FILES['probe']['tmp_name']);
 		$imageMIME = mime_content_type($_FILES['probe']['tmp_name']);
 		if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp']))
+		$img_tmp_name = uniqid(rand()).'.tmp';
 			$errors[] = 'invalid_file_format';
 
 		if (empty($errors)) {
@@ -35,7 +36,6 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 					$new_width = $width;
 					$new_height = $height;
 				}
-				$img_tmp_name = uniqid(rand()).'.tmp';
 				for ($compression = 100; $compression > 1; $compression = $compression - 10) {
 					if (!resize_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
 						$file_size = $_FILES['probe']['size']; // @filesize($_FILES['probe']['tmp_name']);
