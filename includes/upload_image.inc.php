@@ -14,6 +14,8 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		unset($errors);
 		$user_id = (isset($_SESSION[$settings['session_prefix'].'user_id'])) ? intval($_SESSION[$settings['session_prefix'].'user_id']) : NULL;
 		$img_tmp_name = uniqid(rand()).'.tmp';
+		$imgResized = false;
+		
 		$imageTemp = validate_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name);
 		if (!file_exists($uploaded_images_path.$img_tmp_name))
 			$errors[] = 'upload_error';
@@ -43,6 +45,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				clearstatcache();
 					if (!resize_image($uploaded_images_path.$img_tmp_name, $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
 						$imageSize = filesize($uploaded_images_path.$img_tmp_name);
+						$imgResized = false;
 						break;
 					}
 					$imageSize = @filesize($uploaded_images_path.$img_tmp_name);
@@ -85,7 +88,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 			}
 			if (isset($img_tmp_name)) {
 				@rename($uploaded_images_path.$img_tmp_name, $uploaded_images_path.$filename) or $errors[] = 'upload_error';
-				$smarty->assign('image_downsized', true);
+				$smarty->assign('image_downsized', $imgResized);
 				$smarty->assign('new_width', $new_width);
 				$smarty->assign('new_height', $new_height);
 				$smarty->assign('new_filesize', number_format($imageSize / 1000, 0, ',', ''));
