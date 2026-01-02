@@ -115,6 +115,7 @@ class StringParser {
 	 * @var mixed
 	 */
 	var $_root = null;
+	var $_output = null;
 	
 	/**
 	 * Length of the text
