@@ -40,7 +40,7 @@ require_once("modules/smarty-5/libs/Smarty.class.php");
 use Smarty\Smarty;
 $smarty                  = new Smarty;
 $smarty->error_reporting = '0'; //'E_ALL & ~E_NOTICE';
-$smarty->template_dir    = THEMES_DIR;
+$smarty->setTemplateDir(THEMES_DIR);
 $smarty->assign('THEMES_DIR', THEMES_DIR);
 $smarty->assign('CSRF_TOKEN', $_SESSION['csrf_token']);
 $smarty->assign('FORUM_ADDRESS', rtrim($settings['forum_address'], "/"));
