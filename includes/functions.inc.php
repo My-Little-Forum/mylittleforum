@@ -1528,16 +1528,16 @@ function resize_image($uploaded_file, $file, $new_width, $new_height, $compressi
 		} else {
 			$compressPNG = 9;
 		}
-		$current_image = imagecreatefrompng($uploaded_file) or $error = true;
-		if ($error === false) $new_image = imagecreatetruecolor($new_width, $new_height) or $error = true;
-		if ($error === false) imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
-		if ($error === false) imagepng($new_image, $file, $compressPNG) or $error = $true;
+		$current_image = @imagecreatefrompng($uploaded_file) or $error = true;
+		if ($error === false) $new_image = @imagecreatetruecolor($new_width, $new_height) or $error = true;
+		if ($error === false) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+		if ($error === false) @imagepng($new_image, $file, $compressPNG) or $error = $true;
 	} elseif($imageMIME=='image/webp') {
 		// image of type WebP
-		$current_image = imagecreatefromwebp($uploaded_file) or $error = true;
-		if ($error === false) $new_image = imagecreatetruecolor($new_width, $new_height) or $error = true;
-		if ($error === false) imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
-		if ($error === false) imagewebp($new_image, $file, $compression) or $error = $true;
+		$current_image = @imagecreatefromwebp($uploaded_file) or $error = true;
+		if ($error === false) $new_image = @imagecreatetruecolor($new_width, $new_height) or $error = true;
+		if ($error === false) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+		if ($error === false) @imagewebp($new_image, $file, $compression) or $error = $true;
 	}
 	if ($error === false) return true;
 	else return false;
