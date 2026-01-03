@@ -36,7 +36,8 @@ include('includes/mailer.inc.php');
 include('includes/functions.inc.php');
 include('includes/main.inc.php');
 
-require('modules/smarty/Smarty.class.php');
+require_once("modules/smarty-5/libs/Smarty.class.php");
+use Smarty\Smarty;
 $smarty                  = new Smarty;
 $smarty->error_reporting = '0'; //'E_ALL & ~E_NOTICE';
 $smarty->template_dir    = THEMES_DIR;
