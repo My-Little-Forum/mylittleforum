@@ -36,15 +36,19 @@ include('includes/mailer.inc.php');
 include('includes/functions.inc.php');
 include('includes/main.inc.php');
 
-require('modules/smarty/Smarty.class.php');
+// load Smarty without Composer as described in
+// https://github.com/smarty-php/smarty/pull/1019
+require_once("modules/smarty-5/libs/Smarty.class.php");
+use Smarty\Smarty;
 $smarty                  = new Smarty;
+$smarty->setCaching(Smarty::CACHING_OFF);
 $smarty->error_reporting = '0'; //'E_ALL & ~E_NOTICE';
-$smarty->template_dir    = THEMES_DIR;
+$smarty->setTemplateDir(THEMES_DIR);
 $smarty->assign('THEMES_DIR', THEMES_DIR);
 $smarty->assign('CSRF_TOKEN', $_SESSION['csrf_token']);
 $smarty->assign('FORUM_ADDRESS', rtrim($settings['forum_address'], "/"));
-$smarty->compile_dir       = 'templates_c';
-$smarty->config_dir        = LANG_DIR;
+$smarty->setCompileDir('./infrastructure/templates_c');
+$smarty->setConfigDir(LANG_DIR);
 $smarty->config_overwrite  = false;
 $smarty->config_booleanize = false;
 if (isset($_SESSION[$settings['session_prefix'] . 'usersettings']['language']) && file_exists(LANG_DIR . '/' . $_SESSION[$settings['session_prefix'] . 'usersettings']['language'])) {
@@ -73,7 +77,6 @@ if (isset($forum_time_zone))
 
 if (isset($_SESSION[$settings['session_prefix'] . 'usersettings']))
     $smarty->assign('usersettings', $_SESSION[$settings['session_prefix'] . 'usersettings']);
-#$smarty->assign('category', $category);
 if (isset($categories) and !empty($categories)) {
     $smarty->assign('categories', $categories);
     $smarty->assign('number_of_categories', count($categories) - 1);
