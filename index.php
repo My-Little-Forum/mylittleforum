@@ -36,6 +36,8 @@ include('includes/mailer.inc.php');
 include('includes/functions.inc.php');
 include('includes/main.inc.php');
 
+// load Smarty without Composer as described in
+// https://github.com/smarty-php/smarty/pull/1019
 require_once("modules/smarty-5/libs/Smarty.class.php");
 use Smarty\Smarty;
 $smarty                  = new Smarty;
