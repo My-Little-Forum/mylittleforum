@@ -16,13 +16,13 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		$img_tmp_name = uniqid(rand()).'.tmp';
 		$imgResized = false;
 		
-		$imageTemp = validate_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name);
+		$imageMime = validate_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name);
 		if (!file_exists($uploaded_images_path.$img_tmp_name))
 			$errors[] = 'upload_error';
-		if ($imageTemp === false)
+		if ($imageMime === false)
 			$errors[] = 'invalid_file_format';
 
-		if (count($errors) == 0 && $imageTemp['valid'] === true) {
+		if (count($errors) == 0) {
 			clearstatcache();
 			$image_info = getimagesize($uploaded_images_path.$img_tmp_name);
 			$imageSize = @filesize($uploaded_images_path.$img_tmp_name);
@@ -71,7 +71,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		
 		if (count($errors) == 0) {
 			$filename = gmdate("YmdHis").uniqid('');
-			switch($imageTemp['mimeType']) {
+			switch($imageMime) {
 				case 'image/gif':
 					$filename .= '.gif';
 				break;
