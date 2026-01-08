@@ -2633,15 +2633,14 @@ function setReceiptTimestamp($offset = 0) {
  * @param ressource $image the image name, taken from the $_FILES array
  * @param string $savePath path to the saving location of the resulting image file
  * @return bool [false]
- * @return array [success status (true), mimetype]
+ * @return string [mimetype]
  */
 function validate_image($image, $savePath) {
 	// set the working variable for the file type check
 	$isImg = false;
 	$imgTmp = false;
-	$imageInfo = ["valid" => false, "mimetype" => false];
 	
-	// does the temporary file in itself exist?
+	// does the temporary image file in vain in itself exist?
 	if (!file_exists($image)) return false;
 	// what is the mimetype of the file?
 	$mimeImg = mime_content_type($image);
@@ -2684,8 +2683,7 @@ function validate_image($image, $savePath) {
 			$isImg = false;
 	}
 	if ($isImg === false) return false;
-	$imageInfo = ["valid" => $isImg, "mimeType" => $mimeImg];
-	return $imageInfo;
+	return $mimeImg;
 }
 
 
