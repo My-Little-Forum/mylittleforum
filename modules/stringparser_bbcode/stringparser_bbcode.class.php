@@ -149,6 +149,40 @@ class StringParser_BBCode extends StringParser {
 	 */
 	var $_validateAgain = false;
 	
+	
+	/**
+	 * stores the number of opened tags to decrease it when closing them
+	 *
+	 * @access protected
+	 * @var int
+	 */
+	var $_savedCloseCount = 0;
+	
+	/**
+	 * keeps information about the processed bbcode
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	var $_codeInfo = [];
+	
+	/**
+	 * 
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	var $_savedName = null;
+	
+	/**
+	 * 
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	var $_quoting = null;
+	
+	
 	/**
 	 * Add a code
 	 *
@@ -1526,6 +1560,14 @@ class StringParser_BBCode_Node_Element extends StringParser_Node {
 	 * @var bool
 	 */
 	var $_paragraphHandled = false;
+	
+	/**
+	 * keeps information about the processed bbcode
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	var $_codeInfo = [];
 	
 	//////////////////////////////////////////////////
 	
