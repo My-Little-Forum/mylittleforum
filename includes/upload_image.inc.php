@@ -11,50 +11,56 @@ $images_per_page = 5;
 if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] > 0) || ($settings['upload_images'] == 2 && isset($_SESSION[$settings['session_prefix'].'user_id'])) || ($settings['upload_images'] == 3)) {
 	// upload:image:
 	if (isset($_FILES['probe']) && $_FILES['probe']['size'] != 0 && !$_FILES['probe']['error']) {
-		unset($errors);
+		$errors = [];
 		$user_id = (isset($_SESSION[$settings['session_prefix'].'user_id'])) ? intval($_SESSION[$settings['session_prefix'].'user_id']) : NULL;
-		$image_info = getimagesize($_FILES['probe']['tmp_name']);
-		$imageMIME = mime_content_type($_FILES['probe']['tmp_name']);
-		if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp']))
+		$img_tmp_name = uniqid(rand()).'.tmp';
+		$imgResized = false;
+		
+		$imageMime = validate_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name);
+		if (!file_exists($uploaded_images_path.$img_tmp_name))
+			$errors[] = 'upload_error';
+		if ($imageMime === false)
 			$errors[] = 'invalid_file_format';
 
-		if (empty($errors)) {
-			if ($_FILES['probe']['size'] > $settings['upload_max_img_size'] * 1000 || $image_info[0] > $settings['upload_max_img_width'] || $image_info[1] > $settings['upload_max_img_height']) {
-				$width = $image_info[0];
-				$height = $image_info[1];
+		if (count($errors) == 0) {
+			clearstatcache();
+			$image_info = getimagesize($uploaded_images_path.$img_tmp_name);
+			$imageSize = @filesize($uploaded_images_path.$img_tmp_name);
+			if ($imageSize > $settings['upload_max_img_size'] * 1000 || $image_info[0] > $settings['upload_max_img_width'] || $image_info[1] > $settings['upload_max_img_height']) {
 				// resize if too large:
-				if ($width > $settings['upload_max_img_width'] || $height > $settings['upload_max_img_height']) {
-					if ($width >= $height) {
+				$imgResized = true;
+				if ($image_info[0] > $settings['upload_max_img_width'] || $image_info[1] > $settings['upload_max_img_height']) {
+					if ($image_info[0] >= $image_info[1]) {
 						$new_width = $settings['upload_max_img_width'];
-						$new_height = intval($height*$new_width/$width);
+						$new_height = intval($image_info[1] * $new_width / $image_info[0]);
 					} else {
 						$new_height = $settings['upload_max_img_height'];
-						$new_width = intval($width*$new_height/$height);
+						$new_width = intval($image_info[0] * $new_height / $image_info[1]);
 					}
 				} else {
-					$new_width = $width;
-					$new_height = $height;
+					$new_width = $image_info[0];
+					$new_height = $image_info[1];
 				}
-				$img_tmp_name = uniqid(rand()).'.tmp';
-				for ($compression = 100; $compression > 1; $compression = $compression - 10) {
-					if (!resize_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
-						$file_size = $_FILES['probe']['size']; // @filesize($_FILES['probe']['tmp_name']);
+				for ($compression = 95; $compression > 50; $compression = $compression - 5) {
+					clearstatcache();
+					if (!resize_image($uploaded_images_path.$img_tmp_name, $uploaded_images_path.$img_tmp_name, $new_width, $new_height, $compression)) {
+						$imageSize = filesize($uploaded_images_path.$img_tmp_name);
+						$imgResized = false;
 						break;
 					}
-					$file_size = @filesize($uploaded_images_path.$img_tmp_name);
-					if ($imageMIME != 'image/jpeg' && $file_size > $settings['upload_max_img_size'] * 1000) break;
-					if ($file_size <= $settings['upload_max_img_size'] * 1000) break;
+					$imageSize = @filesize($uploaded_images_path.$img_tmp_name);
+					if ($imageSize <= $settings['upload_max_img_size'] * 1000) break;
 				}
-				if ($file_size > $settings['upload_max_img_size'] * 1000) {
+				if ($imageSize > $settings['upload_max_img_size'] * 1000) {
 					$smarty->assign('width', $image_info[0]);
 					$smarty->assign('height', $image_info[1]);
-					$smarty->assign('filesize', number_format($_FILES['probe']['size'] / 1000, 0, ',', ''));
+					$smarty->assign('filesize', number_format($imageSize / 1000, 0, ',', ''));
 					$smarty->assign('max_width', $settings['upload_max_img_width']);
 					$smarty->assign('max_height', $settings['upload_max_img_height']);
 					$smarty->assign('max_filesize', $settings['upload_max_img_size']);
 					$errors[] = 'file_too_large';
 				}
-				if (isset($errors)) {
+				if (count($errors) > 0) {
 					if (file_exists($uploaded_images_path.$img_tmp_name)) {
 						@chmod($uploaded_images_path.$img_tmp_name, 0777);
 						@unlink($uploaded_images_path.$img_tmp_name);
@@ -62,10 +68,10 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				}
 			}
 		}
-
-		if (empty($errors)) {
+		
+		if (count($errors) == 0) {
 			$filename = gmdate("YmdHis").uniqid('');
-			switch($imageMIME) {
+			switch($imageMime) {
 				case 'image/gif':
 					$filename .= '.gif';
 				break;
@@ -81,15 +87,13 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 			}
 			if (isset($img_tmp_name)) {
 				@rename($uploaded_images_path.$img_tmp_name, $uploaded_images_path.$filename) or $errors[] = 'upload_error';
-				$smarty->assign('image_downsized', true);
+				$smarty->assign('image_downsized', $imgResized);
 				$smarty->assign('new_width', $new_width);
 				$smarty->assign('new_height', $new_height);
-				$smarty->assign('new_filesize', number_format($file_size / 1000, 0, ',', ''));
-			} else {
-				@move_uploaded_file($_FILES['probe']['tmp_name'], $uploaded_images_path.$filename) or $errors[] = 'upload_error';
+				$smarty->assign('new_filesize', number_format($imageSize / 1000, 0, ',', ''));
 			}
 		}
-		if (empty($errors)) {
+		if (count($errors) == 0) {
 			@chmod($uploaded_images_path.$filename, 0644);
 			// $user_id can be NULL (see around line #15), because of that do not handle it with intval()
 			// see therefore variable definition of $user_id around line 15 of this script
@@ -154,7 +158,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 	elseif (empty($_GET['browse_images'])) {
 		$smarty->assign('form',true);
 	}
-	if (empty($errors) && isset($_FILES['probe']['error'])) {
+	if (count($errors) == 0 && isset($_FILES['probe']['error'])) {
 		$smarty->assign('server_max_filesize', ini_get('upload_max_filesize'));
 		$errors[] = 'upload_error_2';
 		$smarty->assign('errors', $errors);

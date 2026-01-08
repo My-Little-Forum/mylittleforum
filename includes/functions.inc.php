@@ -1496,42 +1496,50 @@ function move_item($table, $id, $direction) {
  */
 function resize_image($uploaded_file, $file, $new_width, $new_height, $compression=80) {
 	if (file_exists($file)) {
-		@chmod($file, 0777);
-		@unlink($file);
+		@chmod($file, 0744);
 	}
 	
+	$error = false;
 	$image_info = getimagesize($uploaded_file);
 	$imageMIME = mime_content_type($uploaded_file);
-	if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) $error = true;
+	if (!is_array($image_info) || !in_array($imageMIME, ['image/gif', 'image/jpeg', 'image/png', 'image/webp']))  return false;
 	
-	if (empty($error)) {
-		if ($imageMIME == 'image/gif') {
-			// image of type GIF
-			$current_image = @imagecreatefromgif($uploaded_file) or $error = true;
-			if (empty($error)) $new_image = @imagecreate($new_width, $new_height) or $error = true;
-			if (empty($error)) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
-			if (empty($error)) @imagegif($new_image, $file) or $error = true;
-		} elseif ($imageMIME == 'image/jpeg') {
-			// image of type JPG
-			$current_image = @imagecreatefromjpeg($uploaded_file) or $error = true;
-			if (empty($error)) $new_image = @imagecreatetruecolor($new_width, $new_height) or $error = true;
-			if (empty($error)) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
-			if (empty($error)) @imagejpeg($new_image, $file, $compression) or $error = true;
-		} elseif($imageMIME=='image/png') {
-			// image of type PNG
-			$current_image = imagecreatefrompng($uploaded_file) or $error = true;
-			if (empty($error)) $new_image = imagecreatetruecolor($new_width, $new_height) or $error = true;
-			if (empty($error)) imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
-			if (empty($error)) imagepng($new_image, $file) or $error = $true;
-		} elseif($imageMIME=='image/webp') {
-			// image of type WebP
-			$current_image = imagecreatefromwebp($uploaded_file) or $error = true;
-			if (empty($error)) $new_image = imagecreatetruecolor($new_width, $new_height) or $error = true;
-			if (empty($error)) imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
-			if (empty($error)) imagewebp($new_image, $file) or $error = $true;
+	if ($imageMIME == 'image/gif') {
+		// image of type GIF
+		$current_image = @imagecreatefromgif($uploaded_file) or $error = true;
+		if ($error === false) $new_image = @imagecreate($new_width, $new_height) or $error = true;
+		if ($error === false) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+		if ($error === false) @imagegif($new_image, $file) or $error = true;
+	} elseif ($imageMIME == 'image/jpeg') {
+		// image of type JPG
+		$current_image = @imagecreatefromjpeg($uploaded_file) or $error = true;
+		if ($error === false) $new_image = @imagecreatetruecolor($new_width, $new_height) or $error = true;
+		if ($error === false) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+		if ($error === false) @imagejpeg($new_image, $file, $compression) or $error = true;
+	} elseif($imageMIME=='image/png') {
+		// image of type PNG
+		//translate $compression into one of the nine compression steps for PNG
+		if (in_array($compression, range(100, 91, -1))) {
+			$compressPNG = 6;
+		} else if (in_array($compression, range(90, 81, -1))) {
+			$compressPNG = 7;
+		} else if (in_array($compression, range(80, 71, -1))) {
+			$compressPNG = 8;
+		} else {
+			$compressPNG = 9;
 		}
+		$current_image = @imagecreatefrompng($uploaded_file) or $error = true;
+		if ($error === false) $new_image = @imagecreatetruecolor($new_width, $new_height) or $error = true;
+		if ($error === false) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+		if ($error === false) @imagepng($new_image, $file, $compressPNG) or $error = $true;
+	} elseif($imageMIME=='image/webp') {
+		// image of type WebP
+		$current_image = @imagecreatefromwebp($uploaded_file) or $error = true;
+		if ($error === false) $new_image = @imagecreatetruecolor($new_width, $new_height) or $error = true;
+		if ($error === false) @imagecopyresampled($new_image, $current_image, 0, 0, 0, 0, $new_width, $new_height, $image_info[0], $image_info[1]) or $error = true;
+		if ($error === false) @imagewebp($new_image, $file, $compression) or $error = $true;
 	}
-	if (empty($error)) return true;
+	if ($error === false) return true;
 	else return false;
 }
 
@@ -2613,6 +2621,71 @@ function setReceiptTimestamp($offset = 0) {
 		$_SESSION[$settings['session_prefix'] . 'receipt_timestamp_difference'] = $_SERVER['REQUEST_TIME'] + $offset - $_SESSION[$settings['session_prefix'] . 'receipt_timestamp'];
 	$_SESSION[$settings['session_prefix'] . 'receipt_timestamp'] = $_SERVER['REQUEST_TIME'];
 }
+
+/**
+ * function to validate an image, given by the temporary file name
+ *
+ * Check if an image is of one of the allowed image types.
+ * Allowed are the filetypes GIF, JPEG, PNG, WebP.
+ * Recode the input image to ensure, that it is really an image
+ * and not i.e. a malicious script, that is enclosed in an image.
+ *
+ * @param ressource $image the image name, taken from the $_FILES array
+ * @param string $savePath path to the saving location of the resulting image file
+ * @return bool [false]
+ * @return string [mimetype]
+ */
+function validate_image($image, $savePath) {
+	// set the working variable for the file type check
+	$isImg = false;
+	$imgTmp = false;
+	
+	// does the temporary image file in vain in itself exist?
+	if (!file_exists($image)) return false;
+	// what is the mimetype of the file?
+	$mimeImg = mime_content_type($image);
+	if (!in_array($mimeImg, ['image/gif', 'image/jpeg', 'image/png', 'image/webp'])) return false;
+	// what is the imagetype constant?
+	$type = exif_imagetype($image);
+	if ($type === false) return false;
+	
+	switch($type) {
+		case 1:
+			// GIF
+			$imgTmp = imagecreatefromgif($image);
+			if ($imgTmp !== false) {
+				$isImg = imagegif($imgTmp, $savePath);
+			}
+		break;
+		case 2:
+			//JPEG
+			$imgTmp = imagecreatefromjpeg($image);
+			if ($imgTmp !== false) {
+				$isImg = imagejpeg($imgTmp, $savePath, 90);
+			}
+		break;
+		case 3:
+			// PNG
+			$imgTmp = imagecreatefrompng($image);
+			if ($imgTmp !== false) {
+				$isImg = imagepng($imgTmp, $savePath, 6);
+			}
+		break;
+		case 18:
+			// WebP
+			$imgTmp = imagecreatefromwebp($image);
+			if ($imgTmp !== false) {
+				$isImg = imagewebp($imgTmp, $savePath, 90);
+			}
+		break;
+		default:
+			// not allowed filetype
+			$isImg = false;
+	}
+	if ($isImg === false) return false;
+	return $mimeImg;
+}
+
 
 /**
  * sends a status code, displays an error message and halts the script
