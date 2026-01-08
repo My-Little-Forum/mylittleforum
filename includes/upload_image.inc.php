@@ -158,7 +158,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 	elseif (empty($_GET['browse_images'])) {
 		$smarty->assign('form',true);
 	}
-	if (empty($errors) && isset($_FILES['probe']['error'])) {
+	if (count($errors) == 0 && isset($_FILES['probe']['error'])) {
 		$smarty->assign('server_max_filesize', ini_get('upload_max_filesize'));
 		$errors[] = 'upload_error_2';
 		$smarty->assign('errors', $errors);
