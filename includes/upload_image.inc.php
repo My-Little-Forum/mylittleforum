@@ -22,7 +22,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		if ($imageMime === false)
 			$errors[] = 'invalid_file_format';
 
-		if (count($errors) == 0) {
+		if (empty($errors)) {
 			clearstatcache();
 			$image_info = getimagesize($uploaded_images_path.$img_tmp_name);
 			$imageSize = @filesize($uploaded_images_path.$img_tmp_name);
@@ -60,7 +60,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 					$smarty->assign('max_filesize', $settings['upload_max_img_size']);
 					$errors[] = 'file_too_large';
 				}
-				if (count($errors) > 0) {
+				if (empty($errors)) {
 					if (file_exists($uploaded_images_path.$img_tmp_name)) {
 						@chmod($uploaded_images_path.$img_tmp_name, 0777);
 						@unlink($uploaded_images_path.$img_tmp_name);
@@ -69,7 +69,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 			}
 		}
 		
-		if (count($errors) == 0) {
+		if (empty($errors)) {
 			$filename = gmdate("YmdHis").uniqid('');
 			switch($imageMime) {
 				case 'image/gif':
@@ -93,7 +93,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				$smarty->assign('new_filesize', number_format($imageSize / 1000, 0, ',', ''));
 			}
 		}
-		if (count($errors) == 0) {
+		if (empty($errors)) {
 			@chmod($uploaded_images_path.$filename, 0644);
 			// $user_id can be NULL (see around line #15), because of that do not handle it with intval()
 			// see therefore variable definition of $user_id around line 15 of this script
@@ -158,7 +158,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 	elseif (empty($_GET['browse_images'])) {
 		$smarty->assign('form',true);
 	}
-	if (count($errors) == 0 && isset($_FILES['probe']['error'])) {
+	if (empty($errors) && isset($_FILES['probe']['error'])) {
 		$smarty->assign('server_max_filesize', ini_get('upload_max_filesize'));
 		$errors[] = 'upload_error_2';
 		$smarty->assign('errors', $errors);
