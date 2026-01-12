@@ -16,7 +16,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 		$img_tmp_name = uniqid(rand()).'.tmp';
 		$imgResized = false;
 		
-		$imageMime = validate_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name);
+		$imageMime = write_image($_FILES['probe']['tmp_name'], $uploaded_images_path.$img_tmp_name);
 		if (!file_exists($uploaded_images_path.$img_tmp_name))
 			$errors[] = 'upload_error';
 		if ($imageMime === false)

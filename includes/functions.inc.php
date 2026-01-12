@@ -2623,7 +2623,7 @@ function setReceiptTimestamp($offset = 0) {
 }
 
 /**
- * function to validate an image, given by the temporary file name
+ * function to validate an image $image and save it with $savePath
  *
  * Check if an image is of one of the allowed image types.
  * Allowed are the filetypes GIF, JPEG, PNG, WebP.
@@ -2635,7 +2635,7 @@ function setReceiptTimestamp($offset = 0) {
  * @return bool [false]
  * @return string [mimetype]
  */
-function validate_image($image, $savePath) {
+function write_image($image, $savePath) {
 	// set the working variable for the file type check
 	$isImg = false;
 	$imgTmp = false;
