@@ -26,7 +26,7 @@ class Captcha {
 	}
 
 	function generate_code($letters = 'abcdefhjkmnpqrstuvwxyz234568') {
-		mt_srand((double)microtime()*1000000);
+		mt_srand((float)microtime()*1000000);
 		$code = '';
 		for ($i = 0; $i < 5; $i++) {
 			$code .= substr($letters, mt_rand(0, strlen($letters) -1), 1);
