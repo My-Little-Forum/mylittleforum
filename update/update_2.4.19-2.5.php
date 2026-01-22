@@ -300,19 +300,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_wordlist_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['uploads_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
 			
-			// make column mlf2_userdata.user_id unsigned
-			// to prevent error when creating table mlf2_uploads
-			if (!@mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			
-			// new tables
-			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['akismet_rating_table'] . "` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `spam_check_status` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `akismet_spam` (`spam`), KEY spam_check_status (spam_check_status)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			
-			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_rating_table'] . "` (`eid` int(11) NOT NULL, `spam` tinyint(1) NOT NULL DEFAULT '0', `training_type` tinyint(1) NOT NULL DEFAULT '0', PRIMARY KEY (`eid`), KEY `b8_spam` (`spam`), KEY `B8_training_type` (`training_type`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			
-			if (!@mysqli_multi_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_wordlist_table'] . "` (`token` varchar(255) character set utf8mb4 collate utf8mb4_bin NOT NULL DEFAULT '', `count_ham` int unsigned default NULL, `count_spam` int unsigned default NULL, PRIMARY KEY (`token`)) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			
-			if (!@mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['uploads_table'] . "` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, `uploader` int(10) UNSIGNED NULL, `pathname` varchar(128) NOT NULL, `tstamp` datetime NULL, PRIMARY KEY (id), UNIQUE KEY `pathname` (`pathname`), CONSTRAINT `smbl_". $table_prefix ."uploader` FOREIGN KEY `fk_uploader` (`uploader`) REFERENCES " . $db_settings['userdata_table'] . "(`user_id`) ON UPDATE CASCADE ON DELETE SET NULL) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			
 			
 			/**
 			 * From here on everything can be done as a transaction in one step
@@ -321,6 +308,46 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				mysqli_autocommit($connid, false);
 				mysqli_begin_transaction($connid);
 				try {
+					// create the new introduced tables
+					// as first make column mlf2_userdata.user_id unsigned
+					// to prevent error when creating table mlf2_uploads
+					mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "`
+					CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT");
+					
+					// new tables
+					mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['akismet_rating_table'] . "` (
+						`eid` int(11) NOT NULL,
+						`spam` tinyint(1) NOT NULL DEFAULT '0',
+						`spam_check_status` tinyint(1) NOT NULL DEFAULT '0',
+						PRIMARY KEY (`eid`), KEY `akismet_spam` (`spam`), KEY spam_check_status (spam_check_status)
+					) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+					
+					mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_rating_table'] . "` (
+						`eid` int(11) NOT NULL,
+						`spam` tinyint(1) NOT NULL DEFAULT '0',
+						`training_type` tinyint(1) NOT NULL DEFAULT '0',
+						PRIMARY KEY (`eid`),
+						KEY `b8_spam` (`spam`),
+						KEY `B8_training_type` (`training_type`)
+					) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+					
+					mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['b8_wordlist_table'] . "` (
+						`token` varchar(255) character set utf8mb4 collate utf8mb4_bin NOT NULL DEFAULT '',
+						`count_ham` int unsigned default NULL,
+						`count_spam` int unsigned default NULL,
+						PRIMARY KEY (`token`)
+					) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;");
+					
+					mysqli_query($connid, "CREATE TABLE IF NOT EXISTS `" . $db_settings['uploads_table'] . "` (
+						`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+						`uploader` int(10) UNSIGNED NULL,
+						`pathname` varchar(128) NOT NULL,
+						`tstamp` datetime NULL,
+						PRIMARY KEY (id),
+						UNIQUE KEY `pathname` (`pathname`),
+						CONSTRAINT `smbl_". $table_prefix ."uploader` FOREIGN KEY `fk_uploader` (`uploader`) REFERENCES " . $db_settings['userdata_table'] . "(`user_id`) ON UPDATE CASCADE ON DELETE SET NULL
+					) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_bin;");
+					
 					// changes in the setting table
 					mysqli_query($connid, "ALTER TABLE `" . $db_settings['settings_table'] . "`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;");
