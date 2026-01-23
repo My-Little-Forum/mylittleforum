@@ -13,8 +13,8 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 if (isset($_SESSION[$settings['session_prefix'].'usersettings']['user_view'])) $user_view = $_SESSION[$settings['session_prefix'].'usersettings']['user_view'];
 else $user_view = $settings['default_view'];
 
-if (isset($_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'])) $fold_threads = (boolean) $_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'];
-else $fold_threads = (boolean) $settings['fold_threads'];
+if (isset($_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'])) $fold_threads = (bool) $_SESSION[$settings['session_prefix'].'usersettings']['fold_threads'];
+else $fold_threads = (bool) $settings['fold_threads'];
 
 if (isset($_SESSION[$settings['session_prefix'].'usersettings']['thread_order'])) {
 	if ($_SESSION[$settings['session_prefix'].'usersettings']['thread_order'] == 0) $thread_order = 0;
@@ -278,8 +278,11 @@ elseif(isset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam'])
 	unset($_SESSION[$settings['session_prefix'].'usersettings']['show_spam']);
 }
 
+$preview_template = "themes/". $settings['theme'] ."/subtemplates/popover-posting-preview.inc.tpl";
+
 $smarty->assign("subnav_link", $subnav_link);
 if ($user_view == 1) $smarty->assign('subtemplate', 'index_table.inc.tpl');
 else $smarty->assign('subtemplate', 'index.inc.tpl');
+$smarty->assign('preview_templ', $preview_template);
 $template = 'main.tpl';
 ?>

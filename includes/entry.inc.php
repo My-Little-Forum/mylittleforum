@@ -258,7 +258,9 @@
 	
 	$smarty->assign('name', $name);
 	
-	$smarty->assign('user_type', htmlspecialchars($entrydata['user_type']));
+	if (!empty($entrydata['user_type'])) {
+		$smarty->assign('user_type', htmlspecialchars($entrydata['user_type']));
+	}
 	$smarty->assign('disp_time', htmlspecialchars($entrydata['disp_time']));
 	$smarty->assign('ISO_time',  htmlspecialchars($entrydata['ISO_time']));
 	$smarty->assign('formated_time', htmlspecialchars($entrydata['formated_time']));
