@@ -378,12 +378,14 @@
 			$options['flag_ham'] = true;
 	}
 	
-	$html_templates = file_get_contents("themes/". $settings['theme'] ."/subtemplates/popover-full-size-img.inc.tpl");
-
+	$fsimage_template = "themes/". $settings['theme'] ."/subtemplates/popover-full-size-img.inc.tpl";
+	$preview_template = "themes/". $settings['theme'] ."/subtemplates/popover-posting-preview.inc.tpl";
+	
 	if (isset($options))
 		$smarty->assign('options', $options);
 	$smarty->assign('subtemplate', 'entry.inc.tpl');
-	$smarty->assign('html5_templ', $html_templates);
+	$smarty->assign('fsimage_templ', $fsimage_template);
+	$smarty->assign('preview_templ', $preview_template);
 	$template = 'main.tpl';
 
 ?>
