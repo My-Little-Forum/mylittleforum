@@ -641,7 +641,7 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 				preg_match($audioPattern, $content, $audioMatches);
 				if ($action == 'validate')
 					return !empty($audioMatches) && isset($mediaTypes[$audioMatches[1]]);
-				$media = "<audio controls src=\"" . htmlspecialchars($audioMatches[0]) . "\" type=\"audio/" . htmlspecialchars($mediaTypes[$audioMatches[1]]) . "\">Your browser does not support the audio tag. Please visit <a href=\"" . htmlspecialchars($audioMatches[0]) . "\">" . htmlspecialchars($audioMatches[0]) . "</a>.</audio>";
+				$media = '<audio controls src="' . htmlspecialchars($audioMatches[0]) . '" type="audio/' . htmlspecialchars($mediaTypes[$audioMatches[1]]) . '">Your browser does not support the audio tag. Please visit <a href="' . htmlspecialchars($audioMatches[0]) . '">' . htmlspecialchars($audioMatches[0]) . '</a>.</audio>';
 					
 			break;
 			
@@ -663,9 +663,9 @@ function do_bbcode_media($action, $attributes, $content, $params, $node_object) 
 					return !empty($videoMatches) && isset($mediaTypes[$videoMatches[1]]) || !empty($youtubeMatches);
 				
 				if (!empty($videoMatches) && isset($mediaTypes[$videoMatches[1]]))
-					$media = "<video width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" controls src=\"" . htmlspecialchars($videoMatches[0]) . "\" type=\"video/" . htmlspecialchars($mediaTypes[$videoMatches[1]]) . "\">Your browser does not support the video tag. Please visit <a href=\"" . htmlspecialchars($videoMatches[0]) . "\">" . htmlspecialchars($videoMatches[0]) . "</a>.</video>";
+					$media = '<video width="' . $videoWidth . '" height="' . $videoHeight . '" controls src="' . htmlspecialchars($videoMatches[0]) . '" type="video/' . htmlspecialchars($mediaTypes[$videoMatches[1]]) . '">Your browser does not support the video tag. Please visit <a href="' . htmlspecialchars($videoMatches[0]) . '">' . htmlspecialchars($videoMatches[0]) . '</a>.</video>';
 				else
-					$media = "<iframe width=\"" . $videoWidth . "\" height=\"" . $videoHeight . "\" src=\"https://www.youtube-nocookie.com/embed/" . htmlspecialchars($youtubeMatches[1]) . "\" frameborder=\"0\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen>Your browser does not support iframes. Please visit <a href=\"" . htmlspecialchars($youtubeMatches[0]) . "\">" . htmlspecialchars($youtubeMatches[0]) . "</a>.</iframe>";
+					$media = '<iframe width="' . $videoWidth . '" height="' . $videoHeight . '" src="https://www.youtube-nocookie.com/embed/' . htmlspecialchars($youtubeMatches[1]) . '" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>Your browser does not support iframes. Please visit <a href="' . htmlspecialchars($youtubeMatches[0]) . '">' . htmlspecialchars($youtubeMatches[0]) . '</a>.</iframe>';
 			break;
 		}
 		return $media;
