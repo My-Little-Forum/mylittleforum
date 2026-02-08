@@ -3994,8 +3994,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		$update['items'][] = 'includes/posting.inc.php';
 		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
-		$update['items'][] = 'includes/user.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
+		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
 		
