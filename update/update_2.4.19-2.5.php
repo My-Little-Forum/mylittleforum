@@ -615,6 +615,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				
 				$update['items'][] = 'index.php';
 				
+				$update['items'][] = 'infrastructure/';
+				
 				$update['items'][] = 'js/main.js';
 				$update['items'][] = 'js/posting.js';
 				$update['delete'][] = 'js/admin.js (remove)';
@@ -1026,6 +1028,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		
 		$update['items'][] = 'index.php';
 		
+		$update['items'][] = 'infrastructure/';
+		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
 		$update['delete'][] = 'js/admin.js (remove)';
@@ -1404,6 +1408,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$update['delete'][] = 'includes/classes/ (remove)';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -1808,6 +1814,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		
 		$update['items'][] = 'index.php';
 		
+		$update['items'][] = 'infrastructure/';
+		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
 		$update['delete'][] = 'js/admin.js (remove)';
@@ -2203,12 +2211,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -2602,12 +2613,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -3001,12 +3015,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/';
 		$update['delete'][] = 'js/main.min.js (remove)';
@@ -3273,12 +3290,15 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/search.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -3509,13 +3529,17 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -3525,6 +3549,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 		$update['items'][] = 'lang/';
 		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
+		$update['items'][] = 'modules/b8/';
+		$update['items'][] = 'modules/captcha/';
+		$update['items'][] = 'modules/smarty-5/';
+		$update['items'][] = 'modules/stringparser_bbcode/';
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		
 		$update['delete'][] = 'themes/default/images/add.png (remove)';
@@ -3743,13 +3771,17 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -3761,6 +3793,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 		
 		$update['items'][] = 'themes/default/';
 		
+		$update['items'][] = 'modules/b8/';
+		$update['items'][] = 'modules/captcha/';
+		$update['items'][] = 'modules/smarty-5/';
+		$update['items'][] = 'modules/stringparser_bbcode/';
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
 		
 		$update['delete'][] = 'themes/default/images/add.png (remove)';
@@ -3953,13 +3989,17 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -3970,6 +4010,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 		$update['delete'][] = 'lang/turkish.lang (remove)';
 		
 		$update['delete'][] = 'modules/bad-behavior (remove if present)';
+		
+		$update['items'][] = 'modules/b8/';
+		$update['items'][] = 'modules/captcha/';
+		$update['items'][] = 'modules/smarty-5/';
+		$update['items'][] = 'modules/stringparser_bbcode/';
 		
 		$update['delete'][] = 'themes/default/images/add.png (remove)';
 		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
@@ -4120,13 +4165,17 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
 		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -4135,6 +4184,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		
 		$update['items'][] = 'lang/';
 		$update['delete'][] = 'lang/turkish.lang (remove)';
+		
+		$update['items'][] = 'modules/b8/';
+		$update['items'][] = 'modules/captcha/';
+		$update['items'][] = 'modules/smarty-5/';
+		$update['items'][] = 'modules/stringparser_bbcode/';
 		
 		$update['delete'][] = 'themes/default/images/add.png (remove)';
 		$update['delete'][] = 'themes/default/images/add_page.png (remove)';
@@ -4271,12 +4325,17 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
+		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
 		
 		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
 		
 		$update['items'][] = 'js/main.js';
 		$update['items'][] = 'js/posting.js';
@@ -4285,6 +4344,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 		
 		$update['items'][] = 'lang/';
 		$update['delete'][] = 'lang/turkish.lang (remove)';
+		
+		$update['items'][] = 'modules/b8/';
+		$update['items'][] = 'modules/captcha/';
+		$update['items'][] = 'modules/smarty-5/';
+		$update['items'][] = 'modules/stringparser_bbcode/';
 		
 		$update['delete'][] = 'themes/default/images/add.png (remove)';
 		$update['delete'][] = 'themes/default/images/ajax_preview.png (remove)';
@@ -4388,15 +4452,27 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250921.1
 		$update['items'][] = 'includes/functions.inc.php';
 		$update['items'][] = 'includes/index.inc.php';
 		$update['items'][] = 'includes/js_defaults.inc.php';
+		$update['items'][] = 'includes/login.inc.php';
 		$update['items'][] = 'includes/main.inc.php';
 		$update['items'][] = 'includes/posting.inc.php';
+		$update['items'][] = 'includes/register.inc.php';
 		$update['items'][] = 'includes/thread.inc.php';
+		$update['items'][] = 'includes/upload_image.inc.php';
 		$update['items'][] = 'includes/user.inc.php';
-
+		
+		$update['items'][] = 'index.php';
+		
+		$update['items'][] = 'infrastructure/';
+		
 		$update['items'][] = 'js/main.js';
 		
 		$update['items'][] = 'lang/';
 		$update['delete'][] = 'lang/turkish.lang (remove)';
+		
+		$update['items'][] = 'modules/b8/';
+		$update['items'][] = 'modules/captcha/';
+		$update['items'][] = 'modules/smarty-5/';
+		$update['items'][] = 'modules/stringparser_bbcode/';
 		
 		$update['items'][] = 'themes/default/images/general-information.svg';
 		$update['items'][] = 'themes/default/subtemplates/admin.inc.tpl';
@@ -4404,6 +4480,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250921.1
 		$update['items'][] = 'themes/default/subtemplates/entry.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/index.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['items'][] = 'themes/default/subtemplates/posting_manage_postings.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/thread.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
 		$update['items'][] = 'themes/default/subtemplates/user.inc.tpl';
@@ -4434,22 +4511,37 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251010.1
 		$update['upload'][] = 'includes/admin.inc.php';
 		$update['upload'][] = 'includes/bookmark.inc.php';
 		$update['upload'][] = 'includes/entry.inc.php';
+		$update['upload'][] = 'includes/functions.inc.php';
 		$update['upload'][] = 'includes/index.inc.php';
 		$update['upload'][] = 'includes/js_defaults.inc.php';
+		$update['upload'][] = 'includes/login.inc.php';
+		$update['upload'][] = 'includes/main.inc.php';
 		$update['upload'][] = 'includes/posting.inc.php';
+		$update['upload'][] = 'includes/register.inc.php';
 		$update['upload'][] = 'includes/thread.inc.php';
+		$update['upload'][] = 'includes/upload_image.inc.php';
 		$update['upload'][] = 'includes/user.inc.php';
-
+		
+		$update['upload'][] = 'index.php';
+		
+		$update['upload'][] = 'infrastructure/';
+		
 		$update['upload'][] = 'js/main.js';
-
+		
 		$update['upload'][] = 'lang/';
-
+		
+		$update['upload'][] = 'modules/b8/';
+		$update['upload'][] = 'modules/captcha/';
+		$update['upload'][] = 'modules/smarty-5/';
+		$update['upload'][] = 'modules/stringparser_bbcode/';
+		
 		$update['upload'][] = 'themes/default/images/general-information.svg';
 		$update['upload'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/bookmark.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/entry.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/index.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/posting_manage_postings.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/thread.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/user.inc.tpl';
@@ -4479,22 +4571,37 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251021.1
 		$update['upload'][] = 'includes/admin.inc.php';
 		$update['upload'][] = 'includes/bookmark.inc.php';
 		$update['upload'][] = 'includes/entry.inc.php';
+		$update['upload'][] = 'includes/functions.inc.php';
 		$update['upload'][] = 'includes/index.inc.php';
 		$update['upload'][] = 'includes/js_defaults.inc.php';
+		$update['upload'][] = 'includes/login.inc.php';
+		$update['upload'][] = 'includes/main.inc.php';
 		$update['upload'][] = 'includes/posting.inc.php';
+		$update['upload'][] = 'includes/register.inc.php';
 		$update['upload'][] = 'includes/thread.inc.php';
+		$update['upload'][] = 'includes/upload_image.inc.php';
 		$update['upload'][] = 'includes/user.inc.php';
-
+		
+		$update['upload'][] = 'index.php';
+		
+		$update['upload'][] = 'infrastructure/';
+		
 		$update['upload'][] = 'js/main.js';
-
+		
 		$update['upload'][] = 'lang/';
-
+		
+		$update['upload'][] = 'modules/b8/';
+		$update['upload'][] = 'modules/captcha/';
+		$update['upload'][] = 'modules/smarty-5/';
+		$update['upload'][] = 'modules/stringparser_bbcode/';
+		
 		$update['upload'][] = 'themes/default/images/general-information.svg';
 		$update['upload'][] = 'themes/default/subtemplates/admin.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/bookmark.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/entry.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/index.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/index_table.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/posting_manage_postings.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/thread.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/thread_linear.inc.tpl';
 		$update['upload'][] = 'themes/default/subtemplates/user.inc.tpl';
@@ -4529,11 +4636,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 		$update['upload'][] = 'includes/main.inc.php';
 		$update['upload'][] = 'includes/register.inc.php';
 		$update['upload'][] = 'includes/upload_image.inc.php';
-
+		
 		$update['upload'][] = 'index.php';
-
+		
 		$update['upload'][] = 'infrastructure/';
-
+		
 		$update['upload'][] = 'modules/b8/';
 		$update['upload'][] = 'modules/captcha/';
 		$update['upload'][] = 'modules/smarty-5/';
