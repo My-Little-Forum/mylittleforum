@@ -4506,3 +4506,45 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251021.1
 		$update['upload'] = reorderUpgradeFiles($update['upload']);
 	}
 }
+
+if (empty($update['errors']) && in_array($settings['version'], array('20251129.1'))) {
+
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
+		}
+	}
+
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['upload'][] = 'includes/admin.inc.php';
+		$update['upload'][] = 'includes/entry.inc.php';
+		$update['upload'][] = 'includes/functions.inc.php';
+		$update['upload'][] = 'includes/index.inc.php';
+		$update['upload'][] = 'includes/login.inc.php';
+		$update['upload'][] = 'includes/main.inc.php';
+		$update['upload'][] = 'includes/register.inc.php';
+		$update['upload'][] = 'includes/upload_image.inc.php';
+
+		$update['upload'][] = 'index.php';
+
+		$update['upload'][] = 'infrastructure/';
+
+		$update['upload'][] = 'modules/b8/';
+		$update['upload'][] = 'modules/captcha/';
+		$update['upload'][] = 'modules/smarty-5/';
+		$update['upload'][] = 'modules/stringparser_bbcode/';
+		
+		$update['upload'][] = 'themes/default/subtemplates/admin.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/posting_manage_postings.inc.tpl';
+		$update['upload'][] = 'themes/default/subtemplates/user_edit.inc.tpl';
+		$update['upload'][] = 'themes/default/style.css';
+		$update['upload'][] = 'themes/default/style.min.css';
+
+		$update['upload'] = reorderUpgradeFiles($update['upload']);
+	}
+}
