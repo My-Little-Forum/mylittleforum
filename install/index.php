@@ -66,7 +66,7 @@ function my_parse_ini_file($path) {
 		$tmp = explode("=", $line, 2);
 		
 		$key = rtrim($tmp[0]);
-		$value = ltrim($tmp[1]);
+		$value = trim(ltrim($tmp[1]), "'");
 		if (preg_match("/^\".*\"$/", $value) || preg_match("/^'.*'$/", $value)) {
 			$value = mb_substr($value, 1, mb_strlen($value) - 2);
 		}
