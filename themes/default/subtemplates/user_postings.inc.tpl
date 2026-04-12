@@ -4,7 +4,7 @@
 <ul class="pagination">
 {if $pagination.previous}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $id}&amp;id={$id}{/if}{if $pagination.previous>1}&amp;page={$pagination.previous}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
 {foreach from=$pagination.items item=item}
-{if $item==0}<li>&hellip;</li>{elseif $item==$pagination.current}<li><span class="current">{$item}</span></li>{else}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $id}&amp;id={$id}{/if}{if $item>1}&amp;page={$item}{/if}">{$item}</a></li>{/if}
+{if $item==0}<li><span>…</span></li>{elseif $item==$pagination.current}<li><span class="current">{$item}</span></li>{else}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $id}&amp;id={$id}{/if}{if $item>1}&amp;page={$item}{/if}">{$item}</a></li>{/if}
 {/foreach}
 {if $pagination.next}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$pagination.next}" title="{#next_page_link_title#}">{#next_page_link#}</a></li>{/if}
 </ul>
@@ -37,7 +37,7 @@
 <ul class="pagination">
 {if $pagination.previous}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $id}&amp;id={$id}{/if}{if $pagination.previous>1}&amp;page={$pagination.previous}{/if}" title="{#previous_page_link_title#}">{#previous_page_link#}</a></li>{/if}
 {foreach from=$pagination.items item=item}
-{if $item==0}<li>&hellip;</li>{elseif $item==$pagination.current}<li><span class="current">{$item}</span></li>{else}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $id}&amp;id={$id}{/if}{if $item>1}&amp;page={$item}{/if}">{$item}</a></li>{/if}
+{if $item==0}<li><span>…</span></li>{elseif $item==$pagination.current}<li><span class="current">{$item}</span></li>{else}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $id}&amp;id={$id}{/if}{if $item>1}&amp;page={$item}{/if}">{$item}</a></li>{/if}
 {/foreach}
 {if $pagination.next}<li><a href="index.php?mode={$mode}{if $action}&amp;action={$action}{/if}{if $id}&amp;id={$id}{/if}&amp;page={$pagination.next}" title="{#next_page_link_title#}">{#next_page_link#}</a></li>{/if}
 </ul>
