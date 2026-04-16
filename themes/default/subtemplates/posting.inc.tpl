@@ -51,7 +51,7 @@
 </div>
 </div>
 {/if}
-<form action="index.php" method="post" id="postingform" accept-charset="{#charset#}">
+<form action="index.php" method="post" id="postingform" accept-charset="{#charset#}" autocomplete="off">
  <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}" />
  <input type="hidden" name="back" value="{$back}" />
  <input type="hidden" name="mode" value="{$mode}" />
@@ -126,7 +126,7 @@
 
   <div>
    <label for="subject" class="input">{#subject_marking#}</label>
-   <input id="subject" type="text" size="50" name="{$fld_subject}" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" required />
+   <input id="subject" type="text" size="50" name="{$fld_subject}" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" required autocomplete="off" />
   </div>
 
 {* Tags
