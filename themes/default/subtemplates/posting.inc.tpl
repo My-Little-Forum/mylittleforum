@@ -126,7 +126,7 @@
 
   <div>
    <label for="subject" class="input">{#subject_marking#}</label>
-   <input id="subject" type="text" size="50" name="{$fld_subject}" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" required autocomplete="off" />
+   <input id="subject" type="text" size="50" name="{$fld_subject}" value="{if $subject}{$subject}{/if}" maxlength="{$settings.subject_maxlength}" required />
   </div>
 
 {* Tags
