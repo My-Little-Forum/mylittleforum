@@ -506,7 +506,7 @@ function capsuledPreventDefault(event) {
 		};
 		if (method.toLowerCase() == "post"){
 			httpRequest.open("POST", uri, true);
-			httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 			httpRequest.send( qStr );
 		}
 		else {
@@ -787,8 +787,7 @@ function capsuledPreventDefault(event) {
 		replylinkLink.appendChild( document.createTextNode( lang["reply_link"] ));
 		
 		this.closeByOutSideClick = function(e) {
-			var imgCanvas = document.getElementById("image-canvas");
-			if (self.isVisible() && imgCanvas && imgCanvas.classList.contains("js-display-none")) {
+			if (self.isVisible()) {
 				var obj = document.getTarget(e);
 				if (obj && obj != self.getOpener().firstChild && obj != self.getContentElement() && obj != self.getMainElement()) {
 					var evtPos = document.getMousePosition(e);
@@ -1305,7 +1304,7 @@ function capsuledPreventDefault(event) {
 		 * @param xml
 		 */
 		this.updateAjaxPreviewWindow = function(xml) {
-			if (xml === false || !ajaxPreviewWindow)
+			if (xml == null || xml === false || !ajaxPreviewWindow)
 				return;
 			var content = xml.getElementsByTagName('content');
 			var isLocked = xml.getElementsByTagName('locked');
@@ -1355,7 +1354,7 @@ function capsuledPreventDefault(event) {
 								new Query("ajax_preview", "true"),
 								new Query("id", obj.pid)
 				];
-				new Request(strURL, "POST", querys, this, "updateAjaxPreviewWindow", null, true);
+				new Request(strURL, "GET", querys, this, "updateAjaxPreviewWindow", null, true);
 			}
 		};
 		
