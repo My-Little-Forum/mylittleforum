@@ -80,7 +80,7 @@
 
 ### Spam prevention
 
-- optional Bayed based content categorisation as ham or spam for forum posts and/or e-mails, to be sent over the contact form (*local service*)
+- optional Bayes based content categorisation as ham or spam for forum posts and/or e-mails, to be sent over the contact form (*local service*)
 - ~~optional spam prevention with Bad behavior (*local service*)~~ removed with version 20240729.1 because the project is dead
 - optional bad word list (*local service*)
 - optional blacklist for certain IPs and IP-ranges (*local service*)
