@@ -92,7 +92,7 @@
 ### User account management
 
 - optional user registration
-- options to registering an account by one self or by restricting the registration to be done by an administrator
+- options to register an account by one self or by restricting the registration to be done by an administrator
 - enforcement of a consent to the terms of use and/or the privacy policy, date of consent will be saved with the user data
 - enforcement of a renewed consent in case of changes in one of these documents
 - in general three possible user ranks (beside unregistered visitors) with different permissions and restrictions
@@ -144,7 +144,7 @@
 3. Depending on your server configuration the write permissions of the subdirectory templates_c (CHMOD 770) and the file config/db_settings.php (CHMOD 600) might need to be changed in order that they are writable by the script.
 4. Run the installation script by accessing yourdomain.tld/forum/install/ in your web browser and follow the instructions.
 5. Remove the directory "install" from your installation of My Little Forum.
-6. Change the write permissions for config/db_settings.php to (CHMOD 440), what prevents reading the files content for unauthorised users
+6. Change the write permissions for config/db_settings.php to (CHMOD 440), what prevents reading the files content for unauthorised users.
 
 ## Upgrade
 
