@@ -86,7 +86,7 @@
 - optional blacklist for certain IPs and IP-ranges (*local service*)
 - optional blacklist for user agents (*local service*)
 - optional check of e-mail-addresses during the registration process with Stop Forum Spam (*external service*)
-- optional content check of forum posts and/or e-mails, to be sent over the contact form, with Akismet (*external service*)
+- optional content check of forum posts and/or e-mails, to be sent over the contact form, with Akismet (*external service*, needs an Akismet-API-key)
 - perform the activated checks only for content of unregistered visitors or also for content of registered users (if check is applicable)
 
 ### User account management
