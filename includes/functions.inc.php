@@ -1706,7 +1706,7 @@ function check_filename($filename) {
 }
 
 /**
- * generates a random string
+ * generates a random string using a cryptographically secure procedure 
  *
  * @param int $length
  * @param string $characters
@@ -1715,9 +1715,8 @@ function check_filename($filename) {
 function random_string($length = 8, $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') {
 	$random_string = '';
 	$characters_length = strlen($characters);
-	for ($i = 0; $i < $length; $i++) {
-		$random_string .= $characters[mt_rand(0, $characters_length - 1)];
-	}
+	for ($i = 0; $i < $length; $i++)
+		$random_string .= $characters[random_int(0, $characters_length - 1)];
 	return $random_string;
 }
 
