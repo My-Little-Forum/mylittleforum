@@ -1713,12 +1713,11 @@ function check_filename($filename) {
  * @return string
  */
 function random_string($length = 8, $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') {
-    $random_string = '';
-    $characters_length = strlen($characters);
-    for ($i = 0; $i < $length; $i++) {
-        $random_string .= $characters[random_int(0, $characters_length - 1)];
-    }
-    return $random_string;
+	$random_string = '';
+	$characters_length = strlen($characters);
+	for ($i = 0; $i < $length; $i++)
+		$random_string .= $characters[random_int(0, $characters_length - 1)];
+	return $random_string;
 }
 
 /**
