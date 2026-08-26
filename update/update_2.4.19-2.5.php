@@ -4655,3 +4655,42 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 		$update['upload'] = reorderUpgradeFiles($update['upload']);
 	}
 }
+
+if (empty($update['errors']) && in_array($settings['version'], array('20260208.1'))) {
+/**
+	 * From here on everything can be done as a transaction in one step
+	 */
+	if (empty($update['errors'])) {
+		mysqli_autocommit($connid, false);
+		if (empty($update['errors'])) {
+			mysqli_begin_transaction($connid);
+			try {
+				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`;");
+				
+				mysqli_commit($connid);
+			} catch (mysqli_sql_exception $exception) {
+				mysqli_rollback($connid);
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
+			}
+		}
+		mysqli_autocommit($connid, true);
+	}
+	
+	// write the new version number to the database
+	if (empty($update['errors'])) {
+		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
+		if ($new_version_set === false) {
+			$update['errors'][] = 'Database error, could not write the new version string to the database.';
+		} else {
+			$update['new_version'] = $newVersion;
+		}
+	}
+
+	// collect the file and directory names to upgrade
+	if (empty($update['errors'])) {
+		$update['upload'][] = 'includes/functions.inc.php';
+		$update['upload'][] = 'includes/login.inc.php';
+		
+		$update['upload'] = reorderUpgradeFiles($update['upload']);
+	}
+}
