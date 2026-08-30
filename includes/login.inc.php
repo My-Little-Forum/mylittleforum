@@ -122,9 +122,9 @@ switch ($action) {
 					$_SESSION[$settings['session_prefix'].'usersettings'] = $usersettings;
 
 					if(isset($save_auto_login)) {
-						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), inactivity_notification = FALSE, user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', auto_login_code = '". mysqli_real_escape_string($connid, $auto_login_code) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ". intval($user_id));
+						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), inactivity_notification = FALSE, user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', auto_login_code = '". mysqli_real_escape_string($connid, $auto_login_code) ."', pwf_code = '', pwf_expiration_date = NULL, language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ". intval($user_id));
 					} else {
-						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), inactivity_notification = FALSE, user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', pwf_code = '', language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ".intval($user_id));
+						@mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET logins = logins + 1, last_login = NOW(), last_logout = NOW(), inactivity_notification = FALSE, user_ip = '". mysqli_real_escape_string($connid, $_SERVER['REMOTE_ADDR']) ."', pwf_code = '', pwf_expiration_date = NULL, language = '". mysqli_real_escape_string($connid, $language_update) ."', time_zone = '". mysqli_real_escape_string($connid, $time_zone_update) ."', theme = '". mysqli_real_escape_string($connid, $theme_update) ."' WHERE user_id = ".intval($user_id));
 					}
 
 					if ($db_settings['useronline_table'] != "") {
@@ -282,14 +282,16 @@ switch ($action) {
 		if (!empty($_POST['pwf_email']) && trim($_POST['pwf_email']) == '') $error = true;
 		if (empty($error)) {
 			$pwf_result = @mysqli_query($connid, "SELECT user_id, user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_email = '". mysqli_real_escape_string($connid, $_POST['pwf_email']) ."' LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-			if (mysqli_num_rows($pwf_result) != 1) $error = true;
-			else $field = mysqli_fetch_array($pwf_result);
+			if (mysqli_num_rows($pwf_result) != 1) 
+				$error = true;
+			else 
+				$field = mysqli_fetch_array($pwf_result);
 			mysqli_free_result($pwf_result);
 		}
 		if (empty($error)) {
 			$pwf_code = random_string(20);
 			$pwf_code_hash = generate_pw_hash($pwf_code);
-			$update_result = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, registered = registered, pwf_code = '". mysqli_real_escape_string($connid, $pwf_code_hash) ."' WHERE user_id = ". intval($field['user_id']) ." LIMIT 1");
+			$update_result = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET pwf_code = '". mysqli_real_escape_string($connid, $pwf_code_hash) ."', pwf_expiration_date = NOW() WHERE user_id = ". intval($field['user_id']) ." LIMIT 1");
 			// send mail with activating link:
 			$smarty->configLoad($settings['language_file'], 'emails');
 			$lang = $smarty->getConfigVars();
@@ -310,17 +312,20 @@ switch ($action) {
 	break;
 	case "activate":
 		if (isset($_GET['activate']) && trim($_GET['activate']) != "" && isset($_GET['code']) && trim($_GET['code']) != "") {
-			$pwf_result = mysqli_query($connid, "SELECT user_id, user_name, user_email, pwf_code FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_GET["activate"]));
-			if (!$pwf_result) raise_error('database_error', mysqli_error($connid));
+			$pwf_result = mysqli_query($connid, "SELECT user_id, user_name, user_email, pwf_code FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_GET["activate"]) ." AND NOW() < DATE_ADD(pwf_expiration_date, INTERVAL ". intval($settings['pwf_expiration_date_period']) ." MINUTE)");
+			if (!$pwf_result) 
+				raise_error('database_error', mysqli_error($connid));
+			
 			$field = mysqli_fetch_array($pwf_result);
 			mysqli_free_result($pwf_result);
+			
 			if (!empty($field['pwf_code']) && trim($field['pwf_code']) != '' && $field['user_id'] == $_GET['activate'] && is_pw_correct($_GET['code'],$field['pwf_code'])) {
 				// generate new password:
-				if ($settings['min_pw_length'] < 8) $pwl = 8;
-				else $pwl = $settings['min_pw_length'];
+				$pwl = ($settings['min_pw_length'] < 8) ? 8 : $settings['min_pw_length'];
+
 				$new_pw = random_string($pwl);
 				$pw_hash = generate_pw_hash($new_pw);
-				$update_result = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET last_login = last_login, registered = registered, user_pw = '". mysqli_real_escape_string($connid, $pw_hash) ."', pwf_code = '' WHERE user_id = ". intval($field["user_id"]) ." LIMIT 1");
+				$update_result = mysqli_query($connid, "UPDATE ".$db_settings['userdata_table']." SET user_pw = '". mysqli_real_escape_string($connid, $pw_hash) ."', pwf_code = '', pwf_expiration_date = NULL WHERE user_id = ". intval($field["user_id"]) ." LIMIT 1");
 
 				// send new password:
 				$smarty->configLoad($settings['language_file'], 'emails');

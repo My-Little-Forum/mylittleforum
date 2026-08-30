@@ -428,4 +428,7 @@ INSERT INTO mlf2_settings (`name`, `value`) VALUES ('uploads_per_page', '20'), (
 ALTER TABLE mlf2_userdata ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE;
 
 DELETE FROM mlf2_settings WHERE name = 'bad_behavior'
+
+ALTER TABLE `mlf2_userdata` ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`;
+INSERT INTO `mlf2_settings` VALUES ('pwf_expiration_date_period', '30');
 */
