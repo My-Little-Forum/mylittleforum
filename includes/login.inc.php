@@ -282,8 +282,10 @@ switch ($action) {
 		if (!empty($_POST['pwf_email']) && trim($_POST['pwf_email']) == '') $error = true;
 		if (empty($error)) {
 			$pwf_result = @mysqli_query($connid, "SELECT user_id, user_name, user_email FROM ".$db_settings['userdata_table']." WHERE user_email = '". mysqli_real_escape_string($connid, $_POST['pwf_email']) ."' LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-			if (mysqli_num_rows($pwf_result) != 1) $error = true;
-			else $field = mysqli_fetch_array($pwf_result);
+			if (mysqli_num_rows($pwf_result) != 1) 
+				$error = true;
+			else 
+				$field = mysqli_fetch_array($pwf_result);
 			mysqli_free_result($pwf_result);
 		}
 		if (empty($error)) {
@@ -310,7 +312,7 @@ switch ($action) {
 	break;
 	case "activate":
 		if (isset($_GET['activate']) && trim($_GET['activate']) != "" && isset($_GET['code']) && trim($_GET['code']) != "") {
-			$pwf_result = mysqli_query($connid, "SELECT user_id, user_name, user_email, pwf_code FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_GET["activate"]) ." AND NOW() < DATE_ADD(pwf_expiration_date, INTERVAL 30 MINUTE)");
+			$pwf_result = mysqli_query($connid, "SELECT user_id, user_name, user_email, pwf_code FROM ".$db_settings['userdata_table']." WHERE user_id = ". intval($_GET["activate"]) ." AND NOW() < DATE_ADD(pwf_expiration_date, INTERVAL ". intval($settings['pwf_expiration_date_period']) ." MINUTE)");
 			if (!$pwf_result) 
 				raise_error('database_error', mysqli_error($connid));
 			

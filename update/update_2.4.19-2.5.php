@@ -4666,6 +4666,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20260208.1
 			mysqli_begin_transaction($connid);
 			try {
 				mysqli_query($connid, "ALTER TABLE `" . $db_settings['userdata_table'] . "` ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`;");
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`) VALUES ('pwf_expiration_date_period', '30');");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
