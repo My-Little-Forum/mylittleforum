@@ -37,11 +37,12 @@ if ($isUser || $hasUserAreaAccess) {
 	switch($action) {
 		case 'main':
 			if ($hasUserAreaAccess) {
-				if (isset($_GET['search_user']) && trim($_GET['search_user']) != '') $search_user = trim($_GET['search_user']);
+				if (isset($_GET['search_user']) && trim($_GET['search_user']) != '') 
+					$search_user = trim($_GET['search_user']);
 	
 				// count users and pages:
 				if (isset($search_user)) {
-					$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = '' AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'");
+					$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = '' AND lower(user_name) LIKE '%". addcslashes(mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])), '%_\\') ."%'");
 				} else {
 					$user_count_result = mysqli_query($connid, "SELECT COUNT(*) FROM ".$db_settings['userdata_table']." WHERE activate_code = ''");
 				}
@@ -86,7 +87,7 @@ if ($isUser || $hasUserAreaAccess) {
 				if (isset($search_user)) {
 					$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock
 						FROM ".$db_settings['userdata_table']."
-						WHERE activate_code = ''". $category_query_add ." AND lower(user_name) LIKE '%". mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])) ."%'
+						WHERE activate_code = ''". $category_query_add ." AND lower(user_name) LIKE '%". addcslashes(mysqli_real_escape_string($connid, my_strtolower($search_user, $lang['charset'])), '%_\\') ."%'
 						ORDER BY ". $order ." ". $descasc ." LIMIT ". intval($ul) .", ". intval($settings['users_per_page'])) or raise_error('database_error', mysqli_error($connid));
 				} else {
 					$result = @mysqli_query($connid, "SELECT ".$db_settings['userdata_table'].".user_id, user_name COLLATE utf8mb4_general_ci AS user_name, user_type, user_email, email_contact, user_hp, user_lock

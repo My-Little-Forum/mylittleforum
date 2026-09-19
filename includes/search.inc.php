@@ -10,9 +10,9 @@ if (isset($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 	$tmp_user_id = 0;
 }
 
-if (isset($_GET['search'])) {
+if (isset($_GET['search']) && trim($_GET['search']) != '') {
 	// regular serach:
-	$search = urldecode($_GET['search']);
+	$search = trim($_GET['search']);
 	if (isset($_GET['p_category']))
 		$p_category = intval($_GET['p_category']);
 	else
@@ -23,7 +23,6 @@ if (isset($_GET['search'])) {
 		$method = 'fulltext_or';
 	else
 		$method = 'fulltext';
-	if (!empty($search)) $search = trim($search);
 	
 	// split search query at spaces, but not between double quotes:
 	$help_pattern = '[!/*/~/?]'; // pattern to hide spaces between quotes
@@ -36,9 +35,10 @@ if (isset($_GET['search'])) {
 			$search
 	);
 	
-	$x_search_array = explode(' ', my_strtolower($x_search, $lang['charset']));
-	foreach ($x_search_array as $item) {
-		$search_array[] = mysqli_real_escape_string($connid, str_replace($help_pattern, ' ', $item));
+	$x_search_array = explode(' ', my_strtolower($x_search, $lang['charset']));	
+	foreach ($x_search_array as $item) { 
+		$escaped_item = mysqli_real_escape_string($connid, str_replace($help_pattern, ' ', $item)); 
+		$search_array[] = addcslashes($escaped_item, '%_\\'); 
 	}
 	$search_array = array_filter(array_map('trim', $search_array), function($value) { return $value !== ''; });
 	
