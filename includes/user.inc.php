@@ -268,6 +268,10 @@ if ($isUser || $hasUserAreaAccess) {
 				$subnav_link = array('mode'=>'index', 'title'=>'forum_index_link_title', 'name'=>'forum_index_link');
 				$smarty->assign('subnav_link', $subnav_link);
 			}
+			
+			$preview_template = "themes/". $settings['theme'] ."/subtemplates/popover-posting-preview.inc.tpl";
+			
+			$smarty->assign('preview_templ', $preview_template);
 			$smarty->assign('subtemplate', 'user_profile.inc.tpl');
 			$template = 'main.tpl';
 		break;

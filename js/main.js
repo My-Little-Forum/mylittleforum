@@ -998,8 +998,8 @@ function getCapsLock(thisEl) {
 		 * @return link
 		 */
 		var createAjaxPreviewLink = function(id) {
-			var link = document.createElementWithAttributes("a", {"pid": id, "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "onclick": function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); return false; }, "onmouseover": function(e) { if (settings["ajax_preview_onmouseover"]) {self.showAjaxPreviewWindow(this, false); this.blur(); } return false; }, "tabIndex": -1 }, null);
-			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "title": lang["ajax_preview_title"], "alt": "[…]", "width": "11", "height": "11"}, link);
+			var link = document.createElementWithAttributes("a", {"class": "preview-link", "title": lang["ajax_preview_title"], "href": strURL+"?id="+id, "tabIndex": -1 }, null);
+			var img  = document.createElementWithAttributes("img", {"src": templatePath + settings["ajax_preview_image"], "class": "sa-icon", "alt": lang["ajax_preview_title"], "width": "13", "height": "13"}, link);
 			return link;
 		};
 		
@@ -1014,6 +1014,12 @@ function getCapsLock(thisEl) {
 			if (pid && el.parentNode) {
 				el.parentNode.appendChild( document.createTextNode( String.fromCharCode(160) ) );
 				el.parentNode.appendChild( createAjaxPreviewLink(pid) );
+				
+				const previewLink = el.parentNode.querySelector("a:has(img)");
+				previewLink.addEventListener('click', function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); capsuledPreventDefault(e); });
+				if (settings["ajax_preview_onmouseover"]) {
+					previewLink.addEventListener('mouseover', function(e) {self.showAjaxPreviewWindow(this, false); this.blur(); capsuledPreventDefault(e); });
+				}
 			}
 		};
 		
@@ -1033,6 +1039,12 @@ function getCapsLock(thisEl) {
 			if (pid) {
 				el.appendChild( document.createTextNode( String.fromCharCode(160) ) );
 				el.appendChild( createAjaxPreviewLink(pid) );
+				
+				const previewLink = el.querySelector("a:has(img)");
+				previewLink.addEventListener('click', function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); capsuledPreventDefault(e); });
+				if (settings["ajax_preview_onmouseover"]) {
+					previewLink.addEventListener('mouseover', function(e) {self.showAjaxPreviewWindow(this, false); this.blur(); capsuledPreventDefault(e); });
+				}
 			}
 		};
 		
@@ -1176,6 +1188,12 @@ function getCapsLock(thisEl) {
 					else {
 						el.appendChild(document.createTextNode( String.fromCharCode(160) ));
 						el.appendChild(createAjaxPreviewLink(pid));
+					}
+					
+					const previewLink = el.querySelector("a:has(img)");
+					previewLink.addEventListener('click', function(e) {self.showAjaxPreviewWindow(this, true); this.blur(); capsuledPreventDefault(e); });
+					if (settings["ajax_preview_onmouseover"]) {
+						previewLink.addEventListener('mouseover', function(e) {self.showAjaxPreviewWindow(this, false); this.blur(); capsuledPreventDefault(e); });
 					}
 				}
 				// thread, folded oder expanded - Reicht eigentlich die Suche nach thread?
@@ -1336,7 +1354,7 @@ function getCapsLock(thisEl) {
 		this.showAjaxPreviewWindow = function(obj, pin) {
 			if (!obj || !ajaxPreviewWindow)
 				return;
-
+			
 			if (obj == ajaxPreviewWindow.getOpener() && ajaxPreviewWindow.isVisible() && pin) {
 				ajaxPreviewWindow.pin();
 				if (!ajaxPreviewWindow.isPinned()) {
@@ -1353,10 +1371,12 @@ function getCapsLock(thisEl) {
 				ajaxPreviewWindow.setText("");
 				ajaxPreviewWindow.setVisible(true);	
 				ajaxPreviewWindow.setPosition( elPos.left, elPos.top );
+				const pURL = new URL(obj.href).searchParams;
+				const pid = pURL.get('id');
 				var querys = [
-								new Query("mode", "entry"),
-								new Query("ajax_preview", "true"),
-								new Query("id", obj.pid)
+					new Query("mode", "entry"),
+					new Query("ajax_preview", "true"),
+					new Query("id", pid)
 				];
 				new Request(strURL, "GET", querys, this, "updateAjaxPreviewWindow", null, true);
 			}

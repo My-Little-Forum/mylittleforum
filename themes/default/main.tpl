@@ -111,8 +111,11 @@ https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=1922497
 *}
 <div id="pbmlf"><a href="https://mylittleforum.net/">powered by my little forum</a></div>
 </footer>
-{if $html5_templ}
-{$html5_templ}
+{if $preview_templ}
+{include file="$preview_templ"}
+{/if}
+{if $fsimage_templ}
+{include file="$fsimage_templ"}
 {/if}
 </body>
 </html>

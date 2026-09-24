@@ -1994,5 +1994,8 @@ if (empty($_SESSION[$settings['session_prefix'] . 'user_id'])) {
 	$smarty->assign('session', $session);
 }
 
+$preview_template = "themes/". $settings['theme'] ."/subtemplates/popover-posting-preview.inc.tpl";
+
+$smarty->assign('preview_templ', $preview_template);
 $template = 'main.tpl';
 ?>
