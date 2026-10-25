@@ -428,11 +428,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					
 					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 					`last_logout` = NULL
-					WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+					WHERE `last_logout` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 					
 					mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 					`registered` = NULL
-					WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+					WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 					
 					
 					// changes in the user data cache table
@@ -468,11 +468,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					
 					mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 					`last_reply` = NULL
-					WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+					WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 					
 					mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 					`edited` = NULL
-					WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+					WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 					
 					
 					// changes in the banlist table
@@ -804,11 +804,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
-				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_logout` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
-				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the user data cache table
@@ -840,11 +840,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
-				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
-				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the banlist table
@@ -1210,11 +1210,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
-				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_logout` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
-				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the forum/entries table
@@ -1238,11 +1238,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
-				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
-				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the banlist table
@@ -1617,11 +1617,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
-				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_logout` <= STR_TO_DATE'1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
-				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the forum/entries table
@@ -1645,11 +1645,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
-				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
-				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the banlist table
@@ -2011,11 +2011,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
-				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_logout` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
-				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the forum/entries table
@@ -2039,11 +2039,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
-				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
-				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the banlist table
@@ -2413,11 +2413,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
-				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_logout` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
-				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the forum/entries table
@@ -2441,11 +2441,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
-				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
-				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the banlist table
@@ -2816,11 +2816,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
-				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_logout` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
-				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the forum/entries table
@@ -2844,11 +2844,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
-				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
-				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the banlist table
@@ -3133,11 +3133,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
-				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_logout` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
-				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the forum/entries table
@@ -3161,11 +3161,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
-				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
-				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the banlist table
@@ -3405,11 +3405,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
-				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_logout` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
-				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the forum/entries table
@@ -3426,11 +3426,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
-				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
-				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the bookmarks table
@@ -3647,11 +3647,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`last_logout` = NULL
-				WHERE `last_logout` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_logout` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['userdata_table'] . "` SET
 				`registered` = NULL
-				WHERE `registered` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `registered` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the forum/entries table
@@ -3668,11 +3668,11 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`last_reply` = NULL
-				WHERE `last_reply` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `last_reply` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['forum_table'] . "` SET
 				`edited` = NULL
-				WHERE `edited` <= STR_TO_DATE('1900-01-01','%Y-%d-%m');");
+				WHERE `edited` <= STR_TO_DATE('1970-01-01 00:00:01','%Y-%d-%m %H:%i:%s');");
 				
 				
 				// changes in the bookmarks table
