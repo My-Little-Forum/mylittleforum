@@ -2079,7 +2079,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 			CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
 			ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
 				FOREIGN KEY `fk_uploader` (`uploader`)
-				REFERENCES " . $db_settings['userdata_table'] . "(`user_id`)
+				REFERENCES " . $db_settings['userdata_table'] . " (`user_id`)
 					ON UPDATE CASCADE
 					ON DELETE SET NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
