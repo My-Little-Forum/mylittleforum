@@ -1369,10 +1369,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$rIndex_akismet_spam = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 		FROM information_schema.STATISTICS 
 		WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
-			AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+			AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."_tmp'
 			AND INDEX_NAME = 'akismet_spam';");
 		if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
-			$qAlterTable = "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
+			$qAlterTable = "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."_tmp`
 				ADD KEY `akismet_spam` (`spam`);";
 			if (!@mysqli_query($connid, $qAlterTable)) {
 				$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -1386,10 +1386,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$rIndex_akismet_spam = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
 		FROM information_schema.STATISTICS 
 		WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
-			AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."'
+			AND TABLE_NAME LIKE '" . $db_settings['akismet_rating_table'] ."_tmp'
 			AND INDEX_NAME = 'spam_check_status';");
 		if (mysqli_num_rows($rIndex_akismet_spam) === 0) {
-			$qAlterTable = "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."`
+			$qAlterTable = "ALTER TABLE `" . $db_settings['akismet_rating_table'] ."_tmp`
 				ADD KEY `spam_check_status` (`spam`);";
 			if (!@mysqli_query($connid, $qAlterTable)) {
 				$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
