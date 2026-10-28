@@ -563,7 +563,7 @@ function do_bbcode_tex($action, $attributes, $content, $params, $node_object) {
 	if ($action == 'validate')
 		return true;
 	else
-		return '<span class="tex2jax_process">$' . $content . '$</span>';
+		return '<span class="tex2jax_process">$' . htmlspecialchars($content) . '$</span>';
 }
 
 /**
