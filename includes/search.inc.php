@@ -37,8 +37,7 @@ if (isset($_GET['search']) && trim($_GET['search']) != '') {
 	
 	$x_search_array = explode(' ', my_strtolower($x_search, $lang['charset']));	
 	foreach ($x_search_array as $item) { 
-		$escaped_item = mysqli_real_escape_string($connid, str_replace($help_pattern, ' ', $item)); 
-		$search_array[] = addcslashes($escaped_item, '%_\\'); 
+		$search_array[] = mysqli_real_escape_string($connid, addcslashes(str_replace($help_pattern, ' ', $item), '%_\\'));
 	}
 	$search_array = array_filter(array_map('trim', $search_array), function($value) { return $value !== ''; });
 	
