@@ -777,7 +777,7 @@ switch ($action) {
 			
 			if (empty($errors)) {
 				// category check:
-				if ($id == 0 && $categories != false && empty($categories[$p_category]))
+				if (($id == 0 || $pid == 0) && $categories != false && empty($categories[$p_category]))
 					$errors[] = 'error_invalid_category';
 				
 				if ($posting_mode == 1 && !empty($field['time'])) {
