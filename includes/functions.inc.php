@@ -1237,7 +1237,6 @@ function delete_posting_recursive($id) {
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] .   " WHERE cache_id   = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] .      " WHERE posting_id = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] .   " WHERE posting_id = " . intval($ids_data['id']));
-			@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .    " WHERE `bid`      = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] . " WHERE `eid`      = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['akismet_rating_table'] ." WHERE `eid`      = " . intval($ids_data['id']));
 			@mysqli_query($connid, "DELETE FROM " . $db_settings['b8_rating_table'] .     " WHERE `eid`      = " . intval($ids_data['id']));
@@ -1252,7 +1251,6 @@ function delete_posting_recursive($id) {
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] .    " WHERE cache_id   = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] .       " WHERE posting_id = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] .    " WHERE posting_id = " . intval($id));
-		@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .     " WHERE `bid`      = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] .  " WHERE `eid`      = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['akismet_rating_table'] . " WHERE `eid`      = " . intval($id));
 		@mysqli_query($connid, "DELETE FROM " . $db_settings['b8_rating_table'] .      " WHERE `eid`      = " . intval($id));
@@ -1262,7 +1260,6 @@ function delete_posting_recursive($id) {
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_cache_table'] .    " WHERE cache_id   = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['bookmark_table'] .       " WHERE posting_id = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['read_status_table'] .    " WHERE posting_id = " . intval($child_id));
-				@mysqli_query($connid, "DELETE FROM " . $db_settings['entry_tags_table'] .     " WHERE `bid`      = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['subscriptions_table'] .  " WHERE `eid`      = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['akismet_rating_table'] . " WHERE `eid`      = " . intval($child_id));
 				@mysqli_query($connid, "DELETE FROM " . $db_settings['b8_rating_table'] .      " WHERE `eid`      = " . intval($child_id));
@@ -1274,6 +1271,7 @@ function delete_posting_recursive($id) {
 		mysqli_free_result($result);
 		@mysqli_query($connid, "UPDATE " . $db_settings['forum_table'] . " SET time=time, last_reply='" . $field['time'] . "' WHERE tid=" . intval($tid));
 	}
+	// Entferne alle Tags, die keine Referenzen mehr haben bei den Einträgen oder Bookmarks
 	deleteTags();
 }
 
@@ -2531,51 +2529,79 @@ function getMessageStatus($data, $lastVisit, $folded = false) {
 
 function deleteTags() {
 	global $db_settings, $connid;
+	// Entferne alle TAG-IDS, die keine Referenz zu einem Bookmark mehr besitzen.
+	@mysqli_query($connid, "DELETE FROM `".$db_settings['bookmark_tags_table']."` WHERE `bid` NOT IN (
+					SELECT `id` FROM `".$db_settings['bookmark_table']."`)") or raise_error('database_error', mysqli_error($connid));
+	
+	// Entferne alle TAG-IDS, die keine Referenz zu einem Eintrag mehr besitzen.	
+	@mysqli_query($connid, "DELETE FROM `".$db_settings['entry_tags_table']."` WHERE `bid` NOT IN (
+					SELECT `id` FROM `".$db_settings['forum_table']."`)") or raise_error('database_error', mysqli_error($connid));
+	
 	// Entferne alle TAGS, die keine Referenz mehr besitzen.
 	@mysqli_query($connid, "DELETE FROM `".$db_settings['tags_table']."` WHERE `id` NOT IN (
-	SELECT `tid` FROM `".$db_settings['bookmark_tags_table']."`
-	UNION ALL
-	SELECT `tid` FROM `".$db_settings['entry_tags_table']."`
-	)") or raise_error('database_error', mysqli_error($connid));
+					SELECT `tid` FROM `".$db_settings['bookmark_tags_table']."`
+					UNION ALL
+					SELECT `tid` FROM `".$db_settings['entry_tags_table']."`)") or raise_error('database_error', mysqli_error($connid));
 }
 
 function setEntryTags($pid, $tags) {
 	global $db_settings;
-	setTags($pid, $tags, $db_settings['entry_tags_table']);
+	setTags($pid, $tags, $db_settings['forum_table'], $db_settings['entry_tags_table']);
 }
 
-function setBookmarkTags($bid, $tags) {
-	global $db_settings;
-	setTags($bid, $tags, $db_settings['bookmark_tags_table']);
+function setBookmarkTags($bid, $tags, $user_id) {
+	if (intval($user_id) > 0) {
+		global $db_settings;
+		setTags($bid, $tags, $db_settings['bookmark_table'], $db_settings['bookmark_tags_table'], $user_id);
+	}
 }
 
-function setTags($id, $tags, $table_name) {
+function setTags($id, $tags, $parent_table_name, $tag_table_name, $user_id = -1) {
 	global $db_settings, $connid;
+	
+	$user_restriction = intval($user_id) > 0 ? ("AND `user_id` = " . intval($user_id)) : "";
+	
 	$tags = array_filter(array_map('trim', $tags), function($value) { return $value !== ''; });
 	$escapedTags = array_map(function($tag) use($connid) { return mysqli_real_escape_string($connid, trim($tag)); }, array_values($tags));
+	
 	// Fuege neue TAGS hinzu, sofern die noch nicht vorhanden sind.
 	@mysqli_query($connid, "INSERT IGNORE INTO `".$db_settings['tags_table']."` (`tag`) VALUES ('". implode("'), ('", $escapedTags) ."')") or raise_error('database_error', mysqli_error($connid));
+	
 	// Entferne die TAGS von der Tabelle
-	@mysqli_query($connid, "DELETE FROM `".mysqli_real_escape_string($connid, $table_name)."` WHERE `bid` = " . intval($id) . " AND `tid` IN (SELECT `id` FROM `".$db_settings['tags_table']."` WHERE `tag` NOT IN ('" . implode("', '",  $escapedTags) . "') )  ") or raise_error('database_error', mysqli_error($connid));
+	@mysqli_query($connid, "DELETE FROM `".mysqli_real_escape_string($connid, $tag_table_name)."` 
+					WHERE `bid` = (SELECT `id` FROM `".mysqli_real_escape_string($connid, $parent_table_name)."` WHERE `id` = " . intval($id) . " " . $user_restriction . " LIMIT 1)
+					AND `tid` IN (SELECT `id` FROM `".$db_settings['tags_table']."` WHERE `tag` NOT IN ('" . implode("', '",  $escapedTags) . "') ) ") or raise_error('database_error', mysqli_error($connid));
+	
 	// Speichere die neuen TAGS zur ID in der Tabelle
-	@mysqli_query($connid, "INSERT IGNORE INTO `".mysqli_real_escape_string($connid, $table_name)."` (`bid`, `tid`) (SELECT " . intval($id) . " AS `bid`, `id` FROM `".$db_settings['tags_table']."` WHERE `tag` IN ('" . implode("', '",  $escapedTags) . "') )  ") or raise_error('database_error', mysqli_error($connid));
+	@mysqli_query($connid, "INSERT IGNORE INTO `".mysqli_real_escape_string($connid, $tag_table_name)."` (`bid`, `tid`)
+					(SELECT (SELECT `id` FROM `".mysqli_real_escape_string($connid, $parent_table_name)."` WHERE `id` = " . intval($id) . " " . $user_restriction . " LIMIT 1) AS `bid`, `id` 
+					FROM `".$db_settings['tags_table']."` WHERE `tag` IN ('" . implode("', '",  $escapedTags) . "') )  ") or raise_error('database_error', mysqli_error($connid));
+	
+	// Entferne alle Tags, die keine Referenzen mehr haben bei den Einträgen oder Bookmarks
 	deleteTags();
 }
 
 function getEntryTags($id) {
 	global $db_settings;
-	return getTags($id, $db_settings['entry_tags_table']);
+	return getTags($id, $db_settings['forum_table'], $db_settings['entry_tags_table']);
 }
 
-function getBookmarkTags($bid) {
+function getBookmarkTags($bid, $user_id) {
+	if (intval($user_id) <= 0)
+		return [];
 	global $db_settings;
-	return getTags($bid, $db_settings['bookmark_tags_table']);
+	return getTags($bid, $db_settings['bookmark_table'], $db_settings['bookmark_tags_table'], $user_id);
 }
 
-function getTags($bid, $table_name) {
+function getTags($bid, $parent_table_name, $tag_table_name, $user_id = -1) {
 	global $db_settings, $connid;
 
-	$result = mysqli_query($connid, "SELECT `tag` FROM `".$db_settings['tags_table']."` JOIN `".mysqli_real_escape_string($connid, $table_name)."` ON `".$db_settings['tags_table']."`.`id` = `tid` WHERE `bid` = " . intval($bid) . "") or raise_error('database_error', mysqli_error($connid));
+	$user_restriction = intval($user_id) > 0 ? ("AND `user_id` = " . intval($user_id)) : "";
+
+	$result = mysqli_query($connid, "SELECT `tag` FROM `".$db_settings['tags_table']."` 
+							INNER JOIN `".mysqli_real_escape_string($connid, $tag_table_name)."`    ON `".$db_settings['tags_table']."`.`id` = `tid` 
+							INNER JOIN `".mysqli_real_escape_string($connid, $parent_table_name)."` ON `".mysqli_real_escape_string($connid, $parent_table_name)."`.`id` = `".mysqli_real_escape_string($connid, $tag_table_name)."`.`bid`
+							WHERE `bid` = " . intval($bid) . " " . $user_restriction) or raise_error('database_error', mysqli_error($connid));
 	if (mysqli_num_rows($result) == 0) 
 		return false;
 	
@@ -2586,12 +2612,18 @@ function getTags($bid, $table_name) {
 	return $tags;	
 }
 
-function deleteBookmark($id) {
+function deleteBookmark($id, $user_id) {
 	global $db_settings, $connid;
+	if (intval($user_id) > 0) {
+		// Entferne die TAGS zum Bookmark
+		@mysqli_query($connid, "DELETE FROM `".$db_settings['bookmark_tags_table']."` 
+						WHERE `bid` = (SELECT `id` FROM `".$db_settings['bookmark_table']."` WHERE `id` = ". intval($id) ." AND `user_id` = ". intval($user_id) ." LIMIT 1)") or raise_error('database_error', mysqli_error($connid));
 	
-	@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']."      WHERE `id`  = ". intval($id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
-	@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_tags_table']." WHERE `bid` = ". intval($id)) or raise_error('database_error', mysqli_error($connid));
-	
+		// Entferne das Bookmark
+		@mysqli_query($connid, "DELETE FROM ".$db_settings['bookmark_table']." 
+						WHERE `id`  = ". intval($id) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+	}
+	// Entferne alle Tags, die keine Referenzen mehr haben bei den Einträgen oder Bookmarks
 	deleteTags();
 }
 

@@ -334,7 +334,7 @@ switch ($action) {
 				$result = @mysqli_query($connid, "SELECT `id` FROM " . $db_settings['bookmark_table'] . " WHERE `user_id`= " . intval($user_id) . " AND `posting_id` = " . intval($_GET['bookmark']) . " LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				if(mysqli_num_rows($result) > 0) {
 					$row = mysqli_fetch_array($result);
-					deleteBookmark($row['id']);
+					deleteBookmark($row['id'], $user_id);
 				}
 				mysqli_free_result($result);
 				
@@ -758,7 +758,7 @@ switch ($action) {
 				$field = mysqli_fetch_array($edit_result);
 				mysqli_free_result($edit_result);
 				$pid = $field['pid'];
-				$field['tags'] = getBookmarkTags($id);
+				$field['tags'] = getEntryTags($id); // Is that necessary???
 				
 				// authorisatin check:
 				$authorization = get_edit_authorization($id, $field['user_id'], $field['edit_key'], $field['time'], $field['locked']);
