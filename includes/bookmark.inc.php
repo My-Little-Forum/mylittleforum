@@ -36,7 +36,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			);
 			$x_filter_array = explode(' ', my_strtolower($x_filter, $lang['charset']));
 			foreach($x_filter_array as $item)
-				$filter_array[] = mysqli_real_escape_string($connid, str_replace($help_pattern, ' ', $item));
+				$filter_array[] = mysqli_real_escape_string($connid, addcslashes(str_replace($help_pattern, ' ', $item), '%_\\'));
 			$filter_string = "AND LOWER(`".$db_settings['tags_table']."`.`tag`) LIKE '%".implode("%' OR LOWER(".$db_settings['tags_table'].".`tag`) LIKE '%",$filter_array)."%'";
 		}
 	}
@@ -115,7 +115,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			
 		case 'delete_bookmark':
 			$id = intval($_GET['delete_bookmark']);
-			$result = @mysqli_query($connid, "SELECT `subject` FROM ".$db_settings['bookmark_table']." WHERE id= ".$id." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+			$result = @mysqli_query($connid, "SELECT `subject` FROM ".$db_settings['bookmark_table']." WHERE id= ".$id." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			if(mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_array($result);
 				$bookmark['id']    = $id;
@@ -136,7 +136,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			$result = @mysqli_query($connid, "SELECT `id` FROM ".$db_settings['bookmark_table']." WHERE `id` = ". intval($_POST['id']) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			if(mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_array($result);
-				deleteBookmark($row['id']);
+				deleteBookmark($row['id'], $user_id);
 			}
 			mysqli_free_result($result);
 			header("Location: index.php?mode=bookmarks");
@@ -145,13 +145,13 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			
 		case 'edit_bookmark':
 			$id = intval($_GET['edit_bookmark']);
-			$tags = getBookmarkTags($id);
-			
-			$result = @mysqli_query($connid, "SELECT `subject` FROM ".$db_settings['bookmark_table']." WHERE id= ".$id." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
+						
+			$result = @mysqli_query($connid, "SELECT `subject` FROM ".$db_settings['bookmark_table']." WHERE id= ".$id." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 			if (mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_array($result);
 				$bookmark['id']    = $id;
 				$bookmark['title'] = htmlspecialchars($row['subject']);
+				$tags = getBookmarkTags($id, intval($user_id));
 				if (!empty($tags))
 					$bookmark['tags'] = implode(", ", array_filter(array_map('htmlspecialchars', $tags), function($value) { return $value !== ''; }));
 				$smarty->assign('bookmark', $bookmark);
@@ -191,7 +191,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 			}
 			
 			if (empty($errors)) {
-				setBookmarkTags($_POST['id'], $tagsArray);
+				setBookmarkTags($_POST['id'], $tagsArray, $user_id);
 				@mysqli_query($connid, "UPDATE ".$db_settings['bookmark_table']." SET `subject` = '". mysqli_real_escape_string($connid, trim($_POST['bookmark'])) ."' WHERE `id` = ". intval($_POST['id']) ." AND `user_id` = ". intval($user_id) ." LIMIT 1") or raise_error('database_error', mysqli_error($connid));
 				header("Location: index.php?mode=bookmarks");
 				exit;
@@ -217,7 +217,7 @@ if (isset($_SESSION[$settings['session_prefix'].'user_id'])) {
 		case 'reorder':
 			if (isset($_POST['bookmarks'])) {
 				$items = array_map('intval', explode(',', $_POST['bookmarks']));
-				$order_result = @mysqli_query($connid, "SELECT `id`, `order_id` FROM ".$db_settings['bookmark_table']." WHERE `id` IN (".implode(",", $items).") ORDER BY `order_id` ASC");
+				$order_result = @mysqli_query($connid, "SELECT `id`, `order_id` FROM ".$db_settings['bookmark_table']." WHERE `id` IN (".implode(",", $items).") AND `user_id` = ". intval($user_id) ." ORDER BY `order_id` ASC");
 				$order = false;
 				
 				while ($row = mysqli_fetch_array($order_result))
