@@ -4410,7 +4410,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 			AND INDEX_NAME IN('user_type', 'user_name');");
 		if (mysqli_num_rows($rObsoleteIndexes) > 0) {
 			while ($row  = mysqli_fetch_assoc($rObsoleteIndexes)) {
-				$qDropUserIndex = "DROP INDEX ". $row['obsolete_key'] ." ON " . $db_settings['userdata_table'] .";";
+				$qDropUserIndex = "DROP INDEX ". $row['obsolete_key'] ." ON " . $db_settings['userdata_table'] ."_tmp;";
 				if (!@mysqli_query($connid, $qDropUserIndex)) {
 					$update['errors'][] = 'Database error in line '. (__LINE__ - 1) .':\n' . mysqli_error($connid);
 				} else {
