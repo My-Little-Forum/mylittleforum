@@ -2021,7 +2021,56 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		}
 	}
 	
+	// changes in the user data table
+	$statusTestUserdataTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_table'] ."_tmp`
+			LIKE `". $db_settings['userdata_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Userdata table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['userdata_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['userdata_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Data of userdata table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+			CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+			CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+			CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
+			CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+			CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+			CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL,
+			ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
+			ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`,
+			DROP INDEX `user_type`,
+			DROP INDEX `user_name`,
+			ADD KEY `key_user_type` (`user_type`),
+			ADD UNIQUE KEY `key_user_name` (`user_name`),
+			ADD UNIQUE KEY `key_user_email` (`user_email`);";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Structure of table and columns in userdata table altered.';
+		}
+	}
+	
 	// changes in the uploads table
+	// table mlf2_uploads must be processed after table mlf2_userdata,
+	// as the processing of table mlf2_uploads depends on the existence
+	// of the already processed copy of table mlf2_userdata
 	$statusTestUploadsTable = true;
 	if (empty($update['errors'])) {
 		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['uploads_table'] ."_tmp`
@@ -2079,7 +2128,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 			CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
 			ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
 				FOREIGN KEY `fk_uploader` (`uploader`)
-				REFERENCES " . $db_settings['userdata_table'] . " (`user_id`)
+				REFERENCES " . $db_settings['userdata_table'] . "_tmp (`user_id`)
 					ON UPDATE CASCADE
 					ON DELETE SET NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
@@ -2104,52 +2153,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 			} else {
 				$update['status'][] = 'Added index "pathname" to uploads table.';
 			}
-		}
-	}
-	
-	// changes in the user data table
-	$statusTestUserdataTable = true;
-	if (empty($update['errors'])) {
-		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_table'] ."_tmp`
-			LIKE `". $db_settings['userdata_table'] ."`;";
-		if (!@mysqli_query($connid, $qCopyTable)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestUserdataTable = false;
-		} else {
-			$update['status'][] = 'Userdata table copied.';
-		}
-	}
-	if (empty($update['errors'])) {
-		$qCopyData = "INSERT `". $db_settings['userdata_table'] ."_tmp`
-			SELECT * FROM `". $db_settings['userdata_table'] ."`;";
-		if (!@mysqli_query($connid, $qCopyData)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestUserdataTable = false;
-		} else {
-			$update['status'][] = 'Data of userdata table copied.';
-		}
-	}
-	if (empty($update['errors'])) {
-		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-			CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-			CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-			CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
-			CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
-			CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
-			CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL,
-			ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
-			ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`,
-			DROP INDEX `user_type`,
-			DROP INDEX `user_name`,
-			ADD KEY `key_user_type` (`user_type`),
-			ADD UNIQUE KEY `key_user_name` (`user_name`),
-			ADD UNIQUE KEY `key_user_email` (`user_email`);";
-		if (!@mysqli_query($connid, $qAlterTable)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestUserdataTable = false;
-		} else {
-			$update['status'][] = 'Structure of table and columns in userdata table altered.';
 		}
 	}
 	
@@ -3181,7 +3184,56 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		}
 	}
 	
+	// changes in the user data table
+	$statusTestUserdataTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_table'] ."_tmp`
+			LIKE `". $db_settings['userdata_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Userdata table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['userdata_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['userdata_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Data of userdata table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+			CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+			CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+			CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
+			CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
+			CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
+			CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL,
+			ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
+			ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`,
+			DROP INDEX `user_type`,
+			DROP INDEX `user_name`,
+			ADD KEY `key_user_type` (`user_type`),
+			ADD UNIQUE KEY `key_user_name` (`user_name`),
+			ADD UNIQUE KEY `key_user_email` (`user_email`);";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Structure of table and columns in userdata table altered.';
+		}
+	}
+	
 	// changes in the uploads table
+	// table mlf2_uploads must be processed after table mlf2_userdata,
+	// as the processing of table mlf2_uploads depends on the existence
+	// of the already processed copy of table mlf2_userdata
 	$statusTestUploadsTable = true;
 	if (empty($update['errors'])) {
 		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['uploads_table'] ."_tmp`
@@ -3239,7 +3291,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 			CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
 			ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
 				FOREIGN KEY `fk_uploader` (`uploader`)
-				REFERENCES " . $db_settings['userdata_table'] . " (`user_id`)
+				REFERENCES " . $db_settings['userdata_table'] . "_tmp (`user_id`)
 					ON UPDATE CASCADE
 					ON DELETE SET NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
@@ -3264,52 +3316,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 			} else {
 				$update['status'][] = 'Added index "pathname" to uploads table.';
 			}
-		}
-	}
-	
-	// changes in the user data table
-	$statusTestUserdataTable = true;
-	if (empty($update['errors'])) {
-		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_table'] ."_tmp`
-			LIKE `". $db_settings['userdata_table'] ."`;";
-		if (!@mysqli_query($connid, $qCopyTable)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestUserdataTable = false;
-		} else {
-			$update['status'][] = 'Userdata table copied.';
-		}
-	}
-	if (empty($update['errors'])) {
-		$qCopyData = "INSERT `". $db_settings['userdata_table'] ."_tmp`
-			SELECT * FROM `". $db_settings['userdata_table'] ."`;";
-		if (!@mysqli_query($connid, $qCopyData)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestUserdataTable = false;
-		} else {
-			$update['status'][] = 'Data of userdata table copied.';
-		}
-	}
-	if (empty($update['errors'])) {
-		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-			CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-			CHANGE `user_name` `user_name` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-			CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
-			CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
-			CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
-			CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL,
-			ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
-			ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`,
-			DROP INDEX `user_type`,
-			DROP INDEX `user_name`,
-			ADD KEY `key_user_type` (`user_type`),
-			ADD UNIQUE KEY `key_user_name` (`user_name`),
-			ADD UNIQUE KEY `key_user_email` (`user_email`);";
-		if (!@mysqli_query($connid, $qAlterTable)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestUserdataTable = false;
-		} else {
-			$update['status'][] = 'Structure of table and columns in userdata table altered.';
 		}
 	}
 	
@@ -4303,92 +4309,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		}
 	}
 	
-	// changes in the uploads table
-	$statusTestUploadsTable = true;
-	if (empty($update['errors'])) {
-		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['uploads_table'] ."_tmp`
-			LIKE `". $db_settings['uploads_table'] ."`;";
-		if (!@mysqli_query($connid, $qCopyTable)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestUploadsTable = false;
-		} else {
-			$update['status'][] = 'Uploads table copied.';
-		}
-	}
-	if (empty($update['errors'])) {
-		$qCopyData = "INSERT `". $db_settings['uploads_table'] ."_tmp`
-			SELECT * FROM `". $db_settings['uploads_table'] ."`;";
-		if (!@mysqli_query($connid, $qCopyData)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestUploadsTable = false;
-		} else {
-			$update['status'][] = 'Data of uploads table copied.';
-		}
-	}
-	if (empty($update['errors'])) {
-		// delete any duplicate file name entries,
-		// keep the first data record
-		$qAlterTable = "DELETE FROM `". $db_settings['uploads_table'] ."_tmp`
-			WHERE `id` IN (
-				SELECT `temp_id` FROM (
-					SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."_tmp` as `t1`
-					INNER JOIN `". $db_settings['uploads_table'] ."_tmp` as `t2`
-					ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
-				) AS c
-			);";
-		if (!@mysqli_query($connid, $qAlterTable)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestTempInfoTable = false;
-		} else {
-			$update['status'][] = 'Duplicated entries in uploads table deleted.';
-		}
-	}
-	if (empty($update['errors'])) {
-		// set the column uploader of any entries of deleted users to NULL
-		$qAlterTable = "UPDATE `". $db_settings['uploads_table'] ."_tmp`
-			SET `uploader` = NULL
-			WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "`);";
-		if (!@mysqli_query($connid, $qAlterTable)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestTempInfoTable = false;
-		} else {
-			$update['status'][] = 'User-ids of non existing users in uploads table deleted.';
-		}
-	}
-	if (empty($update['errors'])) {
-		$qAlterTable = "ALTER TABLE `". $db_settings['uploads_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-			CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
-			ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
-				FOREIGN KEY `fk_uploader` (`uploader`)
-				REFERENCES " . $db_settings['userdata_table'] . " (`user_id`)
-					ON UPDATE CASCADE
-					ON DELETE SET NULL;";
-		if (!@mysqli_query($connid, $qAlterTable)) {
-			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-			$statusTestTempInfoTable = false;
-		} else {
-			$update['status'][] = 'Structure of uploads table altered.';
-		}
-	}
-	if (empty($update['errors'])) {
-		$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
-			FROM information_schema.STATISTICS 
-			WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
-			AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."_tmp'
-			AND INDEX_NAME = 'pathname';");
-		if (mysqli_num_rows($rIndex_pathname) === 0) {
-			$qAlterTable = "ALTER TABLE `" . $db_settings['uploads_table'] ."_tmp`
-				ADD UNIQUE KEY `pathname` (`pathname`);";
-			if (!@mysqli_query($connid, $qAlterTable)) {
-				$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
-				$statusTestAkismetRatingTable = false;
-			} else {
-				$update['status'][] = 'Added index "pathname" to uploads table.';
-			}
-		}
-	}
-	
 	// changes in the user data table
 	$statusTestUserdataTable = true;
 	if (empty($update['errors'])) {
@@ -4496,6 +4416,95 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 				} else {
 					$update['status'][] = 'Deleted obsolete index '. htmlspecialchars($row['obsolete_key']) .' from userdata table.';
 				}
+			}
+		}
+	}
+	
+	// changes in the uploads table
+	// table mlf2_uploads must be processed after table mlf2_userdata,
+	// as the processing of table mlf2_uploads depends on the existence
+	// of the already processed copy of table mlf2_userdata
+	$statusTestUploadsTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['uploads_table'] ."_tmp`
+			LIKE `". $db_settings['uploads_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUploadsTable = false;
+		} else {
+			$update['status'][] = 'Uploads table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['uploads_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['uploads_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUploadsTable = false;
+		} else {
+			$update['status'][] = 'Data of uploads table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		// delete any duplicate file name entries,
+		// keep the first data record
+		$qAlterTable = "DELETE FROM `". $db_settings['uploads_table'] ."_tmp`
+			WHERE `id` IN (
+				SELECT `temp_id` FROM (
+					SELECT `t1`.`id` AS `temp_id` FROM `". $db_settings['uploads_table'] ."_tmp` as `t1`
+					INNER JOIN `". $db_settings['uploads_table'] ."_tmp` as `t2`
+					ON `t1`.`id` > `t2`.`id` AND `t1`.`filename` = `t2`.`filename`
+				) AS c
+			);";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestTempInfoTable = false;
+		} else {
+			$update['status'][] = 'Duplicated entries in uploads table deleted.';
+		}
+	}
+	if (empty($update['errors'])) {
+		// set the column uploader of any entries of deleted users to NULL
+		$qAlterTable = "UPDATE `". $db_settings['uploads_table'] ."_tmp`
+			SET `uploader` = NULL
+			WHERE `uploader` NOT IN(SELECT DISTINCT `user_id` FROM `" . $db_settings['userdata_table'] . "_tmp`);";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestTempInfoTable = false;
+		} else {
+			$update['status'][] = 'User-ids of non existing users in uploads table deleted.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['uploads_table'] ."_tmp`
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+			CHANGE `filename` `pathname` VARCHAR(128) NOT NULL,
+			ADD CONSTRAINT `smbl_". $table_prefix ."uploader`
+				FOREIGN KEY `fk_uploader` (`uploader`)
+				REFERENCES " . $db_settings['userdata_table'] . "_tmp (`user_id`)
+					ON UPDATE CASCADE
+					ON DELETE SET NULL;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestTempInfoTable = false;
+		} else {
+			$update['status'][] = 'Structure of uploads table altered.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$rIndex_pathname = mysqli_query($connid, "SELECT DISTINCT INDEX_NAME AS missing_key
+			FROM information_schema.STATISTICS 
+			WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+			AND TABLE_NAME LIKE '" . $db_settings['uploads_table'] ."_tmp'
+			AND INDEX_NAME = 'pathname';");
+		if (mysqli_num_rows($rIndex_pathname) === 0) {
+			$qAlterTable = "ALTER TABLE `" . $db_settings['uploads_table'] ."_tmp`
+				ADD UNIQUE KEY `pathname` (`pathname`);";
+			if (!@mysqli_query($connid, $qAlterTable)) {
+				$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+				$statusTestAkismetRatingTable = false;
+			} else {
+				$update['status'][] = 'Added index "pathname" to uploads table.';
 			}
 		}
 	}
