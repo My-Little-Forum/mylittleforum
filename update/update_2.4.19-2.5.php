@@ -320,7 +320,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				}
 			}
 			if (empty($update['errors'])) {
-				$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+				$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 					SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 					FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'ips';";
 				if (!@mysqli_query($connid, $qCopyData)) {
@@ -331,7 +331,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				}
 			}
 			if (empty($update['errors'])) {
-				$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+				$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 					SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 					FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'user_agents';";
 				if (!@mysqli_query($connid, $qCopyData)) {
@@ -342,7 +342,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				}
 			}
 			if (empty($update['errors'])) {
-				$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+				$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 					SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 					FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'words';";
 				if (!@mysqli_query($connid, $qCopyData)) {
@@ -1485,7 +1485,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'ips';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -1496,7 +1496,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'user_agents';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -1507,7 +1507,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'words';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -2650,7 +2650,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'ips';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -2661,7 +2661,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'user_agents';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -2672,7 +2672,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'words';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -3809,7 +3809,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'ips';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -3820,7 +3820,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'user_agents';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -3831,7 +3831,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'words';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -4955,7 +4955,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'ips';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -4966,7 +4966,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'user_agents';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -4977,7 +4977,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'words';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -6098,7 +6098,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'ips';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -6109,7 +6109,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'user_agents';";
 		if (!@mysqli_query($connid, $qCopyData)) {
@@ -6120,7 +6120,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		}
 	}
 	if (empty($update['errors'])) {
-		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp`
+		$qCopyData = "INSERT INTO `". $db_settings['banlists_table'] ."_tmp` (`name`, `list`)
 			SELECT `name`, GROUP_CONCAT(`list` SEPARATOR '\n') AS `list`
 			FROM `". $db_settings['banlists_table'] ."` WHERE `name` = 'words';";
 		if (!@mysqli_query($connid, $qCopyData)) {
