@@ -924,7 +924,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			}
 			if (empty($update['errors'])) {
 				$qAlterTable = "ALTER TABLE `". $db_settings['userdata_cache_table'] ."_tmp`
-					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+					CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
 				if (!@mysqli_query($connid, $qAlterTable)) {
 					$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 					$statusTestUserdataCacheTable = false;
@@ -1732,7 +1733,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 			$update['status'][] = 'Structure of table and columns in login control table altered.';
 		}
 	}
-	
 	if (empty($update['errors'])) {
 		$qSearch4email_notification = "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."_tmp`
 			LIKE 'email_notification';";
@@ -2182,7 +2182,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_cache_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestUserdataCacheTable = false;
@@ -2896,7 +2897,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 			$update['status'][] = 'Structure of table and columns in login control table altered.';
 		}
 	}
-	
 	if (empty($update['errors'])) {
 		$qSearch4email_notification = "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."_tmp`
 			LIKE 'email_notification';";
@@ -3346,7 +3346,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_cache_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestUserdataCacheTable = false;
@@ -4055,7 +4056,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 			$update['status'][] = 'Structure of table and columns in login control table altered.';
 		}
 	}
-	
 	if (empty($update['errors'])) {
 		$qSearch4email_notification = "SHOW COLUMNS FROM `". $db_settings['forum_table'] ."_tmp`
 			LIKE 'email_notification';";
@@ -4545,6 +4545,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		}
 	}
 	
+	// changes in the user data cache table
+	$statusTestUserdataCacheTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_cache_table'] ."_tmp`
+			LIKE `". $db_settings['userdata_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Userdata cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['userdata_cache_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['userdata_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Data of userdata cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_cache_table'] ."_tmp`
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Structure of userdata cache table altered.';
+		}
+	}
+	
 	// changes in the user online table
 	$statusTestUserOnlineTable = true;
 	if (empty($update['errors'])) {
@@ -4668,6 +4701,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 			`". $db_settings['temp_infos_table'] ."` TO `". $db_settings['temp_infos_table'] ."_old`,
 			`". $db_settings['uploads_table'] ."` TO `". $db_settings['uploads_table'] ."_old`,
 			`". $db_settings['userdata_table'] ."` TO `". $db_settings['userdata_table'] ."_old`,
+			`". $db_settings['userdata_cache_table'] ."` TO `". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."` TO `". $db_settings['useronline_table'] ."_old`";
 		if (!@mysqli_query($connid, $qRenameOriginalTables)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -4699,6 +4733,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 			`". $db_settings['temp_infos_table'] ."_tmp` TO `". $db_settings['temp_infos_table'] ."`,
 			`". $db_settings['uploads_table'] ."_tmp` TO `". $db_settings['uploads_table'] ."`,
 			`". $db_settings['userdata_table'] ."_tmp` TO `". $db_settings['userdata_table'] ."`,
+			`". $db_settings['userdata_cache_table'] ."_tmp` TO `". $db_settings['userdata_cache_table'] ."`,
 			`". $db_settings['useronline_table'] ."_tmp` TO `". $db_settings['useronline_table'] ."`";
 		if (!@mysqli_query($connid, $qRenameTempTables)) {
 			$update['errors'][] = "'Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -4730,6 +4765,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 			`". $db_settings['temp_infos_table'] ."_old`,
 			`". $db_settings['uploads_table'] ."_old`,
 			`". $db_settings['userdata_table'] ."_old`,
+			`". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."_old`";
 		if (!mysqli_query($connid, $qDropOutdatedTables)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -5720,6 +5756,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		}
 	}
 	
+	// changes in the user data cache table
+	$statusTestUserdataCacheTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_cache_table'] ."_tmp`
+			LIKE `". $db_settings['userdata_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Userdata cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['userdata_cache_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['userdata_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Data of userdata cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_cache_table'] ."_tmp`
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Structure of userdata cache table altered.';
+		}
+	}
+	
 	// changes in the user online table
 	$statusTestUserOnlineTable = true;
 	if (empty($update['errors'])) {
@@ -5839,6 +5908,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			`". $db_settings['temp_infos_table'] ."` TO `". $db_settings['temp_infos_table'] ."_old`,
 			`". $db_settings['uploads_table'] ."` TO `". $db_settings['uploads_table'] ."_old`,
 			`". $db_settings['userdata_table'] ."` TO `". $db_settings['userdata_table'] ."_old`,
+			`". $db_settings['userdata_cache_table'] ."` TO `". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."` TO `". $db_settings['useronline_table'] ."_old`";
 		if (!@mysqli_query($connid, $qRenameOriginalTables)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -5870,6 +5940,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			`". $db_settings['temp_infos_table'] ."_tmp` TO `". $db_settings['temp_infos_table'] ."`,
 			`". $db_settings['uploads_table'] ."_tmp` TO `". $db_settings['uploads_table'] ."`,
 			`". $db_settings['userdata_table'] ."_tmp` TO `". $db_settings['userdata_table'] ."`,
+			`". $db_settings['userdata_cache_table'] ."_tmp` TO `". $db_settings['userdata_cache_table'] ."`,
 			`". $db_settings['useronline_table'] ."_tmp` TO `". $db_settings['useronline_table'] ."`";
 		if (!@mysqli_query($connid, $qRenameTempTables)) {
 			$update['errors'][] = "'Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -5901,6 +5972,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			`". $db_settings['temp_infos_table'] ."_old`,
 			`". $db_settings['uploads_table'] ."_old`,
 			`". $db_settings['userdata_table'] ."_old`,
+			`". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."_old`";
 		if (!mysqli_query($connid, $qDropOutdatedTables)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -6896,6 +6968,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		}
 	}
 	
+	// changes in the user data cache table
+	$statusTestUserdataCacheTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_cache_table'] ."_tmp`
+			LIKE `". $db_settings['userdata_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Userdata cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['userdata_cache_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['userdata_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Data of userdata cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_cache_table'] ."_tmp`
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Structure of userdata cache table altered.';
+		}
+	}
+	
 	// changes in the user online table
 	$statusTestUserOnlineTable = true;
 	if (empty($update['errors'])) {
@@ -7015,6 +7120,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 			`". $db_settings['temp_infos_table'] ."` TO `". $db_settings['temp_infos_table'] ."_old`,
 			`". $db_settings['uploads_table'] ."` TO `". $db_settings['uploads_table'] ."_old`,
 			`". $db_settings['userdata_table'] ."` TO `". $db_settings['userdata_table'] ."_old`,
+			`". $db_settings['userdata_cache_table'] ."` TO `". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."` TO `". $db_settings['useronline_table'] ."_old`";
 		if (!@mysqli_query($connid, $qRenameOriginalTables)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -7046,6 +7152,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 			`". $db_settings['temp_infos_table'] ."_tmp` TO `". $db_settings['temp_infos_table'] ."`,
 			`". $db_settings['uploads_table'] ."_tmp` TO `". $db_settings['uploads_table'] ."`,
 			`". $db_settings['userdata_table'] ."_tmp` TO `". $db_settings['userdata_table'] ."`,
+			`". $db_settings['userdata_cache_table'] ."_tmp` TO `". $db_settings['userdata_cache_table'] ."`,
 			`". $db_settings['useronline_table'] ."_tmp` TO `". $db_settings['useronline_table'] ."`";
 		if (!@mysqli_query($connid, $qRenameTempTables)) {
 			$update['errors'][] = "'Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -7077,6 +7184,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 			`". $db_settings['temp_infos_table'] ."_old`,
 			`". $db_settings['uploads_table'] ."_old`,
 			`". $db_settings['userdata_table'] ."_old`,
+			`". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."_old`";
 		if (!mysqli_query($connid, $qDropOutdatedTables)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -8071,6 +8179,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		}
 	}
 	
+	// changes in the user data cache table
+	$statusTestUserdataCacheTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_cache_table'] ."_tmp`
+			LIKE `". $db_settings['userdata_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Userdata cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['userdata_cache_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['userdata_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Data of userdata cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_cache_table'] ."_tmp`
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataCacheTable = false;
+		} else {
+			$update['status'][] = 'Structure of userdata cache table altered.';
+		}
+	}
+	
 	// changes in the user online table
 	$statusTestUserOnlineTable = true;
 	if (empty($update['errors'])) {
@@ -8190,6 +8331,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 			`". $db_settings['temp_infos_table'] ."` TO `". $db_settings['temp_infos_table'] ."_old`,
 			`". $db_settings['uploads_table'] ."` TO `". $db_settings['uploads_table'] ."_old`,
 			`". $db_settings['userdata_table'] ."` TO `". $db_settings['userdata_table'] ."_old`,
+			`". $db_settings['userdata_cache_table'] ."` TO `". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."` TO `". $db_settings['useronline_table'] ."_old`";
 		if (!@mysqli_query($connid, $qRenameOriginalTables)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -8221,6 +8363,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 			`". $db_settings['temp_infos_table'] ."_tmp` TO `". $db_settings['temp_infos_table'] ."`,
 			`". $db_settings['uploads_table'] ."_tmp` TO `". $db_settings['uploads_table'] ."`,
 			`". $db_settings['userdata_table'] ."_tmp` TO `". $db_settings['userdata_table'] ."`,
+			`". $db_settings['userdata_cache_table'] ."_tmp` TO `". $db_settings['userdata_cache_table'] ."`,
 			`". $db_settings['useronline_table'] ."_tmp` TO `". $db_settings['useronline_table'] ."`";
 		if (!@mysqli_query($connid, $qRenameTempTables)) {
 			$update['errors'][] = "'Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -8252,6 +8395,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 			`". $db_settings['temp_infos_table'] ."_old`,
 			`". $db_settings['uploads_table'] ."_old`,
 			`". $db_settings['userdata_table'] ."_old`,
+			`". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."_old`";
 		if (!mysqli_query($connid, $qDropOutdatedTables)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
