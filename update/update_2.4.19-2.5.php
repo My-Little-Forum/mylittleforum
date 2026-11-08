@@ -480,7 +480,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			}
 			if (empty($update['errors'])) {
 				$qAlterTable = "ALTER TABLE `". $db_settings['entry_cache_table'] ."_tmp`
-					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+					CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
 				if (!@mysqli_query($connid, $qAlterTable)) {
 					$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 					$statusTestEntriesCacheTable = false;
@@ -1645,7 +1646,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['entry_cache_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestEntriesCacheTable = false;
@@ -2810,7 +2812,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['entry_cache_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestEntriesCacheTable = false;
@@ -3945,6 +3948,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		}
 	}
 	
+	// changes in the entry cache table
+	$statusTestEntriesCacheTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['entry_cache_table'] ."_tmp`
+			LIKE `". $db_settings['entry_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Entries cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['entry_cache_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['entry_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Data of entries cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['entry_cache_table'] ."_tmp`
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Structure of entries cache table altered.';
+		}
+	}
+	
 	// changes in the entry tags table
 	$statusTestEntryTagsTable = true;
 	if (empty($update['errors'])) {
@@ -4619,6 +4655,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 			`". $db_settings['bookmark_table'] ."` TO `". $db_settings['bookmark_table'] ."_old`,
 			`". $db_settings['bookmark_tags_table'] ."` TO `". $db_settings['bookmark_tags_table'] ."_old`,
 			`". $db_settings['category_table'] ."` TO `". $db_settings['category_table'] ."_old`,
+			`". $db_settings['entry_cache_table'] ."` TO `". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."` TO `". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['forum_table'] ."` TO `". $db_settings['forum_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."` TO `". $db_settings['login_control_table'] ."_old`,
@@ -4649,6 +4686,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 			`". $db_settings['bookmark_table'] ."_tmp` TO `". $db_settings['bookmark_table'] ."`,
 			`". $db_settings['bookmark_tags_table'] ."_tmp` TO `". $db_settings['bookmark_tags_table'] ."`,
 			`". $db_settings['category_table'] ."_tmp` TO `". $db_settings['category_table'] ."`,
+			`". $db_settings['entry_cache_table'] ."_tmp` TO `". $db_settings['entry_cache_table'] ."`,
 			`". $db_settings['entry_tags_table'] ."_tmp` TO `". $db_settings['entry_tags_table'] ."`,
 			`". $db_settings['forum_table'] ."_tmp` TO `". $db_settings['forum_table'] ."`,
 			`". $db_settings['login_control_table'] ."_tmp` TO `". $db_settings['login_control_table'] ."`,
@@ -4679,6 +4717,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 			`". $db_settings['bookmark_table'] ."_old`,
 			`". $db_settings['bookmark_tags_table'] ."_old`,
 			`". $db_settings['category_table'] ."_old`,
+			`". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['forum_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."_old`,
@@ -5086,6 +5125,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			$statusTestCategoriesTable = false;
 		} else {
 			$update['status'][] = 'Structure of table and columns in categories table altered.';
+		}
+	}
+	
+	// changes in the entry cache table
+	$statusTestEntriesCacheTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['entry_cache_table'] ."_tmp`
+			LIKE `". $db_settings['entry_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Entries cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['entry_cache_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['entry_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Data of entries cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['entry_cache_table'] ."_tmp`
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Structure of entries cache table altered.';
 		}
 	}
 	
@@ -5754,6 +5826,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			`". $db_settings['bookmark_table'] ."` TO `". $db_settings['bookmark_table'] ."_old`,
 			`". $db_settings['bookmark_tags_table'] ."` TO `". $db_settings['bookmark_tags_table'] ."_old`,
 			`". $db_settings['category_table'] ."` TO `". $db_settings['category_table'] ."_old`,
+			`". $db_settings['entry_cache_table'] ."` TO `". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."` TO `". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['forum_table'] ."` TO `". $db_settings['forum_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."` TO `". $db_settings['login_control_table'] ."_old`,
@@ -5784,6 +5857,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			`". $db_settings['bookmark_table'] ."_tmp` TO `". $db_settings['bookmark_table'] ."`,
 			`". $db_settings['bookmark_tags_table'] ."_tmp` TO `". $db_settings['bookmark_tags_table'] ."`,
 			`". $db_settings['category_table'] ."_tmp` TO `". $db_settings['category_table'] ."`,
+			`". $db_settings['entry_cache_table'] ."_tmp` TO `". $db_settings['entry_cache_table'] ."`,
 			`". $db_settings['entry_tags_table'] ."_tmp` TO `". $db_settings['entry_tags_table'] ."`,
 			`". $db_settings['forum_table'] ."_tmp` TO `". $db_settings['forum_table'] ."`,
 			`". $db_settings['login_control_table'] ."_tmp` TO `". $db_settings['login_control_table'] ."`,
@@ -5814,6 +5888,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			`". $db_settings['bookmark_table'] ."_old`,
 			`". $db_settings['bookmark_tags_table'] ."_old`,
 			`". $db_settings['category_table'] ."_old`,
+			`". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['forum_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."_old`,
@@ -6229,6 +6304,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 			$statusTestCategoriesTable = false;
 		} else {
 			$update['status'][] = 'Structure of table and columns in categories table altered.';
+		}
+	}
+	
+	// changes in the entry cache table
+	$statusTestEntriesCacheTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['entry_cache_table'] ."_tmp`
+			LIKE `". $db_settings['entry_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Entries cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['entry_cache_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['entry_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Data of entries cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['entry_cache_table'] ."_tmp`
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Structure of entries cache table altered.';
 		}
 	}
 	
@@ -6894,6 +7002,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 			`". $db_settings['bookmark_table'] ."` TO `". $db_settings['bookmark_table'] ."_old`,
 			`". $db_settings['bookmark_tags_table'] ."` TO `". $db_settings['bookmark_tags_table'] ."_old`,
 			`". $db_settings['category_table'] ."` TO `". $db_settings['category_table'] ."_old`,
+			`". $db_settings['entry_cache_table'] ."` TO `". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."` TO `". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['forum_table'] ."` TO `". $db_settings['forum_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."` TO `". $db_settings['login_control_table'] ."_old`,
@@ -6924,6 +7033,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 			`". $db_settings['bookmark_table'] ."_tmp` TO `". $db_settings['bookmark_table'] ."`,
 			`". $db_settings['bookmark_tags_table'] ."_tmp` TO `". $db_settings['bookmark_tags_table'] ."`,
 			`". $db_settings['category_table'] ."_tmp` TO `". $db_settings['category_table'] ."`,
+			`". $db_settings['entry_cache_table'] ."_tmp` TO `". $db_settings['entry_cache_table'] ."`,
 			`". $db_settings['entry_tags_table'] ."_tmp` TO `". $db_settings['entry_tags_table'] ."`,
 			`". $db_settings['forum_table'] ."_tmp` TO `". $db_settings['forum_table'] ."`,
 			`". $db_settings['login_control_table'] ."_tmp` TO `". $db_settings['login_control_table'] ."`,
@@ -6954,6 +7064,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 			`". $db_settings['bookmark_table'] ."_old`,
 			`". $db_settings['bookmark_tags_table'] ."_old`,
 			`". $db_settings['category_table'] ."_old`,
+			`". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['forum_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."_old`,
@@ -7373,6 +7484,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		}
 	}
 	
+	// changes in the entry cache table
+	$statusTestEntriesCacheTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['entry_cache_table'] ."_tmp`
+			LIKE `". $db_settings['entry_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Entries cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['entry_cache_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['entry_cache_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Data of entries cache table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['entry_cache_table'] ."_tmp`
+			CHANGE `cache_id` `cache_id` int UNSIGNED NOT NULL;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestEntriesCacheTable = false;
+		} else {
+			$update['status'][] = 'Structure of entries cache table altered.';
+		}
+	}
+	
 	// changes in the entry tags table
 	$statusTestEntryTagsTable = true;
 	if (empty($update['errors'])) {
@@ -8033,6 +8177,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 			`". $db_settings['bookmark_table'] ."` TO `". $db_settings['bookmark_table'] ."_old`,
 			`". $db_settings['bookmark_tags_table'] ."` TO `". $db_settings['bookmark_tags_table'] ."_old`,
 			`". $db_settings['category_table'] ."` TO `". $db_settings['category_table'] ."_old`,
+			`". $db_settings['entry_cache_table'] ."` TO `". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."` TO `". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['forum_table'] ."` TO `". $db_settings['forum_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."` TO `". $db_settings['login_control_table'] ."_old`,
@@ -8063,6 +8208,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 			`". $db_settings['bookmark_table'] ."_tmp` TO `". $db_settings['bookmark_table'] ."`,
 			`". $db_settings['bookmark_tags_table'] ."_tmp` TO `". $db_settings['bookmark_tags_table'] ."`,
 			`". $db_settings['category_table'] ."_tmp` TO `". $db_settings['category_table'] ."`,
+			`". $db_settings['entry_cache_table'] ."_tmp` TO `". $db_settings['entry_cache_table'] ."`,
 			`". $db_settings['entry_tags_table'] ."_tmp` TO `". $db_settings['entry_tags_table'] ."`,
 			`". $db_settings['forum_table'] ."_tmp` TO `". $db_settings['forum_table'] ."`,
 			`". $db_settings['login_control_table'] ."_tmp` TO `". $db_settings['login_control_table'] ."`,
@@ -8093,6 +8239,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 			`". $db_settings['bookmark_table'] ."_old`,
 			`". $db_settings['bookmark_tags_table'] ."_old`,
 			`". $db_settings['category_table'] ."_old`,
+			`". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['forum_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."_old`,
