@@ -514,7 +514,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			}
 			if (empty($update['errors'])) {
 				$qAlterTable = "ALTER TABLE `". $db_settings['entry_tags_table'] ."_tmp`
-					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+					CHANGE `bid` `bid` int UNSIGNED NOT NULL,
+					CHANGE `tid` `tid` int UNSIGNED NOT NULL;";
 				if (!@mysqli_query($connid, $qAlterTable)) {
 					$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 					$statusTestEntryTagsTable = false;
@@ -1683,7 +1685,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['entry_tags_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `bid` `bid` int UNSIGNED NOT NULL,
+			CHANGE `tid` `tid` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestEntryTagsTable = false;
@@ -2851,7 +2855,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['entry_tags_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `bid` `bid` int UNSIGNED NOT NULL,
+			CHANGE `tid` `tid` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestEntryTagsTable = false;
@@ -4012,7 +4018,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['entry_tags_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `bid` `bid` int UNSIGNED NOT NULL,
+			CHANGE `tid` `tid` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestEntryTagsTable = false;
@@ -5229,7 +5237,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['entry_tags_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `bid` `bid` int UNSIGNED NOT NULL,
+			CHANGE `tid` `tid` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestEntryTagsTable = false;
@@ -6446,7 +6456,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['entry_tags_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `bid` `bid` int UNSIGNED NOT NULL,
+			CHANGE `tid` `tid` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestEntryTagsTable = false;
@@ -7661,7 +7673,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['entry_tags_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+			CHANGE `bid` `bid` int UNSIGNED NOT NULL,
+			CHANGE `tid` `tid` int UNSIGNED NOT NULL;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestEntryTagsTable = false;
