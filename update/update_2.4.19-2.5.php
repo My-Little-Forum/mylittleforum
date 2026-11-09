@@ -961,7 +961,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 				$qAlterTable = "ALTER TABLE `". $db_settings['useronline_table'] ."_tmp`
 					CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 					CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
-					CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0'";
+					CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0',
+					ADD KEY `key_uo_ip` (`ip`);";
 				if (!@mysqli_query($connid, $qAlterTable)) {
 					$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 					$statusTestUserOnlineTable = false;
@@ -2220,7 +2221,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 		$qAlterTable = "ALTER TABLE `". $db_settings['useronline_table'] ."_tmp`
 			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 			CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
-			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0'";
+			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0',
+			ADD KEY `key_uo_ip` (`ip`);";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestUserOnlineTable = false;
@@ -3385,7 +3387,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 		$qAlterTable = "ALTER TABLE `". $db_settings['useronline_table'] ."_tmp`
 			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 			CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
-			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0'";
+			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0',
+			ADD KEY `key_uo_ip` (`ip`);";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestUserOnlineTable = false;
@@ -4608,7 +4611,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 		$qAlterTable = "ALTER TABLE `". $db_settings['useronline_table'] ."_tmp`
 			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 			CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
-			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0'";
+			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0',
+			ADD KEY `key_uo_ip` (`ip`);";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestUserOnlineTable = false;
@@ -5820,7 +5824,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 		$qAlterTable = "ALTER TABLE `". $db_settings['useronline_table'] ."_tmp`
 			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 			CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
-			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0'";
+			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0',
+			ADD KEY `key_uo_ip` (`ip`);";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestUserOnlineTable = false;
@@ -7033,7 +7038,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 		$qAlterTable = "ALTER TABLE `". $db_settings['useronline_table'] ."_tmp`
 			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 			CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
-			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';";
+			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0',
+			ADD KEY `key_uo_ip` (`ip`);";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestUserOnlineTable = false;
@@ -8245,7 +8251,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 		$qAlterTable = "ALTER TABLE `". $db_settings['useronline_table'] ."_tmp`
 			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
 			CHANGE `ip` `ip` VARCHAR(128) NOT NULL default '',
-			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0';";
+			CHANGE `user_id` `user_id` int UNSIGNED DEFAULT '0',
+			ADD KEY `key_uo_ip` (`ip`);";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestUserOnlineTable = false;
