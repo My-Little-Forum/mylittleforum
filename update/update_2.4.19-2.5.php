@@ -12047,9 +12047,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 	if (empty($update['errors'])) {
 		// delete failed tags (with tid = 0) in preparation
 		// of the correction of definition of column mlf2_tags.id
-		// use the original table name for the operation because
-		// we do not use a temporary copy of the entry tags table
-		$qAlterTable = "DELETE FROM `" . $db_settings['entry_tags_table'] . "`
+		$qAlterTable = "DELETE FROM `" . $db_settings['entry_tags_table'] . "_tmp`
 				WHERE `tid`= 0;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
@@ -12061,9 +12059,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 	if (empty($update['errors'])) {
 		// delete failed tags (with tid = 0) in preparation
 		// of the correction of definition of column mlf2_tags.id
-		// use the original table name for the operation because
-		// we do not use a temporary copy of the bookmark tags table
-		$qAlterTable = "DELETE FROM `" . $db_settings['bookmark_tags_table'] . "`
+		$qAlterTable = "DELETE FROM `" . $db_settings['bookmark_tags_table'] . "_tmp`
 				WHERE `tid`= 0;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
