@@ -11645,7 +11645,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 			mysqli_begin_transaction($connid);
 			try {
 				// changes in the settings table
-				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "_tmp` (`name`, `value`)
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
 				VALUES ('bbcode_media', '0');");
 				
 				mysqli_commit($connid);
