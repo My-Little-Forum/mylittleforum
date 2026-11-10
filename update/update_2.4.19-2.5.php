@@ -13831,6 +13831,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 		}
 	}
 	
+	// changes in the user data table
+	$statusTestUserdataTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_table'] ."_tmp`
+			LIKE `". $db_settings['userdata_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Userdata table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['userdata_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['userdata_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Data of userdata table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
+			ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Structure of table and columns in userdata table altered.';
+		}
+	}
+	
 	// changes in the user data cache table
 	$statusTestUserdataCacheTable = true;
 	if (empty($update['errors'])) {
@@ -13897,6 +13930,35 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 		}
 	}
 	
+	
+	/**
+	 * From here on everything can be done as a transaction in one step
+	 */
+	// Set the error reporting to MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT
+	// to make the reporting working in the try-catch-block.
+	mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+	if (empty($update['errors'])) {
+		mysqli_autocommit($connid, false);
+		if (empty($update['errors'])) {
+			mysqli_begin_transaction($connid);
+			try {
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
+					VALUES ('pwf_expiration_date_period', '30');");
+				
+				mysqli_commit($connid);
+			} catch (mysqli_sql_exception $exception) {
+				mysqli_rollback($connid);
+				$update['errors'][] = "Error in line ". $exception->getLine() .": ". $exception->getCode() .", ". $exception->getMessage();
+			}
+		}
+		mysqli_autocommit($connid, true);
+	}
+	
+	
+	// Set MySQL error reporting back to MYSQLI_REPORT_OFF because otherwise
+	// the mechanism with $update['errors'][] wouldn't work!
+	mysqli_report(MYSQLI_REPORT_OFF);
+	
 	if (empty($update['errors'])) {
 		// rename the original tables
 		$qRenameOriginalTables = "RENAME TABLE
@@ -13904,6 +13966,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 			`". $db_settings['entry_cache_table'] ."` TO `". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."` TO `". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."` TO `". $db_settings['login_control_table'] ."_old`,
+			`". $db_settings['userdata_table'] ."` TO `". $db_settings['userdata_table'] ."_old`,
 			`". $db_settings['userdata_cache_table'] ."` TO `". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."` TO `". $db_settings['useronline_table'] ."_old`";
 		if (!@mysqli_query($connid, $qRenameOriginalTables)) {
@@ -13920,6 +13983,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 			`". $db_settings['entry_cache_table'] ."_tmp` TO `". $db_settings['entry_cache_table'] ."`,
 			`". $db_settings['entry_tags_table'] ."_tmp` TO `". $db_settings['entry_tags_table'] ."`,
 			`". $db_settings['login_control_table'] ."_tmp` TO `". $db_settings['login_control_table'] ."`,
+			`". $db_settings['userdata_table'] ."_tmp` TO `". $db_settings['userdata_table'] ."`,
 			`". $db_settings['userdata_cache_table'] ."_tmp` TO `". $db_settings['userdata_cache_table'] ."`,
 			`". $db_settings['useronline_table'] ."_tmp` TO `". $db_settings['useronline_table'] ."`";
 		if (!@mysqli_query($connid, $qRenameTempTables)) {
@@ -13936,6 +14000,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 			`". $db_settings['entry_cache_table'] ."_old`,
 			`". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."_old`,
+			`". $db_settings['userdata_table'] ."_old`,
 			`". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."_old`";
 		if (!mysqli_query($connid, $qDropOutdatedTables)) {
@@ -13944,7 +14009,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 			$update['status'][] = 'All outdated tables was removed from the database.';
 		}
 	}
-
+	
 	// write the new version number to the database
 	if (empty($update['errors'])) {
 		$new_version_set = write_new_version_string_2_db($connid, $newVersion);
@@ -13954,7 +14019,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 			$update['new_version'] = $newVersion;
 		}
 	}
-
+	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
 		$update['upload'][] = 'includes/admin.inc.php';
@@ -14221,7 +14286,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20260208.1
 	}
 	
 	
-/**
+	/**
 	 * From here on everything can be done as a transaction in one step
 	 */
 	// Set the error reporting to MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT
@@ -14309,7 +14374,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20260208.1
 			$update['new_version'] = $newVersion;
 		}
 	}
-
+	
 	// collect the file and directory names to upgrade
 	if (empty($update['errors'])) {
 		$update['upload'][] = 'includes/functions.inc.php';
