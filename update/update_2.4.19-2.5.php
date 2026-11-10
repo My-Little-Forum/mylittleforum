@@ -11468,7 +11468,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
-			CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT;";
+			CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+			ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
 			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
 			$statusTestUserdataTable = false;
@@ -11646,7 +11647,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 			try {
 				// changes in the settings table
 				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
-				VALUES ('bbcode_media', '0');");
+				VALUES ('bbcode_media', '0'),
+					('pwf_expiration_date_period', '30');");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
