@@ -12191,7 +12191,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 			mysqli_begin_transaction($connid);
 			try {
 				// changes in the settings table
-				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "_tmp` (`name`, `value`)
+				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "` (`name`, `value`)
 				VALUES ('bbcode_media', '0'),
 					('pwf_expiration_date_period', '30');");
 				
