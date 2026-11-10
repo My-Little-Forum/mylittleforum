@@ -12079,6 +12079,39 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 		}
 	}
 	
+	// changes in the user data table
+	$statusTestUserdataTable = true;
+	if (empty($update['errors'])) {
+		$qCopyTable = "CREATE TABLE IF NOT EXISTS `". $db_settings['userdata_table'] ."_tmp`
+			LIKE `". $db_settings['userdata_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Userdata table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qCopyData = "INSERT `". $db_settings['userdata_table'] ."_tmp`
+			SELECT * FROM `". $db_settings['userdata_table'] ."`;";
+		if (!@mysqli_query($connid, $qCopyData)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Data of userdata table copied.';
+		}
+	}
+	if (empty($update['errors'])) {
+		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
+			ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`;";
+		if (!@mysqli_query($connid, $qAlterTable)) {
+			$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+			$statusTestUserdataTable = false;
+		} else {
+			$update['status'][] = 'Structure of table and columns in userdata table altered.';
+		}
+	}
+	
 	// changes in the user data cache table
 	$statusTestUserdataCacheTable = true;
 	if (empty($update['errors'])) {
@@ -12159,7 +12192,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 			try {
 				// changes in the settings table
 				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "_tmp` (`name`, `value`)
-				VALUES ('bbcode_media', '0');");
+				VALUES ('bbcode_media', '0'),
+					('pwf_expiration_date_period', '30');");
 				
 				mysqli_commit($connid);
 			} catch (mysqli_sql_exception $exception) {
@@ -12183,6 +12217,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 			`". $db_settings['entry_tags_table'] ."` TO `". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."` TO `". $db_settings['login_control_table'] ."_old`,
 			`". $db_settings['tags_table'] ."` TO `". $db_settings['tags_table'] ."_old`,
+			`". $db_settings['userdata_table'] ."` TO `". $db_settings['userdata_table'] ."_old`,
 			`". $db_settings['userdata_cache_table'] ."` TO `". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."` TO `". $db_settings['useronline_table'] ."_old`";
 		if (!@mysqli_query($connid, $qRenameOriginalTables)) {
@@ -12200,6 +12235,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 			`". $db_settings['entry_tags_table'] ."_tmp` TO `". $db_settings['entry_tags_table'] ."`,
 			`". $db_settings['login_control_table'] ."_tmp` TO `". $db_settings['login_control_table'] ."`,
 			`". $db_settings['tags_table'] ."_tmp` TO `". $db_settings['tags_table'] ."`,
+			`". $db_settings['userdata_table'] ."_tmp` TO `". $db_settings['userdata_table'] ."`,
 			`". $db_settings['userdata_cache_table'] ."_tmp` TO `". $db_settings['userdata_cache_table'] ."`,
 			`". $db_settings['useronline_table'] ."_tmp` TO `". $db_settings['useronline_table'] ."`";
 		if (!@mysqli_query($connid, $qRenameTempTables)) {
@@ -12217,6 +12253,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 			`". $db_settings['entry_tags_table'] ."_old`,
 			`". $db_settings['login_control_table'] ."_old`,
 			`". $db_settings['tags_table'] ."_old`,
+			`". $db_settings['userdata_table'] ."_old`,
 			`". $db_settings['userdata_cache_table'] ."_old`,
 			`". $db_settings['useronline_table'] ."_old`";
 		if (!mysqli_query($connid, $qDropOutdatedTables)) {
