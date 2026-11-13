@@ -5618,6 +5618,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL,
 			ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 			ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`,
+			ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`,
 			DROP INDEX `user_type`,
 			DROP INDEX `user_name`;";
 		if (!@mysqli_query($connid, $qAlterTable)) {
@@ -5868,7 +5869,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 			try {
 				// changes in the settings table
 				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "_tmp` (`name`, `value`)
-				VALUES ('bbcode_media', '0');");
+				VALUES ('bbcode_media', '0'),
+					('pwf_expiration_date_period', '30');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "_tmp` SET
 				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
