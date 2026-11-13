@@ -892,6 +892,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 					CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL,
 					ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 					ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`,
+					ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`,
 					DROP INDEX `user_type`,
 					DROP INDEX `user_name`,
 					ADD KEY `key_user_type` (`user_type`),
@@ -1070,7 +1071,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 						('delete_inactive_users', '30'),
 						('notify_inactive_users', '3'),
 						('link_open_target', ''),
-						('bbcode_media', '0');");
+						('bbcode_media', '0'),
+						('pwf_expiration_date_period', '30');");
 					
 					// change datasets in the settings table
 					mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "_tmp` SET
@@ -2067,6 +2069,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 			CHANGE `registered` `registered` TIMESTAMP NULL DEFAULT NULL,
 			ADD `inactivity_notification` BOOLEAN NOT NULL DEFAULT FALSE,
 			ADD `browser_window_target` tinyint(4) NOT NULL DEFAULT '0' AFTER `user_lock`,
+			ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`,
 			DROP INDEX `user_type`,
 			DROP INDEX `user_name`,
 			ADD KEY `key_user_type` (`user_type`),
@@ -2261,7 +2264,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 					('delete_inactive_users', '30'),
 					('notify_inactive_users', '3'),
 					('link_open_target', ''),
-					('bbcode_media', '0');");
+					('bbcode_media', '0'),
+					('pwf_expiration_date_period', '30');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "_tmp` SET
 				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
