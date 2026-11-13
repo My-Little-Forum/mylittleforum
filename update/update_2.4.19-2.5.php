@@ -10697,6 +10697,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
+			ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`,
 			CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 			CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
 			CHANGE `last_logout` `last_logout` TIMESTAMP NULL DEFAULT NULL,
@@ -10878,7 +10879,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 			try {
 				// changes in the settings table
 				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "_tmp` (`name`, `value`)
-				VALUES ('bbcode_media', '0');");
+				VALUES ('bbcode_media', '0'),
+					('pwf_expiration_date_period', '30');");
 				
 				
 				// changes in the user data table
