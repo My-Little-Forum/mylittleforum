@@ -8050,6 +8050,7 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
+			ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`,
 			CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 			CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
 			CHANGE `birthday` `birthday` DATE NULL DEFAULT NULL,
@@ -8303,7 +8304,8 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 			try {
 				// changes in the settings table
 				mysqli_query($connid, "INSERT INTO `" . $db_settings['settings_table'] . "_tmp` (`name`, `value`)
-				VALUES ('bbcode_media', '0');");
+				VALUES ('bbcode_media', '0'),
+					('pwf_expiration_date_period', '30');");
 				
 				mysqli_query($connid, "UPDATE `" . $db_settings['settings_table'] . "_tmp` SET
 				value = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
