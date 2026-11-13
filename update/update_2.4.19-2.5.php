@@ -6842,7 +6842,6 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 	}
 	if (empty($update['errors'])) {
 		$qAlterTable = "ALTER TABLE `". $db_settings['userdata_table'] ."_tmp`
-			CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
 			ADD `pwf_expiration_date` TIMESTAMP NULL DEFAULT NULL AFTER `pwf_code`,
 			CHANGE `user_id` `user_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
 			CHANGE `user_email` `user_email` VARCHAR(255) NOT NULL,
