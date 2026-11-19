@@ -60,7 +60,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 					$smarty->assign('max_filesize', $settings['upload_max_img_size']);
 					$errors[] = 'file_too_large';
 				}
-				if (empty($errors)) {
+				if (!empty($errors)) {
 					if (file_exists($uploaded_images_path.$img_tmp_name)) {
 						@chmod($uploaded_images_path.$img_tmp_name, 0777);
 						@unlink($uploaded_images_path.$img_tmp_name);
