@@ -80,6 +80,46 @@ if (!function_exists('str_ends_with')) {
 	}
 }
 
+/**
+ * delete any temporary tables that may exist as remaining of a previous upgrade attempt
+ *
+ * @param object $connid
+ * @param array $db_settings
+ * @param array $update
+ * @return array $update
+ */
+function delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update) {
+	$tables = [];
+	foreach ($db_settings as $key => $val) {
+		if (!in_array($key, ['host', 'user', 'password', 'database'])) {
+			$tables[] = $value;
+		}
+	}
+	if (count($tables) > 0 && empty($update['errors'])) {
+		foreach ($tables as $table) {
+			$qGetTable = "SELECT COUNT(TABLE_NAME) AS table_exists
+			FROM information_schema.TABLES
+			WHERE TABLE_SCHEMA LIKE '". $db_settings['database'] ."'
+				AND TABLE_TYPE LIKE 'BASE TABLE'
+				AND TABLE_NAME = '". $table ."_tmp';";
+			$rGetTable = @mysqli_query($connid, $qGetTable);
+			if ($rGetTable === false) {
+				$update['errors'][] = "Database error in line ". (__LINE__ - 2) .":\n" . mysqli_error($connid);
+			} else {
+				$rTable = mysqli_fetch_assoc($rGetTable);
+				if ($rTable['table_exists'] > 0) {
+					if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $table . "_tmp`")) {
+						$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+					} else {
+						$update['status'][] = 'Deleted temporary table '. htmlspecialchars($table ."_tmp") .', was a remaining of a previous upgrade.';
+					}
+				}
+			}
+		}
+	}
+	return $update;
+}
+
 // check version:
 if (!file_exists('config/VERSION')) $update['errors'][] = 'Error in line '.__LINE__.': Missing the file config/VERSION. Load it up from your script package (config/VERSION) before proceeding.';
 
@@ -296,10 +336,36 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 			flock($db_settings_fp, 3);
 			fclose($db_settings_fp);
 			// drop possibly existing new tables from previous tests with a pre release
-			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['akismet_rating_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_rating_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_wordlist_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
-			if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['uploads_table'] . "`")) $update['errors'][] = 'Database error in line '.__LINE__.': ' . mysqli_error($connid);
+			if (empty($update['errors'])) {
+				if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['akismet_rating_table'] . "`")) {
+					$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+				} else {
+					$update['status'][] = 'Deleted temporary table '. htmlspecialchars($db_settings['akismet_rating_table']) .', was a remaining of a previous upgrade.';
+				}
+			}
+			if (empty($update['errors'])) {
+				if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_rating_table'] . "`")) {
+					$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+				} else {
+					$update['status'][] = 'Deleted temporary table '. htmlspecialchars($db_settings['b8_rating_table']) .', was a remaining of a previous upgrade.';
+				}
+			}
+			if (empty($update['errors'])) {
+				if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['b8_wordlist_table'] . "`")) {
+					$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+				} else {
+					$update['status'][] = 'Deleted temporary table '. htmlspecialchars($db_settings['b8_wordlist_table']) .', was a remaining of a previous upgrade.';
+				}
+			}
+			if (empty($update['errors'])) {
+				if (!@mysqli_query($connid, "DROP TABLE IF EXISTS `" . $db_settings['uploads_table'] . "`")) {
+					$update['errors'][] = "Database error in line ". (__LINE__ - 1) .":\n" . mysqli_error($connid);
+				} else {
+					$update['status'][] = 'Deleted temporary table '. htmlspecialchars($db_settings['uploads_table']) .', was a remaining of a previous upgrade.';
+				}
+			}
+			// delete any temporary tables that may exist from a previous upgrade attempt
+			$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
 			
 			
 			// change the existing tables
@@ -1342,6 +1408,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.19', '
 
 // upgrade from version 2.4.99.0
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the Akismet rating table
 	$statusTestAkismetRatingTable = true;
@@ -2516,6 +2586,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.0')
 
 // upgrade from version 2.4.99.1
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the Akismet rating table
 	$statusTestAkismetRatingTable = true;
@@ -3684,6 +3758,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.1')
 
 // upgrade from version 2.4.99.2 and 2.4.99.3
 if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2', '2.4.99.3'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the Akismet rating table
 	$statusTestAkismetRatingTable = true;
@@ -4911,6 +4989,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('2.4.99.2',
 
 // upgrade from version 20220508.1 (2.5.0) and 20220509.1 (2.5.1)
 if (empty($update['errors']) && in_array($settings['version'], array('20220508.1', '20220509.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the Akismet rating table
 	$statusTestAkismetRatingTable = true;
@@ -6134,6 +6216,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220508.1
 
 // upgrade from version 20220517.1 (2.5.2) and 20220529.1 (2.5.3)
 if (empty($update['errors']) && in_array($settings['version'], array('20220517.1', '20220529.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the Akismet rating table
 	$statusTestAkismetRatingTable = true;
@@ -7354,6 +7440,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220517.1
 
 // upgrade from version 20220803.1 (2.5.4)
 if (empty($update['errors']) && in_array($settings['version'], array('20220803.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the Akismet rating table
 	$statusTestAkismetRatingTable = true;
@@ -8571,6 +8661,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20220803.1
 
 // upgrade from version 20240308.1 (2.5.5.alpha)
 if (empty($update['errors']) && in_array($settings['version'], array('20240308.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the banlist table
 	$statusTestBanlistsTable = true;
@@ -9574,6 +9668,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240308.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20240729.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmarks table
 	$statusTestBookmarksTable = true;
@@ -10347,6 +10445,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240729.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20240827.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmarks table
 	$statusTestBookmarksTable = true;
@@ -11122,6 +11224,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20240827.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20241215.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmarks table
 	$statusTestBookmarksTable = true;
@@ -11896,6 +12002,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20241215.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20250323.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmark tags table
 	$statusTestBookmarkTagsTable = true;
@@ -12424,6 +12534,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250323.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20250422.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmark tags table
 	$statusTestBookmarkTagsTable = true;
@@ -12865,6 +12979,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250422.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20250921.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmark tags table
 	$statusTestBookmarkTagsTable = true;
@@ -13240,6 +13358,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20250921.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20251010.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmark tags table
 	$statusTestBookmarkTagsTable = true;
@@ -13613,6 +13735,9 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251010.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20251021.1'))) {
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmark tags table
 	$statusTestBookmarkTagsTable = true;
@@ -13986,6 +14111,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251021.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20251129.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmark tags table
 	$statusTestBookmarkTagsTable = true;
@@ -14341,6 +14470,10 @@ if (empty($update['errors']) && in_array($settings['version'], array('20251129.1
 }
 
 if (empty($update['errors']) && in_array($settings['version'], array('20260208.1'))) {
+	// delete any temporary tables that may exist from a previous upgrade attempt
+	$update = delete_tables_from_previous_upgrade_attempts($connid, $db_settings, $update);
+	
+	
 	// change the existing tables
 	// changes in the bookmark tags table
 	$statusTestBookmarkTagsTable = true;
