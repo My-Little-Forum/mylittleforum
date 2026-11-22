@@ -74,7 +74,7 @@ h1 {
 .small {
   font-size: 0.82em;
 }
-a:has(img.icon) {
+:is(a, button):has(img.icon) {
   display: flex;
   align-items: center;
   gap: 0.125em;
