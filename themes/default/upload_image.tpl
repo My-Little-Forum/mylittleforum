@@ -273,6 +273,11 @@ window.addEventListener('DOMContentLoaded', function() {
  </header>
 {if $images}
  <main>
+{if $admin || $mod}
+  <form action="index.php" method="post">
+   <input type="hidden" name="mode" value="upload_image">
+   <input type="hidden" name="current" value="{$current}">
+{/if}
   <ul id="imgtab">
 {section name=nr loop=$images start=$start max=$images_per_page}
    <li>
@@ -285,11 +290,19 @@ window.addEventListener('DOMContentLoaded', function() {
      <p>{#insert_image_exp_no_js#}</p>
      <p><code>[img]images/uploaded/{$images[nr]}[/img]</code></p>
     </div>
-{if $admin || $mod}    <div><a class="deletelink" href="index.php?mode=upload_image&amp;delete={$images[nr]}&amp;current={$current}"><img class="icon" src="{$THEMES_DIR}/{$settings.theme}/images/delete-cross.svg" alt="" width="12" height="12" /><span>{#delete#}</span></a></div>
+{if $admin || $mod}    <div>
+     <button name="delete" value="{$images[nr]}" class="deletelink">
+      <img class="icon" src="{$THEMES_DIR}/{$settings.theme}/images/delete-cross.svg" alt="" width="12" height="12" />
+      <span>{#delete#}</span>
+     </button>
+    </div>
 {/if}
    </li>
 {/section}
   </ul>
+{if $admin || $mod}
+  </form>
+{/if}
  </main>
 {else}
  <main>
