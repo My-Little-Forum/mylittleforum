@@ -277,6 +277,7 @@ window.addEventListener('DOMContentLoaded', function() {
   <form action="index.php" method="post">
    <input type="hidden" name="mode" value="upload_image">
    <input type="hidden" name="current" value="{$current}">
+   <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}">
 {/if}
   <ul id="imgtab">
 {section name=nr loop=$images start=$start max=$images_per_page}
@@ -323,6 +324,7 @@ window.addEventListener('DOMContentLoaded', function() {
   <form id="del-upload-form" action="index.php" method="post" accept-charset="{#charset#}">
    <input type="hidden" name="mode" value="upload_image" />
    <input type="hidden" name="delete" value="{$delete}" />
+   <input type="hidden" name="csrf_token" value="{$CSRF_TOKEN}">
 {if $current}   <input type="hidden" name="current" value="{$current}" />{/if}
    <div>
     <button name="delete_confirm" value="{#delete_image_button#}">{#delete_image_button#}</button>

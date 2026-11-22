@@ -107,7 +107,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 	}
 
 	// delete image:
-	elseif (isset($_POST['delete']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] > 0) {
+	elseif (isset($_POST['delete']) && $_POST['csrf_token'] === $_SESSION['csrf_token'] && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] > 0) {
 		if (empty($_POST['delete_confirm'])) {
 			$smarty->assign('delete_confirm', true);
 			$smarty->assign('delete', htmlspecialchars($_POST['delete']));
