@@ -107,17 +107,17 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 	}
 
 	// delete image:
-	elseif (isset($_REQUEST['delete']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] > 0) {
-		if (empty($_REQUEST['delete_confirm'])) {
+	elseif (isset($_POST['delete']) && isset($_SESSION[$settings['session_prefix'].'user_type']) && $_SESSION[$settings['session_prefix'].'user_type'] > 0) {
+		if (empty($_POST['delete_confirm'])) {
 			$smarty->assign('delete_confirm', true);
-			$smarty->assign('delete', htmlspecialchars($_REQUEST['delete']));
-			if (isset($_REQUEST['current'])) $smarty->assign('current', intval($_REQUEST['current']));
+			$smarty->assign('delete', htmlspecialchars($_POST['delete']));
+			if (isset($_POST['current'])) $smarty->assign('current', intval($_POST['current']));
 		} else {
-			if (preg_match('/^([a-z0-9]+)\.(gif|jpg|png|webp)$/', $_REQUEST['delete']) && file_exists($uploaded_images_path.$_REQUEST['delete'])) {
-				@chmod($uploaded_images_path.$_REQUEST['delete'], 0777);
-				@unlink($uploaded_images_path.$_REQUEST['delete']);
+			if (preg_match('/^([a-z0-9]+)\.(gif|jpg|png|webp)$/', $_POST['delete']) && file_exists($uploaded_images_path.$_POST['delete'])) {
+				@chmod($uploaded_images_path.$_POST['delete'], 0777);
+				@unlink($uploaded_images_path.$_POST['delete']);
 			}
-			if (isset($_REQUEST['current'])) $bi = '&browse_images='.intval($_REQUEST['current']);
+			if (isset($_POST['current'])) $bi = '&browse_images='.intval($_POST['current']);
 			else $bi = '&browse_images=1';
 			header('Location: index.php?mode=upload_image'.$bi);
 			exit;
