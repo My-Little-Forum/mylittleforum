@@ -528,6 +528,7 @@ back =                            '&laquo; назад'
 no_images =                       'Нет доступных картинок.'
 delete_image_confirm =            'Удалить эту картинку?'
 delete_image_button =             'OK - Удалить'
+db_delete_failed =                '<!-- TODO -->The image could not be deleted because an error occurred whilst deleting the corresponding database entry.'
 
 [avatar]
 avatar_hl =                       'Аватар'

@@ -517,6 +517,7 @@ back =                            '&laquo; 返回'
 no_images =                       '目前還沒有圖片可用'
 delete_image_confirm =            '刪除這張圖片？'
 delete_image_button =             '刪除'
+db_delete_failed =                '<!-- TODO -->The image could not be deleted because an error occurred whilst deleting the corresponding database entry.'
 
 [avatar]
 avatar_hl =                       '頭像'

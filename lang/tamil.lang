@@ -514,6 +514,7 @@ back =                            '&laquo; பின்நோக்கி செ
 no_images =                       'ஒரு படமும் இல்லை.'
 delete_image_confirm =            'இந்த உருவத்தைஅழிக்க?'
 delete_image_button =             'சரி - அழிக்க'
+db_delete_failed =                '<!-- TODO -->The image could not be deleted because an error occurred whilst deleting the corresponding database entry.'
 
 [avatar]
 avatar_hl =                       'உருவ படம்'

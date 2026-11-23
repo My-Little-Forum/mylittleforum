@@ -518,6 +518,7 @@ back =                            '&laquo; zurück'
 no_images =                       'keine Bilder vorhanden'
 delete_image_confirm =            'Dieses Bild löschen?'
 delete_image_button =             'OK – löschen'
+db_delete_failed =                'Das Bild konnte nicht gelöscht werden, weil beim löschen des dazugehörigen Datennbankeintrags ein Fehler aufgetreten ist.'
 
 [avatar]
 avatar_hl =                       'Avatar'

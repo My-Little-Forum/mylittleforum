@@ -517,6 +517,7 @@ back =                      '&laquo; Tilbage'
 no_images =                 'Ingen billeder tilgængelige'
 delete_image_confirm =      'Slet dette billede?'
 delete_image_button =       'OK - Slet'
+db_delete_failed =                '<!-- TODO -->The image could not be deleted because an error occurred whilst deleting the corresponding database entry.'
 
 [avatar]
 avatar_hl =                 'Avatar'

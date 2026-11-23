@@ -518,6 +518,7 @@ back =                            '&laquo; indietro'
 no_images =                       'Nessuna immagine disponibile.'
 delete_image_confirm =            'Confermi l\'eliminazione di questa immagine?'
 delete_image_button =             'OK - ELIMINA'
+db_delete_failed =                '<!-- TODO -->The image could not be deleted because an error occurred whilst deleting the corresponding database entry.'
 
 [avatar]
 avatar_hl =                       'Avatar'
