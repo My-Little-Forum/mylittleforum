@@ -62,7 +62,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				}
 				if (!empty($errors)) {
 					if (file_exists($uploaded_images_path.$img_tmp_name)) {
-						@chmod($uploaded_images_path.$img_tmp_name, 0777);
+						@chmod($uploaded_images_path.$img_tmp_name, 0644);
 						@unlink($uploaded_images_path.$img_tmp_name);
 					}
 				}
@@ -123,7 +123,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				// if the image had no entry $rDeleteImageEntry will also be TRUE
 				// only if the operation failed $rDeleteImageEntry will be FALSE
 				if ($rDeleteImageEntry !== false) {
-					@chmod($uploaded_images_path.$_POST['delete'], 0777);
+					@chmod($uploaded_images_path.$_POST['delete'], 0644);
 					@unlink($uploaded_images_path.$_POST['delete']);
 				} else {
 					// couldn't delete image entry and image
