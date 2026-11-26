@@ -520,6 +520,7 @@ no_images =                       'No hay imágenes disponibles.'
 delete_image_confirm =            '¿Borrar esta imagen?'
 delete_image_button =             'OK - Eliminar'
 db_delete_failed =                '<!-- TODO -->The image could not be deleted because an error occurred whilst deleting the corresponding database entry.'
+db_store_failed =                 '<!-- TODO -->The database entry for the uploaded image couldn\'t be created. The image itself has been checked and saved. The entry can be added retrospectively by an administrator.'
 
 [avatar]
 avatar_hl =                       'Avatar'

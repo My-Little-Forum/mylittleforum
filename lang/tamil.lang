@@ -515,6 +515,7 @@ no_images =                       'ஒரு படமும் இல்லை.
 delete_image_confirm =            'இந்த உருவத்தைஅழிக்க?'
 delete_image_button =             'சரி - அழிக்க'
 db_delete_failed =                '<!-- TODO -->The image could not be deleted because an error occurred whilst deleting the corresponding database entry.'
+db_store_failed =                 '<!-- TODO -->The database entry for the uploaded image couldn\'t be created. The image itself has been checked and saved. The entry can be added retrospectively by an administrator.'
 
 [avatar]
 avatar_hl =                       'உருவ படம்'

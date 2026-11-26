@@ -98,7 +98,11 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 			// $user_id can be NULL (see around line #15), because of that do not handle it with intval()
 			// see therefore variable definition of $user_id around line 15 of this script
 			$qSetUpload = "INSERT INTO " . $db_settings['uploads_table'] . " (uploader, pathname, tstamp) VALUES (". $user_id .", '" . mysqli_real_escape_string($connid, $filename) . "', NOW())";
-			mysqli_query($connid, $qSetUpload);
+			$rSetUpload = mysqli_query($connid, $qSetUpload);
+			if ($rSetUpload === false) {
+				$errors[] = 'db_store_failed';
+				$smarty->assign('errors', $errors);
+			}
 			$smarty->assign('uploaded_file', $filename);
 		} else {
 			$smarty->assign('errors', $errors);
