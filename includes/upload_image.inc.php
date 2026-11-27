@@ -62,7 +62,7 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 				}
 				if (!empty($errors)) {
 					if (file_exists($uploaded_images_path.$img_tmp_name)) {
-						@chmod($uploaded_images_path.$img_tmp_name, 0777);
+						@chmod($uploaded_images_path.$img_tmp_name, 0644);
 						@unlink($uploaded_images_path.$img_tmp_name);
 					}
 				}
@@ -98,7 +98,11 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 			// $user_id can be NULL (see around line #15), because of that do not handle it with intval()
 			// see therefore variable definition of $user_id around line 15 of this script
 			$qSetUpload = "INSERT INTO " . $db_settings['uploads_table'] . " (uploader, pathname, tstamp) VALUES (". $user_id .", '" . mysqli_real_escape_string($connid, $filename) . "', NOW())";
-			mysqli_query($connid, $qSetUpload);
+			$rSetUpload = mysqli_query($connid, $qSetUpload);
+			if ($rSetUpload === false) {
+				$errors[] = 'db_store_failed';
+				$smarty->assign('errors', $errors);
+			}
 			$smarty->assign('uploaded_file', $filename);
 		} else {
 			$smarty->assign('errors', $errors);
@@ -114,8 +118,21 @@ if (($settings['upload_images'] == 1 && isset($_SESSION[$settings['session_prefi
 			if (isset($_POST['current'])) $smarty->assign('current', intval($_POST['current']));
 		} else {
 			if (preg_match('/^([a-z0-9]+)\.(gif|jpg|png|webp)$/', $_POST['delete']) && file_exists($uploaded_images_path.$_POST['delete'])) {
-				@chmod($uploaded_images_path.$_POST['delete'], 0777);
-				@unlink($uploaded_images_path.$_POST['delete']);
+				$qDeleteImageEntry = "DELETE FROM ". $db_settings['uploads_table'] ."
+					WHERE ". $db_settings['uploads_table'] .".id IN(
+						SELECT id FROM ". $db_settings['uploads_table'] ." WHERE pathname = '". mysqli_real_escape_string($connid, $_POST['delete']) ."');";
+				$rDeleteImageEntry = mysqli_query($connid, $qDeleteImageEntry);
+				// delete the image only if the database operation did not fail
+				// if the image had an entry and deleting the entry succeeded $rDeleteImageEntry will be TRUE
+				// if the image had no entry $rDeleteImageEntry will also be TRUE
+				// only if the operation failed $rDeleteImageEntry will be FALSE
+				if ($rDeleteImageEntry !== false) {
+					@chmod($uploaded_images_path.$_POST['delete'], 0644);
+					@unlink($uploaded_images_path.$_POST['delete']);
+				} else {
+					// couldn't delete image entry and image
+					$errors[] = 'db_delete_failed';
+				}
 			}
 			if (isset($_POST['current'])) $bi = '&browse_images='.intval($_POST['current']);
 			else $bi = '&browse_images=1';

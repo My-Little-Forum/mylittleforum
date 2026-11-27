@@ -254,12 +254,12 @@ window.addEventListener('DOMContentLoaded', function() {
    <li>
     <div>
      <button type="button">
-      <img src="images/uploaded/{$uploaded_file}" title="{#insert_image#}" alt="{#insert_image#}" />
+      <img src="images/uploaded/{$uploaded_file|escape:'html'}" title="{#insert_image#}" alt="{#insert_image#}" />
      </button>
     </div>
     <div class="insert-desc">
      <p>{#insert_image_exp_no_js#}</p>
-     <p><code>[img]images/uploaded/{$uploaded_file}[/img]</code></p>
+     <p><code>[img]images/uploaded/{$uploaded_file|escape:'html'}[/img]</code></p>
     </div>
    </li>
   </ul>
@@ -284,15 +284,15 @@ window.addEventListener('DOMContentLoaded', function() {
    <li>
     <div>
      <button type="button">
-      <img src="images/uploaded/{$images[nr]}" title="{#insert_image#}" alt="{#insert_image#}" />
+      <img src="images/uploaded/{$images[nr]|escape:'html'}" title="{#insert_image#}" alt="{#insert_image#}" />
      </button>
     </div>
     <div class="insert-desc">
      <p>{#insert_image_exp_no_js#}</p>
-     <p><code>[img]images/uploaded/{$images[nr]}[/img]</code></p>
+     <p><code>[img]images/uploaded/{$images[nr]|escape:'html'}[/img]</code></p>
     </div>
 {if $admin || $mod}    <div>
-     <button name="delete" value="{$images[nr]}" class="deletelink">
+     <button name="delete" value="{$images[nr]|escape:'html'}" class="deletelink">
       <img class="icon" src="{$THEMES_DIR}/{$settings.theme}/images/delete-cross.svg" alt="" width="12" height="12" />
       <span>{#delete#}</span>
      </button>
@@ -319,7 +319,7 @@ window.addEventListener('DOMContentLoaded', function() {
    <h2>{#delete_image_confirm#}</h2>
   </div>
   <ul id="imgtab" class="shrinked">
-   <li><img src="images/uploaded/{$delete}" alt="{$delete}" /></li>
+   <li><img src="images/uploaded/{$delete|escape:'html'}" alt="{$delete|escape:'html'}" /></li>
   </ul>
   <form id="del-upload-form" action="index.php" method="post" accept-charset="{#charset#}">
    <input type="hidden" name="mode" value="upload_image" />
